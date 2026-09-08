@@ -1,5 +1,12 @@
 # OPM model imports
 
+The project mission lets an MCP-enabled agent operate ResInsight and prepare model and well inputs.
+MCP is the Model Context Protocol for tool access.
+The intended workflow then runs simulations and inspects their results.
+P07 provides Python model preparation through `OpmImportService`.
+It has no production MCP import binding or complete simulation and lineage workflow.
+Lineage records how model revisions and results relate.
+
 `OpmImportService` imports a bounded FIELD model through the Python API.
 A deck is a simulator input file.
 The service preserves source files and validates their model meaning through OPM.
@@ -74,7 +81,8 @@ The receipt contains the prepared revision, import record artifact reference, an
 The summary reports parser version, support profile, units, dimensions, active cells, wells, report steps, elapsed days, and parsed keywords.
 `prepare` returns `OperationResult[PreparedModel]` and accepts only `Backend.OPM_FLOW`.
 Other backends return `UNSUPPORTED_OPERATION`.
-Invalid sources, unsupported model content, and parser failures return `INVALID_MODEL`.
+Invalid sources, unsupported model content, and parser failures before publication return `INVALID_MODEL` with effect `NOT_APPLIED`.
+The effect describes whether the operation changed stored state.
 
 ## Preserved inputs
 
@@ -96,6 +104,18 @@ Preparation still works after the original source directory disappears.
 It requires FIELD units, foot coordinates, and `positive_down` depth.
 The caller must supply a nonempty datum, the named reference for depth measurements.
 
+## Publication failures
+
+Source and model validation finish before the first attempt to publish an artifact.
+After that attempt, a failure can leave artifacts or a saved revision in the workspace.
+The service preserves the original store error code and reports effect `UNKNOWN`.
+The error message includes the session and revision identifiers for recovery.
+Inspect the session artifacts and revision before retrying.
+
+Temporary directory cleanup failures after writes can also return `UNKNOWN`.
+The store does not publish the entire import atomically, as one indivisible operation.
+The service does not promise rollback of completed writes.
+
 ## Supported model profile
 
 The profile identifier is `spe1-field-v1`.
@@ -109,6 +129,9 @@ The parser uses `ParseContext` with throwing actions for all reported parse cond
 The source collector performs only narrow `INCLUDE` preflight checks.
 It is not a replacement reservoir parser.
 See the [official OPM Python documentation](https://opm.github.io/opm-python-documentation/release-2025.10/index.html) for upstream interfaces.
+
+The parser runs in a separate Python process with `-I` isolation.
+It uses installed package dependencies and ignores current-directory modules and `PYTHONPATH`.
 
 ### FIELD units
 
@@ -229,6 +252,8 @@ Grid dimensions must be positive integers.
 The schedule requires at least one report step and positive, finite `TSTEP` intervals.
 Report times must increase, with a positive total duration.
 Expanded limits count repeated includes each time they occur.
+The collector bounds numeric repetition counts before integer conversion.
+Oversized counts return a typed `INVALID_MODEL` failure instead of escaping through an integer conversion error.
 
 ## Evidence and provenance
 
