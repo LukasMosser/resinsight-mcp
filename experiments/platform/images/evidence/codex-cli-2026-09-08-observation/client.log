@@ -1,0 +1,4 @@
+Reading additional input from stdin...
+2026-09-08T09:34:31.150515Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-09-08T09:34:31.154508Z  WARN codex_rollout::list: state db discrepancy during find_thread_path_by_id_str_in_subdir: falling_back
+2026-09-08T09:34:40.970991Z ERROR codex_core::tools::router: error=code-mode host is disabled
