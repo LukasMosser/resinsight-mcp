@@ -16,6 +16,8 @@ dev = [
   "mkdocs-material>=9.6",
   "mkdocs-include-markdown-plugin>=7.1",
   "pymdown-extensions>=10.16",
+  "mcp>=1.28,<2",
+  "pillow>=12,<13",
 ]
 
 [tool.uv]
