@@ -6,7 +6,7 @@ The foundation PR contains the tested source and links to GitHub Actions logs.
 
 ## Repository checks
 
-The local run used macOS on Apple silicon with Python 3.12.13.
+The local run used macOS 14.2.1 on Apple silicon with Python 3.12.13.
 Ruff 0.16.6, ty 0.0.79, and the strict MkDocs build passed.
 The installed pre-commit hook also passed against the repository files.
 
