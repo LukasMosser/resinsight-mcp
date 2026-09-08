@@ -1,6 +1,6 @@
 # Isolated build tools
 
-This record prepares the remaining tools for the custom ResInsight experiment on macOS 14.2.1 arm64.
+This record documents the isolated tools used for the custom ResInsight experiment on macOS 14.2.1 arm64.
 CMake and Ninja live in `/private/tmp/resinsight-p01-build/build-tools`.
 GNU Bison installs under `/private/tmp/resinsight-p01-build/tools`.
 The work does not change Homebrew packages or configure ResInsight or vcpkg.

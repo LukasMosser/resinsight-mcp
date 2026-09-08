@@ -41,7 +41,7 @@ The [output inventory](https://github.com/LukasMosser/resinsight-mcp/blob/main/e
 The [summary excerpt](https://github.com/LukasMosser/resinsight-mcp/blob/main/experiments/platform/opm/evidence/final-summary-excerpt.txt) preserves dated saturation and well results through the final report date.
 These values come from Flow and do not establish independent numerical agreement.
 This acceptance uses simulator records and report meaning, without binary comparisons.
-Opening and querying the binary results in ResInsight remains a separate P01 step.
+The separate [ResInsight control run](platform-resinsight.md#recorded-runtime-result) loaded these results and queried PRESSURE and SGAS.
 
 ## Warnings and limits
 
@@ -57,7 +57,7 @@ It does not establish job cancellation or recovery behavior.
 
 The image does not include the Python `opm` package.
 The experiment does not install a replacement reader in the image.
-ResInsight result loading and supported numerical queries remain acceptance work for the combined platform proof.
+The combined P01 evidence includes those bounded ResInsight queries, without independent numerical validation.
 
 ## Repeat the run
 

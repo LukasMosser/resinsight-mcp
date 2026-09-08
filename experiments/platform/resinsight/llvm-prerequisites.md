@@ -4,7 +4,8 @@ The bounded C++23 probe now compiles and runs with LLVM 19.1.7 and the Apple sys
 It uses copied LLVM headers with Apple's global availability rules enabled.
 Availability rules describe which runtime features exist on each operating system version.
 The separate [Qt probe](evidence/llvm-qt-runtime-probe.json) also passes with the selected configuration.
-These probes do not yet establish a working ResInsight build.
+These probes establish prerequisite behavior.
+The [custom build record](custom-build.md) contains the successful application result.
 
 ## Compiler and runtime boundary
 
@@ -140,5 +141,5 @@ The temporary log directory preserves the following bounded records:
 
 No full host crash report is included in this record.
 The Qt probe now passes event-loop execution, string exchange, and exception handling.
-The next acceptance work must exercise the complete application with the selected single system runtime.
+The complete application passes its [bounded controls](controls.md) with the selected single system runtime.
 Compiler success alone does not close that platform work.

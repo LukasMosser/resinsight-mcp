@@ -3,7 +3,7 @@
 This record prepares Qt 6.7.0 for the custom ResInsight experiment on macOS 14.2.1 arm64.
 The installation stays under `/private/tmp/resinsight-p01-build/qt`.
 It does not change Homebrew packages or global configuration.
-The custom compiler build remains separate acceptance work.
+The completed application result appears in the [custom build record](custom-build.md).
 
 ## Upstream requirement
 
@@ -108,7 +108,7 @@ QT_EDITION = OpenSource
 The metadata describes the prebuilt Qt libraries, not a tested custom ResInsight deployment target.
 The `macdeployqt -h` command printed its usage and returned status 1.
 That result establishes tool startup only, not successful application deployment.
-The custom LLVM compiler, C++ runtime, gRPC, and application launch still need combined build evidence.
+The [custom build and controls](custom-build.md#application-checks) provide the combined runtime evidence.
 
 Sandboxed Qt tool calls printed an `Incompatible processor` error with a missing `neon` feature.
 The same tools started when execution allowed normal host processor detection outside the sandbox.
