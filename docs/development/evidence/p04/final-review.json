@@ -18,6 +18,8 @@
       1800
     ],
     "browser": "Chrome 152",
+    "replacement_source_commit": "f1ac76d3271f44e5e75f0c2b3ef8f95ffddd28a9",
+    "replacement_review": "The lead and independent reviewer inspected sessions-example.png, contracts.png, and sessions-package.png after a successful local HTTP check.",
     "scope": "Reviewed captured viewports, not a responsive-layout or full-page link audit. Header transitions were settled before replacement captures. Native frames were separately inspected."
   }
 }
