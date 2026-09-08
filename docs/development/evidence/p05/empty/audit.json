@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "mode": "empty",
+  "answer": {
+    "status": "no_image",
+    "row": null,
+    "column": null
+  },
+  "expected": {
+    "status": "no_image",
+    "row": null,
+    "column": null
+  },
+  "content_types": [
+    "text"
+  ],
+  "completed_mcp_calls": 1,
+  "forbidden_items": []
+}

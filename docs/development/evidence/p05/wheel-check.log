@@ -1,0 +1,5 @@
+INFO:mcp.server.lowlevel.server:Processing request of type ListToolsRequest
+INFO:mcp.server.lowlevel.server:Processing request of type ReadResourceRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+unknown resource: {'code': -32602, 'message': 'The resource is not available.', 'data': {'code': 'not_found', 'message': 'The resource is not available.', 'effect': 'not_applied'}}
+launcher initialized, refused overwrite and relative path; protocol remained usable

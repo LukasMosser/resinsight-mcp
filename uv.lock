@@ -883,6 +883,8 @@ name = "resinsight-mcp"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "mcp" },
+    { name = "pillow" },
     { name = "pydantic" },
 ]
 
@@ -895,10 +897,8 @@ resinsight = [
 [package.dev-dependencies]
 dev = [
     { name = "grpcio-tools" },
-    { name = "mcp" },
     { name = "mkdocs-include-markdown-plugin" },
     { name = "mkdocs-material" },
-    { name = "pillow" },
     { name = "pre-commit" },
     { name = "psutil" },
     { name = "pymdown-extensions" },
@@ -910,6 +910,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "mcp", specifier = ">=1.28,<2" },
+    { name = "pillow", specifier = ">=12,<13" },
     { name = "psutil", marker = "extra == 'resinsight'", specifier = ">=7.2,<8" },
     { name = "pydantic", specifier = ">=2.13.5,<3" },
     { name = "rips", marker = "extra == 'resinsight'", specifier = "==2026.9.0.1" },
@@ -919,10 +921,8 @@ provides-extras = ["resinsight"]
 [package.metadata.requires-dev]
 dev = [
     { name = "grpcio-tools", specifier = ">=1.83.1" },
-    { name = "mcp", specifier = ">=1.28,<2" },
     { name = "mkdocs-include-markdown-plugin", specifier = ">=7.1" },
     { name = "mkdocs-material", specifier = ">=9.6" },
-    { name = "pillow", specifier = ">=12,<13" },
     { name = "pre-commit", specifier = ">=4.3" },
     { name = "psutil", specifier = ">=7.2,<8" },
     { name = "pymdown-extensions", specifier = ">=10.16" },

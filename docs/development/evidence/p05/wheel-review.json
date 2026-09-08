@@ -1,0 +1,19 @@
+{
+  "tested_commit": "554978387ea095db5dbc02b7bdc27be163ab2209",
+  "package_path": "/private/tmp/resinsight-p05-runtime/lib/python3.12/site-packages/resinsight_mcp/__init__.py",
+  "runtime_only": true,
+  "optional_rips_installed": false,
+  "pytest_installed": false,
+  "commands": [
+    "uv build --wheel --out-dir /tmp/resinsight-p05-wheel",
+    "uv venv /tmp/resinsight-p05-runtime",
+    "uv pip install --python /tmp/resinsight-p05-runtime/bin/python /tmp/resinsight-p05-wheel/resinsight_mcp-0.1.0-py3-none-any.whl",
+    "PYTHONPATH= /tmp/resinsight-p05-runtime/bin/python /tmp/resinsight-p05-launcher-review/check.py"
+  ],
+  "versions": {
+    "resinsight-mcp": "0.1.0",
+    "mcp": "1.30.0",
+    "pillow": "12.3.0",
+    "pydantic": "2.13.5"
+  }
+}

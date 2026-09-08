@@ -2,13 +2,15 @@
 
 This section contains the development workflow, implemented library behavior, and proposed integration design.
 The library defines shared records, typed boundaries, a SQLite workspace store, and ResInsight session and project operations.
-MCP transport, rendering, and simulator adapters remain separate work packages.
+The MCP transport binds shared services and preserves native image responses.
+Rendering and simulator adapters remain separate work packages.
 
 Start with these pages:
 
 - [Local setup](local-setup.md) explains the development commands.
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
+- [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
 - [Sessions](sessions.md) explains application ownership, project operations, and observed change limits.
 - [Platform proof](platform-proof.md) records completed P01 experiments and their runtime limits.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.

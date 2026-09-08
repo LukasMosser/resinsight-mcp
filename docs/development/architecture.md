@@ -4,10 +4,13 @@ The repository implements shared contracts, workspace storage, and ResInsight se
 The [contract guide](contracts.md) defines their current behavior and conventions.
 Its seven protocols cover sessions, process control, workspace storage, rendering, model preparation, jobs, and result import.
 The [workspace guide](workspaces.md) describes the implemented SQLite record store and immutable artifact files.
+
 The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
-Rendering, simulator adapters, job supervision, and production MCP transport remain separate work packages.
+The [MCP transport](mcp.md) binds shared services through typed operations and preserves native image content.
+Rendering, simulator adapters, and job supervision remain separate work packages.
 
 The [scope review](scope-review.md) records external evidence and open questions.
+The [P05 record](mcp-evidence.md) proves blind synthetic-image delivery through the production transport.
 
 ## Responsibilities
 
@@ -24,7 +27,6 @@ The remaining runtime responsibilities are:
 
 - A view adapter obtains fresh rendered observations.
 - A simulator adapter prepares, starts, and monitors runs.
-- An MCP interface exposes bounded operations and native image content.
 
 A backend is the simulator selected for a run.
 The service must report unsupported backend capabilities before submission.
@@ -89,7 +91,7 @@ Unsupported conversions must fail with an explanation of the missing capability.
 ## Native image observations
 
 A native image is an MCP content item with `type: image`.
-The proposed observation response must include image bytes and their media type.
+The MCP encoder includes native image content and its media type.
 A filename or image URL in ordinary text does not satisfy this contract.
 
 Each observation must identify its engineering context:
