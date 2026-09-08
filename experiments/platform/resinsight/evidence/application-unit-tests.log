@@ -1,0 +1,185 @@
+Note: Google Test filter = RigCellGeometryTools.*:RigActiveCellInfo.*:RigWellPathTest.*:RigWellPathGeometryTools.*:RigWellPathIntersectionToolsTest.*:RigCompletionDataGridCellTest.*:RimWellPathCompletions.*:RigWellPathGeometryExporter.*:RigGridExportAdapter.*:RicWellPathExportMswGeometryPath.*:RiaGrpcWellPathServiceTest.*-RicWellPathExportMswGeometryPath.MultipleLaterals_*
+[==========] Running 66 tests from 10 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from RigActiveCellInfo
+[ RUN      ] RigActiveCellInfo.BasicTest
+[       OK ] RigActiveCellInfo.BasicTest (0 ms)
+[ RUN      ] RigActiveCellInfo.GridCellCounts
+[       OK ] RigActiveCellInfo.GridCellCounts (0 ms)
+[ RUN      ] RigActiveCellInfo.IJKBoundingBox
+[       OK ] RigActiveCellInfo.IJKBoundingBox (0 ms)
+[----------] 3 tests from RigActiveCellInfo (0 ms total)
+
+[----------] 6 tests from RigGridExportAdapter
+[ RUN      ] RigGridExportAdapter.TransformIjkToSectorCoordinates_NoRefinement
+[       OK ] RigGridExportAdapter.TransformIjkToSectorCoordinates_NoRefinement (0 ms)
+[ RUN      ] RigGridExportAdapter.TransformIjkToSectorCoordinates_OutOfBounds
+[       OK ] RigGridExportAdapter.TransformIjkToSectorCoordinates_OutOfBounds (0 ms)
+[ RUN      ] RigGridExportAdapter.BoxTransformation_NoRefinement
+[       OK ] RigGridExportAdapter.BoxTransformation_NoRefinement (0 ms)
+[ RUN      ] RigGridExportAdapter.SingleCellBox_NoRefinement
+[       OK ] RigGridExportAdapter.SingleCellBox_NoRefinement (0 ms)
+[ RUN      ] RigGridExportAdapter.BoxAtSectorBoundaries_NoRefinement
+[       OK ] RigGridExportAdapter.BoxAtSectorBoundaries_NoRefinement (0 ms)
+[ RUN      ] RigGridExportAdapter.TransformIjkNonUniform
+[       OK ] RigGridExportAdapter.TransformIjkNonUniform (0 ms)
+[----------] 6 tests from RigGridExportAdapter (0 ms total)
+
+[----------] 3 tests from RigWellPathTest
+[ RUN      ] RigWellPathTest.FindWellPathCoordsIncludingIntersectionPoint
+[       OK ] RigWellPathTest.FindWellPathCoordsIncludingIntersectionPoint (0 ms)
+[ RUN      ] RigWellPathTest.InterpolatedPointForEmptyGeometry
+[       OK ] RigWellPathTest.InterpolatedPointForEmptyGeometry (0 ms)
+[ RUN      ] RigWellPathTest.InterpolatedPointAlongWellPath
+[       OK ] RigWellPathTest.InterpolatedPointAlongWellPath (0 ms)
+[----------] 3 tests from RigWellPathTest (0 ms total)
+
+[----------] 1 test from RigWellPathIntersectionToolsTest
+[ RUN      ] RigWellPathIntersectionToolsTest.BuildContinuousIntersectionsIsSortedByMeasuredDepth
+[       OK ] RigWellPathIntersectionToolsTest.BuildContinuousIntersectionsIsSortedByMeasuredDepth (0 ms)
+[----------] 1 test from RigWellPathIntersectionToolsTest (0 ms total)
+
+[----------] 14 tests from RigCellGeometryTools
+[ RUN      ] RigCellGeometryTools.calculateCellVolumeTest
+[       OK ] RigCellGeometryTools.calculateCellVolumeTest (0 ms)
+[ RUN      ] RigCellGeometryTools.calculateCellVolumeTest2
+[       OK ] RigCellGeometryTools.calculateCellVolumeTest2 (0 ms)
+[ RUN      ] RigCellGeometryTools.createPolygonTest
+[       OK ] RigCellGeometryTools.createPolygonTest (0 ms)
+[ RUN      ] RigCellGeometryTools.createMultiplePolygonTest
+[       OK ] RigCellGeometryTools.createMultiplePolygonTest (0 ms)
+[ RUN      ] RigCellGeometryTools.createPolygonTestRealCase
+[       OK ] RigCellGeometryTools.createPolygonTestRealCase (0 ms)
+[ RUN      ] RigCellGeometryTools.findCellAverageZTest
+[       OK ] RigCellGeometryTools.findCellAverageZTest (0 ms)
+[ RUN      ] RigCellGeometryTools.lengthCalcTest
+[       OK ] RigCellGeometryTools.lengthCalcTest (0 ms)
+[ RUN      ] RigCellGeometryTools.lengthCalcTestTriangle
+[       OK ] RigCellGeometryTools.lengthCalcTestTriangle (0 ms)
+[ RUN      ] RigCellGeometryTools.lineIntersectsLine2DTest
+[       OK ] RigCellGeometryTools.lineIntersectsLine2DTest (0 ms)
+[ RUN      ] RigCellGeometryTools.lineIntersectsPolygon2DTest
+[       OK ] RigCellGeometryTools.lineIntersectsPolygon2DTest (0 ms)
+[ RUN      ] RigCellGeometryTools.polylinePolygonIntersectionTest
+[       OK ] RigCellGeometryTools.polylinePolygonIntersectionTest (0 ms)
+[ RUN      ] RigCellGeometryTools.polylinePolygonIntersectionTest2
+[       OK ] RigCellGeometryTools.polylinePolygonIntersectionTest2 (0 ms)
+[ RUN      ] RigCellGeometryTools.ClipperEdgeTracking
+E1 :1000 1001
+E2 :2001 2002
+
+E1 :2000 2001
+E2 :1000 1001
+
+E1 :2001 2002
+E2 :1002 1000
+
+E1 :1002 1000
+E2 :2000 2001
+
+Polygon: 1
+   [ 0.6666, 0.6666, 2001 ]
+   [ 0.5, 0.75, 1001 ]
+   [ 0.5, 0.505, 2002 ]
+   [ 0.7487, 0.5025, 1000 ]
+[       OK ] RigCellGeometryTools.ClipperEdgeTracking (0 ms)
+[ RUN      ] RigCellGeometryTools.lgrNodesTest
+[       OK ] RigCellGeometryTools.lgrNodesTest (0 ms)
+[----------] 14 tests from RigCellGeometryTools (0 ms total)
+
+[----------] 11 tests from RigWellPathGeometryTools
+[ RUN      ] RigWellPathGeometryTools.VerticalPath
+[       OK ] RigWellPathGeometryTools.VerticalPath (0 ms)
+[ RUN      ] RigWellPathGeometryTools.LinearPath
+[       OK ] RigWellPathGeometryTools.LinearPath (0 ms)
+[ RUN      ] RigWellPathGeometryTools.LinearPathStartingAtZero
+[       OK ] RigWellPathGeometryTools.LinearPathStartingAtZero (0 ms)
+[ RUN      ] RigWellPathGeometryTools.ShortLinearPathStartingAtZero
+[       OK ] RigWellPathGeometryTools.ShortLinearPathStartingAtZero (0 ms)
+[ RUN      ] RigWellPathGeometryTools.QuadraticPath
+[       OK ] RigWellPathGeometryTools.QuadraticPath (0 ms)
+[ RUN      ] RigWellPathGeometryTools.CubicPath
+[       OK ] RigWellPathGeometryTools.CubicPath (0 ms)
+[ RUN      ] RigWellPathGeometryTools.CubicPathPoorSampling
+[       OK ] RigWellPathGeometryTools.CubicPathPoorSampling (0 ms)
+[ RUN      ] RigWellPathGeometryTools.InfinityTvdValues_OutputSizeMatchesInput
+[       OK ] RigWellPathGeometryTools.InfinityTvdValues_OutputSizeMatchesInput (0 ms)
+[ RUN      ] RigWellPathGeometryTools.InfinityTvdValues_ValidEntriesStillInterpolatedCorrectly
+[       OK ] RigWellPathGeometryTools.InfinityTvdValues_ValidEntriesStillInterpolatedCorrectly (0 ms)
+[ RUN      ] RigWellPathGeometryTools.InfinityTvdValues_SingleInfinityDoesNotCorruptOtherResults
+[       OK ] RigWellPathGeometryTools.InfinityTvdValues_SingleInfinityDoesNotCorruptOtherResults (0 ms)
+[ RUN      ] RigWellPathGeometryTools.InfinityTvdValues_ConsecutiveInfinityDistributedEvenly
+[       OK ] RigWellPathGeometryTools.InfinityTvdValues_ConsecutiveInfinityDistributedEvenly (0 ms)
+[----------] 11 tests from RigWellPathGeometryTools (0 ms total)
+
+[----------] 1 test from RigWellPathGeometryExporter
+[ RUN      ] RigWellPathGeometryExporter.VerticalPath
+[       OK ] RigWellPathGeometryExporter.VerticalPath (0 ms)
+[----------] 1 test from RigWellPathGeometryExporter (0 ms total)
+
+[----------] 3 tests from RigCompletionDataGridCellTest
+[ RUN      ] RigCompletionDataGridCellTest.LocalCellIndexK_StandardModel
+[       OK ] RigCompletionDataGridCellTest.LocalCellIndexK_StandardModel (0 ms)
+[ RUN      ] RigCompletionDataGridCellTest.LocalCellIndexK_DualPorosityModel
+[       OK ] RigCompletionDataGridCellTest.LocalCellIndexK_DualPorosityModel (0 ms)
+[ RUN      ] RigCompletionDataGridCellTest.OneBasedString_DualPorosityModel
+[       OK ] RigCompletionDataGridCellTest.OneBasedString_DualPorosityModel (0 ms)
+[----------] 3 tests from RigCompletionDataGridCellTest (0 ms total)
+
+[----------] 15 tests from RicWellPathExportMswGeometryPath
+[ RUN      ] RicWellPathExportMswGeometryPath.EmptySegmentList
+[       OK ] RicWellPathExportMswGeometryPath.EmptySegmentList (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.SingleSegmentNoIntersections
+[       OK ] RicWellPathExportMswGeometryPath.SingleSegmentNoIntersections (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.SegmentWithMultipleIntersections
+[       OK ] RicWellPathExportMswGeometryPath.SegmentWithMultipleIntersections (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.MainGridAndLgrIntersections
+[       OK ] RicWellPathExportMswGeometryPath.MainGridAndLgrIntersections (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.SegmentWithWsegvalvData
+[       OK ] RicWellPathExportMswGeometryPath.SegmentWithWsegvalvData (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.SegmentWithWsegaicdData
+[       OK ] RicWellPathExportMswGeometryPath.SegmentWithWsegaicdData (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.SegmentWithWsegsicdData
+[       OK ] RicWellPathExportMswGeometryPath.SegmentWithWsegsicdData (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.MultipleSegments
+[       OK ] RicWellPathExportMswGeometryPath.MultipleSegments (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.OutletSegmentNumberMapping
+[       OK ] RicWellPathExportMswGeometryPath.OutletSegmentNumberMapping (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.Segment1EqualsSegment2
+[       OK ] RicWellPathExportMswGeometryPath.Segment1EqualsSegment2 (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.CompsegsInheritsBranchFromSegment
+[       OK ] RicWellPathExportMswGeometryPath.CompsegsInheritsBranchFromSegment (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.HeaderFieldsPropagated
+[       OK ] RicWellPathExportMswGeometryPath.HeaderFieldsPropagated (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.CompsegsCellIsConnectedOnlyOnce
+[       OK ] RicWellPathExportMswGeometryPath.CompsegsCellIsConnectedOnlyOnce (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.CompsegsCellIsClaimedByTheBranchWithMostFlow
+[       OK ] RicWellPathExportMswGeometryPath.CompsegsCellIsClaimedByTheBranchWithMostFlow (0 ms)
+[ RUN      ] RicWellPathExportMswGeometryPath.CompsegsSeparatesMainGridAndLgrCells
+[       OK ] RicWellPathExportMswGeometryPath.CompsegsSeparatesMainGridAndLgrCells (0 ms)
+[----------] 15 tests from RicWellPathExportMswGeometryPath (0 ms total)
+
+[----------] 9 tests from RiaGrpcWellPathServiceTest
+[ RUN      ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcSkipsDefaultValues
+[       OK ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcSkipsDefaultValues (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcCoversAllProtoFields
+[       OK ] RiaGrpcWellPathServiceTest.copyCompdatToGrpcCoversAllProtoFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyWelspecsToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyWelspecsToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyWelsegsToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyWelsegsToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyCompsegsToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyCompsegsToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyWsegvalvToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyWsegvalvToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyWsegaicdToGrpcCopiesAllFields
+[       OK ] RiaGrpcWellPathServiceTest.copyWsegaicdToGrpcCopiesAllFields (0 ms)
+[ RUN      ] RiaGrpcWellPathServiceTest.copyFunctionsHandleEmptyData
+[       OK ] RiaGrpcWellPathServiceTest.copyFunctionsHandleEmptyData (0 ms)
+[----------] 9 tests from RiaGrpcWellPathServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 66 tests from 10 test suites ran. (1 ms total)
+[  PASSED  ] 66 tests.

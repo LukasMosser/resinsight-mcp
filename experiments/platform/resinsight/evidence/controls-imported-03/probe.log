@@ -1,0 +1,19 @@
+{"time": "2026-09-08T12:11:13.027790+00:00", "step": "owned_launch", "pid": 53194, "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"}
+{"time": "2026-09-08T12:11:14.577937+00:00", "step": "explicit_attachment", "port": 59372, "server_version": "2026.9.0", "client_version": "2026.09.0", "is_gui": true}
+{"time": "2026-09-08T12:11:14.757158+00:00", "step": "case_loaded", "case_id": 0, "dimensions": [10, 10, 3], "active_cells": 300, "bounding_box": {"min_x": 0.0, "max_x": 10000.0, "min_y": 0.0, "max_y": 10000.0, "min_z": -8425.0, "max_z": -8325.0}}
+{"time": "2026-09-08T12:11:15.032083+00:00", "step": "view_changed", "variable": "PRESSURE", "time_step": 0, "grid_z_scale": 20.0, "value_count": 300, "minimum": 4782.2998046875, "maximum": 4800.0}
+{"time": "2026-09-08T12:11:15.128147+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-03/pressure_initial/pressure_initialSPE1CASE1_3D_View_PRESSURE_00_01_Jan_2015.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:11:15.259967+00:00", "step": "view_changed", "variable": "SGAS", "time_step": 120, "grid_z_scale": 20.0, "value_count": 300, "minimum": 0.020997358486056328, "maximum": 0.5496513843536377}
+{"time": "2026-09-08T12:11:15.359272+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-03/gas_final/gas_finalSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:11:15.451138+00:00", "step": "well_import_result", "returned_names": ["P01IMPORT"], "project_names": ["P01IMPORT"]}
+{"time": "2026-09-08T12:11:15.451387+00:00", "step": "well_route", "route": "imported", "name": "P01IMPORT"}
+{"time": "2026-09-08T12:11:15.453399+00:00", "step": "perforation_before_edit", "start_md": 8326.0, "end_md": 8374.0}
+{"time": "2026-09-08T12:11:15.572378+00:00", "step": "well_created", "name": "P01IMPORT", "targets": [[4500.0, 4500.0, 0.0], [4500.0, 4500.0, 8325.0], [4500.0, 4500.0, 8430.0]], "target_z_meaning": "positive-down depth in fixture feet", "start_md": 8326.0, "end_md": 8424.0, "diameter": 0.5, "skin_factor": 0.0}
+{"time": "2026-09-08T12:11:15.680027+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-03/imported_well/imported_wellSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:11:16.100588+00:00", "step": "trajectory_verified", "samples": 170, "final_sample": [4500.0, 4500.0, 8430.0, 8430.0]}
+{"time": "2026-09-08T12:11:16.113057+00:00", "step": "completion_data_read", "row_count": 3}
+{"time": "2026-09-08T12:11:16.141218+00:00", "step": "completion_export", "files": ["/private/tmp/resinsight-p01-build/runs/imported-03/completions/P01IMPORT.inc", "/private/tmp/resinsight-p01-build/runs/imported-03/completions/P01IMPORT_MSW.inc"], "row_count": 3, "cells": [[5, 5, 1, 1], [5, 5, 2, 2], [5, 5, 3, 3]]}
+{"time": "2026-09-08T12:11:16.142004+00:00", "step": "exported_compdat_records", "records": [["P01IMPORT", "5", "5", "1", "1", "OPEN", "1*", "1.007878E+01", "0.50000", "9.500000E+03", "0.00000", "1*", "Z"], ["P01IMPORT", "5", "5", "2", "2", "OPEN", "1*", "1.591386E+00", "0.50000", "1.500000E+03", "0.00000", "1*", "Z"], ["P01IMPORT", "5", "5", "3", "3", "OPEN", "1*", "1.039706E+01", "0.50000", "9.800000E+03", "0.00000", "1*", "Z"]]}
+{"time": "2026-09-08T12:11:16.142158+00:00", "step": "exported_compdat_verified", "cells": [[5, 5, 1, 1], [5, 5, 2, 2], [5, 5, 3, 3]]}
+{"time": "2026-09-08T12:11:16.142259+00:00", "step": "complete"}
+{"time": "2026-09-08T12:11:16.162488+00:00", "step": "owned_process_closed", "pid": 53194, "return_code": -15}

@@ -140,10 +140,16 @@ def create_well(instance: Any, case: Any, view: Any, output: Path, route: str) -
     else:
         fixture = output / "P01IMPORT.asc"
         fixture.write_text(
-            "name P01IMPORT\n4500 4500 0 0\n4500 4500 8325 8325\n4500 4500 8430 8430\n"
+            "wellname: P01IMPORT\n4500 4500 0 0\n4500 4500 8325 8325\n4500 4500 8430 8430\n"
         )
         wells = instance.project.import_well_paths(well_path_files=[str(fixture)])
-        if len(wells) != 1 or wells[0].name != "P01IMPORT":
+        event(
+            output,
+            "well_import_result",
+            returned_names=[None if item is None else item.name for item in wells],
+            project_names=[item.name for item in instance.project.well_paths()],
+        )
+        if len(wells) != 1 or wells[0] is None or wells[0].name != "P01IMPORT":
             raise RuntimeError("The ASCII fixture did not import exactly one P01IMPORT well")
         well = wells[0]
     event(output, "well_route", route=route, name=well.name)

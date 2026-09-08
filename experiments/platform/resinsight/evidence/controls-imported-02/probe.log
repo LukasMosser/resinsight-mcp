@@ -1,0 +1,19 @@
+{"time": "2026-09-08T12:09:48.201548+00:00", "step": "owned_launch", "pid": 52533, "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"}
+{"time": "2026-09-08T12:09:49.783414+00:00", "step": "explicit_attachment", "port": 59296, "server_version": "2026.9.0", "client_version": "2026.09.0", "is_gui": true}
+{"time": "2026-09-08T12:09:49.958079+00:00", "step": "case_loaded", "case_id": 0, "dimensions": [10, 10, 3], "active_cells": 300, "bounding_box": {"min_x": 0.0, "max_x": 10000.0, "min_y": 0.0, "max_y": 10000.0, "min_z": -8425.0, "max_z": -8325.0}}
+{"time": "2026-09-08T12:09:50.234162+00:00", "step": "view_changed", "variable": "PRESSURE", "time_step": 0, "grid_z_scale": 20.0, "value_count": 300, "minimum": 4782.2998046875, "maximum": 4800.0}
+{"time": "2026-09-08T12:09:50.335504+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-02/pressure_initial/pressure_initialSPE1CASE1_3D_View_PRESSURE_00_01_Jan_2015.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:09:50.479861+00:00", "step": "view_changed", "variable": "SGAS", "time_step": 120, "grid_z_scale": 20.0, "value_count": 300, "minimum": 0.020997358486056328, "maximum": 0.5496513843536377}
+{"time": "2026-09-08T12:09:50.578819+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-02/gas_final/gas_finalSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:09:50.683393+00:00", "step": "well_import_result", "returned_names": ["me P01IMPORT"], "project_names": ["me P01IMPORT"]}
+{"time": "2026-09-08T12:09:50.683671+00:00", "step": "failed", "error_type": "RuntimeError", "message": "The ASCII fixture did not import exactly one P01IMPORT well"}
+{"time": "2026-09-08T12:09:50.693391+00:00", "step": "owned_process_closed", "pid": 52533, "return_code": -15}
+Traceback (most recent call last):
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 364, in <module>
+    main()
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 330, in main
+    well = create_well(instance, case, view, output, args.well_route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 153, in create_well
+    raise RuntimeError("The ASCII fixture did not import exactly one P01IMPORT well")
+RuntimeError: The ASCII fixture did not import exactly one P01IMPORT well

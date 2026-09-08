@@ -2,8 +2,8 @@
 
 This record describes the selected ResInsight source and the September 8, 2026 dependency plan.
 It separates application dependencies from experiment clients and build tools.
-All 103 selected native dependency packages are installed, and application configuration passes.
-It does not establish a completed application build, deployed library set, or license compatibility conclusion.
+All 103 selected native dependency packages are installed, and the application build and imported-well control probe pass.
+This record includes the built executable's library inspection, without a portable distribution or license compatibility conclusion.
 SPDX identifiers are standard names for licenses and license expressions.
 
 ## Source and inventory authority
@@ -26,7 +26,7 @@ The triplet is `arm64-osx-p01`.
 Exact port files were read from `/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/<tree>/vcpkg.json`.
 These temporary records supplement the pinned manifests and must remain distinct from installation success evidence.
 The [installed package list](evidence/vcpkg-installed.json) records the actual versions, features, and triplet through `vcpkg list --x-json`.
-Installed package records and final application library inspection will define the linked inventory.
+The [application inspection](evidence/application-linkage.json) records the executable and resdata library through `file` and `otool`.
 
 ## Native dependencies in the resolved plan
 
@@ -173,11 +173,31 @@ The Bison `calc.c` evidence contains its generated-code exception.
 The selected LLVM package contains `include/llvm/Support/LICENSE.TXT`.
 The aqt installer environment's package metadata supplies its installer license records.
 
+## Linked application
+
+The application inspection records an arm64 executable with a macOS 14.2 minimum and SDK 14.2.
+The imported-well probe confirms runtime startup and reports ResInsight `2026.9.0` through gRPC.
+The bundle's generic version fields remain `1.0` and `1.0.0`, so they do not identify the tested release.
+
+| Dynamic component | Observed link evidence |
+| --- | --- |
+| Apple C++ runtime | `/usr/lib/libc++.1.dylib`; no private LLVM runtime path. |
+| Apple OpenGL | `/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL`. |
+| Qt 6.7.0 | Core, Gui, Widgets, OpenGL, OpenGLWidgets, Network, NetworkAuth, Concurrent, PrintSupport, Sql, Svg, and Xml frameworks. |
+| resdata | `@rpath/libresdata.2.dylib`, current version `2.4.0`, built from the pinned copied ERT source. |
+| Other Apple libraries | libSystem, libcups, libresolv, and the system frameworks listed in the inspection. |
+
+The executable's search paths resolve Qt and resdata in the isolated build directories.
+The inspected resdata library itself links only Apple's system and C++ runtime libraries.
+The GUI probe explicitly selects the installed Qt plugin directory with `QT_PLUGIN_PATH`.
+Static dependency and copied-source notices remain covered by the earlier tables and their pinned records.
+Dynamic-library inspection does not enumerate every source file inside those archives.
+
 ## Boundaries
 
 The [OPM experiment](../opm/README.md) records the simulator image and SPE1 source license separately.
 The [native image experiment](../../../docs/development/platform-images.md) records its MCP observation path separately.
 No application, Qt archive, compiler package, or dependency binary is committed by this inventory.
-A final distribution inventory still needs actual linked libraries, bundled files, and their installed notices.
+A portable distribution would need its own bundled-file inventory and installed notices.
 Missing port license fields and incomplete upstream summary entries remain visible findings.
 This document records source evidence and does not choose a license route or determine compatibility.

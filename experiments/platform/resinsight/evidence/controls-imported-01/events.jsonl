@@ -1,0 +1,9 @@
+{"time": "2026-09-08T12:06:53.289499+00:00", "step": "owned_launch", "pid": 51226, "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"}
+{"time": "2026-09-08T12:06:56.673070+00:00", "step": "explicit_attachment", "port": 59140, "server_version": "2026.9.0", "client_version": "2026.09.0", "is_gui": true}
+{"time": "2026-09-08T12:06:56.884699+00:00", "step": "case_loaded", "case_id": 0, "dimensions": [10, 10, 3], "active_cells": 300, "bounding_box": {"min_x": 0.0, "max_x": 10000.0, "min_y": 0.0, "max_y": 10000.0, "min_z": -8425.0, "max_z": -8325.0}}
+{"time": "2026-09-08T12:06:57.471656+00:00", "step": "view_changed", "variable": "PRESSURE", "time_step": 0, "grid_z_scale": 20.0, "value_count": 300, "minimum": 4782.2998046875, "maximum": 4800.0}
+{"time": "2026-09-08T12:06:57.569625+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-01/pressure_initial/pressure_initialSPE1CASE1_3D_View_PRESSURE_00_01_Jan_2015.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:06:57.727307+00:00", "step": "view_changed", "variable": "SGAS", "time_step": 120, "grid_z_scale": 20.0, "value_count": 300, "minimum": 0.020997358486056328, "maximum": 0.5496513843536377}
+{"time": "2026-09-08T12:06:57.826248+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/imported-01/gas_final/gas_finalSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:06:57.869065+00:00", "step": "failed", "error_type": "RuntimeError", "message": "The ASCII fixture did not import exactly one P01IMPORT well"}
+{"time": "2026-09-08T12:06:57.880148+00:00", "step": "owned_process_closed", "pid": 51226, "return_code": -15}
