@@ -26,12 +26,7 @@
     "-DRESINSIGHT_TREAT_WARNINGS_AS_ERRORS=false",
     "-DRESINSIGHT_ENABLE_PRECOMPILED_HEADERS=false",
     "-DRESINSIGHT_ENABLE_UNITY_BUILD=false",
-    "-DRESINSIGHT_INCLUDE_APPLICATION_UNIT_TESTS=true",
-    "-DOPENGL_gl_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
-    "-DOPENGL_glu_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
-    "-DOPENGL_INCLUDE_DIR:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
-    "-DOPENGL_GLU_INCLUDE_DIR:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
-    "-DPython_EXECUTABLE:FILEPATH=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python"
+    "-DRESINSIGHT_INCLUDE_APPLICATION_UNIT_TESTS=true"
   ],
   "environment": {
     "LC_ALL": "en_US.UTF-8",

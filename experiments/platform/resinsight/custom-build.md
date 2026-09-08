@@ -2,7 +2,8 @@
 
 The owner approved this isolated build on the macOS 14.2.1 arm64 host.
 The compiler and Qt probes pass.
-The full dependency and application build remains in progress.
+All 103 native dependency packages are installed, and application configuration passes.
+The application build remains in progress.
 This record does not yet establish Python control of ResInsight.
 
 ## Inputs
@@ -14,8 +15,10 @@ They are not a general application installer.
 
 The source uses ResInsight `v2026.09.0` and every pinned submodule.
 The [checkout record](evidence/source-checkout.json) lists their exact revisions.
-The only ResInsight source change is [enabling grpc in the macOS manifest](patches/enable-macos-grpc.patch).
+The custom source patch [enables grpc in the macOS manifest](patches/enable-macos-grpc.patch).
 The CMake invocation also enables `RESINSIGHT_ENABLE_GRPC`.
+The tagged configuration also applies its existing OpenZGY patch to disable OpenMP on macOS.
+That upstream step modifies eight files inside the pinned OpenZGY source.
 
 The isolated prerequisites have separate records:
 
@@ -64,6 +67,10 @@ The revised standalone dry run lists only the six remaining packages for compila
 The actual CMake integration detects changed build settings and rebuilds the completed packages too.
 The standalone dry run therefore did not predict the rebuild cost of this configuration change.
 
+The [second configuration log](evidence/application-configure-02.log) records all 103 successful package installations and successful application configuration.
+The [gRPC configuration log](evidence/grpc-configure-02.log) records the corrected linker option and successful thread checks.
+The [installed package list](evidence/vcpkg-installed.json) contains the actual package versions and features.
+
 The pinned vcpkg tool requires CMake 4.4.0 for its dependency work.
 It downloaded that version into the isolated download tree during the dry run.
 The outer application configuration uses the separately installed CMake 3.31.6.
@@ -102,6 +109,17 @@ It uses the locked Python environment to generate Python bindings.
 It disables upstream Python package installation because the lockfile already supplies those packages.
 No global Python packages are installed by this configuration.
 
+The second configuration selected an existing Homebrew OpenGL library and produced Qt link-path warnings.
+The final command explicitly selects Apple's SDK OpenGL framework and headers through the supported CMake cache variables.
+It also sets `Python_EXECUTABLE` to the locked environment for vcpkg's application helper.
+The separate `RESINSIGHT_GRPC_PYTHON_EXECUTABLE` setting controls Python binding generation.
+
+The [third configuration log](evidence/application-configure-03.log) records success without rebuilding the installed dependencies.
+Its [result record](evidence/application-configure-03-result.json) records status 0.
+The [selected cache values](evidence/application-configuration.json) retain LLVM, LLD, Apple OpenGL, and the locked Python interpreter.
+The regenerated application link inputs contain no Homebrew or Anaconda library path.
+The upstream configuration retains deprecation and policy warnings, which remain in the logs.
+
 After successful configuration, the application build command is:
 
 ```sh
@@ -110,6 +128,7 @@ After successful configuration, the application build command is:
 ```
 
 The first [configuration log](evidence/application-configure-01.log) records the completed packages and gRPC failure.
-The active configuration log is `/private/tmp/resinsight-p01-build/logs/application-configure-02.log`.
+The [build command record](evidence/application-build-01-command.json) records the active application build.
+Its active log is `/private/tmp/resinsight-p01-build/logs/application-build-01.log`.
 The experiment must preserve final build logs and actual runtime evidence before P01 can close.
 The [control probe](controls.md) defines the next application acceptance work.

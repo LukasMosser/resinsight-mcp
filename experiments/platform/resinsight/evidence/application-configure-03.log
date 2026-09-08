@@ -1,0 +1,359 @@
+-- Running vcpkg install
+Detecting compiler hash for triplet arm64-osx-p01...
+Compiler found: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++
+The following packages are already installed:
+  * abseil:arm64-osx-p01@20250814.1
+    arrow[core,parquet,json,filesystem,csv]:arm64-osx-p01@21.0.0#2
+  * boost-algorithm:arm64-osx-p01@1.89.0
+  * boost-align:arm64-osx-p01@1.89.0
+  * boost-array:arm64-osx-p01@1.89.0
+  * boost-assert:arm64-osx-p01@1.89.0
+  * boost-atomic:arm64-osx-p01@1.89.0
+  * boost-bind:arm64-osx-p01@1.89.0
+  * boost-charconv:arm64-osx-p01@1.89.0
+  * boost-chrono:arm64-osx-p01@1.89.0
+  * boost-cmake:arm64-osx-p01@1.89.0
+  * boost-concept-check:arm64-osx-p01@1.89.0
+  * boost-config:arm64-osx-p01@1.89.0
+  * boost-container:arm64-osx-p01@1.89.0
+  * boost-container-hash:arm64-osx-p01@1.89.0
+  * boost-conversion:arm64-osx-p01@1.89.0
+  * boost-core:arm64-osx-p01@1.89.0
+  * boost-date-time:arm64-osx-p01@1.89.0
+  * boost-describe:arm64-osx-p01@1.89.0
+  * boost-detail:arm64-osx-p01@1.89.0
+  * boost-dynamic-bitset:arm64-osx-p01@1.89.0
+  * boost-endian:arm64-osx-p01@1.89.0
+  * boost-exception:arm64-osx-p01@1.89.0
+    boost-filesystem:arm64-osx-p01@1.89.0
+  * boost-function:arm64-osx-p01@1.89.0
+  * boost-function-types:arm64-osx-p01@1.89.0
+  * boost-functional:arm64-osx-p01@1.89.0
+  * boost-fusion:arm64-osx-p01@1.89.0
+  * boost-headers:arm64-osx-p01@1.89.0
+  * boost-integer:arm64-osx-p01@1.89.0
+  * boost-intrusive:arm64-osx-p01@1.89.0
+  * boost-io:arm64-osx-p01@1.89.0
+  * boost-iterator:arm64-osx-p01@1.89.0
+  * boost-lexical-cast:arm64-osx-p01@1.89.0
+  * boost-locale:arm64-osx-p01@1.89.0
+  * boost-math:arm64-osx-p01@1.89.0
+  * boost-move:arm64-osx-p01@1.89.0
+  * boost-mp11:arm64-osx-p01@1.89.0
+  * boost-mpl:arm64-osx-p01@1.89.0
+  * boost-multiprecision:arm64-osx-p01@1.89.0
+  * boost-numeric-conversion:arm64-osx-p01@1.89.0
+  * boost-optional:arm64-osx-p01@1.89.0
+  * boost-phoenix:arm64-osx-p01@1.89.0
+  * boost-pool:arm64-osx-p01@1.89.0
+  * boost-predef:arm64-osx-p01@1.89.0
+  * boost-preprocessor:arm64-osx-p01@1.89.0
+  * boost-proto:arm64-osx-p01@1.89.0
+  * boost-random:arm64-osx-p01@1.89.0
+  * boost-range:arm64-osx-p01@1.89.0
+  * boost-ratio:arm64-osx-p01@1.89.0
+  * boost-regex:arm64-osx-p01@1.89.0
+  * boost-scope:arm64-osx-p01@1.89.0
+  * boost-scope-exit:arm64-osx-p01@1.89.0
+  * boost-smart-ptr:arm64-osx-p01@1.89.0
+    boost-spirit:arm64-osx-p01@1.89.0
+  * boost-static-assert:arm64-osx-p01@1.89.0
+  * boost-system:arm64-osx-p01@1.89.0
+    boost-test:arm64-osx-p01@1.89.0
+  * boost-thread:arm64-osx-p01@1.89.0
+  * boost-throw-exception:arm64-osx-p01@1.89.0
+  * boost-tokenizer:arm64-osx-p01@1.89.0
+  * boost-tuple:arm64-osx-p01@1.89.0
+  * boost-type-index:arm64-osx-p01@1.89.0
+  * boost-type-traits:arm64-osx-p01@1.89.0
+  * boost-typeof:arm64-osx-p01@1.89.0
+  * boost-uninstall:arm64-osx-p01@1.89.0
+  * boost-unordered:arm64-osx-p01@1.89.0
+  * boost-utility:arm64-osx-p01@1.89.0
+  * boost-uuid:arm64-osx-p01@1.89.0
+  * boost-variant:arm64-osx-p01@1.89.0
+  * boost-variant2:arm64-osx-p01@1.89.0
+  * boost-winapi:arm64-osx-p01@1.89.0
+  * brotli:arm64-osx-p01@1.2.0
+  * bzip2[core,tool]:arm64-osx-p01@1.0.8#6
+  * c-ares:arm64-osx-p01@1.34.6
+    clipper2:arm64-osx-p01@1.5.4
+    eigen3:arm64-osx-p01@3.4.1#1
+    fast-float:arm64-osx-p01@8.1.0
+  * fmt:arm64-osx-p01@10.1.1
+  * gflags:arm64-osx-p01@2.3.0
+    grpc[core,codegen]:arm64-osx-p01@1.71.0#3
+  * libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1
+  * libiconv:arm64-osx-p01@1.18#3
+  * lz4:arm64-osx-p01@1.10.0
+    nanoflann:arm64-osx-p01@1.8.0
+  * openssl:arm64-osx-p01@3.6.0#3
+  * protobuf:arm64-osx-p01@5.29.5#3
+    pugixml:arm64-osx-p01@1.15#1
+  * rapidjson:arm64-osx-p01@2025-02-26
+  * re2:arm64-osx-p01@2025-11-05
+  * snappy:arm64-osx-p01@1.2.2#1
+    spdlog:arm64-osx-p01@1.16.0
+  * thrift:arm64-osx-p01@0.22.0
+    type-lite:arm64-osx-p01@0.2.0
+  * utf8-range:arm64-osx-p01@5.29.5
+  * utf8proc:arm64-osx-p01@2.11.2
+  * vcpkg-boost:arm64-osx-p01@2025-03-29
+  * vcpkg-cmake:arm64-osx-p01@2024-04-23
+  * vcpkg-cmake-config:arm64-osx-p01@2024-05-23
+  * vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29
+  * xsimd:arm64-osx-p01@14.0.0
+  * zlib:arm64-osx-p01@1.3.1
+  * zstd:arm64-osx-p01@1.5.7
+The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS filesystem)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+The package arrow provides CMake targets:
+
+    find_package(Arrow CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Arrow::arrow_static,Arrow::arrow_shared>")
+
+    find_package(Parquet CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Parquet::parquet_static,Parquet::parquet_shared>")
+
+The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS spirit)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+The package boost-test is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS test)
+    target_link_libraries(main PRIVATE Boost::test)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::test)
+
+The package clipper2 can be imported via CMake FindPkgConfig module:
+
+    # Clipper2
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2 REQUIRED IMPORTED_TARGET Clipper2)
+    target_link_libraries(main PkgConfig::Clipper2)
+
+    # Clipper2Z
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2Z REQUIRED IMPORTED_TARGET Clipper2Z)
+    target_link_libraries(main PkgConfig::Clipper2Z)
+
+clipper2 provides CMake targets:
+
+    # Clipper2
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2)
+
+    # Clipper2Z
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2Z)
+
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+fast-float provides CMake targets:
+
+    find_package(FastFloat CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE FastFloat::fast_float)
+
+grpc provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(gRPC CONFIG REQUIRED)
+  # note: 15 additional targets are not displayed.
+  target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+
+grpc provides pkg-config modules:
+
+  # gRPC platform support library
+  gpr
+
+  # C++ wrapper for gRPC
+  grpc++
+
+  # C++ wrapper for gRPC without SSL
+  grpc++_unsecure
+
+  # high performance general RPC framework
+  grpc
+
+  # high performance general RPC framework without SSL
+  grpc_unsecure
+
+nanoflann provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(nanoflann CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nanoflann::nanoflann)
+
+nanoflann provides pkg-config modules:
+
+  # nanoflann - A C++11 header-only library for kd-trees
+  nanoflann
+
+pugixml provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(pugixml CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE pugixml::static pugixml::pugixml)
+
+pugixml provides pkg-config modules:
+
+  # Light-weight, simple and fast XML parser for C++ with XPath support.
+  pugixml
+
+The package spdlog provides CMake targets:
+
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog)
+
+    # Or use the header-only version
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog_header_only)
+
+type-lite provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(type-lite CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nonstd::type-lite)
+
+All requested installations completed successfully in: 631 us
+-- Running vcpkg install - done
+-- Set CEE_USE_QT6 to ON
+-- Disabling OpenMP support
+-- No buildcache found
+-- Could NOT find Octave (missing: OCTAVE_EXECUTABLE OCTAVE_ROOT_DIR OCTAVE_LIBRARIES) 
+-- Found Darwin
+-- OpenMP package not found
+-- OpenMP disabled
+-- Initializing GIT submodules
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0")
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/googletest/CMakeLists.txt:56 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- Found Python: /Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python (found version "3.12.13") found components: Interpreter
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0") found components: filesystem
+-- openzgy: macOS patch already applied
+-- Compiling with C standard: 99
+-- Compiling with C++ standard: 20
+-- Found OpenGL: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework
+-- Forced to use Qt version 6
+CMake Warning (dev) at /tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/share/cmake-3.31/Modules/FetchContent.cmake:1953 (message):
+  Calling FetchContent_Populate(mdspan) is deprecated, call
+  FetchContent_MakeAvailable(mdspan) instead.  Policy CMP0169 can be set to
+  OLD to allow FetchContent_Populate(mdspan) to be called directly for now,
+  but the ability to call it with declared details will be removed completely
+  in a future version.
+Call Stack (most recent call first):
+  ThirdParty/custom-surfio/CMakeLists.txt:15 (FetchContent_Populate)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Detected support for C++23 standard
+-- Arrow version: 21.0.0
+-- Found the Arrow shared library: 
+-- Found the Arrow import library: 
+-- Found the Arrow static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libarrow.a
+-- Found thrift: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01
+-- Found libevent: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libevent.a
+-- Parquet version: 21.0.0
+-- Found the Parquet shared library: 
+-- Found the Parquet import library: 
+-- Found the Parquet static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libparquet.a
+-- In LibGuiQt, CEE_USE_QT6=ON
+-- In LibGuiQt, CEE_USE_QT5=OFF
+CMake Warning (dev) at CMakeLists.txt:1176 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Using Python Version: 3.12.13
+Dynamic Deoptimalization is disabled on : ApplicationLibCode
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/source/ThirdParty/gtest/gtest-all.cc;qrc_cafAnimControl.cpp;qrc_ResInsight.cpp;qrc_cafCommandFeatures.cpp;qrc_ApplicationLibCode.cpp;ProjectDataModel/RimVfpTableExtractor.cpp;ProjectDataModel/RimVfpPlot.cpp;/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/mocs_compilation.cpp;ProjectDataModel/RiaOpmParserTools.cpp;ProjectDataModel/RiaOpmKeywordTools.cpp;FileInterface/RifOsduWellPathReader.cpp;FileInterface/RifOsduWellLogReader.cpp;FileInterface/RifByteArrayArrowRandomAccessFile.cpp;FileInterface/RifArrowTools.cpp;FileInterface/RifReaderOpmRft.cpp
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/application-build/ApplicationLibCode/Commands/Commands_autogen/mocs_compilation.cpp
+-- GRPC enabled
+-- Using protobuf 
+-- Found RE2 via CMake.
+-- Generate C++ code using grpc : 1.71.0
+-- Using Python Executable: /Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python
+-- Using Python grpc protoc compiler: libprotoc 35.1
+CMake Warning (dev) at GrpcInterface/CMakeLists.txt:278 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Could not find OCTAVE_MKOCTFILE, skipping OctavePlugin library
+CMake Warning (dev) at CMakeLists.txt:1365 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (6.9s)
+-- Generating done (1.4s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_TOOLCHAIN_FILE
+
+
+-- Build files have been written to: /tmp/resinsight-p01-build/application-build

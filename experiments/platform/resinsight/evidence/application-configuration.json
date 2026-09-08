@@ -1,0 +1,30 @@
+{
+  "source": "application-build/CMakeCache.txt",
+  "values": {
+    "CMAKE_C_COMPILER": "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang",
+    "CMAKE_CXX_COMPILER": "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "CMAKE_CXX_FLAGS": "-fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1",
+    "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
+    "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=lld",
+    "CMAKE_MODULE_LINKER_FLAGS": "-fuse-ld=lld",
+    "CMAKE_OSX_DEPLOYMENT_TARGET": "14.2",
+    "CMAKE_OSX_ARCHITECTURES": "arm64",
+    "CMAKE_OSX_SYSROOT": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "OPENGL_gl_LIBRARY": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "OPENGL_glu_LIBRARY": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "OPENGL_INCLUDE_DIR": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "Python_EXECUTABLE": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "RESINSIGHT_GRPC_PYTHON_EXECUTABLE": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "RESINSIGHT_ENABLE_GRPC": "true",
+    "RESINSIGHT_ENABLE_OPENVDS": "OFF",
+    "RESINSIGHT_INCLUDE_APPLICATION_UNIT_TESTS": "true",
+    "RESINSIGHT_GRPC_DOWNLOAD_PYTHON_MODULE": "false",
+    "RESINSIGHT_GRPC_BUNDLE_PYTHON_MODULE": "false"
+  },
+  "inventory_command": [
+    "/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/vcpkg",
+    "list",
+    "--x-json",
+    "--x-install-root=/private/tmp/resinsight-p01-build/vcpkg-installed"
+  ]
+}

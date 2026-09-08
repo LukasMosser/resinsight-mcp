@@ -2,7 +2,7 @@
 
 This record describes the selected ResInsight source and the September 8, 2026 dependency plan.
 It separates application dependencies from experiment clients and build tools.
-The native dependency installation was still running when this record was prepared.
+All 103 selected native dependency packages are installed, and application configuration passes.
 It does not establish a completed application build, deployed library set, or license compatibility conclusion.
 SPDX identifiers are standard names for licenses and license expressions.
 
@@ -25,7 +25,8 @@ It records each selected version, feature set, triplet, and port Git tree.
 The triplet is `arm64-osx-p01`.
 Exact port files were read from `/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/<tree>/vcpkg.json`.
 These temporary records supplement the pinned manifests and must remain distinct from installation success evidence.
-The final installed package database and application library inspection will define the built inventory.
+The [installed package list](evidence/vcpkg-installed.json) records the actual versions, features, and triplet through `vcpkg list --x-json`.
+Installed package records and final application library inspection will define the linked inventory.
 
 ## Native dependencies in the resolved plan
 
@@ -42,7 +43,7 @@ A manifest entry alone does not establish inclusion in the final application bin
 | Eigen | 3.4.1#1 | `MPL-2.0` |
 | gRPC, core and codegen | 1.71.0#3 | `Apache-2.0` |
 | protobuf, pulled by gRPC | 5.29.5#3 | `BSD-3-Clause` |
-| type-lite | 0.2.0 | No port license field. ResInsight's notice contains `BSL-1.0`. |
+| type-lite | 0.2.0 | Installed copyright confirms `BSL-1.0`, despite the missing port license field. |
 | fast-float | 8.1.0 | `Apache-2.0 OR BSL-1.0 OR MIT` |
 | spdlog | 1.16.0 | `MIT` |
 | pugixml | 1.15#1 | `MIT` |
@@ -95,12 +96,31 @@ ERT, NR/CRAVA, the visualization core, and copied OPM flow diagnostics state GPL
 NightCharts states LGPL version 2.1 or later.
 ExprTk and mio state MIT terms, and Droid Sans states Apache version 2.0 terms.
 The copied FreeType license file offers its FreeType License or GPL version 2 terms.
+The copied Catch2 2.2.3 test header states Boost Software License 1.0 terms.
 GLEW retains its specific permissive notice.
 Microsoft icons retain CC BY 4.0 terms, with separate notices for modifications and other icons.
 The adapted conrec implementation states GPL version 3 or later in `cafContourLines.cpp` and `cafContourLines.h`.
 The separate Qwt adaptation retains Qwt License 1.0 terms.
 OpenVDS has an Apache notice, but the current macOS command leaves it disabled through the pinned platform default.
 The main source commit pins these copied files and notices.
+
+## Fetched and nested dependencies
+
+These versions were read from the populated source after successful configuration.
+The generated build includes these components in their stated roles.
+
+| Component | Populated version or revision | License and role |
+| --- | --- | --- |
+| GoogleTest | 1.11.0, `e2239ee6043f73722e7aa812a459f54a28552929` | `BSD-3-Clause`. Upstream test libraries. |
+| mdspan | 0.6.0, `9ceface91483775a6c74d06ebf717bbb2768452f` | `Apache-2.0 WITH LLVM-exception`. Multidimensional array headers for surfio. |
+| cJSON | 1.7.16, downloaded from the pinned release archive | `MIT`. JSON source compiled into the copied OPM component. |
+| zfp | 0.5.5, `e8edaced12f139ddf16167987ded15e5da1b98da` | `BSD-3-Clause`. Nested OpenZGY compression library. |
+
+The populated GoogleTest source differs from the later application test declaration, which requests 1.15.2.
+The earlier OPM parser test declaration requests 1.11.0.
+The populated checkout and its `LICENSE` define the actual version and notice.
+The mdspan and cJSON notices reside in `application-build/_deps/<name>-src/LICENSE`.
+The zfp notice resides in `source/ThirdParty/openzgy/zfp/LICENSE`.
 
 ## Qt runtime and client environment
 
@@ -133,12 +153,14 @@ This table does not replace notices for every library bundled inside binary whee
 | CMake from Python package | 3.31.6 | Bundled CMake `Copyright.txt`: BSD 3-Clause terms. Python wrapper also ships Apache 2.0 and BSD notices. |
 | CMake fetched by vcpkg | 4.4.0 | Dry-run log records the official universal archive. Its bundled notices remain authoritative. |
 | Ninja Python package | 1.13.0 | Apache 2.0 notices. Executable reports `1.13.0.git.kitware.jobserver-pipe-1`. |
+| Ninja fetched by vcpkg | 1.13.2 | [Tagged Apache 2.0 notice](https://github.com/ninja-build/ninja/blob/v1.13.2/COPYING). Dependency build executable reports `1.13.2`. |
 | GNU Bison | 3.8.2 | GPL version 3 or later. Generated parser evidence includes the Bison skeleton exception. |
 | grpcio-tools | 1.83.1 | Package metadata: `Apache-2.0`. Python protocol code generation. |
 | aqtinstall | 3.3.0 | Package metadata: `MIT`. Downloads selected Qt archives. |
 | py7zr | 1.0.0 | Package metadata: `LGPL-2.1-or-later`. Extracts Qt archives. |
 | vcpkg source | `df31882c439c38fc7c8b89d861457e8b8bf6fe67` | Selected submodule `LICENSE.txt`: MIT terms. Native dependency installation. |
 | vcpkg-boost | 2025-03-29 | Exact port metadata: `MIT`. Build helper. |
+| boost-uninstall | 1.89.0 | Exact port metadata: `MIT`. Build helper, distinct from Boost library terms. |
 | vcpkg-cmake, vcpkg-cmake-config, vcpkg-cmake-get-vars | 2024-04-23, 2024-05-23, 2025-05-29 | Exact port metadata: `MIT`. Build helpers. |
 
 The [LLVM prerequisite record](llvm-prerequisites.md) describes the selected Apple system runtime and copied-header configuration.
