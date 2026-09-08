@@ -1,8 +1,9 @@
 # ResInsight platform experiment
 
 This directory records the ResInsight part of P01 on the selected Mac.
-The current record does not prove Python control or a working source build.
+The custom source build and imported-well Python controls pass on this host.
 The [development page](../../../docs/development/platform-resinsight.md) separates source findings from runtime evidence.
+The [build record](custom-build.md) and [control record](controls.md) preserve the successful commands and bounded acceptance results.
 
 The small compiler probe uses `std::expected` and `std::format`.
 ResInsight 2026.09.0 uses these C++ features and requests C++23.
