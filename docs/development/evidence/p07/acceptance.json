@@ -1,0 +1,102 @@
+{
+  "time": "2026-09-08T16:59:41.336763+00:00",
+  "tested_commit": "f582165d84ee8fdd838d7ccbe552be7a94e41a8c",
+  "working_tree": [],
+  "host": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "packages": {
+    "opm": "2025.10",
+    "rips": "2026.9.0.1",
+    "pydantic": "2.13.5",
+    "pillow": "12.3.0"
+  },
+  "resinsight_executable": "/private/tmp/resinsight-p06-baseline-ResInsight.app/Contents/MacOS/ResInsight",
+  "qt_plugin_path": "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/plugins",
+  "flow_image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_7353623320114a8db564401c11f9476e",
+        "revision_id": "revision_4e9b79703fab4c65a340fd82e2bac5db"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_cd6965dd6da0447dab4508536cf5b915",
+          "artifact_3ab67c9ed67547aba31646441d7b7368",
+          "artifact_ed8ad80b4cd94d479d46e1b497bec98e",
+          "artifact_55c32e97c1e542b9adbc96cd5a9a83dd",
+          "artifact_f04834a9b7e04151aa1f8110f1825540"
+        ],
+        "entrypoint": "artifact_cd6965dd6da0447dab4508536cf5b915"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local depth datum"
+      },
+      "parent": null
+    },
+    "backend": "opm_flow"
+  },
+  "loaded_case": {
+    "model": {
+      "session_id": "session_7353623320114a8db564401c11f9476e",
+      "revision_id": "revision_4e9b79703fab4c65a340fd82e2bac5db"
+    },
+    "connection": {
+      "context": {
+        "session_id": "session_7353623320114a8db564401c11f9476e",
+        "connection_id": "connection_634cad6402d24f378a6f7d70fbcff693",
+        "project_generation": 0
+      },
+      "endpoint": {
+        "host": "127.0.0.1",
+        "port": 63103
+      },
+      "ownership": "owned",
+      "state": "ready",
+      "process": {
+        "pid": 16861,
+        "start_marker": "1788886779.289071"
+      }
+    },
+    "case_id": 0,
+    "case_name": "P07 imported revision_4e9b79703fab4c65a340fd82e2bac5db",
+    "case_path": "/private/tmp/resinsight-mcp-p07-acceptance-03/results/SPE1.EGRID",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "report_step": 2,
+    "time_steps": [
+      {
+        "year": 2015,
+        "month": 1,
+        "day": 1
+      },
+      {
+        "year": 2015,
+        "month": 1,
+        "day": 2
+      },
+      {
+        "year": 2015,
+        "month": 1,
+        "day": 3
+      }
+    ],
+    "property": "PRESSURE",
+    "pressure_range_psi": [
+      4438.43212890625,
+      5421.6787109375
+    ],
+    "snapshot": "imported-modelP07_imported_revision_4e9b79703fab4c65a340fd82e2bac5db_3D_View_PRESSURE_02_03_Jan_2015.png",
+    "resinsight_version": "2026.9.0"
+  },
+  "invalid_input_rejected_before_simulator": true,
+  "source_copy_removed_before_stored_preparation": true,
+  "limits": "Two CPUs, 2 GiB memory, no network, 60-second Flow timeout."
+}

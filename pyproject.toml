@@ -9,6 +9,7 @@ dependencies = ["pydantic>=2.13.5,<3", "mcp>=1.28,<2", "pillow>=12,<13"]
 
 [project.optional-dependencies]
 resinsight = ["rips==2026.9.0.1", "psutil>=7.2,<8"]
+imports = ["opm==2025.10"]
 
 [build-system]
 requires = ["setuptools>=84,<85"]
@@ -33,6 +34,7 @@ dev = [
   "rips==2026.9.0.1",
   "psutil>=7.2,<8",
   "grpcio-tools>=1.83.1",
+  "opm==2025.10",
 ]
 
 [tool.ruff]

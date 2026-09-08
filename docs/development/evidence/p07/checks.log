@@ -1,0 +1,77 @@
+Implementation, regression, and native acceptance commit: f582165d84ee8fdd838d7ccbe552be7a94e41a8c
+Working tree: clean
+
+Command: uv --version
+uv 0.9.18 (Homebrew 2025-12-16)
+
+Exit status: 0
+
+Command: .venv/bin/python --version
+Python 3.12.13
+
+Exit status: 0
+
+Command: .venv/bin/ruff --version
+ruff 0.16.6
+
+Exit status: 0
+
+Command: .venv/bin/ty --version
+ty 0.0.79 (b4cd79275 2026-09-07)
+
+Exit status: 0
+
+Command: .venv/bin/pytest --version
+pytest 9.1.1
+
+Exit status: 0
+
+Command: .venv/bin/pre-commit --version
+pre-commit 4.6.2
+
+Exit status: 0
+
+Command: uv run --locked python scripts/check.py
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+111 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/.venv/bin/python3 -m pytest -q
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+....................................................................     [100%]
+212 passed in 16.95s
+
+Run: mkdocs build --strict
+
+[31m │  ⚠  Warning from the Material for MkDocs team[0m
+[31m │[0m
+[31m │[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,
+[31m │[0m  will introduce backward-incompatible changes, including:
+[31m │[0m
+[31m │  × [0mAll plugins will stop working – the plugin system has been removed
+[31m │  × [0mAll theme overrides will break – the theming system has been rewritten
+[31m │  × [0mNo migration path exists – existing projects cannot be upgraded
+[31m │  × [0mClosed contribution model – community members can't report bugs
+[31m │  × [0mCurrently unlicensed – unsuitable for production use
+[31m │[0m
+[31m │[0m  Our full analysis:
+[31m │[0m
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/site
+INFO    -  Documentation built in 0.64 seconds
+
+Exit status: 0
+
+Command: uv run --locked pre-commit run --all-files
+Run repository checks....................................................Passed
+
+Exit status: 0

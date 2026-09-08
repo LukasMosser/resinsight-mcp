@@ -36,6 +36,8 @@ nav:
       - Session evidence: development/p04-evidence.md
       - MCP transport: development/mcp.md
       - MCP evidence: development/mcp-evidence.md
+      - Model imports: development/model-imports.md
+      - Model import evidence: development/p07-evidence.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - Scope review: development/scope-review.md

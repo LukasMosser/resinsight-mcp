@@ -1,0 +1,10 @@
+{
+  "outcome": {
+    "status": "failure",
+    "error": {
+      "code": "invalid_model",
+      "message": "Input includes/props.inc is missing, is not a regular file, or uses a symlink.",
+      "effect": "not_applied"
+    }
+  }
+}
