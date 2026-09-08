@@ -17,6 +17,7 @@ nav:
   - Home: index.md
   - ResInsight sessions: sessions.md
   - MCP operations: mcp.md
+  - Local jobs: jobs.md
   - Security: security.md
   - License: license.md
   - Development:
@@ -38,6 +39,8 @@ nav:
       - MCP evidence: development/mcp-evidence.md
       - Model imports: development/model-imports.md
       - Model import evidence: development/p07-evidence.md
+      - Job implementation: development/jobs.md
+      - Job evidence: development/p10-evidence.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - Scope review: development/scope-review.md

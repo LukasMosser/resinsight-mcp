@@ -2,7 +2,7 @@
 
 This plan describes proposed work, not current application behavior.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository contains shared contracts, workspace storage, session operations, development tools, and runtime evidence.
+The repository contains shared contracts, workspace storage, session operations, durable jobs, development tools, and runtime evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.
@@ -63,7 +63,7 @@ An interface change needs a small P02 follow-up before dependent implementation 
 
 P02 implements the shared contracts, P03 implements workspace storage, and P04 implements application sessions and projects.
 P05 implements the [MCP transport](mcp.md) against reviewed shared service contracts.
-The P06 and later application paths below remain separate work packages.
+The remaining application paths below retain separate work package ownership.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
 
@@ -245,17 +245,16 @@ Attach screenshots and a readable connection summary to the PR.
 
 ## P10: Supervise durable jobs
 
-Submit jobs asynchronously and return a durable job identifier.
-Record process identity, resources, state changes, logs, and exit status.
-Keep jobs independent of MCP connections.
+P10 implements asynchronous submission through `DurableJobController` and an independent supervisor for each job.
+Workspace records preserve input revision, resources, process identities, state history, logs, and exit status.
+Cancellation targets only the supervisor's owned process group.
+Explicit reconciliation preserves uncertain outcomes without relaunching commands or signaling stored process identifiers.
 
-Cancel the owned process group and preserve a clear terminal state.
-Reconcile interrupted runs after service restart without relaunching them silently.
-Test these behaviors with small real child processes before simulator integration.
-
-Acceptance requires cancellation without a surviving child process.
-Disconnect and restart tests must preserve job identity and input revision.
-A stale process identifier must never authorize termination of an unrelated process.
+The approved `wall_time_only` policy enforces wall deadlines and records CPU and memory requests without enforcement.
+The default `enforce` policy is rejected before submission because this generic controller cannot enforce all requested limits.
+The [job guide](jobs.md) defines the process ownership boundary and recovery preconditions.
+The [P10 record](p10-evidence.md) reports real child cancellation, stale ownership, disconnect, restart, and failure races.
+Simulator preparation and numerical result acceptance remain in later packages.
 
 ## P11: Run OPM Flow
 

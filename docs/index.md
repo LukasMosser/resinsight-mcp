@@ -17,6 +17,8 @@ It uses SQLite on trusted local macOS or Linux filesystems.
 The [workspace guide](development/workspaces.md) explains storage, cloning, and explicit recovery.
 The [session guide](sessions.md) explains application ownership, project operations, and observed change limits.
 The [MCP operations guide](mcp.md) explains local server setup and explicit sessions.
+The [job controller](jobs.md) runs trusted local commands independently of MCP connections.
+It preserves job identity and reconciles interrupted work without relaunching commands.
 
 Use the [shared contract guide](development/contracts.md) for data conventions and examples.
 The [development guide](development/index.md) describes the repository workflow and future design.

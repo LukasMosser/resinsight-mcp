@@ -2,6 +2,7 @@
 
 Tests must establish behavior that matters to a user.
 The maintained pytest suite exercises contracts, workspace storage, session coordination, and the native client's remote call boundary.
+Job tests exercise real child process groups, durable state, and production MCP disconnect and restart.
 Do not add placeholder tests to increase a test count.
 
 The shared command `scripts/check.py` runs Ruff, ty, pytest, and the strict documentation build.
@@ -22,6 +23,10 @@ For storage changes, exercise fresh-process reopening, competing writes, immutab
 Use parsed text or JSON to establish meaningful file content.
 Recovery tests must distinguish stopped-controller reconciliation from merely opening another store.
 The [workspace guide](workspaces.md) defines the supported filesystem boundary and recovery preconditions.
+
+For job changes, test owned group cancellation, stale identities, interrupted launch, supervisor loss, and uncertain publication.
+Make sure that deadline handling continues while storage operations wait.
+The [P10 record](p10-evidence.md) links these maintained cases and their observed results.
 
 For a behavior change, choose evidence that exposes an incorrect result:
 

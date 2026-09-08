@@ -1,6 +1,9 @@
 # Durable job implementation
 
-The `jobs` package executes trusted commands in one local workspace on macOS and Linux.
+An agent uses configured MCP job operations to submit work, reconnect, inspect progress, and request cancellation.
+The default server still requires a job controller, a trusted command resolver, and simulator preparation before this workflow can run.
+The `jobs` package supplies execution for trusted commands in one local workspace on macOS and Linux.
+
 `DurableJobController` owns submission, stored observation, cancellation intent, and explicit reconciliation.
 A separate supervisor owns each command's lifetime.
 The resolver owns command selection through the public `CommandResolver` and `JobCommand` interfaces.
@@ -13,6 +16,8 @@ The controller saves a `queued` job before it launches the supervisor.
 The saved submission includes arguments, working directory, limits, policy, and submission time.
 It returns that recorded job after supervisor launch.
 An uncertain launch does not authorize another launch.
+
+Python isolated mode excludes the caller's directory and `PYTHONPATH` from supervisor imports.
 
 A session controller lease coordinates submission with reconciliation.
 A job supervisor lease passes to the new supervisor through an inherited file descriptor.
@@ -34,6 +39,7 @@ The supervisor launches the command without a shell in a new process group.
 It retains the direct child without reaping it until the group has no live members.
 Reaping collects a stopped child's exit status.
 The retained child anchors ownership before each group signal.
+A process identifier, or PID, names a process.
 Saved PIDs alone never authorize signals or attachment.
 
 The supervisor must exclusively own child reaping and retain default `SIGCHLD` handling.
@@ -53,8 +59,9 @@ The controller does not replace uncertain observations with success claims.
 `ResourcePolicy.ENFORCE` remains the request default and is rejected by this controller.
 `ResourcePolicy.WALL_TIME_ONLY` explicitly accepts unenforced CPU and memory requests.
 The submission and supervisor log record those requests.
-A timer starts after command launch, before storage publishes the running state.
-The timer enforces the wall deadline independently of storage waits.
+A wall timer starts after command launch and before the running-state write.
+The deadline includes launch time and storage waits.
+Scheduling and termination grace can extend the observed stop time.
 
 The supervisor reads durable cancellation intent during observation.
 Cancellation and wall expiry share serialized stop handling.
@@ -68,6 +75,7 @@ A wall deadline or nonzero exit produces `failed`.
 A zero exit with no live group members produces `succeeded`.
 Execution success does not accept numerical results.
 Cancellation can complete before command launch when the supervisor first observes the request.
+If completion wins the race, a successful job retains the late cancellation intent.
 
 ## Logs and failures
 
@@ -98,11 +106,20 @@ Operators must establish surviving process ownership independently before any ex
 
 ## Transport and review
 
+MCP means Model Context Protocol, a tool access protocol.
+
 Optional `Bindings.jobs` supplies the production MCP job service.
 The transport exposes `job_submit`, `job_poll`, and `job_cancel` through that service.
 The default command-line server supplies no resolver or job binding.
 Transport polling does not reconcile or mutate jobs.
+Prepared input records still require a simulator adapter or trusted Python setup.
+Result lineage and ResInsight result loading remain separate integration steps.
+There is no MCP reconciliation operation.
 The [user guide](../jobs.md) shows the narrow library workflow.
+The [P10 record](p10-evidence.md) links the maintained acceptance cases and review evidence.
+
+The ownership rules follow [POSIX process lifetime definitions](https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html).
+The implementation uses [Python subprocess](https://docs.python.org/3.12/library/subprocess.html) and [psutil process inspection](https://psutil.readthedocs.io/en/latest/).
 
 Review public outcomes, concurrent cancellation, controller exit, supervisor failure, and storage uncertainty.
 Make sure that tests distinguish cancellation intent from confirmed termination.

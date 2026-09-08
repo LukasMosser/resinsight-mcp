@@ -3,7 +3,8 @@
 The development environment uses Python 3.12 and uv.
 A lockfile records the dependency versions for this environment.
 The project installs its contracts, workspace storage, and session coordination from the checkout.
-The base runtime requires Pydantic, while the optional `resinsight` extra adds rips and psutil.
+The base runtime includes Pydantic and psutil for records and process inspection.
+The optional `resinsight` extra adds rips.
 The [session guide](../sessions.md) explains native application requirements and installation.
 
 From the repository directory, install the package and locked development dependencies:
@@ -40,6 +41,8 @@ They do not launch ResInsight or a simulator.
 The [contract guide](contracts.md) explains records, interfaces, and serialization.
 The [workspace guide](workspaces.md) includes an example using a temporary local directory.
 The [P04 record](p04-evidence.md) reports the separate real application acceptance trial.
+Job tests launch small Python process groups and real MCP connections.
+The [P10 record](p10-evidence.md) describes their cancellation, restart, and failure evidence.
 Workspace operations require a trusted local macOS or Linux filesystem with supported directory and synchronization operations.
 The [P01 record](platform-proof.md) contains the separate external runtime evidence.
 

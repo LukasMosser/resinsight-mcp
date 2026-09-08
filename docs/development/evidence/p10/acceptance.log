@@ -1,0 +1,74 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /Users/lmoss/.codex/worktrees/29a1/resinsight-mcp/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/lmoss/.codex/worktrees/29a1/resinsight-mcp
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collecting ... collected 36 items
+
+tests/jobs/test_faults.py::test_cancel_during_supervisor_claim_preserves_intent Resource policy: wall_time_only
+Requested CPU count: 1
+Requested memory MiB: 128
+Wall deadline seconds: 10
+Execution outcome: cancel; exit status: 0
+PASSED
+tests/jobs/test_faults.py::test_failed_uncertainty_write_still_reports_committed_job PASSED
+tests/jobs/test_faults.py::test_wall_deadline_runs_during_blocked_state_publication Resource policy: wall_time_only
+Requested CPU count: 1
+Requested memory MiB: 128
+Wall deadline seconds: 1
+Execution outcome: deadline; exit status: -15
+PASSED
+tests/jobs/test_faults.py::test_lost_supervisor_preserves_unknown_and_never_relaunches PASSED
+tests/jobs/test_faults.py::test_stale_persisted_identity_never_authorizes_signal PASSED
+tests/jobs/test_faults.py::test_uncertain_update_is_not_retried PASSED
+tests/jobs/test_faults.py::test_recovery_after_interrupted_launch PASSED
+tests/jobs/test_faults.py::test_deadline_escalates_despite_unavailable_census Resource policy: wall_time_only
+Requested CPU count: 1
+Requested memory MiB: 128
+Wall deadline seconds: 1
+Supervision is uncertain: An unrelated process could not be inspected.
+PASSED
+tests/jobs/test_faults.py::test_failed_deadline_thread_cleans_owned_command Resource policy: wall_time_only
+Requested CPU count: 1
+Requested memory MiB: 128
+Wall deadline seconds: 10
+Supervision is uncertain: The deadline thread could not start.
+PASSED
+tests/jobs/test_faults.py::test_failed_log_publication_never_reports_success Resource policy: wall_time_only
+Requested CPU count: 1
+Requested memory MiB: 128
+Wall deadline seconds: 10
+Execution outcome: exit; exit status: 0
+Supervision is uncertain: The log commit acknowledgement was lost.
+PASSED
+tests/jobs/test_faults.py::test_failed_supervisor_waiter_retains_job_identity PASSED
+tests/jobs/test_mcp_acceptance.py::test_mcp_disconnect_restart_preserves_execution[complete] MCP complete acceptance: {"job_id":"job_ea1eab412f234dccafb6ee7b892e3f95","model":{"session_id":"session_581f29d79ae146fabbea29c61aa68507","revision_id":"revision_5a0917c7d34d420e8544882564e59061"},"backend":"opm_flow","state":"succeeded","cancel_requested":false,"termination_confirmed":false,"exit_code":0,"error":null,"submission":{"limits":{"cpu_count":1,"memory_mib":128,"wall_time_seconds":10},"resource_policy":"wall_time_only","argv":["/Users/lmoss/.codex/worktrees/29a1/resinsight-mcp/.venv/bin/python","-c","\nfrom pathlib import Path\nimport time\nwith Path('executions.txt').open('a') as count:\n    count.write('started\\n')\nPath('ready').touch()\ndeadline = time.monotonic() + 8\nwhile not Path('release').exists():\n    if time.monotonic() >= deadline:\n        raise RuntimeError('The acceptance client did not release the command.')\n    time.sleep(0.02)\nprint('The original job completed after reconnect.')\n"],"working_directory":"/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-209/test_mcp_disconnect_restart_pr0/workspace","submitted_at":"2026-09-08T16:56:38.070547Z"},"supervisor":{"pid":14301,"start_marker":"1788886598.072809"},"process":{"pid":14314,"start_marker":"1788886598.187452"},"process_group_id":14314,"logs":[{"session_id":"session_581f29d79ae146fabbea29c61aa68507","artifact_id":"artifact_35f63e340f474a2d91c2ba99b6bab6ba"},{"session_id":"session_581f29d79ae146fabbea29c61aa68507","artifact_id":"artifact_a6bb2197fab34c7e98a37c917de15fe1"},{"session_id":"session_581f29d79ae146fabbea29c61aa68507","artifact_id":"artifact_15e628c77d944670839270be4693ff65"}],"events":[{"at":"2026-09-08T16:56:38.070765Z","state":"queued","message":"Submission recorded before supervisor launch."},{"at":"2026-09-08T16:56:38.183451Z","state":"queued","message":"The independent supervisor claimed execution."},{"at":"2026-09-08T16:56:38.191675Z","state":"running","message":"The owned command started."},{"at":"2026-09-08T16:56:38.740117Z","state":"succeeded","message":"The command exited successfully with no live group members."}]}
+PASSED
+tests/jobs/test_mcp_acceptance.py::test_mcp_disconnect_restart_preserves_execution[cancel] MCP cancel acceptance: {"job_id":"job_c5431c9c1b434440b59621c1e00000d2","model":{"session_id":"session_83fc867ffb9146ebb91bb7163b527f52","revision_id":"revision_0fd4fdf3866c43d0999608d0cde6f657"},"backend":"opm_flow","state":"canceled","cancel_requested":true,"termination_confirmed":true,"exit_code":-15,"error":null,"submission":{"limits":{"cpu_count":1,"memory_mib":128,"wall_time_seconds":10},"resource_policy":"wall_time_only","argv":["/Users/lmoss/.codex/worktrees/29a1/resinsight-mcp/.venv/bin/python","-c","\nfrom pathlib import Path\nimport json, subprocess, sys, time\nchild = subprocess.Popen([sys.executable, '-c',\n    \"import signal,time; signal.signal(signal.SIGTERM,signal.SIG_IGN); time.sleep(10)\"])\nPath('child.json').write_text(json.dumps(child.pid))\nPath('ready').touch()\ntime.sleep(10)\n"],"working_directory":"/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-209/test_mcp_disconnect_restart_pr1/workspace","submitted_at":"2026-09-08T16:56:39.169039Z"},"supervisor":{"pid":14319,"start_marker":"1788886599.171104"},"process":{"pid":14320,"start_marker":"1788886599.288239"},"process_group_id":14320,"logs":[{"session_id":"session_83fc867ffb9146ebb91bb7163b527f52","artifact_id":"artifact_11be539eeed74dacad80db2ff93ff9ad"},{"session_id":"session_83fc867ffb9146ebb91bb7163b527f52","artifact_id":"artifact_5cb8aedf832b4bfb99610f29b4033315"},{"session_id":"session_83fc867ffb9146ebb91bb7163b527f52","artifact_id":"artifact_046f9272d94c4ff08246d2a0d49f9c69"}],"events":[{"at":"2026-09-08T16:56:39.169219Z","state":"queued","message":"Submission recorded before supervisor launch."},{"at":"2026-09-08T16:56:39.285851Z","state":"queued","message":"The independent supervisor claimed execution."},{"at":"2026-09-08T16:56:39.291571Z","state":"running","message":"The owned command started."},{"at":"2026-09-08T16:56:39.763528Z","state":"running","message":"Cancellation requested."},{"at":"2026-09-08T16:56:40.446419Z","state":"canceled","message":"Cancellation completed with no live process in the owned group."}]}
+PASSED
+tests/jobs/test_process.py::test_cancel_real_child_tree PASSED
+tests/jobs/test_process.py::test_exited_leader_retains_child_group PASSED
+tests/jobs/test_process.py::test_escalate_ignored_termination PASSED
+tests/jobs/test_process.py::test_stale_identity_never_signals_unrelated_process PASSED
+tests/jobs/test_process.py::test_reject_unsafe_sigchld_policy[1] PASSED
+tests/jobs/test_process.py::test_reject_unsafe_sigchld_policy[<lambda>] PASSED
+tests/jobs/test_process.py::test_membership_access_failure_is_visible PASSED
+tests/jobs/test_process.py::test_changed_start_marker_blocks_group_signal PASSED
+tests/jobs/test_process.py::test_startup_inspection_failure_does_not_signal PASSED
+tests/jobs/test_process.py::test_missing_executable_reports_launch_failure PASSED
+tests/jobs/test_process.py::test_child_created_after_pid_snapshot_prevents_empty_result PASSED
+tests/jobs/test_process.py::test_changed_inventory_rejects_empty_confirmation PASSED
+tests/jobs/test_process.py::test_empty_command_argument_is_preserved PASSED
+tests/jobs/test_service.py::test_default_enforcement_rejected_before_launch PASSED
+tests/jobs/test_service.py::test_exit_status_logs_and_policy[0] PASSED
+tests/jobs/test_service.py::test_exit_status_logs_and_policy[7] PASSED
+tests/jobs/test_service.py::test_cancel_tree_and_preserve_terminal PASSED
+tests/jobs/test_service.py::test_wall_deadline_requires_confirmed_termination PASSED
+tests/jobs/test_service.py::test_service_process_disconnect_preserves_job PASSED
+tests/jobs/test_service.py::test_recovery_refuses_live_supervisor PASSED
+tests/jobs/test_service.py::test_concurrent_cancel_keeps_intent PASSED
+tests/jobs/test_service.py::test_missing_executable_records_failed_launch PASSED
+tests/jobs/test_service.py::test_supervisor_rejects_caller_module_shadowing PASSED
+
+============================= 36 passed in 15.84s ==============================

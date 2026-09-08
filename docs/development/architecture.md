@@ -7,7 +7,8 @@ The [workspace guide](workspaces.md) describes the implemented SQLite record sto
 
 The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
 The [MCP transport](mcp.md) binds shared services through typed operations and preserves native image content.
-Rendering, simulator adapters, and job supervision remain separate work packages.
+The [job controller](jobs.md) supervises trusted commands through durable records and owned process groups.
+Rendering and simulator adapters remain separate work packages.
 
 The [scope review](scope-review.md) records external evidence and open questions.
 The [P05 record](mcp-evidence.md) proves blind synthetic-image delivery through the production transport.
@@ -20,6 +21,8 @@ The simulator performs the numerical calculation.
 
 The workspace store already preserves engineering sessions, model revisions, artifacts, and run-related records.
 It does not control application processes or parse simulator inputs.
+Job supervision uses that store for submissions, process identities, state history, and immutable logs.
+Recovery requires stopped supervisors and never signals a process from a saved identifier.
 
 The session service already controls application connections, ownership, project operations, and object reference validity.
 Its observed change detection has explicit [limits](sessions.md#project-observations).
