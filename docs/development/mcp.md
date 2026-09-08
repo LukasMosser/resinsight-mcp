@@ -15,7 +15,8 @@ P04 owns the application session implementation.
 The P04 owner reviewed the `SessionService` contract before P05 bound its operations.
 That contract extends the existing `ProcessController` without changing its signatures.
 
-The agreed optional `resinsight` dependency group contains rips and psutil for P04.
+The agreed optional `resinsight` extra contains rips and psutil for P04.
+An extra selects optional runtime dependencies.
 Its dependency commit remains separate from the MCP dependency change.
 P05 does not import the optional ResInsight runtime.
 Future simulator and model tools require their own package implementations and reviewed catalog additions.
@@ -76,7 +77,8 @@ Unknown fields and invalid identifier shapes fail before the service call.
 The server disables the SDK's generic input-error conversion to preserve the shared error envelope.
 It validates service results against each operation's declared response type.
 Known `ContractError` records retain their code, message, and effect.
-Unexpected exceptions produce sanitized `execution_failed` responses and detailed stderr logs.
+Unexpected service-call exceptions produce sanitized `execution_failed` responses and detailed stderr logs.
+Unexpected image read or decode exceptions produce `render_failed` without exposing exception details.
 
 Invalid requests use the existing `invalid_model` code.
 An unavailable tool uses `unsupported_operation`.

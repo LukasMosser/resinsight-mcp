@@ -60,6 +60,9 @@ The shared command runs Ruff, ty, pytest, and a strict MkDocs build:
 uv run --locked python scripts/check.py
 ```
 
+The [shared-check log](evidence/p05/shared-check.log) records 143 passing tests and the strict documentation build.
+The [check review](evidence/p05/check-review.json) identifies the tested source commit and local uv version.
+
 The recorded image environment used Python 3.12.13, MCP 1.30.0, Pillow 12.3.0, and Pydantic 2.13.5.
 It used pytest 9.1.1, Ruff 0.16.6, ty 0.0.79, and pre-commit 4.6.2.
 The host was macOS 14.2.1 on arm64.

@@ -1,0 +1,7 @@
+{
+  "tested_commit": "3f2a50978ec4f2f49ca570482dd133d7a726e2a5",
+  "command": "UV_CACHE_DIR=/tmp/resinsight-p05-uv uv run --locked python scripts/check.py",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "scope": "Shared repository checks on the committed P05 source before P04 integration. Generated evidence files were not part of the tested source.",
+  "independent_source_review": "No remaining actionable findings after render identity and acceptance-gate fixes."
+}
