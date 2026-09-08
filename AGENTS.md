@@ -56,6 +56,8 @@ Do not add tests that only repeat implementation details. Do not claim applicati
 
 A pull request, or PR, is a proposed change for review. Give each major feature its own PR against `main`. Include the problem, resulting behavior, scope, and evidence in the PR.
 
+Link the work issue and use its delivery milestone and relevant labels. Follow the [project organization guide](docs/development/project-organization.md). Close the issue only when the PR completes its scope.
+
 Keep one logical change per commit. Use a short imperative subject and a body that explains why the change exists. Describe relevant evidence and constraints in the body.
 
 Bring agent commits into the feature branch with reviewed cherry-picks. Collapse repair commits into their logical change before merge. Use a squash merge for one logical change or a rebase merge for a reviewed logical series.
