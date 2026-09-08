@@ -92,6 +92,7 @@ class Trial:
         with grpc.insecure_channel(f"{endpoint.host}:{endpoint.port}") as channel:
             project = cast(Any, rips.Project).create(channel)
             case = project.load_case(str(self.case))
+            case.name_setting = rips.NameSetting.CUSTOM_NAME
             case.name = name
             case.update()
             view = case.create_view()
