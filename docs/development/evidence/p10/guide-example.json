@@ -1,10 +1,10 @@
 {
   "example": "docs/jobs.md Python block",
-  "tested_commit": "023fd8e3c2560dfce56e9cfd4b9efa7ccda028cb",
-  "job_id": "job_4229fe55fe2e4b13824f222c0efaa1ef",
+  "tested_commit": "88866fb2adea114ddc2361de7d92d5c6aa1503c6",
+  "job_id": "job_a61532ad1ea8499d9495693e0ace9735",
   "model": {
-    "session_id": "session_d5895572020c47729e5a5de7c36a6274",
-    "revision_id": "revision_c6a455dcbe544fac85da584ef8045ec3"
+    "session_id": "session_7136d31c2baf44b48a2204e5c9607aa8",
+    "revision_id": "revision_bdb9cfa5d2c34527838dc43b46640b75"
   },
   "state": "succeeded",
   "exit_code": 0,

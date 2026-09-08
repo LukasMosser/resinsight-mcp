@@ -3,17 +3,17 @@ Run: ruff check .
 All checks passed!
 
 Run: ruff format --check .
-119 files already formatted
+130 files already formatted
 
 Run: ty check
 All checks passed!
 
 Run: /Users/lmoss/.codex/worktrees/29a1/resinsight-mcp/.venv/bin/python3 -m pytest -q
-........................................................................ [ 30%]
-........................................................................ [ 61%]
-........................................................................ [ 92%]
-.................                                                        [100%]
-233 passed in 28.46s
+........................................................................ [ 26%]
+........................................................................ [ 52%]
+........................................................................ [ 79%]
+........................................................                 [100%]
+272 passed in 34.28s
 
 Run: mkdocs build --strict
 
@@ -34,4 +34,4 @@ Run: mkdocs build --strict
 [0m
 INFO    -  Cleaning site directory
 INFO    -  Building documentation to directory: /Users/lmoss/.codex/worktrees/29a1/resinsight-mcp/site
-INFO    -  Documentation built in 0.63 seconds
+INFO    -  Documentation built in 0.68 seconds

@@ -1,9 +1,9 @@
 {
   "complete": {
-    "job_id": "job_ea1eab412f234dccafb6ee7b892e3f95",
+    "job_id": "job_9ac39f1df3a34bcdb2911eb024d5a5d6",
     "model": {
-      "session_id": "session_581f29d79ae146fabbea29c61aa68507",
-      "revision_id": "revision_5a0917c7d34d420e8544882564e59061"
+      "session_id": "session_17244a9d5ef349f597d463bac5b79dc1",
+      "revision_id": "revision_80fa1e2712404beeb56f6f2088b80277"
     },
     "backend": "opm_flow",
     "state": "succeeded",
@@ -23,60 +23,60 @@
         "-c",
         "\nfrom pathlib import Path\nimport time\nwith Path('executions.txt').open('a') as count:\n    count.write('started\\n')\nPath('ready').touch()\ndeadline = time.monotonic() + 8\nwhile not Path('release').exists():\n    if time.monotonic() >= deadline:\n        raise RuntimeError('The acceptance client did not release the command.')\n    time.sleep(0.02)\nprint('The original job completed after reconnect.')\n"
       ],
-      "working_directory": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-209/test_mcp_disconnect_restart_pr0/workspace",
-      "submitted_at": "2026-09-08T16:56:38.070547Z"
+      "working_directory": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-233/test_mcp_disconnect_restart_pr0/workspace",
+      "submitted_at": "2026-09-08T17:14:25.103721Z"
     },
     "supervisor": {
-      "pid": 14301,
-      "start_marker": "1788886598.072809"
+      "pid": 31358,
+      "start_marker": "1788887665.105875"
     },
     "process": {
-      "pid": 14314,
-      "start_marker": "1788886598.187452"
+      "pid": 31359,
+      "start_marker": "1788887665.213499"
     },
-    "process_group_id": 14314,
+    "process_group_id": 31359,
     "logs": [
       {
-        "session_id": "session_581f29d79ae146fabbea29c61aa68507",
-        "artifact_id": "artifact_35f63e340f474a2d91c2ba99b6bab6ba"
+        "session_id": "session_17244a9d5ef349f597d463bac5b79dc1",
+        "artifact_id": "artifact_77e47ca6e5e74c42983a2267ec356264"
       },
       {
-        "session_id": "session_581f29d79ae146fabbea29c61aa68507",
-        "artifact_id": "artifact_a6bb2197fab34c7e98a37c917de15fe1"
+        "session_id": "session_17244a9d5ef349f597d463bac5b79dc1",
+        "artifact_id": "artifact_4a8a91cb2e9e4f239bd924d969c47746"
       },
       {
-        "session_id": "session_581f29d79ae146fabbea29c61aa68507",
-        "artifact_id": "artifact_15e628c77d944670839270be4693ff65"
+        "session_id": "session_17244a9d5ef349f597d463bac5b79dc1",
+        "artifact_id": "artifact_22246770add64c658f89cc5268a6ecc1"
       }
     ],
     "events": [
       {
-        "at": "2026-09-08T16:56:38.070765Z",
+        "at": "2026-09-08T17:14:25.103952Z",
         "state": "queued",
         "message": "Submission recorded before supervisor launch."
       },
       {
-        "at": "2026-09-08T16:56:38.183451Z",
+        "at": "2026-09-08T17:14:25.209260Z",
         "state": "queued",
         "message": "The independent supervisor claimed execution."
       },
       {
-        "at": "2026-09-08T16:56:38.191675Z",
+        "at": "2026-09-08T17:14:25.218198Z",
         "state": "running",
         "message": "The owned command started."
       },
       {
-        "at": "2026-09-08T16:56:38.740117Z",
+        "at": "2026-09-08T17:14:25.753497Z",
         "state": "succeeded",
         "message": "The command exited successfully with no live group members."
       }
     ]
   },
   "cancel": {
-    "job_id": "job_c5431c9c1b434440b59621c1e00000d2",
+    "job_id": "job_972e67dae78b4b4a95bec46fa44f3a7f",
     "model": {
-      "session_id": "session_83fc867ffb9146ebb91bb7163b527f52",
-      "revision_id": "revision_0fd4fdf3866c43d0999608d0cde6f657"
+      "session_id": "session_36881ea0f2874ed6ad4beb8df0ad9045",
+      "revision_id": "revision_dd1ef76b5850427caf0c42507102a785"
     },
     "backend": "opm_flow",
     "state": "canceled",
@@ -96,55 +96,55 @@
         "-c",
         "\nfrom pathlib import Path\nimport json, subprocess, sys, time\nchild = subprocess.Popen([sys.executable, '-c',\n    \"import signal,time; signal.signal(signal.SIGTERM,signal.SIG_IGN); time.sleep(10)\"])\nPath('child.json').write_text(json.dumps(child.pid))\nPath('ready').touch()\ntime.sleep(10)\n"
       ],
-      "working_directory": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-209/test_mcp_disconnect_restart_pr1/workspace",
-      "submitted_at": "2026-09-08T16:56:39.169039Z"
+      "working_directory": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-233/test_mcp_disconnect_restart_pr1/workspace",
+      "submitted_at": "2026-09-08T17:14:26.150972Z"
     },
     "supervisor": {
-      "pid": 14319,
-      "start_marker": "1788886599.171104"
+      "pid": 31375,
+      "start_marker": "1788887666.153658"
     },
     "process": {
-      "pid": 14320,
-      "start_marker": "1788886599.288239"
+      "pid": 31376,
+      "start_marker": "1788887666.258301"
     },
-    "process_group_id": 14320,
+    "process_group_id": 31376,
     "logs": [
       {
-        "session_id": "session_83fc867ffb9146ebb91bb7163b527f52",
-        "artifact_id": "artifact_11be539eeed74dacad80db2ff93ff9ad"
+        "session_id": "session_36881ea0f2874ed6ad4beb8df0ad9045",
+        "artifact_id": "artifact_cc8cea1364604a07a59b4ad44b41e187"
       },
       {
-        "session_id": "session_83fc867ffb9146ebb91bb7163b527f52",
-        "artifact_id": "artifact_5cb8aedf832b4bfb99610f29b4033315"
+        "session_id": "session_36881ea0f2874ed6ad4beb8df0ad9045",
+        "artifact_id": "artifact_1563ccaf1832462791c9584ede742a45"
       },
       {
-        "session_id": "session_83fc867ffb9146ebb91bb7163b527f52",
-        "artifact_id": "artifact_046f9272d94c4ff08246d2a0d49f9c69"
+        "session_id": "session_36881ea0f2874ed6ad4beb8df0ad9045",
+        "artifact_id": "artifact_6b43e9e1518a415bb65421114d88b716"
       }
     ],
     "events": [
       {
-        "at": "2026-09-08T16:56:39.169219Z",
+        "at": "2026-09-08T17:14:26.151182Z",
         "state": "queued",
         "message": "Submission recorded before supervisor launch."
       },
       {
-        "at": "2026-09-08T16:56:39.285851Z",
+        "at": "2026-09-08T17:14:26.255708Z",
         "state": "queued",
         "message": "The independent supervisor claimed execution."
       },
       {
-        "at": "2026-09-08T16:56:39.291571Z",
+        "at": "2026-09-08T17:14:26.260745Z",
         "state": "running",
         "message": "The owned command started."
       },
       {
-        "at": "2026-09-08T16:56:39.763528Z",
+        "at": "2026-09-08T17:14:26.705721Z",
         "state": "running",
         "message": "Cancellation requested."
       },
       {
-        "at": "2026-09-08T16:56:40.446419Z",
+        "at": "2026-09-08T17:14:27.414001Z",
         "state": "canceled",
         "message": "Cancellation completed with no live process in the owned group."
       }

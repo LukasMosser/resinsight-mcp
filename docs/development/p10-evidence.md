@@ -4,7 +4,7 @@ P10 passed real child process acceptance on September 8, 2026, on macOS 14.2.1.
 MCP clients used production transport with a trusted test binding to submit jobs, disconnect, and connect to new server processes.
 The original supervisors continued through those client changes.
 Completion and cancellation retained the original job, input revision, process identities, and resource policy.
-The complete repository check passed with 233 tests.
+The complete repository check passed with 272 tests.
 
 The [user guide](../jobs.md) describes current behavior.
 The [implementation guide](jobs.md) explains ownership, resource policy, and recovery limits.
@@ -13,8 +13,8 @@ The [implementation guide](jobs.md) explains ownership, resource policy, and rec
 
 | Component | Recorded value |
 | --- | --- |
-| Implementation commit | `cfbfd8e` |
-| Acceptance source commit | `023fd8e3c2560dfce56e9cfd4b9efa7ccda028cb` |
+| Implementation commit | `ac5dd16` |
+| Acceptance source commit | `88866fb2adea114ddc2361de7d92d5c6aa1503c6` |
 | Host | macOS 14.2.1, arm64 |
 | Python | 3.12.13 |
 | psutil | 7.2.2 |
@@ -47,7 +47,7 @@ LC_ALL=en_US.UTF-8 \
 uv run --locked python scripts/check.py
 ```
 
-Ruff, formatting, ty, all 233 tests, and the strict documentation build passed.
+Ruff, formatting, ty, all 272 tests, and the strict documentation build passed.
 The implementation commit also passed the repository pre-commit hook.
 The [shared check log](evidence/p10/shared-check.log) preserves final documentation checks with the application suite.
 The [guide example record](evidence/p10/guide-example.json) records successful execution of the documented Python example.
@@ -86,7 +86,7 @@ The maintained cases are in [service tests](https://github.com/LukasMosser/resin
 The [MCP acceptance test](https://github.com/LukasMosser/resinsight-mcp/blob/main/tests/jobs/test_mcp_acceptance.py) uses the [trusted server fixture](https://github.com/LukasMosser/resinsight-mcp/blob/main/tests/jobs/mcp_server.py).
 The fixture supplies the actual workspace store and job controller to production `serve_stdio()`.
 This proves the configured MCP job operations, not a complete simulator workflow through the default server.
-The default server still needs job service composition and trusted simulator preparation.
+The default server still needs job service composition and trusted input preparation.
 
 ## Review and limits
 
@@ -94,6 +94,11 @@ Independent reviews assessed duplicate state, branching, ownership, coupling, te
 Review found and corrected races in supervisor claiming, launch acknowledgement, deadline handling, process inspection, and thread startup.
 Synchronized regression cases establish the corrected behavior with real commands.
 Workspace persistence remains the single durable source of job state.
+
+A changed host process census exposed a one-shot assertion in the process tests.
+Those assertions now wait within a fixed deadline for the first successful inspection.
+Permanent errors and exact result checks remain intact.
+Three focused trials passed after the correction.
 
 The explicit `wall_time_only` policy enforces the wall deadline and records CPU and memory requests without enforcement.
 The default `enforce` policy fails before durable submission or child creation.

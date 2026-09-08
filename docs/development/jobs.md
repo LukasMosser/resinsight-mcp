@@ -1,7 +1,8 @@
 # Durable job implementation
 
 An agent uses configured MCP job operations to submit work, reconnect, inspect progress, and request cancellation.
-The default server still requires a job controller, a trusted command resolver, and simulator preparation before this workflow can run.
+The default server requires a job controller and a trusted command resolver.
+Prepared input records come from a simulator adapter or trusted Python setup.
 The `jobs` package supplies execution for trusted commands in one local workspace on macOS and Linux.
 
 `DurableJobController` owns submission, stored observation, cancellation intent, and explicit reconciliation.
