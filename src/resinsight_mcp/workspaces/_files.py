@@ -129,7 +129,7 @@ class FileArea:
                             ErrorCode.CORRUPT_WORKSPACE, "The workspace database is missing."
                         )
                     continue
-                _regular(info)
+                _regular(info, allow_unlinked=name != _DATABASE_NAMES[0])
                 try:
                     descriptor = os.open(name, _FILE_FLAGS, dir_fd=root)
                 except FileNotFoundError:
