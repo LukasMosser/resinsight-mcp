@@ -1,6 +1,7 @@
 name: Work package
 description: Define a feature and its review evidence.
 title: "Feature: "
+labels: [enhancement]
 body:
   - type: textarea
     id: outcome
@@ -14,6 +15,13 @@ body:
     attributes:
       label: Scope and ownership
       description: Name owned paths, dependencies, shared interfaces, and excluded work.
+    validations:
+      required: true
+  - type: textarea
+    id: milestone
+    attributes:
+      label: Milestone and dependencies
+      description: Name the delivery milestone and link the issues that must finish first.
     validations:
       required: true
   - type: textarea

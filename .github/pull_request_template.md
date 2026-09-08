@@ -3,6 +3,8 @@
 Describe the problem and resulting behavior.
 Link the work package or issue and name the affected files.
 Explain any interface or scope decision.
+Use the linked issue's milestone and relevant kind and area labels.
+Use a closing reference only when this PR completes the issue.
 
 ## Evidence
 
