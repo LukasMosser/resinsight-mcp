@@ -3,7 +3,6 @@
 from pathlib import Path
 
 import pytest
-from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from resinsight_mcp.contracts.engineering import (
     CoordinateFrame,
@@ -12,15 +11,19 @@ from resinsight_mcp.contracts.engineering import (
     Unit,
     UnitSystem,
 )
+from resinsight_mcp.contracts.interfaces import WorkspaceStore
 from resinsight_mcp.contracts.jobs import Job, JobState
 from resinsight_mcp.contracts.models import ModelInputs, ModelRevision, Session
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._support import value, write_json
 
 
 @pytest.fixture
 def store(tmp_path: Path) -> SqliteWorkspaceStore:
-    return SqliteWorkspaceStore.create(tmp_path / "workspace")
+    instance = SqliteWorkspaceStore.create(tmp_path / "workspace")
+    _contract: WorkspaceStore = instance
+    return instance
 
 
 @pytest.fixture

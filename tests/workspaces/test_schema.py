@@ -69,3 +69,46 @@ def test_invalid_timeout_does_not_create_partial_workspace(tmp_path: Path, timeo
     with pytest.raises(ValueError):
         SqliteWorkspaceStore.create(root, timeout=timeout)
     assert not root.exists()
+
+
+def test_unrelated_v1_database_with_matching_table_names_is_rejected(tmp_path: Path) -> None:
+    root = tmp_path / "matching-names"
+    root.mkdir()
+    (root / "artifacts").mkdir()
+    database = root / "workspace.sqlite3"
+    with sqlite3.connect(database) as connection:
+        connection.execute(
+            "CREATE TABLE sessions (session_id TEXT PRIMARY KEY NOT NULL, payload TEXT NOT NULL)"
+        )
+        connection.execute(
+            "CREATE TABLE records (kind TEXT NOT NULL, session_id TEXT NOT NULL, "
+            "record_id TEXT NOT NULL, payload TEXT NOT NULL, "
+            "PRIMARY KEY (kind, session_id, record_id), "
+            "FOREIGN KEY (session_id) REFERENCES sessions(session_id))"
+        )
+        connection.execute("PRAGMA user_version = 1")
+    with pytest.raises(ContractError) as unrelated:
+        SqliteWorkspaceStore.open(root)
+    assert unrelated.value.error.code == ErrorCode.CORRUPT_WORKSPACE
+    with sqlite3.connect(database) as connection:
+        assert connection.execute("PRAGMA application_id").fetchone()[0] == 0
+        assert connection.execute("PRAGMA user_version").fetchone()[0] == 1
+
+
+def test_valid_workspace_marker_does_not_hide_changed_schema(
+    store: SqliteWorkspaceStore, session: Session, tmp_path: Path
+) -> None:
+    database = tmp_path / "workspace" / "workspace.sqlite3"
+    with sqlite3.connect(database) as connection:
+        marker = connection.execute("PRAGMA application_id").fetchone()[0]
+        connection.execute("ALTER TABLE records RENAME COLUMN payload TO different_payload")
+    with pytest.raises(ContractError) as changed:
+        SqliteWorkspaceStore.open(tmp_path / "workspace")
+    assert changed.value.error.code == ErrorCode.CORRUPT_WORKSPACE
+    with sqlite3.connect(database) as connection:
+        assert connection.execute("PRAGMA application_id").fetchone()[0] == marker
+        connection.execute("ALTER TABLE records RENAME COLUMN different_payload TO payload")
+    assert (
+        value(SqliteWorkspaceStore.open(tmp_path / "workspace").get_session(session.session_id))
+        == session
+    )
