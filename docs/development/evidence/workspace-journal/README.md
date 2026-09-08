@@ -41,6 +41,8 @@ The before run used the original guard.
 ## Repository checks
 
 The [environment record](environment.json) lists the source baseline, host, and tool versions.
+The tested source commit is `ef8b7df8f1c285764475b2d033694e16185abecd`.
+The [source commit log](source-commit.log) records its passing repository pre-commit hook.
 The [affected tests](affected-tests.log) passed all 94 workspace and job cases.
 The [shared check](shared-check.log) passed Ruff, formatting, ty, all 282 tests, and the strict documentation build.
 These runs used macOS 14.2.1, Python 3.12.13, and SQLite 3.50.4.

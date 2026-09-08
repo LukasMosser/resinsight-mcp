@@ -13,5 +13,29 @@
     "ty": "0.0.79",
     "pre-commit": "4.6.2",
     "mkdocs": "1.6.1"
+  },
+  "tested_source_commit": "ef8b7df8f1c285764475b2d033694e16185abecd",
+  "validation": {
+    "regression_before": {
+      "status": 1,
+      "failed": 1,
+      "passed": 9
+    },
+    "regression_after": {
+      "status": 0,
+      "passed": 10
+    },
+    "affected_tests": {
+      "status": 0,
+      "passed": 94
+    },
+    "shared_check": {
+      "status": 0,
+      "passed_tests": 282
+    },
+    "source_commit_pre_commit": {
+      "status": 0,
+      "result": "Passed"
+    }
   }
 }
