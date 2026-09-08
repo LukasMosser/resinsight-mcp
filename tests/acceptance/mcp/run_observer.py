@@ -1,6 +1,8 @@
 """Run one blind marker observation through the bundled Codex CLI."""
 
 import argparse
+import base64
+import binascii
 import json
 import os
 import platform
@@ -9,9 +11,16 @@ import sys
 import tempfile
 import uuid
 from importlib.metadata import version
+from io import BytesIO
 from pathlib import Path
 
+from mcp.types import ImageContent
+from PIL import Image
+from pydantic import ValidationError
+
 import resinsight_mcp
+from resinsight_mcp.contracts.errors import OperationResult, Success
+from resinsight_mcp.contracts.observations import Observation
 
 HERE = Path(__file__).resolve().parent
 PROMPT = (
@@ -133,6 +142,59 @@ def run(codex: Path, evidence: Path, mode: str) -> int:
         return audit(evidence, mode, ids, completed.returncode)
 
 
+def valid_content(response: dict, mode: str, ids: dict[str, str]) -> bool:
+    """Require matching typed metadata and an image the model can receive."""
+    try:
+        content = response["content"]
+        structured = response["structured_content"]
+        result = OperationResult[Observation].model_validate_json(json.dumps(structured))
+        if json.loads(content[0]["text"]) != structured:
+            return False
+        if isinstance(result.outcome, Success):
+            observation = result.outcome.value
+            if (str(observation.observation_id), str(observation.context.model.session_id)) != (
+                ids["observation_id"],
+                ids["session_id"],
+            ):
+                return False
+            if mode == "visible":
+                image = ImageContent.model_validate(content[1])
+                if image.mimeType != "image/png":
+                    return False
+                if image.annotations is not None and image.annotations.audience is not None:
+                    if "assistant" not in image.annotations.audience:
+                        return False
+                with Image.open(BytesIO(base64.b64decode(image.data, validate=True))) as decoded:
+                    decoded.load()
+                    return decoded.format == "PNG" and decoded.size == (
+                        observation.image.width,
+                        observation.image.height,
+                    )
+            return mode == "hidden"
+        return mode == "empty" and result.outcome.error.code == "render_failed"
+    except (KeyError, IndexError, TypeError, ValueError, OSError, ValidationError, binascii.Error):
+        return False
+
+
+def valid_final(events: list[dict], answer: dict) -> bool:
+    """Require the final answer after the completed observation call."""
+    completed = [
+        (index, event["item"])
+        for index, event in enumerate(events)
+        if event.get("type") == "item.completed"
+    ]
+    calls = [index for index, item in completed if item.get("type") == "mcp_tool_call"]
+    messages = [(index, item) for index, item in completed if item.get("type") == "agent_message"]
+    if len(calls) != 1 or not messages or messages[-1][0] <= calls[0]:
+        return False
+    if not events or events[-1].get("type") != "turn.completed":
+        return False
+    try:
+        return json.loads(messages[-1][1]["text"]) == answer
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def audit(evidence: Path, mode: str, ids: dict[str, str], exit_code: int) -> int:
     """Reject wrong answers, missing images, and unauthorized tool calls."""
     if exit_code != 0:
@@ -159,17 +221,11 @@ def audit(evidence: Path, mode: str, ids: dict[str, str], exit_code: int) -> int
     server_result = json.loads((evidence / "server-content.json").read_text())
     content = response.get("content", [])
     types = [item["type"] for item in content]
-    outcome = response.get("structured_content", {}).get("outcome", {})
-    outcome_valid = (
-        outcome.get("status") == "failure"
-        and outcome.get("error", {}).get("code") == "render_failed"
-        if mode == "empty"
-        else outcome.get("status") == "success"
-    )
     required = ["text", "image"] if mode == "visible" else ["text"]
     passed = (
         exit_code == 0
-        and outcome_valid
+        and valid_content(response, mode, ids)
+        and valid_final(events, answer)
         and answer == expected
         and not forbidden
         and len(calls) == 1
