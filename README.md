@@ -33,3 +33,7 @@ The repository keeps its project records in these locations:
 - [Security policy](SECURITY.md)
 - [GitHub Releases](https://github.com/LukasMosser/resinsight-mcp/releases)
 - [License](LICENSE)
+
+The original project files use GPL-3.0-or-later.
+Copyright 2026 Lukas Mosser and contributors.
+Third-party components keep their own licenses.
