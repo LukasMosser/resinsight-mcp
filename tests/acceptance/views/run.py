@@ -11,6 +11,7 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import UTC, date, datetime
 from importlib.metadata import version
+from math import dist
 from pathlib import Path
 from typing import Any, cast
 
@@ -81,11 +82,13 @@ def native_application(executable: Path, output: Path) -> Iterator[RipsApplicati
         (output / "native-process.json").write_text(application.process.model_dump_json() + "\n")
         yield application
     finally:
-        if application is not None:
-            application.disconnect()
-        if process.poll() is None:
-            process.terminate()
-        process.wait(timeout=30)
+        try:
+            if application is not None:
+                application.disconnect()
+        finally:
+            if process.poll() is None:
+                process.terminate()
+            process.wait(timeout=30)
 
 
 def archive(
@@ -178,9 +181,9 @@ def seed_application(
         view.update()
     well_name = "P06 selection well"
     well_file = output / "selection-well.dev"
-    well_file.write_text(f"name {well_name}\n500 500 8200 0\n500 500 8500 300\n")
+    well_file.write_text(f"'{well_name}'\n500 500 8200 0\n500 500 8500 300\n")
     wells = project.import_well_paths(well_path_files=[str(well_file)])
-    assert len(wells) == 1 and wells[0].name == well_name
+    assert len(wells) == 1 and wells[0].name == well_name, [well.name for well in wells]
     target = next(view for view in project.views() if view.id == target.id)
     control = next(view for view in project.views() if view.id == control.id)
     return case, target, control, well_name
@@ -226,6 +229,17 @@ def manifest(
         target.perspective_projection,
         target.actual_camera_field_of_view_y_degrees,
         target.actual_camera_parallel_projection_height,
+    )
+    extent = dist(camera.position, camera.target) * 0.6
+    camera = camera.model_copy(
+        update={
+            "position": (
+                camera.target[0] + extent,
+                camera.target[1] - extent,
+                camera.target[2] + extent,
+            ),
+            "up": (0.0, 0.0, 1.0),
+        }
     )
     base = {
         "model": revision.model.model_dump(mode="json"),
