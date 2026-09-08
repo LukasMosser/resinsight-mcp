@@ -2,7 +2,7 @@
 
 This plan describes proposed work, not current application behavior.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository contains foundation tools and P01 experiment evidence.
+The repository contains shared contracts, development tools, and P01 experiment evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.
@@ -61,7 +61,8 @@ P02 owns shared types and interface definitions.
 Other packages depend on those interfaces and keep simulator-specific details in their own modules.
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
-The following paths are proposed and do not exist as application code.
+P02 implements the shared contracts.
+The other application paths below remain planned.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
 

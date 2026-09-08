@@ -1,0 +1,76 @@
+Building wheel...
+running egg_info
+writing src/resinsight_mcp.egg-info/PKG-INFO
+writing dependency_links to src/resinsight_mcp.egg-info/dependency_links.txt
+writing requirements to src/resinsight_mcp.egg-info/requires.txt
+writing top-level names to src/resinsight_mcp.egg-info/top_level.txt
+reading manifest file 'src/resinsight_mcp.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/resinsight_mcp.egg-info/SOURCES.txt'
+running bdist_wheel
+running build
+running build_py
+creating build/lib/resinsight_mcp
+copying src/resinsight_mcp/__init__.py -> build/lib/resinsight_mcp
+creating build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/interfaces.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/_base.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/sessions.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/models.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/observations.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/identifiers.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/__init__.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/jobs.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/engineering.py -> build/lib/resinsight_mcp/contracts
+copying src/resinsight_mcp/contracts/errors.py -> build/lib/resinsight_mcp/contracts
+running egg_info
+writing src/resinsight_mcp.egg-info/PKG-INFO
+writing dependency_links to src/resinsight_mcp.egg-info/dependency_links.txt
+writing requirements to src/resinsight_mcp.egg-info/requires.txt
+writing top-level names to src/resinsight_mcp.egg-info/top_level.txt
+reading manifest file 'src/resinsight_mcp.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/resinsight_mcp.egg-info/SOURCES.txt'
+copying src/resinsight_mcp/py.typed -> build/lib/resinsight_mcp
+installing to build/bdist.macosx-11.0-arm64/wheel
+running install
+running install_lib
+creating build/bdist.macosx-11.0-arm64/wheel
+creating build/bdist.macosx-11.0-arm64/wheel/resinsight_mcp
+creating build/bdist.macosx-11.0-arm64/wheel/resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/interfaces.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/_base.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/sessions.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/models.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/observations.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/identifiers.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/jobs.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/engineering.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/contracts/errors.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp/contracts
+copying build/lib/resinsight_mcp/__init__.py -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp
+copying build/lib/resinsight_mcp/py.typed -> build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp
+running install_egg_info
+Copying src/resinsight_mcp.egg-info to build/bdist.macosx-11.0-arm64/wheel/./resinsight_mcp-0.1.0-py3.12.egg-info
+running install_scripts
+creating build/bdist.macosx-11.0-arm64/wheel/resinsight_mcp-0.1.0.dist-info/WHEEL
+creating '/private/tmp/resinsight-p02-package/.tmp-wjvvlau2/resinsight_mcp-0.1.0-py3-none-any.whl' and adding 'build/bdist.macosx-11.0-arm64/wheel' to it
+adding 'resinsight_mcp/__init__.py'
+adding 'resinsight_mcp/py.typed'
+adding 'resinsight_mcp/contracts/__init__.py'
+adding 'resinsight_mcp/contracts/_base.py'
+adding 'resinsight_mcp/contracts/engineering.py'
+adding 'resinsight_mcp/contracts/errors.py'
+adding 'resinsight_mcp/contracts/identifiers.py'
+adding 'resinsight_mcp/contracts/interfaces.py'
+adding 'resinsight_mcp/contracts/jobs.py'
+adding 'resinsight_mcp/contracts/models.py'
+adding 'resinsight_mcp/contracts/observations.py'
+adding 'resinsight_mcp/contracts/sessions.py'
+adding 'resinsight_mcp-0.1.0.dist-info/licenses/LICENSE'
+adding 'resinsight_mcp-0.1.0.dist-info/METADATA'
+adding 'resinsight_mcp-0.1.0.dist-info/WHEEL'
+adding 'resinsight_mcp-0.1.0.dist-info/top_level.txt'
+adding 'resinsight_mcp-0.1.0.dist-info/RECORD'
+removing build/bdist.macosx-11.0-arm64/wheel
+Successfully built /private/tmp/resinsight-p02-package/resinsight_mcp-0.1.0-py3-none-any.whl

@@ -1,7 +1,10 @@
-# Proposed architecture
+# Architecture
 
-This page describes a proposed design.
-No component on this page is implemented by the repository foundation.
+The repository implements shared data contracts and typed component boundaries as a Python library.
+The [contract guide](contracts.md) defines their current behavior and conventions.
+Its six protocols cover process control, workspace storage, rendering, model preparation, jobs, and result import.
+This page describes the runtime responsibilities planned around those contracts.
+No session service, external adapter, job supervisor, artifact store, or MCP server is implemented yet.
 The [scope review](scope-review.md) records external evidence and open questions.
 
 ## Responsibilities
@@ -10,7 +13,7 @@ An adapter translates between the service and an external system.
 The proposed service coordinates application sessions, model revisions, simulation runs, and observations.
 The simulator performs the numerical calculation.
 
-The proposed boundaries are:
+The planned runtime responsibilities are:
 
 - A session registry records application connections and process ownership.
 - A model store preserves inputs and model revisions.
@@ -117,7 +120,7 @@ Each decision must record its environment, evidence, limits, and effect on the p
 | Julia result conversion | Demonstrated cell ordering, units, phase meanings, and report times for the supported model subset. |
 | Headless rendering | Fresh 3D observations on the intended deployment environment. |
 
-The decision gates require runtime fixtures as implementation begins.
-Source inspection alone cannot close a runtime decision gate.
-The first real integration demonstration targets macOS.
-This target does not establish working native support.
+The completed [P01 experiments](platform-proof.md) provide bounded evidence for the selected macOS build, imported-well edit, OPM run, and native image path.
+They do not establish complete session isolation, project lifecycle behavior, adapters, or general simulator support.
+The remaining decision gates require runtime fixtures as their implementations begin.
+Source inspection and protocol declarations alone cannot close a runtime decision gate.

@@ -1,11 +1,22 @@
 [project]
 name = "resinsight-mcp"
 version = "0.1.0"
-description = "Repository tools and documentation for resinsight-mcp."
+description = "Shared contracts for a ResInsight MCP integration."
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = ["pydantic>=2.13.5,<3"]
+
+[build-system]
+requires = ["setuptools>=84,<85"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["resinsight_mcp*"]
+
+[tool.setuptools.package-data]
+resinsight_mcp = ["py.typed"]
 
 [dependency-groups]
 dev = [
@@ -21,9 +32,6 @@ dev = [
   "rips==2026.9.0.1",
   "grpcio-tools>=1.83.1",
 ]
-
-[tool.uv]
-package = false
 
 [tool.ruff]
 target-version = "py312"

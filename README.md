@@ -1,12 +1,17 @@
 # resinsight-mcp
 
-This repository contains the development foundation for a ResInsight MCP integration.
+This repository provides an installable Python 3.12 contracts library for a ResInsight MCP integration.
+Contracts define the data and interfaces that components share.
 MCP is the Model Context Protocol for tool access.
-There is no application server or installable application release in this repository.
+The package has no CLI, MCP server, ResInsight adapter, or simulator adapter.
 
-The foundation provides a locked Python tool environment, code review rules, and documentation.
-GitHub Actions runs repository checks and builds the documentation.
-Developer plans describe the proposed application separately from current behavior.
+The library validates shared records with Pydantic and defines typed component boundaries with standard-library protocols.
+The repository also provides maintained tests, a locked development environment, and documentation.
+GitHub Actions runs the shared checks on Linux and macOS.
+Read the [shared contract guide](docs/development/contracts.md) for conventions and examples.
+
+The completed [P01 experiments](docs/development/platform-proof.md) record bounded ResInsight, OPM, and native-image results on one Mac.
+Those experiments remain separate from the installable library and do not establish a supported host or simulator matrix.
 Read the [project documentation](https://lukasmosser.github.io/resinsight-mcp/) on GitHub Pages.
 
 ## Development

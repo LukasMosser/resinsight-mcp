@@ -1,0 +1,18 @@
+{
+  "source_commit": "de5eca94b0dd4521e694ed4d7b797b2277482bd7",
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "scripts/check.py"
+  ],
+  "cwd": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/resinsight-mcp-uv-cache",
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "exit_code": 0,
+  "log": "shared-check.log",
+  "scope": "Ruff checks and formatting, ty, maintained pytest suite, and strict MkDocs build. Evidence records are the only additions after this source commit."
+}

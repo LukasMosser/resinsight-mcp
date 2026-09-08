@@ -1,5 +1,5 @@
 site_name: resinsight-mcp
-site_description: Documentation for the resinsight-mcp repository foundation.
+site_description: Shared contracts and development documentation for resinsight-mcp.
 site_url: https://lukasmosser.github.io/resinsight-mcp/
 repo_url: https://github.com/LukasMosser/resinsight-mcp
 repo_name: LukasMosser/resinsight-mcp
@@ -28,7 +28,8 @@ nav:
           - OPM: development/platform-opm.md
           - Native images: development/platform-images.md
       - Testing and review: development/testing-and-review.md
-      - Proposed architecture: development/architecture.md
+      - Shared contracts: development/contracts.md
+      - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - Scope review: development/scope-review.md
       - Foundation evidence: development/foundation-evidence.md

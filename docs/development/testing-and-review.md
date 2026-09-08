@@ -1,12 +1,17 @@
 # Testing and review
 
 Tests must establish behavior that matters to a user.
-The foundation has no application behavior to test.
-Do not add placeholder application tests to increase a test count.
+The maintained pytest suite exercises the contracts library's public behavior and important validation failures.
+Do not add placeholder tests to increase a test count.
 
-With the first application tests, add pytest to `scripts/check.py` and remove its message about absent tests.
-The lead agent owns this shared command change.
-The same CI jobs must execute that suite before the feature merges.
+The shared command `scripts/check.py` runs Ruff, ty, pytest, and the strict documentation build.
+The CI jobs use that same command on Linux and macOS.
+The contract tests do not launch external applications or establish adapter behavior.
+
+For contract changes, exercise valid records, rejected inputs, serialization, and relationships between identifiers and states.
+Make sure that a successful edit remains distinguishable from a failed observation.
+Protocol typing establishes interface shape, not a working external implementation.
+The [contract guide](contracts.md) defines these boundaries.
 
 For a behavior change, choose evidence that exposes an incorrect result:
 
@@ -42,3 +47,7 @@ For rendered content, inspect the affected pages in a browser.
 Separate source inspection from runtime evidence.
 A documented API does not prove that an integration works.
 For external applications, record the tested versions, environment, inputs, commands, and observed outputs.
+
+The [P01 platform record](platform-proof.md) contains the completed experiments on one macOS host.
+Those runtime records do not replace maintained library tests or prove future adapters.
+Report observed test results and their scope, rather than inferring success from test files or interface declarations.
