@@ -394,3 +394,16 @@ def test_close_cleanup_failure_retires_connection_and_reports_uncertainty(
         assert app.calls == [("terminate", None), ("disconnect", None)]
     else:
         assert app.calls == [("disconnect", None)]
+
+
+def test_blank_native_object_names_survive_inspection_and_resolution(setup: Setup) -> None:
+    service, factory, first, _ = setup
+    factory.apps[50051].project = ProjectSnapshot(
+        "root", (NativeObject(ObjectKind.CASE, "case-0", ""),)
+    )
+    value(service.attach(AttachRequest(session_id=first.session_id, endpoint=Endpoint(port=50051))))
+    project = value(service.inspect_project(first.session_id))
+    assert project.objects[0].name == ""
+    resolved = value(service.resolve_object(project.objects[0].ref))
+    assert resolved == project.objects[0]
+    assert resolved.name == ""
