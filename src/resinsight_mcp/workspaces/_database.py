@@ -10,6 +10,16 @@ from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, Mut
 from ._files import FileArea
 
 SCHEMA_VERSION = 1
+APPLICATION_ID = 0x524D4350
+_COLUMNS = {
+    "sessions": (("session_id", "TEXT", 1, 1), ("payload", "TEXT", 1, 0)),
+    "records": (
+        ("kind", "TEXT", 1, 1),
+        ("session_id", "TEXT", 1, 2),
+        ("record_id", "TEXT", 1, 3),
+        ("payload", "TEXT", 1, 0),
+    ),
+}
 
 
 def _database_error(error: sqlite3.Error, effect: MutationEffect) -> ContractError:
@@ -64,22 +74,50 @@ class Database:
                     message=f"Unsupported workspace schema {version}. Expected {SCHEMA_VERSION}.",
                 )
             )
-        tables = connection.execute(
-            "SELECT name FROM sqlite_master "
-            "WHERE type = 'table' AND name IN ('sessions', 'records')"
-        ).fetchall()
-        if {row[0] for row in tables} != {"sessions", "records"}:
+        if connection.execute("PRAGMA application_id").fetchone()[0] != APPLICATION_ID:
             raise ContractError(
                 Error(
                     code=ErrorCode.CORRUPT_WORKSPACE,
-                    message="Required workspace tables are missing.",
+                    message="This database does not have the workspace application identity.",
                 )
             )
+        Database._verify_tables(connection)
         if connection.execute("PRAGMA journal_mode").fetchone()[0] != "delete":
             raise ContractError(
                 Error(
                     code=ErrorCode.UNSUPPORTED_SCHEMA,
                     message="This workspace requires SQLite rollback-journal mode.",
+                )
+            )
+
+    @staticmethod
+    def _verify_tables(connection: sqlite3.Connection) -> None:
+        for table, expected in _COLUMNS.items():
+            columns = connection.execute(f"PRAGMA table_info({table})").fetchall()
+            observed = tuple((row[1], row[2], row[3], row[5]) for row in columns)
+            if observed != expected:
+                raise ContractError(
+                    Error(
+                        code=ErrorCode.CORRUPT_WORKSPACE,
+                        message=f"The {table} table does not match the workspace schema.",
+                    )
+                )
+        relationships = connection.execute("PRAGMA foreign_key_list(records)").fetchall()
+        expected_relationship = (
+            0,
+            0,
+            "sessions",
+            "session_id",
+            "session_id",
+            "NO ACTION",
+            "NO ACTION",
+            "NONE",
+        )
+        if relationships != [expected_relationship]:
+            raise ContractError(
+                Error(
+                    code=ErrorCode.CORRUPT_WORKSPACE,
+                    message="The workspace schema does not enforce record session ownership.",
                 )
             )
 
@@ -131,6 +169,7 @@ class Database:
                 )"""
             )
             connection.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+            connection.execute(f"PRAGMA application_id = {APPLICATION_ID}")
 
     def inspect(self) -> None:
         with self.transaction() as connection:

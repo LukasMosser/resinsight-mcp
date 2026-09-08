@@ -46,8 +46,9 @@ def _file_errors() -> Iterator[None]:
         raise _failure(code, "The workspace file operation failed.") from exc
 
 
-def _regular(info: os.stat_result) -> None:
-    if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+def _regular(info: os.stat_result, *, allow_unlinked: bool = False) -> None:
+    valid_links = (0, 1) if allow_unlinked else (1,)
+    if not stat.S_ISREG(info.st_mode) or info.st_nlink not in valid_links:
         raise _failure(
             ErrorCode.INVALID_PATH, "Workspace files must be regular files with one link."
         )
@@ -136,7 +137,7 @@ class FileArea:
                         raise
                     continue
                 try:
-                    _regular(os.fstat(descriptor))
+                    _regular(os.fstat(descriptor), allow_unlinked=name != _DATABASE_NAMES[0])
                 finally:
                     os.close(descriptor)
 
