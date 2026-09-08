@@ -76,7 +76,7 @@ jobs:
           [[ "$remote_commit" == "$SOURCE_COMMIT" ]] || { echo 'The tag changed after validation.' >&2; exit 1; }
           cat > release-notes.md <<'NOTES'
           This draft contains the repository source files.
-          The source includes an installable shared-contract library.
+          The source includes an installable library with shared contracts and durable workspace storage.
           The repository does not yet provide a ResInsight MCP server.
           No package is published to PyPI.
           NOTES

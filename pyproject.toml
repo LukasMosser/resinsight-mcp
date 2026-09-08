@@ -1,7 +1,7 @@
 [project]
 name = "resinsight-mcp"
 version = "0.1.0"
-description = "Shared contracts for a ResInsight MCP integration."
+description = "Shared contracts and durable workspaces for a ResInsight MCP integration."
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 requires-python = ">=3.12,<3.13"

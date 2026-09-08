@@ -7,13 +7,13 @@ import sys
 from pathlib import Path
 
 import pytest
-from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from resinsight_mcp.contracts.engineering import ModelRef
 from resinsight_mcp.contracts.errors import ErrorCode, Failure
 from resinsight_mcp.contracts.identifiers import ArtifactId, CheckpointId, RevisionId, SessionId
 from resinsight_mcp.contracts.models import ArtifactRef, ModelInputs, ModelRevision, Session
 from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind, ProjectCheckpoint
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._support import value, write_json
 

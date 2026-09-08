@@ -2,8 +2,6 @@
 
 from datetime import UTC, datetime
 
-from resinsight_mcp.workspaces import SqliteWorkspaceStore
-
 from resinsight_mcp.contracts.engineering import CoordinateFrame, DepthDirection, ModelRef, Unit
 from resinsight_mcp.contracts.errors import Failure
 from resinsight_mcp.contracts.identifiers import ConnectionId, ObservationId, RevisionId
@@ -20,6 +18,7 @@ from resinsight_mcp.contracts.observations import (
 )
 from resinsight_mcp.contracts.sessions import ApplicationContext, ObjectKind, ObjectRef
 from resinsight_mcp.contracts.workspace import ArtifactKind
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._support import value, write_json
 

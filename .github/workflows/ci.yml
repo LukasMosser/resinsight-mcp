@@ -42,4 +42,4 @@ jobs:
           if-no-files-found: error
           retention-days: 7
       - name: Record scope
-        run: echo 'Contract tests and repository checks passed. The documentation artifact is available for review.' >> "$GITHUB_STEP_SUMMARY"
+        run: echo 'Library tests and repository checks passed. The documentation artifact is available for review.' >> "$GITHUB_STEP_SUMMARY"

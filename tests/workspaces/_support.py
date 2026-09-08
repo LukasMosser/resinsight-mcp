@@ -8,12 +8,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from resinsight_mcp.workspaces import SqliteWorkspaceStore
-
 from resinsight_mcp.contracts.errors import OperationResult, Success
 from resinsight_mcp.contracts.identifiers import ArtifactId
 from resinsight_mcp.contracts.models import ArtifactRef, Session
 from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 
 def value[T](outcome: OperationResult[T]) -> T:
