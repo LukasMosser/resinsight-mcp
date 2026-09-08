@@ -1,0 +1,80 @@
+{
+  "source_commit": "de5eca94b0dd4521e694ed4d7b797b2277482bd7",
+  "library_source_commit": "bd746f17f4f02485f2c8994863e794c179f3c265",
+  "python": "3.12.13",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "versions": {
+    "pydantic": "2.13.5",
+    "setuptools": "84.0.0",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "mkdocs": "1.6.1",
+    "mkdocs-material": "9.7.7",
+    "pre-commit": "4.6.2"
+  },
+  "package_commands": [
+    {
+      "command": [
+        "uv",
+        "build",
+        "--wheel",
+        "--out-dir",
+        "/private/tmp/resinsight-p02-package"
+      ],
+      "exit_code": 0,
+      "log": "package-build.log"
+    },
+    {
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.12",
+        "/private/tmp/resinsight-p02-package/runtime"
+      ],
+      "exit_code": 0,
+      "log": "package-venv.log"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "/private/tmp/resinsight-p02-package/runtime/bin/python",
+        "/private/tmp/resinsight-p02-package/resinsight_mcp-0.1.0-py3-none-any.whl"
+      ],
+      "exit_code": 0,
+      "log": "package-install.log"
+    },
+    {
+      "command": [
+        "/private/tmp/resinsight-p02-package/runtime/bin/python",
+        "/private/tmp/resinsight-p02-package/probe.py"
+      ],
+      "cwd": "/private/tmp/resinsight-p02-package",
+      "exit_code": 0,
+      "result": "package-probe.json"
+    }
+  ],
+  "package_probe_source": "import json\nimport platform\nimport sys\nfrom importlib import metadata\nfrom pathlib import Path\n\nimport resinsight_mcp\nfrom resinsight_mcp.contracts.engineering import MeasuredDepthInterval, Unit\nfrom resinsight_mcp.contracts.interfaces import (\n    JobController,\n    ModelPreparer,\n    ProcessController,\n    Renderer,\n    ResultImporter,\n    WorkspaceStore,\n)\n\nmodule_path = Path(resinsight_mcp.__file__).resolve()\nif not module_path.is_relative_to(Path(sys.prefix).resolve()):\n    raise RuntimeError('The probe did not import the installed wheel.')\n\ninterval = MeasuredDepthInterval(start=8326.0, end=8424.0, unit=Unit.FOOT)\nrestored = MeasuredDepthInterval.model_validate_json(interval.model_dump_json())\nif restored.end - restored.start != 98.0 or restored.unit != Unit.FOOT:\n    raise RuntimeError('The installed contract lost its engineering meaning.')\n\nrecord = {\n    'python': platform.python_version(),\n    'package': metadata.version('resinsight-mcp'),\n    'runtime_requirements': metadata.requires('resinsight-mcp'),\n    'installed_distributions': sorted(\n        f'{item.metadata[\"Name\"]}=={item.version}' for item in metadata.distributions()\n    ),\n    'imported_module': str(module_path),\n    'imported_interfaces': [\n        item.__name__ for item in (\n            ProcessController, WorkspaceStore, Renderer, ModelPreparer, JobController, ResultImporter\n        )\n    ],\n    'round_trip': restored.model_dump(mode='json'),\n    'result': 'Wheel installation and public contract execution pass with runtime dependencies only.',\n}\nprint(json.dumps(record, indent=2))\n",
+  "scope": "The wheel executes shared contracts with runtime dependencies only. No external adapter, image decoder, simulator, or MCP server was exercised.",
+  "host": {
+    "os": "macOS",
+    "version": "14.2.1",
+    "build": "23C71",
+    "architecture": "arm64"
+  },
+  "guide_example": {
+    "command": [
+      "/private/tmp/resinsight-p02-package/runtime/bin/python",
+      "/private/tmp/resinsight-p02-package/guide-example.py"
+    ],
+    "cwd": "/private/tmp/resinsight-p02-package",
+    "source": "from resinsight_mcp.contracts.engineering import MeasuredDepthInterval, ModelRef, Unit\nfrom resinsight_mcp.contracts.errors import Error, ErrorCode, Failure, OperationResult\nfrom resinsight_mcp.contracts.identifiers import ConnectionId, EditId, RevisionId, SessionId\nfrom resinsight_mcp.contracts.observations import (\n    EditedView,\n    EditReceipt,\n    Observation,\n    PerforationEditRequest,\n)\nfrom resinsight_mcp.contracts.sessions import ApplicationContext, ObjectKind, ObjectRef\n\nsession_id = SessionId.new()\nmodel = ModelRef(session_id=session_id, revision_id=RevisionId.new())\ncontext = ApplicationContext(\n    session_id=session_id,\n    connection_id=ConnectionId.new(),\n    project_generation=0,\n)\nrequest = PerforationEditRequest(\n    model=model,\n    well=ObjectRef(context=context, kind=ObjectKind.WELL, object_id=\"P01IMPORT\"),\n    interval=MeasuredDepthInterval(start=8326.0, end=8424.0, unit=Unit.FOOT),\n    expected_scene_version=7,\n)\nresponse = EditedView(\n    edit=EditReceipt(edit_id=EditId.new(), request=request, scene_version=8),\n    observation=OperationResult[Observation](\n        outcome=Failure(\n            error=Error(code=ErrorCode.RENDER_FAILED, message=\"The new frame was not produced.\")\n        )\n    ),\n)\nrestored = EditedView.model_validate_json(response.model_dump_json())\nprint(restored.edit.effect, restored.observation.outcome.status)\n",
+    "exit_code": 0,
+    "log": "guide-example.log",
+    "result": "The installed library preserves an applied edit and a failed observation across JSON serialization."
+  }
+}

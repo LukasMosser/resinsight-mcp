@@ -1,0 +1,283 @@
+{
+  "source_commit": "de5eca94b0dd4521e694ed4d7b797b2277482bd7",
+  "method": "Local strict MkDocs output rendered in headless Chrome and the Playwright browser",
+  "scope": "1440 by 1800 upper page and named-anchor viewports, not complete page layout",
+  "captures": [
+    {
+      "page": "home",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-home",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/home.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/index.html"
+      ],
+      "pid": 86211,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.09,
+      "screenshot": "home.png"
+    },
+    {
+      "page": "development",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-development",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/development.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/index.html"
+      ],
+      "pid": 86212,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.08,
+      "screenshot": "development.png"
+    },
+    {
+      "page": "local-setup",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-local-setup",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/local-setup.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/local-setup/index.html"
+      ],
+      "pid": 86455,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.09,
+      "screenshot": "local-setup.png"
+    },
+    {
+      "page": "testing-and-review",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-testing-and-review",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/testing-and-review.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/testing-and-review/index.html"
+      ],
+      "pid": 86456,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.05,
+      "screenshot": "testing-and-review.png"
+    },
+    {
+      "page": "architecture",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-architecture",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/architecture.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/architecture/index.html"
+      ],
+      "pid": 86736,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.08,
+      "screenshot": "architecture.png"
+    },
+    {
+      "page": "implementation-plan",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-implementation-plan",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/implementation-plan.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/implementation-plan/index.html"
+      ],
+      "pid": 86739,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.04,
+      "screenshot": "implementation-plan.png"
+    },
+    {
+      "page": "contracts",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p02-chrome-contracts",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/contracts/index.html"
+      ],
+      "pid": 87034,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.04,
+      "screenshot": "contracts.png"
+    },
+    {
+      "page": "contracts-jobs",
+      "screenshot": "contracts-jobs.png",
+      "initial_attempt": {
+        "command": [
+          "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+          "--headless=new",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--user-data-dir=/private/tmp/resinsight-p02-chrome-contracts-jobs",
+          "--window-size=1440,1800",
+          "--virtual-time-budget=1500",
+          "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-jobs.png",
+          "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/contracts/index.html#job-states"
+        ],
+        "pid": 87035,
+        "exit_code": 0,
+        "timed_out": true,
+        "elapsed_seconds": 30.04,
+        "result": "Blank image rejected by visual review; replaced by the browser capture below."
+      },
+      "method": "Playwright browser navigation over local HTTP and viewport screenshot",
+      "url": "http://127.0.0.1:8767/development/contracts/#job-states",
+      "viewport": {
+        "width": 1440,
+        "height": 1800
+      },
+      "calls": [
+        {
+          "tool": "browser_navigate",
+          "url": "http://127.0.0.1:8767/development/contracts/#job-states"
+        },
+        {
+          "tool": "browser_take_screenshot",
+          "filename": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-jobs.png",
+          "fullPage": false,
+          "scale": "css"
+        }
+      ],
+      "result": "The independent visual review found the intended anchor content legible."
+    },
+    {
+      "page": "contracts-edits",
+      "screenshot": "contracts-edits.png",
+      "initial_attempt": {
+        "command": [
+          "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+          "--headless=new",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--user-data-dir=/private/tmp/resinsight-p02-chrome-contracts-edits",
+          "--window-size=1440,1800",
+          "--virtual-time-budget=1500",
+          "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-edits.png",
+          "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/contracts/index.html#applied-edits-and-failed-observations"
+        ],
+        "pid": 87313,
+        "exit_code": 0,
+        "timed_out": true,
+        "elapsed_seconds": 30.04,
+        "result": "Blank image rejected by visual review; replaced by the browser capture below."
+      },
+      "method": "Playwright browser navigation over local HTTP and viewport screenshot",
+      "url": "http://127.0.0.1:8767/development/contracts/#applied-edits-and-failed-observations",
+      "viewport": {
+        "width": 1440,
+        "height": 1800
+      },
+      "calls": [
+        {
+          "tool": "browser_navigate",
+          "url": "http://127.0.0.1:8767/development/contracts/#applied-edits-and-failed-observations"
+        },
+        {
+          "tool": "browser_take_screenshot",
+          "filename": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-edits.png",
+          "fullPage": false,
+          "scale": "css"
+        }
+      ],
+      "result": "The independent visual review found the intended anchor content legible."
+    },
+    {
+      "page": "contracts-errors",
+      "screenshot": "contracts-errors.png",
+      "initial_attempt": {
+        "command": [
+          "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+          "--headless=new",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--user-data-dir=/private/tmp/resinsight-p02-chrome-contracts-errors",
+          "--window-size=1440,1800",
+          "--virtual-time-budget=1500",
+          "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-errors.png",
+          "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/contracts/index.html#typed-errors"
+        ],
+        "pid": 87315,
+        "exit_code": 0,
+        "timed_out": true,
+        "elapsed_seconds": 30.04,
+        "result": "Blank image rejected by visual review; replaced by the browser capture below."
+      },
+      "method": "Playwright browser navigation over local HTTP and viewport screenshot",
+      "url": "http://127.0.0.1:8767/development/contracts/#typed-errors",
+      "viewport": {
+        "width": 1440,
+        "height": 1800
+      },
+      "calls": [
+        {
+          "tool": "browser_navigate",
+          "url": "http://127.0.0.1:8767/development/contracts/#typed-errors"
+        },
+        {
+          "tool": "browser_take_screenshot",
+          "filename": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/docs/development/evidence/p02/contracts-errors.png",
+          "fullPage": false,
+          "scale": "css"
+        }
+      ],
+      "result": "The independent visual review found the intended anchor content legible."
+    }
+  ],
+  "browser_versions": {
+    "local_cli": "Google Chrome 152.0.7977.76",
+    "playwright_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36"
+  },
+  "limits": [
+    "CLI screenshots existed before each 30-second process deadline; the task stopped its own remaining browser processes.",
+    "CLI logs contain macOS display-link and task-policy diagnostics. Visual review, not process status, establishes screenshot usefulness.",
+    "The browser console reported one 404 for the GitHub latest-release endpoint. The repository has no release.",
+    "These are viewport captures. They do not establish full-page layout or complete long code lines in scrollable code blocks."
+  ]
+}

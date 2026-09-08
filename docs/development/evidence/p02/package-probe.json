@@ -1,0 +1,30 @@
+{
+  "python": "3.12.13",
+  "package": "0.1.0",
+  "runtime_requirements": [
+    "pydantic<3,>=2.13.5"
+  ],
+  "installed_distributions": [
+    "annotated-types==0.8.0",
+    "pydantic==2.13.5",
+    "pydantic_core==2.46.5",
+    "resinsight-mcp==0.1.0",
+    "typing-inspection==0.4.4",
+    "typing_extensions==4.16.0"
+  ],
+  "imported_module": "/private/tmp/resinsight-p02-package/runtime/lib/python3.12/site-packages/resinsight_mcp/__init__.py",
+  "imported_interfaces": [
+    "ProcessController",
+    "WorkspaceStore",
+    "Renderer",
+    "ModelPreparer",
+    "JobController",
+    "ResultImporter"
+  ],
+  "round_trip": {
+    "start": 8326.0,
+    "end": 8424.0,
+    "unit": "ft"
+  },
+  "result": "Wheel installation and public contract execution pass with runtime dependencies only."
+}

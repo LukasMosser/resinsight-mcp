@@ -1,0 +1,57 @@
+{
+  "source_commit": "de5eca94b0dd4521e694ed4d7b797b2277482bd7",
+  "date": "2026-09-08",
+  "code_review": {
+    "reviewer": "Independent scope_review agent",
+    "scope": "Integrated contracts, public tests, package metadata, shared checks, and development guides.",
+    "concerns": [
+      "duplicate behavior and sources of truth",
+      "branching and interface complexity",
+      "names and ownership",
+      "coupling and maintenance cost",
+      "public behavior and important failure coverage"
+    ],
+    "resolved_findings": [
+      "Require a fresh verified process identity before authorizing process termination.",
+      "Require render context to agree with result lineage, grid, and report time.",
+      "Allow an unknown job state after an interrupted launch from the queue."
+    ],
+    "result": "No remaining material blockers in the final integration review."
+  },
+  "visual_review": [
+    {
+      "reviewer": "Root agent",
+      "files": [
+        "home.png",
+        "development.png"
+      ],
+      "result": "Visible text and navigation are legible and consistent with delivered P02 scope."
+    },
+    {
+      "reviewer": "Independent docs agent",
+      "files": [
+        "local-setup.png",
+        "testing-and-review.png",
+        "architecture.png",
+        "implementation-plan.png"
+      ],
+      "result": "Visible text, code, equation, table, and navigation are legible without overlap or horizontal clipping."
+    },
+    {
+      "reviewer": "Independent scope_review agent",
+      "files": [
+        "contracts.png",
+        "contracts-jobs.png",
+        "contracts-edits.png",
+        "contracts-errors.png"
+      ],
+      "result": "The intended guide content is legible after replacing three rejected blank anchor screenshots. Job transitions, applied-edit semantics, and all five required errors are visible."
+    }
+  ],
+  "limits": [
+    "Visual review covers the named viewports only. Later sections of the architecture and implementation plan were not visually reviewed.",
+    "Long code lines use horizontal scrolling. The edits screenshot does not prove the complete example text; the recorded executable example proves its behavior.",
+    "The package contains contract records and Protocol declarations, not external adapter implementations.",
+    "The tests and package probe do not launch ResInsight, OPM, Julia, or an MCP server."
+  ]
+}
