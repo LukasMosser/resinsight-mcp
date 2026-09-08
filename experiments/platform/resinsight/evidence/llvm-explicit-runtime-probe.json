@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/include/c++/v1",
+    "-L/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib",
+    "-Wl,-rpath,/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/toolchain-probe",
+    "-fuse-ld=lld",
+    "-lc++abi",
+    "-lunwind"
+  ],
+  "compile": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "links": {
+    "exit_code": 0,
+    "stdout": "/private/tmp/resinsight-p01-build/toolchain-probe:\n\t@rpath/libc++abi.1.dylib (compatibility version 1.0.0, current version 1.0.0)\n\t@rpath/libunwind.1.dylib (compatibility version 1.0.0, current version 1.0.0)\n\t@rpath/libc++.1.dylib (compatibility version 1.0.0, current version 1.0.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1336.61.1)\n",
+    "stderr": ""
+  },
+  "run": {
+    "exit_code": -11,
+    "stdout": "",
+    "stderr": ""
+  }
+}

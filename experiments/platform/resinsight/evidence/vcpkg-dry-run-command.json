@@ -1,0 +1,9 @@
+[
+  "/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/vcpkg",
+  "install",
+  "--dry-run",
+  "--triplet=arm64-osx-p01",
+  "--host-triplet=arm64-osx-p01",
+  "--overlay-triplets=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets",
+  "--x-install-root=/private/tmp/resinsight-p01-build/vcpkg-installed"
+]

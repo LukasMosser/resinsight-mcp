@@ -3,7 +3,8 @@
 The bounded C++23 probe now compiles and runs with LLVM 19.1.7 and the Apple system C++ runtime.
 It uses copied LLVM headers with Apple's global availability rules enabled.
 Availability rules describe which runtime features exist on each operating system version.
-This result does not yet establish a working ResInsight build or Qt integration.
+The separate [Qt probe](evidence/llvm-qt-runtime-probe.json) also passes with the selected configuration.
+These probes do not yet establish a working ResInsight build.
 
 ## Compiler and runtime boundary
 
@@ -102,7 +103,7 @@ The dependency inspection reported the following libraries:
 /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1336.61.1)
 ```
 
-The full bounded record is `/private/tmp/resinsight-p01-build/logs/llvm-apple-availability-probe.json`.
+The full bounded record is [llvm-apple-availability-probe.json](evidence/llvm-apple-availability-probe.json).
 The probe establishes its exercised `std::expected` and `std::format` path on this host.
 It does not establish every C++23 feature or every dependency's runtime behavior.
 
@@ -138,5 +139,6 @@ The temporary log directory preserves the following bounded records:
 - `llvm-apple-availability-probe.json` records the selected successful configuration.
 
 No full host crash report is included in this record.
-The next acceptance work must exercise Qt and the complete application with the selected single system runtime.
+The Qt probe now passes event-loop execution, string exchange, and exception handling.
+The next acceptance work must exercise the complete application with the selected single system runtime.
 Compiler success alone does not close that platform work.

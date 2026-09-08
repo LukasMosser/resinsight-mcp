@@ -1,0 +1,6 @@
+{
+  "commit": "197d58a750dd0bc243025b3939ab2a8a01a2c709",
+  "describe": "v2026.09.0",
+  "submodules": "015a8107623afb4ea6ec35cff0d3d334fdb4c637 ThirdParty/custom-opm-common/opm-common (015a810)\n 2f23dbc47af540fb3588bd7ec1ddea4a19af9a0f ThirdParty/custom-opm-flowdiag-app/opm-flowdiagnostics-applications (2f23dbc)\n 14e3fc39f4531c9183d50d0e9039f420c10510e4 ThirdParty/custom-surfio/surfio (14e3fc3)\n-6b2c4cd0a6bce2dfda115cd4bb63bbb27ad6ecc1 ThirdParty/custom-surfio/surfio/WindowsToolchain\n 1f7931b8d42cd0a1b321bd7ad12af9bf038a249b ThirdParty/openzgy (heads/main)\n-e8edaced12f139ddf16167987ded15e5da1b98da ThirdParty/openzgy/zfp\n 8b97dd179bb0ed280580c10dd3b95924f71b450e ThirdParty/qtadvanceddocking (8b97dd1)\n 2e1ab86284626b6fc5c23597cf331cdaf1a2d884 ThirdParty/qwt (2e1ab86)\n a78007d8a35d0801f57f5e16e43ab41f59c9d19f ThirdParty/regression-analysis (heads/main)\n 5661a1d4ed60743b47c3cf3e3308febc92c01494 ThirdParty/roffcpp (heads/main)\n 30172438cee64926dc41fdd9c11fb3ba5b2ba9de ThirdParty/tomlplusplus (3017243)\n df31882c439c38fc7c8b89d861457e8b8bf6fe67 ThirdParty/vcpkg (resinsight/2026.07.29)\n 67826bf7ad401afb527bd7370d4d60d45e085927 scripts/ri-cloud-api (67826bf)",
+  "changes": "vcpkg.json | 5 +----\n 1 file changed, 1 insertion(+), 4 deletions(-)"
+}

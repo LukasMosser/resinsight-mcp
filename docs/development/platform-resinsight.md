@@ -1,8 +1,9 @@
 # ResInsight on macOS
 
-The ResInsight part of P01 needs a build decision on the selected host.
+The owner approved an isolated custom build on the selected host.
 The official arm64 release does not satisfy the Python control gate.
-The local compiler also fails a probe for a C++ feature that the release source uses.
+The installed Apple compiler fails the C++ probe, but the isolated LLVM configuration now passes it.
+The full application build and Python control remain unproved.
 
 ## Host and release
 
@@ -39,7 +40,7 @@ The probe therefore does not justify starting the full build with this compiler.
 A newer compiler and C++ library need their own compatibility proof on this host.
 The [experiment directory](https://github.com/LukasMosser/resinsight-mcp/tree/main/experiments/platform/resinsight) contains the source and compiler record.
 
-## Proposed build path
+## Approved build path
 
 The source-aligned path retains release `v2026.09.0` and its pinned submodules.
 It uses Qt 6.7.0, Python 3.12, and the existing vcpkg dependency system.
@@ -53,17 +54,24 @@ The vcpkg submodule revision is `df31882c439c38fc7c8b89d861457e8b8bf6fe67`.
 The registry baseline is `84bab45d415d22042bd0b9081aea57f362da3f35`.
 The existing arm64 triplet uses static libraries and obtains the SDK through `xcrun`.
 
-The owner must choose an isolated newer compiler on this Mac or a newer macOS host.
-This record does not establish the full build's disk use or compiler compatibility.
+The owner selected the isolated build on this Mac.
+This record does not establish the full build's disk use or application compatibility.
 Dependent integration work remains gated until a build proves Python control.
 
 The [official LLVM 19.1.7 release](https://github.com/llvm/llvm-project/releases/tag/llvmorg-19.1.7) provides an ARM64 archive of about 1.41 GB compressed.
-That archive is a candidate for an isolated compiler probe.
-Its minimum macOS version, extracted size, and runtime libraries remain uninspected.
+The selected compiler and runtime files occupy about 451 MiB after extraction.
+The compiler and bundled runtime metadata declare macOS 14.0 as their minimum.
 
-The local probe must select matching C++ headers and runtime libraries explicitly.
-It must compile and run the required features before the dependency build starts.
-The application, its dependencies, and Qt must also work with the selected C++ runtime.
+The separate bundled C++ runtime crashes during its initialization on this host.
+The selected configuration instead uses Apple's system C++ runtime, which the prebuilt Qt also uses.
+A separate copy of LLVM's headers enables its Apple version availability checks.
+This uses the global configuration behind `LIBCXX_ENABLE_VENDOR_AVAILABILITY_ANNOTATIONS`, without overriding individual feature checks.
+
+LLVM 19.1.7 and its LLD linker compile and run the C++23 probe with this configuration.
+A Qt 6.7.0 probe also passes its event loop, string exchange, and expected-value exception checks.
+The application and all C++ dependencies must retain this compiler, header, and runtime configuration.
+The dependency plan remains pinned to the release registry baseline.
+The [custom build record](https://github.com/LukasMosser/resinsight-mcp/blob/main/experiments/platform/resinsight/custom-build.md) contains the configuration, commands, and prerequisite evidence.
 
 ## Python controls found in source
 
@@ -80,6 +88,7 @@ The experiment must use explicit ports and paths when it exercises these calls.
 | Select time | `view.set_time_step(time_step)` selects the report step. |
 | Export an image | `view.export_snapshot(...)` writes an image file. |
 | Create a well | `project.well_path_collection().add_new_object(rips.ModeledWellPath)` creates a modeled path. |
+| Import a well | `project.import_well_paths(well_path_files=[...])` imports an ASCII trajectory. |
 | Add a target | `geometry.append_well_target(...)` adds a path target. |
 | Add a perforation | `well_path.append_perforation_interval(...)` adds a measured-depth interval. |
 | Export completions | `case.export_well_path_completions(...)` writes well connections. |
@@ -91,6 +100,12 @@ The experiment must record that side effect when it tests attachment.
 The [well target implementation](https://github.com/OPM/ResInsight/blob/v2026.09.0/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathGeometryDef.cpp) changes the Z sign.
 The runtime proof must therefore connect the intended depth, trajectory, and active cells.
 The export must use the name of the well that the experiment actually creates.
+
+The generic modeled-well route defaults to metric units and exposes no scripted unit setter in the inspected source.
+The supported file-import route assigns units from the first loaded case when the trajectory intersects its bounds.
+The probe selects each route explicitly and never changes routes after a failure.
+The imported FIELD route will test the bounded perforation edit and completion export.
+The separate modeled route can record the unit limitation at runtime.
 
 ## Native OPM Jobs
 

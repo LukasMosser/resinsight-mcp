@@ -1,0 +1,39 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1",
+    "-fuse-ld=lld",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/qt_toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/qt-toolchain-probe",
+    "-F/private/tmp/resinsight-p01-build/qt/6.7.0/macos/lib",
+    "-iframework",
+    "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/lib",
+    "-I/private/tmp/resinsight-p01-build/qt/6.7.0/macos/include",
+    "-framework",
+    "QtCore",
+    "-Wl,-rpath,/private/tmp/resinsight-p01-build/qt/6.7.0/macos/lib"
+  ],
+  "compile": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "links": {
+    "exit_code": 0,
+    "stdout": "/private/tmp/resinsight-p01-build/qt-toolchain-probe:\n\t@rpath/QtCore.framework/Versions/A/QtCore (compatibility version 6.0.0, current version 6.7.0)\n\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 1600.157.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1336.61.1)\n",
+    "stderr": ""
+  },
+  "run": {
+    "exit_code": 0,
+    "stdout": "Qt 6.7.0 C++23 value 42\nQt event loop, string exchange, and exception passed\n",
+    "stderr": "Detected locale \"C\" with character encoding \"US-ASCII\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  }
+}

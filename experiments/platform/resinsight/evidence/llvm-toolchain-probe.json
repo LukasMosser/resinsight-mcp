@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/include/c++/v1",
+    "-L/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib",
+    "-Wl,-rpath,/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/toolchain-probe"
+  ],
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+  "trace": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "clang version 19.1.7 (/Users/runner/work/llvm-project/llvm-project/clang cd708029e0b2869e80abe31ddb175f7c35361f90)\nTarget: arm64-apple-darwin23.2.0\nThread model: posix\nInstalledDir: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin\n \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang-19\" \"-cc1\" \"-triple\" \"arm64-apple-macosx14.2.0\" \"-Wundef-prefix=TARGET_OS_\" \"-Werror=undef-prefix\" \"-Wdeprecated-objc-isa-usage\" \"-Werror=deprecated-objc-isa-usage\" \"-emit-obj\" \"-dumpdir\" \"/private/tmp/resinsight-p01-build/toolchain-probe-\" \"-disable-free\" \"-clear-ast-before-backend\" \"-disable-llvm-verifier\" \"-discard-value-names\" \"-main-file-name\" \"toolchain_probe.cpp\" \"-mrelocation-model\" \"pic\" \"-pic-level\" \"2\" \"-mframe-pointer=non-leaf\" \"-ffp-contract=on\" \"-fno-rounding-math\" \"-funwind-tables=1\" \"-target-sdk-version=14.2\" \"-fcompatibility-qualified-id-block-type-checking\" \"-fvisibility-inlines-hidden-static-local-var\" \"-fbuiltin-headers-in-system-modules\" \"-fdefine-target-os-macros\" \"-target-cpu\" \"apple-m1\" \"-target-feature\" \"+zcm\" \"-target-feature\" \"+zcz\" \"-target-feature\" \"+v8.4a\" \"-target-feature\" \"+aes\" \"-target-feature\" \"+altnzcv\" \"-target-feature\" \"+ccdp\" \"-target-feature\" \"+complxnum\" \"-target-feature\" \"+crc\" \"-target-feature\" \"+dotprod\" \"-target-feature\" \"+fp-armv8\" \"-target-feature\" \"+fp16fml\" \"-target-feature\" \"+fptoint\" \"-target-feature\" \"+fullfp16\" \"-target-feature\" \"+jsconv\" \"-target-feature\" \"+lse\" \"-target-feature\" \"+neon\" \"-target-feature\" \"+pauth\" \"-target-feature\" \"+perfmon\" \"-target-feature\" \"+predres\" \"-target-feature\" \"+ras\" \"-target-feature\" \"+rcpc\" \"-target-feature\" \"+rdm\" \"-target-feature\" \"+sb\" \"-target-feature\" \"+sha2\" \"-target-feature\" \"+sha3\" \"-target-feature\" \"+specrestrict\" \"-target-feature\" \"+ssbs\" \"-target-abi\" \"darwinpcs\" \"-debugger-tuning=lldb\" \"-fdebug-compilation-dir=/Users/lmoss/Documents/ChatGPT/resinsight-mcp\" \"-target-linker-version\" \"1053.12\" \"-fcoverage-compilation-dir=/Users/lmoss/Documents/ChatGPT/resinsight-mcp\" \"-nostdinc++\" \"-resource-dir\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/clang/19\" \"-isysroot\" \"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk\" \"-isystem\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/include/c++/v1\" \"-stdlib=libc++\" \"-internal-isystem\" \"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include\" \"-internal-isystem\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/clang/19/include\" \"-internal-externc-isystem\" \"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include\" \"-std=c++23\" \"-fdeprecated-macro\" \"-ferror-limit\" \"19\" \"-stack-protector\" \"1\" \"-fblocks\" \"-fencode-extended-block-signature\" \"-fregister-global-dtors-with-atexit\" \"-fgnuc-version=4.2.1\" \"-fno-implicit-modules\" \"-fskip-odr-check-in-gmf\" \"-fcxx-exceptions\" \"-fexceptions\" \"-fmax-type-align=16\" \"-D__GCC_HAVE_DWARF2_CFI_ASM=1\" \"-o\" \"/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-f2c8aa.o\" \"-x\" \"c++\" \"/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp\"\n \"/usr/bin/ld\" \"-demangle\" \"-lto_library\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/libLTO.dylib\" \"-no_deduplicate\" \"-dynamic\" \"-arch\" \"arm64\" \"-platform_version\" \"macos\" \"14.2.0\" \"14.2\" \"-syslibroot\" \"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk\" \"-mllvm\" \"-enable-linkonceodr-outlining\" \"-o\" \"/private/tmp/resinsight-p01-build/toolchain-probe\" \"-L/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib\" \"-rpath\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib\" \"/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-f2c8aa.o\" \"-lc++\" \"-lSystem\" \"/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/clang/19/lib/darwin/libclang_rt.osx.a\"\n"
+  },
+  "compile": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "dyld[59480]: Symbol not found: __ZdaPv\n  Referenced from: <4FBC7C36-C701-3743-9CAA-9630180E72D2> /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld\n  Expected in:     <4C4C4459-5555-3144-A1EB-DD5C0BC7D4A7> /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/libc++.1.0.dylib\nclang++: error: unable to execute command: Abort trap: 6\nclang++: error: linker command failed due to signal (use -v to see invocation)\n"
+  }
+}

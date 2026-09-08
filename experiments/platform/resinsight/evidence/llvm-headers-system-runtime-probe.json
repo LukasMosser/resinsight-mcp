@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/include/c++/v1",
+    "-fuse-ld=lld",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/llvm-headers-system-runtime-probe"
+  ],
+  "compile": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "ld64.lld: error: undefined symbol: vtable for std::__1::bad_expected_access<void>\n>>> referenced by /var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-462b1b.o:(symbol std::__1::bad_expected_access<void>::bad_expected_access[abi:ne190107]()+0x24)\n>>> referenced by /var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-462b1b.o:(symbol std::__1::bad_expected_access<void>::bad_expected_access[abi:ne190107]()+0x20)\n\nld64.lld: error: undefined symbol: typeinfo for std::__1::bad_expected_access<void>\n>>> referenced by /var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-462b1b.o:(symbol typeinfo for std::__1::bad_expected_access<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>+0x10)\n\nld64.lld: error: undefined symbol: std::__1::bad_expected_access<void>::what() const\n>>> referenced by /var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/toolchain_probe-462b1b.o:(symbol vtable for std::__1::bad_expected_access<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>>+0x20)\nclang++: error: linker command failed with exit code 1 (use -v to see invocation)\n"
+  }
+}
