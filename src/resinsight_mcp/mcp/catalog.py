@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from mcp import types
-from pydantic import Field, PositiveInt
+from pydantic import Field, PositiveInt, ValidationError
 
 from resinsight_mcp.contracts._base import Record
 from resinsight_mcp.contracts.errors import (
@@ -14,6 +14,7 @@ from resinsight_mcp.contracts.errors import (
     ErrorCode,
     Failure,
     OperationResult,
+    Success,
 )
 from resinsight_mcp.contracts.identifiers import ObservationId, SessionId
 from resinsight_mcp.contracts.interfaces import Renderer, SessionService, WorkspaceStore
@@ -113,14 +114,35 @@ def _render(bindings: Bindings, request: ViewRenderRequest) -> OperationResult[O
     result = bindings.workspaces.get_result(request.session_id, request.context.result_id)
     if isinstance(result.outcome, Failure):
         return OperationResult[Observation](outcome=result.outcome)
-    render_request = RenderRequest(
-        result=result.outcome.value,
-        context=request.context,
-        width=request.width,
-        height=request.height,
-    )
+    try:
+        render_request = RenderRequest(
+            result=result.outcome.value,
+            context=request.context,
+            width=request.width,
+            height=request.height,
+        )
+    except ValidationError as exc:
+        raise ContractError(
+            Error(
+                code=ErrorCode.INVALID_MODEL, message="The view does not match the stored result."
+            )
+        ) from exc
     assert bindings.renderer is not None
-    return bindings.renderer.render(render_request)
+    response = bindings.renderer.render(render_request)
+    if isinstance(response.outcome, Success):
+        observation = response.outcome.value
+        if observation.context != request.context:
+            raise ContractError(
+                Error(code=ErrorCode.STALE_OBJECT, message="The rendered view context has changed.")
+            )
+        if (observation.image.width, observation.image.height) != (request.width, request.height):
+            raise ContractError(
+                Error(
+                    code=ErrorCode.RENDER_FAILED,
+                    message="The rendered dimensions differ from the request.",
+                )
+            )
+    return response
 
 
 def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:

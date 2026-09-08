@@ -6,8 +6,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-from resinsight_mcp.mcp import Bindings, serve_stdio
-
 from resinsight_mcp.contracts.errors import (
     ContractError,
     Error,
@@ -18,6 +16,7 @@ from resinsight_mcp.contracts.errors import (
 from resinsight_mcp.contracts.identifiers import SessionId
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.observations import Observation, RenderRequest
+from resinsight_mcp.mcp import Bindings, serve_stdio
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 
@@ -59,6 +58,13 @@ class SavedRenderer:
         return OperationResult(outcome=Success(value=self.observation))
 
 
+class UnrelatedRenderer(SavedRenderer):
+    """Return an unrelated image to exercise transport isolation."""
+
+    def render(self, request: RenderRequest) -> OperationResult[Observation]:
+        return OperationResult(outcome=Success(value=self.observation))
+
+
 async def main() -> None:
     root = Path(sys.argv[1])
     mode = sys.argv[2]
@@ -68,9 +74,11 @@ async def main() -> None:
         "broken": BrokenStore,
         "contract": ContractFailureStore,
         "render": SqliteWorkspaceStore,
+        "unrelated-render": SqliteWorkspaceStore,
     }[mode]
     store = store_type.open(root)
-    renderer = SavedRenderer(Path(sys.argv[3])) if mode == "render" else None
+    renderers = {"render": SavedRenderer, "unrelated-render": UnrelatedRenderer}
+    renderer = renderers[mode](Path(sys.argv[3])) if mode in renderers else None
     await serve_stdio(Bindings(workspaces=store, renderer=renderer))
 
 

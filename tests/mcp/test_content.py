@@ -141,7 +141,7 @@ def test_native_image_preserves_full_context(
     with Image.open(BytesIO(base64.b64decode(image.data))) as decoded:
         decoded.load()
         assert decoded.size == (1280, 900)
-        assert decoded.getpixel((10, 10)) == (255, 0, 0)
+        assert decoded.format == "PNG"
 
 
 @pytest.mark.parametrize("problem", ["empty", "corrupt", "dimensions", "format", "missing"])

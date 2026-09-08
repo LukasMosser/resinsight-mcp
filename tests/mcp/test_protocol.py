@@ -286,6 +286,26 @@ def test_image_response_preserves_context_and_decodes_png(tmp_path: Path, result
 
     observation_path = tmp_path / "observation.json"
     observation_path.write_text(observation.model_dump_json())
+    unrelated = observation.model_dump(mode="json")
+    unrelated["context"]["model"]["session_id"] = str(other.session_id)
+    unrelated["context"]["case"]["context"]["session_id"] = str(other.session_id)
+    unrelated["context"]["view"]["context"]["session_id"] = str(other.session_id)
+    unrelated["image"]["artifact"]["session_id"] = str(other.session_id)
+    unrelated_observation = Observation.model_validate_json(json.dumps(unrelated))
+    pixels.seek(0)
+    assert isinstance(
+        store.write_artifact(
+            Artifact(
+                ref=unrelated_observation.image.artifact,
+                relative_path="other.png",
+                kind=ArtifactKind.IMAGE,
+            ),
+            pixels,
+        ).outcome,
+        Success,
+    )
+    unrelated_path = tmp_path / "unrelated-observation.json"
+    unrelated_path.write_text(unrelated_observation.model_dump_json())
 
     async def exercise() -> None:
         async with client(root, "render", observation_path) as session:
@@ -299,8 +319,43 @@ def test_image_response_preserves_context_and_decodes_png(tmp_path: Path, result
                     "height": 24,
                 },
             )
+            mismatched = await session.call_tool(
+                "view_render",
+                {
+                    "session_id": str(other.session_id),
+                    "context": view.model_dump(mode="json"),
+                    "width": 32,
+                    "height": 24,
+                },
+            )
+            assert outcome(mismatched)["error"]["code"] == "stale_object"
+            absent_report = view.model_dump(mode="json")
+            absent_report["report_time"]["index"] = 999
+            invalid_report = await session.call_tool(
+                "view_render",
+                {
+                    "session_id": str(owner.session_id),
+                    "context": absent_report,
+                    "width": 32,
+                    "height": 24,
+                },
+            )
+            assert outcome(invalid_report)["error"]["code"] == "invalid_model"
+            assert outcome(invalid_report)["error"]["effect"] == "not_applied"
             assert outcome(rendered)["value"] == observation.model_dump(mode="json")
             assert any(isinstance(item, ImageContent) for item in rendered.content)
+        async with client(root, "unrelated-render", unrelated_path) as session:
+            rejected = await session.call_tool(
+                "view_render",
+                {
+                    "session_id": str(owner.session_id),
+                    "context": view.model_dump(mode="json"),
+                    "width": 32,
+                    "height": 24,
+                },
+            )
+            assert outcome(rejected)["error"]["code"] == "stale_object"
+            assert not any(isinstance(item, ImageContent) for item in rejected.content)
         for _ in range(2):
             async with client(root) as session:
                 response = await session.call_tool(
