@@ -51,6 +51,19 @@ The plan uses the release registry baseline and contains 103 packages.
 It includes gRPC 1.71.0, Protobuf 5.29.5, Arrow 21.0.0, and Boost 1.89.0.
 It retains the release's fmt 10.1.1 override.
 
+The first build completed 97 packages before gRPC configuration failed.
+The port's Linux static-link patch replaced `CMAKE_EXE_LINKER_FLAGS` with `-Bstatic` on macOS.
+That replacement removed the selected LLD linker and caused Apple's linker to load the incompatible private runtime.
+The [configuration log](evidence/grpc-configure-01.log) and [failed thread check](evidence/grpc-linker-failure.json) preserve the result.
+
+The triplet now sets `gRPC_STATIC_LINKING=OFF` for the gRPC port only.
+The port helper appends this explicit setting after the port's default options.
+The normal `BUILD_SHARED_LIBS=OFF` setting still builds static gRPC libraries.
+No port source copy or dependency version change is required.
+The revised standalone dry run lists only the six remaining packages for compilation.
+The actual CMake integration detects changed build settings and rebuilds the completed packages too.
+The standalone dry run therefore did not predict the rebuild cost of this configuration change.
+
 The pinned vcpkg tool requires CMake 4.4.0 for its dependency work.
 It downloaded that version into the isolated download tree during the dry run.
 The outer application configuration uses the separately installed CMake 3.31.6.
@@ -96,6 +109,7 @@ After successful configuration, the application build command is:
   --build /private/tmp/resinsight-p01-build/application-build --parallel 2
 ```
 
-The active configuration log is `/private/tmp/resinsight-p01-build/logs/application-configure-01.log`.
+The first [configuration log](evidence/application-configure-01.log) records the completed packages and gRPC failure.
+The active configuration log is `/private/tmp/resinsight-p01-build/logs/application-configure-02.log`.
 The experiment must preserve final build logs and actual runtime evidence before P01 can close.
 The [control probe](controls.md) defines the next application acceptance work.

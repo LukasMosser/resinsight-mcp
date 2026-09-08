@@ -1,0 +1,108 @@
+Detecting compiler hash for triplet arm64-osx-p01...
+Compiler found: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++
+The following packages will be rebuilt:
+  * abseil:arm64-osx-p01@20250814.1 -- git+https://github.com/microsoft/vcpkg@1339c9be56bcaf55ed8ff64854f477bea6045619
+    arrow[core,csv,filesystem,json,parquet]:arm64-osx-p01@21.0.0#2 -- git+https://github.com/microsoft/vcpkg@73ec101affdc45cc2932cedf85bcd4bd4ed90c31
+  * boost-algorithm:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@3ee83dcfbe76d56a445af30c8475f7ceb92deb90
+  * boost-align:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@cdc40833d65b90a10f622786d747a1ad5c72ebd1
+  * boost-array:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@53a38d9df50a94549967fa8b7e47714c4d5761db
+  * boost-assert:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4b40db7ad8e6420b04da87e8266e5eca7c3c059f
+  * boost-atomic:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@58dc025910708f8ce014d3a23b957de3dffa22bb
+  * boost-bind:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b2fdb396a7064165de3c60c4da30dffd751f82e2
+  * boost-charconv:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1c12ad423a784397f5d7b7d335d362d187ae93f8
+  * boost-chrono:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@418cebde300c0e64b012b150c6f4a5397a92a944
+  * boost-cmake:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8c7d8286875eac4b6e5995d63337cfd3e16d66ef
+  * boost-concept-check:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4f43e61a82b1e215fbea09fe321fb63b89d70ccf
+  * boost-config:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@73499959016446ec7272976b0abaab1ed123c3c8
+  * boost-container:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a84f02c4aec8fc8119e2a84a5a7667c14250829a
+  * boost-container-hash:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f808bcb3fafb29847b0e7f07f78525e036eee56b
+  * boost-conversion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@72f5608e82127ab4b384bcc268fb92c59d36bbc7
+  * boost-core:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9823973b46eb48abfc4d773b8461e98165b6eb6b
+  * boost-date-time:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@038586c4564e5118c1b92862902c5b53fcbb24b3
+  * boost-describe:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b6c39726cb8a5ed76d564c222cfd5a59f24d3e02
+  * boost-detail:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@42321194aba4197b21532f5e146ddd36f4ec1a4f
+  * boost-dynamic-bitset:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4e9bb084edae227089add595ccb7c596e76d0575
+  * boost-endian:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f45abc0b300cbadaae57d40a9a5a11dc3eae720d
+  * boost-exception:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@98b58a80a68f639ca40b433428a69967227d75c9
+    boost-filesystem:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@51b9231454d8018a15022022b1b6b787a72fb432
+  * boost-function:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@5d75dc069bb0685bfa48febfc0d4bffc0f46f8c9
+  * boost-function-types:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@21f4acfebeb149a3de71f341be55a5ce59cb32aa
+  * boost-functional:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@ade45ba6b3c1ceec40f8eb3ac8d3a523f80b2038
+  * boost-fusion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c63f6e3ba7e2890a640553e6caaf2a5418c60913
+  * boost-headers:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@95dbcdac30de15e8f72cdba71aedb4fb06638718
+  * boost-integer:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a37945e3e5b2c880c256c6266cc76c40e425b008
+  * boost-intrusive:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@bb11f3b2df959ba7a4852059eefefc23c08cf3be
+  * boost-io:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@52997d9b6a05b007e2897de28beaeea18968cc0e
+  * boost-iterator:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@afb261ecce2d7eb9a01aa41c835608482c129e03
+  * boost-lexical-cast:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@422011af1156f3e9c09bfa3e20a2d8119d7e523c
+  * boost-locale:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9fdfc11bbbcb8dedf010b61fbcdc3a9eba22af82
+  * boost-math:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1cb94d95de055a357bb874e57fdab94802e1f4fb
+  * boost-move:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9e2f411e14732036732cece814356699a76cc91e
+  * boost-mp11:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b8f038d03ba53847d4b120f55730c0737aab5587
+  * boost-mpl:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@419ecb733b84695280f408232c73470ab30be15d
+  * boost-multiprecision:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@727bfc1426b98ea8464378970622d73646442039
+  * boost-numeric-conversion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4a4daafbe60c9ff995541373ec7df4b8b35c4773
+  * boost-optional:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a00224cf1d434cc257cae3146aed00651f9700c4
+  * boost-phoenix:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b80402a8e32506147c9125b435e7bd1ff76babf1
+  * boost-pool:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8afc11f58cef060ee80f2ab8fd1e719f414bbf67
+  * boost-predef:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@44b5803d820eb060f0727227d0ae9171912df6ce
+  * boost-preprocessor:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b24666cb6f30bbace4fa4f602072ff22a1926e6d
+  * boost-proto:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9a0ad7230f675a58ec36c6eaaf770172b1f77e33
+  * boost-random:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@290754c38706f4a21ef7a9278bfb7a45d25d9062
+  * boost-range:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@ab4c025322e42dec411e33f17d3952fac5d7f00a
+  * boost-ratio:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b7969883e0612c6757988b0f9102224ca136959f
+  * boost-regex:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@411f23facef811713ece1498443d376f4fc375da
+  * boost-scope:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@52ec92fe9c7ece6cf842364caeca0cf7b2fb2589
+  * boost-scope-exit:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8bb2255cf9e1f28f90fe23adf2caad8424afab49
+  * boost-smart-ptr:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@3520f2bdf1ddfd6b9b9e83fa0db82bb9a28fe6a5
+    boost-spirit:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@cfa2cb2b5f1de02bda3a215a0690768c187f4fd0
+  * boost-static-assert:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c297fdc10a4751a0813d174da5b3d6ee8ac4fcd2
+  * boost-system:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@930f1da0c62be8d5eb884b12e9f6453786f92339
+    boost-test:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@0271773d4f2480aa5de63ed5cda636c76ca6cc5c
+  * boost-thread:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1780abc3416ddde7e3a3d3d7abda4d9b6ac2aa54
+  * boost-throw-exception:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@2595f3f64c49285c68fde05cca87afa79eb4d664
+  * boost-tokenizer:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@54edc02e70826bee8f52d8d324a5ffb2cee432b7
+  * boost-tuple:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4975ef963fa02d53b2fca5eb8936b32e4de2e9da
+  * boost-type-index:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@eeb4d55443b956770203825a87a8db3a0b456c99
+  * boost-type-traits:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8c46d2bab6817bbbb8382efaed7aeb1ae8b15119
+  * boost-typeof:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@bc97dedd1bd7d66c437b13b38786e182c54fc924
+  * boost-uninstall:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@83ce7d42de32cacf540be39b74cfcb462ab034b8
+  * boost-unordered:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@248854482d2a457a46060b8f77d80a8242e7c02a
+  * boost-utility:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@13afb12031051f9b937985deade5bbeb7c5cc256
+  * boost-uuid:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c37014b404fc3e75392356d96d8dbffacc65b332
+  * boost-variant:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@449f1126f49d4f9f52e0b950c926a0150ffc5dcf
+  * boost-variant2:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8433fae25d9ccbaa40dc442c750eec2ed6c0cabe
+  * boost-winapi:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f4552c468e3f22d10354f05d70af19f36f5da585
+  * brotli:arm64-osx-p01@1.2.0 -- git+https://github.com/microsoft/vcpkg@0fb79bb13588702a9e06057745b4aed95ce5c861
+  * bzip2[core,tool]:arm64-osx-p01@1.0.8#6 -- git+https://github.com/microsoft/vcpkg@2d029da682847c5ebdc54e4dbea001331a02207e
+  * c-ares:arm64-osx-p01@1.34.6 -- git+https://github.com/microsoft/vcpkg@6ee80f35bece6f1dbf2d767833aa117d718df752
+    clipper2:arm64-osx-p01@1.5.4 -- git+https://github.com/microsoft/vcpkg@efcc6cdefc2176e0bdcc990d41d0d43601d20e20
+    eigen3:arm64-osx-p01@3.4.1#1 -- git+https://github.com/microsoft/vcpkg@ea6ed04401cca325eff95c17cc0d01326a3c6a85
+    fast-float:arm64-osx-p01@8.1.0 -- git+https://github.com/microsoft/vcpkg@b9eb72faaf427307962387a36d0aa845d57e0c5c
+  * gflags:arm64-osx-p01@2.3.0 -- git+https://github.com/microsoft/vcpkg@eec33f2d7ee46b38cf2c5f46ed7f97c106c2b7ab
+  * libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1 -- git+https://github.com/microsoft/vcpkg@fb70d948ca21973f4f8e403b0ec54053631a74e2
+  * libiconv:arm64-osx-p01@1.18#3 -- git+https://github.com/microsoft/vcpkg@cd6e884bcb53ce8481ea9594639f3d21aed0e138
+  * lz4:arm64-osx-p01@1.10.0 -- git+https://github.com/microsoft/vcpkg@4f01eec10f515a428e914107c5188366380f8dd9
+  * openssl:arm64-osx-p01@3.6.0#3 -- git+https://github.com/microsoft/vcpkg@21c1dabbf149eaa75b6c8b6ba9c3c6edb4f47ea7
+  * protobuf:arm64-osx-p01@5.29.5#3 -- git+https://github.com/microsoft/vcpkg@a8fdd2b1b4283409700152a6ac8639c005d1c103
+  * rapidjson:arm64-osx-p01@2025-02-26 -- git+https://github.com/microsoft/vcpkg@4297a243aa0e3ed6c3a4c307579914593da5751d
+  * re2:arm64-osx-p01@2025-11-05 -- git+https://github.com/microsoft/vcpkg@cdb3c6b427f023ec6af6433f0494e2e7ec0f708f
+  * snappy:arm64-osx-p01@1.2.2#1 -- git+https://github.com/microsoft/vcpkg@b493c37dddc115546ae73cc86106acd93d9916c5
+  * thrift:arm64-osx-p01@0.22.0 -- git+https://github.com/microsoft/vcpkg@4c4faad4f1e351534a8114aa84d5ab1dee2e025f
+  * utf8-range:arm64-osx-p01@5.29.5 -- git+https://github.com/microsoft/vcpkg@5d28e170bfcc212d629bb070520e72492240ce65
+  * utf8proc:arm64-osx-p01@2.11.2 -- git+https://github.com/microsoft/vcpkg@35807db3f400becadade26e3a088236741d18483
+  * vcpkg-boost:arm64-osx-p01@2025-03-29 -- git+https://github.com/microsoft/vcpkg@858b0333b773b5650c3f19ef271e3205542d7ceb
+  * vcpkg-cmake:arm64-osx-p01@2024-04-23 -- git+https://github.com/microsoft/vcpkg@e74aa1e8f93278a8e71372f1fa08c3df420eb840
+  * vcpkg-cmake-config:arm64-osx-p01@2024-05-23 -- git+https://github.com/microsoft/vcpkg@97a63e4bc1a17422ffe4eff71da53b4b561a7841
+  * vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29 -- git+https://github.com/microsoft/vcpkg@d6510f888dd526c7828f6b973349e7f30be51254
+  * xsimd:arm64-osx-p01@14.0.0 -- git+https://github.com/microsoft/vcpkg@27c9b99a0f803f9ceed3f26d65f9bf6f8dbc392e
+  * zlib:arm64-osx-p01@1.3.1 -- git+https://github.com/microsoft/vcpkg@3f05e04b9aededb96786a911a16193cdb711f0c9
+  * zstd:arm64-osx-p01@1.5.7 -- git+https://github.com/microsoft/vcpkg@31b7320fab13790c6861cb3c2d50dc8f60ca3602
+The following packages will be built and installed:
+  * fmt:arm64-osx-p01@10.1.1 -- git+https://github.com/microsoft/vcpkg@dfe9aa860f5a8317f341a21d317be1cf44e89f18
+    grpc[codegen,core]:arm64-osx-p01@1.71.0#3 -- git+https://github.com/microsoft/vcpkg@daebe29c41aa900ce183614afe15c73b3ca4f643
+    nanoflann:arm64-osx-p01@1.8.0 -- git+https://github.com/microsoft/vcpkg@39b5dd98a648ebc0bb3ce83a9c9c534ac7b3bedd
+    pugixml:arm64-osx-p01@1.15#1 -- git+https://github.com/microsoft/vcpkg@e210d4650721b32c1e83bf0da6a0cf4c145bbbd9
+    spdlog:arm64-osx-p01@1.16.0 -- git+https://github.com/microsoft/vcpkg@5e6886c421877c656b6be701880e2cbe2bc16131
+    type-lite:arm64-osx-p01@0.2.0 -- git+https://github.com/microsoft/vcpkg@7ebc5db10421a042126a6ca788752a332402be10
+Additional packages (*) will be modified to complete this operation.

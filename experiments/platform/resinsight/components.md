@@ -20,7 +20,7 @@ The following pinned records define the requested native dependency graph:
 - The [registry at that baseline](https://github.com/microsoft/vcpkg/tree/84bab45d415d22042bd0b9081aea57f362da3f35) records port versions, dependencies, and available license metadata.
 - The [source submodule declarations](https://github.com/OPM/ResInsight/blob/197d58a750dd0bc243025b3939ab2a8a01a2c709/.gitmodules) and Git links pin embedded repositories.
 
-The local resolved plan is `/private/tmp/resinsight-p01-build/logs/vcpkg-dry-run.log`.
+The [resolved plan](evidence/vcpkg-dry-run.log) preserves the selected dependency records.
 It records each selected version, feature set, triplet, and port Git tree.
 The triplet is `arm64-osx-p01`.
 Exact port files were read from `/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/<tree>/vcpkg.json`.
