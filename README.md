@@ -20,6 +20,10 @@ The [workspace guide](docs/development/workspaces.md) explains storage behavior 
 The [MCP operations guide](docs/mcp.md) explains local server setup and native response content.
 The [session guide](docs/sessions.md) explains application ownership, project operations, and observed change limits.
 
+The [job controller](docs/jobs.md) supervises trusted local commands independently of MCP connections.
+It preserves job identity, process ownership, resources, logs, and uncertain outcomes across service restarts.
+Its explicit wall-time-only policy records CPU and memory requests without enforcing them.
+
 The completed [P01 experiments](docs/development/platform-proof.md) record bounded ResInsight, OPM, and native-image results on one Mac.
 Those experiments remain separate from the installable library and do not establish a supported host or simulator matrix.
 Read the [project documentation](https://lukasmosser.github.io/resinsight-mcp/) on GitHub Pages.

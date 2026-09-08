@@ -17,7 +17,13 @@ from resinsight_mcp.contracts.errors import (
     Success,
 )
 from resinsight_mcp.contracts.identifiers import ObservationId, SessionId
-from resinsight_mcp.contracts.interfaces import Renderer, SessionService, WorkspaceStore
+from resinsight_mcp.contracts.interfaces import (
+    JobController,
+    Renderer,
+    SessionService,
+    WorkspaceStore,
+)
+from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.observations import Observation, RenderRequest, ViewContext
 from resinsight_mcp.contracts.sessions import (
@@ -73,6 +79,7 @@ class Bindings:
     workspaces: WorkspaceStore
     renderer: Renderer | None = None
     sessions: SessionService | None = None
+    jobs: JobController | None = None
 
 
 @dataclass(frozen=True)
@@ -196,6 +203,8 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
         )
     if bindings.sessions is not None:
         operations.extend(_session_operations(bindings.sessions))
+    if bindings.jobs is not None:
+        operations.extend(_job_operations(bindings.jobs))
     return tuple(operations)
 
 
@@ -292,5 +301,35 @@ def _session_operations(service: SessionService) -> tuple[Operation[Any, Any], .
             service.resolve_object,
             session_id=lambda request: request.context.session_id,
             read_only=True,
+        ),
+    )
+
+
+def _job_operations(service: JobController) -> tuple[Operation[Any, Any], ...]:
+    return (
+        Operation(
+            "job_submit",
+            "Submit a prepared model revision with explicit resource limits.",
+            JobRequest,
+            OperationResult[Job],
+            service.submit,
+            session_id=lambda request: request.prepared.revision.model.session_id,
+        ),
+        Operation(
+            "job_poll",
+            "Check execution state for a job in an explicit session.",
+            JobRef,
+            OperationResult[Job],
+            service.poll,
+            session_id=lambda request: request.session_id,
+            read_only=True,
+        ),
+        Operation(
+            "job_cancel",
+            "Record cancellation intent without claiming confirmed termination.",
+            JobRef,
+            OperationResult[Job],
+            service.request_cancel,
+            session_id=lambda request: request.session_id,
         ),
     )

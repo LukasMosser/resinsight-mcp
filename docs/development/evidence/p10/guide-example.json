@@ -1,0 +1,12 @@
+{
+  "example": "docs/jobs.md Python block",
+  "tested_commit": "88866fb2adea114ddc2361de7d92d5c6aa1503c6",
+  "job_id": "job_a61532ad1ea8499d9495693e0ace9735",
+  "model": {
+    "session_id": "session_7136d31c2baf44b48a2204e5c9607aa8",
+    "revision_id": "revision_bdb9cfa5d2c34527838dc43b46640b75"
+  },
+  "state": "succeeded",
+  "exit_code": 0,
+  "resource_policy": "wall_time_only"
+}

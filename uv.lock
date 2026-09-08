@@ -937,6 +937,7 @@ source = { editable = "." }
 dependencies = [
     { name = "mcp" },
     { name = "pillow" },
+    { name = "psutil" },
     { name = "pydantic" },
 ]
 
@@ -945,7 +946,6 @@ imports = [
     { name = "opm" },
 ]
 resinsight = [
-    { name = "psutil" },
     { name = "rips" },
 ]
 
@@ -956,7 +956,6 @@ dev = [
     { name = "mkdocs-material" },
     { name = "opm" },
     { name = "pre-commit" },
-    { name = "psutil" },
     { name = "pymdown-extensions" },
     { name = "pytest" },
     { name = "rips" },
@@ -969,7 +968,7 @@ requires-dist = [
     { name = "mcp", specifier = ">=1.28,<2" },
     { name = "opm", marker = "extra == 'imports'", specifier = "==2025.10" },
     { name = "pillow", specifier = ">=12,<13" },
-    { name = "psutil", marker = "extra == 'resinsight'", specifier = ">=7.2,<8" },
+    { name = "psutil", specifier = ">=7.2,<8" },
     { name = "pydantic", specifier = ">=2.13.5,<3" },
     { name = "rips", marker = "extra == 'resinsight'", specifier = "==2026.9.0.1" },
 ]
@@ -982,7 +981,6 @@ dev = [
     { name = "mkdocs-material", specifier = ">=9.6" },
     { name = "opm", specifier = "==2025.10" },
     { name = "pre-commit", specifier = ">=4.3" },
-    { name = "psutil", specifier = ">=7.2,<8" },
     { name = "pymdown-extensions", specifier = ">=10.16" },
     { name = "pytest", specifier = ">=8.4" },
     { name = "rips", specifier = "==2026.9.0.1" },
