@@ -63,8 +63,13 @@ This compact table groups entries with the same expression without replacing the
 | bzip2 1.0.8#6 | `bzip2-1.0.6` |
 | zlib 1.3.1 | `Zlib` |
 | Zstandard 1.5.7 | `BSD-3-Clause OR GPL-2.0-only` |
-| libiconv 1.18#3, Snappy 1.2.2#1 | No license field in selected port metadata. Preserve their installed copyright records. |
+| Snappy 1.2.2#1 | Installed copyright records BSD three-clause library terms and separate benchmark-data notices. |
+| libiconv 1.18#3 | The selected macOS port skips GNU libiconv and installs a wrapper for the system dependency. |
 | Remaining Boost ports, 1.89.0 | See the resolved plan and each selected port. |
+
+The libiconv package version names a dependency port, not a GNU library built for this Mac.
+The selected port reports `Not building GNU libiconv` and marks the package empty.
+Its macOS path leaves the host SDK implementation under the host's existing terms.
 
 ## Embedded source
 
@@ -92,9 +97,9 @@ ExprTk and mio state MIT terms, and Droid Sans states Apache version 2.0 terms.
 The copied FreeType license file offers its FreeType License or GPL version 2 terms.
 GLEW retains its specific permissive notice.
 Microsoft icons retain CC BY 4.0 terms, with separate notices for modifications and other icons.
-The conrec entry identifies its source but does not state a license expression.
-That missing expression remains an inventory limit.
-OpenVDS has an Apache notice, but its optional build status needs the final configuration.
+The adapted conrec implementation states GPL version 3 or later in `cafContourLines.cpp` and `cafContourLines.h`.
+The separate Qwt adaptation retains Qwt License 1.0 terms.
+OpenVDS has an Apache notice, but the current macOS command leaves it disabled through the pinned platform default.
 The main source commit pins these copied files and notices.
 
 ## Qt runtime and client environment
