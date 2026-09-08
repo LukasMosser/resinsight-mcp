@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from threading import Event
+from uuid import uuid4
 
 from resinsight_mcp.contracts.errors import Error, Failure, OperationResult, Success
 from resinsight_mcp.contracts.sessions import Endpoint, ObjectKind, ProcessIdentity
@@ -21,11 +22,12 @@ def error[T](result: OperationResult[T]) -> Error:
 class ApplicationDouble:
     def __init__(self, port: int) -> None:
         self.endpoint = Endpoint(port=port)
-        self.process = ProcessIdentity(pid=port, start_marker=f"started-{port}")
+        self.process = ProcessIdentity(pid=port, start_marker=f"started-{uuid4().hex}")
         self.verified_process = self.process
         self.project = ProjectSnapshot("root", (NativeObject(ObjectKind.CASE, "case-0", "Case"),))
         self.calls: list[tuple[str, Path | None]] = []
         self.failure: Exception | None = None
+        self.disconnect_failure: Exception | None = None
         self.entered: Event | None = None
         self.release: Event | None = None
 
@@ -55,6 +57,8 @@ class ApplicationDouble:
 
     def disconnect(self) -> None:
         self.calls.append(("disconnect", None))
+        if self.disconnect_failure is not None:
+            raise self.disconnect_failure
 
     def terminate(self) -> None:
         self.calls.append(("terminate", None))

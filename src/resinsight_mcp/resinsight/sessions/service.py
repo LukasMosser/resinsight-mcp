@@ -76,12 +76,17 @@ _instance_guard = threading.Lock()
 _instance_locks: WeakValueDictionary[ProcessIdentity, _InstanceLock] = WeakValueDictionary()
 
 
-def _instance_lock(process: ProcessIdentity) -> _InstanceLock:
+def _instance_lock(process: ProcessIdentity, current: _InstanceLock | None) -> _InstanceLock:
     with _instance_guard:
         lock = _instance_locks.get(process)
-        if lock is None:
-            lock = _InstanceLock()
-            _instance_locks[process] = lock
+        if lock is not None:
+            if lock is current:
+                return lock
+            _fail(
+                ErrorCode.CONFLICT, "The application is already bound to another session service."
+            )
+        lock = _InstanceLock()
+        _instance_locks[process] = lock
         return lock
 
 
@@ -171,8 +176,7 @@ class ResInsightSessionService:
             application = connect()
             try:
                 with self._guard:
-                    self._reject_duplicate(application.process, slot)
-                    slot.instance_lock = _instance_lock(application.process)
+                    slot.instance_lock = _instance_lock(application.process, slot.instance_lock)
                     slot.application = application
                     slot.connection = Connection(
                         context=ApplicationContext(
@@ -191,17 +195,6 @@ class ResInsightSessionService:
                 application.disconnect()
                 raise
             return self._connection(slot)
-
-    def _reject_duplicate(self, process: ProcessIdentity, current: _Slot) -> None:
-        for slot in self._slots.values():
-            connection = slot.connection
-            if (
-                slot is not current
-                and connection is not None
-                and connection.process == process
-                and connection.state != ConnectionState.DETACHED
-            ):
-                _fail(ErrorCode.CONFLICT, "The application is already bound to another session.")
 
     @staticmethod
     def _allow_connect(slot: _Slot) -> None:
@@ -332,20 +325,34 @@ class ResInsightSessionService:
             self._output_path(request.path, overwrite=request.overwrite)
             application.save_project(request.path)
             project = self._after_change(slot, application)
-            if not request.path.is_file():
-                raise ContractError(
-                    Error(
-                        code=ErrorCode.EXECUTION_FAILED,
-                        message="The save command completed without the requested project file.",
-                        effect=MutationEffect.UNKNOWN,
-                    )
-                )
+            self._require_saved_file(request.path)
             slot.project = ProjectState(
                 context=project.context,
                 objects=project.objects,
                 last_saved_path=request.path,
             )
             return slot.project
+
+    @staticmethod
+    def _require_saved_file(path: Path) -> None:
+        try:
+            exists = path.is_file()
+        except OSError as error:
+            raise ContractError(
+                Error(
+                    code=ErrorCode.EXECUTION_FAILED,
+                    message=f"The project save completed, but checking its output failed: {error}",
+                    effect=MutationEffect.UNKNOWN,
+                )
+            ) from error
+        if not exists:
+            raise ContractError(
+                Error(
+                    code=ErrorCode.EXECUTION_FAILED,
+                    message="The save command completed without the requested project file.",
+                    effect=MutationEffect.UNKNOWN,
+                )
+            )
 
     @staticmethod
     def _input_path(path: Path) -> None:
@@ -399,8 +406,7 @@ class ResInsightSessionService:
 
     @staticmethod
     def _detach(slot: _Slot) -> None:
-        if slot.application is not None:
-            slot.application.disconnect()
+        application = slot.application
         assert slot.connection is not None
         if slot.connection.state != ConnectionState.DETACHED:
             slot.connection = slot.connection.transition(ConnectionState.DETACHED)
@@ -408,6 +414,17 @@ class ResInsightSessionService:
         slot.instance_lock = None
         slot.snapshot = None
         slot.project = None
+        if application is not None:
+            try:
+                application.disconnect()
+            except ContractError as error:
+                raise ContractError(
+                    Error(
+                        code=error.error.code,
+                        message="The connection is detached, but its client channel did not close.",
+                        effect=MutationEffect.UNKNOWN,
+                    )
+                ) from error
 
     def _terminate(self, slot: _Slot, request: CloseRequest, authorized: bool) -> None:
         connection = self._connection(slot)
