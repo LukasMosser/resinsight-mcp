@@ -1,46 +1,52 @@
 # Platform proof
 
-P01 records the first platform experiment on the selected Mac.
-The OPM run and native image experiment pass within their stated limits.
-ResInsight Python control remains unproved, so P01 stays open.
+P01's bounded platform evidence passes on the selected macOS 14.2.1 arm64 host.
+The custom ResInsight build, imported-well controls, OPM run, and native image experiment all have successful records.
+The [P01 issue](https://github.com/LukasMosser/resinsight-mcp/issues/2) and [PR](https://github.com/LukasMosser/resinsight-mcp/pull/22) record delivery and review.
+These experiments do not add an application adapter or establish support for other hosts.
 
 ## Evidence
 
-Each record distinguishes upstream source claims from observed runtime behavior.
+Each record distinguishes source findings from observed runtime behavior.
 The experiments stay outside the application package.
-They do not establish a complete engineering workflow.
+Their combined results do not establish a complete engineering workflow.
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
-| ResInsight with gRPC | The approved custom build is in progress. LLVM and Qt probes pass with Apple's C++ runtime. | [ResInsight source and host probes](platform-resinsight.md). |
-| OPM execution | Flow 2026.04 completes 120 report steps through 3,650 days. | [OPM run, versions, warnings, and input provenance](platform-opm.md). |
-| Native MCP image | An isolated Codex CLI model identifies a hidden random marker from one native image. | [Image experiment and observer record](platform-images.md). |
-| Case, view, and image export | Await the ResInsight build. | [Required controls](platform-resinsight.md#python-controls-found-in-source). |
-| Well edit and completion export | Await the ResInsight build. | [Required controls](platform-resinsight.md#python-controls-found-in-source). |
-| Native OPM Jobs API | Tagged source has internal controls but no matching Python bindings in the inspected paths. | [Capability table](platform-resinsight.md#native-opm-jobs). |
+| ResInsight with gRPC | Custom ResInsight 2026.09.0 builds and runs with the matching rips package. | [Build and runtime record](platform-resinsight.md#recorded-runtime-result). |
+| Owned launch and explicit attachment | The probe launches its own process, attaches through its assigned port, and closes only that process. | [Recorded controls](platform-resinsight.md#recorded-runtime-result). |
+| Case, view, and image export | SPE1 loads 300 active cells. PRESSURE and SGAS changes produce three reviewed PNGs. | [Case and image evidence](platform-resinsight.md#recorded-runtime-result). |
+| Well edit and completion export | The imported FIELD well passes the bounded perforation edit and three-cell COMPDAT comparison. | [Well evidence and limits](platform-resinsight.md#recorded-runtime-result). |
+| OPM execution | Flow 2026.04 completes 120 report steps through 3,650 days. | [OPM run and provenance](platform-opm.md). |
+| Native MCP image | An isolated Codex CLI model identifies a hidden random marker from one native image. | [Image experiment](platform-images.md). |
+| Component inventory | The record identifies installed packages, fetched source, runtime libraries, and build tools. | [Component evidence](https://github.com/LukasMosser/resinsight-mcp/blob/main/experiments/platform/resinsight/components.md). |
+| Native OPM Jobs API | Inspected source has internal controls without matching Python job bindings. | [Capability table](platform-resinsight.md#native-opm-jobs). |
 
-## Approved build
+## Selected build
 
 The host runs macOS 14.2.1 with Xcode 15.1 and Apple Clang 15.
 The official arm64 ResInsight bundle declares macOS 15.0 as its minimum and disables gRPC in its build workflow.
-The installed compiler and library also fail the required `std::format` probe.
+The installed Apple compiler and library fail the required `std::format` probe.
 
-The owner selected an isolated newer compiler and custom build on this Mac.
-The LLVM and Qt probes now pass with Apple's system C++ runtime and version-aware LLVM headers.
-The full build remains necessary before an actual application can prove the required Python calls.
+The owner selected an isolated LLVM 19.1.7 compiler and custom ResInsight build on this Mac.
+The selected configuration uses Qt 6.7.0, Apple's system C++ runtime, and LLVM headers with Apple availability checks.
+All 3,503 application build steps completed successfully in 48 minutes and 26 seconds.
+The selected upstream tests passed 66 tests across ten suites, with no failures or skips.
+These are bounded checks, not the full upstream suite.
 
-## Remaining acceptance
+## Acceptance boundaries
 
-The [P01 issue](https://github.com/LukasMosser/resinsight-mcp/issues/2) remains the work record.
-The [implementation plan](implementation-plan.md#p01-prove-the-macos-path) defines its full acceptance criteria.
-The lead must complete these steps before closing it:
+The [implementation plan](implementation-plan.md#p01-prove-the-macos-path) defines the acceptance scope.
+The successful imported-well route satisfies the bounded well-edit experiment.
+A separate modeled-well run returned empty trajectory arrays and stopped before completion export.
+That failure remains visible and does not establish a runtime FIELD-unit error.
 
-- Prove a ResInsight build with gRPC and a matching rips package.
-- Attach by explicit port and launch an owned instance.
-- Load the small OPM result, change its view, and export a fresh image.
-- Create a bounded well edit and record completion export behavior.
-- Complete the component inventory for the actual build.
+The completion proof compares actual exported COMPDAT records with the application API's three expected connections.
+The exporter also emitted an MSW file, but the experiment does not validate its full multisegment-well contents.
+No edited completion deck was simulated as part of this ResInsight control run.
 
-The image experiment proves the isolated Codex CLI path.
-It does not prove the connection in the existing Codex desktop task.
-The application observation work must name the client and versions that it actually tests.
+The image experiment proves native delivery through the isolated Codex CLI.
+It does not prove that delivery through the existing Codex desktop task.
+ResInsight snapshots were reviewed separately from that marker experiment.
+The custom application ran from its build directory with explicit Qt plugin configuration.
+No installer, portable bundle, or wider macOS support claim follows from this host result.

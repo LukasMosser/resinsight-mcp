@@ -1,10 +1,10 @@
 # Custom macOS build
 
 The owner approved this isolated build on the macOS 14.2.1 arm64 host.
-The compiler and Qt probes pass.
-All 103 native dependency packages are installed, and application configuration passes.
-The application build remains in progress.
-This record does not yet establish Python control of ResInsight.
+The compiler and Qt probes pass, and all 103 native dependency packages are installed.
+The application build completed all 3,503 steps in 48 minutes and 26 seconds with exit status 0.
+The selected upstream tests and imported-well Python controls also pass.
+These results apply to this host and configuration.
 
 ## Inputs
 
@@ -128,7 +128,40 @@ After successful configuration, the application build command is:
 ```
 
 The first [configuration log](evidence/application-configure-01.log) records the completed packages and gRPC failure.
-The [build command record](evidence/application-build-01-command.json) records the active application build.
-Its active log is `/private/tmp/resinsight-p01-build/logs/application-build-01.log`.
-The experiment must preserve final build logs and actual runtime evidence before P01 can close.
-The [control probe](controls.md) defines the next application acceptance work.
+The [build command record](evidence/application-build-01-command.json) records the application build.
+The [completed log](evidence/application-build-01.log) ends after all 3,503 steps.
+The [result](evidence/application-build-01-result.json) records exit status 0 from 11:16:50 through 12:05:16 UTC on September 8, 2026.
+That application build took 48 minutes and 26 seconds, excluding prerequisite installation and earlier dependency work.
+Warnings remain in the complete log.
+
+## Application checks
+
+The selected [upstream test command](evidence/application-unit-tests-command.json) exercises bounded grid, well geometry, and completion-related tests.
+Its [XML result](evidence/application-unit-tests.xml) records 66 tests across ten suites, with zero failures, errors, or skips.
+The [process result](evidence/application-unit-tests-result.json) records exit status 0.
+This is a selected test run, not the full upstream suite.
+A preliminary source count included two commented tests and overstated the executable count as 68.
+The runtime XML provides the authoritative count.
+
+The [linkage record](evidence/application-linkage.json) identifies an arm64 application with a macOS 14.2 deployment minimum.
+It records Apple's `/usr/lib/libc++.1.dylib` and system OpenGL framework.
+Qt framework dependencies report version 6.7.0 and resolve through the recorded `LC_RPATH` entries.
+The application also links the built resdata library, whose metadata reports version 2.4.0.
+The generic bundle version fields remain `1.0` and `1.0.0`, so runtime API and source records identify the application version.
+
+The [imported-03 command](evidence/controls-imported-03/command.json) runs the application directly from the build directory.
+Its explicit environment settings are `LC_ALL=en_US.UTF-8` and the selected Qt installation's `QT_PLUGIN_PATH`.
+The existing runtime search paths locate Qt and resdata.
+The experiment did not need installer creation or `macdeployqt` packaging to run on this prepared host.
+It does not establish a portable application bundle.
+
+The [control record](controls.md) documents successful owned launch, explicit-port attachment, case loading, result changes, snapshots, and a bounded imported-well edit.
+The application reports API version `2026.9.0`, with client version `2026.09.0` from rips 2026.9.0.1.
+The completion proof compares three exported COMPDAT records with API data.
+The additional MSW export is preserved without claiming full multisegment-well acceptance.
+
+Two failed imported attempts preserve a header parsing issue corrected with the documented `wellname:` form.
+The separate modeled route returned empty trajectory arrays and stopped before completion export.
+Its source unit concern remains separate from that observed failure.
+The [component inventory](components.md) records installed dependencies, fetched source, build tools, and license evidence.
+The [P01 PR](https://github.com/LukasMosser/resinsight-mcp/pull/22) records delivery and review.
