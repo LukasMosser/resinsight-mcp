@@ -865,7 +865,10 @@ wheels = [
 [[package]]
 name = "resinsight-mcp"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
+dependencies = [
+    { name = "pydantic" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -883,6 +886,7 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.13.5,<3" }]
 
 [package.metadata.requires-dev]
 dev = [
