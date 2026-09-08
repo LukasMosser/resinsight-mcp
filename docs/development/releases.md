@@ -2,7 +2,8 @@
 
 GitHub Releases holds published source versions and their release notes.
 The repository contains a workflow that creates draft source releases.
-It contains no application package or supported runtime release.
+The source includes shared contracts and durable workspace storage.
+It does not provide an MCP server or a supported simulator runtime release.
 
 ## Prepare a source release
 

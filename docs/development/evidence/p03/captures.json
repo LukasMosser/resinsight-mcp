@@ -1,0 +1,91 @@
+{
+  "source_commit": "56e006864a82999752baf4d89cc96c8c39894698",
+  "date": "2026-09-08",
+  "method": "Local strict MkDocs output served on loopback and captured with the Playwright browser",
+  "viewport": {
+    "width": 1440,
+    "height": 1800
+  },
+  "scale": "css",
+  "fullPage": false,
+  "browser_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "captures": [
+    {
+      "page": "workspaces",
+      "url": "http://127.0.0.1:8767/development/workspaces/",
+      "screenshot": "workspaces.png"
+    },
+    {
+      "page": "workspaces-clones",
+      "url": "http://127.0.0.1:8767/development/workspaces/#input-paths-and-immutable-clones",
+      "screenshot": "workspaces-clones.png"
+    },
+    {
+      "page": "workspaces-recovery",
+      "url": "http://127.0.0.1:8767/development/workspaces/#job-updates-and-explicit-recovery",
+      "screenshot": "workspaces-recovery.png"
+    },
+    {
+      "page": "workspaces-schema",
+      "url": "http://127.0.0.1:8767/development/workspaces/#publication-and-schema-policy",
+      "screenshot": "workspaces-schema.png"
+    },
+    {
+      "page": "home",
+      "url": "http://127.0.0.1:8767/",
+      "screenshot": "home.png"
+    },
+    {
+      "page": "development",
+      "url": "http://127.0.0.1:8767/development/",
+      "screenshot": "development.png"
+    },
+    {
+      "page": "local-setup",
+      "url": "http://127.0.0.1:8767/development/local-setup/",
+      "screenshot": "local-setup.png"
+    },
+    {
+      "page": "testing-and-review",
+      "url": "http://127.0.0.1:8767/development/testing-and-review/",
+      "screenshot": "testing-and-review.png"
+    },
+    {
+      "page": "architecture",
+      "url": "http://127.0.0.1:8767/development/architecture/",
+      "screenshot": "architecture.png"
+    },
+    {
+      "page": "implementation-plan",
+      "url": "http://127.0.0.1:8767/development/implementation-plan/",
+      "screenshot": "implementation-plan.png"
+    },
+    {
+      "page": "contracts",
+      "url": "http://127.0.0.1:8767/development/contracts/",
+      "screenshot": "contracts.png"
+    },
+    {
+      "page": "releases",
+      "url": "http://127.0.0.1:8767/development/releases/",
+      "screenshot": "releases.png"
+    },
+    {
+      "page": "workspaces-errors",
+      "url": "http://127.0.0.1:8767/development/workspaces/#errors",
+      "screenshot": "workspaces-errors.png"
+    },
+    {
+      "page": "contracts-workspace",
+      "url": "http://127.0.0.1:8767/development/contracts/#workspace-contract-additions",
+      "screenshot": "contracts-workspace.png"
+    },
+    {
+      "page": "implementation-p03",
+      "url": "http://127.0.0.1:8767/development/implementation-plan/#p03-store-workspaces-and-revisions",
+      "screenshot": "implementation-p03.png"
+    }
+  ],
+  "scope": "Selected upper-page and named-anchor viewports. This does not establish full-page layout, long code lines, or other viewport sizes.",
+  "console": "The browser session contains two GitHub latest-release API 404 messages. The repository has no release."
+}

@@ -1,0 +1,1 @@
+"""Public workspace acceptance tests."""

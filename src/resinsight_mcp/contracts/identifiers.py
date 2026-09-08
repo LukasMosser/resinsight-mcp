@@ -63,3 +63,7 @@ class ArtifactId(Identifier):
 
 class EditId(Identifier):
     prefix = "edit"
+
+
+class CheckpointId(Identifier):
+    prefix = "checkpoint"

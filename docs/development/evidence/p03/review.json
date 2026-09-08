@@ -1,0 +1,91 @@
+{
+  "source_commit": "56e006864a82999752baf4d89cc96c8c39894698",
+  "date": "2026-09-08",
+  "code_review": {
+    "reviewer": "Independent scope_review agent",
+    "scope": "Shared workspace contracts, SQLite transactions, file storage, typed records, public operations, integrated tests, and current documentation.",
+    "concerns": [
+      "duplicate behavior and sources of truth",
+      "branching and interface complexity",
+      "names and ownership",
+      "coupling and maintenance",
+      "public behavior and important failures",
+      "evidence scope"
+    ],
+    "resolved_findings": [
+      "Reject normalized file-versus-directory input path collisions.",
+      "Validate every recovery job snapshot before changing records or removing orphan files.",
+      "Permit optional SQLite journals to disappear before or after opening during normal concurrent commits.",
+      "Verify the workspace application marker and structured table, key, and session relationship metadata before accepting schema v1."
+    ],
+    "result": "No remaining material blockers in the combined implementation and documentation at the recorded source commit."
+  },
+  "acceptance_review": {
+    "reviewer": "Independent tooling agent, reviewed by root and scope_review",
+    "tests": {
+      "tests": 99,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "workspace_cases": 43
+    },
+    "evidence": [
+      "Fresh Python processes reopen a stored parent revision, clone, and saved-project checkpoint.",
+      "Independent process writers preserve both sessions and reject one stale competing job update.",
+      "A process interrupted during artifact input leaves no readable artifact manifest.",
+      "A producer stream failure cannot supply the input artifact required to save a completed revision.",
+      "A changed clone preserves parsed parent input values and its saved lineage.",
+      "Unsafe links, missing files, incompatible schemas, and unsupported input relationships produce visible failures.",
+      "Both new schema regression cases fail before the reviewed fix and pass afterward."
+    ]
+  },
+  "visual_review": [
+    {
+      "reviewer": "Independent scope_review agent",
+      "files": [
+        "workspaces.png",
+        "workspaces-clones.png",
+        "workspaces-recovery.png",
+        "workspaces-schema.png"
+      ],
+      "result": "The intended overview, clone/checkpoint, recovery, and schema content is visible and legible without material layout problems."
+    },
+    {
+      "reviewer": "Independent tooling agent",
+      "files": [
+        "home.png",
+        "development.png",
+        "local-setup.png",
+        "testing-and-review.png"
+      ],
+      "result": "Content and navigation are readable. The local setup formula renders with the expected mathematical notation and subscripts."
+    },
+    {
+      "reviewer": "Independent docs agent",
+      "files": [
+        "architecture.png",
+        "implementation-plan.png",
+        "contracts.png",
+        "releases.png"
+      ],
+      "result": "Visible current scope, navigation, and tables are legible without material overlap or clipping."
+    },
+    {
+      "reviewer": "Root agent",
+      "files": [
+        "workspaces-errors.png",
+        "contracts-workspace.png",
+        "implementation-p03.png"
+      ],
+      "result": "The complete workspace error table, shared contract additions, and P03 plan section are visible and legible."
+    }
+  ],
+  "limits": [
+    "Visual checks cover only the named 1440-by-1800 viewports. Long code lines require horizontal scrolling, and uncaptured page regions were not visually reviewed.",
+    "The installed example reopens through a second store object in one process. The maintained acceptance suite separately establishes fresh-process reopening.",
+    "Tests use real temporary SQLite databases and files on the selected host. They do not establish power-loss behavior or network filesystem support.",
+    "The trusted workspace owner can change files outside the API. The store does not hash or parse artifact content, decode images, or verify saved ResInsight project contents.",
+    "The caller must stop its job controller before selecting recovery jobs. The store does not inspect or signal processes.",
+    "No ResInsight, MCP server, OPM, or Julia adapter is implemented or exercised by P03."
+  ]
+}

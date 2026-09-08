@@ -18,6 +18,11 @@ class ErrorCode(StrEnum):
     RENDER_FAILED = "render_failed"
     NOT_FOUND = "not_found"
     EXECUTION_FAILED = "execution_failed"
+    CONFLICT = "conflict"
+    INVALID_PATH = "invalid_path"
+    STORAGE_FAILED = "storage_failed"
+    CORRUPT_WORKSPACE = "corrupt_workspace"
+    UNSUPPORTED_SCHEMA = "unsupported_schema"
 
 
 class MutationEffect(StrEnum):

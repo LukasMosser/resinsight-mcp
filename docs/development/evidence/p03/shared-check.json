@@ -1,0 +1,27 @@
+{
+  "source_commit": "56e006864a82999752baf4d89cc96c8c39894698",
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "scripts/check.py"
+  ],
+  "cwd": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/resinsight-mcp-uv-cache",
+    "LC_ALL": "en_US.UTF-8",
+    "PYTEST_ADDOPTS": "-vv --junitxml=/private/tmp/resinsight-p03-tests.xml"
+  },
+  "exit_code": 0,
+  "log": "shared-check.log",
+  "test_report": "tests.xml",
+  "summary": {
+    "tests": 99,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "workspace_cases": 43
+  },
+  "scope": "Ruff checks and formatting, ty, all maintained tests, and the strict MkDocs build. Verbose pytest and JUnit output record the executed behavior cases."
+}

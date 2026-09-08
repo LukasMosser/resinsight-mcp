@@ -2,7 +2,7 @@
 
 The development environment uses Python 3.12 and uv.
 A lockfile records the dependency versions for this environment.
-The project installs its Python contracts package from the checkout.
+The project installs its Python contracts and workspace package from the checkout.
 Its runtime requirement is `pydantic>=2.13.5,<3`, with the exact compatible version recorded in the lockfile.
 The package does not start an MCP server or connect to external applications.
 
@@ -29,7 +29,7 @@ uv run --locked python scripts/check.py
 ```
 
 The shared command runs Ruff, ty, pytest, and the strict documentation build.
-To run only the maintained contract tests, use:
+To run only the maintained library tests, use:
 
 ```sh
 uv run --locked pytest
@@ -37,6 +37,8 @@ uv run --locked pytest
 
 These tests exercise library behavior without starting ResInsight or a simulator.
 The [contract guide](contracts.md) explains records, interfaces, and serialization.
+The [workspace guide](workspaces.md) includes an example using a temporary local directory.
+Workspace operations require a trusted local macOS or Linux filesystem with supported directory and synchronization operations.
 The [P01 record](platform-proof.md) contains the separate external runtime evidence.
 
 To preview the documentation, start the local server:
