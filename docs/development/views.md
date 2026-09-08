@@ -1,6 +1,6 @@
 # View control boundary
 
-P06 adds complete native view edits and fresh image observations.
+P06 lets an MCP-enabled agent apply native view settings and inspect fresh image responses.
 The implementation separates session ownership, native view control, observation storage, and MCP transport.
 The [user guide](../views.md) describes current operations and outcomes.
 
@@ -54,10 +54,21 @@ Make sure that this operation succeeds before exposing the view to callers.
 Pass the bindings to the existing `create_server()` or asynchronous `serve_stdio()` entry point.
 These bindings expose `view_apply`, `view_render`, and current-scene observation retrieval.
 
+## Model provider boundary
+
+Application control, rendering, and MCP transport run locally in this configuration.
+A configured API client can send prompts, tool results, metadata, and rendered images to its model provider.
+The product assumes that users have appropriate data sharing agreements for that provider.
+This data boundary does not create an additional approval step in view operations.
+The P06 observer uses the existing authenticated OpenAI/Codex account with public SPE1-derived images and required view metadata.
+
 ## Native patch requirements
 
 The adapter requires a rebuilt application and the generated RIPS package from that build.
 Matching the released package version alone does not establish these capabilities.
+The [source patch](evidence/p06/native/view-controls.patch) targets ResInsight commit `197d58a750dd0bc243025b3939ab2a8a01a2c709`.
+Apply it before building with the [proved macOS configuration](platform-resinsight.md#approved-build-path).
+The [native record](p06-evidence.md#native-controls) identifies the tested source and generated client.
 The native extension exposes these supported APIs:
 
 - `validate_view_controls()` rejects unsupported native control states before mutation.
@@ -82,7 +93,7 @@ Readback uses `actual_minimum` and `actual_maximum`, rather than treating stored
 Display filters support the main grid and the collection's `AND` mode.
 Contract indices are zero-based and inclusive, while native range starts are one-based.
 Each filter specifies `INCLUDE` or `EXCLUDE`.
-Selected modeled wells resolve against project well-path addresses and remain provenance metadata.
+Selected imported or modeled wells resolve against project well path addresses and remain provenance metadata.
 Selection does not claim a visibility API or a simulator edit.
 
 ## Confirmed scenes and capture

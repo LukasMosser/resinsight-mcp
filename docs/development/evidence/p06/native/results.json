@@ -1,0 +1,178 @@
+[
+  {
+    "name": "ordinary view validation",
+    "passed": true
+  },
+  {
+    "name": "ordinary orthographic switch keeps scene extent",
+    "passed": true,
+    "height": 27908.7142823107
+  },
+  {
+    "name": "explicit projection readback",
+    "passed": true,
+    "fov": 55.0,
+    "height": 400.0
+  },
+  {
+    "name": "repeated explicit projection call",
+    "passed": true
+  },
+  {
+    "name": "invalid field of view 0.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view 180.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view -1.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view nan",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view inf",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height 0.0",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height -1.0",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height nan",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height inf",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid arguments leave projection unchanged",
+    "passed": true
+  },
+  {
+    "name": "inactive category legend readback is safe",
+    "passed": true,
+    "minimum": "inf",
+    "maximum": "inf"
+  },
+  {
+    "name": "preexisting legend settings",
+    "passed": true
+  },
+  {
+    "name": "fixed legend readback",
+    "passed": true,
+    "actual_minimum": 0.12345,
+    "actual_maximum": 0.9876500000000001
+  },
+  {
+    "name": "direct result update creates per-property legends",
+    "passed": true
+  },
+  {
+    "name": "display filter created",
+    "passed": true
+  },
+  {
+    "name": "range filter validation",
+    "passed": true
+  },
+  {
+    "name": "display filter changes visibility",
+    "passed": true,
+    "visible_cells": 1
+  },
+  {
+    "name": "other view filters unchanged",
+    "passed": true
+  },
+  {
+    "name": "snapshot file count",
+    "passed": true
+  },
+  {
+    "name": "snapshot dimensions",
+    "passed": true,
+    "size": [
+      320,
+      240
+    ]
+  },
+  {
+    "name": "display filter removed",
+    "passed": true
+  },
+  {
+    "name": "unsupported displayed filter validation fails",
+    "passed": true,
+    "error": "View controls support only displayed cell range filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "data filter wrapper exists",
+    "passed": true
+  },
+  {
+    "name": "active data filter validation fails",
+    "passed": true,
+    "error": "View controls do not support active property or data filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "active data filter camera change fails",
+    "passed": true,
+    "error": "View controls do not support active property or data filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "rejected camera change leaves state unchanged",
+    "passed": true
+  },
+  {
+    "name": "validation succeeds after test filter removal",
+    "passed": true
+  },
+  {
+    "name": "missing viewer reports unavailable",
+    "passed": true
+  },
+  {
+    "name": "missing viewer validation fails",
+    "passed": true,
+    "error": "View controls require an open view",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "missing viewer projection fails",
+    "passed": true,
+    "error": "View controls require an open view",
+    "error_type": "RipsError"
+  }
+]

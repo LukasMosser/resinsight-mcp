@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ],
+  "started_at": "2026-09-08T16:28:11Z",
+  "sandbox": "require_escalated for Qt processor detection",
+  "native_commit": "949c4d3cb279b36ae500477f8a02405413ae5d79",
+  "log": "/private/tmp/resinsight-p06-native-build.log",
+  "completed_at": "2026-09-08T16:59:04Z",
+  "exit_code": 0
+}

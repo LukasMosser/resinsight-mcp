@@ -16,6 +16,7 @@ theme:
 nav:
   - Home: index.md
   - ResInsight sessions: sessions.md
+  - ResInsight views: views.md
   - MCP operations: mcp.md
   - Local jobs: jobs.md
   - Security: security.md
@@ -37,6 +38,8 @@ nav:
       - Session evidence: development/p04-evidence.md
       - MCP transport: development/mcp.md
       - MCP evidence: development/mcp-evidence.md
+      - View control: development/views.md
+      - View evidence: development/p06-evidence.md
       - Model imports: development/model-imports.md
       - Model import evidence: development/p07-evidence.md
       - Job implementation: development/jobs.md

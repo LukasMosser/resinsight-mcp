@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "/private/tmp/resinsight-p06-native-smoke.py"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "QT_PLUGIN_PATH": "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/plugins",
+    "PYTHONPATH": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python"
+  },
+  "native_executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "grid": "/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.EGRID",
+  "log": "/private/tmp/resinsight-p06-native-smoke.log",
+  "sandbox": "require_escalated for GUI and Qt processor detection",
+  "native_commit": "949c4d3cb279b36ae500477f8a02405413ae5d79",
+  "completed_at": "2026-09-08T16:59:04Z",
+  "exit_code": 0
+}

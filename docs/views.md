@@ -1,14 +1,19 @@
 # ResInsight views
 
-The view service applies complete display settings and returns a new image with its observed context.
+An MCP-enabled agent can apply complete display settings and inspect the returned native image.
+MCP is the Model Context Protocol for tool access.
+A configured server exposes `view_apply`, `view_render`, and `observation_get` for this workflow.
 A scene version identifies one confirmed set of display settings.
-Every request identifies its model revision, stored result, case, view, and scene version.
+Each apply or render request identifies its model revision, stored result, case, view, and scene version.
 View edits do not change simulator inputs or run a simulator.
 
 ## Requirements
 
+The server must have session and view services supplied by its host integration.
+The default workspace launcher does not configure these services.
 Use the rebuilt ResInsight application and its matching generated RIPS client.
 RIPS is the Python client for ResInsight remote calls.
+
 The unmodified released client does not provide all required view capabilities.
 The [developer guide](development/views.md) lists the required native APIs.
 The [session guide](sessions.md) describes application connections and process checks.
@@ -16,7 +21,27 @@ The [session guide](sessions.md) describes application connections and process c
 A trusted application loader must bind the loaded case to its stored result before view operations.
 This binding is an application integration responsibility.
 The MCP tools do not create this binding from caller claims.
-MCP is the Model Context Protocol for tool access.
+
+## Agent workflow
+
+Call `project_inspect` with the explicit session identifier.
+Select the case, view, and optional wells from the returned object references.
+Use the model revision and result context provided by the trusted host setup.
+Send complete settings to `view_apply` and inspect its returned image and edit receipt.
+For a visual comparison, keep the legend bounds fixed while changing the report time or camera.
+
+Use the returned observation context with `view_render` to capture the same scene again.
+Use `observation_get` to retrieve an existing observation that still represents the current native scene.
+These operations inspect and change the display of an existing result.
+They do not import simulator outputs, create result lineage, or execute a simulation.
+
+## Data boundary
+
+ResInsight and the local MCP server execute on the workstation.
+The configured agent client can use a remote model provider for inference.
+That client can send prompts, tool results, metadata, and rendered images to its provider.
+Local application execution does not imply local model inference.
+Users operate under appropriate data sharing agreements with their configured model provider.
 
 ## Supported settings
 
@@ -38,7 +63,7 @@ The returned context records the actual native legend bounds.
 Display filters use zero-based, inclusive I, J, and K bounds on the main grid.
 The collection uses `AND`, with an explicit include or exclude choice for each range.
 
-`selected_wells` records resolved modeled-well identities.
+`selected_wells` records resolved well path identities.
 It does not change well visibility, geometry, or simulator inputs.
 The selected view must belong to the selected case.
 Linked views, controlled views, and unsupported native filter states prevent view control.
@@ -64,9 +89,12 @@ With the view service bound, retrieval also requires the observation's native sc
 ## Failures and recovery
 
 A changed native scene makes earlier observations stale.
-Reconnecting, replacing the project, or using another result can also invalidate object references.
 A stale observation cannot serve as proof of the current scene.
-Apply a new complete request using current references and the latest confirmed scene version.
+If only the scene changed, apply complete settings using current references and the latest confirmed scene version.
+
+Reconnecting or replacing the project invalidates object references and trusted case bindings.
+Resolve fresh references and let the trusted loader bind the result again.
+For the newly referenced view, start with scene version `0`.
 
 A rejected request returns a typed failure.
 `invalid_model` reports inconsistent requested metadata or filter bounds.

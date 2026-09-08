@@ -1,0 +1,27 @@
+{
+  "base_commit": "197d58a750dd0bc243025b3939ab2a8a01a2c709",
+  "native_commit": "949c4d3cb279b36ae500477f8a02405413ae5d79",
+  "patch": "/private/tmp/resinsight-p06-native-view-controls.patch",
+  "files": [
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp",
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp",
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h",
+    "ApplicationLibCode/ProjectDataModel/Rim3dView.cpp",
+    "ApplicationLibCode/ProjectDataModel/Rim3dView.h",
+    "ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimGridView.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h",
+    "ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp",
+    "ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h",
+    "Fwk/AppFwk/cafViewer/cafViewer.cpp",
+    "Fwk/AppFwk/cafViewer/cafViewer.h"
+  ],
+  "generated_api": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python/rips/generated/generated_classes.py",
+  "python_package_root": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python",
+  "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "build_log": "/private/tmp/resinsight-p06-native-build.log",
+  "smoke_log": "/private/tmp/resinsight-p06-native-smoke.log",
+  "smoke_script": "/private/tmp/resinsight-p06-native-smoke.py",
+  "results": "/private/tmp/resinsight-p06-native-smoke/results.json"
+}

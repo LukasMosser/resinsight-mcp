@@ -1,0 +1,166 @@
+import json
+import math
+import sys
+from pathlib import Path
+
+import rips
+from rips.pdmobject import PdmObjectBase
+from PIL import Image
+
+EXE = '/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+GRID = '/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.EGRID'
+OUT = Path('/private/tmp/resinsight-p06-native-smoke')
+OUT.mkdir(exist_ok=True)
+results = []
+
+def check(name, condition, **details):
+    results.append({'name': name, 'passed': bool(condition), **details})
+    assert condition, name
+
+def refresh(instance, view_id):
+    return next(view for view in instance.project.views() if view.id == view_id)
+
+def reject(name, call):
+    try:
+        call()
+    except Exception as error:
+        check(name, True, error=str(error), error_type=type(error).__name__)
+    else:
+        check(name, False)
+
+instance = rips.Instance.launch(resinsight_executable=EXE)
+try:
+    case = instance.project.load_case(GRID)
+    view = case.create_view()
+    other = view.clone()
+    other_filters = len(other.range_filters().cell_filters())
+    view.validate_view_controls()
+    check('ordinary view validation', True)
+    view.apply_cell_result('DYNAMIC_NATIVE', 'PRESSURE')
+    result = view.cell_result()
+    result.result_type = 'DYNAMIC_NATIVE'
+    result.result_variable = 'SGAS'
+    result.update()
+    result.result_variable = 'PRESSURE'
+    result.update()
+    view.set_time_step(0)
+    view = refresh(instance, view.id)
+    view.perspective_projection = False
+    view.update()
+    view = refresh(instance, view.id)
+    check('ordinary orthographic switch keeps scene extent', view.actual_camera_parallel_projection_height > 1.0,
+          height=view.actual_camera_parallel_projection_height)
+    view.set_camera_projection(False, 55.0, 400.0)
+    view = refresh(instance, view.id)
+    check('explicit projection readback', math.isclose(view.actual_camera_field_of_view_y_degrees, 55.0)
+          and math.isclose(view.actual_camera_parallel_projection_height, 400.0),
+          fov=view.actual_camera_field_of_view_y_degrees, height=view.actual_camera_parallel_projection_height)
+    view.set_camera_projection(False, 55.0, 800.0)
+    view.set_camera_projection(False, 55.0, 400.0)
+    view.set_camera_projection(False, 55.0, 400.0)
+    view = refresh(instance, view.id)
+    check('repeated explicit projection call', math.isclose(view.actual_camera_parallel_projection_height, 400.0))
+    for value in (0.0, 180.0, -1.0, float('nan'), float('inf')):
+        reject(f'invalid field of view {value}', lambda value=value: view.set_camera_projection(False, value, 400.0))
+    for value in (0.0, -1.0, float('nan'), float('inf')):
+        reject(f'invalid parallel height {value}', lambda value=value: view.set_camera_projection(False, 55.0, value))
+    view = refresh(instance, view.id)
+    check('invalid arguments leave projection unchanged', math.isclose(view.actual_camera_field_of_view_y_degrees, 55.0)
+          and math.isclose(view.actual_camera_parallel_projection_height, 400.0))
+    inactive_legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'SGAS')
+    inactive_legend.mapping_mode = 'Category'
+    inactive_legend.update()
+    inactive_legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'SGAS')
+    check('inactive category legend readback is safe', inactive_legend.actual_minimum == inactive_legend.actual_maximum
+          and inactive_legend.actual_minimum >= sys.float_info.max,
+          minimum=str(inactive_legend.actual_minimum), maximum=str(inactive_legend.actual_maximum))
+    legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'PRESSURE')
+    legend.mapping_mode = 'Log10Continuous'
+    legend.center_legend_around_zero = True
+    legend.update()
+    check('preexisting legend settings', str(legend.mapping_mode) == 'Log10Continuous' and legend.center_legend_around_zero)
+    legend.mapping_mode = 'LinearContinuous'
+    legend.center_legend_around_zero = False
+    legend.precision = 15
+    legend.range_type = 'USER_DEFINED_MAX_MIN'
+    legend.update()
+    legend.user_defined_min = 0.12345
+    legend.user_defined_max = 0.98765
+    legend.update()
+    view = refresh(instance, view.id)
+    legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'PRESSURE')
+    check('fixed legend readback', str(legend.range_type) == 'USER_DEFINED_MAX_MIN'
+          and math.isclose(legend.actual_minimum, 0.12345, rel_tol=1e-14)
+          and math.isclose(legend.actual_maximum, 0.98765, rel_tol=1e-14)
+          and str(legend.mapping_mode) == 'LinearContinuous' and not legend.center_legend_around_zero,
+          actual_minimum=legend.actual_minimum, actual_maximum=legend.actual_maximum)
+    check('direct result update creates per-property legends',
+          {'PRESSURE', 'SGAS'}.issubset({item.result_variable_usage for item in view.cell_result().result_var_legend_definition_list()}))
+    collection = view.range_filters()
+    collection.active = True
+    collection.combine_filter_mode = 'AND'
+    collection.update()
+    cell_filter = collection.add_new_object(rips.CellRangeFilter, 'CellFilters')
+    cell_filter.name = 'P06 smoke range'
+    cell_filter.start_index_i = 1
+    cell_filter.start_index_j = 1
+    cell_filter.start_index_k = 1
+    cell_filter.cell_count_i = 1
+    cell_filter.cell_count_j = 1
+    cell_filter.cell_count_k = 1
+    cell_filter.filter_type = 'INCLUDE'
+    cell_filter.grid_index = 0
+    cell_filter.update()
+    view = refresh(instance, view.id)
+    filters = view.range_filters().cell_filters()
+    check('display filter created', len(filters) == 1 and filters[0].name == 'P06 smoke range')
+    view.validate_view_controls()
+    check('range filter validation', True)
+    check('display filter changes visibility', sum(view.visible_cells(0)) == 1,
+          visible_cells=sum(view.visible_cells(0)))
+    other = refresh(instance, other.id)
+    check('other view filters unchanged', len(other.range_filters().cell_filters()) == other_filters)
+    view.export_snapshot(export_folder=str(OUT), prefix='p06-smoke-', width=320, height=240)
+    images = list(OUT.glob('p06-smoke-*.png'))
+    check('snapshot file count', len(images) == 1)
+    with Image.open(images[0]) as image:
+        check('snapshot dimensions', image.size == (320, 240), size=image.size)
+    filters[0].delete()
+    view = refresh(instance, view.id)
+    check('display filter removed', not view.range_filters().cell_filters())
+    unsupported = view.range_filters().add_new_object(rips.CellPropertyFilter, 'CellFilters')
+    reject('unsupported displayed filter validation fails', view.validate_view_controls)
+    unsupported.delete()
+    view.validate_view_controls()
+    prior_checkable_ids = {item.address() for item in view.descendants(rips.CheckableNamedObject)}
+    combined = case.data_filter_collection().add_combined_filter('P06 unsupported filter', 'AND')
+    combined.add_property_filter('PRESSURE', 'DYNAMIC_NATIVE')
+    wrappers = [item for item in view.descendants(rips.CheckableNamedObject) if item.address() not in prior_checkable_ids]
+    check('data filter wrapper exists', len(wrappers) == 1)
+    wrappers[0].set_value("is_checked", True)
+    wrappers[0].set_visible(True)
+    wrappers[0].update()
+    reject('active data filter validation fails', view.validate_view_controls)
+    reject('active data filter camera change fails', lambda: view.set_camera_projection(False, 60.0, 500.0))
+    view = refresh(instance, view.id)
+    check('rejected camera change leaves state unchanged', math.isclose(view.actual_camera_field_of_view_y_degrees, 55.0)
+          and math.isclose(view.actual_camera_parallel_projection_height, 400.0))
+    combined.delete()
+    view.validate_view_controls()
+    check('validation succeeds after test filter removal', True)
+finally:
+    instance.exit()
+    (OUT / 'results.json').write_text(json.dumps(results, indent=2) + '\n')
+
+instance = rips.Instance.launch(resinsight_executable=EXE, console=True)
+try:
+    case = instance.project.load_case(GRID)
+    view = case.create_view()
+    check('missing viewer reports unavailable', view.actual_camera_field_of_view_y_degrees == 0
+          and view.actual_camera_parallel_projection_height == 0)
+    reject('missing viewer validation fails', view.validate_view_controls)
+    reject('missing viewer projection fails', lambda: view.set_camera_projection(False, 55.0, 400.0))
+finally:
+    instance.exit()
+    (OUT / 'results.json').write_text(json.dumps(results, indent=2) + '\n')
+print(json.dumps(results, indent=2))

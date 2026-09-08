@@ -8,6 +8,8 @@ Application output goes to standard error.
 The supplied launcher manages durable workspace records and reads saved observations.
 Application control and fresh rendering require explicitly supplied service implementations.
 The launcher does not configure those services.
+With session and view services supplied, an agent can inspect project objects, apply view settings, and receive fresh native images.
+The [view guide](views.md) describes that configured workflow and its trusted result setup.
 
 ## Start a workspace server
 
