@@ -70,7 +70,7 @@ class Trial:
         result = OperationResult[dict[str, Any]].model_validate_json(response.content[0].text)
         assert response.structuredContent == result.model_dump(mode="json")
         assert not response.isError, response.model_dump_json()
-        return result_type.model_validate(value(result))
+        return result_type.model_validate_json(json.dumps(value(result)))
 
     async def request[T: Record](
         self, client: ClientSession, tool: str, request: Record, result_type: type[T]

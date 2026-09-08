@@ -9,8 +9,8 @@ It does not provide an MCP transport or change simulator input revisions.
 
 `service.py` owns session coordination and application context generations.
 `_backend.py` defines the internal `Application` and `ApplicationFactory` protocols.
-`_rips.py` implements remote calls and host process verification.
-The public `rips` module exposes `RipsApplicationFactory` without requiring optional backend imports when importing the service.
+`rips.py` implements remote calls and host process verification.
+Importing the service alone does not import the optional native backend.
 The shared contracts remain independent of `rips` and `psutil`.
 
 `WorkspaceStore` owns durable session records.
@@ -24,6 +24,7 @@ The adapter checks the listening endpoint through `lsof` and verifies process li
 Attachment uses an explicit localhost endpoint without scanning for another application.
 The application and `rips` major and minor versions must match.
 Launch records application output in a separate log and uses the application's reported port.
+Each launched application has its own process group, separate from the MCP server process group.
 
 ## Serialization and reconnects
 
@@ -50,6 +51,7 @@ The service retires the connection before channel cleanup, preserving detachment
 Case observations include the native address, name, case identifier, and file path.
 View observations include the native address and view identifier.
 Well observations include the native address and name.
+Native names can be empty, and the service preserves them.
 The adapter obtains these fields through supported `rips` interfaces.
 
 The service compares each observation with its previous snapshot.
