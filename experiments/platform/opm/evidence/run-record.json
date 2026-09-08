@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-08",
+  "repository_base_commit": "06c5b9529a07abc602561f00712b4b05feb9fc20",
+  "host": {
+    "os": "macOS",
+    "version": "14.2.1",
+    "architecture": "arm64"
+  },
+  "docker_desktop": "4.67.0",
+  "docker_engine": "29.3.1",
+  "flow": "2026.04",
+  "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+  "platform": "linux/arm64",
+  "cpu_limit": 2,
+  "memory_limit": "2g",
+  "network": "none",
+  "input_mount": "read-only",
+  "output_mount": "read-write",
+  "input": "input/SPE1CASE1.DATA",
+  "source_commit": "0ea62974f24d70fc2b3e30d6aae8b76ef000dac1",
+  "source_path": "tests/SPE1CASE1.DATA",
+  "model_change": "WELLDIMS changes from 2 1 1 2 to 4 1 1 4 for the four scheduled wells.",
+  "exit_status": 0,
+  "active_cells": 300,
+  "fluid_phases": 3,
+  "completed_report_steps": 120,
+  "final_simulated_days": 3650,
+  "final_report_date": "2024-12-29",
+  "timesteps": 123,
+  "reported_simulation_seconds": 1.46,
+  "warnings": [
+    "Unsupported NOECHO and ECHO keywords",
+    "Unhandled DATE/DAY, DATE/MONTH, and DATE/YEAR summary keywords",
+    "WELSPECS is unhandled for restart output"
+  ],
+  "acceptance": "Flow completes the full schedule and writes results. ResInsight loading and independent numerical comparison remain separate work."
+}
