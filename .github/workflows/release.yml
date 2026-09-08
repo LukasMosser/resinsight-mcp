@@ -1,0 +1,82 @@
+name: Draft source release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag on main, such as v0.1.0
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      commit: ${{ steps.tag.outputs.commit }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate source tag
+        id: tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] || { echo 'Use a tag such as v0.1.0.' >&2; exit 1; }
+          commit=$(git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}")
+          git merge-base --is-ancestor "$commit" origin/main
+          git checkout --detach "$commit"
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: '0.12.10'
+          enable-cache: true
+      - name: Install locked tools
+        run: uv sync --locked
+      - name: Match the project version
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          uv run --locked python - <<'PY'
+          import os
+          import tomllib
+          from pathlib import Path
+          version = tomllib.loads(Path("pyproject.toml").read_text())["project"]["version"]
+          if os.environ["RELEASE_TAG"] != f"v{version}":
+              raise SystemExit("The tag must match the project version.")
+          PY
+      - name: Run shared checks
+        run: uv run --locked python scripts/check.py
+
+  draft:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          SOURCE_COMMIT: ${{ needs.validate.outputs.commit }}
+        run: |
+          remote_commit=$(gh api "repos/$GH_REPO/commits/$RELEASE_TAG" --jq .sha)
+          [[ "$remote_commit" == "$SOURCE_COMMIT" ]] || { echo 'The tag changed after validation.' >&2; exit 1; }
+          cat > release-notes.md <<'NOTES'
+          This draft contains the repository source files.
+          The repository does not yet provide a ResInsight MCP server or an installable application package.
+          No package is published to PyPI.
+          NOTES
+          gh release create "$RELEASE_TAG" --verify-tag --draft --title "$RELEASE_TAG source snapshot" --notes-file release-notes.md
