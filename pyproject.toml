@@ -18,6 +18,8 @@ dev = [
   "pymdown-extensions>=10.16",
   "mcp>=1.28,<2",
   "pillow>=12,<13",
+  "rips==2026.9.0.1",
+  "grpcio-tools>=1.83.1",
 ]
 
 [tool.uv]
