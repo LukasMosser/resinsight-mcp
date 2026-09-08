@@ -25,6 +25,7 @@ from resinsight_mcp.contracts.errors import (
     Error,
     ErrorCode,
     Failure,
+    MutationEffect,
     OperationResult,
     Success,
 )
@@ -70,6 +71,7 @@ def _validate(entrypoint: Path, output: Path) -> ModelSummary:
         process = subprocess.run(
             [
                 sys.executable,
+                "-I",
                 "-m",
                 "resinsight_mcp.models.imports._worker",
                 str(entrypoint),
@@ -118,40 +120,69 @@ class OpmImportService:
             depth_direction=DepthDirection.POSITIVE_DOWN,
             datum=request.datum,
         )
-        with TemporaryDirectory(prefix="opm-import-") as directory:
-            root = Path(directory).resolve()
-            snapshot = root / "inputs"
-            names, edges = collect(request.source_root, request.entrypoint, snapshot)
-            summary = _validate(snapshot / request.entrypoint, root / "validation.json")
-            sources = {}
-            for name in names:
-                with (snapshot / name).open("rb") as stream:
-                    sources[name] = self._write(
-                        request.session_id, name, stream, ArtifactKind.INPUT
-                    )
-            revision = ModelRevision(
-                model=ModelRef(session_id=request.session_id, revision_id=RevisionId.new()),
-                inputs=ModelInputs(
-                    artifacts=tuple(ref.artifact_id for ref in sources.values()),
-                    entrypoint=sources[request.entrypoint].artifact_id,
-                ),
-                unit_system=UnitSystem.FIELD,
-                coordinates=coordinates,
+        model = ModelRef(session_id=request.session_id, revision_id=RevisionId.new())
+        publication_started = False
+        try:
+            with TemporaryDirectory(prefix="opm-import-") as directory:
+                root = Path(directory).resolve()
+                snapshot = root / "inputs"
+                names, edges = collect(request.source_root, request.entrypoint, snapshot)
+                summary = _validate(snapshot / request.entrypoint, root / "validation.json")
+                sources = {}
+                for name in names:
+                    with (snapshot / name).open("rb") as stream:
+                        publication_started = True
+                        sources[name] = self._write(
+                            request.session_id, name, stream, ArtifactKind.INPUT
+                        )
+                revision = ModelRevision(
+                    model=model,
+                    inputs=ModelInputs(
+                        artifacts=tuple(ref.artifact_id for ref in sources.values()),
+                        entrypoint=sources[request.entrypoint].artifact_id,
+                    ),
+                    unit_system=UnitSystem.FIELD,
+                    coordinates=coordinates,
+                )
+                record = ImportRecord(
+                    model=revision.model,
+                    source_entrypoint=request.entrypoint,
+                    sources=sources,
+                    includes=edges,
+                    summary=summary,
+                )
+                record_ref = self._write(
+                    request.session_id,
+                    f"imports/{revision.model.revision_id}.json",
+                    io.BytesIO(record.model_dump_json(indent=2).encode("utf-8")),
+                    ArtifactKind.LOG,
+                )
+                _value(self._store.save_revision(revision))
+        except (ContractError, OSError, UnicodeError, ValidationError) as cause:
+            if not publication_started:
+                raise
+            error = (
+                cause.error
+                if isinstance(cause, ContractError)
+                else Error(
+                    code=ErrorCode.STORAGE_FAILED
+                    if isinstance(cause, OSError)
+                    else ErrorCode.INVALID_MODEL,
+                    message=str(cause),
+                )
             )
-            record = ImportRecord(
-                model=revision.model,
-                source_entrypoint=request.entrypoint,
-                sources=sources,
-                includes=edges,
-                summary=summary,
-            )
-            record_ref = self._write(
-                request.session_id,
-                f"imports/{revision.model.revision_id}.json",
-                io.BytesIO(record.model_dump_json(indent=2).encode("utf-8")),
-                ArtifactKind.LOG,
-            )
-            _value(self._store.save_revision(revision))
+            raise ContractError(
+                error.model_copy(
+                    update={
+                        "effect": MutationEffect.UNKNOWN,
+                        "message": (
+                            f"{error.message} Import publication may be incomplete for "
+                            f"session {model.session_id}, revision {model.revision_id}. "
+                            "Inspect the session artifacts and revision before retrying."
+                        ),
+                    }
+                )
+            ) from cause
         return ImportReceipt(
             prepared=PreparedModel(revision=revision, backend=Backend.OPM_FLOW),
             record=record_ref,

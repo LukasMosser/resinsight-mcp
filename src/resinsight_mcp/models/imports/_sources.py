@@ -18,6 +18,7 @@ MAX_FILES = 64
 MAX_DEPTH = 16
 MAX_CHARACTERS = 2_000_000
 MAX_EXPANDED_FILES = 256
+MAX_REPETITIONS = 200_000
 _DIRECTIVE = re.compile(
     r"^\s*(INCLUDE|PATHS|IMPORT|GDFILE|PYINPUT|PYACTION|END|ENDINC|SKIP|SKIP100|SKIP300|ENDSKIP)\b",
     re.I,
@@ -115,6 +116,17 @@ def _check_collision(name: str, names: list[str]) -> None:
             raise invalid("Input paths must not collide across supported filesystems.")
 
 
+def _count_repetitions(lines: tuple[str, ...]) -> int:
+    total = 0
+    for line in lines:
+        for match in re.finditer(r"([0-9]+)\*", line):
+            digits = match[1].lstrip("0") or "0"
+            if len(digits) > len(str(MAX_REPETITIONS)):
+                raise invalid("Repeated input values exceed 200,000 entries.")
+            total += int(digits)
+    return total
+
+
 @dataclass
 class _Collector:
     root: Path
@@ -139,9 +151,7 @@ class _Collector:
         lines = _clean_lines(content)
         self.children[name] = include_paths(lines)
         self.sizes[name] = len(content)
-        self.repetitions[name] = sum(
-            int(match[1]) for line in lines for match in re.finditer(r"([0-9]+)\*", line)
-        )
+        self.repetitions[name] = _count_repetitions(lines)
         self.names.append(name)
         self.active.add(name)
         destination = self.target / name
@@ -195,7 +205,7 @@ def _check_expansion(
         expanded_files += 1
         expanded_size += sizes[name]
         expanded_repetitions += repetitions[name]
-        if expanded_repetitions > 200_000:
+        if expanded_repetitions > MAX_REPETITIONS:
             raise invalid("Repeated input values exceed 200,000 entries.")
         if expanded_files > MAX_EXPANDED_FILES or expanded_size > MAX_CHARACTERS:
             raise invalid("Expanded includes exceed 256 file visits or 2,000,000 characters.")
