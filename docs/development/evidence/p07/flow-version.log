@@ -1,0 +1,4 @@
+["/Applications/Docker.app/Contents/Resources/bin/docker", "run", "--rm", "--pull=never", "--platform", "linux/arm64", "--cpus", "2", "--memory", "2g", "--network", "none", "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1", "flow", "--version"]
+flow 2026.04
+
+Exit status: 0

@@ -17,8 +17,11 @@ uv sync --extra imports
 
 The service requires exactly [`opm==2025.10`](https://pypi.org/project/opm/2025.10/).
 It reports parser failures and never silently substitutes a parser or version.
-The 2026.4 macOS wheel failed to load `cjson` and `fmt` dependencies on macOS 14 despite its platform tag.
+The 2026.4 macOS wheel references external `cjson` and `fmt` libraries.
+Its import failed on macOS 14 because `cjson` was missing.
+The loader also reported a macOS 26 build despite the wheel's macOS 14 tag.
 The explicit tested pin avoids version substitution.
+
 This choice does not establish general compatibility with OPM Flow 2026.04.
 The [earlier Flow trial](platform-opm.md) and P07 evidence describe bounded simulator results separately.
 
@@ -44,17 +47,25 @@ def value(result):
 store = SqliteWorkspaceStore.create(Path("import-workspace").resolve())
 session = value(store.create_session(Session(session_id=SessionId.new(), name="SPE1")))
 service = OpmImportService(store)
-receipt = value(service.import_model(ImportRequest(
-    session_id=session.session_id,
-    source_root=Path("tests/models/imports/data/spe1").resolve(),
-    entrypoint="SPE1.DATA",
-    datum="SPE1 local datum",
-)))
+receipt = value(
+    service.import_model(
+        ImportRequest(
+            session_id=session.session_id,
+            source_root=Path("tests/models/imports/data/spe1").resolve(),
+            entrypoint="SPE1.DATA",
+            datum="SPE1 local datum",
+        )
+    )
+)
 print(receipt.summary.model_dump())
-prepared = value(service.prepare(PreparationRequest(
-    revision=receipt.prepared.revision,
-    backend=Backend.OPM_FLOW,
-)))
+prepared = value(
+    service.prepare(
+        PreparationRequest(
+            revision=receipt.prepared.revision,
+            backend=Backend.OPM_FLOW,
+        )
+    )
+)
 print(prepared.revision.model)
 ```
 
@@ -73,7 +84,7 @@ The service does not rewrite a supplied deck.
 Each source artifact retains its original text and root-relative path.
 The revision identifies every source artifact and its entrypoint.
 
-A separate JSON log artifact lives at `imports/<revision_id>.json`.
+A separate JSON log artifact uses the logical name `imports/<revision_id>.json`.
 It records the model reference, entrypoint path, source artifact references, include edges, and summary.
 Its `changes` array is empty because import makes no model edits.
 The record itself is not a simulator input.

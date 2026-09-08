@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/private/tmp/resinsight-mcp-uv-cache/archive-v0/WtcWMnLojDg2TwTJPhQ_b/lib/python3.12/site-packages/opm/io/__init__.py", line 1, in <module>
+    from .parser import *
+  File "/private/tmp/resinsight-mcp-uv-cache/archive-v0/WtcWMnLojDg2TwTJPhQ_b/lib/python3.12/site-packages/opm/io/parser/__init__.py", line 1, in <module>
+    from opm._common import action
+  File "/private/tmp/resinsight-mcp-uv-cache/archive-v0/WtcWMnLojDg2TwTJPhQ_b/lib/python3.12/site-packages/opm/_common.py", line 12, in <module>
+    from .opmcommon_python import action
+ImportError: dlopen(/private/tmp/resinsight-mcp-uv-cache/archive-v0/WtcWMnLojDg2TwTJPhQ_b/lib/python3.12/site-packages/opm/opmcommon_python.cpython-312-darwin.so, 0x0002): Library not loaded: /opt/homebrew/opt/cjson/lib/libcjson.1.dylib
+  Referenced from: <2844755C-70D5-33EE-AEAB-752EAC2CC093> /private/tmp/resinsight-mcp-uv-cache/archive-v0/WtcWMnLojDg2TwTJPhQ_b/lib/python3.12/site-packages/opm/opmcommon_python.cpython-312-darwin.so (built for macOS 26.0 which is newer than running OS)
+  Reason: tried: '/opt/homebrew/opt/cjson/lib/libcjson.1.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/opt/cjson/lib/libcjson.1.dylib' (no such file), '/opt/homebrew/opt/cjson/lib/libcjson.1.dylib' (no such file)

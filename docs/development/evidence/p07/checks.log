@@ -1,0 +1,50 @@
+Implementation and native acceptance commit: 8d135b62841aba086ac65ae36b53dfcd7f06c7d7
+Documentation integration HEAD: a1059f3403399b364e49a4ea6e57e5761e23bc52
+uv 0.9.18 (Homebrew 2025-12-16)
+Python 3.12.13
+ruff 0.16.6
+ty 0.0.79 (b4cd79275 2026-09-07)
+pytest 9.1.1
+pre-commit 4.6.2
+
+Required command: UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache LC_ALL=en_US.UTF-8 uv run --locked python scripts/check.py
+
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+110 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/.venv/bin/python3 -m pytest -q
+........................................................................ [ 35%]
+........................................................................ [ 70%]
+............................................................             [100%]
+204 passed in 16.66s
+
+Run: mkdocs build --strict
+
+[31m │  ⚠  Warning from the Material for MkDocs team[0m
+[31m │[0m
+[31m │[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,
+[31m │[0m  will introduce backward-incompatible changes, including:
+[31m │[0m
+[31m │  × [0mAll plugins will stop working – the plugin system has been removed
+[31m │  × [0mAll theme overrides will break – the theming system has been rewritten
+[31m │  × [0mNo migration path exists – existing projects cannot be upgraded
+[31m │  × [0mClosed contribution model – community members can't report bugs
+[31m │  × [0mCurrently unlicensed – unsuitable for production use
+[31m │[0m
+[31m │[0m  Our full analysis:
+[31m │[0m
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/site
+INFO    -  Documentation built in 0.63 seconds
+
+Command: uv run --locked pre-commit run --all-files
+Run repository checks....................................................Passed
