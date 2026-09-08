@@ -41,7 +41,7 @@ GitHub Pages remains unpublished until the owner chooses public publication.
 | Model scope | Small Cartesian or layered grid with a tested physics template | P07 records supported keywords, phases, units, and controls. |
 | OPM execution | A dedicated adapter with explicit job control | P01 compares native Jobs coverage before this choice becomes final. |
 | Julia result transfer | Explicit transfer of cell data and curves | P14 must prove cell order, units, rate signs, and report times. |
-| Distribution | Source first, with component license records | GPL-3.0-or-later is proposed in the foundation PR for owner review. |
+| Distribution | Source first, with component license records | The owner selected GPL-3.0-or-later for original project files. |
 
 The published macOS build instructions disable gRPC.
 This is a feasibility risk for the chosen platform, not proof that every macOS build lacks it.
