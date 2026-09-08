@@ -119,3 +119,5 @@ Each decision must record its environment, evidence, limits, and effect on the p
 
 The decision gates require runtime fixtures as implementation begins.
 Source inspection alone cannot close a runtime decision gate.
+The first real integration demonstration targets macOS.
+This target does not establish working native support.
