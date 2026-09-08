@@ -1,0 +1,26 @@
+{
+  "source_commit": "b4f7b296678ba569be40e89cc4f1d11da08b03f8",
+  "method": "Local strict MkDocs output rendered in headless Chrome with separate temporary profiles",
+  "scope": "Upper page viewports, not complete page layout",
+  "captures": [
+    {
+      "page": "platform-opm",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/final-platform-opm-profile",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/evidence/documentation-review-opm-final/platform-opm.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-opm/index.html"
+      ],
+      "pid": 62692,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.08
+    }
+  ]
+}

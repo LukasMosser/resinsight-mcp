@@ -1,0 +1,8 @@
+{
+  "source_commit": "b4f7b296678ba569be40e89cc4f1d11da08b03f8",
+  "scope": "Upper 1440 by 1800 OPM page viewport, not complete page layout",
+  "lead_review": "The corrected result-loading and bounded-query statements are legible. The visible content preserves the simulator warnings and lack of independent numerical validation.",
+  "independent_review": "No material findings in the six supporting document corrections. Links point to established build and control records. The fresh OPM capture is readable and shows the corrected result and limits clearly.",
+  "process_limit": "The browser wrote a fresh screenshot, then exceeded its 30-second cleanup deadline. The capture process sent SIGTERM to the owned browser and waited for exit. The browser returned 0 after termination. Its warnings remain in the saved log.",
+  "acceptance_limit": "No application behavior changed. The existing P01 runtime evidence remains the acceptance record. This capture does not establish lower-page layout."
+}
