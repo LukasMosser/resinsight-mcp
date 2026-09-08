@@ -44,7 +44,7 @@ All three final trials exited successfully and passed the stronger gate.
 
 ## Maintained protocol checks
 
-The maintained suite contains 143 tests before integration with P04 runtime tests.
+The recorded P05 suite contained 143 tests before integration with P04 runtime tests.
 The MCP checks cover typed discovery, explicit session resolution, durable reconnects, stable errors, and native content.
 They also cover applied edits with failed observations, unrelated renderer output, and service ownership across protocol connections.
 Eighteen acceptance-gate tests reject unusable images, mismatched metadata, and incorrect final-event ordering.
@@ -67,6 +67,19 @@ The recorded image environment used Python 3.12.13, MCP 1.30.0, Pillow 12.3.0, a
 It used pytest 9.1.1, Ruff 0.16.6, ty 0.0.79, and pre-commit 4.6.2.
 The host was macOS 14.2.1 on arm64.
 Repository CI also runs the shared command on Linux and macOS before merge.
+
+## Combined session integration
+
+P05 was rebased onto P04 merge commit `414129da6c7e7ceab0c47b3135c59556305aacaa`.
+The rebase preserved P04's implementation, shared contracts, optional runtime extra, development dependencies, and current session documentation.
+The [P04 evidence record](p04-evidence.md) documents real application acceptance through P05 transport commit `2842d91`.
+Two applications retained separate saved projects after the SDK client and server exited.
+Fresh connections inspected both projects, and detach left both processes running.
+The trial applications were later closed explicitly with verified process identities.
+
+That trial establishes bounded session continuity through the actual transport.
+The blind controls above separately establish synthetic native-image interpretation by the model.
+Neither record establishes P06 rendering acceptance.
 
 ## Runtime installation
 

@@ -17,7 +17,7 @@ That contract extends the existing `ProcessController` without changing its sign
 
 The agreed optional `resinsight` extra contains rips and psutil for P04.
 An extra selects optional runtime dependencies.
-Its dependency commit remains separate from the MCP dependency change.
+P04 provides that extra independently of the MCP runtime dependencies.
 P05 does not import the optional ResInsight runtime.
 Future simulator and model tools require their own package implementations and reviewed catalog additions.
 
@@ -40,6 +40,7 @@ asyncio.run(serve_stdio(Bindings(workspaces=store)))
 ```
 
 To bind application operations, supply `sessions=service` with a `SessionService` implementation.
+The [session implementation guide](sessions.md) describes the provided ResInsight service and native factory.
 To bind fresh images, supply `renderer=renderer` with a `Renderer` implementation.
 The caller must supply services that share the same workspace store.
 This injection point does not establish external application behavior.
@@ -95,7 +96,8 @@ Service implementations must serialize application mutations as their shared con
 Closing a protocol connection does not call close, detach, cancel, or reconcile.
 A new stdio process opens the same workspace without changing persisted job states.
 Application continuity across processes depends on the session service lifecycle and explicit reconnection policy.
-P05 transport tests do not prove real ResInsight process survival.
+The maintained P05 fixture tests do not prove real ResInsight process survival.
+The separate [P04 acceptance trial](p04-evidence.md) proves two real applications survived shutdown through this transport.
 
 The stdio runner reserves a separate output stream for the SDK.
 It redirects ordinary process stdout to stderr while serving requests.

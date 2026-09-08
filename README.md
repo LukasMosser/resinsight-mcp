@@ -4,6 +4,7 @@ This Python 3.12 library provides shared contracts, local workspace storage, and
 Contracts define the data and interfaces that components share.
 MCP is the Model Context Protocol for tool access.
 The optional ResInsight adapter launches or attaches to verified local application processes.
+
 The package includes a local MCP server and a workspace launcher.
 Application tools require an explicitly supplied session service.
 Fresh rendering requires a renderer implementation, and simulator adapters remain separate work.

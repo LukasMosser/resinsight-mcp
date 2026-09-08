@@ -4,6 +4,7 @@ The repository implements shared contracts, workspace storage, and ResInsight se
 The [contract guide](contracts.md) defines their current behavior and conventions.
 Its seven protocols cover sessions, process control, workspace storage, rendering, model preparation, jobs, and result import.
 The [workspace guide](workspaces.md) describes the implemented SQLite record store and immutable artifact files.
+
 The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
 The [MCP transport](mcp.md) binds shared services through typed operations and preserves native image content.
 Rendering, simulator adapters, and job supervision remain separate work packages.
@@ -26,7 +27,6 @@ The remaining runtime responsibilities are:
 
 - A view adapter obtains fresh rendered observations.
 - A simulator adapter prepares, starts, and monitors runs.
-
 
 A backend is the simulator selected for a run.
 The service must report unsupported backend capabilities before submission.
