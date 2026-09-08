@@ -7,6 +7,7 @@ There is no application server or installable application release in this reposi
 The foundation provides a locked Python tool environment, code review rules, and documentation.
 GitHub Actions runs repository checks and builds the documentation.
 Developer plans describe the proposed application separately from current behavior.
+Read the [project documentation](https://lukasmosser.github.io/resinsight-mcp/) on GitHub Pages.
 
 ## Development
 

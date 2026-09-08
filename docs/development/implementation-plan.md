@@ -30,7 +30,7 @@ The first release excludes these areas:
 
 A gate is evidence required before dependent work starts.
 The owner selected macOS for the first real demonstration.
-GitHub Pages remains unpublished until the owner chooses public publication.
+The owner approved a public repository and documentation on GitHub Pages.
 
 | Decision | Proposed choice | Evidence or owner input |
 | --- | --- | --- |
@@ -354,7 +354,7 @@ Publish the release after the owner accepts the documented support boundary.
 
 Acceptance requires installation in a clean environment and the complete documented demonstration.
 User pages must describe only implemented behavior and known limits.
-Publish GitHub Pages only after the owner makes the separate visibility decision.
+Publish documentation updates through the existing GitHub Pages workflow.
 
 ## Evidence and review
 

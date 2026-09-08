@@ -41,10 +41,10 @@ The release description must distinguish tested combinations from proposed suppo
 
 ## Documentation publication
 
-Documentation remains unpublished at the owner's request.
-GitHub Actions builds the site, but deployment requires the repository variable `PAGES_ENABLED` to equal `true`.
-The owner plans to decide on public repository access before publication.
+GitHub Pages hosts the [project documentation](https://lukasmosser.github.io/resinsight-mcp/).
+The `Documentation` workflow builds and deploys the site from `main`.
+Deployment requires the repository variable `PAGES_ENABLED` to equal `true`.
 
-After that decision, enable GitHub Pages with GitHub Actions as its source.
-Set `PAGES_ENABLED=true` and run the `Documentation` workflow from `main`.
-Make sure that the deployed pages and LaTeX notation display correctly.
+To publish the current version again, run the `Documentation` workflow from `main`.
+Make sure that the workflow succeeds and the deployed pages display correctly.
+Include LaTeX notation in the browser inspection.
