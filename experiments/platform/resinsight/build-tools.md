@@ -7,7 +7,7 @@ The work does not change Homebrew packages or configure ResInsight or vcpkg.
 
 ## Versions and sources
 
-The owner selected CMake 3.31.6, Ninja 1.13.0, and GNU Bison 3.8.2.
+The experiment selected CMake 3.31.6, Ninja 1.13.0, and GNU Bison 3.8.2.
 The [ResInsight Mac workflow](https://github.com/OPM/ResInsight/blob/v2026.09.0/.github/workflows/ResInsightMac.yml) requires Bison newer than 2.5 for the Thrift dependency.
 Its Homebrew installation step is replaced here by an isolated source build.
 The selected Bison release exceeds that minimum.
