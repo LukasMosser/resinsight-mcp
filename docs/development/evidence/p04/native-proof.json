@@ -1,0 +1,60 @@
+{
+  "mode": "native",
+  "python_prefix": "/private/tmp/resinsight-p04-package/native",
+  "import_path": "/private/tmp/resinsight-p04-package/native/lib/python3.12/site-packages/resinsight_mcp/resinsight/sessions/service.py",
+  "time": "2026-09-08T15:26:40.913534+00:00",
+  "versions": {
+    "rips": "2026.9.0.1",
+    "grpcio": "1.83.1",
+    "pydantic_core": "2.46.5",
+    "pydantic": "2.13.5",
+    "resinsight-mcp": "0.1.0",
+    "annotated-types": "0.8.0",
+    "typing-inspection": "0.4.4",
+    "typing_extensions": "4.16.0",
+    "psutil": "7.2.2",
+    "protobuf": "7.36.1"
+  },
+  "guide_project": "/private/tmp/resinsight-p04-package/guide-example.rsp",
+  "guide_connection": {
+    "context": {
+      "session_id": "session_cd5f0bc8aa204f01adca58954df83c79",
+      "connection_id": "connection_527cb6eadae74f4d9a63df0698392a31",
+      "project_generation": 0
+    },
+    "endpoint": {
+      "host": "127.0.0.1",
+      "port": 54724
+    },
+    "ownership": "owned",
+    "state": "ready",
+    "process": {
+      "pid": 50493,
+      "start_marker": "1788881201.977056"
+    }
+  },
+  "guide_cleanup": "Verified test process terminated.",
+  "real_attached_projects": [
+    {
+      "process": {
+        "pid": 41208,
+        "start_marker": "1788880209.332985"
+      },
+      "objects": [
+        "P04 first",
+        "View 0"
+      ]
+    },
+    {
+      "process": {
+        "pid": 41301,
+        "start_marker": "1788880212.664119"
+      },
+      "objects": [
+        "P04 second",
+        "View 0"
+      ]
+    }
+  ],
+  "result": "Native extra ran the documented example and inspected both retained applications."
+}

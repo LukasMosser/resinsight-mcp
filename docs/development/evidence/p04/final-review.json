@@ -1,0 +1,25 @@
+{
+  "time": "2026-09-08T15:30:12.115155+00:00",
+  "source_commit": "09c0ceb510ad5b59ec327c0666e1c74305708637",
+  "repository_checks": {
+    "tests": 129,
+    "ruff": "passed",
+    "ty": "passed",
+    "mkdocs_strict": "passed",
+    "linux": "passed",
+    "macos": "passed",
+    "ci_run": "https://github.com/LukasMosser/resinsight-mcp/actions/runs/34244884271"
+  },
+  "package": "Built wheel from source commit; base import and native guide execution passed in separate fresh environments.",
+  "review": "Independent source, test, native evidence, and browser reviews completed. Four lifecycle regressions failed before fixes and passed afterward.",
+  "visuals": {
+    "viewport": [
+      1440,
+      1800
+    ],
+    "browser": "Chrome 152",
+    "replacement_source_commit": "f1ac76d3271f44e5e75f0c2b3ef8f95ffddd28a9",
+    "replacement_review": "The lead and independent reviewer inspected sessions-example.png, contracts.png, and sessions-package.png after a successful local HTTP check.",
+    "scope": "Reviewed captured viewports, not a responsive-layout or full-page link audit. Header transitions were settled before replacement captures. Native frames were separately inspected."
+  }
+}

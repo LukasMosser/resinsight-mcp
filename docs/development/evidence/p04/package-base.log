@@ -1,0 +1,13 @@
+Using CPython 3.12.13 interpreter at: .venv/bin/python
+Creating virtual environment at: /private/tmp/resinsight-p04-package/base
+Activate with: source /private/tmp/resinsight-p04-package/base/bin/activate
+Using Python 3.12.13 environment at: /private/tmp/resinsight-p04-package/base
+Resolved 6 packages in 168ms
+Prepared 1 package in 7ms
+Installed 6 packages in 10ms
+ + annotated-types==0.8.0
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-p04-package/resinsight_mcp-0.1.0-py3-none-any.whl)
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
