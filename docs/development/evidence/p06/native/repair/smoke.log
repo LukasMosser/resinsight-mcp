@@ -1,0 +1,53 @@
+qt.qpa.fonts: Populating font family aliases took 64 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+[
+  {
+    "name": "hidden camera fields retain scripting readback",
+    "passed": true
+  },
+  {
+    "name": "hidden legend fields retain scripting readback",
+    "passed": true,
+    "actual_minimum": 0.12345,
+    "actual_maximum": 0.9876500000000001
+  },
+  {
+    "name": "master linked-view validation rejects",
+    "passed": true,
+    "error": "View controls do not support linked or controlled views"
+  },
+  {
+    "name": "master linked-view camera update rejects",
+    "passed": true,
+    "error": "View controls do not support linked or controlled views"
+  },
+  {
+    "name": "master rejected calls preserve camera",
+    "passed": true
+  },
+  {
+    "name": "controlled linked-view validation rejects",
+    "passed": true,
+    "error": "View controls do not support linked or controlled views"
+  },
+  {
+    "name": "controlled linked-view camera update rejects",
+    "passed": true,
+    "error": "View controls do not support linked or controlled views"
+  },
+  {
+    "name": "controlled rejected calls preserve camera",
+    "passed": true
+  },
+  {
+    "name": "unlinked controlled view accepts validation",
+    "passed": true
+  },
+  {
+    "name": "unlinked master accepts validation",
+    "passed": true
+  },
+  {
+    "name": "unlinked explicit camera update succeeds",
+    "passed": true
+  }
+]

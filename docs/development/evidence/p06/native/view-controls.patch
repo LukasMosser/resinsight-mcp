@@ -99,7 +99,7 @@ index 143c5ad..aacd1b9 100644
  
      void connectToFilterUpdates( RimCellFilter* filter );
 diff --git a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
-index 3707783..c5112a6 100644
+index 3707783..b5a1386 100644
 --- a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
 +++ b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
 @@ -27,7 +27,6 @@
@@ -110,20 +110,22 @@ index 3707783..c5112a6 100644
  #include "Rim2dIntersectionView.h"
  #include "Rim3dWellLogCurve.h"
  #include "RimAnnotationCollection.h"
-@@ -134,6 +133,12 @@ Rim3dView::Rim3dView()
+@@ -134,6 +133,14 @@ Rim3dView::Rim3dView()
      m_cameraPointOfInterestProxy.registerSetMethod( this, &Rim3dView::setCameraPointOfInterest );
  
      CAF_PDM_InitScriptableField( &isPerspectiveView, "PerspectiveProjection", true, "Perspective Projection" );
 +    CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraFieldOfViewYDegrees, "ActualCameraFieldOfViewYDegrees", "Actual Camera Field of View Y Degrees" );
 +    m_actualCameraFieldOfViewYDegrees.registerGetMethod( this, &Rim3dView::actualCameraFieldOfViewYDegrees );
 +    m_actualCameraFieldOfViewYDegrees.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraFieldOfViewYDegrees.uiCapability()->setUiHidden( true );
 +    CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraParallelProjectionHeight, "ActualCameraParallelProjectionHeight", "Actual Camera Parallel Projection Height" );
 +    m_actualCameraParallelProjectionHeight.registerGetMethod( this, &Rim3dView::actualCameraParallelProjectionHeight );
 +    m_actualCameraParallelProjectionHeight.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraParallelProjectionHeight.uiCapability()->setUiHidden( true );
  
      double defaultScaleFactor = preferences->defaultScaleFactorZ();
      CAF_PDM_InitScriptableField( &m_scaleZ, "GridZScale", defaultScaleFactor, "Z Scale", "", "Scales the scene in the Z direction", "" );
-@@ -1630,6 +1635,16 @@ QList<caf::PdmOptionItemInfo> Rim3dView::calculateValueOptions( const caf::PdmFi
+@@ -1630,6 +1637,16 @@ QList<caf::PdmOptionItemInfo> Rim3dView::calculateValueOptions( const caf::PdmFi
  //--------------------------------------------------------------------------------------------------
  ///
  //--------------------------------------------------------------------------------------------------
@@ -223,7 +225,7 @@ index 0b02e0c..006e64f 100644
  
      m_surfaceVizModel = new cvf::ModelBasicList;
 diff --git a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
-index 1da3e90..e493a77 100644
+index 1da3e90..7722139 100644
 --- a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
 +++ b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
 @@ -50,6 +50,8 @@
@@ -270,7 +272,7 @@ index 1da3e90..e493a77 100644
                         "UserDefinedMin",
                         0.0,
                         "Min",
-@@ -185,8 +187,15 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+@@ -185,8 +187,17 @@ RimRegularLegendConfig::RimRegularLegendConfig()
  
      CAF_PDM_InitFieldNoDefault( &m_categoryColorMode, "CategoryColorMode", "Category Mode" );
  
@@ -279,15 +281,17 @@ index 1da3e90..e493a77 100644
 +    CAF_PDM_InitScriptableFieldNoDefault( &m_actualMinimum, "ActualMinimum", "Actual Minimum" );
 +    m_actualMinimum.registerGetMethod( this, &RimRegularLegendConfig::actualMinimum );
 +    m_actualMinimum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMinimum.uiCapability()->setUiHidden( true );
 +    CAF_PDM_InitScriptableFieldNoDefault( &m_actualMaximum, "ActualMaximum", "Actual Maximum" );
 +    m_actualMaximum.registerGetMethod( this, &RimRegularLegendConfig::actualMaximum );
 +    m_actualMaximum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMaximum.uiCapability()->setUiHidden( true );
      resultVariableName.uiCapability()->setUiHidden( true );
 +    resultVariableName.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
  
      m_linDiscreteScalarMapper = new cvf::ScalarMapperDiscreteLinear;
      m_logDiscreteScalarMapper = new cvf::ScalarMapperDiscreteLog;
-@@ -201,7 +210,7 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+@@ -201,7 +212,7 @@ RimRegularLegendConfig::RimRegularLegendConfig()
      m_scalarMapperLegend    = new caf::OverlayScalarMapperLegend( standardFont );
      m_categoryLegend        = new caf::CategoryLegend( standardFont, m_categoryMapper.p() );
  
@@ -296,7 +300,7 @@ index 1da3e90..e493a77 100644
  
      updateFieldVisibility();
      updateLegend();
-@@ -600,6 +609,24 @@ void RimRegularLegendConfig::setTickNumberFormat( caf::NumberFormatType numberFo
+@@ -600,6 +611,24 @@ void RimRegularLegendConfig::setTickNumberFormat( caf::NumberFormatType numberFo
  //--------------------------------------------------------------------------------------------------
  ///
  //--------------------------------------------------------------------------------------------------
