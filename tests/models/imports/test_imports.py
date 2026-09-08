@@ -132,6 +132,8 @@ def test_import_preserves_lineage_and_prepares_stored_inputs_after_reopen(
         ("includes/schedule.inc", "100000 1* 9014", "100000 2*"),
         ("includes/schedule.inc", "WCONPROD\n 'PROD' 'OPEN' 'ORAT' 20000 4* 1000 /\n/", ""),
         ("includes/schedule.inc", "'PROD' 10 10 3 3", "'PROD' 10 10 4 4"),
+        ("includes/schedule.inc", "20000 4* 1000", "20000 -100 3* 1000"),
+        ("includes/schedule.inc", "1 1 /", "0 1 /"),
     ],
 )
 def test_invalid_model_leaves_no_saved_artifacts_or_jobs(
@@ -208,3 +210,22 @@ def test_repeated_include_expansion_is_bounded(
         (source / f"level{level}.inc").write_text(f"INCLUDE\n 'level{level + 1}.inc' /\n" * 2)
     (source / "level9.inc").write_text("")
     assert "Expanded includes" in rejected(store, request_model)
+
+
+def test_unclosed_include_quotes_return_a_clear_failure(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    replace(request_model.source_root, "SPE1.DATA", "'includes/grid.inc' /", '"broken /')
+    assert "quotes" in rejected(store, request_model)
+
+
+def test_open_well_with_shut_completion_is_rejected_before_opm_can_close_it(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    replace(
+        request_model.source_root,
+        "includes/schedule.inc",
+        "'PROD' 10 10 3 3 'OPEN'",
+        "'PROD' 10 10 3 3 'SHUT'",
+    )
+    assert "OPEN completions" in rejected(store, request_model)
