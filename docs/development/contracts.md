@@ -19,7 +19,7 @@ P04 implements application lifecycle and project operations through [ResInsightS
 
 | Protocol | Main responsibility and operations |
 | --- | --- |
-| `ProcessController` | Launch, attach, and close application connections under trusted process ownership. |
+| <code style="white-space: nowrap">ProcessController</code> | Launch, attach, and close application connections under trusted process ownership. |
 | `SessionService` | Extend process control with durable session lookup, runtime connections, and explicit project operations. |
 | `WorkspaceStore` | Store session records, revisions, artifacts, jobs, results, observations, and checkpoints, with explicit recovery. |
 | `Renderer` | Render a fresh image with actual view context. |

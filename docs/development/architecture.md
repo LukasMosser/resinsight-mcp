@@ -1,11 +1,11 @@
 # Architecture
 
-The repository implements shared contracts, typed component boundaries, and local workspace storage as a Python library.
+The repository implements shared contracts, workspace storage, and ResInsight session and project operations as a Python library.
 The [contract guide](contracts.md) defines their current behavior and conventions.
-Its six protocols cover process control, workspace storage, rendering, model preparation, jobs, and result import.
+Its seven protocols cover sessions, process control, workspace storage, rendering, model preparation, jobs, and result import.
 The [workspace guide](workspaces.md) describes the implemented SQLite record store and immutable artifact files.
-The remaining runtime responsibilities on this page are planned.
-No application session service, external adapter, job supervisor, or MCP server is implemented yet.
+The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
+Rendering, simulator adapters, job supervision, and production MCP transport remain separate work packages.
 
 The [scope review](scope-review.md) records external evidence and open questions.
 
@@ -18,10 +18,11 @@ The simulator performs the numerical calculation.
 The workspace store already preserves engineering sessions, model revisions, artifacts, and run-related records.
 It does not control application processes or parse simulator inputs.
 
-The planned runtime responsibilities are:
+The session service already controls application connections, ownership, project operations, and object reference validity.
+Its observed change detection has explicit [limits](sessions.md#project-observations).
+The remaining runtime responsibilities are:
 
-- A session registry records application connections and process ownership.
-- A ResInsight adapter controls the application and obtains observations.
+- A view adapter obtains fresh rendered observations.
 - A simulator adapter prepares, starts, and monitors runs.
 - An MCP interface exposes bounded operations and native image content.
 
@@ -124,6 +125,7 @@ Each decision must record its environment, evidence, limits, and effect on the p
 | Headless rendering | Fresh 3D observations on the intended deployment environment. |
 
 The completed [P01 experiments](platform-proof.md) provide bounded evidence for the selected macOS build, imported-well edit, OPM run, and native image path.
-They do not establish complete session isolation, project lifecycle behavior, adapters, or general simulator support.
+The [P04 record](p04-evidence.md) separately establishes bounded session and project lifecycle results.
+These records do not establish general simulator support or complete external change detection.
 The remaining decision gates require runtime fixtures as their implementations begin.
 Source inspection and protocol declarations alone cannot close a runtime decision gate.

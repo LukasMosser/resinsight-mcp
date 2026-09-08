@@ -2,7 +2,7 @@
 
 GitHub Releases holds published source versions and their release notes.
 The repository contains a workflow that creates draft source releases.
-The source includes shared contracts and durable workspace storage.
+The source includes shared contracts, durable workspace storage, and optional ResInsight session and project operations.
 It does not provide an MCP server or a supported simulator runtime release.
 
 ## Prepare a source release

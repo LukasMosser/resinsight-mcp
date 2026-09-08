@@ -29,7 +29,7 @@ Application output goes to separate launch log files.
 ## Create, save, and detach
 
 This example creates a workspace, launches an application, saves its project, and detaches the connection.
-Replace the three absolute paths with locations on your host.
+Replace the absolute paths with locations on your host.
 The workspace path must not exist, and its parent directory must exist.
 The project output directory must exist.
 Detaching leaves the application running.
@@ -37,7 +37,11 @@ Detaching leaves the application running.
 ```python
 from pathlib import Path
 
-from resinsight_mcp.contracts.errors import ContractError, Failure, OperationResult
+from resinsight_mcp.contracts.errors import (
+    ContractError,
+    Failure,
+    OperationResult,
+)
 from resinsight_mcp.contracts.identifiers import SessionId
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.sessions import (
@@ -57,19 +61,27 @@ def require[T](result: OperationResult[T]) -> T:
 
 
 workspace_root = Path("/absolute/path/new-workspace")
-executable = Path("/absolute/path/ResInsight.app/Contents/MacOS/ResInsight")
+app_root = Path("/absolute/path/ResInsight.app")
+executable = app_root / "Contents/MacOS/ResInsight"
 project_path = Path("/absolute/path/projects/example.rsp")
 store = SqliteWorkspaceStore.create(workspace_root)
-factory = RipsApplicationFactory(log_directory=workspace_root / "application-logs")
+factory = RipsApplicationFactory(
+    log_directory=workspace_root / "application-logs",
+)
 service = ResInsightSessionService(store, factory)
-session = require(service.create_session(Session(session_id=SessionId.new(), name="Example")))
-connection = require(
-    service.launch(LaunchRequest(session_id=session.session_id, executable=executable))
+record = Session(session_id=SessionId.new(), name="Example")
+session = require(service.create_session(record))
+launch_request = LaunchRequest(
+    session_id=session.session_id,
+    executable=executable,
 )
+connection = require(service.launch(launch_request))
 project = require(service.inspect_project(session.session_id))
-saved = require(
-    service.save_project(ProjectSaveRequest(context=project.context, path=project_path))
+save_request = ProjectSaveRequest(
+    context=project.context,
+    path=project_path,
 )
+saved = require(service.save_project(save_request))
 require(
     service.close(
         CloseRequest(

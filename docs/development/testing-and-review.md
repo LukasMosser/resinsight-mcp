@@ -1,12 +1,14 @@
 # Testing and review
 
 Tests must establish behavior that matters to a user.
-The maintained pytest suite exercises public contracts and workspace storage behavior, including important failures.
+The maintained pytest suite exercises contracts, workspace storage, session coordination, and the native client's remote call boundary.
 Do not add placeholder tests to increase a test count.
 
 The shared command `scripts/check.py` runs Ruff, ty, pytest, and the strict documentation build.
 The CI jobs use that same command on Linux and macOS.
-The library tests do not launch external applications or establish adapter behavior.
+The backend tests start separate protocol fixture processes and exercise the native client with supported remote calls.
+The default suite does not launch ResInsight or a simulator.
+The [P04 record](p04-evidence.md) reports separate real application acceptance.
 
 For contract changes, exercise valid records, rejected inputs, serialization, and relationships between identifiers and states.
 Make sure that a successful edit remains distinguishable from a failed observation.

@@ -2,7 +2,7 @@
 
 This plan describes proposed work, not current application behavior.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository contains shared contracts, local workspace storage, development tools, and P01 experiment evidence.
+The repository contains shared contracts, workspace storage, session operations, development tools, and runtime evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.
@@ -61,8 +61,8 @@ P02 owns shared types and interface definitions.
 Other packages depend on those interfaces and keep simulator-specific details in their own modules.
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
-P02 implements the shared contracts, and P03 implements workspace storage.
-The P04 and later application paths below remain planned.
+P02 implements the shared contracts, P03 implements workspace storage, and P04 implements application sessions and projects.
+The P05 and later application paths below remain separate work packages.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
 
@@ -160,17 +160,16 @@ The maintained suite and review evidence establish those results separately from
 
 ## P04: Manage sessions and projects
 
-Implement create, list, attach, select, detach, and close operations.
+P04 implements create, list, launch, attach, select, detach, and close operations through `ResInsightSessionService`.
 Every mutation identifies its session explicitly.
-Closing an attached session detaches unless the owner explicitly requests process termination.
+Closing detaches by default, while attached process termination requires separate trusted authorization.
 
-Serialize changes within each ResInsight instance and distinguish busy from failed.
-Invalidate object identifiers after a project change and detect changes made outside the service.
-Save and reopen projects through explicit project operations.
+The service serializes application operations and distinguishes busy, lost, and failed outcomes.
+Project commands and observed inventory changes invalidate object references.
+The native API does not expose a complete external event history, so identical empty-project reopening and unobserved fields remain detection limits.
+The [session implementation](sessions.md) records those boundaries and the supported save and reopen operations.
 
-Acceptance requires two real sessions with separate projects.
-An MCP disconnect must not close either application.
-Tests must reject stale identifiers and prove that attached processes remain alive after detach.
+The [P04 record](p04-evidence.md) reports the real two-session trial, MCP disconnect behavior, and stale reference evidence.
 
 ## P05: Expose MCP operations
 

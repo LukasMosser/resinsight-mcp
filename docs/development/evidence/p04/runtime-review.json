@@ -1,0 +1,31 @@
+{
+  "p04_source": "91102cb3a6fad244c5a36f544649a2ef654b2e68",
+  "p05_transport_source": "2842d91",
+  "result": "passed",
+  "reviewed_at": "2026-09-08T15:18:36.041277+00:00",
+  "applications": 2,
+  "independent_review": "Confirmed distinct saved projects, native reopen names, unchanged process identities after SDK disconnect, fresh connection identities, attached detach survival, and stale references.",
+  "image_review": "Both decoded 1200 x 800 native frames show the SPE1 grid, pressure legend, and distinct P04 first or P04 second case labels.",
+  "limits": [
+    "One macOS host and one custom gRPC application build.",
+    "The same small SPE1 input seeded both separate application projects.",
+    "Direct rips fixture setup is separate from production P04 service operations.",
+    "The P05 transport came from a separate reviewed commit in a temporary source overlay.",
+    "Observed object changes are sampled; arbitrary external edits and pointer reuse are not completely detected.",
+    "Native images here are saved-file evidence, not a P06 renderer or blind model image-delivery test."
+  ],
+  "earlier_trials": [
+    {
+      "trial": 1,
+      "finding": "Acceptance helper used Python validation for serialized enum values; corrected to JSON validation."
+    },
+    {
+      "trial": 2,
+      "finding": "Fixture used FULL_CASE_NAME; corrected to supported CUSTOM_NAME before saving."
+    },
+    {
+      "trial": 3,
+      "finding": "Fixture name was stored through a native project alias; XML assertion now checks document type and output path, with native reopen validating the name."
+    }
+  ]
+}
