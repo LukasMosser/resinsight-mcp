@@ -1,4 +1,4 @@
-["/Applications/Docker.app/Contents/Resources/bin/docker", "run", "--rm", "--pull=never", "--platform", "linux/arm64", "--cpus", "2", "--memory", "2g", "--network", "none", "--name", "resinsight-p07-d11af4790dfd494dbc130ef7b0d4743d", "--mount", "type=bind,source=/private/tmp/resinsight-mcp-p07-acceptance-02/prepared-inputs,target=/input,readonly", "--mount", "type=bind,source=/private/tmp/resinsight-mcp-p07-acceptance-02/results,target=/output", "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1", "flow", "/input/SPE1.DATA", "--output-dir=/output"]
+["/Applications/Docker.app/Contents/Resources/bin/docker", "run", "--rm", "--pull=never", "--platform", "linux/arm64", "--cpus", "2", "--memory", "2g", "--network", "none", "--name", "resinsight-p07-0ee4ca9da7ba473ab444ac5da4923965", "--mount", "type=bind,source=/private/tmp/resinsight-mcp-p07-acceptance-03/prepared-inputs,target=/input,readonly", "--mount", "type=bind,source=/private/tmp/resinsight-mcp-p07-acceptance-03/results,target=/output", "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1", "flow", "/input/SPE1.DATA", "--output-dir=/output"]
 **********************************************************************
 *                                                                    *
 *                        This is flow 2026.04                        *
@@ -96,8 +96,8 @@ Restart file written for report step 0/2, date = 01-Jan-2015 00:00:00
 Report step  1/2 at day 1/2, date = 02-Jan-2015
 
 Starting time step 0, stepsize 1 days, at day 1/2, date = 02-Jan-2015
- Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
 Restart file written for report step 1/2, date = 02-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
 Restart file written for report step 2/2, date = 03-Jan-2015 00:00:00
 
 
@@ -105,17 +105,17 @@ Restart file written for report step 2/2, date = 03-Jan-2015 00:00:00
 
 Number of MPI processes:         1
 Threads per MPI process:         2
-Setup time:                      0.34 s
-  Deck input:                    0.28 s
+Setup time:                      0.19 s
+  Deck input:                    0.15 s
 Number of timesteps:             2
-Simulation time:                 0.09 s
+Simulation time:                 0.05 s
   Assembly time:                 0.01 s (Wasted: 0.0 s; 0.0%)
     Well assembly:               0.00 s (Wasted: 0.0 s; 0.0%)
-  Linear solve time:             0.03 s (Wasted: 0.0 s; 0.0%)
-    Linear setup:                0.02 s (Wasted: 0.0 s; 0.0%)
-  Props/update time:             0.01 s (Wasted: 0.0 s; 0.0%)
+  Linear solve time:             0.02 s (Wasted: 0.0 s; 0.0%)
+    Linear setup:                0.01 s (Wasted: 0.0 s; 0.0%)
+  Props/update time:             0.00 s (Wasted: 0.0 s; 0.0%)
   Pre/post step:                 0.01 s (Wasted: 0.0 s; 0.0%)
-  Output write time:             0.05 s
+  Output write time:             0.01 s
 Overall Linearizations:          7      (Wasted:     0; 0.0%)
 Overall Newton Iterations:       5      (Wasted:     0; 0.0%)
 Overall Linear Iterations:       3      (Wasted:     0; 0.0%)

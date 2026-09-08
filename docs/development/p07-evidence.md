@@ -1,10 +1,12 @@
 # P07 import evidence
 
 The bounded import acceptance passed on September 8, 2026.
-The tested implementation commit is `8d135b62841aba086ac65ae36b53dfcd7f06c7d7`.
+The tested implementation commit is `f582165d84ee8fdd838d7ccbe552be7a94e41a8c`.
 Its working tree was clean during the recorded runtime trial.
 The [acceptance record](evidence/p07/acceptance.json) contains the source revision, prepared inputs, application connection, and loaded case.
 The [package guide](model-imports.md) defines the supported profile and its limits.
+This trial uses Python preparation and trusted application setup.
+It does not complete an agent workflow through the production MCP server.
 
 ## Result and lineage
 
@@ -13,8 +15,8 @@ The service stores all five sources as immutable input artifacts.
 Its [import record](evidence/p07/import-record.json) maps each relative path to an artifact identifier and records each include edge.
 The separate change list is empty because import makes no input edits.
 
-The prepared revision is `revision_b5c0316b2b0d482c9c1b49193a2b1e22`.
-Its session is `session_01aedac657bb4b1d865fbf2c0c3c4835`.
+The prepared revision is `revision_4e9b79703fab4c65a340fd82e2bac5db`.
+Its session is `session_7353623320114a8db564401c11f9476e`.
 The [receipt](evidence/p07/import-receipt.json) connects that revision to the model summary and import record.
 The trial removes its temporary source copy before preparing the stored revision again.
 It then reconstructs the OPM run inputs from those fixed workspace artifacts.
@@ -89,8 +91,8 @@ That failed trial does not establish support for the 2026.4 Python wheel.
 
 ## Review and checks
 
-The shared repository command passes 204 tests, Ruff, ty, and the strict documentation build for the tested implementation.
-Of those tests, 31 exercise the public import behavior through the real parser.
+The shared repository command passes 212 tests, Ruff, ty, and the strict documentation build for the tested implementation.
+Of those tests, 39 exercise public import behavior, source limits, parser isolation, and publication failures.
 The [check log](evidence/p07/checks.log) records the required command, tested revision, and tool versions.
 The combined pre-commit check runs the same repository command after integration.
 Browser inspection confirms that both package pages render, including the units table and native result image.
@@ -100,6 +102,10 @@ The source collector handles file references and limits, while OPM owns model pa
 The parser process stays separate from workspace storage and native application operations.
 Review found and closed directive bypasses, repeated include expansion, malformed quote failures, and incomplete well controls.
 A regression also rejects shut completions before OPM silently closes a requested open well.
+Final review closed Python module shadowing, oversized repetition conversion, and incorrect effects after partial publication.
+Harmless execution markers remain absent when imported sources use Python package names.
+Store failure tests reopen the workspace and make sure that `UNKNOWN` matches remaining artifacts or a saved revision.
+The native trial was repeated after those repairs with isolated parser startup and a clean working tree.
 
 ## Data terms and limits
 

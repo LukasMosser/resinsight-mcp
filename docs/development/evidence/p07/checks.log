@@ -1,29 +1,52 @@
-Implementation and native acceptance commit: 8d135b62841aba086ac65ae36b53dfcd7f06c7d7
-Documentation integration HEAD: a1059f3403399b364e49a4ea6e57e5761e23bc52
+Implementation, regression, and native acceptance commit: f582165d84ee8fdd838d7ccbe552be7a94e41a8c
+Working tree: clean
+
+Command: uv --version
 uv 0.9.18 (Homebrew 2025-12-16)
+
+Exit status: 0
+
+Command: .venv/bin/python --version
 Python 3.12.13
+
+Exit status: 0
+
+Command: .venv/bin/ruff --version
 ruff 0.16.6
+
+Exit status: 0
+
+Command: .venv/bin/ty --version
 ty 0.0.79 (b4cd79275 2026-09-07)
+
+Exit status: 0
+
+Command: .venv/bin/pytest --version
 pytest 9.1.1
+
+Exit status: 0
+
+Command: .venv/bin/pre-commit --version
 pre-commit 4.6.2
 
-Required command: UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache LC_ALL=en_US.UTF-8 uv run --locked python scripts/check.py
+Exit status: 0
 
+Command: uv run --locked python scripts/check.py
 
 Run: ruff check .
 All checks passed!
 
 Run: ruff format --check .
-110 files already formatted
+111 files already formatted
 
 Run: ty check
 All checks passed!
 
 Run: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/.venv/bin/python3 -m pytest -q
-........................................................................ [ 35%]
-........................................................................ [ 70%]
-............................................................             [100%]
-204 passed in 16.66s
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+....................................................................     [100%]
+212 passed in 16.95s
 
 Run: mkdocs build --strict
 
@@ -44,7 +67,11 @@ Run: mkdocs build --strict
 [0m
 INFO    -  Cleaning site directory
 INFO    -  Building documentation to directory: /Users/lmoss/.codex/worktrees/cf5f/resinsight-mcp/site
-INFO    -  Documentation built in 0.63 seconds
+INFO    -  Documentation built in 0.64 seconds
+
+Exit status: 0
 
 Command: uv run --locked pre-commit run --all-files
 Run repository checks....................................................Passed
+
+Exit status: 0

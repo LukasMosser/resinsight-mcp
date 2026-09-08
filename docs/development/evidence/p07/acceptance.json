@@ -1,6 +1,6 @@
 {
-  "time": "2026-09-08T16:38:27.921796+00:00",
-  "tested_commit": "8d135b62841aba086ac65ae36b53dfcd7f06c7d7",
+  "time": "2026-09-08T16:59:41.336763+00:00",
+  "tested_commit": "f582165d84ee8fdd838d7ccbe552be7a94e41a8c",
   "working_tree": [],
   "host": "macOS-14.2.1-arm64-arm-64bit",
   "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
@@ -16,18 +16,18 @@
   "prepared": {
     "revision": {
       "model": {
-        "session_id": "session_01aedac657bb4b1d865fbf2c0c3c4835",
-        "revision_id": "revision_b5c0316b2b0d482c9c1b49193a2b1e22"
+        "session_id": "session_7353623320114a8db564401c11f9476e",
+        "revision_id": "revision_4e9b79703fab4c65a340fd82e2bac5db"
       },
       "inputs": {
         "artifacts": [
-          "artifact_681690eeeed3464ba7728754447f0f93",
-          "artifact_0fda1b5be0b749aab24be4c32f7cbe9a",
-          "artifact_ca35395c6ce74f70b30783cae8725690",
-          "artifact_0d1439035a444988b14de5c2730b9565",
-          "artifact_f95f7b126960405b96a4239e90576a95"
+          "artifact_cd6965dd6da0447dab4508536cf5b915",
+          "artifact_3ab67c9ed67547aba31646441d7b7368",
+          "artifact_ed8ad80b4cd94d479d46e1b497bec98e",
+          "artifact_55c32e97c1e542b9adbc96cd5a9a83dd",
+          "artifact_f04834a9b7e04151aa1f8110f1825540"
         ],
-        "entrypoint": "artifact_681690eeeed3464ba7728754447f0f93"
+        "entrypoint": "artifact_cd6965dd6da0447dab4508536cf5b915"
       },
       "unit_system": "FIELD",
       "coordinates": {
@@ -41,29 +41,29 @@
   },
   "loaded_case": {
     "model": {
-      "session_id": "session_01aedac657bb4b1d865fbf2c0c3c4835",
-      "revision_id": "revision_b5c0316b2b0d482c9c1b49193a2b1e22"
+      "session_id": "session_7353623320114a8db564401c11f9476e",
+      "revision_id": "revision_4e9b79703fab4c65a340fd82e2bac5db"
     },
     "connection": {
       "context": {
-        "session_id": "session_01aedac657bb4b1d865fbf2c0c3c4835",
-        "connection_id": "connection_99c695161b2a44deb1b755739e1b8fe4",
+        "session_id": "session_7353623320114a8db564401c11f9476e",
+        "connection_id": "connection_634cad6402d24f378a6f7d70fbcff693",
         "project_generation": 0
       },
       "endpoint": {
         "host": "127.0.0.1",
-        "port": 60534
+        "port": 63103
       },
       "ownership": "owned",
       "state": "ready",
       "process": {
-        "pid": 1472,
-        "start_marker": "1788885505.630537"
+        "pid": 16861,
+        "start_marker": "1788886779.289071"
       }
     },
     "case_id": 0,
-    "case_name": "P07 imported revision_b5c0316b2b0d482c9c1b49193a2b1e22",
-    "case_path": "/private/tmp/resinsight-mcp-p07-acceptance-02/results/SPE1.EGRID",
+    "case_name": "P07 imported revision_4e9b79703fab4c65a340fd82e2bac5db",
+    "case_path": "/private/tmp/resinsight-mcp-p07-acceptance-03/results/SPE1.EGRID",
     "dimensions": [
       10,
       10,
@@ -93,7 +93,7 @@
       4438.43212890625,
       5421.6787109375
     ],
-    "snapshot": "imported-modelP07_imported_revision_b5c0316b2b0d482c9c1b49193a2b1e22_3D_View_PRESSURE_02_03_Jan_2015.png",
+    "snapshot": "imported-modelP07_imported_revision_4e9b79703fab4c65a340fd82e2bac5db_3D_View_PRESSURE_02_03_Jan_2015.png",
     "resinsight_version": "2026.9.0"
   },
   "invalid_input_rejected_before_simulator": true,
