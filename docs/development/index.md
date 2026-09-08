@@ -1,17 +1,18 @@
 # Development
 
-This section contains the development workflow, implemented shared contracts, and proposed integration design.
-The installable library defines data records and typed component boundaries.
+This section contains the development workflow, implemented contracts and workspace storage, and proposed integration design.
+The installable library defines shared records, typed component boundaries, and a SQLite workspace store.
 The service, adapters, and external process lifecycle remain future work.
 
 Start with these pages:
 
 - [Local setup](local-setup.md) explains the development commands.
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
+- [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [Platform proof](platform-proof.md) records completed P01 experiments and their runtime limits.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.
 - [Testing and review](testing-and-review.md) explains the evidence for a change.
-- [Architecture](architecture.md) separates implemented contracts from proposed runtime responsibilities.
+- [Architecture](architecture.md) separates implemented contracts and storage from proposed runtime responsibilities.
 - [Implementation plan](implementation-plan.md) records the work sequence and acceptance criteria.
 - [Scope review](scope-review.md) records source findings and unresolved questions.
 - [Releases](releases.md) explains release evidence and approval.

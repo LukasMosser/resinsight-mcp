@@ -1,14 +1,18 @@
 # resinsight-mcp
 
-This repository provides an installable Python 3.12 contracts library for a ResInsight MCP integration.
+This repository provides an installable Python 3.12 library for shared contracts and local workspace storage in a ResInsight MCP integration.
 Contracts define the data and interfaces that components share.
 MCP is the Model Context Protocol for tool access.
 The package has no CLI, MCP server, ResInsight adapter, or simulator adapter.
 
 The library validates shared records with Pydantic and defines typed component boundaries with standard-library protocols.
+The workspace store preserves sessions, immutable model revisions, artifacts, jobs, results, observations, and project checkpoints.
+It uses SQLite and local files on trusted macOS or Linux filesystems.
 The repository also provides maintained tests, a locked development environment, and documentation.
 GitHub Actions runs the shared checks on Linux and macOS.
-Read the [shared contract guide](docs/development/contracts.md) for conventions and examples.
+
+Read the [shared contract guide](docs/development/contracts.md) for conventions.
+The [workspace guide](docs/development/workspaces.md) explains storage behavior and provides a runnable example.
 
 The completed [P01 experiments](docs/development/platform-proof.md) record bounded ResInsight, OPM, and native-image results on one Mac.
 Those experiments remain separate from the installable library and do not establish a supported host or simulator matrix.

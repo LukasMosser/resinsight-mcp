@@ -1,6 +1,6 @@
 # Shared contracts
 
-P02 provides validated records and typed interfaces in the installable Python 3.12 library.
+The library provides validated records and typed interfaces introduced by P02 and extended for P03 workspace storage.
 A contract defines data or behavior shared between components.
 [Pydantic](https://docs.pydantic.dev/latest/concepts/models/) validates records, while standard-library protocols describe six component interfaces.
 The runtime requirement is `pydantic>=2.13.5,<3`, with the installed version fixed by the lockfile.
@@ -13,12 +13,13 @@ The [architecture](architecture.md) describes those future runtime responsibilit
 
 The six protocols live in `resinsight_mcp.contracts.interfaces`.
 A protocol describes methods required by a typed implementation.
-P02 provides these interface declarations without external backend implementations.
+External process, rendering, and simulator backends remain unimplemented.
+P03 implements the workspace boundary through [SqliteWorkspaceStore](workspaces.md).
 
 | Protocol | Main responsibility and operations |
 | --- | --- |
 | `ProcessController` | Launch, attach, and close application connections under trusted process ownership. |
-| `WorkspaceStore` | Create and retrieve session records, save and retrieve revision/job/result/observation records, and open artifacts. |
+| `WorkspaceStore` | Store session records, revisions, artifacts, jobs, results, observations, and checkpoints, with explicit recovery. |
 | `Renderer` | Render a fresh image with actual view context. |
 | `ModelPreparer` | Prepare a fixed revision for the selected backend. |
 | `JobController` | Submit jobs, poll execution state, and request cancellation. |
@@ -27,7 +28,7 @@ P02 provides these interface declarations without external backend implementatio
 Operations return typed `OperationResult` records, except `open_artifact()`.
 That method provides a binary stream through a context manager and raises `ContractError` for inaccessible artifacts.
 A context manager controls resource entry and cleanup.
-A future implementation must preserve immutable revisions and reject conflicting writes to an existing revision.
+The workspace store preserves immutable revisions and rejects conflicting writes under an existing identity.
 Protocol declarations do not enforce storage, process, or renderer behavior by themselves.
 
 ## Record validation
@@ -61,6 +62,7 @@ Treat them as opaque values rather than extracting meaning from their digits.
 | `GridId` | `grid_` | Grid. |
 | `ArtifactId` | `artifact_` | Stored artifact. |
 | `EditId` | `edit_` | Applied edit. |
+| `CheckpointId` | `checkpoint_` | Saved-project checkpoint. |
 
 `ModelRef` pairs a session identifier with a revision identifier.
 A shared reference identifies context without providing a storage implementation.
@@ -98,7 +100,8 @@ It does not terminate a process or acquire authorization itself.
 `ModelRevision` combines those inputs with a model reference, unit system, and coordinate frame.
 An optional parent must belong to the same session and cannot identify the revision itself.
 Creating a new revision does not change its parent record.
-P02 does not verify that referenced artifacts or parent revisions exist in storage.
+Record construction does not verify that referenced artifacts or parent revisions exist.
+The workspace store checks these relationships when saving a revision.
 
 `PreparedModel` pairs a fixed revision with its selected backend.
 `Backend` names `opm_flow` and `julia`, but those enum values do not establish available adapters.
@@ -196,7 +199,8 @@ The model must belong to that session, and filters must name that grid.
 
 `RenderRequest` includes the stored `Result` and checks the requested context against it.
 `ViewContext.require_result()` checks the model, result identifier, grid, and report time.
-A workspace implementation must repeat this check against its stored result before saving an observation.
+The workspace store repeats this check against its stored result before saving an observation.
+It also requires an existing image artifact, without claiming decoded image validity.
 
 A camera needs a nonzero viewing direction and a nonparallel up vector.
 Perspective projection requires a field of view between 0 and 180 degrees.
@@ -302,7 +306,7 @@ A JSON record does not establish that a referenced external object still exists.
 
 ## Workspace contract additions
 
-P03 extends the shared workspace interface before implementing persistent storage.
+P03 extends the shared workspace interface and implements persistent storage through [SqliteWorkspaceStore](workspaces.md).
 `Artifact` associates an opaque file identity with its kind and relative model filename.
 The filename must not contain absolute paths, dot segments, or platform-specific separators.
 `ProjectCheckpoint` binds a supplied saved-project artifact to an exact model revision.
@@ -310,11 +314,16 @@ It does not prove that an external application saved matching project contents.
 
 `WorkspaceStore` adds artifact writes, enumeration, revision cloning, checkpoints, and explicit recovery.
 Clones remain within one session and preserve the source as their parent.
+`JobRef` pairs a session identifier with a job identifier for lookup.
 Changing a stored job requires its expected prior record, so competing updates can fail visibly.
+An equal retry returns the existing record without another change.
+
 Opening a workspace must not reconcile jobs automatically.
 The caller must stop its job controller before requesting recovery for selected job snapshots.
 
-The new error codes are `conflict`, `invalid_path`, `storage_failed`, `corrupt_workspace`, and `unsupported_schema`.
+Workspace errors include `conflict`, `invalid_path`, `storage_failed`, `corrupt_workspace`, and `unsupported_schema`.
+The existing `busy` code also covers database lock timeouts.
+The [workspace error table](workspaces.md#errors) explains their conditions and mutation effects.
 `RecoveryReport` identifies reconciled jobs, removed orphan artifacts, and unavailable committed artifacts.
 An orphan artifact is a file without a committed record.
 Recovery must not infer process termination or replace missing data.

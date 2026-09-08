@@ -1,17 +1,23 @@
 # Testing and review
 
 Tests must establish behavior that matters to a user.
-The maintained pytest suite exercises the contracts library's public behavior and important validation failures.
+The maintained pytest suite exercises public contracts and workspace storage behavior, including important failures.
 Do not add placeholder tests to increase a test count.
 
 The shared command `scripts/check.py` runs Ruff, ty, pytest, and the strict documentation build.
 The CI jobs use that same command on Linux and macOS.
-The contract tests do not launch external applications or establish adapter behavior.
+The library tests do not launch external applications or establish adapter behavior.
 
 For contract changes, exercise valid records, rejected inputs, serialization, and relationships between identifiers and states.
 Make sure that a successful edit remains distinguishable from a failed observation.
 Protocol typing establishes interface shape, not a working external implementation.
 The [contract guide](contracts.md) defines these boundaries.
+
+Workspace tests use real temporary databases and files through the public store API.
+For storage changes, exercise fresh-process reopening, competing writes, immutable clones, rejected paths, and interrupted artifact writes.
+Use parsed text or JSON to establish meaningful file content.
+Recovery tests must distinguish stopped-controller reconciliation from merely opening another store.
+The [workspace guide](workspaces.md) defines the supported filesystem boundary and recovery preconditions.
 
 For a behavior change, choose evidence that exposes an incorrect result:
 

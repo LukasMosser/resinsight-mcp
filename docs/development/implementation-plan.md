@@ -2,7 +2,7 @@
 
 This plan describes proposed work, not current application behavior.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository contains shared contracts, development tools, and P01 experiment evidence.
+The repository contains shared contracts, local workspace storage, development tools, and P01 experiment evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.
@@ -61,8 +61,8 @@ P02 owns shared types and interface definitions.
 Other packages depend on those interfaces and keep simulator-specific details in their own modules.
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
-P02 implements the shared contracts.
-The other application paths below remain planned.
+P02 implements the shared contracts, and P03 implements workspace storage.
+The P04 and later application paths below remain planned.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
 
@@ -141,21 +141,22 @@ The interfaces must also distinguish a successful edit from a failed image expor
 
 ## P03: Store workspaces and revisions
 
-Use SQLite for durable records and directories for artifacts.
-An artifact is a stored input, output, image, or log.
-Store sessions, revisions, run state, and output records through one repository interface.
+P03 implements `SqliteWorkspaceStore` for trusted local macOS and Linux filesystems.
+SQLite preserves typed records, while workspace-owned directories hold immutable artifact files.
+An artifact is a stored input, output, image, log, or project.
+The [workspace guide](workspaces.md) documents the public API and source layout.
 
-Preserve original inputs and create fixed revisions for simulator submission.
-Define safe path access, atomic state changes, schema updates, and restart reconciliation.
-Test restart recovery, concurrent writes, rejected paths, and incomplete writes with temporary workspaces.
+The store preserves original inputs and creates fixed revisions with explicit parent relationships.
+Clones share unchanged artifact references and use new artifacts for replacements.
+Project checkpoints bind supplied project files to revisions without proving external application contents.
 
-Own scenario cloning and the parent-revision relationship in this package.
-Create a checkpoint that records a saved project and its matching revision.
-Test that editing a clone leaves its parent unchanged and that reopening preserves the recorded relationship.
+Schema version 1 rejects unsupported versions without migration or overwrite.
+File publication precedes the metadata commit, so interrupted writes can leave unreachable files for explicit recovery.
+Expected job records prevent stale competing updates.
+Recovery requires a stopped job controller and changes only explicitly selected job snapshots.
 
-Acceptance requires reopening stored records in a fresh process.
-A failed write must not expose a completed revision.
-The evidence must show that two workspaces keep separate files and identifiers.
+Acceptance covers fresh-process reopening, concurrent writes, isolated workspaces, rejected paths, immutable clones, and incomplete writes.
+The maintained suite and review evidence establish those results separately from future application lifecycle and simulator acceptance.
 
 ## P04: Manage sessions and projects
 

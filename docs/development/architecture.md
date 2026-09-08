@@ -1,10 +1,12 @@
 # Architecture
 
-The repository implements shared data contracts and typed component boundaries as a Python library.
+The repository implements shared contracts, typed component boundaries, and local workspace storage as a Python library.
 The [contract guide](contracts.md) defines their current behavior and conventions.
 Its six protocols cover process control, workspace storage, rendering, model preparation, jobs, and result import.
-This page describes the runtime responsibilities planned around those contracts.
-No session service, external adapter, job supervisor, artifact store, or MCP server is implemented yet.
+The [workspace guide](workspaces.md) describes the implemented SQLite record store and immutable artifact files.
+The remaining runtime responsibilities on this page are planned.
+No application session service, external adapter, job supervisor, or MCP server is implemented yet.
+
 The [scope review](scope-review.md) records external evidence and open questions.
 
 ## Responsibilities
@@ -13,13 +15,14 @@ An adapter translates between the service and an external system.
 The proposed service coordinates application sessions, model revisions, simulation runs, and observations.
 The simulator performs the numerical calculation.
 
+The workspace store already preserves engineering sessions, model revisions, artifacts, and run-related records.
+It does not control application processes or parse simulator inputs.
+
 The planned runtime responsibilities are:
 
 - A session registry records application connections and process ownership.
-- A model store preserves inputs and model revisions.
 - A ResInsight adapter controls the application and obtains observations.
 - A simulator adapter prepares, starts, and monitors runs.
-- An artifact store preserves outputs, logs, and run records.
 - An MCP interface exposes bounded operations and native image content.
 
 A backend is the simulator selected for a run.
@@ -52,7 +55,7 @@ A later edit creates a new revision and must not change an earlier run's inputs.
 
 Run records must retain this evidence:
 
-- Input file identities and content hashes.
+- Immutable input file identities.
 - Model revision and selected backend.
 - Simulator version and launch arguments.
 - Resource limits and execution environment.
