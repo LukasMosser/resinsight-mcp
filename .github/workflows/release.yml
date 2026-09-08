@@ -76,7 +76,8 @@ jobs:
           [[ "$remote_commit" == "$SOURCE_COMMIT" ]] || { echo 'The tag changed after validation.' >&2; exit 1; }
           cat > release-notes.md <<'NOTES'
           This draft contains the repository source files.
-          The repository does not yet provide a ResInsight MCP server or an installable application package.
+          The source includes an installable shared-contract library.
+          The repository does not yet provide a ResInsight MCP server.
           No package is published to PyPI.
           NOTES
           gh release create "$RELEASE_TAG" --verify-tag --draft --title "$RELEASE_TAG source snapshot" --notes-file release-notes.md

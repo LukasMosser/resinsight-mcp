@@ -2,7 +2,7 @@
 
 P02 provides validated records and typed interfaces in the installable Python 3.12 library.
 A contract defines data or behavior shared between components.
-Pydantic validates records, while standard-library protocols describe six component interfaces.
+[Pydantic](https://docs.pydantic.dev/latest/concepts/models/) validates records, while standard-library protocols describe six component interfaces.
 The runtime requirement is `pydantic>=2.13.5,<3`, with the installed version fixed by the lockfile.
 Import records from their named `resinsight_mcp.contracts` modules.
 
@@ -33,7 +33,8 @@ Protocol declarations do not enforce storage, process, or renderer behavior by t
 ## Record validation
 
 Public records reject unknown fields, nonfinite numbers, and unsupported coercion.
-Records are immutable after validation.
+Record fields cannot be reassigned after validation.
+The provided engineering and lifecycle records use immutable nested records and tuples.
 Use a new validated record to represent a changed state.
 Immutability does not provide a database, transaction, or persistent history.
 
@@ -54,7 +55,7 @@ Treat them as opaque values rather than extracting meaning from their digits.
 | `SessionId` | `session_` | Engineering session. |
 | `RevisionId` | `revision_` | Model revision. |
 | `JobId` | `job_` | Execution job. |
-| `ResultId` | `result_` | Loaded result. |
+| `ResultId` | `result_` | Simulator result. |
 | `ObservationId` | `observation_` | Observation. |
 | `ConnectionId` | `connection_` | Application connection. |
 | `GridId` | `grid_` | Grid. |
@@ -77,6 +78,7 @@ A future adapter must supply the current context when checking an external handl
 Neither record starts a process or probes a port.
 `Connection` distinguishes owned processes from attached processes and requires a `ProcessIdentity` for owned connections.
 That identity combines a process identifier with a host-derived start marker for one process lifetime.
+
 Its states are `ready`, `busy`, `lost`, and `detached`.
 A lost connection can become detached, while reconnection needs a new verified connection identity.
 
@@ -86,6 +88,7 @@ Termination of an attached process requires explicit owner authorization supplie
 Every termination requires `verified_process` to match the recorded identity and a connection that is not detached.
 A future adapter must verify the process identity immediately before signaling it.
 Stored identity data alone does not prove current ownership or grant permission.
+
 The helper returns an allowed action or raises `ContractError`.
 It does not terminate a process or acquire authorization itself.
 
@@ -264,9 +267,20 @@ The edit receipt identifies the applied change, while the error describes the fa
 ## Typed errors
 
 `Error` carries a stable `ErrorCode`, a nonblank message, and a mutation effect.
-The supported codes are `busy`, `lost_connection`, `stale_object`, `invalid_model`, and `unsupported_operation`.
-They also include `invalid_transition`, `render_failed`, `not_found`, and `execution_failed`.
 A code identifies the kind of failure without requiring clients to parse its message.
+
+The following examples define the five required operational distinctions.
+They describe error records, without claiming a working external adapter.
+
+| Code | Example condition and message | Mutation effect |
+| --- | --- | --- |
+| `busy` | Another view operation is active. Wait for the application to become ready. | `not_applied` |
+| `lost_connection` | The connection was lost before the well edit was acknowledged. Inspect current state before retrying. | `unknown` |
+| `stale_object` | The case belongs to an earlier project generation. Obtain a current case reference. | `not_applied` |
+| `invalid_model` | The result names another input revision. Select a result from the requested revision. | `not_applied` |
+| `unsupported_operation` | The selected backend cannot perform this requested operation. | `not_applied` |
+
+Other codes cover `invalid_transition`, `render_failed`, `not_found`, and `execution_failed`.
 
 `MutationEffect.NOT_APPLIED` states that the failed operation did not apply its change.
 `MutationEffect.UNKNOWN` preserves uncertainty about whether a change occurred.
@@ -277,6 +291,7 @@ A runtime implementation must resolve that uncertainty before repeating a state 
 Record validation failures instead use Pydantic's validation errors.
 `OperationResult[T]` contains either `Success[T]` or `Failure` under `outcome`.
 Their `status` values distinguish `success` from `failure` during JSON validation.
+Use validated records or other immutable values as generic result payloads.
 
 ## Serialization
 

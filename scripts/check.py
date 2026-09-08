@@ -9,6 +9,7 @@ COMMANDS = (
     ("ruff", "check", "."),
     ("ruff", "format", "--check", "."),
     ("ty", "check"),
+    (sys.executable, "-m", "pytest", "-q"),
     ("mkdocs", "build", "--strict"),
 )
 
@@ -19,7 +20,6 @@ def main() -> int:
         result = subprocess.run(command, cwd=ROOT, check=False)
         if result.returncode:
             return result.returncode
-    print("\nNo application test suite exists yet. Pytest is installed for future tests.")
     return 0
 
 
