@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Repository checks
+    name: Repository checks (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:

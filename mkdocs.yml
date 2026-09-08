@@ -25,6 +25,7 @@ nav:
       - Proposed architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - Scope review: development/scope-review.md
+      - Foundation evidence: development/foundation-evidence.md
       - Releases: development/releases.md
 
 plugins:

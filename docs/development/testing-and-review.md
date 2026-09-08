@@ -4,6 +4,10 @@ Tests must establish behavior that matters to a user.
 The foundation has no application behavior to test.
 Do not add placeholder application tests to increase a test count.
 
+With the first application tests, add pytest to `scripts/check.py` and remove its message about absent tests.
+The lead agent owns this shared command change.
+The same CI jobs must execute that suite before the feature merges.
+
 For a behavior change, choose evidence that exposes an incorrect result:
 
 - Exercise the intended result with representative inputs.
@@ -15,12 +19,12 @@ Test coverage measures which code a test executes.
 Do not pursue 100% coverage as a goal.
 A passing test must establish a useful property beyond repeating the implementation.
 
-Do not use byte-level comparisons for documentation or images.
+Do not add byte-level checks or comparisons.
 Use document builds, visual inspection, and meaningful content assertions where they apply.
 For numerical results, define justified tolerances and record the source of reference values.
 
 A fallback is an alternate action after failure.
-Do not add fallback behavior that hides a failed operation.
+Do not add fallback behavior.
 A failed render must not return a previous image as a new observation.
 
 Review the change for these concerns:
