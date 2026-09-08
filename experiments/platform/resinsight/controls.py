@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
+import shlex
 import subprocess
 import time
 from datetime import UTC, datetime
@@ -123,20 +125,50 @@ def change_view(case: Any, output: Path) -> Any:
     return view
 
 
-def create_well(instance: Any, case: Any, view: Any, output: Path) -> Any:
+def create_well(instance: Any, case: Any, view: Any, output: Path, route: str) -> Any:
     center = case.grid().cell_centers()[case.grid().property_data_index_from_ijk(5, 5, 1)]
     if not math.isclose(center.x, 4500) or not math.isclose(center.y, 4500):
         raise RuntimeError("Selected well column differs from the inspected fixture")
-    well = instance.project.well_path_collection().add_new_object(rips.ModeledWellPath)
-    well.name = "P01CTRL"
-    well.update()
-    geometry = well.well_path_geometry()
     targets = [[center.x, center.y, depth] for depth in (0.0, 8325.0, 8430.0)]
-    for target in targets:
-        geometry.append_well_target(coordinate=target, absolute=True)
+    if route == "modeled":
+        well = instance.project.well_path_collection().add_new_object(rips.ModeledWellPath)
+        well.name = "P01CTRL"
+        well.update()
+        geometry = well.well_path_geometry()
+        for target in targets:
+            geometry.append_well_target(coordinate=target, absolute=True)
+    else:
+        fixture = output / "P01IMPORT.asc"
+        fixture.write_text(
+            "name P01IMPORT\n4500 4500 0 0\n4500 4500 8325 8325\n4500 4500 8430 8430\n"
+        )
+        wells = instance.project.import_well_paths(well_path_files=[str(fixture)])
+        if len(wells) != 1 or wells[0].name != "P01IMPORT":
+            raise RuntimeError("The ASCII fixture did not import exactly one P01IMPORT well")
+        well = wells[0]
+    event(output, "well_route", route=route, name=well.name)
     interval = well.append_perforation_interval(
-        start_md=8326.0, end_md=8424.0, diameter=0.5, skin_factor=0.0
+        start_md=8326.0, end_md=8374.0, diameter=0.5, skin_factor=0.0
     )
+    event(
+        output,
+        "perforation_before_edit",
+        start_md=interval.start_measured_depth,
+        end_md=interval.end_measured_depth,
+    )
+    interval.end_measured_depth = 8424.0
+    interval.update()
+    intervals = well.completions().perforations().perforations()
+    if len(intervals) != 1:
+        raise RuntimeError("Expected exactly one perforation after the bounded edit")
+    interval = intervals[0]
+    if (
+        interval.start_measured_depth,
+        interval.end_measured_depth,
+        interval.diameter,
+        interval.skin_factor,
+    ) != (8326.0, 8424.0, 0.5, 0.0):
+        raise RuntimeError("Perforation readback differs from the requested edit")
     event(
         output,
         "well_created",
@@ -168,11 +200,43 @@ def create_well(instance: Any, case: Any, view: Any, output: Path) -> Any:
         )
         for x, y, depth, md in samples
     ):
-        raise RuntimeError("Modeled trajectory does not match the requested vertical well")
-    snapshot(view, output, "modeled_well")
+        raise RuntimeError("Trajectory does not match the requested vertical well")
+    snapshot(view, output, f"{route}_well")
     instance.project.save(str(output / "controls.rsp"))
     event(output, "trajectory_verified", samples=len(samples), final_sample=samples[-1])
     return well
+
+
+def check_export_files(files: list[str], well_name: str, rows: list[Any], output: Path) -> None:
+    # This reads only the COMPDAT table shape emitted by this pinned exporter.
+    records: list[list[str]] = []
+    for filename in files:
+        contents = "\n".join(
+            line.split("--", 1)[0] for line in Path(filename).read_text().splitlines()
+        )
+        blocks = re.findall(r"^\s*COMPDAT[ \t]*\n(.*?)^\s*/[ \t]*$", contents, re.M | re.S)
+        for block in blocks:
+            records.extend(shlex.split(record) for record in block.split("/") if record.strip())
+    event(output, "exported_compdat_records", records=records)
+    if len(records) != len(rows) or any(len(record) < 8 for record in records):
+        raise RuntimeError("Exported COMPDAT records are missing or have an unexpected shape")
+    exported = {tuple(int(value) for value in record[1:5]): record for record in records}
+    expected: dict[tuple[int, ...], Any] = {
+        (row.grid_i, row.grid_j, row.upper_k, row.lower_k): row for row in rows
+    }
+    if exported.keys() != expected.keys():
+        raise RuntimeError("Exported COMPDAT cells differ from the completion API data")
+    for cell, record in exported.items():
+        factor = float(record[7])
+        if (
+            record[0] != well_name
+            or record[5] != "OPEN"
+            or not math.isclose(factor, expected[cell].transmissibility, rel_tol=0.001)
+        ):
+            raise RuntimeError(
+                "Exported COMPDAT well, status, or flow capacity differs from API data"
+            )
+    event(output, "exported_compdat_verified", cells=sorted(exported))
 
 
 def export_completions(case: Any, well: Any, output: Path) -> None:
@@ -190,7 +254,7 @@ def export_completions(case: Any, well: Any, output: Path) -> None:
         include_fishbones=False,
         export_welspec=True,
         export_comments=True,
-        custom_file_name=str(folder / "P01CTRL.inc"),
+        custom_file_name=str(folder / f"{well.name}.inc"),
     )
     rows = list(tables.compdat)
     cells = {(row.grid_i, row.grid_j, row.upper_k, row.lower_k) for row in rows}
@@ -204,6 +268,7 @@ def export_completions(case: Any, well: Any, output: Path) -> None:
         raise RuntimeError("Completion export is missing files or has an unexpected well name")
     if any(not math.isfinite(row.transmissibility) or row.transmissibility <= 0 for row in rows):
         raise RuntimeError("Completion transmissibility must be finite and positive")
+    check_export_files(files, well.name, rows, output)
 
 
 def main() -> None:
@@ -212,6 +277,7 @@ def main() -> None:
     parser.add_argument("--grid", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--keep-open", action="store_true")
+    parser.add_argument("--well-route", choices=("imported", "modeled"), required=True)
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -228,8 +294,10 @@ def main() -> None:
             stdout=log,
             stderr=subprocess.STDOUT,
         )
-        event(output, "owned_launch", pid=process.pid, executable=str(args.executable.resolve()))
         try:
+            event(
+                output, "owned_launch", pid=process.pid, executable=str(args.executable.resolve())
+            )
             instance = attach(process, output / "port.txt")
             clients.append(instance)
             port = int((output / "port.txt").read_text().strip())
@@ -253,30 +321,37 @@ def main() -> None:
                 raise RuntimeError("Snapshot evidence requires the GUI application")
             case = load_case(instance, attached, args.grid.resolve(), output)
             view = change_view(case, output)
-            well = create_well(instance, case, view, output)
+            well = create_well(instance, case, view, output, args.well_route)
             export_completions(case, well, output)
             event(output, "complete")
         except Exception as error:
             event(output, "failed", error_type=type(error).__name__, message=str(error))
             raise
         finally:
-            for client in clients:
-                client.stop_heartbeat()
-                client.channel.close()
-            if args.keep_open:
-                event(output, "owned_process_retained", pid=process.pid)
-            else:
-                if process.poll() is None:
-                    process.terminate()
+            try:
+                for client in clients:
                     try:
-                        process.wait(timeout=10)
-                    except subprocess.TimeoutExpired:
-                        event(output, "owned_process_kill", pid=process.pid)
-                        process.kill()
-                        process.wait(timeout=10)
-                event(
-                    output, "owned_process_closed", pid=process.pid, return_code=process.returncode
-                )
+                        client.stop_heartbeat()
+                    finally:
+                        client.channel.close()
+            finally:
+                if args.keep_open:
+                    event(output, "owned_process_retained", pid=process.pid)
+                else:
+                    if process.poll() is None:
+                        process.terminate()
+                        try:
+                            process.wait(timeout=10)
+                        except subprocess.TimeoutExpired:
+                            process.kill()
+                            process.wait(timeout=10)
+                            event(output, "owned_process_killed", pid=process.pid)
+                    event(
+                        output,
+                        "owned_process_closed",
+                        pid=process.pid,
+                        return_code=process.returncode,
+                    )
 
 
 if __name__ == "__main__":
