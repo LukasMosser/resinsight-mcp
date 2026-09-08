@@ -299,3 +299,22 @@ Pydantic provides `model_dump_json()` and `model_validate_json()` for record rou
 The JSON representation carries explicit enum values and identifier strings.
 Validation still applies when loading JSON.
 A JSON record does not establish that a referenced external object still exists.
+
+## Workspace contract additions
+
+P03 extends the shared workspace interface before implementing persistent storage.
+`Artifact` associates an opaque file identity with its kind and relative model filename.
+The filename must not contain absolute paths, dot segments, or platform-specific separators.
+`ProjectCheckpoint` binds a supplied saved-project artifact to an exact model revision.
+It does not prove that an external application saved matching project contents.
+
+`WorkspaceStore` adds artifact writes, enumeration, revision cloning, checkpoints, and explicit recovery.
+Clones remain within one session and preserve the source as their parent.
+Changing a stored job requires its expected prior record, so competing updates can fail visibly.
+Opening a workspace must not reconcile jobs automatically.
+The caller must stop its job controller before requesting recovery for selected job snapshots.
+
+The new error codes are `conflict`, `invalid_path`, `storage_failed`, `corrupt_workspace`, and `unsupported_schema`.
+`RecoveryReport` identifies reconciled jobs, removed orphan artifacts, and unavailable committed artifacts.
+An orphan artifact is a file without a committed record.
+Recovery must not infer process termination or replace missing data.

@@ -5,11 +5,12 @@ from typing import BinaryIO, Protocol
 
 from .engineering import ModelRef
 from .errors import OperationResult
-from .identifiers import ObservationId, ResultId, SessionId
+from .identifiers import ArtifactId, CheckpointId, ObservationId, ResultId, RevisionId, SessionId
 from .jobs import Job, JobRef, JobRequest, LoadedResult, Result, ResultImportRequest
 from .models import ArtifactRef, ModelRevision, PreparationRequest, PreparedModel, Session
 from .observations import Observation, RenderRequest
 from .sessions import AttachRequest, CloseReceipt, CloseRequest, Connection, LaunchRequest
+from .workspace import Artifact, ProjectCheckpoint, RecoveryReport
 
 
 class ProcessController(Protocol):
@@ -36,13 +37,33 @@ class WorkspaceStore(Protocol):
 
     def get_session(self, session_id: SessionId) -> OperationResult[Session]: ...
 
+    def list_sessions(self) -> OperationResult[tuple[Session, ...]]: ...
+
+    def write_artifact(self, artifact: Artifact, source: BinaryIO) -> OperationResult[Artifact]: ...
+
+    def get_artifact(self, artifact: ArtifactRef) -> OperationResult[Artifact]: ...
+
+    def list_artifacts(self, session_id: SessionId) -> OperationResult[tuple[Artifact, ...]]: ...
+
     def save_revision(self, revision: ModelRevision) -> OperationResult[ModelRevision]: ...
 
     def get_revision(self, model: ModelRef) -> OperationResult[ModelRevision]: ...
 
-    def save_job(self, job: Job) -> OperationResult[Job]: ...
+    def clone_revision(
+        self,
+        source: ModelRef,
+        revision_id: RevisionId,
+        *,
+        replacements: tuple[ArtifactId, ...] = (),
+    ) -> OperationResult[ModelRevision]: ...
+
+    def save_job(self, job: Job, *, expected: Job | None = None) -> OperationResult[Job]:
+        """Require the prior stored job before changing it; reject stale competing writes."""
+        ...
 
     def get_job(self, job: JobRef) -> OperationResult[Job]: ...
+
+    def list_jobs(self, session_id: SessionId) -> OperationResult[tuple[Job, ...]]: ...
 
     def save_result(self, result: Result) -> OperationResult[Result]: ...
 
@@ -58,6 +79,20 @@ class WorkspaceStore(Protocol):
 
     def open_artifact(self, artifact: ArtifactRef) -> AbstractContextManager[BinaryIO]:
         """Raise ContractError for missing or inaccessible data; never return another artifact."""
+        ...
+
+    def save_checkpoint(
+        self, checkpoint: ProjectCheckpoint
+    ) -> OperationResult[ProjectCheckpoint]: ...
+
+    def get_checkpoint(
+        self, session_id: SessionId, checkpoint_id: CheckpointId
+    ) -> OperationResult[ProjectCheckpoint]: ...
+
+    def reconcile(
+        self, session_id: SessionId, *, expected_jobs: tuple[Job, ...] = ()
+    ) -> OperationResult[RecoveryReport]:
+        """Stop the job controller before reconciling explicitly selected job snapshots."""
         ...
 
 
