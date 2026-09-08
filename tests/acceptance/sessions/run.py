@@ -134,7 +134,8 @@ class Trial:
             ProjectState,
         )
         document = ElementTree.parse(destination)
-        assert name in tuple(element.text for element in document.iter())
+        assert document.getroot().tag == "ResInsightProject"
+        assert document.findtext("DocumentFileName") == str(destination)
         assert saved.last_saved_path == destination
         await self.stale(client, project)
         reopened = await self.request(
