@@ -1,0 +1,141 @@
+{
+  "compdat": [
+    {
+      "wellName": "P01IMPORT",
+      "gridI": 5,
+      "gridJ": 5,
+      "upperK": 1,
+      "lowerK": 1,
+      "openShutFlag": "OPEN",
+      "transmissibility": 10.078780273272798,
+      "diameter": 0.5,
+      "kh": 9500.0,
+      "skinFactor": 0.0,
+      "direction": "Z",
+      "startMd": 8326.0,
+      "endMd": 8345.0,
+      "comment": "Perforation Completion: MD In: 8326 - MD Out: 8345 Transmissibility: 10.0788",
+      "gridName": ""
+    },
+    {
+      "wellName": "P01IMPORT",
+      "gridI": 5,
+      "gridJ": 5,
+      "upperK": 2,
+      "lowerK": 2,
+      "openShutFlag": "OPEN",
+      "transmissibility": 1.5913863589378099,
+      "diameter": 0.49999999999999994,
+      "kh": 1500.0,
+      "skinFactor": 0.0,
+      "direction": "Z",
+      "startMd": 8345.0,
+      "endMd": 8375.0,
+      "comment": "Perforation Completion: MD In: 8345 - MD Out: 8375 Transmissibility: 1.59139",
+      "gridName": ""
+    },
+    {
+      "wellName": "P01IMPORT",
+      "gridI": 5,
+      "gridJ": 5,
+      "upperK": 3,
+      "lowerK": 3,
+      "openShutFlag": "OPEN",
+      "transmissibility": 10.397057545060358,
+      "diameter": 0.5,
+      "kh": 9800.0,
+      "skinFactor": 0.0,
+      "direction": "Z",
+      "startMd": 8375.0,
+      "endMd": 8424.0,
+      "comment": "Perforation Completion: MD In: 8375 - MD Out: 8424 Transmissibility: 10.3971",
+      "gridName": ""
+    }
+  ],
+  "welspecs": [
+    {
+      "wellName": "P01IMPORT",
+      "groupName": "1*",
+      "gridI": 5,
+      "gridJ": 5,
+      "phase": "OIL",
+      "inflowEquation": "STD",
+      "autoShutIn": "STOP",
+      "crossFlow": "YES",
+      "pvtNum": 0,
+      "hydrostaticDensityCalc": "SEG",
+      "fipRegion": 0,
+      "gridName": ""
+    }
+  ],
+  "welsegs": [
+    {
+      "header": {
+        "wellName": "P01IMPORT",
+        "topDepth": 8325.0,
+        "topLength": 8325.0,
+        "infoType": "ABS",
+        "pressureComponents": "HF-"
+      },
+      "row": [
+        {
+          "segment1": 2,
+          "segment2": 2,
+          "branch": 1,
+          "joinSegment": 1,
+          "length": 8335.0,
+          "depth": 8335.0,
+          "diameter": 0.5,
+          "roughness": 3.28e-05,
+          "description": "Segments on main bore"
+        },
+        {
+          "segment1": 3,
+          "segment2": 3,
+          "branch": 1,
+          "joinSegment": 2,
+          "length": 8360.0,
+          "depth": 8360.0,
+          "diameter": 0.5,
+          "roughness": 3.28e-05
+        },
+        {
+          "segment1": 4,
+          "segment2": 4,
+          "branch": 1,
+          "joinSegment": 3,
+          "length": 8400.0,
+          "depth": 8400.0,
+          "diameter": 0.5,
+          "roughness": 3.28e-05
+        }
+      ]
+    }
+  ],
+  "compsegs": [
+    {
+      "i": 5,
+      "j": 5,
+      "k": 1,
+      "branch": 1,
+      "distanceStart": 8326.0,
+      "distanceEnd": 8345.0
+    },
+    {
+      "i": 5,
+      "j": 5,
+      "k": 2,
+      "branch": 1,
+      "distanceStart": 8345.0,
+      "distanceEnd": 8375.0
+    },
+    {
+      "i": 5,
+      "j": 5,
+      "k": 3,
+      "branch": 1,
+      "distanceStart": 8375.0,
+      "distanceEnd": 8424.0
+    }
+  ]
+}

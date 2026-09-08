@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests/ResInsight-tests",
+    "--gtest_filter=RigCellGeometryTools.*:RigActiveCellInfo.*:RigWellPathTest.*:RigWellPathGeometryTools.*:RigWellPathIntersectionToolsTest.*:RigCompletionDataGridCellTest.*:RimWellPathCompletions.*:RigWellPathGeometryExporter.*:RigGridExportAdapter.*:RicWellPathExportMswGeometryPath.*:RiaGrpcWellPathServiceTest.*-RicWellPathExportMswGeometryPath.MultipleLaterals_*",
+    "--gtest_output=xml:/private/tmp/resinsight-p01-build/logs/application-unit-tests.xml"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "started_at": "2026-09-08T12:05:50.469175+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "configuration": "Enable libc++ vendor availability annotations for the Apple system runtime",
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1",
+    "-fuse-ld=lld",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/apple-availability-probe"
+  ],
+  "compile": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "links": {
+    "exit_code": 0,
+    "stdout": "/private/tmp/resinsight-p01-build/apple-availability-probe:\n\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 1600.157.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1336.61.1)\n",
+    "stderr": ""
+  },
+  "run": {
+    "exit_code": 0,
+    "stdout": "C++23 expected and format: 42\n",
+    "stderr": ""
+  }
+}

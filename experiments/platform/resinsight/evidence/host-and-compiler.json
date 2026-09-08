@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-09-08T09:36:52.257936+00:00",
+  "host": {
+    "macos": "14.2.1",
+    "architecture": "arm64",
+    "model": "MacBookPro18,3",
+    "chip": "Apple M1 Pro",
+    "cpu_cores": 8,
+    "memory_gib": 16,
+    "xcode": "15.1",
+    "sdk": "14.2"
+  },
+  "release": {
+    "tag": "v2026.09.0",
+    "asset": "ResInsight-macOS-arm64-v2026.09.0.zip",
+    "minimum_macos": "15.0",
+    "bundle_version": "1.0.0",
+    "bundle_short_version": "1.0",
+    "help_attempt": {
+      "arguments": [
+        "--help"
+      ],
+      "timeout_seconds": 20,
+      "result": "TimeoutExpired; owned process killed by subprocess.run"
+    }
+  },
+  "compiler": "Apple clang version 15.0.0 (clang-1500.1.0.2.5)\nTarget: arm64-apple-darwin23.2.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+  "probe": {
+    "command": [
+      "xcrun",
+      "clang++",
+      "-std=c++2b",
+      "-mmacosx-version-min=14.2",
+      "experiments/platform/resinsight/toolchain_probe.cpp",
+      "-o",
+      "/private/tmp/resinsight-toolchain-probe"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "experiments/platform/resinsight/toolchain_probe.cpp:8:23: error: no member named 'format' in namespace 'std'\n    std::cout << std::format(\"C++23 expected and format: {}\\n\", value.value());\n                 ~~~~~^\n1 error generated.\n"
+  },
+  "conclusion": "The installed compiler and C++ library do not compile the required std::format call. Python control remains unproved."
+}

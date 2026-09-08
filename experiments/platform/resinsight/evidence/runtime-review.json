@@ -1,0 +1,65 @@
+{
+  "reviewed_at": "2026-09-08T12:18:09.241323+00:00",
+  "application_source_commit": "197d58a750dd0bc243025b3939ab2a8a01a2c709",
+  "application_configuration_commit": "6c8ab64e8eda5b7307ec89660418f0342ed69fdb",
+  "control_probe": "experiments/platform/resinsight/controls.py in this evidence commit",
+  "successful_run": "controls-imported-03",
+  "visual_review": {
+    "reviewers": [
+      "lead",
+      "independent scope reviewer"
+    ],
+    "images": [
+      "pressure_initial/pressure_initialSPE1CASE1_3D_View_PRESSURE_00_01_Jan_2015.png",
+      "gas_final/gas_finalSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png",
+      "imported_well/imported_wellSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png"
+    ],
+    "findings": [
+      "All images show a legible 10 by 10 surface grid.",
+      "PRESSURE at step 0 and SGAS at step 120 match the visible labels and recorded state.",
+      "The final image shows the imported P01IMPORT marker.",
+      "Images do not independently establish subsurface completion geometry."
+    ]
+  },
+  "runtime_review": {
+    "material_findings": [],
+    "accepted": [
+      "owned GUI launch and explicit-port attachment",
+      "300-cell case geometry",
+      "view and result readback",
+      "fresh PNG exports",
+      "bounded perforation edit",
+      "170 vertical trajectory samples",
+      "three positive COMPDAT connections with exported-file agreement",
+      "owned process cleanup"
+    ],
+    "limits": [
+      "Only the imported-well route passed the full probe.",
+      "The emitted MSW file was not independently validated or simulated.",
+      "The modeled route returned empty trajectory arrays before completion export.",
+      "The METRIC/FIELD concern remains a source finding.",
+      "The original name header was truncated on this host; the documented wellname header passed."
+    ]
+  },
+  "upstream_tests": {
+    "tests": 66,
+    "suites": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "disabled": 0,
+    "scope_note": "Two export-name tests counted during source planning were inside a block comment and did not register."
+  },
+  "process_check": {
+    "command": [
+      "ps",
+      "-p",
+      "51226,52533,53194,53758",
+      "-o",
+      "pid=,comm="
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "meaning": "No listed probe process remained."
+  }
+}

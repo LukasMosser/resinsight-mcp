@@ -1,0 +1,1856 @@
+-- Running vcpkg install
+Fetching registry information from https://github.com/microsoft/vcpkg (HEAD)...
+Detecting compiler hash for triplet arm64-osx-p01...
+Compiler found: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++
+The following packages will be built and installed:
+  * abseil:arm64-osx-p01@20250814.1 -- git+https://github.com/microsoft/vcpkg@1339c9be56bcaf55ed8ff64854f477bea6045619
+    arrow[core,csv,filesystem,json,parquet]:arm64-osx-p01@21.0.0#2 -- git+https://github.com/microsoft/vcpkg@73ec101affdc45cc2932cedf85bcd4bd4ed90c31
+  * boost-algorithm:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@3ee83dcfbe76d56a445af30c8475f7ceb92deb90
+  * boost-align:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@cdc40833d65b90a10f622786d747a1ad5c72ebd1
+  * boost-array:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@53a38d9df50a94549967fa8b7e47714c4d5761db
+  * boost-assert:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4b40db7ad8e6420b04da87e8266e5eca7c3c059f
+  * boost-atomic:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@58dc025910708f8ce014d3a23b957de3dffa22bb
+  * boost-bind:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b2fdb396a7064165de3c60c4da30dffd751f82e2
+  * boost-charconv:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1c12ad423a784397f5d7b7d335d362d187ae93f8
+  * boost-chrono:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@418cebde300c0e64b012b150c6f4a5397a92a944
+  * boost-cmake:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8c7d8286875eac4b6e5995d63337cfd3e16d66ef
+  * boost-concept-check:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4f43e61a82b1e215fbea09fe321fb63b89d70ccf
+  * boost-config:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@73499959016446ec7272976b0abaab1ed123c3c8
+  * boost-container:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a84f02c4aec8fc8119e2a84a5a7667c14250829a
+  * boost-container-hash:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f808bcb3fafb29847b0e7f07f78525e036eee56b
+  * boost-conversion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@72f5608e82127ab4b384bcc268fb92c59d36bbc7
+  * boost-core:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9823973b46eb48abfc4d773b8461e98165b6eb6b
+  * boost-date-time:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@038586c4564e5118c1b92862902c5b53fcbb24b3
+  * boost-describe:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b6c39726cb8a5ed76d564c222cfd5a59f24d3e02
+  * boost-detail:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@42321194aba4197b21532f5e146ddd36f4ec1a4f
+  * boost-dynamic-bitset:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4e9bb084edae227089add595ccb7c596e76d0575
+  * boost-endian:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f45abc0b300cbadaae57d40a9a5a11dc3eae720d
+  * boost-exception:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@98b58a80a68f639ca40b433428a69967227d75c9
+    boost-filesystem:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@51b9231454d8018a15022022b1b6b787a72fb432
+  * boost-function:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@5d75dc069bb0685bfa48febfc0d4bffc0f46f8c9
+  * boost-function-types:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@21f4acfebeb149a3de71f341be55a5ce59cb32aa
+  * boost-functional:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@ade45ba6b3c1ceec40f8eb3ac8d3a523f80b2038
+  * boost-fusion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c63f6e3ba7e2890a640553e6caaf2a5418c60913
+  * boost-headers:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@95dbcdac30de15e8f72cdba71aedb4fb06638718
+  * boost-integer:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a37945e3e5b2c880c256c6266cc76c40e425b008
+  * boost-intrusive:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@bb11f3b2df959ba7a4852059eefefc23c08cf3be
+  * boost-io:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@52997d9b6a05b007e2897de28beaeea18968cc0e
+  * boost-iterator:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@afb261ecce2d7eb9a01aa41c835608482c129e03
+  * boost-lexical-cast:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@422011af1156f3e9c09bfa3e20a2d8119d7e523c
+  * boost-locale:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9fdfc11bbbcb8dedf010b61fbcdc3a9eba22af82
+  * boost-math:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1cb94d95de055a357bb874e57fdab94802e1f4fb
+  * boost-move:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9e2f411e14732036732cece814356699a76cc91e
+  * boost-mp11:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b8f038d03ba53847d4b120f55730c0737aab5587
+  * boost-mpl:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@419ecb733b84695280f408232c73470ab30be15d
+  * boost-multiprecision:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@727bfc1426b98ea8464378970622d73646442039
+  * boost-numeric-conversion:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4a4daafbe60c9ff995541373ec7df4b8b35c4773
+  * boost-optional:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@a00224cf1d434cc257cae3146aed00651f9700c4
+  * boost-phoenix:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b80402a8e32506147c9125b435e7bd1ff76babf1
+  * boost-pool:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8afc11f58cef060ee80f2ab8fd1e719f414bbf67
+  * boost-predef:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@44b5803d820eb060f0727227d0ae9171912df6ce
+  * boost-preprocessor:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b24666cb6f30bbace4fa4f602072ff22a1926e6d
+  * boost-proto:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@9a0ad7230f675a58ec36c6eaaf770172b1f77e33
+  * boost-random:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@290754c38706f4a21ef7a9278bfb7a45d25d9062
+  * boost-range:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@ab4c025322e42dec411e33f17d3952fac5d7f00a
+  * boost-ratio:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@b7969883e0612c6757988b0f9102224ca136959f
+  * boost-regex:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@411f23facef811713ece1498443d376f4fc375da
+  * boost-scope:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@52ec92fe9c7ece6cf842364caeca0cf7b2fb2589
+  * boost-scope-exit:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8bb2255cf9e1f28f90fe23adf2caad8424afab49
+  * boost-smart-ptr:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@3520f2bdf1ddfd6b9b9e83fa0db82bb9a28fe6a5
+    boost-spirit:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@cfa2cb2b5f1de02bda3a215a0690768c187f4fd0
+  * boost-static-assert:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c297fdc10a4751a0813d174da5b3d6ee8ac4fcd2
+  * boost-system:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@930f1da0c62be8d5eb884b12e9f6453786f92339
+    boost-test:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@0271773d4f2480aa5de63ed5cda636c76ca6cc5c
+  * boost-thread:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@1780abc3416ddde7e3a3d3d7abda4d9b6ac2aa54
+  * boost-throw-exception:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@2595f3f64c49285c68fde05cca87afa79eb4d664
+  * boost-tokenizer:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@54edc02e70826bee8f52d8d324a5ffb2cee432b7
+  * boost-tuple:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@4975ef963fa02d53b2fca5eb8936b32e4de2e9da
+  * boost-type-index:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@eeb4d55443b956770203825a87a8db3a0b456c99
+  * boost-type-traits:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8c46d2bab6817bbbb8382efaed7aeb1ae8b15119
+  * boost-typeof:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@bc97dedd1bd7d66c437b13b38786e182c54fc924
+  * boost-uninstall:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@83ce7d42de32cacf540be39b74cfcb462ab034b8
+  * boost-unordered:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@248854482d2a457a46060b8f77d80a8242e7c02a
+  * boost-utility:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@13afb12031051f9b937985deade5bbeb7c5cc256
+  * boost-uuid:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@c37014b404fc3e75392356d96d8dbffacc65b332
+  * boost-variant:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@449f1126f49d4f9f52e0b950c926a0150ffc5dcf
+  * boost-variant2:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@8433fae25d9ccbaa40dc442c750eec2ed6c0cabe
+  * boost-winapi:arm64-osx-p01@1.89.0 -- git+https://github.com/microsoft/vcpkg@f4552c468e3f22d10354f05d70af19f36f5da585
+  * brotli:arm64-osx-p01@1.2.0 -- git+https://github.com/microsoft/vcpkg@0fb79bb13588702a9e06057745b4aed95ce5c861
+  * bzip2[core,tool]:arm64-osx-p01@1.0.8#6 -- git+https://github.com/microsoft/vcpkg@2d029da682847c5ebdc54e4dbea001331a02207e
+  * c-ares:arm64-osx-p01@1.34.6 -- git+https://github.com/microsoft/vcpkg@6ee80f35bece6f1dbf2d767833aa117d718df752
+    clipper2:arm64-osx-p01@1.5.4 -- git+https://github.com/microsoft/vcpkg@efcc6cdefc2176e0bdcc990d41d0d43601d20e20
+    eigen3:arm64-osx-p01@3.4.1#1 -- git+https://github.com/microsoft/vcpkg@ea6ed04401cca325eff95c17cc0d01326a3c6a85
+    fast-float:arm64-osx-p01@8.1.0 -- git+https://github.com/microsoft/vcpkg@b9eb72faaf427307962387a36d0aa845d57e0c5c
+  * fmt:arm64-osx-p01@10.1.1 -- git+https://github.com/microsoft/vcpkg@dfe9aa860f5a8317f341a21d317be1cf44e89f18
+  * gflags:arm64-osx-p01@2.3.0 -- git+https://github.com/microsoft/vcpkg@eec33f2d7ee46b38cf2c5f46ed7f97c106c2b7ab
+    grpc[codegen,core]:arm64-osx-p01@1.71.0#3 -- git+https://github.com/microsoft/vcpkg@daebe29c41aa900ce183614afe15c73b3ca4f643
+  * libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1 -- git+https://github.com/microsoft/vcpkg@fb70d948ca21973f4f8e403b0ec54053631a74e2
+  * libiconv:arm64-osx-p01@1.18#3 -- git+https://github.com/microsoft/vcpkg@cd6e884bcb53ce8481ea9594639f3d21aed0e138
+  * lz4:arm64-osx-p01@1.10.0 -- git+https://github.com/microsoft/vcpkg@4f01eec10f515a428e914107c5188366380f8dd9
+    nanoflann:arm64-osx-p01@1.8.0 -- git+https://github.com/microsoft/vcpkg@39b5dd98a648ebc0bb3ce83a9c9c534ac7b3bedd
+  * openssl:arm64-osx-p01@3.6.0#3 -- git+https://github.com/microsoft/vcpkg@21c1dabbf149eaa75b6c8b6ba9c3c6edb4f47ea7
+  * protobuf:arm64-osx-p01@5.29.5#3 -- git+https://github.com/microsoft/vcpkg@a8fdd2b1b4283409700152a6ac8639c005d1c103
+    pugixml:arm64-osx-p01@1.15#1 -- git+https://github.com/microsoft/vcpkg@e210d4650721b32c1e83bf0da6a0cf4c145bbbd9
+  * rapidjson:arm64-osx-p01@2025-02-26 -- git+https://github.com/microsoft/vcpkg@4297a243aa0e3ed6c3a4c307579914593da5751d
+  * re2:arm64-osx-p01@2025-11-05 -- git+https://github.com/microsoft/vcpkg@cdb3c6b427f023ec6af6433f0494e2e7ec0f708f
+  * snappy:arm64-osx-p01@1.2.2#1 -- git+https://github.com/microsoft/vcpkg@b493c37dddc115546ae73cc86106acd93d9916c5
+    spdlog:arm64-osx-p01@1.16.0 -- git+https://github.com/microsoft/vcpkg@5e6886c421877c656b6be701880e2cbe2bc16131
+  * thrift:arm64-osx-p01@0.22.0 -- git+https://github.com/microsoft/vcpkg@4c4faad4f1e351534a8114aa84d5ab1dee2e025f
+    type-lite:arm64-osx-p01@0.2.0 -- git+https://github.com/microsoft/vcpkg@7ebc5db10421a042126a6ca788752a332402be10
+  * utf8-range:arm64-osx-p01@5.29.5 -- git+https://github.com/microsoft/vcpkg@5d28e170bfcc212d629bb070520e72492240ce65
+  * utf8proc:arm64-osx-p01@2.11.2 -- git+https://github.com/microsoft/vcpkg@35807db3f400becadade26e3a088236741d18483
+  * vcpkg-boost:arm64-osx-p01@2025-03-29 -- git+https://github.com/microsoft/vcpkg@858b0333b773b5650c3f19ef271e3205542d7ceb
+  * vcpkg-cmake:arm64-osx-p01@2024-04-23 -- git+https://github.com/microsoft/vcpkg@e74aa1e8f93278a8e71372f1fa08c3df420eb840
+  * vcpkg-cmake-config:arm64-osx-p01@2024-05-23 -- git+https://github.com/microsoft/vcpkg@97a63e4bc1a17422ffe4eff71da53b4b561a7841
+  * vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29 -- git+https://github.com/microsoft/vcpkg@d6510f888dd526c7828f6b973349e7f30be51254
+  * xsimd:arm64-osx-p01@14.0.0 -- git+https://github.com/microsoft/vcpkg@27c9b99a0f803f9ceed3f26d65f9bf6f8dbc392e
+  * zlib:arm64-osx-p01@1.3.1 -- git+https://github.com/microsoft/vcpkg@3f05e04b9aededb96786a911a16193cdb711f0c9
+  * zstd:arm64-osx-p01@1.5.7 -- git+https://github.com/microsoft/vcpkg@31b7320fab13790c6861cb3c2d50dc8f60ca3602
+Additional packages (*) will be modified to complete this operation.
+Installing 1/103 vcpkg-cmake-config:arm64-osx-p01@2024-05-23...
+vcpkg-cmake-config:arm64-osx-p01@2024-05-23 package ABI: d53d0becc952a00dfcfb201da50ffcbaae243a40e4f1d9faadc0f34788f08372
+Building vcpkg-cmake-config:arm64-osx-p01@2024-05-23...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/97a63e4bc1a17422ffe4eff71da53b4b561a7841: info: installing from git registry git+https://github.com/microsoft/vcpkg@97a63e4bc1a17422ffe4eff71da53b4b561a7841
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-config_arm64-osx-p01/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-config_arm64-osx-p01/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-config_arm64-osx-p01/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Elapsed time to handle vcpkg-cmake-config:arm64-osx-p01: 33.7 ms
+Installing 2/103 vcpkg-cmake:arm64-osx-p01@2024-04-23...
+vcpkg-cmake:arm64-osx-p01@2024-04-23 package ABI: fa1a66fa0b0d269e57268d505f27df40d77d319299285e77b094beb3950609a0
+Building vcpkg-cmake:arm64-osx-p01@2024-04-23...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/e74aa1e8f93278a8e71372f1fa08c3df420eb840: info: installing from git registry git+https://github.com/microsoft/vcpkg@e74aa1e8f93278a8e71372f1fa08c3df420eb840
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake_arm64-osx-p01/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake_arm64-osx-p01/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake_arm64-osx-p01/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake_arm64-osx-p01/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake_arm64-osx-p01/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Elapsed time to handle vcpkg-cmake:arm64-osx-p01: 40.2 ms
+Installing 3/103 rapidjson:arm64-osx-p01@2025-02-26...
+rapidjson:arm64-osx-p01@2025-02-26 package ABI: da081bbe4fb067acfc2ee8446bf78ee78e24fbc13fdfffcfba6b5280b00d8041
+Building rapidjson:arm64-osx-p01@2025-02-26...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4297a243aa0e3ed6c3a4c307579914593da5751d: info: installing from git registry git+https://github.com/microsoft/vcpkg@4297a243aa0e3ed6c3a4c307579914593da5751d
+Downloading https://github.com/Tencent/rapidjson/archive/24b5e7a8b27f42fa16b96fc70aade9106cf7102f.tar.gz -> Tencent-rapidjson-24b5e7a8b27f42fa16b96fc70aade9106cf7102f-2.tar.gz
+Successfully downloaded Tencent-rapidjson-24b5e7a8b27f42fa16b96fc70aade9106cf7102f-2.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/Tencent-rapidjson-24b5e7a8b27f42fa16b96fc70aade9106cf7102f-2.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/rapidjson/src/106cf7102f-b0877c68bd.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/rapidjson_arm64-osx-p01/lib/pkgconfig/RapidJSON.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/rapidjson_arm64-osx-p01/share/rapidjson/copyright
+-- Performing post-build validation
+Elapsed time to handle rapidjson:arm64-osx-p01: 1.6 s
+Installing 4/103 zstd:arm64-osx-p01@1.5.7...
+zstd:arm64-osx-p01@1.5.7 package ABI: 2f6bc21c790eff4c4adc0181e39ad51e987ecebf258c74f352729d2e0ede52a7
+Building zstd:arm64-osx-p01@1.5.7...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/31b7320fab13790c6861cb3c2d50dc8f60ca3602: info: installing from git registry git+https://github.com/microsoft/vcpkg@31b7320fab13790c6861cb3c2d50dc8f60ca3602
+Downloading https://github.com/facebook/zstd/archive/v1.5.7.tar.gz -> facebook-zstd-v1.5.7.tar.gz
+Successfully downloaded facebook-zstd-v1.5.7.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/facebook-zstd-v1.5.7.tar.gz
+-- Applying patch no-static-suffix.patch
+-- Applying patch fix-emscripten-and-clang-cl.patch
+-- Applying patch fix-windows-rc-compile.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/zstd/src/v1.5.7-bb6cae2b2e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/zstd_arm64-osx-p01/lib/pkgconfig/libzstd.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/zstd_arm64-osx-p01/share/zstd/usage
+-- Performing post-build validation
+Elapsed time to handle zstd:arm64-osx-p01: 12 s
+Installing 5/103 zlib:arm64-osx-p01@1.3.1...
+zlib:arm64-osx-p01@1.3.1 package ABI: 841700325639ae03dba694367585abc6673e78b5ac45b52875b09b1c672aacf8
+Building zlib:arm64-osx-p01@1.3.1...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/3f05e04b9aededb96786a911a16193cdb711f0c9: info: installing from git registry git+https://github.com/microsoft/vcpkg@3f05e04b9aededb96786a911a16193cdb711f0c9
+Downloading https://github.com/madler/zlib/archive/v1.3.1.tar.gz -> madler-zlib-v1.3.1.tar.gz
+Successfully downloaded madler-zlib-v1.3.1.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/madler-zlib-v1.3.1.tar.gz
+-- Applying patch 0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch
+-- Applying patch 0002-build-static-or-shared-not-both.patch
+-- Applying patch 0003-android-and-mingw-fixes.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/zlib/src/v1.3.1-2e5db616bf.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/zlib_arm64-osx-p01/share/zlib/vcpkg-cmake-wrapper.cmake
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/zlib_arm64-osx-p01/lib/pkgconfig/zlib.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/zlib_arm64-osx-p01/share/zlib/copyright
+-- Performing post-build validation
+Elapsed time to handle zlib:arm64-osx-p01: 3.2 s
+Installing 6/103 xsimd:arm64-osx-p01@14.0.0...
+xsimd:arm64-osx-p01@14.0.0 package ABI: 087c7d0aa399d335037b39d0e29a88234037326c7c3f22eaf18772cfc2424847
+Building xsimd:arm64-osx-p01@14.0.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/27c9b99a0f803f9ceed3f26d65f9bf6f8dbc392e: info: installing from git registry git+https://github.com/microsoft/vcpkg@27c9b99a0f803f9ceed3f26d65f9bf6f8dbc392e
+Downloading https://github.com/xtensor-stack/xsimd/archive/14.0.0.tar.gz -> xtensor-stack-xsimd-14.0.0.tar.gz
+Successfully downloaded xtensor-stack-xsimd-14.0.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/xtensor-stack-xsimd-14.0.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/xsimd/src/14.0.0-22ab1b9668.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/xsimd_arm64-osx-p01/share/pkgconfig/xsimd.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/xsimd_arm64-osx-p01/share/xsimd/copyright
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/xsimd_arm64-osx-p01/share/xsimd/usage
+-- Performing post-build validation
+Elapsed time to handle xsimd:arm64-osx-p01: 1.5 s
+Installing 7/103 utf8proc:arm64-osx-p01@2.11.2...
+utf8proc:arm64-osx-p01@2.11.2 package ABI: 6b98feecd773082b3660ba5fc5989642525125bad890ee41eed4f19f3725fe4f
+Building utf8proc:arm64-osx-p01@2.11.2...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/35807db3f400becadade26e3a088236741d18483: info: installing from git registry git+https://github.com/microsoft/vcpkg@35807db3f400becadade26e3a088236741d18483
+Downloading https://github.com/JuliaLang/utf8proc/archive/v2.11.2.tar.gz -> JuliaLang-utf8proc-v2.11.2.tar.gz
+Successfully downloaded JuliaLang-utf8proc-v2.11.2.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/JuliaLang-utf8proc-v2.11.2.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/utf8proc/src/v2.11.2-a34d266797.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/utf8proc_arm64-osx-p01/lib/pkgconfig/libutf8proc.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/utf8proc_arm64-osx-p01/share/unofficial-utf8proc/unofficial-utf8proc-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/utf8proc_arm64-osx-p01/share/utf8proc/copyright
+-- Performing post-build validation
+Elapsed time to handle utf8proc:arm64-osx-p01: 1.8 s
+Installing 8/103 vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29...
+vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29 package ABI: 67c910cddc6234c411db23dc771dfa1293d1761e1601d86b1fdc44fff166f070
+Building vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/d6510f888dd526c7828f6b973349e7f30be51254: info: installing from git registry git+https://github.com/microsoft/vcpkg@d6510f888dd526c7828f6b973349e7f30be51254
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/vcpkg_cmake_get_vars.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/cmake_get_vars
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/cmake_get_vars/CMakeLists.txt
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/cmake-get-vars.cmake.in
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/vcpkg-port-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-cmake-get-vars_arm64-osx-p01/share/vcpkg-cmake-get-vars/copyright
+-- Performing post-build validation
+Elapsed time to handle vcpkg-cmake-get-vars:arm64-osx-p01: 34 ms
+Installing 9/103 openssl:arm64-osx-p01@3.6.0#3...
+openssl:arm64-osx-p01@3.6.0#3 package ABI: 875333fe90d6a86254fa7d9e1d0d712341a0e7814bd48d7ca874d30ea395d490
+Building openssl:arm64-osx-p01@3.6.0#3...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/21c1dabbf149eaa75b6c8b6ba9c3c6edb4f47ea7: info: installing from git registry git+https://github.com/microsoft/vcpkg@21c1dabbf149eaa75b6c8b6ba9c3c6edb4f47ea7
+Downloading https://github.com/openssl/openssl/archive/openssl-3.6.0.tar.gz -> openssl-openssl-openssl-3.6.0.tar.gz
+Successfully downloaded openssl-openssl-openssl-3.6.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/openssl-openssl-openssl-3.6.0.tar.gz
+-- Applying patch cmake-config.patch
+-- Applying patch command-line-length.patch
+-- Applying patch script-prefix.patch
+-- Applying patch aes_cfb128_vaes_encdec_wrapper.diff
+-- Applying patch windows/install-layout.patch
+-- Applying patch windows/install-pdbs.patch
+-- Applying patch windows/install-programs.diff
+-- Applying patch unix/android-cc.patch
+-- Applying patch unix/move-openssldir.patch
+-- Applying patch unix/no-empty-dirs.patch
+-- Applying patch unix/no-static-libs-for-shared.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/openssl/src/nssl-3.6.0-a2eab2a5bb.clean
+-- Getting CMake variables for arm64-osx-p01
+-- Loading CMake variables from /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/openssl/cmake-get-vars_C_CXX-arm64-osx-p01.cmake.log
+-- Getting CMake variables for arm64-osx-p01-rel
+-- Configuring arm64-osx-p01-rel
+-- Building arm64-osx-p01-rel
+-- Installing arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/openssl_arm64-osx-p01/lib/pkgconfig/libcrypto.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/openssl_arm64-osx-p01/lib/pkgconfig/libssl.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/openssl_arm64-osx-p01/lib/pkgconfig/openssl.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/openssl_arm64-osx-p01/share/openssl/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/openssl_arm64-osx-p01/share/openssl/copyright
+-- Performing post-build validation
+Elapsed time to handle openssl:arm64-osx-p01: 1.4 min
+Installing 10/103 libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1...
+libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1 package ABI: b9f0c3c99c604a73219481233b6988dad6c81a67d3cb8ffbaaa3560fc707b5c2
+Building libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/fb70d948ca21973f4f8e403b0ec54053631a74e2: info: installing from git registry git+https://github.com/microsoft/vcpkg@fb70d948ca21973f4f8e403b0ec54053631a74e2
+Downloading https://github.com/libevent/libevent/archive/4d85d28acdbb83bb60e500e9345bab757b64d6d1.tar.gz -> libevent-libevent-4d85d28acdbb83bb60e500e9345bab757b64d6d1.tar.gz
+Successfully downloaded libevent-libevent-4d85d28acdbb83bb60e500e9345bab757b64d6d1.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/libevent-libevent-4d85d28acdbb83bb60e500e9345bab757b64d6d1.tar.gz
+-- Applying patch fix-uwp.patch
+-- Applying patch fix-file_path.patch
+-- Applying patch fix-LibeventConfig_cmake_in_path.patch
+-- Applying patch fix-usage.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/libevent/src/757b64d6d1-bfa17b9727.clean
+-- Configuring arm64-osx-p01
+CMake Warning at /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:344 (message):
+  The following variables are not used in CMakeLists.txt:
+
+      EVENT__MSVC_STATIC_RUNTIME
+
+  Please recheck them and remove the unnecessary options from the
+  `vcpkg_cmake_configure` call.
+
+  If these options should still be passed for whatever reason, please use the
+  `MAYBE_UNUSED_VARIABLES` argument.
+Call Stack (most recent call first):
+  /private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/fb70d948ca21973f4f8e403b0ec54053631a74e2/portfile.cmake:35 (vcpkg_cmake_configure)
+  /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/ports.cmake:209 (include)
+
+
+-- Building arm64-osx-p01-rel
+CMake Warning at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/cmake/vcpkg_replace_string.cmake:17 (message):
+  vcpkg_replace_string made no changes.
+Call Stack (most recent call first):
+  /private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/fb70d948ca21973f4f8e403b0ec54053631a74e2/portfile.cmake:71 (vcpkg_replace_string)
+  /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/ports.cmake:209 (include)
+
+
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/lib/pkgconfig/libevent.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/lib/pkgconfig/libevent_core.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/lib/pkgconfig/libevent_extra.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/lib/pkgconfig/libevent_pthreads.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/share/libevent/copyright
+-- Performing post-build validation
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/fb70d948ca21973f4f8e403b0ec54053631a74e2/portfile.cmake: warning: There should be no absolute paths, such as the following, in an installed package. To suppress this message, add set(VCPKG_POLICY_SKIP_ABSOLUTE_PATHS_CHECK enabled)
+note: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages
+note: /tmp/resinsight-p01-build/vcpkg-installed
+note: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees
+note: /private/tmp/resinsight-p01-build/downloads/vcpkg
+/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/libevent_arm64-osx-p01/share/libevent/LibeventConfig.cmake: note: absolute paths found here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/fb70d948ca21973f4f8e403b0ec54053631a74e2/portfile.cmake: warning: Found 1 post-build check problem(s). These are usually caused by bugs in portfile.cmake or the upstream build system. Please correct these before submitting this port to the curated registry.
+Elapsed time to handle libevent:arm64-osx-p01: 24 s
+Installing 11/103 vcpkg-boost:arm64-osx-p01@2025-03-29...
+vcpkg-boost:arm64-osx-p01@2025-03-29 package ABI: 844a5b589a9f4edf11f2dd012dedab5601f34884d67e0625fd7c85f4edf182b7
+Building vcpkg-boost:arm64-osx-p01@2025-03-29...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/858b0333b773b5650c3f19ef271e3205542d7ceb: info: installing from git registry git+https://github.com/microsoft/vcpkg@858b0333b773b5650c3f19ef271e3205542d7ceb
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-boost_arm64-osx-p01/share/vcpkg-boost/usage.in
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-boost_arm64-osx-p01/share/vcpkg-boost/boost-install.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-boost_arm64-osx-p01/share/vcpkg-boost/vcpkg-port-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/vcpkg-boost_arm64-osx-p01/share/vcpkg-boost/copyright
+-- Performing post-build validation
+Elapsed time to handle vcpkg-boost:arm64-osx-p01: 42.2 ms
+Installing 12/103 boost-uninstall:arm64-osx-p01@1.89.0...
+boost-uninstall:arm64-osx-p01@1.89.0 package ABI: c2daba8efdafbea07dcfdddb5dfebf826f89a182c160e6a217f2a290195bb71f
+Building boost-uninstall:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/83ce7d42de32cacf540be39b74cfcb462ab034b8: info: installing from git registry git+https://github.com/microsoft/vcpkg@83ce7d42de32cacf540be39b74cfcb462ab034b8
+-- 
+Please use the following command when you need to remove all boost ports/components:
+    "./vcpkg remove boost-uninstall:arm64-osx-p01 --recurse"
+
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Elapsed time to handle boost-uninstall:arm64-osx-p01: 32.1 ms
+Installing 13/103 boost-cmake:arm64-osx-p01@1.89.0...
+boost-cmake:arm64-osx-p01@1.89.0 package ABI: 85d4785de73e598ccaf2d0358ca387e68f955e6cd87b960b79654eb01b7585ad
+Building boost-cmake:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/8c7d8286875eac4b6e5995d63337cfd3e16d66ef: info: installing from git registry git+https://github.com/microsoft/vcpkg@8c7d8286875eac4b6e5995d63337cfd3e16d66ef
+Downloading https://github.com/boostorg/cmake/archive/boost-1.89.0.tar.gz -> boostorg-cmake-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-cmake-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-cmake-boost-1.89.0.tar.gz
+-- Applying patch 0001-vcpkg-build.patch
+-- Applying patch 0002-remove-prefix-and-suffix.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-cmake/src/ost-1.89.0-7c3a089ad0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Up-to-date: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostFetch.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostInstall.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostTest.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostTestJamfile.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostMessage.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost/cmake-build/BoostRoot.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost-cmake/vcpkg-port-config.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost-cmake/usage
+Downloading https://raw.githubusercontent.com/boostorg/boost/refs/tags/boost-1.89.0/LICENSE_1_0.txt -> boost-1.89.0-LICENSE_1_0.txt
+Successfully downloaded boost-1.89.0-LICENSE_1_0.txt
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-cmake_arm64-osx-p01/share/boost-cmake/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-cmake:arm64-osx-p01: 1.2 s
+Installing 14/103 boost-headers:arm64-osx-p01@1.89.0...
+boost-headers:arm64-osx-p01@1.89.0 package ABI: c2ecb497b466fd1cb3a68879c1ec74d9c4099f94ec1d3bb32924a0fff57f5e32
+Building boost-headers:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/95dbcdac30de15e8f72cdba71aedb4fb06638718: info: installing from git registry git+https://github.com/microsoft/vcpkg@95dbcdac30de15e8f72cdba71aedb4fb06638718
+Downloading https://github.com/boostorg/headers/archive/boost-1.89.0.tar.gz -> boostorg-headers-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-headers-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-headers-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-headers/src/ost-1.89.0-459e1f68ea.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-headers_arm64-osx-p01/share/boost-headers/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-headers:arm64-osx-p01: 1.2 s
+Installing 15/103 boost-config:arm64-osx-p01@1.89.0...
+boost-config:arm64-osx-p01@1.89.0 package ABI: f9a6528e142ee44cf5fb1f8d6237021f9aab10ce6d227bd3266a2cacdc352ada
+Building boost-config:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/73499959016446ec7272976b0abaab1ed123c3c8: info: installing from git registry git+https://github.com/microsoft/vcpkg@73499959016446ec7272976b0abaab1ed123c3c8
+Downloading https://github.com/boostorg/config/archive/boost-1.89.0.tar.gz -> boostorg-config-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-config-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-config-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-config/src/ost-1.89.0-5c0b51daf2.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-config_arm64-osx-p01/share/boost-config/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-config:arm64-osx-p01: 1.7 s
+Installing 16/103 boost-static-assert:arm64-osx-p01@1.89.0...
+boost-static-assert:arm64-osx-p01@1.89.0 package ABI: 27b0e9a799de803af0c4764d213b11f0d786228f20138a7af4e7728939f598d7
+Building boost-static-assert:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/c297fdc10a4751a0813d174da5b3d6ee8ac4fcd2: info: installing from git registry git+https://github.com/microsoft/vcpkg@c297fdc10a4751a0813d174da5b3d6ee8ac4fcd2
+Downloading https://github.com/boostorg/static_assert/archive/boost-1.89.0.tar.gz -> boostorg-static_assert-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-static_assert-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-static_assert-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-static-assert/src/ost-1.89.0-9f93d71e43.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-static-assert_arm64-osx-p01/share/boost-static-assert/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-static-assert:arm64-osx-p01: 1.3 s
+Installing 17/103 boost-type-traits:arm64-osx-p01@1.89.0...
+boost-type-traits:arm64-osx-p01@1.89.0 package ABI: a797f77b17947aeff61594535792de228d2cf519663e6d1832d63c76d47240be
+Building boost-type-traits:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/8c46d2bab6817bbbb8382efaed7aeb1ae8b15119: info: installing from git registry git+https://github.com/microsoft/vcpkg@8c46d2bab6817bbbb8382efaed7aeb1ae8b15119
+Downloading https://github.com/boostorg/type_traits/archive/boost-1.89.0.tar.gz -> boostorg-type_traits-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-type_traits-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-type_traits-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-type-traits/src/ost-1.89.0-73cfacd83d.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-type-traits_arm64-osx-p01/share/boost-type-traits/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-type-traits:arm64-osx-p01: 1.7 s
+Installing 18/103 boost-assert:arm64-osx-p01@1.89.0...
+boost-assert:arm64-osx-p01@1.89.0 package ABI: 3921e2b7c3d33906160faf9d8d2e572e831cd1782b7d9e0da17cc81e4f50068b
+Building boost-assert:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4b40db7ad8e6420b04da87e8266e5eca7c3c059f: info: installing from git registry git+https://github.com/microsoft/vcpkg@4b40db7ad8e6420b04da87e8266e5eca7c3c059f
+Downloading https://github.com/boostorg/assert/archive/boost-1.89.0.tar.gz -> boostorg-assert-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-assert-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-assert-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-assert/src/ost-1.89.0-2885daa86c.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-assert_arm64-osx-p01/share/boost-assert/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-assert:arm64-osx-p01: 1.1 s
+Installing 19/103 boost-throw-exception:arm64-osx-p01@1.89.0...
+boost-throw-exception:arm64-osx-p01@1.89.0 package ABI: 6ffbce4d8203647a727580047d06ce6341288fe4e6e969c79a756e103378e0d6
+Building boost-throw-exception:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/2595f3f64c49285c68fde05cca87afa79eb4d664: info: installing from git registry git+https://github.com/microsoft/vcpkg@2595f3f64c49285c68fde05cca87afa79eb4d664
+Downloading https://github.com/boostorg/throw_exception/archive/boost-1.89.0.tar.gz -> boostorg-throw_exception-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-throw_exception-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-throw_exception-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-throw-exception/src/ost-1.89.0-d10e7f86f0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-throw-exception_arm64-osx-p01/share/boost-throw-exception/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-throw-exception:arm64-osx-p01: 1.2 s
+Installing 20/103 boost-uuid:arm64-osx-p01@1.89.0...
+boost-uuid:arm64-osx-p01@1.89.0 package ABI: a39b67245f71a2e93df16225d4b44eeb0c393a86a90351c17fb141bac38a0f42
+Building boost-uuid:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/c37014b404fc3e75392356d96d8dbffacc65b332: info: installing from git registry git+https://github.com/microsoft/vcpkg@c37014b404fc3e75392356d96d8dbffacc65b332
+Downloading https://github.com/boostorg/uuid/archive/boost-1.89.0.tar.gz -> boostorg-uuid-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-uuid-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-uuid-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-uuid/src/ost-1.89.0-f4c65ad7e1.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-uuid_arm64-osx-p01/share/boost-uuid/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-uuid:arm64-osx-p01: 1.1 s
+Installing 21/103 boost-core:arm64-osx-p01@1.89.0...
+boost-core:arm64-osx-p01@1.89.0 package ABI: ca8b521782ff7a641b911fb4016f6eb6ad66c84d8eed9f737a695baa5db20aee
+Building boost-core:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/9823973b46eb48abfc4d773b8461e98165b6eb6b: info: installing from git registry git+https://github.com/microsoft/vcpkg@9823973b46eb48abfc4d773b8461e98165b6eb6b
+Downloading https://github.com/boostorg/core/archive/boost-1.89.0.tar.gz -> boostorg-core-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-core-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-core-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-core/src/ost-1.89.0-2c585c7dfa.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-core_arm64-osx-p01/share/boost-core/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-core:arm64-osx-p01: 1.5 s
+Installing 22/103 boost-smart-ptr:arm64-osx-p01@1.89.0...
+boost-smart-ptr:arm64-osx-p01@1.89.0 package ABI: 1167da1ce6ea2857fee4631a66afac38f44857e4374478e3ac365a3375af736c
+Building boost-smart-ptr:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/3520f2bdf1ddfd6b9b9e83fa0db82bb9a28fe6a5: info: installing from git registry git+https://github.com/microsoft/vcpkg@3520f2bdf1ddfd6b9b9e83fa0db82bb9a28fe6a5
+Downloading https://github.com/boostorg/smart_ptr/archive/boost-1.89.0.tar.gz -> boostorg-smart_ptr-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-smart_ptr-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-smart_ptr-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-smart-ptr/src/ost-1.89.0-99142759db.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-smart-ptr_arm64-osx-p01/share/boost-smart-ptr/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-smart-ptr:arm64-osx-p01: 1.3 s
+Installing 23/103 boost-typeof:arm64-osx-p01@1.89.0...
+boost-typeof:arm64-osx-p01@1.89.0 package ABI: 4a3cfc8e65b9a331099dcbbeafb163723465f093cb1976ede79fd8eca4813650
+Building boost-typeof:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/bc97dedd1bd7d66c437b13b38786e182c54fc924: info: installing from git registry git+https://github.com/microsoft/vcpkg@bc97dedd1bd7d66c437b13b38786e182c54fc924
+Downloading https://github.com/boostorg/typeof/archive/boost-1.89.0.tar.gz -> boostorg-typeof-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-typeof-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-typeof-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-typeof/src/ost-1.89.0-41484dcb2a.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-typeof_arm64-osx-p01/share/boost-typeof/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-typeof:arm64-osx-p01: 1.1 s
+Installing 24/103 boost-preprocessor:arm64-osx-p01@1.89.0...
+boost-preprocessor:arm64-osx-p01@1.89.0 package ABI: 90cdb9dd53338b41521fcfcc907e66815423e95a386f085c36995baa8b31bd83
+Building boost-preprocessor:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b24666cb6f30bbace4fa4f602072ff22a1926e6d: info: installing from git registry git+https://github.com/microsoft/vcpkg@b24666cb6f30bbace4fa4f602072ff22a1926e6d
+Downloading https://github.com/boostorg/preprocessor/archive/boost-1.89.0.tar.gz -> boostorg-preprocessor-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-preprocessor-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-preprocessor-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-preprocessor/src/ost-1.89.0-3fbcf3bcf6.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-preprocessor_arm64-osx-p01/share/boost-preprocessor/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-preprocessor:arm64-osx-p01: 1.9 s
+Installing 25/103 boost-bind:arm64-osx-p01@1.89.0...
+boost-bind:arm64-osx-p01@1.89.0 package ABI: e393b1ad9df5d8302d4c422e3738b981afd68dac454ea874e33d0ccedb9e6e03
+Building boost-bind:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b2fdb396a7064165de3c60c4da30dffd751f82e2: info: installing from git registry git+https://github.com/microsoft/vcpkg@b2fdb396a7064165de3c60c4da30dffd751f82e2
+Downloading https://github.com/boostorg/bind/archive/boost-1.89.0.tar.gz -> boostorg-bind-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-bind-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-bind-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-bind/src/ost-1.89.0-1b6f7da373.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-bind_arm64-osx-p01/share/boost-bind/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-bind:arm64-osx-p01: 1.6 s
+Installing 26/103 boost-function:arm64-osx-p01@1.89.0...
+boost-function:arm64-osx-p01@1.89.0 package ABI: 48a9d212f18ac9af1c51b63ef06c835c5bdce9f29450b6e438479b7fc7ed0774
+Building boost-function:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/5d75dc069bb0685bfa48febfc0d4bffc0f46f8c9: info: installing from git registry git+https://github.com/microsoft/vcpkg@5d75dc069bb0685bfa48febfc0d4bffc0f46f8c9
+Downloading https://github.com/boostorg/function/archive/boost-1.89.0.tar.gz -> boostorg-function-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-function-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-function-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-function/src/ost-1.89.0-a760d8cbf6.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-function_arm64-osx-p01/share/boost-function/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-function:arm64-osx-p01: 1.2 s
+Installing 27/103 boost-scope-exit:arm64-osx-p01@1.89.0...
+boost-scope-exit:arm64-osx-p01@1.89.0 package ABI: 2b4e56086d78a9f9c97345142a85838cb89bc59344ddd972e3e27fde6641b77d
+Building boost-scope-exit:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/8bb2255cf9e1f28f90fe23adf2caad8424afab49: info: installing from git registry git+https://github.com/microsoft/vcpkg@8bb2255cf9e1f28f90fe23adf2caad8424afab49
+Downloading https://github.com/boostorg/scope_exit/archive/boost-1.89.0.tar.gz -> boostorg-scope_exit-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-scope_exit-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-scope_exit-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-scope-exit/src/ost-1.89.0-79b570c545.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-scope-exit_arm64-osx-p01/share/boost-scope-exit/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-scope-exit:arm64-osx-p01: 1.1 s
+Installing 28/103 boost-io:arm64-osx-p01@1.89.0...
+boost-io:arm64-osx-p01@1.89.0 package ABI: 8d98b9ecba0fbeb7315c21a93230d0e1c236d6372a0c09e5607731cfafb81048
+Building boost-io:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/52997d9b6a05b007e2897de28beaeea18968cc0e: info: installing from git registry git+https://github.com/microsoft/vcpkg@52997d9b6a05b007e2897de28beaeea18968cc0e
+Downloading https://github.com/boostorg/io/archive/boost-1.89.0.tar.gz -> boostorg-io-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-io-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-io-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-io/src/ost-1.89.0-b87766b4bb.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-io_arm64-osx-p01/share/boost-io/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-io:arm64-osx-p01: 1 s
+Installing 29/103 boost-utility:arm64-osx-p01@1.89.0...
+boost-utility:arm64-osx-p01@1.89.0 package ABI: db805a57a2359d8a88aa960b965c62e63d7e25bd75aad9c3f2530eb62709f159
+Building boost-utility:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/13afb12031051f9b937985deade5bbeb7c5cc256: info: installing from git registry git+https://github.com/microsoft/vcpkg@13afb12031051f9b937985deade5bbeb7c5cc256
+Downloading https://github.com/boostorg/utility/archive/boost-1.89.0.tar.gz -> boostorg-utility-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-utility-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-utility-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-utility/src/ost-1.89.0-2597201c4e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-utility_arm64-osx-p01/share/boost-utility/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-utility:arm64-osx-p01: 1.2 s
+Installing 30/103 boost-tuple:arm64-osx-p01@1.89.0...
+boost-tuple:arm64-osx-p01@1.89.0 package ABI: 411d22ddb4b1bd0829c11de10d848c28693da6f72528103ab0fc4d6f0f2aac72
+Building boost-tuple:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4975ef963fa02d53b2fca5eb8936b32e4de2e9da: info: installing from git registry git+https://github.com/microsoft/vcpkg@4975ef963fa02d53b2fca5eb8936b32e4de2e9da
+Downloading https://github.com/boostorg/tuple/archive/boost-1.89.0.tar.gz -> boostorg-tuple-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-tuple-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-tuple-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-tuple/src/ost-1.89.0-39211cdb7a.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-tuple_arm64-osx-p01/share/boost-tuple/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-tuple:arm64-osx-p01: 1.1 s
+Installing 31/103 boost-predef:arm64-osx-p01@1.89.0...
+boost-predef:arm64-osx-p01@1.89.0 package ABI: c8f7dfe6f534ed9eb6a7ba39c48fa3315e8a83c17e76236638b10e7f5ac7e77a
+Building boost-predef:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/44b5803d820eb060f0727227d0ae9171912df6ce: info: installing from git registry git+https://github.com/microsoft/vcpkg@44b5803d820eb060f0727227d0ae9171912df6ce
+Downloading https://github.com/boostorg/predef/archive/boost-1.89.0.tar.gz -> boostorg-predef-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-predef-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-predef-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-predef/src/ost-1.89.0-6d6caa348b.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-predef_arm64-osx-p01/share/boost-predef/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-predef:arm64-osx-p01: 1.2 s
+Installing 32/103 boost-concept-check:arm64-osx-p01@1.89.0...
+boost-concept-check:arm64-osx-p01@1.89.0 package ABI: 13c50415c678c85f6135c7a8f4a9cf71584d1e327c6dfca057827965a0db6a7a
+Building boost-concept-check:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4f43e61a82b1e215fbea09fe321fb63b89d70ccf: info: installing from git registry git+https://github.com/microsoft/vcpkg@4f43e61a82b1e215fbea09fe321fb63b89d70ccf
+Downloading https://github.com/boostorg/concept_check/archive/boost-1.89.0.tar.gz -> boostorg-concept_check-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-concept_check-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-concept_check-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-concept-check/src/ost-1.89.0-484aaba5c0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-concept-check_arm64-osx-p01/share/boost-concept-check/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-concept-check:arm64-osx-p01: 1.2 s
+Installing 33/103 boost-regex:arm64-osx-p01@1.89.0...
+boost-regex:arm64-osx-p01@1.89.0 package ABI: 46cdc688712b2d0d439396de0efd1f2651c8722ce0eab8aab5b6df684e45da8f
+Building boost-regex:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/411f23facef811713ece1498443d376f4fc375da: info: installing from git registry git+https://github.com/microsoft/vcpkg@411f23facef811713ece1498443d376f4fc375da
+Downloading https://github.com/boostorg/regex/archive/boost-1.89.0.tar.gz -> boostorg-regex-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-regex-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-regex-boost-1.89.0.tar.gz
+-- Applying patch compat.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-regex/src/ost-1.89.0-5517713f81.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-regex_arm64-osx-p01/share/boost-regex/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-regex:arm64-osx-p01: 2.2 s
+Installing 34/103 boost-optional:arm64-osx-p01@1.89.0...
+boost-optional:arm64-osx-p01@1.89.0 package ABI: 0ead82431e396f3d797b2675344df6578f89ad48896ae588e4dfbfbd51d94b17
+Building boost-optional:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/a00224cf1d434cc257cae3146aed00651f9700c4: info: installing from git registry git+https://github.com/microsoft/vcpkg@a00224cf1d434cc257cae3146aed00651f9700c4
+Downloading https://github.com/boostorg/optional/archive/boost-1.89.0.tar.gz -> boostorg-optional-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-optional-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-optional-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-optional/src/ost-1.89.0-ae0b6cb49f.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-optional_arm64-osx-p01/share/boost-optional/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-optional:arm64-osx-p01: 1.2 s
+Installing 35/103 boost-mpl:arm64-osx-p01@1.89.0...
+boost-mpl:arm64-osx-p01@1.89.0 package ABI: d3a8ef56ded39c89e70314f6700dc9b2246d51c766b77ddcddf5d0532b3b2a91
+Building boost-mpl:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/419ecb733b84695280f408232c73470ab30be15d: info: installing from git registry git+https://github.com/microsoft/vcpkg@419ecb733b84695280f408232c73470ab30be15d
+Downloading https://github.com/boostorg/mpl/archive/boost-1.89.0.tar.gz -> boostorg-mpl-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-mpl-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-mpl-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-mpl/src/ost-1.89.0-388958cf0e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-mpl_arm64-osx-p01/share/boost-mpl/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-mpl:arm64-osx-p01: 2.6 s
+Installing 36/103 boost-mp11:arm64-osx-p01@1.89.0...
+boost-mp11:arm64-osx-p01@1.89.0 package ABI: 64021373024571e6a7af9ab14d1bdd8df748d3089d5b72e532e84be833975211
+Building boost-mp11:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b8f038d03ba53847d4b120f55730c0737aab5587: info: installing from git registry git+https://github.com/microsoft/vcpkg@b8f038d03ba53847d4b120f55730c0737aab5587
+Downloading https://github.com/boostorg/mp11/archive/boost-1.89.0.tar.gz -> boostorg-mp11-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-mp11-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-mp11-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-mp11/src/ost-1.89.0-11f1d16737.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-mp11_arm64-osx-p01/share/boost-mp11/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-mp11:arm64-osx-p01: 1.2 s
+Installing 37/103 boost-detail:arm64-osx-p01@1.89.0...
+boost-detail:arm64-osx-p01@1.89.0 package ABI: 1bfb7be67a75c93157c630d424e0e0ca19c6b5248ca74f3561b9aeff4a0c213c
+Building boost-detail:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/42321194aba4197b21532f5e146ddd36f4ec1a4f: info: installing from git registry git+https://github.com/microsoft/vcpkg@42321194aba4197b21532f5e146ddd36f4ec1a4f
+Downloading https://github.com/boostorg/detail/archive/boost-1.89.0.tar.gz -> boostorg-detail-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-detail-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-detail-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-detail/src/ost-1.89.0-351c9b3fdd.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-detail_arm64-osx-p01/share/boost-detail/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-detail:arm64-osx-p01: 1.1 s
+Installing 38/103 boost-function-types:arm64-osx-p01@1.89.0...
+boost-function-types:arm64-osx-p01@1.89.0 package ABI: 88a0acc40f9a93c11a029863d4345df3ae41d11da89bddff1afe070714ead2e2
+Building boost-function-types:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/21f4acfebeb149a3de71f341be55a5ce59cb32aa: info: installing from git registry git+https://github.com/microsoft/vcpkg@21f4acfebeb149a3de71f341be55a5ce59cb32aa
+Downloading https://github.com/boostorg/function_types/archive/boost-1.89.0.tar.gz -> boostorg-function_types-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-function_types-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-function_types-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-function-types/src/ost-1.89.0-ec4beaaf20.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-function-types_arm64-osx-p01/share/boost-function-types/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-function-types:arm64-osx-p01: 1.2 s
+Installing 39/103 boost-functional:arm64-osx-p01@1.89.0...
+boost-functional:arm64-osx-p01@1.89.0 package ABI: d967890506a34d4a745ced4b04a218f55e62c5f85585635914e6d7bfb8184ae6
+Building boost-functional:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/ade45ba6b3c1ceec40f8eb3ac8d3a523f80b2038: info: installing from git registry git+https://github.com/microsoft/vcpkg@ade45ba6b3c1ceec40f8eb3ac8d3a523f80b2038
+Downloading https://github.com/boostorg/functional/archive/boost-1.89.0.tar.gz -> boostorg-functional-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-functional-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-functional-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-functional/src/ost-1.89.0-a8960e60a6.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-functional_arm64-osx-p01/share/boost-functional/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-functional:arm64-osx-p01: 1.1 s
+Installing 40/103 boost-describe:arm64-osx-p01@1.89.0...
+boost-describe:arm64-osx-p01@1.89.0 package ABI: 003e5c47ce174620fe9c782037f258a4cda043022fda01acb90d310ac24acdf9
+Building boost-describe:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b6c39726cb8a5ed76d564c222cfd5a59f24d3e02: info: installing from git registry git+https://github.com/microsoft/vcpkg@b6c39726cb8a5ed76d564c222cfd5a59f24d3e02
+Downloading https://github.com/boostorg/describe/archive/boost-1.89.0.tar.gz -> boostorg-describe-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-describe-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-describe-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-describe/src/ost-1.89.0-ddc16c3bf5.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-describe_arm64-osx-p01/share/boost-describe/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-describe:arm64-osx-p01: 1.1 s
+Installing 41/103 boost-container-hash:arm64-osx-p01@1.89.0...
+boost-container-hash:arm64-osx-p01@1.89.0 package ABI: 90e5e190ce885c3bb57377c8303e1df8bbb9f8483e8ac47a535b9c48c64a4e2f
+Building boost-container-hash:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/f808bcb3fafb29847b0e7f07f78525e036eee56b: info: installing from git registry git+https://github.com/microsoft/vcpkg@f808bcb3fafb29847b0e7f07f78525e036eee56b
+Downloading https://github.com/boostorg/container_hash/archive/boost-1.89.0.tar.gz -> boostorg-container_hash-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-container_hash-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-container_hash-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-container-hash/src/ost-1.89.0-1e46a1c650.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-container-hash_arm64-osx-p01/share/boost-container-hash/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-container-hash:arm64-osx-p01: 1.2 s
+Installing 42/103 boost-fusion:arm64-osx-p01@1.89.0...
+boost-fusion:arm64-osx-p01@1.89.0 package ABI: 58a8500f6ab45e992356b887ef75ea2a234cf12d40816b85cfbfd387c2a8276b
+Building boost-fusion:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/c63f6e3ba7e2890a640553e6caaf2a5418c60913: info: installing from git registry git+https://github.com/microsoft/vcpkg@c63f6e3ba7e2890a640553e6caaf2a5418c60913
+Downloading https://github.com/boostorg/fusion/archive/boost-1.89.0.tar.gz -> boostorg-fusion-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-fusion-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-fusion-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-fusion/src/ost-1.89.0-68a3d1c271.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-fusion_arm64-osx-p01/share/boost-fusion/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-fusion:arm64-osx-p01: 2.4 s
+Installing 43/103 boost-iterator:arm64-osx-p01@1.89.0...
+boost-iterator:arm64-osx-p01@1.89.0 package ABI: 3001ad04a6f9bdee4855aa369cdb8974e11335386e6058e93f8a41db130881d2
+Building boost-iterator:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/afb261ecce2d7eb9a01aa41c835608482c129e03: info: installing from git registry git+https://github.com/microsoft/vcpkg@afb261ecce2d7eb9a01aa41c835608482c129e03
+Downloading https://github.com/boostorg/iterator/archive/boost-1.89.0.tar.gz -> boostorg-iterator-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-iterator-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-iterator-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-iterator/src/ost-1.89.0-6c4a6a03c0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-iterator_arm64-osx-p01/share/boost-iterator/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-iterator:arm64-osx-p01: 2.4 s
+Installing 44/103 boost-conversion:arm64-osx-p01@1.89.0...
+boost-conversion:arm64-osx-p01@1.89.0 package ABI: f24585be263a22703595a2744d34442d844dd5faa9e0e3b95f1f881cc71ab471
+Building boost-conversion:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/72f5608e82127ab4b384bcc268fb92c59d36bbc7: info: installing from git registry git+https://github.com/microsoft/vcpkg@72f5608e82127ab4b384bcc268fb92c59d36bbc7
+Downloading https://github.com/boostorg/conversion/archive/boost-1.89.0.tar.gz -> boostorg-conversion-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-conversion-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-conversion-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-conversion/src/ost-1.89.0-ee618bc778.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-conversion_arm64-osx-p01/share/boost-conversion/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-conversion:arm64-osx-p01: 1.1 s
+Installing 45/103 boost-array:arm64-osx-p01@1.89.0...
+boost-array:arm64-osx-p01@1.89.0 package ABI: dff1182466ab2d714f682bdd1addb75109f77e80ac8cc072b9b170ec9e824d4c
+Building boost-array:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/53a38d9df50a94549967fa8b7e47714c4d5761db: info: installing from git registry git+https://github.com/microsoft/vcpkg@53a38d9df50a94549967fa8b7e47714c4d5761db
+Downloading https://github.com/boostorg/array/archive/boost-1.89.0.tar.gz -> boostorg-array-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-array-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-array-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-array/src/ost-1.89.0-7eb40523a0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-array_arm64-osx-p01/share/boost-array/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-array:arm64-osx-p01: 1.4 s
+Installing 46/103 boost-range:arm64-osx-p01@1.89.0...
+boost-range:arm64-osx-p01@1.89.0 package ABI: 9944ebf09d384fcdd67f69376776cdfc981a8be1bc4f90f7a8ca7ac3bae3a474
+Building boost-range:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/ab4c025322e42dec411e33f17d3952fac5d7f00a: info: installing from git registry git+https://github.com/microsoft/vcpkg@ab4c025322e42dec411e33f17d3952fac5d7f00a
+Downloading https://github.com/boostorg/range/archive/boost-1.89.0.tar.gz -> boostorg-range-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-range-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-range-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-range/src/ost-1.89.0-a9a891bca7.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-range_arm64-osx-p01/share/boost-range/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-range:arm64-osx-p01: 1.4 s
+Installing 47/103 libiconv:arm64-osx-p01@1.18#3...
+libiconv:arm64-osx-p01@1.18#3 package ABI: a4d15adfe34a5adcca03021aa1d742407277831d4f5705352501d300205d113a
+Building libiconv:arm64-osx-p01@1.18#3...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/cd6e884bcb53ce8481ea9594639f3d21aed0e138: info: installing from git registry git+https://github.com/microsoft/vcpkg@cd6e884bcb53ce8481ea9594639f3d21aed0e138
+-- Not building GNU libiconv.
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Elapsed time to handle libiconv:arm64-osx-p01: 35.5 ms
+Installing 48/103 boost-winapi:arm64-osx-p01@1.89.0...
+boost-winapi:arm64-osx-p01@1.89.0 package ABI: ef1428391ef324f2665cf431a074187ab9c15b9d18cc99225f8abdcfc4a0a57d
+Building boost-winapi:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/f4552c468e3f22d10354f05d70af19f36f5da585: info: installing from git registry git+https://github.com/microsoft/vcpkg@f4552c468e3f22d10354f05d70af19f36f5da585
+Downloading https://github.com/boostorg/winapi/archive/boost-1.89.0.tar.gz -> boostorg-winapi-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-winapi-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-winapi-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-winapi/src/ost-1.89.0-0056f7c09f.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-winapi_arm64-osx-p01/share/boost-winapi/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-winapi:arm64-osx-p01: 1.6 s
+Installing 49/103 boost-variant2:arm64-osx-p01@1.89.0...
+boost-variant2:arm64-osx-p01@1.89.0 package ABI: 35762d0bf1593108fb21ca75b26013a0193b476a27a6b19e64c4ffd10f20109f
+Building boost-variant2:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/8433fae25d9ccbaa40dc442c750eec2ed6c0cabe: info: installing from git registry git+https://github.com/microsoft/vcpkg@8433fae25d9ccbaa40dc442c750eec2ed6c0cabe
+Downloading https://github.com/boostorg/variant2/archive/boost-1.89.0.tar.gz -> boostorg-variant2-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-variant2-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-variant2-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-variant2/src/ost-1.89.0-df82c1e9c0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-variant2_arm64-osx-p01/share/boost-variant2/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-variant2:arm64-osx-p01: 1.2 s
+Installing 50/103 boost-system:arm64-osx-p01@1.89.0...
+boost-system:arm64-osx-p01@1.89.0 package ABI: 278540512ef1b1cb8ec99ee509b0acffdb729f17ef7731617174f3fa5339d8a9
+Building boost-system:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/930f1da0c62be8d5eb884b12e9f6453786f92339: info: installing from git registry git+https://github.com/microsoft/vcpkg@930f1da0c62be8d5eb884b12e9f6453786f92339
+Downloading https://github.com/boostorg/system/archive/boost-1.89.0.tar.gz -> boostorg-system-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-system-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-system-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-system/src/ost-1.89.0-9cde6c7ec5.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-system_arm64-osx-p01/share/boost-system/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-system:arm64-osx-p01: 1.3 s
+Installing 51/103 boost-move:arm64-osx-p01@1.89.0...
+boost-move:arm64-osx-p01@1.89.0 package ABI: d3625ebca6d39a431f17810531fe917ae48eb0d2d14dce4ce4d674570b61c97a
+Building boost-move:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/9e2f411e14732036732cece814356699a76cc91e: info: installing from git registry git+https://github.com/microsoft/vcpkg@9e2f411e14732036732cece814356699a76cc91e
+Downloading https://github.com/boostorg/move/archive/boost-1.89.0.tar.gz -> boostorg-move-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-move-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-move-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-move/src/ost-1.89.0-db80ba1583.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-move_arm64-osx-p01/share/boost-move/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-move:arm64-osx-p01: 1.3 s
+Installing 52/103 boost-exception:arm64-osx-p01@1.89.0...
+boost-exception:arm64-osx-p01@1.89.0 package ABI: 863cd6dd751971b0de82b38ca40f234ac4ce5a1a4bbef33e34cc1a9bfc15a19b
+Building boost-exception:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/98b58a80a68f639ca40b433428a69967227d75c9: info: installing from git registry git+https://github.com/microsoft/vcpkg@98b58a80a68f639ca40b433428a69967227d75c9
+Downloading https://github.com/boostorg/exception/archive/boost-1.89.0.tar.gz -> boostorg-exception-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-exception-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-exception-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-exception/src/ost-1.89.0-1e68f86c41.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-exception_arm64-osx-p01/share/boost-exception/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-exception:arm64-osx-p01: 1.3 s
+Installing 53/103 boost-tokenizer:arm64-osx-p01@1.89.0...
+boost-tokenizer:arm64-osx-p01@1.89.0 package ABI: c7499a4b4bf241ab140dfdd9b61295d0eb2aeb21fd593524bb2ebcea4bec106f
+Building boost-tokenizer:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/54edc02e70826bee8f52d8d324a5ffb2cee432b7: info: installing from git registry git+https://github.com/microsoft/vcpkg@54edc02e70826bee8f52d8d324a5ffb2cee432b7
+Downloading https://github.com/boostorg/tokenizer/archive/boost-1.89.0.tar.gz -> boostorg-tokenizer-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-tokenizer-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-tokenizer-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-tokenizer/src/ost-1.89.0-2b54d21584.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-tokenizer_arm64-osx-p01/share/boost-tokenizer/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-tokenizer:arm64-osx-p01: 1.5 s
+Installing 54/103 boost-numeric-conversion:arm64-osx-p01@1.89.0...
+boost-numeric-conversion:arm64-osx-p01@1.89.0 package ABI: 7cae52a87f064cdd2a2c94f4922939a464f87ee296bb382bcd794ba08461cf82
+Building boost-numeric-conversion:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4a4daafbe60c9ff995541373ec7df4b8b35c4773: info: installing from git registry git+https://github.com/microsoft/vcpkg@4a4daafbe60c9ff995541373ec7df4b8b35c4773
+Downloading https://github.com/boostorg/numeric_conversion/archive/boost-1.89.0.tar.gz -> boostorg-numeric_conversion-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-numeric_conversion-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-numeric_conversion-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-numeric-conversion/src/ost-1.89.0-c200ea3f25.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-numeric-conversion_arm64-osx-p01/share/boost-numeric-conversion/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-numeric-conversion:arm64-osx-p01: 1.3 s
+Installing 55/103 boost-intrusive:arm64-osx-p01@1.89.0...
+boost-intrusive:arm64-osx-p01@1.89.0 package ABI: 538f86786a953e8cfb9db06d3391db6a093361027a0e31daab4395dc2c2aee5a
+Building boost-intrusive:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/bb11f3b2df959ba7a4852059eefefc23c08cf3be: info: installing from git registry git+https://github.com/microsoft/vcpkg@bb11f3b2df959ba7a4852059eefefc23c08cf3be
+Downloading https://github.com/boostorg/intrusive/archive/boost-1.89.0.tar.gz -> boostorg-intrusive-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-intrusive-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-intrusive-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-intrusive/src/ost-1.89.0-36a1426fd5.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-intrusive_arm64-osx-p01/share/boost-intrusive/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-intrusive:arm64-osx-p01: 1.4 s
+Installing 56/103 boost-container:arm64-osx-p01@1.89.0...
+boost-container:arm64-osx-p01@1.89.0 package ABI: 591c381844d7f03b3a1bd3720b99cf5ee987b92a7552a05e4dac64f86ec6a6f3
+Building boost-container:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/a84f02c4aec8fc8119e2a84a5a7667c14250829a: info: installing from git registry git+https://github.com/microsoft/vcpkg@a84f02c4aec8fc8119e2a84a5a7667c14250829a
+Downloading https://github.com/boostorg/container/archive/boost-1.89.0.tar.gz -> boostorg-container-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-container-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-container-boost-1.89.0.tar.gz
+-- Applying patch fix_msvc_c4146_warnings.diff
+-- Applying patch posix-threads.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-container/src/ost-1.89.0-757160b84d.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-container_arm64-osx-p01/share/boost-container/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-container:arm64-osx-p01: 2.7 s
+Installing 57/103 boost-lexical-cast:arm64-osx-p01@1.89.0...
+boost-lexical-cast:arm64-osx-p01@1.89.0 package ABI: 525282c4414716698c0a5835e3585324caa7368cd706bcfde343c4acd1873058
+Building boost-lexical-cast:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/422011af1156f3e9c09bfa3e20a2d8119d7e523c: info: installing from git registry git+https://github.com/microsoft/vcpkg@422011af1156f3e9c09bfa3e20a2d8119d7e523c
+Downloading https://github.com/boostorg/lexical_cast/archive/boost-1.89.0.tar.gz -> boostorg-lexical_cast-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-lexical_cast-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-lexical_cast-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-lexical-cast/src/ost-1.89.0-0fe87d0197.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-lexical-cast_arm64-osx-p01/share/boost-lexical-cast/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-lexical-cast:arm64-osx-p01: 1.3 s
+Installing 58/103 boost-unordered:arm64-osx-p01@1.89.0...
+boost-unordered:arm64-osx-p01@1.89.0 package ABI: e2de4049b86757c8f413e2d23b0b04bd86a621243b117f27b4cce94804412f24
+Building boost-unordered:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/248854482d2a457a46060b8f77d80a8242e7c02a: info: installing from git registry git+https://github.com/microsoft/vcpkg@248854482d2a457a46060b8f77d80a8242e7c02a
+Downloading https://github.com/boostorg/unordered/archive/boost-1.89.0.tar.gz -> boostorg-unordered-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-unordered-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-unordered-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-unordered/src/ost-1.89.0-98650c3888.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-unordered_arm64-osx-p01/share/boost-unordered/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-unordered:arm64-osx-p01: 2.5 s
+Installing 59/103 boost-algorithm:arm64-osx-p01@1.89.0...
+boost-algorithm:arm64-osx-p01@1.89.0 package ABI: 63f89c2112b49d05f12c077d6f184859993554706bb1e30e2297d5e118fb3204
+Building boost-algorithm:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/3ee83dcfbe76d56a445af30c8475f7ceb92deb90: info: installing from git registry git+https://github.com/microsoft/vcpkg@3ee83dcfbe76d56a445af30c8475f7ceb92deb90
+Downloading https://github.com/boostorg/algorithm/archive/boost-1.89.0.tar.gz -> boostorg-algorithm-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-algorithm-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-algorithm-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-algorithm/src/ost-1.89.0-0405adcd73.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-algorithm_arm64-osx-p01/share/boost-algorithm/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-algorithm:arm64-osx-p01: 2 s
+Installing 60/103 boost-date-time:arm64-osx-p01@1.89.0...
+boost-date-time:arm64-osx-p01@1.89.0 package ABI: be281a8f4e7843422210dd2208d351067eb93fb3b07bb3e61f02157a05c13423
+Building boost-date-time:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/038586c4564e5118c1b92862902c5b53fcbb24b3: info: installing from git registry git+https://github.com/microsoft/vcpkg@038586c4564e5118c1b92862902c5b53fcbb24b3
+Downloading https://github.com/boostorg/date_time/archive/boost-1.89.0.tar.gz -> boostorg-date_time-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-date_time-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-date_time-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-date-time/src/ost-1.89.0-ade5451bd1.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-date-time_arm64-osx-p01/share/boost-date-time/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-date-time:arm64-osx-p01: 1.7 s
+Installing 61/103 boost-ratio:arm64-osx-p01@1.89.0...
+boost-ratio:arm64-osx-p01@1.89.0 package ABI: 4469740adbe69634257784cf680214a06bca24a5720b17214b96b80451e4a642
+Building boost-ratio:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b7969883e0612c6757988b0f9102224ca136959f: info: installing from git registry git+https://github.com/microsoft/vcpkg@b7969883e0612c6757988b0f9102224ca136959f
+Downloading https://github.com/boostorg/ratio/archive/boost-1.89.0.tar.gz -> boostorg-ratio-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-ratio-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-ratio-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-ratio/src/ost-1.89.0-afa5e00894.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-ratio_arm64-osx-p01/share/boost-ratio/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-ratio:arm64-osx-p01: 1.1 s
+Installing 62/103 boost-integer:arm64-osx-p01@1.89.0...
+boost-integer:arm64-osx-p01@1.89.0 package ABI: 6c1c99bfbab1089f94380c282cb72aa7b02b74cf2cee1d0e9e380a0e1fe7cd63
+Building boost-integer:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/a37945e3e5b2c880c256c6266cc76c40e425b008: info: installing from git registry git+https://github.com/microsoft/vcpkg@a37945e3e5b2c880c256c6266cc76c40e425b008
+Downloading https://github.com/boostorg/integer/archive/boost-1.89.0.tar.gz -> boostorg-integer-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-integer-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-integer-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-integer/src/ost-1.89.0-933dc22f0f.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-integer_arm64-osx-p01/share/boost-integer/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-integer:arm64-osx-p01: 1.1 s
+Installing 63/103 boost-chrono:arm64-osx-p01@1.89.0...
+boost-chrono:arm64-osx-p01@1.89.0 package ABI: 0a7be59ee16feacfb54b52f5eb31ffefca39bc629036b5fe093c859c1ee5cdd9
+Building boost-chrono:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/418cebde300c0e64b012b150c6f4a5397a92a944: info: installing from git registry git+https://github.com/microsoft/vcpkg@418cebde300c0e64b012b150c6f4a5397a92a944
+Downloading https://github.com/boostorg/chrono/archive/boost-1.89.0.tar.gz -> boostorg-chrono-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-chrono-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-chrono-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-chrono/src/ost-1.89.0-14305e00ce.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-chrono_arm64-osx-p01/share/boost-chrono/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-chrono:arm64-osx-p01: 2.6 s
+Installing 64/103 boost-align:arm64-osx-p01@1.89.0...
+boost-align:arm64-osx-p01@1.89.0 package ABI: c468e4bcdf7e58e7e8c17733cbfd6177fcd341941953ad15b44440853db11520
+Building boost-align:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/cdc40833d65b90a10f622786d747a1ad5c72ebd1: info: installing from git registry git+https://github.com/microsoft/vcpkg@cdc40833d65b90a10f622786d747a1ad5c72ebd1
+Downloading https://github.com/boostorg/align/archive/boost-1.89.0.tar.gz -> boostorg-align-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-align-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-align-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-align/src/ost-1.89.0-f981f67ef5.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-align_arm64-osx-p01/share/boost-align/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-align:arm64-osx-p01: 1.1 s
+Installing 65/103 boost-atomic:arm64-osx-p01@1.89.0...
+boost-atomic:arm64-osx-p01@1.89.0 package ABI: 3a4148f75869a42df0c4b65a1e8956f656aec8c0bc58311f86786970388b275f
+Building boost-atomic:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/58dc025910708f8ce014d3a23b957de3dffa22bb: info: installing from git registry git+https://github.com/microsoft/vcpkg@58dc025910708f8ce014d3a23b957de3dffa22bb
+Downloading https://github.com/boostorg/atomic/archive/boost-1.89.0.tar.gz -> boostorg-atomic-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-atomic-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-atomic-boost-1.89.0.tar.gz
+-- Applying patch fix-include.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-atomic/src/ost-1.89.0-08e9af4cac.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-atomic_arm64-osx-p01/share/boost-atomic/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-atomic:arm64-osx-p01: 2.1 s
+Installing 66/103 boost-thread:arm64-osx-p01@1.89.0...
+boost-thread:arm64-osx-p01@1.89.0 package ABI: d38a0eb32acff55ed9da7d768e933253c204a508f8ba33fcb4ffcb0a4d52a7f1
+Building boost-thread:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/1780abc3416ddde7e3a3d3d7abda4d9b6ac2aa54: info: installing from git registry git+https://github.com/microsoft/vcpkg@1780abc3416ddde7e3a3d3d7abda4d9b6ac2aa54
+Downloading https://github.com/boostorg/thread/archive/boost-1.89.0.tar.gz -> boostorg-thread-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-thread-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-thread-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-thread/src/ost-1.89.0-14887a84b2.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-thread_arm64-osx-p01/share/boost-thread/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-thread:arm64-osx-p01: 3.1 s
+Installing 67/103 boost-charconv:arm64-osx-p01@1.89.0...
+boost-charconv:arm64-osx-p01@1.89.0 package ABI: cbc3d8170f79ce63763dddfd9eca292469aacc229cf61a31b80e09d9e730bd15
+Building boost-charconv:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/1c12ad423a784397f5d7b7d335d362d187ae93f8: info: installing from git registry git+https://github.com/microsoft/vcpkg@1c12ad423a784397f5d7b7d335d362d187ae93f8
+Downloading https://github.com/boostorg/charconv/archive/boost-1.89.0.tar.gz -> boostorg-charconv-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-charconv-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-charconv-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-charconv/src/ost-1.89.0-3184ae6d06.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-charconv_arm64-osx-p01/share/boost-charconv/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-charconv:arm64-osx-p01: 2.3 s
+Installing 68/103 boost-locale:arm64-osx-p01@1.89.0...
+boost-locale:arm64-osx-p01@1.89.0 package ABI: 6b37284337acb16fc3b9bbf4e1557d38e243e41c70f4d64973f21e3776e168f4
+Building boost-locale:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/9fdfc11bbbcb8dedf010b61fbcdc3a9eba22af82: info: installing from git registry git+https://github.com/microsoft/vcpkg@9fdfc11bbbcb8dedf010b61fbcdc3a9eba22af82
+Downloading https://github.com/boostorg/locale/archive/boost-1.89.0.tar.gz -> boostorg-locale-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-locale-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-locale-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-locale/src/ost-1.89.0-661550a11f.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-locale_arm64-osx-p01/share/boost-locale/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-locale:arm64-osx-p01: 10 s
+Installing 69/103 thrift:arm64-osx-p01@0.22.0...
+thrift:arm64-osx-p01@0.22.0 package ABI: 7c4126748b3879d0c5e3a689f751e913904dfa3e59aff5e9a7ae10636a928f71
+Building thrift:arm64-osx-p01@0.22.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4c4faad4f1e351534a8114aa84d5ab1dee2e025f: info: installing from git registry git+https://github.com/microsoft/vcpkg@4c4faad4f1e351534a8114aa84d5ab1dee2e025f
+Downloading https://github.com/apache/thrift/archive/v0.22.0.tar.gz -> apache-thrift-v0.22.0.tar.gz
+Successfully downloaded apache-thrift-v0.22.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/apache-thrift-v0.22.0.tar.gz
+-- Applying patch pc-suffix.patch
+-- Applying patch fix_missing_quotes_in_config_and_bin_path.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/thrift/src/v0.22.0-5b88dc7031.clean
+CMake Warning at /private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4c4faad4f1e351534a8114aa84d5ab1dee2e025f/portfile.cmake:24 (message):
+  thrift requires bison version greater than 2.5,
+
+  please use command `brew install bison` to install bison
+Call Stack (most recent call first):
+  /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/ports.cmake:209 (include)
+
+
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/thrift_arm64-osx-p01/lib/pkgconfig/thrift-nb.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/thrift_arm64-osx-p01/lib/pkgconfig/thrift-z.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/thrift_arm64-osx-p01/lib/pkgconfig/thrift.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/thrift_arm64-osx-p01/share/thrift/copyright
+-- Adjusted RPATH of '/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/thrift_arm64-osx-p01/tools/thrift/thrift' to '@loader_path/../../lib'
+-- Performing post-build validation
+Elapsed time to handle thrift:arm64-osx-p01: 60 s
+Installing 70/103 snappy:arm64-osx-p01@1.2.2#1...
+snappy:arm64-osx-p01@1.2.2#1 package ABI: 87863205e334643c9d8725bd44c7e017762a560e2fc48dc6a08c7d0464d12619
+Building snappy:arm64-osx-p01@1.2.2#1...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b493c37dddc115546ae73cc86106acd93d9916c5: info: installing from git registry git+https://github.com/microsoft/vcpkg@b493c37dddc115546ae73cc86106acd93d9916c5
+Downloading https://github.com/google/snappy/archive/1.2.2.tar.gz -> google-snappy-1.2.2.tar.gz
+Successfully downloaded google-snappy-1.2.2.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/google-snappy-1.2.2.tar.gz
+-- Applying patch no-werror.patch
+-- Applying patch pkgconfig.diff
+-- Applying patch rtti.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/snappy/src/1.2.2-62cd140f38.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/snappy_arm64-osx-p01/lib/pkgconfig/snappy.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/snappy_arm64-osx-p01/share/snappy/copyright
+-- Performing post-build validation
+Elapsed time to handle snappy:arm64-osx-p01: 4.7 s
+Installing 71/103 abseil:arm64-osx-p01@20250814.1...
+abseil:arm64-osx-p01@20250814.1 package ABI: 35fdad490bf2c11ee7cc6aa33b4e8e0a3c8768538435ffe84404a2b96d758820
+Building abseil:arm64-osx-p01@20250814.1...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/1339c9be56bcaf55ed8ff64854f477bea6045619: info: installing from git registry git+https://github.com/microsoft/vcpkg@1339c9be56bcaf55ed8ff64854f477bea6045619
+Downloading https://github.com/abseil/abseil-cpp/archive/20250814.1.tar.gz -> abseil-abseil-cpp-20250814.1.tar.gz
+Successfully downloaded abseil-abseil-cpp-20250814.1.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/abseil-abseil-cpp-20250814.1.tar.gz
+-- Applying patch 001-mingw-dll.patch
+-- Applying patch 002-string-view.patch
+-- Applying patch 003-force-cxx-17.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/abseil/src/20250814.1-a96f5d5fc6.clean
+-- Configuring arm64-osx-p01-rel
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_absl_check.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_absl_log.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_absl_vlog_is_on.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_algorithm.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_algorithm_container.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_any.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_any_invocable.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_atomic_hook.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bad_any_cast.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bad_optional_access.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bad_variant_access.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_base.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_base_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bind_front.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_bounded_utf8_length_sequence.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_btree.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_charset.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_check.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_city.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_civil_time.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cleanup.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cleanup_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_common_policy_traits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_compare.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_compressed_tuple.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_config.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_container_common.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_container_memory.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cord.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cord_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_functions.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_handle.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_info.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_sample_token.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_statistics.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_update_scope.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_cordz_update_tracker.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_core_headers.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_crc32c.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_crc_cord_state.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_crc_cpu_detect.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_crc_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_debugging.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_debugging_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_decode_rust_punycode.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_demangle_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_demangle_rust.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_die_if_null.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_dynamic_annotations.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_endian.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_errno_saver.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_examine_stack.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_exponential_biased.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_failure_signal_handler.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_fast_type_id.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_fixed_array.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_commandlineflag.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_commandlineflag_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_config.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_marshalling.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_parse.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_path_util.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_private_handle_accessor.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_program_name.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_reflection.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_usage.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flags_usage_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flat_hash_map.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_flat_hash_set.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_function_ref.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_graphcycles_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_has_ostream_operator.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hash.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hash_container_defaults.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hash_function_defaults.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hash_policy_traits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hashtable_control_bytes.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hashtable_debug.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hashtable_debug_hooks.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hashtable_profiler.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_hashtablez_sampler.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_inlined_vector.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_inlined_vector_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_int128.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_iterator_traits_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_iterator_traits_test_helper_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_kernel_timeout_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_layout.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_leak_check.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_entry.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_flags.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_globals.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_initialize.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_append_truncated.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_check_impl.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_check_op.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_conditions.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_config.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_flags.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_fnmatch.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_format.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_globals.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_log_impl.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_log_sink_set.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_message.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_nullguard.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_nullstream.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_proto.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_strip.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_structured.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_structured_proto.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_internal_voidify.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_severity.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_sink.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_sink_registry.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_streamer.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_log_structured.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_malloc_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_memory.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_meta.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_no_destructor.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_node_hash_map.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_node_hash_set.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_node_slot_policy.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_non_temporal_arm_intrinsics.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_non_temporal_memcpy.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_nullability.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_numeric.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_numeric_representation.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_optional.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_overload.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_periodic_sampler.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_poison.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_prefetch.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_pretty_function.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_profile_builder.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_bit_gen_ref.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_distributions.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_distribution_caller.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_distribution_test_util.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_entropy_pool.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_fast_uniform_bits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_fastmath.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_generate_real.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_iostream_state_saver.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_mock_helpers.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_nonsecure_base.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_pcg_engine.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_platform.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_randen.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_randen_engine.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_randen_hwaes.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_randen_hwaes_impl.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_randen_slow.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_salted_seed_seq.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_seed_material.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_traits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_uniform_helper.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_internal_wide_multiply.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_random.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_seed_gen_exception.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_random_seed_sequences.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_raw_hash_map.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_raw_hash_set.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_raw_hash_set_resize_impl.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_raw_logging_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_sample_recorder.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_scoped_set_env.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_span.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_spinlock_wait.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_stacktrace.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_status.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_statusor.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_str_format.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_str_format_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_strerror.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_string_view.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_strings.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_strings_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_symbolize.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_synchronization.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_throw_delegate.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_time.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_time_zone.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_tracing_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_type_traits.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_utf8_for_code_point.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_utility.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_variant.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_vlog_config_internal.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_vlog_is_on.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/lib/pkgconfig/absl_weakly_mixed_integer.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/abseil_arm64-osx-p01/share/abseil/copyright
+-- Performing post-build validation
+Elapsed time to handle abseil:arm64-osx-p01: 48 s
+Installing 72/103 re2:arm64-osx-p01@2025-11-05...
+re2:arm64-osx-p01@2025-11-05 package ABI: 36f4715b05ac3fc90e73fd2326f201ccd38ffe709318624ec89b3b35ab0db1d1
+Building re2:arm64-osx-p01@2025-11-05...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/cdb3c6b427f023ec6af6433f0494e2e7ec0f708f: info: installing from git registry git+https://github.com/microsoft/vcpkg@cdb3c6b427f023ec6af6433f0494e2e7ec0f708f
+Downloading https://github.com/google/re2/archive/927f5d53caf8111721e734cf24724686bb745f55.tar.gz -> google-re2-927f5d53caf8111721e734cf24724686bb745f55.tar.gz
+Successfully downloaded google-re2-927f5d53caf8111721e734cf24724686bb745f55.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/google-re2-927f5d53caf8111721e734cf24724686bb745f55.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/re2/src/86bb745f55-648e6b982e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/re2_arm64-osx-p01/lib/pkgconfig/re2.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/re2_arm64-osx-p01/share/re2/copyright
+-- Performing post-build validation
+Elapsed time to handle re2:arm64-osx-p01: 10 s
+Installing 73/103 lz4:arm64-osx-p01@1.10.0...
+lz4:arm64-osx-p01@1.10.0 package ABI: e34c5df4177b89edc69bbb1ece15a36fb1ffe0a9c73d8365b62c5a4815a7094a
+Building lz4:arm64-osx-p01@1.10.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4f01eec10f515a428e914107c5188366380f8dd9: info: installing from git registry git+https://github.com/microsoft/vcpkg@4f01eec10f515a428e914107c5188366380f8dd9
+Downloading https://github.com/lz4/lz4/archive/v1.10.0.tar.gz -> lz4-lz4-v1.10.0.tar.gz
+Successfully downloaded lz4-lz4-v1.10.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/lz4-lz4-v1.10.0.tar.gz
+-- Applying patch target-lz4-lz4.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/lz4/src/v1.10.0-61bd08d80e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/lz4_arm64-osx-p01/lib/pkgconfig/liblz4.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/lz4_arm64-osx-p01/share/lz4/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/lz4_arm64-osx-p01/share/lz4/copyright
+-- Performing post-build validation
+Elapsed time to handle lz4:arm64-osx-p01: 3.6 s
+Installing 74/103 gflags:arm64-osx-p01@2.3.0...
+gflags:arm64-osx-p01@2.3.0 package ABI: c504029118fec183540dc053c34fda69934e876cb3518bf2e43125d45f0e58e5
+Building gflags:arm64-osx-p01@2.3.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/eec33f2d7ee46b38cf2c5f46ed7f97c106c2b7ab: info: installing from git registry git+https://github.com/microsoft/vcpkg@eec33f2d7ee46b38cf2c5f46ed7f97c106c2b7ab
+Downloading https://github.com/gflags/gflags/archive/v2.3.0.tar.gz -> gflags-gflags-v2.3.0.tar.gz
+Successfully downloaded gflags-gflags-v2.3.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/gflags-gflags-v2.3.0.tar.gz
+-- Applying patch 0001-patch-dir.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/gflags/src/v2.3.0-d51fb528ab.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/gflags_arm64-osx-p01/lib/pkgconfig/gflags.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/gflags_arm64-osx-p01/share/gflags/vcpkg-cmake-wrapper.cmake
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/gflags_arm64-osx-p01/share/gflags/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/gflags_arm64-osx-p01/share/gflags/copyright
+-- Performing post-build validation
+Elapsed time to handle gflags:arm64-osx-p01: 4 s
+Installing 75/103 bzip2[core,tool]:arm64-osx-p01@1.0.8#6...
+bzip2[core,tool]:arm64-osx-p01@1.0.8#6 package ABI: c8bb44217214eec90228a2de7273d72924ad446d2b6c1d83aefccd003659610a
+Building bzip2[core,tool]:arm64-osx-p01@1.0.8#6...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/2d029da682847c5ebdc54e4dbea001331a02207e: info: installing from git registry git+https://github.com/microsoft/vcpkg@2d029da682847c5ebdc54e4dbea001331a02207e
+Downloading bzip2-1.0.8.tar.gz, trying https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+Successfully downloaded bzip2-1.0.8.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/bzip2-1.0.8.tar.gz
+-- Applying patch fix-import-export-macros.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/bzip2/src/bzip2-1-336d4794a3.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/bzip2_arm64-osx-p01/lib/pkgconfig/bzip2.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/bzip2_arm64-osx-p01/share/bzip2/copyright
+-- Adjusted RPATH of '/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/bzip2_arm64-osx-p01/tools/bzip2/bzip2' to '@loader_path/../../lib'
+-- Adjusted RPATH of '/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/bzip2_arm64-osx-p01/tools/bzip2/bzip2recover' to '@loader_path/../../lib'
+-- Performing post-build validation
+Elapsed time to handle bzip2:arm64-osx-p01: 5.6 s
+Installing 76/103 brotli:arm64-osx-p01@1.2.0...
+brotli:arm64-osx-p01@1.2.0 package ABI: 4c9a115516f578bb8ec22ffc228280558e14ed11e6f98871b6be6f8e04a0c331
+Building brotli:arm64-osx-p01@1.2.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/0fb79bb13588702a9e06057745b4aed95ce5c861: info: installing from git registry git+https://github.com/microsoft/vcpkg@0fb79bb13588702a9e06057745b4aed95ce5c861
+Downloading https://github.com/google/brotli/archive/v1.2.0.tar.gz -> google-brotli-v1.2.0.tar.gz
+Successfully downloaded google-brotli-v1.2.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/google-brotli-v1.2.0.tar.gz
+-- Applying patch install.patch
+-- Applying patch pkgconfig.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/brotli/src/v1.2.0-7af7ca71ad.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/lib/pkgconfig/libbrotlicommon.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/lib/pkgconfig/libbrotlidec.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/lib/pkgconfig/libbrotlienc.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/share/brotli/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/share/brotli/copyright
+-- Adjusted RPATH of '/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/brotli_arm64-osx-p01/tools/brotli/brotli' to '@loader_path/../../lib'
+-- Performing post-build validation
+Elapsed time to handle brotli:arm64-osx-p01: 5.4 s
+Installing 77/103 boost-dynamic-bitset:arm64-osx-p01@1.89.0...
+boost-dynamic-bitset:arm64-osx-p01@1.89.0 package ABI: 594a995e60d86a2a0d262d290d739e6190745aa355fbf0fadb4ccfc6d2d52b81
+Building boost-dynamic-bitset:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/4e9bb084edae227089add595ccb7c596e76d0575: info: installing from git registry git+https://github.com/microsoft/vcpkg@4e9bb084edae227089add595ccb7c596e76d0575
+Downloading https://github.com/boostorg/dynamic_bitset/archive/boost-1.89.0.tar.gz -> boostorg-dynamic_bitset-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-dynamic_bitset-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-dynamic_bitset-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-dynamic-bitset/src/ost-1.89.0-59c79563e4.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-dynamic-bitset_arm64-osx-p01/share/boost-dynamic-bitset/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-dynamic-bitset:arm64-osx-p01: 1.1 s
+Installing 78/103 boost-random:arm64-osx-p01@1.89.0...
+boost-random:arm64-osx-p01@1.89.0 package ABI: 67e65dbdac7e139747916bc554cf140755078d36ea60eb17138cfe9798dbac3b
+Building boost-random:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/290754c38706f4a21ef7a9278bfb7a45d25d9062: info: installing from git registry git+https://github.com/microsoft/vcpkg@290754c38706f4a21ef7a9278bfb7a45d25d9062
+Downloading https://github.com/boostorg/random/archive/boost-1.89.0.tar.gz -> boostorg-random-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-random-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-random-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-random/src/ost-1.89.0-7556c91f1e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-random_arm64-osx-p01/share/boost-random/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-random:arm64-osx-p01: 2.1 s
+Installing 79/103 boost-math:arm64-osx-p01@1.89.0...
+boost-math:arm64-osx-p01@1.89.0 package ABI: ea1d920ffbae67bd3c6bee3c7c4809b778cd9c9136ae52ac75692a0b4ef014a7
+Building boost-math:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/1cb94d95de055a357bb874e57fdab94802e1f4fb: info: installing from git registry git+https://github.com/microsoft/vcpkg@1cb94d95de055a357bb874e57fdab94802e1f4fb
+Downloading https://github.com/boostorg/math/archive/boost-1.89.0.tar.gz -> boostorg-math-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-math-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-math-boost-1.89.0.tar.gz
+-- Applying patch build-old-libs.patch
+-- Applying patch opt-random.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-math/src/ost-1.89.0-6b28b704f5.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-math_arm64-osx-p01/share/boost-math/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-math:arm64-osx-p01: 16 s
+Installing 80/103 boost-multiprecision:arm64-osx-p01@1.89.0...
+boost-multiprecision:arm64-osx-p01@1.89.0 package ABI: 411344af714f25f51cdba361f786c8032c5d3f401f6e35b8022509fd3bd022ac
+Building boost-multiprecision:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/727bfc1426b98ea8464378970622d73646442039: info: installing from git registry git+https://github.com/microsoft/vcpkg@727bfc1426b98ea8464378970622d73646442039
+Downloading https://github.com/boostorg/multiprecision/archive/boost-1.89.0.tar.gz -> boostorg-multiprecision-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-multiprecision-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-multiprecision-boost-1.89.0.tar.gz
+-- Applying patch optional-random.diff
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-multiprecision/src/ost-1.89.0-0b505683f0.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-multiprecision_arm64-osx-p01/share/boost-multiprecision/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-multiprecision:arm64-osx-p01: 4.2 s
+Installing 81/103 boost-scope:arm64-osx-p01@1.89.0...
+boost-scope:arm64-osx-p01@1.89.0 package ABI: 32ba96b9ae454fc834c01b0f193e7f4a14e530cbf23beeb461fd01932717f8ae
+Building boost-scope:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/52ec92fe9c7ece6cf842364caeca0cf7b2fb2589: info: installing from git registry git+https://github.com/microsoft/vcpkg@52ec92fe9c7ece6cf842364caeca0cf7b2fb2589
+Downloading https://github.com/boostorg/scope/archive/boost-1.89.0.tar.gz -> boostorg-scope-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-scope-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-scope-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-scope/src/ost-1.89.0-cba1552b87.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-scope_arm64-osx-p01/share/boost-scope/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-scope:arm64-osx-p01: 1.1 s
+Installing 82/103 boost-filesystem:arm64-osx-p01@1.89.0...
+boost-filesystem:arm64-osx-p01@1.89.0 package ABI: 3cd0075ab9ce5a1b4573c7e0daa7f9472e738c4e1305e9455eafd72bb89b7c9f
+Building boost-filesystem:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/51b9231454d8018a15022022b1b6b787a72fb432: info: installing from git registry git+https://github.com/microsoft/vcpkg@51b9231454d8018a15022022b1b6b787a72fb432
+Downloading https://github.com/boostorg/filesystem/archive/boost-1.89.0.tar.gz -> boostorg-filesystem-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-filesystem-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-filesystem-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-filesystem/src/ost-1.89.0-2427574289.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-filesystem_arm64-osx-p01/share/boost-filesystem/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-filesystem:arm64-osx-p01: 5.2 s
+Installing 83/103 arrow[core,csv,filesystem,json,parquet]:arm64-osx-p01@21.0.0#2...
+arrow[core,csv,filesystem,json,parquet]:arm64-osx-p01@21.0.0#2 package ABI: 5707bf98f3e0a70a763263b5c87c6ee724d085f456a174918e911235472346e1
+Building arrow[core,csv,filesystem,json,parquet]:arm64-osx-p01@21.0.0#2...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/73ec101affdc45cc2932cedf85bcd4bd4ed90c31: info: installing from git registry git+https://github.com/microsoft/vcpkg@73ec101affdc45cc2932cedf85bcd4bd4ed90c31
+Downloading https://archive.apache.org/dist/arrow/arrow-21.0.0/apache-arrow-21.0.0.tar.gz -> apache-arrow-21.0.0.tar.gz
+Successfully downloaded apache-arrow-21.0.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/apache-arrow-21.0.0.tar.gz
+-- Applying patch 0001-msvc-static-name.patch
+-- Applying patch 0003-android-musl.patch
+-- Applying patch 0004-android-datetime.patch
+-- Applying patch 0005-cmake-msvcruntime.patch
+-- Applying patch 0006-pcg-msvc-arm64.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/arrow/src/e-arrow-21-aa61ce5efe.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/lib/pkgconfig/arrow-csv.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/lib/pkgconfig/arrow-filesystem.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/lib/pkgconfig/arrow-json.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/lib/pkgconfig/arrow.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/lib/pkgconfig/parquet.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/share/arrow/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/arrow_arm64-osx-p01/share/arrow/copyright
+-- Performing post-build validation
+Elapsed time to handle arrow:arm64-osx-p01: 4.5 min
+Installing 84/103 boost-type-index:arm64-osx-p01@1.89.0...
+boost-type-index:arm64-osx-p01@1.89.0 package ABI: 7144b7a9c52003d9fd0bfb42f34e07de9e61f8261e8375dbacf80e5630862a97
+Building boost-type-index:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/eeb4d55443b956770203825a87a8db3a0b456c99: info: installing from git registry git+https://github.com/microsoft/vcpkg@eeb4d55443b956770203825a87a8db3a0b456c99
+Downloading https://github.com/boostorg/type_index/archive/boost-1.89.0.tar.gz -> boostorg-type_index-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-type_index-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-type_index-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-type-index/src/ost-1.89.0-294727691c.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-type-index_arm64-osx-p01/share/boost-type-index/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-type-index:arm64-osx-p01: 1.4 s
+Installing 85/103 boost-variant:arm64-osx-p01@1.89.0...
+boost-variant:arm64-osx-p01@1.89.0 package ABI: 5b6b84911b2bf0bf4629b2e7c55d5cc3b4d062c6cc642a8b370b612738133593
+Building boost-variant:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/449f1126f49d4f9f52e0b950c926a0150ffc5dcf: info: installing from git registry git+https://github.com/microsoft/vcpkg@449f1126f49d4f9f52e0b950c926a0150ffc5dcf
+Downloading https://github.com/boostorg/variant/archive/boost-1.89.0.tar.gz -> boostorg-variant-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-variant-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-variant-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-variant/src/ost-1.89.0-31c83f0717.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-variant_arm64-osx-p01/share/boost-variant/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-variant:arm64-osx-p01: 1.3 s
+Installing 86/103 boost-proto:arm64-osx-p01@1.89.0...
+boost-proto:arm64-osx-p01@1.89.0 package ABI: 0275050fdb7a0a8ac21a209ea6adab0b2669a791eb3bf729f3ccc58fe4a6c92d
+Building boost-proto:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/9a0ad7230f675a58ec36c6eaaf770172b1f77e33: info: installing from git registry git+https://github.com/microsoft/vcpkg@9a0ad7230f675a58ec36c6eaaf770172b1f77e33
+Downloading https://github.com/boostorg/proto/archive/boost-1.89.0.tar.gz -> boostorg-proto-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-proto-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-proto-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-proto/src/ost-1.89.0-11cf54da55.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-proto_arm64-osx-p01/share/boost-proto/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-proto:arm64-osx-p01: 1.6 s
+Installing 87/103 boost-pool:arm64-osx-p01@1.89.0...
+boost-pool:arm64-osx-p01@1.89.0 package ABI: 883e37c4b94a4f75f6a7fd460e19a39d318c0aba61bbbcc218f3255107f7a82b
+Building boost-pool:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/8afc11f58cef060ee80f2ab8fd1e719f414bbf67: info: installing from git registry git+https://github.com/microsoft/vcpkg@8afc11f58cef060ee80f2ab8fd1e719f414bbf67
+Downloading https://github.com/boostorg/pool/archive/boost-1.89.0.tar.gz -> boostorg-pool-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-pool-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-pool-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-pool/src/ost-1.89.0-1d67dd9feb.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-pool_arm64-osx-p01/share/boost-pool/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-pool:arm64-osx-p01: 1.4 s
+Installing 88/103 boost-phoenix:arm64-osx-p01@1.89.0...
+boost-phoenix:arm64-osx-p01@1.89.0 package ABI: e0d7808b0cdc0b03912c399c83d110b5600bff7066c00727338ef1586d17b08b
+Building boost-phoenix:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b80402a8e32506147c9125b435e7bd1ff76babf1: info: installing from git registry git+https://github.com/microsoft/vcpkg@b80402a8e32506147c9125b435e7bd1ff76babf1
+Downloading https://github.com/boostorg/phoenix/archive/boost-1.89.0.tar.gz -> boostorg-phoenix-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-phoenix-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-phoenix-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-phoenix/src/ost-1.89.0-39121d2ce7.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-phoenix_arm64-osx-p01/share/boost-phoenix/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-phoenix:arm64-osx-p01: 1.9 s
+Installing 89/103 boost-endian:arm64-osx-p01@1.89.0...
+boost-endian:arm64-osx-p01@1.89.0 package ABI: ab237c9195cb142ad8dc24f2784b12baae00052ca0b490469a0ddec938458f8d
+Building boost-endian:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/f45abc0b300cbadaae57d40a9a5a11dc3eae720d: info: installing from git registry git+https://github.com/microsoft/vcpkg@f45abc0b300cbadaae57d40a9a5a11dc3eae720d
+Downloading https://github.com/boostorg/endian/archive/boost-1.89.0.tar.gz -> boostorg-endian-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-endian-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-endian-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-endian/src/ost-1.89.0-f060bf23f4.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-endian_arm64-osx-p01/share/boost-endian/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-endian:arm64-osx-p01: 1.1 s
+Installing 90/103 boost-spirit:arm64-osx-p01@1.89.0...
+boost-spirit:arm64-osx-p01@1.89.0 package ABI: 87628f7c7beeece1e84f05438cbe8be0e0dbc888772e484ff265f0249e1adf49
+Building boost-spirit:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/cfa2cb2b5f1de02bda3a215a0690768c187f4fd0: info: installing from git registry git+https://github.com/microsoft/vcpkg@cfa2cb2b5f1de02bda3a215a0690768c187f4fd0
+Downloading https://github.com/boostorg/spirit/archive/boost-1.89.0.tar.gz -> boostorg-spirit-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-spirit-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-spirit-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-spirit/src/ost-1.89.0-a1f114d061.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-spirit_arm64-osx-p01/share/boost-spirit/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-spirit:arm64-osx-p01: 3.5 s
+Installing 91/103 boost-test:arm64-osx-p01@1.89.0...
+boost-test:arm64-osx-p01@1.89.0 package ABI: 5a3fa911213111c77453597fc72e0f54e09eff366d44a8c2fba1f9431e6ff778
+Building boost-test:arm64-osx-p01@1.89.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/0271773d4f2480aa5de63ed5cda636c76ca6cc5c: info: installing from git registry git+https://github.com/microsoft/vcpkg@0271773d4f2480aa5de63ed5cda636c76ca6cc5c
+Downloading https://github.com/boostorg/test/archive/boost-1.89.0.tar.gz -> boostorg-test-boost-1.89.0.tar.gz
+Successfully downloaded boostorg-test-boost-1.89.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/boostorg-test-boost-1.89.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/boost-test/src/ost-1.89.0-a8e0733fc3.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/boost-test_arm64-osx-p01/share/boost-test/copyright
+-- Performing post-build validation
+Elapsed time to handle boost-test:arm64-osx-p01: 20 s
+Installing 92/103 clipper2:arm64-osx-p01@1.5.4...
+clipper2:arm64-osx-p01@1.5.4 package ABI: 531372526107022450ace942656859e4c525b6b9f4b2bbea376f88a42822f679
+Building clipper2:arm64-osx-p01@1.5.4...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/efcc6cdefc2176e0bdcc990d41d0d43601d20e20: info: installing from git registry git+https://github.com/microsoft/vcpkg@efcc6cdefc2176e0bdcc990d41d0d43601d20e20
+Downloading https://github.com/AngusJohnson/Clipper2/archive/Clipper2_1.5.4.tar.gz -> AngusJohnson-Clipper2-Clipper2_1.5.4.tar.gz
+Successfully downloaded AngusJohnson-Clipper2-Clipper2_1.5.4.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/AngusJohnson-Clipper2-Clipper2_1.5.4.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/clipper2/src/per2_1.5.4-d2531797ee.clean
+-- Configuring arm64-osx-p01-rel
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/clipper2_arm64-osx-p01/lib/pkgconfig/Clipper2.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/clipper2_arm64-osx-p01/lib/pkgconfig/Clipper2Z.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/clipper2_arm64-osx-p01/share/clipper2/copyright
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/clipper2_arm64-osx-p01/share/clipper2/usage
+-- Performing post-build validation
+Elapsed time to handle clipper2:arm64-osx-p01: 7.9 s
+Installing 93/103 eigen3:arm64-osx-p01@3.4.1#1...
+eigen3:arm64-osx-p01@3.4.1#1 package ABI: af74d4ec01ad22f96ee1132f681af5090026b10bbb7ccf53f757ec07efc47704
+Building eigen3:arm64-osx-p01@3.4.1#1...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/ea6ed04401cca325eff95c17cc0d01326a3c6a85: info: installing from git registry git+https://github.com/microsoft/vcpkg@ea6ed04401cca325eff95c17cc0d01326a3c6a85
+Downloading https://gitlab.com/libeigen/eigen/-/archive/3.4.1/eigen-3.4.1.tar.gz -> libeigen-eigen-3.4.1.tar.gz
+Successfully downloaded libeigen-eigen-3.4.1.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/libeigen-eigen-3.4.1.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/eigen3/src/3.4.1-0ff0cf177d.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/eigen3_arm64-osx-p01/lib/pkgconfig/eigen3.pc
+-- Performing post-build validation
+Elapsed time to handle eigen3:arm64-osx-p01: 3.3 s
+Installing 94/103 fast-float:arm64-osx-p01@8.1.0...
+fast-float:arm64-osx-p01@8.1.0 package ABI: 6572c288016458463651b7e9382e9e9f3503e497b75135c7268306eae46c3a40
+Building fast-float:arm64-osx-p01@8.1.0...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/b9eb72faaf427307962387a36d0aa845d57e0c5c: info: installing from git registry git+https://github.com/microsoft/vcpkg@b9eb72faaf427307962387a36d0aa845d57e0c5c
+Downloading https://github.com/fastfloat/fast_float/archive/v8.1.0.tar.gz -> fastfloat-fast_float-v8.1.0.tar.gz
+Successfully downloaded fastfloat-fast_float-v8.1.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/fastfloat-fast_float-v8.1.0.tar.gz
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/fast-float/src/v8.1.0-836312d7ce.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/fast-float_arm64-osx-p01/share/fast-float/usage
+-- Performing post-build validation
+Elapsed time to handle fast-float:arm64-osx-p01: 1.2 s
+Installing 95/103 utf8-range:arm64-osx-p01@5.29.5...
+utf8-range:arm64-osx-p01@5.29.5 package ABI: dfdee205de83bfb604ca53950e4f71bad8dece6766bee041317646e781e92e87
+Building utf8-range:arm64-osx-p01@5.29.5...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/5d28e170bfcc212d629bb070520e72492240ce65: info: installing from git registry git+https://github.com/microsoft/vcpkg@5d28e170bfcc212d629bb070520e72492240ce65
+Downloading https://github.com/protocolbuffers/protobuf/archive/v5.29.5.tar.gz -> protocolbuffers-protobuf-v5.29.5.tar.gz
+Successfully downloaded protocolbuffers-protobuf-v5.29.5.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/protocolbuffers-protobuf-v5.29.5.tar.gz
+-- Applying patch fix-cmake.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/utf8-range/src/v5.29.5-196482051e.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/utf8-range_arm64-osx-p01/lib/pkgconfig/utf8_range.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/utf8-range_arm64-osx-p01/share/utf8-range/copyright
+-- Performing post-build validation
+Elapsed time to handle utf8-range:arm64-osx-p01: 5.6 s
+Installing 96/103 protobuf:arm64-osx-p01@5.29.5#3...
+protobuf:arm64-osx-p01@5.29.5#3 package ABI: 2997be5ba655555a3ef8c53b53ef0015ca2d2014ffbaad97a5e16a98e90a90e0
+Building protobuf:arm64-osx-p01@5.29.5#3...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/a8fdd2b1b4283409700152a6ac8639c005d1c103: info: installing from git registry git+https://github.com/microsoft/vcpkg@a8fdd2b1b4283409700152a6ac8639c005d1c103
+-- Using cached protocolbuffers-protobuf-v5.29.5.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/protocolbuffers-protobuf-v5.29.5.tar.gz
+-- Applying patch fix-static-build.patch
+-- Applying patch fix-default-proto-file-path.patch
+-- Applying patch fix-utf8-range.patch
+-- Applying patch fix-install-dirs.patch
+-- Applying patch fix-mingw-tail-call.patch
+-- Applying patch fix-abseil.patch
+-- Applying patch fix-constinit-with-clang-cl.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/protobuf/src/v5.29.5-b70d3f2205.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/protobuf_arm64-osx-p01/lib/pkgconfig/protobuf-lite.pc
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/protobuf_arm64-osx-p01/lib/pkgconfig/protobuf.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/protobuf_arm64-osx-p01/share/protobuf/copyright
+-- Adjusted RPATH of '/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/protobuf_arm64-osx-p01/tools/protobuf/protoc-29.5.0' to '@loader_path/../../lib'
+-- Performing post-build validation
+Elapsed time to handle protobuf:arm64-osx-p01: 3.5 min
+Installing 97/103 c-ares:arm64-osx-p01@1.34.6...
+c-ares:arm64-osx-p01@1.34.6 package ABI: b0dbd38e14e70789cbf2c05c2c3b2cf3f56bcb9e87dbab1f58d6288dc515997f
+Building c-ares:arm64-osx-p01@1.34.6...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/6ee80f35bece6f1dbf2d767833aa117d718df752: info: installing from git registry git+https://github.com/microsoft/vcpkg@6ee80f35bece6f1dbf2d767833aa117d718df752
+Downloading https://github.com/c-ares/c-ares/archive/v1.34.6.tar.gz -> c-ares-c-ares-v1.34.6.tar.gz
+Successfully downloaded c-ares-c-ares-v1.34.6.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/c-ares-c-ares-v1.34.6.tar.gz
+-- Applying patch avoid-docs.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/c-ares/src/v1.34.6-9122277e83.clean
+-- Configuring arm64-osx-p01
+-- Building arm64-osx-p01-rel
+-- Fixing pkgconfig file: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/c-ares_arm64-osx-p01/lib/pkgconfig/libcares.pc
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/c-ares_arm64-osx-p01/share/c-ares/usage
+-- Installing: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/c-ares_arm64-osx-p01/share/c-ares/copyright
+-- Performing post-build validation
+Elapsed time to handle c-ares:arm64-osx-p01: 20 s
+Installing 98/103 grpc[codegen,core]:arm64-osx-p01@1.71.0#3...
+grpc[codegen,core]:arm64-osx-p01@1.71.0#3 package ABI: be0fbc151656b03a4e71916c725c172bf8a255a7432ffb1cb1b74d296fb1f433
+Building grpc[codegen,core]:arm64-osx-p01@1.71.0#3...
+/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets/arm64-osx-p01.cmake: info: loaded overlay triplet from here
+/private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/daebe29c41aa900ce183614afe15c73b3ca4f643: info: installing from git registry git+https://github.com/microsoft/vcpkg@daebe29c41aa900ce183614afe15c73b3ca4f643
+Downloading https://github.com/grpc/grpc/archive/v1.71.0.tar.gz -> grpc-grpc-v1.71.0.tar.gz
+Successfully downloaded grpc-grpc-v1.71.0.tar.gz
+-- Extracting source /private/tmp/resinsight-p01-build/downloads/vcpkg/grpc-grpc-v1.71.0.tar.gz
+-- Applying patch 00001-fix-uwp.patch
+-- Applying patch 00002-static-linking-in-linux.patch
+-- Applying patch 00004-link-gdi32-on-windows.patch
+-- Applying patch 00005-fix-uwp-error.patch
+-- Applying patch 00006-utf8-range.patch
+-- Applying patch 00015-disable-download-archive.patch
+-- Applying patch 00016-fix-plugin-targets.patch
+-- Applying patch 00017-add-src-upb.patch
+-- Using source at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/src/v1.71.0-40b3d4b32d.clean
+-- Configuring arm64-osx-p01
+CMake Error at /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/cmake/vcpkg_execute_required_process.cmake:127 (message):
+    Command failed: /private/tmp/resinsight-p01-build/downloads/vcpkg/tools/ninja-1.13.2-osx/ninja -v
+    Working Directory: /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel/vcpkg-parallel-configure
+    Error code: 1
+    See logs for more information:
+      /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/config-arm64-osx-p01-rel-CMakeCache.txt.log
+      /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/config-arm64-osx-p01-rel-CMakeConfigureLog.yaml.log
+      /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/config-arm64-osx-p01-out.log
+
+Call Stack (most recent call first):
+  /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:269 (vcpkg_execute_required_process)
+  /private/tmp/resinsight-p01-build/cache/vcpkg/registries/git-trees/daebe29c41aa900ce183614afe15c73b3ca4f643/portfile.cmake:49 (vcpkg_cmake_configure)
+  /tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/ports.cmake:209 (include)
+
+
+error: building grpc:arm64-osx-p01 failed with: BUILD_FAILED
+See https://learn.microsoft.com/vcpkg/troubleshoot/build-failures?WT.mc_id=vcpkg_inproduct_cli for more information.
+Elapsed time to handle grpc:arm64-osx-p01: 7.8 s
+Please ensure you're using the latest port files with `git pull` and `vcpkg update`.
+Then check for known issues at:
+  https://github.com/microsoft/vcpkg/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+grpc
+You can submit a new issue at:
+  https://github.com/microsoft/vcpkg/issues/new?title=%5Bgrpc%5D%20build%20error%20on%20arm64-osx-p01&body=Copy%20issue%20body%20from%20%2Ftmp%2Fresinsight-p01-build%2Fvcpkg-installed%2Fvcpkg%2Fissue_body.md
+You can also submit an issue by running (GitHub CLI must be installed):
+  /opt/homebrew/bin/gh issue create -R microsoft/vcpkg --title "[grpc] Build failure on arm64-osx-p01" --body-file /tmp/resinsight-p01-build/vcpkg-installed/vcpkg/issue_body.md
+-- Running vcpkg install - failed
+CMake Error at ThirdParty/vcpkg/scripts/buildsystems/vcpkg.cmake:984 (message):
+  vcpkg install failed.  See logs for more information:
+  /tmp/resinsight-p01-build/application-build/vcpkg-manifest-install.log
+Call Stack (most recent call first):
+  /tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:26 (project)
+
+
+CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+-- Configuring incomplete, errors occurred!

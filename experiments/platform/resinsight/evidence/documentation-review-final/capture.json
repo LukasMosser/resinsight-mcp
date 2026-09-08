@@ -1,0 +1,45 @@
+{
+  "source_commit": "cdcdfd53a14d91c7ec7fb2e614e756eb4ffa00f5",
+  "method": "Local strict MkDocs output rendered in headless Chrome with separate temporary profiles",
+  "scope": "Upper page viewports, not complete page layout",
+  "captures": [
+    {
+      "page": "platform-proof",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/final-platform-proof-profile",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/evidence/documentation-review-final/platform-proof.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-proof/index.html"
+      ],
+      "pid": 58976,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.19
+    },
+    {
+      "page": "platform-resinsight",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/final-platform-resinsight-profile",
+        "--window-size=1440,1800",
+        "--virtual-time-budget=1500",
+        "--screenshot=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/evidence/documentation-review-final/platform-resinsight.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-resinsight/index.html"
+      ],
+      "pid": 58977,
+      "exit_code": 0,
+      "timed_out": true,
+      "elapsed_seconds": 30.2
+    }
+  ]
+}

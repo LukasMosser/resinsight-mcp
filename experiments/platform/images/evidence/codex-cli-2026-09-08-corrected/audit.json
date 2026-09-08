@@ -1,0 +1,47 @@
+{
+  "outcome": "passed",
+  "client": "Codex CLI",
+  "codex_version": "0.153.4",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "low",
+  "authentication": "Existing ChatGPT login, forced_login_method=chatgpt",
+  "macos": "14.2.1",
+  "machine": "arm64",
+  "mcp": "1.30.0",
+  "Pillow": "12.3.0",
+  "answer": {
+    "status": "observed",
+    "row": 1,
+    "column": 4
+  },
+  "witness": {
+    "row": 1,
+    "column": 4
+  },
+  "witness_review_order": "The reviewer read the completed answer and client events before opening the witness or image.",
+  "completed_mcp_calls": 1,
+  "server": "p01_image",
+  "tool": "observe",
+  "arguments": {},
+  "native_content_types": [
+    "image"
+  ],
+  "native_media_types": [
+    "image/png"
+  ],
+  "text_content_blocks": 0,
+  "structured_content": null,
+  "other_completed_tool_items": 0,
+  "final_response_after_mcp_result": true,
+  "usage": {
+    "input_tokens": 20278,
+    "cached_input_tokens": 9600,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 142,
+    "reasoning_output_tokens": 35
+  },
+  "limits": [
+    "This proves the recorded Codex CLI path only.",
+    "This does not prove the existing desktop task or ResInsight rendering."
+  ]
+}

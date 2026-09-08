@@ -1,0 +1,9 @@
+{
+  "source_commit": "cdcdfd53a14d91c7ec7fb2e614e756eb4ffa00f5",
+  "scope": "Upper 1440 by 1800 page viewports, not complete page layout",
+  "lead_review": "Both captures are legible. Tables fit within the content area. The visible result text matches the recorded runtime evidence.",
+  "independent_review": "No material findings. Both captures are legible, with no content overlap or horizontal clipping. The claims retain the imported, modeled, MSW, desktop-client, and host limits.",
+  "documentation_review": "Independent review found no material blocker in the four final documents against runtime evidence at bc8e55e. The final change replaces pending-review language with stable delivery links.",
+  "process_limit": "Both browsers wrote fresh screenshots, then exceeded the 30-second cleanup deadline. The capture process sent SIGTERM to each owned browser and waited for exit. Both returned 0 after termination. Browser warnings remain in the saved logs.",
+  "acceptance_limit": "This review does not establish the lower-page layout. Runtime application snapshots have a separate review record."
+}

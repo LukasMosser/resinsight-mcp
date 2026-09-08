@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--grid",
+    "/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.EGRID",
+    "--output",
+    "/private/tmp/resinsight-p01-build/runs/imported-03",
+    "--well-route",
+    "imported"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "QT_PLUGIN_PATH": "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/plugins"
+  },
+  "started_at": "2026-09-08T12:11:12.848813+00:00",
+  "finished_at": "2026-09-08T12:11:16.249474+00:00",
+  "exit_code": 0
+}

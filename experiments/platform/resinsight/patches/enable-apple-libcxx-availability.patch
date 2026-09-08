@@ -1,0 +1,11 @@
+--- a/include/c++/v1/__config_site
++++ b/include/c++/v1/__config_site
+@@ -20,7 +20,7 @@
+ /* #undef _LIBCPP_HAS_THREAD_API_EXTERNAL */
+ /* #undef _LIBCPP_HAS_THREAD_API_WIN32 */
+ /* #undef _LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS */
+-#define _LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS
++/* #undef _LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS */
+ /* #undef _LIBCPP_NO_VCRUNTIME */
+ /* #undef _LIBCPP_TYPEINFO_COMPARISON_IMPLEMENTATION */
+ /* #undef _LIBCPP_HAS_NO_FILESYSTEM */

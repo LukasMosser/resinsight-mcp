@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-09-08T11:16:50.245254+00:00",
+  "finished_at": "2026-09-08T12:05:16.598348+00:00",
+  "exit_code": 0,
+  "command_record": "application-build-01-command.json",
+  "log": "application-build-01.log"
+}

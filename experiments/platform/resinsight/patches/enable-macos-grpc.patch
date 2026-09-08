@@ -1,0 +1,16 @@
+diff --git a/vcpkg.json b/vcpkg.json
+index 10fe404..39b4e54 100644
+--- a/vcpkg.json
++++ b/vcpkg.json
+@@ -6,10 +6,7 @@
+         "boost-test",
+         "clipper2",
+         "eigen3",
+-        {
+-            "name": "grpc",
+-            "platform": "!osx"
+-        },
++        "grpc",
+         "type-lite",
+         "fast-float",
+         "spdlog",

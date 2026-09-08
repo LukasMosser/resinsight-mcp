@@ -1,0 +1,1138 @@
+**********************************************************************
+*                                                                    *
+*                        This is flow 2026.04                        *
+*                                                                    *
+* Flow is a simulator for fully implicit three-phase black-oil flow, *
+*             including solvent and polymer capabilities.            *
+*          For more information, see https://opm-project.org         *
+*                                                                    *
+**********************************************************************
+
+Using 1 MPI processes with 2 OMP threads on each 
+
+Reading deck file '/input/SPE1CASE1.DATA'
+    0 Reading RUNSPEC  in /input/SPE1CASE1.DATA line 18
+    1 Reading TITLE    in /input/SPE1CASE1.DATA line 21
+    2 Reading DIMENS   in /input/SPE1CASE1.DATA line 24
+    3 Reading EQLDIMS  in /input/SPE1CASE1.DATA line 29
+    4 Reading TABDIMS  in /input/SPE1CASE1.DATA line 34
+    5 Reading OIL      in /input/SPE1CASE1.DATA line 37
+    6 Reading GAS      in /input/SPE1CASE1.DATA line 38
+    7 Reading WATER    in /input/SPE1CASE1.DATA line 39
+    8 Reading DISGAS   in /input/SPE1CASE1.DATA line 40
+    9 Reading FIELD    in /input/SPE1CASE1.DATA line 44
+   10 Reading START    in /input/SPE1CASE1.DATA line 46
+   11 Reading WELLDIMS in /input/SPE1CASE1.DATA line 49
+   12 Reading UNIFOUT  in /input/SPE1CASE1.DATA line 60
+   13 Reading GRID     in /input/SPE1CASE1.DATA line 62
+   14 Reading INIT     in /input/SPE1CASE1.DATA line 69
+   15 Reading NOECHO   in /input/SPE1CASE1.DATA line 73
+   16 Reading DX       in /input/SPE1CASE1.DATA line 75
+   17 Reading DY       in /input/SPE1CASE1.DATA line 78
+   18 Reading DZ       in /input/SPE1CASE1.DATA line 81
+   19 Reading TOPS     in /input/SPE1CASE1.DATA line 85
+   20 Reading PORO     in /input/SPE1CASE1.DATA line 89
+   21 Reading PERMX    in /input/SPE1CASE1.DATA line 93
+   22 Reading PERMY    in /input/SPE1CASE1.DATA line 97
+   23 Reading PERMZ    in /input/SPE1CASE1.DATA line 101
+   24 Reading ECHO     in /input/SPE1CASE1.DATA line 105
+   25 Reading PROPS    in /input/SPE1CASE1.DATA line 107
+   26 Reading PVTW     in /input/SPE1CASE1.DATA line 110
+   27 Reading ROCK     in /input/SPE1CASE1.DATA line 123
+   28 Reading SWOF     in /input/SPE1CASE1.DATA line 130
+   29 Reading SGOF     in /input/SPE1CASE1.DATA line 159
+   30 Reading DENSITY  in /input/SPE1CASE1.DATA line 189
+   31 Reading PVDG     in /input/SPE1CASE1.DATA line 199
+   32 Reading PVTO     in /input/SPE1CASE1.DATA line 220
+   33 Reading REGIONS  in /input/SPE1CASE1.DATA line 249
+   34 Reading FIPNUM   in /input/SPE1CASE1.DATA line 251
+   35 Reading SOLUTION in /input/SPE1CASE1.DATA line 254
+   36 Reading EQUIL    in /input/SPE1CASE1.DATA line 257
+   37 Reading RSVD     in /input/SPE1CASE1.DATA line 277
+   38 Reading SUMMARY  in /input/SPE1CASE1.DATA line 285
+   39 Reading DATE     in /input/SPE1CASE1.DATA line 288
+   40 Reading RPR__NUM in /input/SPE1CASE1.DATA line 290
+   41 Reading RUNSUM   in /input/SPE1CASE1.DATA line 293
+   42 Reading FMWPA    in /input/SPE1CASE1.DATA line 294
+   43 Reading FMWIA    in /input/SPE1CASE1.DATA line 295
+   44 Reading FOPR     in /input/SPE1CASE1.DATA line 298
+   45 Reading WGOR     in /input/SPE1CASE1.DATA line 302
+   46 Reading FGOR     in /input/SPE1CASE1.DATA line 307
+   47 Reading BPR      in /input/SPE1CASE1.DATA line 310
+   48 Reading BGSAT    in /input/SPE1CASE1.DATA line 316
+   49 Reading WBHP     in /input/SPE1CASE1.DATA line 329
+   50 Reading WGIR     in /input/SPE1CASE1.DATA line 333
+   51 Reading WGIT     in /input/SPE1CASE1.DATA line 337
+   52 Reading WGPR     in /input/SPE1CASE1.DATA line 341
+   53 Reading WGPT     in /input/SPE1CASE1.DATA line 345
+   54 Reading WOIR     in /input/SPE1CASE1.DATA line 349
+   55 Reading WOIT     in /input/SPE1CASE1.DATA line 353
+   56 Reading WOPR     in /input/SPE1CASE1.DATA line 357
+   57 Reading WOPT     in /input/SPE1CASE1.DATA line 361
+   58 Reading WWIR     in /input/SPE1CASE1.DATA line 365
+   59 Reading WWIT     in /input/SPE1CASE1.DATA line 369
+   60 Reading WWPR     in /input/SPE1CASE1.DATA line 373
+   61 Reading WWPT     in /input/SPE1CASE1.DATA line 377
+   62 Reading SCHEDULE in /input/SPE1CASE1.DATA line 381
+   63 Reading RPTSCHED in /input/SPE1CASE1.DATA line 383
+   64 Reading RPTRST   in /input/SPE1CASE1.DATA line 386
+   65 Reading DRSDT    in /input/SPE1CASE1.DATA line 391
+   66 Reading WELSPECS in /input/SPE1CASE1.DATA line 396
+   67 Reading COMPDAT  in /input/SPE1CASE1.DATA line 408
+   68 Reading WCONPROD in /input/SPE1CASE1.DATA line 420
+   69 Reading WCONINJE in /input/SPE1CASE1.DATA line 430
+   70 Reading TSTEP    in /input/SPE1CASE1.DATA line 440
+   71 Reading WELOPEN  in /input/SPE1CASE1.DATA line 444
+   72 Reading WCONHIST in /input/SPE1CASE1.DATA line 449
+   73 Reading WCONINJE in /input/SPE1CASE1.DATA line 453
+   74 Reading TSTEP    in /input/SPE1CASE1.DATA line 457
+   75 Reading WELOPEN  in /input/SPE1CASE1.DATA line 460
+   76 Reading TSTEP    in /input/SPE1CASE1.DATA line 465
+   77 Reading DATES    in /input/SPE1CASE1.DATA line 471
+   78 Reading TSTEP    in /input/SPE1CASE1.DATA line 475
+
+Warning: Unsupported keywords or keyword items:
+
+  NOECHO: keyword not supported
+  In file: /input/SPE1CASE1.DATA, line 73
+
+  ECHO: keyword not supported
+  In file: /input/SPE1CASE1.DATA, line 105
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SPE1CASE1.DATA line 381
+Initializing report step 0/120 at 2015-01-01 0 DAYS line 381
+Processing keyword RPTSCHED at line 383
+Processing keyword RPTRST at line 386
+Processing keyword DRSDT at line 391
+Processing keyword WELSPECS at line 396
+Processing keyword COMPDAT at line 408
+Processing keyword WCONPROD at line 420
+Processing keyword WCONINJE at line 430
+Complete report step 1 (31 DAYS) at 2015-02-01 (0 DAYS)
+
+Initializing report step 2/120 at 2015-02-01 (0 DAYS) line 440
+Complete report step 2 (28 DAYS) at 2015-03-01 (31 DAYS)
+
+Initializing report step 3/120 at 2015-03-01 (31 DAYS) line 440
+Complete report step 3 (31 DAYS) at 2015-04-01 (59 DAYS)
+
+Initializing report step 4/120 at 2015-04-01 (59 DAYS) line 440
+Complete report step 4 (30 DAYS) at 2015-05-01 (90 DAYS)
+
+Initializing report step 5/120 at 2015-05-01 (90 DAYS) line 440
+Complete report step 5 (31 DAYS) at 2015-06-01 (120 DAYS)
+
+Processing grid
+Total number of active cells: 300 / total pore volume: 534322820 RB
+
+Warning: Unhandled summary keyword DATE/DAY
+In /input/SPE1CASE1.DATA line 288
+
+Warning: Unhandled summary keyword DATE/MONTH
+In /input/SPE1CASE1.DATA line 288
+
+Warning: Unhandled summary keyword DATE/YEAR
+In /input/SPE1CASE1.DATA line 288
+
+
+================ Starting main simulation loop ===============
+
+
+Report step  0/120 at day 0/3650, date = 01-Jan-2015
+Using Newton nonlinear solver.
+
+Starting time step 0, stepsize 1 days, at day 0/31, date = 01-Jan-2015
+Restart file written for report step   0/120, date = 01-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Starting time step 1, stepsize 3 days, at day 1/31, date = 02-Jan-2015
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  4 (0.0sec)
+
+Starting time step 2, stepsize 7.60941 days, at day 4/31, date = 05-Jan-2015
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  4 (0.0sec)
+
+Starting time step 3, stepsize 19.3906 days, at day 11.6094/31, date = 12-Jan-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step   1/120, date = 01-Feb-2015 00:00:00
+
+Report step  1/120 at day 31/3650, date = 01-Feb-2015
+
+Starting time step 0, stepsize 28 days, at day 31/59, date = 01-Feb-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step   2/120, date = 01-Mar-2015 00:00:00
+
+Report step  2/120 at day 59/3650, date = 01-Mar-2015
+
+Starting time step 0, stepsize 31 days, at day 59/90, date = 01-Mar-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step   3/120, date = 01-Apr-2015 00:00:00
+
+Report step  3/120 at day 90/3650, date = 01-Apr-2015
+
+Starting time step 0, stepsize 30 days, at day 90/120, date = 01-Apr-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step   4/120, date = 01-May-2015 00:00:00
+
+Report step  4/120 at day 120/3650, date = 01-May-2015
+
+Starting time step 0, stepsize 31 days, at day 120/151, date = 01-May-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step   5/120, date = 01-Jun-2015 00:00:00
+
+Report step  5/120 at day 151/3650, date = 01-Jun-2015
+
+Starting time step 0, stepsize 30 days, at day 151/181, date = 01-Jun-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step   6/120, date = 01-Jul-2015 00:00:00
+
+Report step  6/120 at day 181/3650, date = 01-Jul-2015
+
+Starting time step 0, stepsize 31 days, at day 181/212, date = 01-Jul-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step   7/120, date = 01-Aug-2015 00:00:00
+
+Report step  7/120 at day 212/3650, date = 01-Aug-2015
+
+Starting time step 0, stepsize 31 days, at day 212/243, date = 01-Aug-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step   8/120, date = 01-Sep-2015 00:00:00
+
+Report step  8/120 at day 243/3650, date = 01-Sep-2015
+
+Starting time step 0, stepsize 30 days, at day 243/273, date = 01-Sep-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step   9/120, date = 01-Oct-2015 00:00:00
+
+Report step  9/120 at day 273/3650, date = 01-Oct-2015
+
+Starting time step 0, stepsize 31 days, at day 273/304, date = 01-Oct-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  10/120, date = 01-Nov-2015 00:00:00
+
+Report step 10/120 at day 304/3650, date = 01-Nov-2015
+
+Starting time step 0, stepsize 30 days, at day 304/334, date = 01-Nov-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  11/120, date = 01-Dec-2015 00:00:00
+
+Report step 11/120 at day 334/3650, date = 01-Dec-2015
+
+Starting time step 0, stepsize 31 days, at day 334/365, date = 01-Dec-2015
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  12/120, date = 01-Jan-2016 00:00:00
+
+Report step 12/120 at day 365/3650, date = 01-Jan-2016
+
+Starting time step 0, stepsize 31 days, at day 365/396, date = 01-Jan-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  13/120, date = 01-Feb-2016 00:00:00
+
+Report step 13/120 at day 396/3650, date = 01-Feb-2016
+
+Starting time step 0, stepsize 28 days, at day 396/424, date = 01-Feb-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  14/120, date = 29-Feb-2016 00:00:00
+
+Report step 14/120 at day 424/3650, date = 29-Feb-2016
+
+Starting time step 0, stepsize 31 days, at day 424/455, date = 29-Feb-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  15/120, date = 31-Mar-2016 00:00:00
+
+Report step 15/120 at day 455/3650, date = 31-Mar-2016
+
+Starting time step 0, stepsize 30 days, at day 455/485, date = 31-Mar-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  16/120, date = 30-Apr-2016 00:00:00
+
+Report step 16/120 at day 485/3650, date = 30-Apr-2016
+
+Starting time step 0, stepsize 31 days, at day 485/516, date = 30-Apr-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  17/120, date = 31-May-2016 00:00:00
+
+Report step 17/120 at day 516/3650, date = 31-May-2016
+
+Starting time step 0, stepsize 30 days, at day 516/546, date = 31-May-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  18/120, date = 30-Jun-2016 00:00:00
+
+Report step 18/120 at day 546/3650, date = 30-Jun-2016
+
+Starting time step 0, stepsize 31 days, at day 546/577, date = 30-Jun-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  19/120, date = 31-Jul-2016 00:00:00
+
+Report step 19/120 at day 577/3650, date = 31-Jul-2016
+
+Starting time step 0, stepsize 31 days, at day 577/608, date = 31-Jul-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  20/120, date = 31-Aug-2016 00:00:00
+
+Report step 20/120 at day 608/3650, date = 31-Aug-2016
+
+Starting time step 0, stepsize 30 days, at day 608/638, date = 31-Aug-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  21/120, date = 30-Sep-2016 00:00:00
+
+Report step 21/120 at day 638/3650, date = 30-Sep-2016
+
+Starting time step 0, stepsize 31 days, at day 638/669, date = 30-Sep-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  22/120, date = 31-Oct-2016 00:00:00
+
+Report step 22/120 at day 669/3650, date = 31-Oct-2016
+
+Starting time step 0, stepsize 30 days, at day 669/699, date = 31-Oct-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  23/120, date = 30-Nov-2016 00:00:00
+
+Report step 23/120 at day 699/3650, date = 30-Nov-2016
+
+Starting time step 0, stepsize 31 days, at day 699/730, date = 30-Nov-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  24/120, date = 31-Dec-2016 00:00:00
+
+Report step 24/120 at day 730/3650, date = 31-Dec-2016
+
+Starting time step 0, stepsize 31 days, at day 730/761, date = 31-Dec-2016
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  25/120, date = 31-Jan-2017 00:00:00
+
+Report step 25/120 at day 761/3650, date = 31-Jan-2017
+
+Starting time step 0, stepsize 28 days, at day 761/789, date = 31-Jan-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  26/120, date = 28-Feb-2017 00:00:00
+
+Report step 26/120 at day 789/3650, date = 28-Feb-2017
+
+Starting time step 0, stepsize 31 days, at day 789/820, date = 28-Feb-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  27/120, date = 31-Mar-2017 00:00:00
+
+Report step 27/120 at day 820/3650, date = 31-Mar-2017
+
+Starting time step 0, stepsize 30 days, at day 820/850, date = 31-Mar-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  28/120, date = 30-Apr-2017 00:00:00
+
+Report step 28/120 at day 850/3650, date = 30-Apr-2017
+
+Starting time step 0, stepsize 31 days, at day 850/881, date = 30-Apr-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  29/120, date = 31-May-2017 00:00:00
+
+Report step 29/120 at day 881/3650, date = 31-May-2017
+
+Starting time step 0, stepsize 30 days, at day 881/911, date = 31-May-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  30/120, date = 30-Jun-2017 00:00:00
+
+Report step 30/120 at day 911/3650, date = 30-Jun-2017
+
+Starting time step 0, stepsize 31 days, at day 911/942, date = 30-Jun-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  31/120, date = 31-Jul-2017 00:00:00
+
+Report step 31/120 at day 942/3650, date = 31-Jul-2017
+
+Starting time step 0, stepsize 31 days, at day 942/973, date = 31-Jul-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  32/120, date = 31-Aug-2017 00:00:00
+
+Report step 32/120 at day 973/3650, date = 31-Aug-2017
+
+Starting time step 0, stepsize 30 days, at day 973/1003, date = 31-Aug-2017
+    Well PROD control mode changed from ORAT to BHP
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  33/120, date = 30-Sep-2017 00:00:00
+
+Report step 33/120 at day 1003/3650, date = 30-Sep-2017
+
+Starting time step 0, stepsize 31 days, at day 1003/1034, date = 30-Sep-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  34/120, date = 31-Oct-2017 00:00:00
+
+Report step 34/120 at day 1034/3650, date = 31-Oct-2017
+
+Starting time step 0, stepsize 30 days, at day 1034/1064, date = 31-Oct-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  35/120, date = 30-Nov-2017 00:00:00
+
+Report step 35/120 at day 1064/3650, date = 30-Nov-2017
+
+Starting time step 0, stepsize 31 days, at day 1064/1095, date = 30-Nov-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  36/120, date = 31-Dec-2017 00:00:00
+
+Report step 36/120 at day 1095/3650, date = 31-Dec-2017
+
+Starting time step 0, stepsize 31 days, at day 1095/1126, date = 31-Dec-2017
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  37/120, date = 31-Jan-2018 00:00:00
+
+Report step 37/120 at day 1126/3650, date = 31-Jan-2018
+
+Starting time step 0, stepsize 28 days, at day 1126/1154, date = 31-Jan-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  38/120, date = 28-Feb-2018 00:00:00
+
+Report step 38/120 at day 1154/3650, date = 28-Feb-2018
+
+Starting time step 0, stepsize 31 days, at day 1154/1185, date = 28-Feb-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  39/120, date = 31-Mar-2018 00:00:00
+
+Report step 39/120 at day 1185/3650, date = 31-Mar-2018
+
+Starting time step 0, stepsize 30 days, at day 1185/1215, date = 31-Mar-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  40/120, date = 30-Apr-2018 00:00:00
+
+Report step 40/120 at day 1215/3650, date = 30-Apr-2018
+
+Starting time step 0, stepsize 31 days, at day 1215/1246, date = 30-Apr-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  41/120, date = 31-May-2018 00:00:00
+
+Report step 41/120 at day 1246/3650, date = 31-May-2018
+
+Starting time step 0, stepsize 30 days, at day 1246/1276, date = 31-May-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  42/120, date = 30-Jun-2018 00:00:00
+
+Report step 42/120 at day 1276/3650, date = 30-Jun-2018
+
+Starting time step 0, stepsize 31 days, at day 1276/1307, date = 30-Jun-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  43/120, date = 31-Jul-2018 00:00:00
+
+Report step 43/120 at day 1307/3650, date = 31-Jul-2018
+
+Starting time step 0, stepsize 31 days, at day 1307/1338, date = 31-Jul-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  44/120, date = 31-Aug-2018 00:00:00
+
+Report step 44/120 at day 1338/3650, date = 31-Aug-2018
+
+Starting time step 0, stepsize 30 days, at day 1338/1368, date = 31-Aug-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  45/120, date = 30-Sep-2018 00:00:00
+
+Report step 45/120 at day 1368/3650, date = 30-Sep-2018
+
+Starting time step 0, stepsize 31 days, at day 1368/1399, date = 30-Sep-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  46/120, date = 31-Oct-2018 00:00:00
+
+Report step 46/120 at day 1399/3650, date = 31-Oct-2018
+
+Starting time step 0, stepsize 30 days, at day 1399/1429, date = 31-Oct-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  47/120, date = 30-Nov-2018 00:00:00
+
+Report step 47/120 at day 1429/3650, date = 30-Nov-2018
+
+Starting time step 0, stepsize 31 days, at day 1429/1460, date = 30-Nov-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  48/120, date = 31-Dec-2018 00:00:00
+
+Report step 48/120 at day 1460/3650, date = 31-Dec-2018
+
+Starting time step 0, stepsize 31 days, at day 1460/1491, date = 31-Dec-2018
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  49/120, date = 31-Jan-2019 00:00:00
+
+Report step 49/120 at day 1491/3650, date = 31-Jan-2019
+
+Starting time step 0, stepsize 28 days, at day 1491/1519, date = 31-Jan-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  50/120, date = 28-Feb-2019 00:00:00
+
+Report step 50/120 at day 1519/3650, date = 28-Feb-2019
+
+Starting time step 0, stepsize 31 days, at day 1519/1550, date = 28-Feb-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  51/120, date = 31-Mar-2019 00:00:00
+
+Report step 51/120 at day 1550/3650, date = 31-Mar-2019
+
+Starting time step 0, stepsize 30 days, at day 1550/1580, date = 31-Mar-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  52/120, date = 30-Apr-2019 00:00:00
+
+Report step 52/120 at day 1580/3650, date = 30-Apr-2019
+
+Starting time step 0, stepsize 31 days, at day 1580/1611, date = 30-Apr-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  53/120, date = 31-May-2019 00:00:00
+
+Report step 53/120 at day 1611/3650, date = 31-May-2019
+
+Starting time step 0, stepsize 30 days, at day 1611/1641, date = 31-May-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  54/120, date = 30-Jun-2019 00:00:00
+
+Report step 54/120 at day 1641/3650, date = 30-Jun-2019
+
+Starting time step 0, stepsize 31 days, at day 1641/1672, date = 30-Jun-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  55/120, date = 31-Jul-2019 00:00:00
+
+Report step 55/120 at day 1672/3650, date = 31-Jul-2019
+
+Starting time step 0, stepsize 31 days, at day 1672/1703, date = 31-Jul-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  56/120, date = 31-Aug-2019 00:00:00
+
+Report step 56/120 at day 1703/3650, date = 31-Aug-2019
+
+Starting time step 0, stepsize 30 days, at day 1703/1733, date = 31-Aug-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  57/120, date = 30-Sep-2019 00:00:00
+
+Report step 57/120 at day 1733/3650, date = 30-Sep-2019
+
+Starting time step 0, stepsize 31 days, at day 1733/1764, date = 30-Sep-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  58/120, date = 31-Oct-2019 00:00:00
+
+Report step 58/120 at day 1764/3650, date = 31-Oct-2019
+
+Starting time step 0, stepsize 30 days, at day 1764/1794, date = 31-Oct-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  59/120, date = 30-Nov-2019 00:00:00
+
+Report step 59/120 at day 1794/3650, date = 30-Nov-2019
+
+Starting time step 0, stepsize 31 days, at day 1794/1825, date = 30-Nov-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  60/120, date = 31-Dec-2019 00:00:00
+
+Report step 60/120 at day 1825/3650, date = 31-Dec-2019
+
+Starting time step 0, stepsize 31 days, at day 1825/1856, date = 31-Dec-2019
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  61/120, date = 31-Jan-2020 00:00:00
+
+Report step 61/120 at day 1856/3650, date = 31-Jan-2020
+
+Starting time step 0, stepsize 28 days, at day 1856/1884, date = 31-Jan-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  62/120, date = 28-Feb-2020 00:00:00
+
+Report step 62/120 at day 1884/3650, date = 28-Feb-2020
+
+Starting time step 0, stepsize 31 days, at day 1884/1915, date = 28-Feb-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  63/120, date = 30-Mar-2020 00:00:00
+
+Report step 63/120 at day 1915/3650, date = 30-Mar-2020
+
+Starting time step 0, stepsize 30 days, at day 1915/1945, date = 30-Mar-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  64/120, date = 29-Apr-2020 00:00:00
+
+Report step 64/120 at day 1945/3650, date = 29-Apr-2020
+
+Starting time step 0, stepsize 31 days, at day 1945/1976, date = 29-Apr-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  65/120, date = 30-May-2020 00:00:00
+
+Report step 65/120 at day 1976/3650, date = 30-May-2020
+
+Starting time step 0, stepsize 30 days, at day 1976/2006, date = 30-May-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  66/120, date = 29-Jun-2020 00:00:00
+
+Report step 66/120 at day 2006/3650, date = 29-Jun-2020
+
+Starting time step 0, stepsize 31 days, at day 2006/2037, date = 29-Jun-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  67/120, date = 30-Jul-2020 00:00:00
+
+Report step 67/120 at day 2037/3650, date = 30-Jul-2020
+
+Starting time step 0, stepsize 31 days, at day 2037/2068, date = 30-Jul-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  68/120, date = 30-Aug-2020 00:00:00
+
+Report step 68/120 at day 2068/3650, date = 30-Aug-2020
+
+Starting time step 0, stepsize 30 days, at day 2068/2098, date = 30-Aug-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  69/120, date = 29-Sep-2020 00:00:00
+
+Report step 69/120 at day 2098/3650, date = 29-Sep-2020
+
+Starting time step 0, stepsize 31 days, at day 2098/2129, date = 29-Sep-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  70/120, date = 30-Oct-2020 00:00:00
+
+Report step 70/120 at day 2129/3650, date = 30-Oct-2020
+
+Starting time step 0, stepsize 30 days, at day 2129/2159, date = 30-Oct-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  71/120, date = 29-Nov-2020 00:00:00
+
+Report step 71/120 at day 2159/3650, date = 29-Nov-2020
+
+Starting time step 0, stepsize 31 days, at day 2159/2190, date = 29-Nov-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  72/120, date = 30-Dec-2020 00:00:00
+
+Report step 72/120 at day 2190/3650, date = 30-Dec-2020
+
+Starting time step 0, stepsize 31 days, at day 2190/2221, date = 30-Dec-2020
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  73/120, date = 30-Jan-2021 00:00:00
+
+Report step 73/120 at day 2221/3650, date = 30-Jan-2021
+
+Starting time step 0, stepsize 28 days, at day 2221/2249, date = 30-Jan-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  74/120, date = 27-Feb-2021 00:00:00
+
+Report step 74/120 at day 2249/3650, date = 27-Feb-2021
+
+Starting time step 0, stepsize 31 days, at day 2249/2280, date = 27-Feb-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  75/120, date = 30-Mar-2021 00:00:00
+
+Report step 75/120 at day 2280/3650, date = 30-Mar-2021
+
+Starting time step 0, stepsize 30 days, at day 2280/2310, date = 30-Mar-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  76/120, date = 29-Apr-2021 00:00:00
+
+Report step 76/120 at day 2310/3650, date = 29-Apr-2021
+
+Starting time step 0, stepsize 31 days, at day 2310/2341, date = 29-Apr-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  77/120, date = 30-May-2021 00:00:00
+
+Report step 77/120 at day 2341/3650, date = 30-May-2021
+
+Starting time step 0, stepsize 30 days, at day 2341/2371, date = 30-May-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step  78/120, date = 29-Jun-2021 00:00:00
+
+Report step 78/120 at day 2371/3650, date = 29-Jun-2021
+
+Starting time step 0, stepsize 31 days, at day 2371/2402, date = 29-Jun-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  79/120, date = 30-Jul-2021 00:00:00
+
+Report step 79/120 at day 2402/3650, date = 30-Jul-2021
+
+Starting time step 0, stepsize 31 days, at day 2402/2433, date = 30-Jul-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  80/120, date = 30-Aug-2021 00:00:00
+
+Report step 80/120 at day 2433/3650, date = 30-Aug-2021
+
+Starting time step 0, stepsize 30 days, at day 2433/2463, date = 30-Aug-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  81/120, date = 29-Sep-2021 00:00:00
+
+Report step 81/120 at day 2463/3650, date = 29-Sep-2021
+
+Starting time step 0, stepsize 31 days, at day 2463/2494, date = 29-Sep-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  82/120, date = 30-Oct-2021 00:00:00
+
+Report step 82/120 at day 2494/3650, date = 30-Oct-2021
+
+Starting time step 0, stepsize 30 days, at day 2494/2524, date = 30-Oct-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  83/120, date = 29-Nov-2021 00:00:00
+
+Report step 83/120 at day 2524/3650, date = 29-Nov-2021
+
+Starting time step 0, stepsize 31 days, at day 2524/2555, date = 29-Nov-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  84/120, date = 30-Dec-2021 00:00:00
+
+Report step 84/120 at day 2555/3650, date = 30-Dec-2021
+
+Starting time step 0, stepsize 31 days, at day 2555/2586, date = 30-Dec-2021
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  85/120, date = 30-Jan-2022 00:00:00
+
+Report step 85/120 at day 2586/3650, date = 30-Jan-2022
+
+Starting time step 0, stepsize 28 days, at day 2586/2614, date = 30-Jan-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  86/120, date = 27-Feb-2022 00:00:00
+
+Report step 86/120 at day 2614/3650, date = 27-Feb-2022
+
+Starting time step 0, stepsize 31 days, at day 2614/2645, date = 27-Feb-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step  87/120, date = 30-Mar-2022 00:00:00
+
+Report step 87/120 at day 2645/3650, date = 30-Mar-2022
+
+Starting time step 0, stepsize 30 days, at day 2645/2675, date = 30-Mar-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  88/120, date = 29-Apr-2022 00:00:00
+
+Report step 88/120 at day 2675/3650, date = 29-Apr-2022
+
+Starting time step 0, stepsize 31 days, at day 2675/2706, date = 29-Apr-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  89/120, date = 30-May-2022 00:00:00
+
+Report step 89/120 at day 2706/3650, date = 30-May-2022
+
+Starting time step 0, stepsize 30 days, at day 2706/2736, date = 30-May-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  90/120, date = 29-Jun-2022 00:00:00
+
+Report step 90/120 at day 2736/3650, date = 29-Jun-2022
+
+Starting time step 0, stepsize 31 days, at day 2736/2767, date = 29-Jun-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 4, linearizations= 5 (0.0sec), linear its=  7 (0.0sec)
+Restart file written for report step  91/120, date = 30-Jul-2022 00:00:00
+
+Report step 91/120 at day 2767/3650, date = 30-Jul-2022
+
+Starting time step 0, stepsize 31 days, at day 2767/2798, date = 30-Jul-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  92/120, date = 30-Aug-2022 00:00:00
+
+Report step 92/120 at day 2798/3650, date = 30-Aug-2022
+
+Starting time step 0, stepsize 30 days, at day 2798/2828, date = 30-Aug-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  93/120, date = 29-Sep-2022 00:00:00
+
+Report step 93/120 at day 2828/3650, date = 29-Sep-2022
+
+Starting time step 0, stepsize 31 days, at day 2828/2859, date = 29-Sep-2022
+    Oscillating behavior detected: Relaxation set to 0.900000
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  94/120, date = 30-Oct-2022 00:00:00
+
+Report step 94/120 at day 2859/3650, date = 30-Oct-2022
+
+Starting time step 0, stepsize 30 days, at day 2859/2889, date = 30-Oct-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step  95/120, date = 29-Nov-2022 00:00:00
+
+Report step 95/120 at day 2889/3650, date = 29-Nov-2022
+
+Starting time step 0, stepsize 31 days, at day 2889/2920, date = 29-Nov-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  96/120, date = 30-Dec-2022 00:00:00
+
+Report step 96/120 at day 2920/3650, date = 30-Dec-2022
+
+Starting time step 0, stepsize 31 days, at day 2920/2951, date = 30-Dec-2022
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  97/120, date = 30-Jan-2023 00:00:00
+
+Report step 97/120 at day 2951/3650, date = 30-Jan-2023
+
+Starting time step 0, stepsize 28 days, at day 2951/2979, date = 30-Jan-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step  98/120, date = 27-Feb-2023 00:00:00
+
+Report step 98/120 at day 2979/3650, date = 27-Feb-2023
+
+Starting time step 0, stepsize 31 days, at day 2979/3010, date = 27-Feb-2023
+    Oscillating behavior detected: Relaxation set to 0.900000
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step  99/120, date = 30-Mar-2023 00:00:00
+
+Report step 99/120 at day 3010/3650, date = 30-Mar-2023
+
+Starting time step 0, stepsize 30 days, at day 3010/3040, date = 30-Mar-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 100/120, date = 29-Apr-2023 00:00:00
+
+Report step 100/120 at day 3040/3650, date = 29-Apr-2023
+
+Starting time step 0, stepsize 31 days, at day 3040/3071, date = 29-Apr-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  6 (0.0sec)
+Restart file written for report step 101/120, date = 30-May-2023 00:00:00
+
+Report step 101/120 at day 3071/3650, date = 30-May-2023
+
+Starting time step 0, stepsize 30 days, at day 3071/3101, date = 30-May-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step 102/120, date = 29-Jun-2023 00:00:00
+
+Report step 102/120 at day 3101/3650, date = 29-Jun-2023
+
+Starting time step 0, stepsize 31 days, at day 3101/3132, date = 29-Jun-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 103/120, date = 30-Jul-2023 00:00:00
+
+Report step 103/120 at day 3132/3650, date = 30-Jul-2023
+
+Starting time step 0, stepsize 31 days, at day 3132/3163, date = 30-Jul-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step 104/120, date = 30-Aug-2023 00:00:00
+
+Report step 104/120 at day 3163/3650, date = 30-Aug-2023
+
+Starting time step 0, stepsize 30 days, at day 3163/3193, date = 30-Aug-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 105/120, date = 29-Sep-2023 00:00:00
+
+Report step 105/120 at day 3193/3650, date = 29-Sep-2023
+
+Starting time step 0, stepsize 31 days, at day 3193/3224, date = 29-Sep-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 106/120, date = 30-Oct-2023 00:00:00
+
+Report step 106/120 at day 3224/3650, date = 30-Oct-2023
+
+Starting time step 0, stepsize 30 days, at day 3224/3254, date = 30-Oct-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  5 (0.0sec)
+Restart file written for report step 107/120, date = 29-Nov-2023 00:00:00
+
+Report step 107/120 at day 3254/3650, date = 29-Nov-2023
+
+Starting time step 0, stepsize 31 days, at day 3254/3285, date = 29-Nov-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step 108/120, date = 30-Dec-2023 00:00:00
+
+Report step 108/120 at day 3285/3650, date = 30-Dec-2023
+
+Starting time step 0, stepsize 31 days, at day 3285/3316, date = 30-Dec-2023
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 109/120, date = 30-Jan-2024 00:00:00
+
+Report step 109/120 at day 3316/3650, date = 30-Jan-2024
+
+Starting time step 0, stepsize 28 days, at day 3316/3344, date = 30-Jan-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step 110/120, date = 27-Feb-2024 00:00:00
+
+Report step 110/120 at day 3344/3650, date = 27-Feb-2024
+
+Starting time step 0, stepsize 31 days, at day 3344/3375, date = 27-Feb-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+
+Report step 111/120 at day 3375/3650, date = 29-Mar-2024
+Restart file written for report step 111/120, date = 29-Mar-2024 00:00:00
+
+Starting time step 0, stepsize 30 days, at day 3375/3405, date = 29-Mar-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  4 (0.0sec)
+Restart file written for report step 112/120, date = 28-Apr-2024 00:00:00
+
+Report step 112/120 at day 3405/3650, date = 28-Apr-2024
+
+Starting time step 0, stepsize 31 days, at day 3405/3436, date = 28-Apr-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step 113/120, date = 29-May-2024 00:00:00
+
+Report step 113/120 at day 3436/3650, date = 29-May-2024
+
+Starting time step 0, stepsize 30 days, at day 3436/3466, date = 29-May-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  3 (0.0sec)
+Restart file written for report step 114/120, date = 28-Jun-2024 00:00:00
+
+Report step 114/120 at day 3466/3650, date = 28-Jun-2024
+
+Starting time step 0, stepsize 31 days, at day 3466/3497, date = 28-Jun-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 115/120, date = 29-Jul-2024 00:00:00
+
+Report step 115/120 at day 3497/3650, date = 29-Jul-2024
+
+Starting time step 0, stepsize 31 days, at day 3497/3528, date = 29-Jul-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 116/120, date = 29-Aug-2024 00:00:00
+
+Report step 116/120 at day 3528/3650, date = 29-Aug-2024
+
+Starting time step 0, stepsize 30 days, at day 3528/3558, date = 29-Aug-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 117/120, date = 28-Sep-2024 00:00:00
+
+Report step 117/120 at day 3558/3650, date = 28-Sep-2024
+
+Starting time step 0, stepsize 31 days, at day 3558/3589, date = 28-Sep-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 118/120, date = 29-Oct-2024 00:00:00
+
+Report step 118/120 at day 3589/3650, date = 29-Oct-2024
+
+Starting time step 0, stepsize 30 days, at day 3589/3619, date = 29-Oct-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 119/120, date = 28-Nov-2024 00:00:00
+
+Report step 119/120 at day 3619/3650, date = 28-Nov-2024
+
+Starting time step 0, stepsize 31 days, at day 3619/3650, date = 28-Nov-2024
+
+Warning: Keyword 'WELSPECS' is unhandled for output to restart file.
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 120/120, date = 29-Dec-2024 00:00:00
+
+
+================    End of simulation     ===============
+
+Number of MPI processes:         1
+Threads per MPI process:         2
+Setup time:                      0.40 s
+  Deck input:                    0.36 s
+Number of timesteps:           123
+Simulation time:                 1.46 s
+  Assembly time:                 0.13 s (Wasted: 0.0 s; 0.0%)
+    Well assembly:               0.05 s (Wasted: 0.0 s; 0.0%)
+  Linear solve time:             0.31 s (Wasted: 0.0 s; 0.0%)
+    Linear setup:                0.22 s (Wasted: 0.0 s; 0.0%)
+  Props/update time:             0.27 s (Wasted: 0.0 s; 0.0%)
+  Pre/post step:                 0.29 s (Wasted: 0.0 s; 0.0%)
+  Output write time:             0.05 s
+Overall Linearizations:        434      (Wasted:     0; 0.0%)
+Overall Newton Iterations:     311      (Wasted:     0; 0.0%)
+Overall Linear Iterations:     442      (Wasted:     0; 0.0%)
+

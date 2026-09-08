@@ -22,6 +22,11 @@ nav:
       - Agent guide: development/agent-guide.md
       - Local setup: development/local-setup.md
       - GitHub organization: development/project-organization.md
+      - Platform proof:
+          - Overview: development/platform-proof.md
+          - ResInsight: development/platform-resinsight.md
+          - OPM: development/platform-opm.md
+          - Native images: development/platform-images.md
       - Testing and review: development/testing-and-review.md
       - Proposed architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md

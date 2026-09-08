@@ -1,0 +1,147 @@
+**********************************************************************
+*                                                                    *
+*                        This is flow 2026.04                        *
+*                                                                    *
+* Flow is a simulator for fully implicit three-phase black-oil flow, *
+*             including solvent and polymer capabilities.            *
+*          For more information, see https://opm-project.org         *
+*                                                                    *
+**********************************************************************
+
+Using 1 MPI processes with 2 OMP threads on each 
+
+Reading deck file '/input/SPE1CASE1.DATA'
+    0 Reading RUNSPEC  in /input/SPE1CASE1.DATA line 18
+    1 Reading TITLE    in /input/SPE1CASE1.DATA line 21
+    2 Reading DIMENS   in /input/SPE1CASE1.DATA line 24
+    3 Reading EQLDIMS  in /input/SPE1CASE1.DATA line 29
+    4 Reading TABDIMS  in /input/SPE1CASE1.DATA line 34
+    5 Reading OIL      in /input/SPE1CASE1.DATA line 37
+    6 Reading GAS      in /input/SPE1CASE1.DATA line 38
+    7 Reading WATER    in /input/SPE1CASE1.DATA line 39
+    8 Reading DISGAS   in /input/SPE1CASE1.DATA line 40
+    9 Reading FIELD    in /input/SPE1CASE1.DATA line 44
+   10 Reading START    in /input/SPE1CASE1.DATA line 46
+   11 Reading WELLDIMS in /input/SPE1CASE1.DATA line 49
+   12 Reading UNIFOUT  in /input/SPE1CASE1.DATA line 60
+   13 Reading GRID     in /input/SPE1CASE1.DATA line 62
+   14 Reading INIT     in /input/SPE1CASE1.DATA line 69
+   15 Reading NOECHO   in /input/SPE1CASE1.DATA line 73
+   16 Reading DX       in /input/SPE1CASE1.DATA line 75
+   17 Reading DY       in /input/SPE1CASE1.DATA line 78
+   18 Reading DZ       in /input/SPE1CASE1.DATA line 81
+   19 Reading TOPS     in /input/SPE1CASE1.DATA line 85
+   20 Reading PORO     in /input/SPE1CASE1.DATA line 89
+   21 Reading PERMX    in /input/SPE1CASE1.DATA line 93
+   22 Reading PERMY    in /input/SPE1CASE1.DATA line 97
+   23 Reading PERMZ    in /input/SPE1CASE1.DATA line 101
+   24 Reading ECHO     in /input/SPE1CASE1.DATA line 105
+   25 Reading PROPS    in /input/SPE1CASE1.DATA line 107
+   26 Reading PVTW     in /input/SPE1CASE1.DATA line 110
+   27 Reading ROCK     in /input/SPE1CASE1.DATA line 123
+   28 Reading SWOF     in /input/SPE1CASE1.DATA line 130
+   29 Reading SGOF     in /input/SPE1CASE1.DATA line 159
+   30 Reading DENSITY  in /input/SPE1CASE1.DATA line 189
+   31 Reading PVDG     in /input/SPE1CASE1.DATA line 199
+   32 Reading PVTO     in /input/SPE1CASE1.DATA line 220
+   33 Reading REGIONS  in /input/SPE1CASE1.DATA line 249
+   34 Reading FIPNUM   in /input/SPE1CASE1.DATA line 251
+   35 Reading SOLUTION in /input/SPE1CASE1.DATA line 254
+   36 Reading EQUIL    in /input/SPE1CASE1.DATA line 257
+   37 Reading RSVD     in /input/SPE1CASE1.DATA line 277
+   38 Reading SUMMARY  in /input/SPE1CASE1.DATA line 285
+   39 Reading DATE     in /input/SPE1CASE1.DATA line 288
+   40 Reading RPR__NUM in /input/SPE1CASE1.DATA line 290
+   41 Reading RUNSUM   in /input/SPE1CASE1.DATA line 293
+   42 Reading FMWPA    in /input/SPE1CASE1.DATA line 294
+   43 Reading FMWIA    in /input/SPE1CASE1.DATA line 295
+   44 Reading FOPR     in /input/SPE1CASE1.DATA line 298
+   45 Reading WGOR     in /input/SPE1CASE1.DATA line 302
+   46 Reading FGOR     in /input/SPE1CASE1.DATA line 307
+   47 Reading BPR      in /input/SPE1CASE1.DATA line 310
+   48 Reading BGSAT    in /input/SPE1CASE1.DATA line 316
+   49 Reading WBHP     in /input/SPE1CASE1.DATA line 329
+   50 Reading WGIR     in /input/SPE1CASE1.DATA line 333
+   51 Reading WGIT     in /input/SPE1CASE1.DATA line 337
+   52 Reading WGPR     in /input/SPE1CASE1.DATA line 341
+   53 Reading WGPT     in /input/SPE1CASE1.DATA line 345
+   54 Reading WOIR     in /input/SPE1CASE1.DATA line 349
+   55 Reading WOIT     in /input/SPE1CASE1.DATA line 353
+   56 Reading WOPR     in /input/SPE1CASE1.DATA line 357
+   57 Reading WOPT     in /input/SPE1CASE1.DATA line 361
+   58 Reading WWIR     in /input/SPE1CASE1.DATA line 365
+   59 Reading WWIT     in /input/SPE1CASE1.DATA line 369
+   60 Reading WWPR     in /input/SPE1CASE1.DATA line 373
+   61 Reading WWPT     in /input/SPE1CASE1.DATA line 377
+   62 Reading SCHEDULE in /input/SPE1CASE1.DATA line 381
+   63 Reading RPTSCHED in /input/SPE1CASE1.DATA line 383
+   64 Reading RPTRST   in /input/SPE1CASE1.DATA line 386
+   65 Reading DRSDT    in /input/SPE1CASE1.DATA line 391
+   66 Reading WELSPECS in /input/SPE1CASE1.DATA line 396
+   67 Reading COMPDAT  in /input/SPE1CASE1.DATA line 408
+   68 Reading WCONPROD in /input/SPE1CASE1.DATA line 420
+   69 Reading WCONINJE in /input/SPE1CASE1.DATA line 430
+   70 Reading TSTEP    in /input/SPE1CASE1.DATA line 440
+   71 Reading WELOPEN  in /input/SPE1CASE1.DATA line 444
+   72 Reading WCONHIST in /input/SPE1CASE1.DATA line 449
+   73 Reading WCONINJE in /input/SPE1CASE1.DATA line 453
+   74 Reading TSTEP    in /input/SPE1CASE1.DATA line 457
+   75 Reading WELOPEN  in /input/SPE1CASE1.DATA line 460
+   76 Reading TSTEP    in /input/SPE1CASE1.DATA line 465
+   77 Reading DATES    in /input/SPE1CASE1.DATA line 471
+   78 Reading TSTEP    in /input/SPE1CASE1.DATA line 475
+
+Warning: Unsupported keywords or keyword items:
+
+  NOECHO: keyword not supported
+  In file: /input/SPE1CASE1.DATA, line 73
+
+  ECHO: keyword not supported
+  In file: /input/SPE1CASE1.DATA, line 105
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SPE1CASE1.DATA line 381
+Initializing report step 0/120 at 2015-01-01 0 DAYS line 381
+Processing keyword RPTSCHED at line 383
+Processing keyword RPTRST at line 386
+Processing keyword DRSDT at line 391
+Processing keyword WELSPECS at line 396
+Processing keyword COMPDAT at line 408
+Processing keyword WCONPROD at line 420
+Processing keyword WCONINJE at line 430
+Complete report step 1 (31 DAYS) at 2015-02-01 (0 DAYS)
+
+Initializing report step 2/120 at 2015-02-01 (0 DAYS) line 440
+Complete report step 2 (28 DAYS) at 2015-03-01 (31 DAYS)
+
+Initializing report step 3/120 at 2015-03-01 (31 DAYS) line 440
+Complete report step 3 (31 DAYS) at 2015-04-01 (59 DAYS)
+
+Initializing report step 4/120 at 2015-04-01 (59 DAYS) line 440
+Complete report step 4 (30 DAYS) at 2015-05-01 (90 DAYS)
+
+Initializing report step 5/120 at 2015-05-01 (90 DAYS) line 440
+Complete report step 5 (31 DAYS) at 2015-06-01 (120 DAYS)
+
+Error: Problem with keyword WELLDIMS
+  In /input/SPE1CASE1.DATA line 49
+  The case has 4 wells, but at most 2 are allowed in WELLDIMS.
+  Please increase item 1 of WELLDIMS to at least 4
+
+Error: Unrecoverable errors while loading input:
+Problem with keyword WELLDIMS
+In /input/SPE1CASE1.DATA line 49
+Problem with keyword WELLDIMS
+  In /input/SPE1CASE1.DATA line 49
+  The case has 4 wells, but at most 2 are allowed in WELLDIMS.
+  Please increase item 1 of WELLDIMS to at least 4
+Failed to create valid EclipseState object.
+Problem with keyword WELLDIMS
+In /input/SPE1CASE1.DATA line 49
+Problem with keyword WELLDIMS
+  In /input/SPE1CASE1.DATA line 49
+  The case has 4 wells, but at most 2 are allowed in WELLDIMS.
+  Please increase item 1 of WELLDIMS to at least 4

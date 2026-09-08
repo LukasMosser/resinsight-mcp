@@ -1,0 +1,49 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "-S",
+    "/private/tmp/resinsight-p01-build/source",
+    "-B",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCMAKE_TOOLCHAIN_FILE=/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/buildsystems/vcpkg.cmake",
+    "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/llvm19.cmake",
+    "-DVCPKG_OVERLAY_TRIPLETS=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/triplets",
+    "-DVCPKG_TARGET_TRIPLET=arm64-osx-p01",
+    "-DVCPKG_HOST_TRIPLET=arm64-osx-p01",
+    "-DVCPKG_INSTALLED_DIR=/private/tmp/resinsight-p01-build/vcpkg-installed",
+    "-DVCPKG_INSTALL_OPTIONS=--clean-buildtrees-after-build;--clean-packages-after-build",
+    "-DCMAKE_PREFIX_PATH=/private/tmp/resinsight-p01-build/qt/6.7.0/macos",
+    "-DCMAKE_INSTALL_PREFIX=/private/tmp/resinsight-p01-build/application-install",
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+    "-DRESINSIGHT_ENABLE_GRPC=true",
+    "-DRESINSIGHT_ENABLE_HDF5=false",
+    "-DRESINSIGHT_GRPC_PYTHON_EXECUTABLE=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "-DRESINSIGHT_GRPC_DOWNLOAD_PYTHON_MODULE=false",
+    "-DRESINSIGHT_GRPC_BUNDLE_PYTHON_MODULE=false",
+    "-DRESINSIGHT_TREAT_WARNINGS_AS_ERRORS=false",
+    "-DRESINSIGHT_ENABLE_PRECOMPILED_HEADERS=false",
+    "-DRESINSIGHT_ENABLE_UNITY_BUILD=false",
+    "-DRESINSIGHT_INCLUDE_APPLICATION_UNIT_TESTS=true",
+    "-DOPENGL_gl_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "-DOPENGL_glu_LIBRARY:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "-DOPENGL_INCLUDE_DIR:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "-DOPENGL_GLU_INCLUDE_DIR:PATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework",
+    "-DPython_EXECUTABLE:FILEPATH=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ]
+}

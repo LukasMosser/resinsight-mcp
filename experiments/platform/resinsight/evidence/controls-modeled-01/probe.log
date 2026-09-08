@@ -1,0 +1,21 @@
+{"time": "2026-09-08T12:12:35.951867+00:00", "step": "owned_launch", "pid": 53758, "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"}
+{"time": "2026-09-08T12:12:37.506605+00:00", "step": "explicit_attachment", "port": 59440, "server_version": "2026.9.0", "client_version": "2026.09.0", "is_gui": true}
+{"time": "2026-09-08T12:12:37.682717+00:00", "step": "case_loaded", "case_id": 0, "dimensions": [10, 10, 3], "active_cells": 300, "bounding_box": {"min_x": 0.0, "max_x": 10000.0, "min_y": 0.0, "max_y": 10000.0, "min_z": -8425.0, "max_z": -8325.0}}
+{"time": "2026-09-08T12:12:37.955368+00:00", "step": "view_changed", "variable": "PRESSURE", "time_step": 0, "grid_z_scale": 20.0, "value_count": 300, "minimum": 4782.2998046875, "maximum": 4800.0}
+{"time": "2026-09-08T12:12:38.068218+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/modeled-01/pressure_initial/pressure_initialSPE1CASE1_3D_View_PRESSURE_00_01_Jan_2015.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:12:38.206260+00:00", "step": "view_changed", "variable": "SGAS", "time_step": 120, "grid_z_scale": 20.0, "value_count": 300, "minimum": 0.020997358486056328, "maximum": 0.5496513843536377}
+{"time": "2026-09-08T12:12:38.306024+00:00", "step": "snapshot", "file": "/private/tmp/resinsight-p01-build/runs/modeled-01/gas_final/gas_finalSPE1CASE1_3D_View_SGAS_120_29_Dec_2024.png", "dimensions": [1280, 900]}
+{"time": "2026-09-08T12:12:38.535177+00:00", "step": "well_route", "route": "modeled", "name": "P01CTRL"}
+{"time": "2026-09-08T12:12:38.583896+00:00", "step": "perforation_before_edit", "start_md": 8326.0, "end_md": 8374.0}
+{"time": "2026-09-08T12:12:38.648049+00:00", "step": "well_created", "name": "P01CTRL", "targets": [[4500.0, 4500.0, 0.0], [4500.0, 4500.0, 8325.0], [4500.0, 4500.0, 8430.0]], "target_z_meaning": "positive-down depth in fixture feet", "start_md": 8326.0, "end_md": 8424.0, "diameter": 0.5, "skin_factor": 0.0}
+{"time": "2026-09-08T12:12:38.655287+00:00", "step": "failed", "error_type": "RuntimeError", "message": "Trajectory does not match the requested vertical well"}
+{"time": "2026-09-08T12:12:38.664498+00:00", "step": "owned_process_closed", "pid": 53758, "return_code": -15}
+Traceback (most recent call last):
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 364, in <module>
+    main()
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 330, in main
+    well = create_well(instance, case, view, output, args.well_route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/controls.py", line 209, in create_well
+    raise RuntimeError("Trajectory does not match the requested vertical well")
+RuntimeError: Trajectory does not match the requested vertical well

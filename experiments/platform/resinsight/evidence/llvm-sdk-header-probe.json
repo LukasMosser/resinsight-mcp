@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++",
+    "-std=c++23",
+    "-isysroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "-mmacosx-version-min=14.2",
+    "-stdlib=libc++",
+    "-nostdinc++",
+    "-isystem",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1",
+    "-fuse-ld=lld",
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp",
+    "-o",
+    "/private/tmp/resinsight-p01-build/sdk-toolchain-probe"
+  ],
+  "compile": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/toolchain_probe.cpp:8:23: error: no member named 'format' in namespace 'std'\n    8 |     std::cout << std::format(\"C++23 expected and format: {}\\n\", value.value());\n      |                  ~~~~~^\n1 error generated.\n"
+  }
+}

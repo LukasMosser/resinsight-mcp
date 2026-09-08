@@ -1,0 +1,46 @@
+{
+  "procName": "toolchain-probe",
+  "osVersion": {
+    "train": "macOS 14.2.1",
+    "build": "23C71",
+    "releaseType": "User"
+  },
+  "cpuType": "ARM-64",
+  "exception": {
+    "codes": "0x0000000000000001, 0x0000000000000000",
+    "rawCodes": [
+      1,
+      0
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 60409
+  },
+  "frames": [
+    {
+      "imageOffset": 0,
+      "imageIndex": 4
+    },
+    {
+      "imageOffset": 222668,
+      "symbol": "std::__1::DoIOSInit::DoIOSInit()",
+      "symbolLocation": 132,
+      "imageIndex": 2
+    },
+    {
+      "imageOffset": 228348,
+      "symbol": "_GLOBAL__I_000100",
+      "symbolLocation": 72,
+      "imageIndex": 2
+    }
+  ],
+  "interpretation": "The private libc++ runtime faults in DoIOSInit before main."
+}

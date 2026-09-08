@@ -1,0 +1,27 @@
+{
+  "source": "/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/config-arm64-osx-p01-rel-CMakeConfigureLog.yaml.log",
+  "failures": [
+    {
+      "checks": [
+        "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+      ],
+      "result": {
+        "variable": "CMAKE_HAVE_LIBC_PTHREAD",
+        "cached": true,
+        "stdout": "Change Dir: '/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel/CMakeFiles/CMakeScratch/TryCompile-GhAY7P'\n\nRun Build Command(s): /private/tmp/resinsight-p01-build/downloads/vcpkg/tools/ninja-1.13.2-osx/ninja -v cmTC_7695a\n[1/2] /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang -DCMAKE_HAVE_LIBC_PTHREAD  -fPIC   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -fPIE -MD -MT CMakeFiles/cmTC_7695a.dir/src.c.o -MF CMakeFiles/cmTC_7695a.dir/src.c.o.d -o CMakeFiles/cmTC_7695a.dir/src.c.o -c /private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel/CMakeFiles/CMakeScratch/TryCompile-GhAY7P/src.c\n[2/2] : && /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang -fPIC   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Bstatic CMakeFiles/cmTC_7695a.dir/src.c.o -o cmTC_7695a   && :\nFAILED: [code=1] cmTC_7695a \n: && /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang -fPIC   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Bstatic CMakeFiles/cmTC_7695a.dir/src.c.o -o cmTC_7695a   && :\ndyld[37641]: Symbol not found: __ZdaPv\n  Referenced from: <4FBC7C36-C701-3743-9CAA-9630180E72D2> /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld\n  Expected in:     <4C4C4459-5555-3144-A1EB-DD5C0BC7D4A7> /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/libc++.1.0.dylib\nclang: error: unable to execute command: Abort trap: 6\nclang: error: linker command failed due to signal (use -v to see invocation)\nninja: build stopped: subcommand failed.\n",
+        "exitCode": 1
+      }
+    },
+    {
+      "checks": [
+        "Performing Test HAVE_STDC_FORMAT_MACROS"
+      ],
+      "result": {
+        "variable": "HAVE_STDC_FORMAT_MACROS",
+        "cached": true,
+        "stdout": "Change Dir: '/private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel/CMakeFiles/CMakeScratch/TryCompile-eY4Qtf'\n\nRun Build Command(s): /private/tmp/resinsight-p01-build/downloads/vcpkg/tools/ninja-1.13.2-osx/ninja -v cmTC_c030f\n[1/2] /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -DHAVE_STDC_FORMAT_MACROS  -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1   -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -fPIE -MD -MT CMakeFiles/cmTC_c030f.dir/src.cxx.o -MF CMakeFiles/cmTC_c030f.dir/src.cxx.o.d -o CMakeFiles/cmTC_c030f.dir/src.cxx.o -c /private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel/CMakeFiles/CMakeScratch/TryCompile-eY4Qtf/src.cxx\n[2/2] : && /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Bstatic CMakeFiles/cmTC_c030f.dir/src.cxx.o -o cmTC_c030f   && :\nFAILED: [code=1] cmTC_c030f \n: && /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1   -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -Bstatic CMakeFiles/cmTC_c030f.dir/src.cxx.o -o cmTC_c030f   && :\ndyld[37857]: Symbol not found: __ZdaPv\n  Referenced from: <4FBC7C36-C701-3743-9CAA-9630180E72D2> /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld\n  Expected in:     <4C4C4459-5555-3144-A1EB-DD5C0BC7D4A7> /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/lib/libc++.1.0.dylib\nclang++: error: unable to execute command: Abort trap: 6\nclang++: error: linker command failed due to signal (use -v to see invocation)\nninja: build stopped: subcommand failed.\n",
+        "exitCode": 1
+      }
+    }
+  ]
+}

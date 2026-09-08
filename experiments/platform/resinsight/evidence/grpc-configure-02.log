@@ -1,0 +1,40 @@
+[1/1] "/private/tmp/resinsight-p01-build/downloads/vcpkg/tools/cmake-4.4.0-osx/cmake-4.4.0-macos-universal/CMake.app/Contents/bin/cmake" -E chdir ".." "/private/tmp/resinsight-p01-build/downloads/vcpkg/tools/cmake-4.4.0-osx/cmake-4.4.0-macos-universal/CMake.app/Contents/bin/cmake" "/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/src/v1.71.0-40b3d4b32d.clean" "-G" "Ninja" "-DCMAKE_BUILD_TYPE=Release" "-DCMAKE_INSTALL_PREFIX=/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/packages/grpc_arm64-osx-p01" "-DFETCHCONTENT_FULLY_DISCONNECTED=ON" "-DgRPC_BUILD_CODEGEN=ON" "-DgRPC_USE_SYSTEMD=OFF" "-DgRPC_INSTALL=ON" "-DgRPC_BUILD_TESTS=OFF" "-DgRPC_STATIC_LINKING=1" "-DgRPC_MSVC_STATIC_RUNTIME=0" "-DgRPC_ZLIB_PROVIDER=package" "-DgRPC_SSL_PROVIDER=package" "-DgRPC_PROTOBUF_PROVIDER=package" "-DgRPC_ABSL_PROVIDER=package" "-DgRPC_RE2_PROVIDER=package" "-DgRPC_CARES_PROVIDER=package" "-DgRPC_BENCHMARK_PROVIDER=none" "-DgRPC_INSTALL_BINDIR:STRING=bin" "-DgRPC_INSTALL_LIBDIR:STRING=lib" "-DgRPC_INSTALL_INCLUDEDIR:STRING=include" "-DgRPC_INSTALL_CMAKEDIR:STRING=share/grpc" "-D_gRPC_PROTOBUF_PROTOC_EXECUTABLE=/tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/tools/protobuf/protoc" "-DProtobuf_PROTOC_EXECUTABLE=/tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/tools/protobuf/protoc" "-DgRPC_BUILD_GRPCPP_OTEL_PLUGIN=OFF" "-DgRPC_DOWNLOAD_ARCHIVES=OFF" "-DCMAKE_MAKE_PROGRAM=/private/tmp/resinsight-p01-build/downloads/vcpkg/tools/ninja-1.13.2-osx/ninja" "-DCMAKE_SYSTEM_NAME=Darwin" "-DBUILD_SHARED_LIBS=OFF" "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=/Users/lmoss/Documents/ChatGPT/resinsight-mcp/experiments/platform/resinsight/build/llvm19.cmake" "-DVCPKG_TARGET_TRIPLET=arm64-osx-p01" "-DVCPKG_SET_CHARSET_FLAG=ON" "-DVCPKG_PLATFORM_TOOLSET=external" "-DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON" "-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON" "-DCMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY=ON" "-DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=TRUE" "-DCMAKE_VERBOSE_MAKEFILE=ON" "-DVCPKG_APPLOCAL_DEPS=OFF" "-DCMAKE_TOOLCHAIN_FILE=/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DCMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION=ON" "-DVCPKG_CXX_FLAGS=" "-DVCPKG_CXX_FLAGS_RELEASE=" "-DVCPKG_CXX_FLAGS_DEBUG=" "-DVCPKG_C_FLAGS=" "-DVCPKG_C_FLAGS_RELEASE=" "-DVCPKG_C_FLAGS_DEBUG=" "-DVCPKG_CRT_LINKAGE=dynamic" "-DVCPKG_LINKER_FLAGS=" "-DVCPKG_LINKER_FLAGS_RELEASE=" "-DVCPKG_LINKER_FLAGS_DEBUG=" "-DVCPKG_TARGET_ARCHITECTURE=arm64" "-DCMAKE_INSTALL_LIBDIR:STRING=lib" "-DCMAKE_INSTALL_BINDIR:STRING=bin" "-D_VCPKG_ROOT_DIR=/tmp/resinsight-p01-build/source/ThirdParty/vcpkg" "-D_VCPKG_INSTALLED_DIR=/tmp/resinsight-p01-build/vcpkg-installed" "-DVCPKG_MANIFEST_INSTALL=OFF" "-DCMAKE_OSX_DEPLOYMENT_TARGET=14.2" "-DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk" "-DCMAKE_OSX_ARCHITECTURES=arm64" "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" "-DgRPC_STATIC_LINKING=OFF"
+-- The C compiler identification is Clang 19.1.7
+-- The CXX compiler identification is Clang 19.1.7
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMAKE_CXX_STANDARD was undefined, defaulting to C++17.
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDC_FORMAT_MACROS
+-- Performing Test HAVE_STDC_FORMAT_MACROS - Success
+-- Found c-ares: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/c-ares/c-ares-config.cmake (found suitable version "1.34.6", minimum required is "1.13.0")
+-- Found Protobuf: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/tools/protobuf/protoc (found version "29.5.0")
+-- Found RE2 via CMake.
+-- Found OpenSSL: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libcrypto.a (found version "3.6.0")
+-- Found ZLIB: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libz.a (found version "1.3.1")
+-- Configuring done (1.0s)
+-- Generating done (0.3s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    CMAKE_INSTALL_BINDIR
+    CMAKE_INSTALL_LIBDIR
+    FETCHCONTENT_FULLY_DISCONNECTED
+    VCPKG_PLATFORM_TOOLSET
+    VCPKG_SET_CHARSET_FLAG
+    _VCPKG_ROOT_DIR
+    gRPC_MSVC_STATIC_RUNTIME
+    gRPC_USE_SYSTEMD
+
+
+-- Build files have been written to: /private/tmp/resinsight-p01-build/source/ThirdParty/vcpkg/buildtrees/grpc/arm64-osx-p01-rel
