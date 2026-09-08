@@ -43,7 +43,7 @@ from resinsight_mcp.contracts.sessions import (
     authorize_close,
 )
 
-from ._backend import Application, ApplicationFactory, ProjectSnapshot
+from ._backend import Application, ApplicationAccess, ApplicationFactory, ProjectSnapshot
 
 
 def _fail(code: ErrorCode, message: str) -> NoReturn:
@@ -288,6 +288,28 @@ class ResInsightSessionService:
                 if item.ref == reference:
                     return item
             _fail(ErrorCode.STALE_OBJECT, "The object reference was not issued for this project.")
+
+    @contextmanager
+    def access_objects(self, references: tuple[ObjectRef, ...]) -> Iterator[ApplicationAccess]:
+        """Hold one verified application lock for a complete native operation."""
+        if not references:
+            _fail(ErrorCode.INVALID_MODEL, "Native access requires explicit object references.")
+        with self._application(references[0].context.session_id) as (slot, application):
+            project = self._observe(slot, application)
+            assert slot.snapshot is not None
+            objects = {
+                item.ref: native
+                for item, native in zip(project.objects, slot.snapshot.objects, strict=True)
+            }
+            for reference in references:
+                reference.require_current(project.context)
+                if reference not in objects:
+                    _fail(ErrorCode.STALE_OBJECT, "The object reference was not issued here.")
+            yield ApplicationAccess(
+                application=application,
+                project=project,
+                objects=tuple(objects[reference] for reference in references),
+            )
 
     @_operation
     def open_project(self, request: ProjectOpenRequest) -> ProjectState:

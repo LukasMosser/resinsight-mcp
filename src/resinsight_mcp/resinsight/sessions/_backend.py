@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
 
-from resinsight_mcp.contracts.sessions import Endpoint, ObjectKind, ProcessIdentity
+from resinsight_mcp.contracts.sessions import Endpoint, ObjectKind, ProcessIdentity, ProjectState
 
 
 @dataclass(frozen=True)
@@ -53,3 +53,12 @@ class ApplicationFactory(Protocol):
     def launch(self, executable: Path) -> Application: ...
 
     def attach(self, endpoint: Endpoint) -> Application: ...
+
+
+@dataclass(frozen=True)
+class ApplicationAccess:
+    """Resolved native identities, valid only inside the session access context."""
+
+    application: Application
+    project: ProjectState
+    objects: tuple[NativeObject, ...]

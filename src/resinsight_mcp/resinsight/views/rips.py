@@ -1,6 +1,7 @@
 """Use the session's existing native client for complete view operations."""
 
 from datetime import date
+from math import isclose
 from pathlib import Path
 from typing import Protocol, cast
 
@@ -27,6 +28,11 @@ class _Legend(_Object, Protocol):
     range_type: str
     user_defined_min: float
     user_defined_max: float
+    mapping_mode: str
+    center_legend_around_zero: bool
+    precision: int
+    actual_minimum: float
+    actual_maximum: float
 
 
 class _Colors(_Object, Protocol):
@@ -203,6 +209,16 @@ class RipsNativeView:
             raise _fail("The native result has no unique legend.")
         return matches[0]
 
+    def _controls(self, view: _View) -> None:
+        try:
+            self._application.call(view.validate_view_controls)
+        except ContractError as error:
+            if error.error.code != ErrorCode.EXECUTION_FAILED:
+                raise
+            raise ContractError(
+                error.error.model_copy(update={"code": ErrorCode.UNSUPPORTED_OPERATION})
+            ) from error
+
     def validate(self, context: ViewContext) -> None:
         def check() -> None:
             self._category(context)
@@ -224,7 +240,7 @@ class RipsNativeView:
                     "The native application lacks the required P06 view capabilities.",
                     code=ErrorCode.UNSUPPORTED_OPERATION,
                 )
-            view.validate_view_controls()
+            self._controls(view)
             collection = view.range_filters()
             if not hasattr(collection, "combine_filter_mode") or not hasattr(
                 collection, "cell_filters"
@@ -261,7 +277,10 @@ class RipsNativeView:
             actual = self.inspect(context)
             if (
                 not camera_matches(context.camera, actual.camera)
-                or actual.model_copy(update={"camera": context.camera}) != context
+                or not isclose(context.legend.minimum, actual.legend.minimum, rel_tol=1e-14)
+                or not isclose(context.legend.maximum, actual.legend.maximum, rel_tol=1e-14)
+                or actual.model_copy(update={"camera": context.camera, "legend": context.legend})
+                != context
             ):
                 raise _fail(
                     "The native view did not retain the requested settings.", uncertain=True
@@ -285,6 +304,9 @@ class RipsNativeView:
         colors.update()
         legend = self._legend(self._fresh().cell_result())
         legend.range_type = "USER_DEFINED_MAX_MIN"
+        legend.mapping_mode = "LinearContinuous"
+        legend.center_legend_around_zero = False
+        legend.precision = 15
         legend.update()
         legend = self._legend(self._fresh().cell_result())
         legend.user_defined_min = context.legend.minimum
@@ -354,7 +376,7 @@ class RipsNativeView:
                 "The native application lacks view validation.",
                 code=ErrorCode.UNSUPPORTED_OPERATION,
             )
-        view.validate_view_controls()
+        self._controls(view)
         colors = view.cell_result()
         if (
             colors.result_type != self._category(context)
@@ -362,8 +384,12 @@ class RipsNativeView:
         ):
             raise _fail("The native result category or porosity model changed.")
         legend = self._legend(colors)
-        if legend.range_type != "USER_DEFINED_MAX_MIN":
-            raise _fail("The native legend no longer uses explicit bounds.")
+        if (
+            legend.range_type != "USER_DEFINED_MAX_MIN"
+            or legend.mapping_mode != "LinearContinuous"
+            or legend.center_legend_around_zero
+        ):
+            raise _fail("The native legend no longer uses explicit linear bounds.")
         collection = view.range_filters()
         if not collection.active or collection.combine_filter_mode != "AND":
             raise _fail("The native filter collection uses unsupported settings.")
@@ -403,7 +429,7 @@ class RipsNativeView:
                     view.actual_camera_parallel_projection_height,
                 ),
                 "vertical_exaggeration": view.grid_z_scale,
-                "legend": Legend(minimum=legend.user_defined_min, maximum=legend.user_defined_max),
+                "legend": Legend(minimum=legend.actual_minimum, maximum=legend.actual_maximum),
                 "filters": tuple(filters),
             }
         )

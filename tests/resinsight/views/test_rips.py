@@ -214,5 +214,7 @@ def test_validate_retains_native_control_rejection_without_editing(
     boundary.view.control_error = ContractError(rejected)
     with pytest.raises(ContractError) as raised:
         boundary.adapter().validate(view_context)
-    assert raised.value.error == rejected
+    assert raised.value.error.code == ErrorCode.UNSUPPORTED_OPERATION
+    assert raised.value.error.message == rejected.message
+    assert raised.value.error.effect == MutationEffect.NOT_APPLIED
     assert boundary.calls.mutations == []

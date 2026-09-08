@@ -4,9 +4,10 @@ from dataclasses import dataclass
 from threading import Thread
 
 import pytest
-from resinsight_mcp.resinsight.views.service import ResInsightViewService
 
+from resinsight_mcp.contracts.engineering import Unit
 from resinsight_mcp.contracts.errors import (
+    ContractError,
     Error,
     ErrorCode,
     Failure,
@@ -24,6 +25,8 @@ from resinsight_mcp.contracts.observations import (
 )
 from resinsight_mcp.contracts.sessions import AttachRequest, ConnectionState, ObjectRef
 from resinsight_mcp.resinsight.sessions.service import ResInsightSessionService
+from resinsight_mcp.resinsight.views import _capture
+from resinsight_mcp.resinsight.views.service import ResInsightViewService
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._support import ControlledApplication, ControlledBackend, ControlledFactory, ControlledView
@@ -247,3 +250,82 @@ def test_binding_rejects_result_that_differs_from_storage(harness: Harness) -> N
     )
     failure(harness.service.apply(request(harness.context)), ErrorCode.STALE_OBJECT)
     assert harness.backend.native.current is None
+
+
+def test_temporary_directory_failure_preserves_applied_view(
+    harness: Harness, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    harness.bind()
+
+    def unavailable_directory(*args, **kwargs):
+        raise OSError("No space left for a new observation directory.")
+
+    monkeypatch.setattr(_capture, "TemporaryDirectory", unavailable_directory)
+    edited = value(harness.service.apply(request(harness.context)))
+    assert isinstance(edited.edit, ViewEditReceipt)
+    assert edited.edit.context.scene_version == 1
+    failure(edited.observation, ErrorCode.RENDER_FAILED)
+    assert harness.backend.native.current == edited.edit.context
+
+
+@pytest.mark.parametrize("invalid", ["unit", "coordinates", "property"])
+def test_apply_rejects_untrusted_metadata(harness: Harness, invalid: str) -> None:
+    harness.bind()
+    context = harness.context.model_dump()
+    if invalid == "unit":
+        context["property"] = {"name": "PRESSURE", "unit": Unit.BAR}
+    elif invalid == "coordinates":
+        context["coordinates"]["datum"] = "Another origin"
+    else:
+        context["property"]["name"] = "UNSUPPORTED"
+    outcome = harness.service.apply(request(ViewContext.model_validate(context)))
+    code = ErrorCode.UNSUPPORTED_OPERATION if invalid == "property" else ErrorCode.INVALID_MODEL
+    failure(outcome, code)
+    assert harness.backend.native.current is None
+
+
+def test_inspection_error_keeps_old_observation_invalid(
+    harness: Harness, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    harness.bind()
+    observation = value(value(harness.service.apply(request(harness.context))).observation)
+    original = harness.backend.native.inspect
+
+    def unavailable_scene(context: ViewContext) -> ViewContext:
+        raise ContractError(
+            Error(code=ErrorCode.STALE_OBJECT, message="A linked view prevents inspection.")
+        )
+
+    monkeypatch.setattr(harness.backend.native, "inspect", unavailable_scene)
+    failure(
+        harness.service.get_observation(
+            observation.context.model.session_id, observation.observation_id
+        ),
+        ErrorCode.STALE_OBJECT,
+    )
+    monkeypatch.setattr(harness.backend.native, "inspect", original)
+    failure(
+        harness.service.get_observation(
+            observation.context.model.session_id, observation.observation_id
+        ),
+        ErrorCode.STALE_OBJECT,
+    )
+
+
+def test_changed_scene_during_export_rejects_image(
+    harness: Harness, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    harness.bind()
+    original = harness.backend.native.export
+
+    def change_during_export(folder, width, height):
+        original(folder, width, height)
+        current = harness.backend.native.current
+        assert current is not None
+        harness.backend.native.current = current.model_copy(update={"vertical_exaggeration": 2})
+
+    monkeypatch.setattr(harness.backend.native, "export", change_during_export)
+    edited = value(harness.service.apply(request(harness.context)))
+    assert isinstance(edited.edit, ViewEditReceipt)
+    assert edited.edit.context.scene_version == 1
+    failure(edited.observation, ErrorCode.STALE_OBJECT)

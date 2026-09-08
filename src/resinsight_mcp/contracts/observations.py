@@ -39,6 +39,8 @@ class Projection(StrEnum):
 
 
 class Camera(Record):
+    """Camera positions use native display coordinates; parallel scale is half the view height."""
+
     position: Vector3
     target: Vector3
     up: Vector3
@@ -116,6 +118,7 @@ class ViewContext(Record):
     vertical_exaggeration: PositiveFloat
     legend: Legend
     filters: tuple[CellRangeFilter, ...]
+    selected_wells: tuple[ObjectRef, ...] = ()
 
     @model_validator(mode="after")
     def check_context(self) -> Self:
@@ -129,6 +132,13 @@ class ViewContext(Record):
             raise ValueError("The view and model revision must belong to the same session.")
         if any(item.grid_id != self.grid_id for item in self.filters):
             raise ValueError("All filters must use the view's grid identity.")
+        if len(set(self.selected_wells)) != len(self.selected_wells):
+            raise ValueError("Select each well once.")
+        if any(
+            item.kind != ObjectKind.WELL or item.context != self.view.context
+            for item in self.selected_wells
+        ):
+            raise ValueError("Selected wells must belong to the view's application context.")
         return self
 
     def require_result(self, result: Result) -> None:
@@ -214,16 +224,40 @@ class EditReceipt(Record):
         return self
 
 
+class ViewUpdateRequest(Record):
+    context: ViewContext
+    width: PositiveInt
+    height: PositiveInt
+    expected_observation_id: ObservationId | None = None
+
+
+class ViewEditReceipt(Record):
+    effect: Literal["applied"] = "applied"
+    edit_id: EditId
+    previous_scene_version: NonNegativeInt
+    context: ViewContext
+
+    @model_validator(mode="after")
+    def check_version(self) -> Self:
+        if self.context.scene_version != self.previous_scene_version + 1:
+            raise ValueError("A view edit must advance the scene version once.")
+        return self
+
+
 class EditedView(Record):
     """An image failure preserves the applied edit receipt without an old image."""
 
-    edit: EditReceipt
+    edit: EditReceipt | ViewEditReceipt
     observation: OperationResult[Observation]
 
     @model_validator(mode="after")
     def check_observation(self) -> Self:
         if isinstance(self.observation.outcome, Success):
             context = self.observation.outcome.value.context
+            if isinstance(self.edit, ViewEditReceipt):
+                if context != self.edit.context:
+                    raise ValueError("The observation must show the complete applied view context.")
+                return self
             if context.model != self.edit.request.model:
                 raise ValueError("The observation must identify the edited model context.")
             if context.view.context != self.edit.request.well.context:

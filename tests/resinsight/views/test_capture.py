@@ -5,11 +5,11 @@ from pathlib import Path
 
 import pytest
 from PIL import Image
-from resinsight_mcp.resinsight.views._capture import capture
 
 from resinsight_mcp.contracts.errors import ContractError, ErrorCode
 from resinsight_mcp.contracts.observations import ViewContext
 from resinsight_mcp.contracts.workspace import ArtifactKind
+from resinsight_mcp.resinsight.views._capture import capture
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from .conftest import value
