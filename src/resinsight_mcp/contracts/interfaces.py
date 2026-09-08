@@ -9,7 +9,19 @@ from .identifiers import ArtifactId, CheckpointId, ObservationId, ResultId, Revi
 from .jobs import Job, JobRef, JobRequest, LoadedResult, Result, ResultImportRequest
 from .models import ArtifactRef, ModelRevision, PreparationRequest, PreparedModel, Session
 from .observations import Observation, RenderRequest
-from .sessions import AttachRequest, CloseReceipt, CloseRequest, Connection, LaunchRequest
+from .sessions import (
+    AttachRequest,
+    CloseReceipt,
+    CloseRequest,
+    Connection,
+    LaunchRequest,
+    ObjectRef,
+    ProjectCloseRequest,
+    ProjectObject,
+    ProjectOpenRequest,
+    ProjectSaveRequest,
+    ProjectState,
+)
 from .workspace import Artifact, ProjectCheckpoint, RecoveryReport
 
 
@@ -27,6 +39,34 @@ class ProcessController(Protocol):
         attached_termination_authorized: bool = False,
     ) -> OperationResult[CloseReceipt]:
         """Verify the live process identity and obtain any attached-process owner authorization."""
+        ...
+
+
+class SessionService(ProcessController, Protocol):
+    """Keep durable sessions separate from live application connections."""
+
+    def create_session(self, session: Session) -> OperationResult[Session]: ...
+
+    def list_sessions(self) -> OperationResult[tuple[Session, ...]]: ...
+
+    def select_session(self, session_id: SessionId) -> OperationResult[Session]:
+        """Resolve one session without supplying a default for later mutations."""
+        ...
+
+    def list_connections(self) -> OperationResult[tuple[Connection, ...]]: ...
+
+    def get_connection(self, session_id: SessionId) -> OperationResult[Connection]: ...
+
+    def inspect_project(self, session_id: SessionId) -> OperationResult[ProjectState]: ...
+
+    def open_project(self, request: ProjectOpenRequest) -> OperationResult[ProjectState]: ...
+
+    def save_project(self, request: ProjectSaveRequest) -> OperationResult[ProjectState]: ...
+
+    def close_project(self, request: ProjectCloseRequest) -> OperationResult[ProjectState]: ...
+
+    def resolve_object(self, reference: ObjectRef) -> OperationResult[ProjectObject]:
+        """Observe current state before accepting a service-issued object reference."""
         ...
 
 

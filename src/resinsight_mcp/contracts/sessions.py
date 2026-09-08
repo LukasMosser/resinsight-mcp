@@ -132,6 +132,49 @@ class CloseReceipt(Record):
     action: CloseAction
 
 
+class ProjectObject(Record):
+    """An observed object with a service-issued reference."""
+
+    ref: ObjectRef
+    name: Text
+
+
+class ProjectState(Record):
+    context: ApplicationContext
+    objects: tuple[ProjectObject, ...] = ()
+    last_saved_path: Path | None = None
+
+    @model_validator(mode="after")
+    def check_object_contexts(self) -> Self:
+        references = tuple(item.ref for item in self.objects)
+        if any(reference.context != self.context for reference in references):
+            raise ValueError("Project objects must belong to the current application context.")
+        if len(set(references)) != len(references):
+            raise ValueError("Project object references must be unique.")
+        if self.last_saved_path is not None and not self.last_saved_path.is_absolute():
+            raise ValueError("The last saved project path must be absolute.")
+        return self
+
+
+class ProjectOpenRequest(Record):
+    context: ApplicationContext
+    path: Path
+
+    @model_validator(mode="after")
+    def check_project_path(self) -> Self:
+        if not self.path.is_absolute():
+            raise ValueError("The project path must be absolute.")
+        return self
+
+
+class ProjectSaveRequest(ProjectOpenRequest):
+    overwrite: bool = False
+
+
+class ProjectCloseRequest(Record):
+    context: ApplicationContext
+
+
 def authorize_close(
     connection: Connection,
     request: CloseRequest,
