@@ -2,7 +2,7 @@
 
 This plan describes proposed work, not current application behavior.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository foundation is the only implemented scope in this change.
+The repository contains foundation tools and P01 experiment evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.

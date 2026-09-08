@@ -7,6 +7,7 @@ Design descriptions do not establish working integration or simulator support.
 Start with these pages:
 
 - [Local setup](local-setup.md) explains the development commands.
+- [Platform proof](platform-proof.md) records P01 experiments and the open ResInsight build gate.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.
 - [Testing and review](testing-and-review.md) explains the evidence for a change.
 - [Proposed architecture](architecture.md) defines responsibilities and unresolved design decisions.

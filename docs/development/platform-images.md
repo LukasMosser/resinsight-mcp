@@ -30,7 +30,7 @@ The [evidence directory](https://github.com/LukasMosser/resinsight-mcp/tree/main
 The event stream retains the native image content before the final answer.
 The code-mode host remained enabled because this client needs it to route MCP tools.
 
-![The recorded grid shows the marker at row 1, column 4.](https://raw.githubusercontent.com/LukasMosser/resinsight-mcp/main/experiments/platform/images/evidence/codex-cli-2026-09-08-corrected/marker.png)
+![The recorded grid shows the marker at row 1, column 4.](evidence/native-image-marker.png)
 
 Two setup attempts preceded this result.
 The first stopped before model contact because strict configuration rejected `tools.view_image`.
@@ -61,6 +61,10 @@ It passes MCP configuration through command arguments without changing global co
 The runner retains model events and the final answer before anyone reads the witness.
 The evidence review compares that answer with the witness and inspects every recorded tool call.
 A trial fails if another tool supplies the answer or if the response contains no native image.
+
+The runner's exit status records CLI completion, not experiment acceptance.
+The setup trial that returned `no_image` also exited with status zero.
+Acceptance requires the documented review of the answer, witness, and native tool result.
 
 ## Reproduce
 
@@ -99,6 +103,10 @@ The native image result and absence of other tool calls provide the additional d
 The [official MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk) provides the server and image content types.
 This experiment uses its maintained v1 release line with an upper bound below v2.
 This dependency choice does not define the application's future SDK contract.
+
+Installed MCP 1.30.0 metadata declares the MIT license.
+Installed [Pillow](https://github.com/python-pillow/Pillow) 12.3.0 metadata declares `MIT-CMU`.
+The original experiment code and generated marker use the repository's GPL-3.0-or-later license.
 
 The [official Codex MCP guide](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) describes local server configuration.
 The [official non-interactive guide](https://learn.chatgpt.com/docs/non-interactive-mode) describes the CLI event stream.
