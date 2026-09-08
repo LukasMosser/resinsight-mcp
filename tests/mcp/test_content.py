@@ -1,4 +1,4 @@
-"""A fresh image proves a particular scene; failed renders never erase edits."""
+"""Native image content preserves observation context and applied edit receipts."""
 
 import base64
 import json
