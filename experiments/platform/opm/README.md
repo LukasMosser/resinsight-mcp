@@ -37,5 +37,6 @@ That failure reports four scheduled wells against the declared limit of two.
 The derived input completes all 120 report steps and reaches 3,650 days.
 
 Generated results stay in the ignored `output/` directory.
-The completed run provides grid, initial state, restart, and summary files.
+The [output inventory](evidence/output-inventory.md) lists the grid, initial state, restart, summary, and log files.
+The [summary excerpt](evidence/final-summary-excerpt.txt) preserves the final dated saturation and well results.
 The development page describes the warnings and the remaining ResInsight acceptance work.

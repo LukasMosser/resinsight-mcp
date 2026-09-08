@@ -37,7 +37,9 @@ Flow used 123 timesteps and reported 1.46 seconds of simulation time.
 Its final totals report zero wasted linearizations and iterations.
 
 The run writes `EGRID`, `INIT`, `UNRST`, `SMSPEC`, `UNSMRY`, `ESMRY`, and `RSM` results.
-The text summary contains dated saturation and well results through the final report date.
+The [output inventory](https://github.com/LukasMosser/resinsight-mcp/blob/main/experiments/platform/opm/evidence/output-inventory.md) records each generated filename and its intended role.
+The [summary excerpt](https://github.com/LukasMosser/resinsight-mcp/blob/main/experiments/platform/opm/evidence/final-summary-excerpt.txt) preserves dated saturation and well results through the final report date.
+These values come from Flow and do not establish independent numerical agreement.
 This acceptance uses simulator records and report meaning, without binary comparisons.
 Opening and querying the binary results in ResInsight remains a separate P01 step.
 

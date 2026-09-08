@@ -1,0 +1,39 @@
+Source: output/SPE1CASE1.RSM from the recorded September 8, 2026 run.
+This excerpt preserves report headings, units, well names, and the final dated rows.
+Line ranges below refer to the original text report. Omitted rows are not reproduced.
+Contains information from the Statoil SPE1 deck distributed by OPM/opm-common.
+Source: https://github.com/OPM/opm-common/blob/0ea62974f24d70fc2b3e30d6aae8b76ef000dac1/tests/SPE1CASE1.DATA
+Database license: https://opendatacommons.org/licenses/odbl/1-0/
+Contents license: https://opendatacommons.org/licenses/dbcl/1-0/
+
+Original report lines 1-9:
+1                                                                                                                                  
+ -------------------------------------------------------------------------------------------------------------------------------   
+ SUMMARY OF RUN SPE1CASE1 at:  8-SEP-2026                                                                                          
+ -------------------------------------------------------------------------------------------------------------------------------   
+ DATE         YEARS        BGSAT        BGSAT        BGSAT        BGSAT        BGSAT        BGSAT        BGSAT        BGSAT        
+              YEARS                                                                                                                
+                                                                                                                                   
+                           1            10           100          101          110          200          201          210          
+ -------------------------------------------------------------------------------------------------------------------------------   
+
+Original report lines 131-132:
+ 28-NOV-2024  9.908282     0.549124     0.390453     0.495616     0.508701     0.022764     0.396197     0.391219     0.021144     
+ 29-DEC-2024  9.993155     0.549651     0.396376     0.496286     0.508986     0.022877     0.396669     0.391671     0.021147     
+
+Original report lines 399-408:
+ -------------------------------------------------------------------------------------------------------------------------------   
+ SUMMARY OF RUN SPE1CASE1 at:  8-SEP-2026                                                                                          
+ -------------------------------------------------------------------------------------------------------------------------------   
+ DATE         WGPT         WOIR         WOIR         WOIT         WOIT         WOPR         WOPR         WOPT         WOPT         
+              MSCF         STB/DAY      STB/DAY      STB          STB          STB/DAY      STB/DAY      STB          STB          
+              *10**3                                                                                                  *10**3       
+              PROD         INJ          PROD         INJ          PROD         INJ          PROD         INJ          PROD         
+                                                                                                                                   
+ -------------------------------------------------------------------------------------------------------------------------------   
+  2-JAN-2015  25.40000            0            0            0            0           -0        20000            0           20     
+
+Original report lines 529-530:
+ 28-NOV-2024  351295.2            0            0            0            0           -0     5616.375            0        45726     
+ 29-DEC-2024  354995.1            0            0            0            0           -0     5558.104            0     45898.30     
+
