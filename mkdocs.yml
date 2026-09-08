@@ -1,0 +1,44 @@
+site_name: resinsight-mcp
+site_description: Documentation for the resinsight-mcp repository foundation.
+site_url: https://lukasmosser.github.io/resinsight-mcp/
+repo_url: https://github.com/LukasMosser/resinsight-mcp
+repo_name: LukasMosser/resinsight-mcp
+edit_uri: edit/main/docs/
+strict: true
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Security: security.md
+  - License: license.md
+  - Development:
+      - Overview: development/index.md
+      - Agent guide: development/agent-guide.md
+      - Local setup: development/local-setup.md
+      - Testing and review: development/testing-and-review.md
+      - Proposed architecture: development/architecture.md
+      - Implementation plan: development/implementation-plan.md
+      - Scope review: development/scope-review.md
+      - Foundation evidence: development/foundation-evidence.md
+      - Releases: development/releases.md
+
+plugins:
+  - search
+  - include-markdown
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

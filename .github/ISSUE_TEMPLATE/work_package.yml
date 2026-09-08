@@ -1,0 +1,30 @@
+name: Work package
+description: Define a feature and its review evidence.
+title: "Feature: "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Describe what the user can do after this change.
+    validations:
+      required: true
+  - type: textarea
+    id: ownership
+    attributes:
+      label: Scope and ownership
+      description: Name owned paths, dependencies, shared interfaces, and excluded work.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: Define observable behavior, failure cases, commands, logs, and screenshots.
+    validations:
+      required: true
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Open decisions
+      description: Name decisions that need owner input before dependent work starts.

@@ -1,0 +1,25 @@
+name: Bug report
+description: Report behavior that differs from the documented result.
+title: "Bug: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the expected result and the observed result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps
+      description: Give a small example with private data removed.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: Include the commit, tool versions, logs, and relevant screenshots.
+    validations:
+      required: true
