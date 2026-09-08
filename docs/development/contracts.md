@@ -1,24 +1,26 @@
 # Shared contracts
 
-The library provides validated records and typed interfaces introduced by P02 and extended for P03 workspace storage.
+The library provides validated records and typed interfaces introduced by P02 and extended for P03 workspace storage and P04 sessions.
 A contract defines data or behavior shared between components.
-[Pydantic](https://docs.pydantic.dev/latest/concepts/models/) validates records, while standard-library protocols describe six component interfaces.
+[Pydantic](https://docs.pydantic.dev/latest/concepts/models/) validates records, while standard-library protocols describe component interfaces.
 The runtime requirement is `pydantic>=2.13.5,<3`, with the installed version fixed by the lockfile.
 Import records from their named `resinsight_mcp.contracts` modules.
 
-The library does not connect to ResInsight, start a simulator, or expose MCP tools.
-The [architecture](architecture.md) describes those future runtime responsibilities.
+The shared contracts do not import external application backends.
+The [session service](sessions.md) implements ResInsight connections separately from these records.
+The [architecture](architecture.md) describes component responsibilities.
 
 ## Component boundaries
 
-The six protocols live in `resinsight_mcp.contracts.interfaces`.
+The component protocols live in `resinsight_mcp.contracts.interfaces`.
 A protocol describes methods required by a typed implementation.
-External process, rendering, and simulator backends remain unimplemented.
 P03 implements the workspace boundary through [SqliteWorkspaceStore](workspaces.md).
+P04 implements application lifecycle and project operations through [ResInsightSessionService](sessions.md).
 
 | Protocol | Main responsibility and operations |
 | --- | --- |
 | `ProcessController` | Launch, attach, and close application connections under trusted process ownership. |
+| `SessionService` | Extend process control with durable session lookup, runtime connections, and explicit project operations. |
 | `WorkspaceStore` | Store session records, revisions, artifacts, jobs, results, observations, and checkpoints, with explicit recovery. |
 | `Renderer` | Render a fresh image with actual view context. |
 | `ModelPreparer` | Prepare a fixed revision for the selected backend. |
@@ -73,7 +75,7 @@ A shared reference identifies context without providing a storage implementation
 `ApplicationContext` adds a connection identifier and project generation to the session identifier.
 `ObjectRef` identifies a case, view, or well within that context.
 Its `require_current()` method rejects a different session, connection, or project generation with `stale_object`.
-A future adapter must supply the current context when checking an external handle.
+The session service observes current application state before accepting a service-issued object reference.
 
 `Endpoint` requires the explicit localhost address `127.0.0.1` and a port from 1 through 65,535.
 `LaunchRequest` requires an absolute executable path.
@@ -88,7 +90,7 @@ A lost connection can become detached, while reconnection needs a new verified c
 `authorize_close()` checks the request against a trusted connection record.
 Termination of an attached process requires explicit owner authorization supplied separately from the request.
 Every termination requires `verified_process` to match the recorded identity and a connection that is not detached.
-A future adapter must verify the process identity immediately before signaling it.
+The application adapter must verify the process identity immediately before requesting termination.
 Stored identity data alone does not prove current ownership or grant permission.
 
 The helper returns an allowed action or raises `ContractError`.
@@ -327,3 +329,26 @@ The [workspace error table](workspaces.md#errors) explains their conditions and 
 `RecoveryReport` identifies reconciled jobs, removed orphan artifacts, and unavailable committed artifacts.
 An orphan artifact is a file without a committed record.
 Recovery must not infer process termination or replace missing data.
+
+## Session service additions
+
+P04 adds `SessionService`, which extends `ProcessController` without duplicating lifecycle request records.
+Its session operations create, list, and resolve durable workspace identities.
+Connection operations list and retrieve runtime records separately from those workspace identities.
+`select_session()` does not provide a default session for later mutations.
+Closing with `CloseAction.DETACH` supplies the explicit detach operation.
+
+`ProjectState` contains an `ApplicationContext`, observed `ProjectObject` records, and an optional `last_saved_path`.
+Every project object must share the project context, and object references must be unique.
+The saved path must be absolute and describes only a successful service save for the retained state.
+It does not identify the application's current project filename.
+
+`ProjectOpenRequest` and `ProjectSaveRequest` require the expected application context and an absolute path.
+Saving defaults to `overwrite=False`.
+`ProjectCloseRequest` requires the expected context without a file path.
+Project operations reject stale contexts, while inspection and object resolution observe application state.
+
+Service project commands and detected observation changes advance the project generation.
+New connections invalidate references through their new connection identifier.
+The [session implementation guide](sessions.md#project-observations) defines observable fields and the limits of external change detection.
+These runtime operations do not automatically create workspace checkpoints or prove model revision lineage.
