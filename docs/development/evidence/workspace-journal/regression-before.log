@@ -1,0 +1,52 @@
+F.........                                                               [100%]
+=================================== FAILURES ===================================
+___________ test_read_accepts_journal_deleted_during_metadata_check ____________
+
+store = <resinsight_mcp.workspaces.store.SqliteWorkspaceStore object at 0x104359940>
+session = Session(session_id=SessionId(root='session_01893fe10f40443cb1fea5a7bfe2f31a'), name='SPE1 study')
+tmp_path = PosixPath('/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-243/test_read_accepts_journal_dele0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x104359970>
+
+    def test_read_accepts_journal_deleted_during_metadata_check(
+        store: SqliteWorkspaceStore, session: Session, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        root = tmp_path / "workspace"
+        updated = session.model_copy(update={"name": "Committed journal update"})
+        original = _files._entry_info
+        observations: list[os.stat_result] = []
+        with closing(sqlite3.connect(root / "workspace.sqlite3")) as writer:
+            writer.execute(
+                "UPDATE sessions SET payload = ? WHERE session_id = ?",
+                (updated.model_dump_json(), str(session.session_id)),
+            )
+            with (root / "workspace.sqlite3-journal").open("rb") as journal:
+    
+                def observe(name: str, parent: int) -> os.stat_result | None:
+                    if name != "workspace.sqlite3-journal":
+                        return original(name, parent)
+                    # Commit deletes the real journal while its metadata is being observed.
+                    writer.commit()
+                    info = os.fstat(journal.fileno())
+                    assert info.st_nlink == 0
+                    observations.append(info)
+                    return info
+    
+                monkeypatch.setattr(_files, "_entry_info", observe)
+>               assert value(store.get_session(session.session_id)) == updated
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/workspaces/test_database_files.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+outcome = OperationResult(outcome=Failure(status='failure', error=Error(code=<ErrorCode.INVALID_PATH: 'invalid_path'>, message='Workspace files must be regular files with one link.', effect=<MutationEffect.NOT_APPLIED: 'not_applied'>)))
+
+    def value[T](outcome: OperationResult[T]) -> T:
+        """Require a successful public operation and return its record."""
+>       assert isinstance(outcome.outcome, Success), outcome.model_dump(mode="json")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: {'outcome': {'status': 'failure', 'error': {'code': 'invalid_path', 'message': 'Workspace files must be regular files with one link.', 'effect': 'not_applied'}}}
+
+tests/workspaces/_support.py:20: AssertionError
+=========================== short test summary info ============================
+FAILED tests/workspaces/test_database_files.py::test_read_accepts_journal_deleted_during_metadata_check
+1 failed, 9 passed in 0.22s

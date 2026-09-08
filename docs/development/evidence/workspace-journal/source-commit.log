@@ -1,0 +1,13 @@
+Run repository checks....................................................Passed
+[codex/workspace-journal-guard ef8b7df] Handle deleted SQLite sidecars during file checks
+ 12 files changed, 333 insertions(+), 1 deletion(-)
+ create mode 100644 docs/development/evidence/workspace-journal/README.md
+ create mode 100644 docs/development/evidence/workspace-journal/affected-tests.log
+ create mode 100644 docs/development/evidence/workspace-journal/environment.json
+ create mode 100644 docs/development/evidence/workspace-journal/regression-after.log
+ create mode 100644 docs/development/evidence/workspace-journal/regression-before.log
+ create mode 100644 docs/development/evidence/workspace-journal/reproduction-after.log
+ create mode 100644 docs/development/evidence/workspace-journal/reproduction-original.log
+ create mode 100644 docs/development/evidence/workspace-journal/reproduction-script.txt
+ create mode 100644 docs/development/evidence/workspace-journal/shared-check.log
+ create mode 100644 tests/workspaces/test_database_files.py

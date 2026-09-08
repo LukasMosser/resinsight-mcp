@@ -223,6 +223,12 @@ Writers hold a SQLite `BEGIN IMMEDIATE` transaction through artifact publication
 The database uses rollback-journal mode with `synchronous=FULL`.
 Other store writers wait for that lock, subject to their configured timeout.
 
+SQLite can delete a journal while another operation checks its file metadata.
+Database sidecars are SQLite's temporary files beside the database.
+Their pathname and handle checks accept regular files with zero or one link during deletion.
+The main database and artifact files still require exactly one link.
+The [journal race evidence](evidence/workspace-journal/README.md) records the observed failure and the public-read regression for [issue 31](https://github.com/LukasMosser/resinsight-mcp/issues/31).
+
 An artifact write creates an exclusive `.pending` file, copies the source, flushes it, and calls `fsync`.
 The store marks the file read-only, renames it to `.data`, and synchronizes the directory before committing artifact metadata.
 Python documents buffered flushing and synchronization in [os.fsync](https://docs.python.org/3.12/library/os.html#os.fsync).

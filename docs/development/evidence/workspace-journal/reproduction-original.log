@@ -1,0 +1,15 @@
+Original inline script command: .venv/bin/python - <<'PY'
+The complete Python input is preserved in reproduction-script.txt.
+Working directory: /Users/lmoss/.codex/worktrees/7195/resinsight-mcp
+Source: 496531c406212692f5b1c6ecd1bff9f747bbfdcb
+The workspace file guard matches repair base e2431b218777fdf7cc92fa2e1f00c5eadf335337.
+
+INITIAL_STAT 0 0o100600 {}
+  File "<stdin>", line 32, in <module>
+  File "/Users/lmoss/.codex/worktrees/7195/resinsight-mcp/src/resinsight_mcp/workspaces/_files.py", line 132, in check_database_files
+    _regular(info)
+  File "<stdin>", line 17, in observe
+FAILURE ContractError('Workspace files must be regular files with one link.')
+ROOT /private/tmp/p06-journal-census-7fqcfc5h/workspace COUNTS {'checks': 213, 'writes': 39, 'unlinked_handles': 5, 'initial_zero_links': 1}
+
+The script caught the exception and returned exit status 0.

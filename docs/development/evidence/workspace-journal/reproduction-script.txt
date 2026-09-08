@@ -1,0 +1,37 @@
+import sqlite3, tempfile, threading, time, traceback
+from pathlib import Path
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
+from resinsight_mcp.workspaces import _files
+root=Path(tempfile.mkdtemp(prefix='p06-journal-census-', dir='/private/tmp'))/'workspace'
+SqliteWorkspaceStore.create(root)
+files=_files.FileArea(root)
+original=_files._regular
+counts={'checks':0,'writes':0,'unlinked_handles':0,'initial_zero_links':0}
+stop=threading.Event()
+def observe(info, **kwargs):
+    if info.st_nlink != 1:
+        counts['unlinked_handles']+=1
+        if not kwargs.get('allow_unlinked'):
+            counts['initial_zero_links']+=1
+            print('INITIAL_STAT', info.st_nlink, oct(info.st_mode), kwargs, flush=True)
+            traceback.print_stack(limit=5)
+    return original(info, **kwargs)
+_files._regular=observe
+def writer():
+    db=sqlite3.connect(root/'workspace.sqlite3',timeout=5)
+    db.execute('create table journal_trial (n integer)')
+    db.execute('insert into journal_trial values (0)');db.commit()
+    while not stop.is_set():
+        db.execute('update journal_trial set n=n+1');db.commit();counts['writes']+=1
+    db.close()
+thread=threading.Thread(target=writer)
+thread.start()
+end=time.monotonic()+15
+try:
+    while time.monotonic()<end:
+        files.check_database_files();counts['checks']+=1
+except Exception as error:
+    print('FAILURE',repr(error),flush=True)
+finally:
+    stop.set();thread.join()
+print('ROOT',root,'COUNTS',counts,flush=True)
