@@ -3,6 +3,7 @@
 import sqlite3
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
+from datetime import UTC, datetime
 from functools import wraps
 from pathlib import Path
 from typing import BinaryIO
@@ -26,7 +27,7 @@ from resinsight_mcp.contracts.identifiers import (
     RevisionId,
     SessionId,
 )
-from resinsight_mcp.contracts.jobs import Job, JobRef, JobState, Result
+from resinsight_mcp.contracts.jobs import Job, JobEvent, JobRef, JobState, Result
 from resinsight_mcp.contracts.models import ArtifactRef, ModelInputs, ModelRevision, Session
 from resinsight_mcp.contracts.observations import Observation
 from resinsight_mcp.contracts.workspace import (
@@ -74,6 +75,17 @@ def _check_names(artifacts: tuple[Artifact, ...]) -> None:
             raise fail(ErrorCode.INVALID_MODEL, "A model input filename also names a directory.")
 
 
+def _check_execution_update(previous: Job, updated: Job) -> None:
+    if previous.submission != updated.submission:
+        raise fail(ErrorCode.INVALID_MODEL, "A stored submission cannot change.")
+    for field in ("supervisor", "process", "process_group_id", "logs"):
+        retained = getattr(previous, field)
+        if retained and retained != getattr(updated, field):
+            raise fail(ErrorCode.INVALID_MODEL, f"Recorded job {field} cannot change.")
+    if updated.events[: len(previous.events)] != previous.events:
+        raise fail(ErrorCode.INVALID_TRANSITION, "Job events can only be appended.")
+
+
 def _check_job_update(previous: Job, updated: Job) -> None:
     if (
         previous.model != updated.model
@@ -87,6 +99,9 @@ def _check_job_update(previous: Job, updated: Job) -> None:
         raise fail(
             ErrorCode.INVALID_TRANSITION, "A job cannot clear its recorded cancellation intent."
         )
+    if previous.state in {JobState.SUCCEEDED, JobState.FAILED, JobState.CANCELED}:
+        raise fail(ErrorCode.INVALID_TRANSITION, "A terminal job cannot change.")
+    _check_execution_update(previous, updated)
     candidate = previous
     if updated.cancel_requested and not candidate.cancel_requested:
         candidate = candidate.request_cancel()
@@ -97,6 +112,14 @@ def _check_job_update(previous: Job, updated: Job) -> None:
             error=updated.error,
             termination_confirmed=updated.termination_confirmed,
         )
+    candidate = Job.model_validate(
+        {
+            **candidate.model_dump(),
+            **updated.model_dump(
+                include={"supervisor", "process", "process_group_id", "logs", "events"}
+            ),
+        }
+    )
     if candidate != updated:
         raise fail(
             ErrorCode.INVALID_TRANSITION, "The job update does not follow its state contract."
@@ -268,14 +291,27 @@ class SqliteWorkspaceStore:
         job = Job.model_validate(job)
         with self._database.transaction(write=True) as connection:
             self._revision(connection, job.model)
+            if job.events and job.events[-1].state != job.state:
+                raise fail(
+                    ErrorCode.INVALID_TRANSITION, "The final event must match the job state."
+                )
+            for ref in job.logs:
+                if self._artifact(connection, ref).kind != ArtifactKind.LOG:
+                    raise fail(ErrorCode.INVALID_MODEL, "Job logs require log artifacts.")
             previous = records.find(connection, Job, str(job.model.session_id), str(job.job_id))
             if previous is None:
                 if expected is not None:
                     raise fail(ErrorCode.CONFLICT, "The expected prior job does not exist.")
-                if job.state != JobState.QUEUED or job.cancel_requested:
+                if (
+                    job.state != JobState.QUEUED
+                    or job.cancel_requested
+                    or job.supervisor is not None
+                    or job.process is not None
+                    or job.logs
+                ):
                     raise fail(
                         ErrorCode.INVALID_TRANSITION,
-                        "A new job must be queued without cancellation.",
+                        "A new job must be queued without cancellation or execution metadata.",
                     )
                 return records.insert(connection, job)
             if previous == job:
@@ -382,6 +418,15 @@ class SqliteWorkspaceStore:
                 raise fail(ErrorCode.CONFLICT, "A recovery job differs from its expected record.")
             if current.state in {JobState.QUEUED, JobState.RUNNING}:
                 current = current.transition(JobState.UNKNOWN)
+                if current.events:
+                    event = JobEvent(
+                        at=max(datetime.now(UTC), current.events[-1].at),
+                        state=JobState.UNKNOWN,
+                        message="Recovery could not confirm the execution outcome.",
+                    )
+                    current = Job.model_validate(
+                        {**current.model_dump(), "events": (*current.events, event)}
+                    )
             recovered.append(current)
         return tuple(recovered)
 
