@@ -1,0 +1,60 @@
+{
+  "source_commit": "3f0199c1d52ef2eb6675c58973b5b964fac45107",
+  "method": "Local MkDocs output rendered in headless Chrome with separate temporary profiles",
+  "scope": "Upper page viewports, not complete page layout",
+  "result": "Lead inspected ResInsight. Independent reviewer inspected overview, OPM, and native images. No material clipping or claim issue found. The marker is visible at row 1, column 4.",
+  "process_limit": "Each browser wrote a fresh screenshot before exceeding its cleanup deadline. Owned processes were stopped. The initial ResInsight capture used subprocess.run timeout cleanup.",
+  "captures": [
+    {
+      "page": "platform-proof",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/platform-proof-profile",
+        "--window-size=1440,1400",
+        "--virtual-time-budget=1500",
+        "--screenshot=/private/tmp/resinsight-p01-build/docs-review/platform-proof.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-proof/index.html"
+      ],
+      "exit_code": 0,
+      "timed_out": true
+    },
+    {
+      "page": "platform-images",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/platform-images-profile",
+        "--window-size=1440,1400",
+        "--virtual-time-budget=1500",
+        "--screenshot=/private/tmp/resinsight-p01-build/docs-review/platform-images.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-images/index.html"
+      ],
+      "exit_code": 0,
+      "timed_out": true
+    },
+    {
+      "page": "platform-opm",
+      "command": [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "--headless=new",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--user-data-dir=/private/tmp/resinsight-p01-build/docs-review/platform-opm-profile",
+        "--window-size=1440,1400",
+        "--virtual-time-budget=1500",
+        "--screenshot=/private/tmp/resinsight-p01-build/docs-review/platform-opm.png",
+        "file:///Users/lmoss/Documents/ChatGPT/resinsight-mcp/site/development/platform-opm/index.html"
+      ],
+      "exit_code": 0,
+      "timed_out": true
+    }
+  ]
+}
