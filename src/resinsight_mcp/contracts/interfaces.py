@@ -25,7 +25,7 @@ class ProcessController(Protocol):
         *,
         attached_termination_authorized: bool = False,
     ) -> OperationResult[CloseReceipt]:
-        """An internal permission result must come from explicit owner authorization."""
+        """Verify the live process identity and obtain any attached-process owner authorization."""
         ...
 
 
@@ -48,7 +48,9 @@ class WorkspaceStore(Protocol):
 
     def get_result(self, session_id: SessionId, result_id: ResultId) -> OperationResult[Result]: ...
 
-    def save_observation(self, observation: Observation) -> OperationResult[Observation]: ...
+    def save_observation(self, observation: Observation) -> OperationResult[Observation]:
+        """Check observation.context.require_result against the stored result before saving."""
+        ...
 
     def get_observation(
         self, session_id: SessionId, observation_id: ObservationId

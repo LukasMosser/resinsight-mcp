@@ -48,6 +48,13 @@ class ProcessOwnership(StrEnum):
     ATTACHED = "attached"
 
 
+class ProcessIdentity(Record):
+    """A PID and a host-derived start marker identify one process lifetime."""
+
+    pid: PositiveInt
+    start_marker: Text
+
+
 class ConnectionState(StrEnum):
     READY = "ready"
     BUSY = "busy"
@@ -72,11 +79,11 @@ class Connection(Record):
     endpoint: Endpoint
     ownership: ProcessOwnership
     state: ConnectionState
-    process_id: PositiveInt | None = None
+    process: ProcessIdentity | None = None
 
     @model_validator(mode="after")
     def check_owned_process(self) -> Self:
-        if self.ownership == ProcessOwnership.OWNED and self.process_id is None:
+        if self.ownership == ProcessOwnership.OWNED and self.process is None:
             raise ValueError("An owned connection requires its recorded process identifier.")
         return self
 
@@ -129,6 +136,7 @@ def authorize_close(
     connection: Connection,
     request: CloseRequest,
     *,
+    verified_process: ProcessIdentity | None = None,
     attached_termination_authorized: bool = False,
 ) -> CloseAction:
     """Use trusted ownership and permission records, never request-supplied ownership."""
@@ -150,8 +158,14 @@ def authorize_close(
                 message="Terminating an attached process requires explicit owner authorization.",
             )
         )
-    if connection.process_id is None or connection.state == ConnectionState.DETACHED:
+    if (
+        verified_process is None
+        or verified_process != connection.process
+        or connection.state == ConnectionState.DETACHED
+    ):
         raise ContractError(
-            Error(code=ErrorCode.LOST_CONNECTION, message="No current process is identified.")
+            Error(
+                code=ErrorCode.LOST_CONNECTION, message="The current process identity is unproved."
+            )
         )
     return CloseAction.TERMINATE

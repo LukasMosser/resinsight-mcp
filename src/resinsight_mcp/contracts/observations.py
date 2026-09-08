@@ -26,6 +26,7 @@ from .engineering import (
 )
 from .errors import OperationResult, Success
 from .identifiers import EditId, GridId, ObservationId, ResultId
+from .jobs import Result
 from .models import ArtifactRef
 from .sessions import ObjectKind, ObjectRef
 
@@ -130,11 +131,28 @@ class ViewContext(Record):
             raise ValueError("All filters must use the view's grid identity.")
         return self
 
+    def require_result(self, result: Result) -> None:
+        """Check this view against the stored result before rendering or saving an observation."""
+        if (
+            self.result_id != result.result_id
+            or self.model != result.model
+            or self.grid_id != result.grid_id
+        ):
+            raise ValueError("The view must identify the result's exact model revision and grid.")
+        if self.report_time not in result.report_series.reports:
+            raise ValueError("The view report must exist in the result's report series.")
+
 
 class RenderRequest(Record):
+    result: Result
     context: ViewContext
     width: PositiveInt
     height: PositiveInt
+
+    @model_validator(mode="after")
+    def check_result(self) -> Self:
+        self.context.require_result(self.result)
+        return self
 
 
 class ImageArtifact(Record):

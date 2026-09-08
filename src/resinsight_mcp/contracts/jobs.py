@@ -40,7 +40,9 @@ class JobState(StrEnum):
 
 _TERMINAL_STATES = frozenset({JobState.SUCCEEDED, JobState.FAILED, JobState.CANCELED})
 _JOB_TRANSITIONS = {
-    JobState.QUEUED: frozenset({JobState.RUNNING, JobState.FAILED, JobState.CANCELED}),
+    JobState.QUEUED: frozenset(
+        {JobState.RUNNING, JobState.FAILED, JobState.CANCELED, JobState.UNKNOWN}
+    ),
     JobState.RUNNING: _TERMINAL_STATES | {JobState.UNKNOWN},
     JobState.UNKNOWN: _TERMINAL_STATES | {JobState.RUNNING},
     JobState.SUCCEEDED: frozenset(),

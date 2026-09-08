@@ -6,3 +6,6 @@ __pycache__/
 .ty_cache/
 site/
 .DS_Store
+*.egg-info/
+build/
+dist/
