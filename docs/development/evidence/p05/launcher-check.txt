@@ -1,0 +1,34 @@
+import asyncio
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+from mcp.shared.exceptions import McpError
+from pydantic import AnyUrl
+
+async def check(root):
+    params=StdioServerParameters(command=sys.executable,args=['-m','resinsight_mcp.mcp','--workspace-root',str(root),'--create-workspace'])
+    async with stdio_client(params) as (read,write):
+        async with ClientSession(read,write) as client:
+            await client.initialize()
+            assert len((await client.list_tools()).tools)==4
+            try:
+                await client.read_resource(AnyUrl('resinsight://missing'))
+            except McpError as error:
+                print('unknown resource:', error.error.model_dump())
+                assert error.error.code == -32602
+                assert error.error.data['code'] == 'not_found'
+            else:
+                raise AssertionError('missing resource succeeded')
+            assert not (await client.call_tool('session_list',{})).isError
+    duplicate=subprocess.run([sys.executable,'-m','resinsight_mcp.mcp','--workspace-root',str(root),'--create-workspace'],capture_output=True,text=True,timeout=10)
+    assert duplicate.returncode != 0
+    assert not duplicate.stdout
+    relative=subprocess.run([sys.executable,'-m','resinsight_mcp.mcp','--workspace-root','relative'],capture_output=True,text=True,timeout=10)
+    assert relative.returncode == 2
+    assert not relative.stdout
+    print('launcher initialized, refused overwrite and relative path; protocol remained usable')
+with tempfile.TemporaryDirectory() as tmp:
+    asyncio.run(check(Path(tmp)/'workspace'))

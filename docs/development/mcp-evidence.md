@@ -68,6 +68,14 @@ It used pytest 9.1.1, Ruff 0.16.6, ty 0.0.79, and pre-commit 4.6.2.
 The host was macOS 14.2.1 on arm64.
 Repository CI also runs the shared command on Linux and macOS before merge.
 
+## Runtime installation
+
+The [wheel review](evidence/p05/wheel-review.json) records installation from the built wheel into a separate environment.
+That environment contained runtime dependencies without pytest or the optional rips package.
+The SDK client initialized the launcher, read its catalog, and continued after an unavailable-resource error.
+The launcher also rejected a relative workspace path and refused to overwrite an existing workspace.
+The [check log](evidence/p05/wheel-check.log) and [reproduction script](evidence/p05/launcher-check.txt) retain this evidence.
+
 ## Review and documentation
 
 Independent source review used `gpt-6-astra` with low reasoning.
