@@ -129,7 +129,12 @@ class FileArea:
                         )
                     continue
                 _regular(info)
-                descriptor = os.open(name, _FILE_FLAGS, dir_fd=root)
+                try:
+                    descriptor = os.open(name, _FILE_FLAGS, dir_fd=root)
+                except FileNotFoundError:
+                    if name == _DATABASE_NAMES[0]:
+                        raise
+                    continue
                 try:
                     _regular(os.fstat(descriptor))
                 finally:
@@ -187,7 +192,7 @@ class FileArea:
     @contextmanager
     def reader(self, artifact: ArtifactRef) -> Iterator[BinaryIO]:
         """Provide a read-only handle without returning an internal file path."""
-        with self._read_handle(artifact) as stream:
+        with _file_errors(), self._read_handle(artifact) as stream:
             yield stream
 
     def check(self, artifact: ArtifactRef) -> None:
