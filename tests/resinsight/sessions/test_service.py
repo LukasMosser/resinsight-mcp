@@ -311,3 +311,86 @@ def test_detach_keeps_session_and_new_binding_rejects_old_references(setup: Setu
     assert rebound.context.connection_id != attached.context.connection_id
     assert error(service.resolve_object(state.objects[0].ref)).code == ErrorCode.STALE_OBJECT
     assert factory.apps[50051].calls == [("disconnect", None)]
+
+
+def test_process_binding_spans_controllers_until_explicit_detach(
+    setup: Setup, tmp_path: Path
+) -> None:
+    service, factory, first, _ = setup
+    other = ResInsightSessionService(
+        SqliteWorkspaceStore.create(tmp_path / "other-workspace"), factory
+    )
+    second = value(
+        other.create_session(Session(session_id=SessionId.new(), name="Other controller"))
+    )
+    connection = value(
+        service.attach(AttachRequest(session_id=first.session_id, endpoint=Endpoint(port=50051)))
+    )
+    rejected = other.attach(
+        AttachRequest(session_id=second.session_id, endpoint=Endpoint(port=50051))
+    )
+    assert error(rejected).code == ErrorCode.CONFLICT
+    assert value(other.list_connections()) == ()
+    value(
+        service.close(
+            CloseRequest(
+                session_id=first.session_id, connection_id=connection.context.connection_id
+            )
+        )
+    )
+    attached = value(
+        other.attach(AttachRequest(session_id=second.session_id, endpoint=Endpoint(port=50051)))
+    )
+    assert attached.context.connection_id != connection.context.connection_id
+    assert attached.context.session_id == second.session_id
+
+
+def test_save_verification_failure_reports_uncertainty_and_loses_connection(
+    setup: Setup, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    service, factory, first, _ = setup
+    connection = value(
+        service.attach(AttachRequest(session_id=first.session_id, endpoint=Endpoint(port=50051)))
+    )
+    target = tmp_path / "saved-but-unreadable.rsp"
+    original_is_file = Path.is_file
+
+    def inaccessible_after_save(path: Path) -> bool:
+        if path == target and ("save", target) in factory.apps[50051].calls:
+            raise PermissionError("The saved project cannot be inspected.")
+        return original_is_file(path)
+
+    monkeypatch.setattr(Path, "is_file", inaccessible_after_save)
+    result = service.save_project(ProjectSaveRequest(context=connection.context, path=target))
+    assert error(result).effect == MutationEffect.UNKNOWN
+    assert target.read_text() == "Saved test project"
+    assert value(service.get_connection(first.session_id)).state == ConnectionState.LOST
+
+
+@pytest.mark.parametrize("action", [CloseAction.DETACH, CloseAction.TERMINATE])
+def test_close_cleanup_failure_retires_connection_and_reports_uncertainty(
+    setup: Setup, action: CloseAction
+) -> None:
+    service, factory, first, _ = setup
+    connection = value(
+        service.launch(LaunchRequest(session_id=first.session_id, executable=Path("/app")))
+    )
+    state = value(service.inspect_project(first.session_id))
+    app = factory.apps[50051]
+    app.disconnect_failure = ContractError(
+        Error(code=ErrorCode.EXECUTION_FAILED, message="Client channel cleanup failed.")
+    )
+    result = service.close(
+        CloseRequest(
+            session_id=first.session_id,
+            connection_id=connection.context.connection_id,
+            action=action,
+        )
+    )
+    assert error(result).effect == MutationEffect.UNKNOWN
+    assert value(service.get_connection(first.session_id)).state == ConnectionState.DETACHED
+    assert error(service.resolve_object(state.objects[0].ref)).code == ErrorCode.LOST_CONNECTION
+    if action == CloseAction.TERMINATE:
+        assert app.calls == [("terminate", None), ("disconnect", None)]
+    else:
+        assert app.calls == [("disconnect", None)]
