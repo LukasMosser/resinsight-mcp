@@ -1,0 +1,115 @@
+{
+  "tested_commit": "2842d9175ef01ebfab7fcbd67fb93edc39051f1d",
+  "snapshot": "/tmp/resinsight-p05-final-source",
+  "snapshot_command": "mkdir /tmp/resinsight-p05-final-source && git archive 2842d91 src/resinsight_mcp tests/acceptance/mcp | tar -x -C /tmp/resinsight-p05-final-source",
+  "production_package": "/tmp/resinsight-p05-final-source/src/resinsight_mcp/__init__.py",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "versions": {
+    "mcp": "1.30.0",
+    "Pillow": "12.3.0",
+    "pydantic": "2.13.5",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2"
+  },
+  "codex": "0.153.4",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "low",
+  "authentication": "Existing ChatGPT authentication; API key environment removed by runner",
+  "server_source_selection": "Invocation-only MCP env.PYTHONPATH explicitly selects snapshot src",
+  "runner_command": "PYTHONPATH=/tmp/resinsight-p05-final-source/src /Users/lmoss/.codex/worktrees/58b9/resinsight-mcp/.venv/bin/python /tmp/resinsight-p05-final-controls.py",
+  "runner_wrapper": "/tmp/resinsight-p05-final-controls.py",
+  "limits": [
+    "Synthetic observation with production MCP transport",
+    "No ResInsight rendering or desktop task image claim"
+  ],
+  "trials": {
+    "visible": {
+      "evidence": "/tmp/resinsight-p05-image-evidence/final-visible",
+      "audit": {
+        "passed": true,
+        "mode": "visible",
+        "answer": {
+          "status": "observed",
+          "row": 1,
+          "column": 4
+        },
+        "expected": {
+          "status": "observed",
+          "row": 1,
+          "column": 4
+        },
+        "content_types": [
+          "text",
+          "image"
+        ],
+        "completed_mcp_calls": 1,
+        "forbidden_items": []
+      },
+      "exit_code": 0,
+      "source_package": "/private/tmp/resinsight-p05-final-source/src/resinsight_mcp/__init__.py",
+      "codex": "codex-cli 0.153.4",
+      "server_is_error": false,
+      "server_outcome": "success"
+    },
+    "hidden": {
+      "evidence": "/tmp/resinsight-p05-image-evidence/final-hidden",
+      "audit": {
+        "passed": true,
+        "mode": "hidden",
+        "answer": {
+          "status": "no_image",
+          "row": null,
+          "column": null
+        },
+        "expected": {
+          "status": "no_image",
+          "row": null,
+          "column": null
+        },
+        "content_types": [
+          "text"
+        ],
+        "completed_mcp_calls": 1,
+        "forbidden_items": []
+      },
+      "exit_code": 0,
+      "source_package": "/private/tmp/resinsight-p05-final-source/src/resinsight_mcp/__init__.py",
+      "codex": "codex-cli 0.153.4",
+      "server_is_error": false,
+      "server_outcome": "success"
+    },
+    "empty": {
+      "evidence": "/tmp/resinsight-p05-image-evidence/final-empty",
+      "audit": {
+        "passed": true,
+        "mode": "empty",
+        "answer": {
+          "status": "no_image",
+          "row": null,
+          "column": null
+        },
+        "expected": {
+          "status": "no_image",
+          "row": null,
+          "column": null
+        },
+        "content_types": [
+          "text"
+        ],
+        "completed_mcp_calls": 1,
+        "forbidden_items": []
+      },
+      "exit_code": 0,
+      "source_package": "/private/tmp/resinsight-p05-final-source/src/resinsight_mcp/__init__.py",
+      "codex": "codex-cli 0.153.4",
+      "server_is_error": true,
+      "server_outcome": "failure"
+    }
+  },
+  "result": "All three controls passed against the exact archived commit.",
+  "model_runs": 3,
+  "visual_review": "The final visible marker image shows row 1, column 4, matching the completed observer answer."
+}

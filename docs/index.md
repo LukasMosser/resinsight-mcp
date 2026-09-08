@@ -6,7 +6,9 @@ The library uses Pydantic for record validation and standard-library protocols f
 The optional ResInsight adapter launches or attaches to verified local application processes.
 
 MCP is the Model Context Protocol for tool access.
-The package does not yet include a production MCP transport or simulator adapter.
+The package includes a local MCP server and a workspace launcher.
+The transport binds shared services and delivers saved observations as native image content.
+Fresh rendering requires a renderer implementation, and simulator adapters remain separate work.
 The separate [P01 experiments](development/platform-proof.md) preserve successful bounded runtime evidence on one macOS host.
 They do not establish a supported host or simulator version matrix for this library.
 
@@ -14,6 +16,7 @@ The workspace store preserves sessions, immutable revisions, artifact files, job
 It uses SQLite on trusted local macOS or Linux filesystems.
 The [workspace guide](development/workspaces.md) explains storage, cloning, and explicit recovery.
 The [session guide](sessions.md) explains application ownership, project operations, and observed change limits.
+The [MCP operations guide](mcp.md) explains local server setup and explicit sessions.
 
 Use the [shared contract guide](development/contracts.md) for data conventions and examples.
 The [development guide](development/index.md) describes the repository workflow and future design.

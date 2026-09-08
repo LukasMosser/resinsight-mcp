@@ -16,6 +16,7 @@ The component protocols live in `resinsight_mcp.contracts.interfaces`.
 A protocol describes methods required by a typed implementation.
 P03 implements the workspace boundary through [SqliteWorkspaceStore](workspaces.md).
 P04 implements application lifecycle and project operations through [ResInsightSessionService](sessions.md).
+P05 exposes these services through the [MCP transport](mcp.md).
 
 | Protocol | Main responsibility and operations |
 | --- | --- |

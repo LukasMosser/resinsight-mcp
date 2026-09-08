@@ -62,7 +62,8 @@ Other packages depend on those interfaces and keep simulator-specific details in
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
 P02 implements the shared contracts, P03 implements workspace storage, and P04 implements application sessions and projects.
-The P05 and later application paths below remain separate work packages.
+P05 implements the [MCP transport](mcp.md) against reviewed shared service contracts.
+The P06 and later application paths below remain separate work packages.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
 

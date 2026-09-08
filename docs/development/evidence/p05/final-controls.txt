@@ -1,0 +1,26 @@
+import json
+import os
+import sys
+from pathlib import Path
+
+snapshot = Path('/tmp/resinsight-p05-final-source')
+sys.path.insert(0, str(snapshot / 'tests/acceptance/mcp'))
+import run_observer
+
+original = run_observer.command
+
+def command(codex, observer, evidence, mode, ids):
+    args = original(codex, observer, evidence, mode, ids)
+    setting = 'mcp_servers.p05_image.env.PYTHONPATH=' + json.dumps(str(snapshot / 'src'))
+    return [*args[:-1], '-c', setting, args[-1]]
+
+run_observer.command = command
+statuses = {}
+for mode in ('visible', 'hidden', 'empty'):
+    evidence = Path('/tmp/resinsight-p05-image-evidence') / ('final-' + mode)
+    statuses[mode] = run_observer.run(
+        Path('/Applications/ChatGPT.app/Contents/Resources/codex'), evidence, mode
+    )
+    print(mode, statuses[mode], flush=True)
+Path('/tmp/resinsight-p05-image-evidence/final-statuses.json').write_text(json.dumps(statuses) + '\n')
+sys.exit(any(statuses.values()))

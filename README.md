@@ -4,7 +4,9 @@ This Python 3.12 library provides shared contracts, local workspace storage, and
 Contracts define the data and interfaces that components share.
 MCP is the Model Context Protocol for tool access.
 The optional ResInsight adapter launches or attaches to verified local application processes.
-The package does not yet include a production MCP transport or simulator adapter.
+The package includes a local MCP server and a workspace launcher.
+Application tools require an explicitly supplied session service.
+Fresh rendering requires a renderer implementation, and simulator adapters remain separate work.
 
 The library validates shared records with Pydantic and defines typed component boundaries with standard-library protocols.
 The workspace store preserves sessions, immutable model revisions, artifacts, jobs, results, observations, and project checkpoints.
@@ -14,6 +16,7 @@ GitHub Actions runs the shared checks on Linux and macOS.
 
 Read the [shared contract guide](docs/development/contracts.md) for conventions.
 The [workspace guide](docs/development/workspaces.md) explains storage behavior and provides a runnable example.
+The [MCP operations guide](docs/mcp.md) explains local server setup and native response content.
 The [session guide](docs/sessions.md) explains application ownership, project operations, and observed change limits.
 
 The completed [P01 experiments](docs/development/platform-proof.md) record bounded ResInsight, OPM, and native-image results on one Mac.

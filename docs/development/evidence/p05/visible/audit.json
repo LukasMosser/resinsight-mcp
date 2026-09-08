@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "mode": "visible",
+  "answer": {
+    "status": "observed",
+    "row": 1,
+    "column": 4
+  },
+  "expected": {
+    "status": "observed",
+    "row": 1,
+    "column": 4
+  },
+  "content_types": [
+    "text",
+    "image"
+  ],
+  "completed_mcp_calls": 1,
+  "forbidden_items": []
+}
