@@ -1,0 +1,81 @@
+{
+  "source_commit": "56e006864a82999752baf4d89cc96c8c39894698",
+  "host": {
+    "os": "Darwin",
+    "macos": "14.2.1",
+    "architecture": "arm64"
+  },
+  "python": "3.12.13",
+  "sqlite": "3.50.4",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "versions": {
+    "pydantic": "2.13.5",
+    "setuptools": "84.0.0",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "mkdocs": "1.6.1",
+    "mkdocs-material": "9.7.7",
+    "pre-commit": "4.6.2"
+  },
+  "commands": [
+    {
+      "command": [
+        "uv",
+        "build",
+        "--wheel",
+        "--out-dir",
+        "/private/tmp/resinsight-p03-package"
+      ],
+      "cwd": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+      "exit_code": 0,
+      "log": "package-build.log"
+    },
+    {
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "3.12",
+        "/private/tmp/resinsight-p03-package/runtime"
+      ],
+      "cwd": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+      "exit_code": 0,
+      "log": "package-venv.log"
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        "/private/tmp/resinsight-p03-package/runtime/bin/python",
+        "/private/tmp/resinsight-p03-package/resinsight_mcp-0.1.0-py3-none-any.whl"
+      ],
+      "cwd": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+      "exit_code": 0,
+      "log": "package-install.log"
+    },
+    {
+      "command": [
+        "/private/tmp/resinsight-p03-package/runtime/bin/python",
+        "/private/tmp/resinsight-p03-package/workspace-example.py"
+      ],
+      "cwd": "/private/tmp/resinsight-p03-package",
+      "exit_code": 0,
+      "log": "guide-example.log"
+    },
+    {
+      "command": [
+        "/private/tmp/resinsight-p03-package/runtime/bin/python",
+        "/private/tmp/resinsight-p03-package/probe.py"
+      ],
+      "cwd": "/private/tmp/resinsight-p03-package",
+      "exit_code": 0,
+      "result": "package-probe.json"
+    }
+  ],
+  "guide_source": "import io\nimport json\nfrom pathlib import Path\nfrom tempfile import TemporaryDirectory\n\nfrom resinsight_mcp.contracts.engineering import (\n    CoordinateFrame,\n    DepthDirection,\n    ModelRef,\n    Unit,\n    UnitSystem,\n)\nfrom resinsight_mcp.contracts.errors import ContractError, Failure, OperationResult\nfrom resinsight_mcp.contracts.identifiers import ArtifactId, RevisionId, SessionId\nfrom resinsight_mcp.contracts.models import ArtifactRef, ModelInputs, ModelRevision, Session\nfrom resinsight_mcp.contracts.workspace import Artifact, ArtifactKind\nfrom resinsight_mcp.workspaces import SqliteWorkspaceStore\n\n\ndef require[T](result: OperationResult[T]) -> T:\n    if isinstance(result.outcome, Failure):\n        raise ContractError(result.outcome.error)\n    return result.outcome.value\n\n\nwith TemporaryDirectory() as temporary:\n    root = Path(temporary) / \"workspace\"\n    store = SqliteWorkspaceStore.create(root)\n    session = Session(session_id=SessionId.new(), name=\"Storage example\")\n    require(store.create_session(session))\n    original = Artifact(\n        ref=ArtifactRef(session_id=session.session_id, artifact_id=ArtifactId.new()),\n        relative_path=\"model.json\",\n        kind=ArtifactKind.INPUT,\n    )\n    require(store.write_artifact(original, io.BytesIO(json.dumps({\"rate\": 10}).encode())))\n    revision = ModelRevision(\n        model=ModelRef(session_id=session.session_id, revision_id=RevisionId.new()),\n        inputs=ModelInputs(\n            artifacts=(original.ref.artifact_id,),\n            entrypoint=original.ref.artifact_id,\n        ),\n        unit_system=UnitSystem.METRIC,\n        coordinates=CoordinateFrame(\n            length_unit=Unit.METER,\n            depth_direction=DepthDirection.POSITIVE_DOWN,\n            datum=\"Local origin\",\n        ),\n    )\n    require(store.save_revision(revision))\n    replacement = Artifact(\n        ref=ArtifactRef(session_id=session.session_id, artifact_id=ArtifactId.new()),\n        relative_path=\"model.json\",\n        kind=ArtifactKind.INPUT,\n    )\n    require(store.write_artifact(replacement, io.BytesIO(json.dumps({\"rate\": 20}).encode())))\n    clone = require(\n        store.clone_revision(\n            revision.model,\n            RevisionId.new(),\n            replacements=(replacement.ref.artifact_id,),\n        )\n    )\n    reopened = SqliteWorkspaceStore.open(root)\n    assert require(reopened.get_revision(revision.model)) == revision\n    assert require(reopened.get_revision(clone.model)).parent == revision.model\n    with reopened.open_artifact(original.ref) as source:\n        original_rate = json.load(source)[\"rate\"]\n    with reopened.open_artifact(replacement.ref) as source:\n        clone_rate = json.load(source)[\"rate\"]\n    print(f\"Original rate: {original_rate}; clone rate: {clone_rate}\")\n",
+  "probe_source": "import json\nimport pathlib\nimport sqlite3\nimport sys\nfrom importlib import metadata\n\nimport resinsight_mcp\nfrom resinsight_mcp.contracts.interfaces import WorkspaceStore\nfrom resinsight_mcp.workspaces import SqliteWorkspaceStore\n\nmodule = pathlib.Path(resinsight_mcp.__file__).resolve()\nif not module.is_relative_to(pathlib.Path(sys.prefix).resolve()):\n    raise RuntimeError(\"The probe did not import the installed wheel.\")\nprint(json.dumps({\n    \"imported_module\": str(module),\n    \"implementation\": SqliteWorkspaceStore.__name__,\n    \"interface\": WorkspaceStore.__name__,\n    \"runtime_requirements\": metadata.requires(\"resinsight-mcp\"),\n    \"installed_distributions\": sorted(f'{item.metadata[\"Name\"]}=={item.version}' for item in metadata.distributions()),\n    \"sqlite\": sqlite3.sqlite_version,\n    \"result\": \"The installed workspace implementation imports with runtime dependencies only.\"\n}, indent=2))\n",
+  "scope": "Installed wheel import and execution of the documented temporary workspace clone/reopen example. No development dependencies, external applications, MCP transport, or simulator adapters are used."
+}
