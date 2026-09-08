@@ -1,0 +1,50 @@
+{
+  "time": "2026-09-08T15:28:30.490739+00:00",
+  "result": "Verified test application termination completed.",
+  "applications": [
+    {
+      "process": {
+        "pid": 41208,
+        "start_marker": "1788880209.332985"
+      },
+      "unapproved_termination": {
+        "outcome": {
+          "status": "failure",
+          "error": {
+            "code": "unsupported_operation",
+            "message": "Terminating an attached process requires explicit owner authorization.",
+            "effect": "not_applied"
+          }
+        }
+      },
+      "authorized_termination": {
+        "session_id": "session_e5aba77a5b7a4607ad78d5171c812183",
+        "connection_id": "connection_aec465b9cc4543b790efafce0d86c2de",
+        "action": "terminate"
+      },
+      "state": "detached"
+    },
+    {
+      "process": {
+        "pid": 41301,
+        "start_marker": "1788880212.664119"
+      },
+      "unapproved_termination": {
+        "outcome": {
+          "status": "failure",
+          "error": {
+            "code": "unsupported_operation",
+            "message": "Terminating an attached process requires explicit owner authorization.",
+            "effect": "not_applied"
+          }
+        }
+      },
+      "authorized_termination": {
+        "session_id": "session_2f20c67a2d8d4382ba3a6b454a5a4898",
+        "connection_id": "connection_2281d8b890284ab79c1599010a9a8080",
+        "action": "terminate"
+      },
+      "state": "detached"
+    }
+  ]
+}

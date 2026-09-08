@@ -102,7 +102,20 @@ They establish host process verification, application process group isolation, c
 They do not substitute for the real application trial above.
 
 The shared command runs Ruff, ty, pytest, and the strict documentation build.
-Final check records and browser captures accompany the feature review.
+The [final review record](evidence/p04/final-review.json) records 129 passing tests and successful Linux and macOS CI checks at source commit `09c0ceb`.
+Reviewed browser captures cover the user guide, implementation, evidence, and affected shared pages.
+
+## Installed package and cleanup
+
+A wheel built from `09c0ceb` passed checks in two fresh Python environments.
+The [base package check](evidence/p04/base-proof.json) imported session coordination without rips or psutil.
+The [native package check](evidence/p04/native-proof.json) ran the documented example and inspected both retained application projects.
+Imports came from the installed wheel in each environment.
+The [build log](evidence/p04/package-build.log) and [native installation log](evidence/p04/package-native.log) preserve the package commands and results.
+
+The example application was explicitly terminated after its successful detach check.
+The two acceptance applications were then closed through the session service with verified identities and trusted termination authorization.
+The [cleanup record](evidence/p04/cleanup.json) also shows rejection of termination requests without that separate authorization.
 
 ## Limits
 

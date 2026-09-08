@@ -1,0 +1,15 @@
+{
+  "mode": "base",
+  "python_prefix": "/private/tmp/resinsight-p04-package/base",
+  "import_path": "/private/tmp/resinsight-p04-package/base/lib/python3.12/site-packages/resinsight_mcp/resinsight/sessions/service.py",
+  "time": "2026-09-08T15:26:40.426773+00:00",
+  "versions": {
+    "pydantic_core": "2.46.5",
+    "pydantic": "2.13.5",
+    "resinsight-mcp": "0.1.0",
+    "annotated-types": "0.8.0",
+    "typing-inspection": "0.4.4",
+    "typing_extensions": "4.16.0"
+  },
+  "result": "Base service imported without optional native dependencies."
+}
