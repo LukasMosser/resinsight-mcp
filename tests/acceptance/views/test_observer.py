@@ -328,6 +328,21 @@ def test_no_image_answer_cannot_pass_native_acceptance(
     assert check(tmp_path, manifest, events) == 1
 
 
+def test_wrong_native_camera_rejects_visual_claims(
+    tmp_path: Path, trial: tuple[observer.Trial, ProjectState]
+) -> None:
+    manifest, project = trial
+    events = evidence(tmp_path, manifest, project)
+    response = events[1]["item"]["result"]
+    edited = response["structured_content"]["outcome"]["value"]
+    edited["edit"]["context"]["camera"]["parallel_scale"] = 300
+    edited["observation"]["outcome"]["value"]["context"]["camera"]["parallel_scale"] = 300
+    response["content"][0]["text"] = json.dumps(response["structured_content"])
+    assert check(tmp_path, manifest, events) == 1
+    report = json.loads((tmp_path / "audit.json").read_text())
+    assert "native camera differs" in report["error"]
+
+
 def test_command_preserves_generated_native_client_path(
     tmp_path: Path, trial: tuple[observer.Trial, ProjectState], monkeypatch: pytest.MonkeyPatch
 ) -> None:

@@ -8,8 +8,6 @@ from pathlib import Path
 from threading import Lock
 from unittest.mock import patch
 
-from resinsight_mcp.resinsight.views.service import ResInsightViewService
-
 from resinsight_mcp.contracts.errors import ContractError, Failure, OperationResult
 from resinsight_mcp.contracts.jobs import LoadedResult
 from resinsight_mcp.contracts.sessions import AttachRequest, CloseRequest, ObjectKind
@@ -18,6 +16,7 @@ from resinsight_mcp.mcp import server as protocol
 from resinsight_mcp.resinsight.sessions.rips import RipsApplicationFactory
 from resinsight_mcp.resinsight.sessions.service import ResInsightSessionService
 from resinsight_mcp.resinsight.views.rips import RipsViewBackend
+from resinsight_mcp.resinsight.views.service import ResInsightViewService
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from .run_observer import Trial, exact_object

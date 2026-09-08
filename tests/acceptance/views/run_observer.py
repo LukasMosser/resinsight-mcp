@@ -32,6 +32,7 @@ from resinsight_mcp.contracts.observations import (
 )
 from resinsight_mcp.contracts.sessions import Endpoint, ObjectKind, ObjectRef, ProjectState
 from resinsight_mcp.mcp.catalog import ViewRenderRequest
+from resinsight_mcp.resinsight.views._camera import camera_matches
 
 HERE = Path(__file__).resolve().parent
 DESCRIPTION_FIELDS = (
@@ -357,6 +358,8 @@ def checked_edit(call: dict, trial: Trial, expected: ViewUpdateRequest) -> Obser
     if edited.edit.previous_scene_version != request.context.scene_version:
         raise ValueError("The edit used another previous scene version.")
     actual = observation.context
+    if not camera_matches(expected.context.camera, actual.camera):
+        raise ValueError("The native camera differs from the requested pose or projection.")
     if (
         actual.model_copy(
             update={
