@@ -29,7 +29,7 @@ from rips.generated import (
 
 from resinsight_mcp.contracts.errors import ContractError, ErrorCode, MutationEffect
 from resinsight_mcp.contracts.sessions import Endpoint, ObjectKind, ProcessIdentity
-from resinsight_mcp.resinsight.sessions._rips import RipsApplication, RipsApplicationFactory
+from resinsight_mcp.resinsight.sessions.rips import RipsApplication, RipsApplicationFactory
 
 
 def _serve() -> None:
@@ -229,6 +229,7 @@ def test_launch_records_host_identity_and_output(executable, tmp_path):
     application = RipsApplicationFactory(tmp_path / "logs").launch(executable)
     try:
         assert application.process.pid != os.getpid()
+        assert os.getpgid(application.process.pid) != os.getpgrp()
         assert application.verify_process() == application.process
         assert application.snapshot().objects
         assert "Protocol fixture ready" in next((tmp_path / "logs").glob("*.log")).read_text()

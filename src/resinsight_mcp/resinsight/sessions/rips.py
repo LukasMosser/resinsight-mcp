@@ -201,7 +201,9 @@ class RipsApplication:
 
     def snapshot(self) -> ProjectSnapshot:
         self.verify_process()
-        return _rpc(self._snapshot)
+        snapshot = _rpc(self._snapshot)
+        self.verify_process()
+        return snapshot
 
     def _snapshot(self) -> ProjectSnapshot:
         project = self._project()
@@ -297,6 +299,7 @@ class RipsApplicationFactory:
                     [str(executable), "--server", "0", "--portnumberfile", str(port_file)],
                     stdout=log,
                     stderr=subprocess.STDOUT,
+                    start_new_session=True,
                 )
         except OSError as error:
             raise _failure(

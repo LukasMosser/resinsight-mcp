@@ -136,7 +136,7 @@ class ProjectObject(Record):
     """An observed object with a service-issued reference."""
 
     ref: ObjectRef
-    name: Text
+    name: str
 
 
 class ProjectState(Record):
