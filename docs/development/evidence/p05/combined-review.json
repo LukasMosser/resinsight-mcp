@@ -1,0 +1,19 @@
+{
+  "tested_commit": "71971854f63b615eb68a8fbf2a058288561535dc",
+  "base_commit": "414129da6c7e7ceab0c47b3135c59556305aacaa",
+  "command": "UV_CACHE_DIR=/tmp/resinsight-p05-uv uv run --locked python scripts/check.py",
+  "result": "Ruff, formatting, ty, 173 tests, and the strict MkDocs build passed.",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "versions": {
+    "mcp": "1.30.0",
+    "pillow": "12.3.0",
+    "pydantic": "2.13.5",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2",
+    "psutil": "7.2.2"
+  },
+  "independent_integration_review": "No actionable findings. P04 source and shared contracts match the merged base. Its optional extra and development dependencies remain intact.",
+  "scope": "Combined committed source after the P04 rebase. Generated evidence files were added after this check."
+}

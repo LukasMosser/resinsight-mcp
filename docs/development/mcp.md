@@ -97,7 +97,7 @@ Closing a protocol connection does not call close, detach, cancel, or reconcile.
 A new stdio process opens the same workspace without changing persisted job states.
 Application continuity across processes depends on the session service lifecycle and explicit reconnection policy.
 The maintained P05 fixture tests do not prove real ResInsight process survival.
-The separate [P04 acceptance trial](p04-evidence.md) proves two real applications survived shutdown through this transport.
+The separate [P04 acceptance trial](p04-evidence.md) records two real applications that remained running after the SDK client and server exited.
 
 The stdio runner reserves a separate output stream for the SDK.
 It redirects ordinary process stdout to stderr while serving requests.

@@ -72,6 +72,11 @@ Repository CI also runs the shared command on Linux and macOS before merge.
 
 P05 was rebased onto P04 merge commit `414129da6c7e7ceab0c47b3135c59556305aacaa`.
 The rebase preserved P04's implementation, shared contracts, optional runtime extra, development dependencies, and current session documentation.
+
+The combined suite passed 173 tests and every shared check.
+The [combined log](evidence/p05/combined-check.log) and [integration review](evidence/p05/combined-review.json) record the tested commit and tool versions.
+Independent integration review found no remaining actionable issues.
+
 The [P04 evidence record](p04-evidence.md) documents real application acceptance through P05 transport commit `2842d91`.
 Two applications retained separate saved projects after the SDK client and server exited.
 Fresh connections inspected both projects, and detach left both processes running.
@@ -107,6 +112,7 @@ All retained controls and the final clean-source trials pass those stronger chec
 
 The user and developer guides were built and inspected in a browser.
 The screenshots record readable desktop and narrow layouts.
+After integration, the [architecture page](evidence/p05/combined-architecture.png) and [combined evidence section](evidence/p05/combined-evidence.png) received another browser review.
 
 ![The MCP user guide shows local server startup instructions.](evidence/p05/mcp-guide.png)
 
