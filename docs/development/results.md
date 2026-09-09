@@ -113,3 +113,44 @@ The implementation uses `Project.load_case`, `Case.create_view`, and `Project.im
 It reads `SummaryCase.available_time_steps` and `SummaryCase.summary_vector_values`.
 Plots use `SummaryPlotCollection.new_summary_plot` and `Plot.export_snapshot`.
 Source inspection establishes these supported calls, not a successful runtime trial.
+
+## Prepared native acceptance
+
+`tests/results/native_acceptance.py` provides the bounded native trial.
+It requires genuine P11 baseline and scenario results from one workspace session.
+The scenario revision must identify the baseline revision as its parent.
+Both results must pass the production accepted-result requirement before application launch.
+The probe does not create simulator jobs or change numerical acceptance records.
+
+The lead must authorize the native lane before running this command.
+Use the reviewed `551dc02e19a1eb75ae462a0313f7a9a3101c2f45` build and its installed matching RIPS wheel.
+Do not add Python, Qt, or library path overrides.
+
+```sh
+uv run --no-sync python -m tests.results.native_acceptance \
+  --workspace /absolute/p11-workspace \
+  --session SESSION_ID \
+  --baseline BASELINE_RESULT_ID \
+  --scenario SCENARIO_RESULT_ID \
+  --well PROD \
+  --executable /absolute/ResInsight \
+  --native-source /absolute/ResInsight-source \
+  --output /absolute/new-p12-evidence
+```
+
+The trial loads both exact bundles through the production result, session, and view services.
+It captures final-report pressure and water saturation for both results with common legends and a common camera.
+It exports a native well bottom-hole pressure plot with numerical provenance.
+It records source and native arrays, verified source units, report mappings, complete corners, and numerical differences.
+The source and native comparison records preserve complete model, job, result, and grid identities.
+
+The trial saves a checkpoint containing both results and reopens its native project.
+It makes sure that old references fail and restored bindings retain both exact results.
+It then records fresh native values and geometry from the restored project.
+The probe terminates only its service-owned application and records the close outcome.
+
+After the trial, inspect all five images for meaningful content, correct quantities, visible units, and matching legends.
+Record the tested repository commit, native source commit, executable, installed wheel, command, and application logs with the evidence.
+Review the raw geometry differences against the declared tolerance before accepting the trial.
+Preserve failed attempts with their errors and logs.
+This prepared probe does not establish completed native acceptance.
