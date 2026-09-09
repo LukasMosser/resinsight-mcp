@@ -37,10 +37,18 @@ class LauncherConfiguration:
     create_workspace: bool = False
     resinsight_log_directory: Path | None = None
     enable_models: bool = False
+    enable_opm_workflow: bool = False
+    docker_executable: Path | None = None
 
     def __post_init__(self) -> None:
         if not self.workspace_root.is_absolute():
             raise ConfigurationError("The workspace root must be an absolute path.")
+        if self.enable_opm_workflow and self.resinsight_log_directory is None:
+            raise ConfigurationError("The OPM workflow requires a ResInsight log directory.")
+        if self.docker_executable is not None and not self.enable_opm_workflow:
+            raise ConfigurationError("A Docker executable requires the OPM workflow configuration.")
+        if self.docker_executable is not None and not self.docker_executable.is_absolute():
+            raise ConfigurationError("The Docker executable must use an absolute path.")
         directory = self.resinsight_log_directory
         if directory is None:
             return
@@ -51,21 +59,34 @@ class LauncherConfiguration:
 
     def bindings(self) -> Bindings:
         """Check native dependencies before opening or creating the workspace."""
-        if self.enable_models:
+        models_enabled = self.enable_models or self.enable_opm_workflow
+        if models_enabled:
             OpmImportService.check_dependencies()
         factory = (
             _native_factory(self.resinsight_log_directory)
             if self.resinsight_log_directory is not None
             else None
         )
+        flow_configuration = None
+        if self.enable_opm_workflow:
+            from ._workflow import check_dependencies
+
+            flow_configuration = check_dependencies(self.docker_executable)
         open_store = (
             SqliteWorkspaceStore.create if self.create_workspace else SqliteWorkspaceStore.open
         )
         workspaces = open_store(self.workspace_root)
         sessions = ResInsightSessionService(workspaces, factory) if factory is not None else None
+        if flow_configuration is not None:
+            from ._workflow import workflow_bindings
+
+            assert sessions is not None
+            return workflow_bindings(
+                self.workspace_root.resolve(), workspaces, sessions, flow_configuration
+            )
         return Bindings(
             workspaces=workspaces,
             sessions=sessions,
-            imports=OpmImportService(workspaces) if self.enable_models else None,
-            synthetic_models=SyntheticModelService(workspaces) if self.enable_models else None,
+            imports=OpmImportService(workspaces) if models_enabled else None,
+            synthetic_models=SyntheticModelService(workspaces) if models_enabled else None,
         )

@@ -1,8 +1,10 @@
 """One catalog binds typed operations without owning application state."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from mcp import types
 from pydantic import BaseModel, Field, PositiveInt, ValidationError
@@ -49,6 +51,12 @@ from resinsight_mcp.contracts.sessions import (
 from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.synthetic import SyntheticModelService
 
+if TYPE_CHECKING:
+    from resinsight_mcp.models.wells.service import OpmWellScheduleService
+    from resinsight_mcp.resinsight.wells.service import ResInsightWellService
+    from resinsight_mcp.results import ResultsService
+    from resinsight_mcp.simulators.opm import OpmFlowService
+
 CATALOG_RESOURCE = types.Resource(
     uri="resinsight://catalog",
     name="operation_catalog",
@@ -92,6 +100,10 @@ class Bindings:
     views: ViewService | None = None
     imports: OpmImportService | None = None
     synthetic_models: SyntheticModelService | None = None
+    wells: ResInsightWellService | None = None
+    schedules: OpmWellScheduleService | None = None
+    flow: OpmFlowService | None = None
+    results: ResultsService | None = None
 
 
 @dataclass(frozen=True)
@@ -236,6 +248,10 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
         from ._model_operations import model_operations
 
         operations.extend(model_operations(bindings))
+    if any((bindings.wells, bindings.schedules, bindings.flow, bindings.results)):
+        from ._workflow_operations import workflow_operations
+
+        operations.extend(workflow_operations(bindings))
     return tuple(operations)
 
 
