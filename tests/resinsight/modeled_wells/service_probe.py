@@ -4,36 +4,55 @@ import argparse
 import math
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
-from typing import Protocol, cast
+from typing import Any, Protocol, cast
 
+import opm.io.deck  # noqa: F401
 import psutil
+from google.protobuf.json_format import MessageToDict
+from opm.io.ecl_state import EclipseState
+from opm.io.parser import Parser
+from opm.io.schedule import Schedule
+from PIL import Image
 
 from resinsight_mcp.contracts.errors import ErrorCode, Failure, MutationEffect
 from resinsight_mcp.contracts.identifiers import SessionId
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.sessions import AttachRequest, CloseRequest, Endpoint
-from resinsight_mcp.models.imports import ImportRequest, OpmImportService
+from resinsight_mcp.contracts.wells import ProducerControl, WellStatus
+from resinsight_mcp.models.imports import (
+    ImportReceipt,
+    ImportRequest,
+    MaterializedModel,
+    OpmImportService,
+)
 from resinsight_mcp.models.wells.records import (
+    CompletionExport,
     ModeledWellDefinition,
     PerforationInterval,
     PreparedCaseRequest,
+    ScheduledControl,
+    ScheduledWell,
     TrajectoryPoint,
     WellCreateRequest,
     WellExportRequest,
+    WellScheduleRequest,
     WellUpdateRequest,
 )
+from resinsight_mcp.models.wells.service import OpmWellScheduleService
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess
 from resinsight_mcp.resinsight.sessions.rips import RipsApplication, RipsApplicationFactory
 from resinsight_mcp.resinsight.wells import ResInsightWellService, RipsWellBackend
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
-from .input_probe import Evidence, value
+from .input_probe import Evidence, inspect_case, value
 
 
 class View(Protocol):
+    def address(self) -> int: ...
     def export_snapshot(self, prefix: str, export_folder: str, width: int, height: int) -> None: ...
 
 
@@ -47,17 +66,301 @@ class DisplayProject(Protocol):
     def save(self, path: str) -> None: ...
 
 
-def snapshot(access: ApplicationAccess, case_address: str, output: Path) -> None:
+def snapshot(access: ApplicationAccess, case_address: str, output: Path) -> int:
     application = cast(RipsApplication, access.application)
 
-    def capture() -> None:
+    def capture() -> int:
         project = cast(DisplayProject, application.project())
         case = next(item for item in project.cases() if str(item.address()) == case_address)
         view = case.create_view()
         view.export_snapshot(prefix="service", export_folder=str(output), width=1000, height=800)
         project.save(str(output / "service-project.rsp"))
+        return view.address()
 
-    application.call(capture, mutation=True)
+    return application.call(capture, mutation=True)
+
+
+def item_values(item: Any) -> tuple[Any, ...]:
+    if len(item) == 1 and item.defaulted:
+        return (None,)
+    if item.is_double():
+        return tuple(item.get_raw_data_list())
+    if item.is_int():
+        return tuple(item.get_int(index) for index in range(len(item)))
+    if item.is_string():
+        return tuple(item.get_str(index) for index in range(len(item)))
+    if item.is_uda():
+        return tuple(item.get_uda(index).value for index in range(len(item)))
+    if len(item) == 0:
+        return ()
+    raise RuntimeError("The parsed parent has an unsupported OPM item type.")
+
+
+def deck_semantics(path: Path) -> tuple[Any, ...]:
+    deck = Parser().parse(str(path))
+    return tuple(
+        (
+            keyword.name,
+            tuple(tuple((item.name(), item_values(item)) for item in record) for record in keyword),
+        )
+        for keyword in deck
+    )
+
+
+def prepared_readback(
+    access: ApplicationAccess, model: MaterializedModel, evidence: Evidence
+) -> None:
+    application = cast(RipsApplication, access.application)
+
+    def read() -> None:
+        project = cast(Any, application.project())
+        case = next(
+            case for case in project.cases() if str(case.address()) == access.objects[0].address
+        )
+        inspect_case(case, model, evidence)
+        grid = case.grid()
+        evidence.record(
+            "native_prepared_readback",
+            dimensions=MessageToDict(grid.dimensions()),
+            centers=[MessageToDict(item) for item in grid.cell_centers()],
+            corners=[MessageToDict(item) for item in grid.cell_corners()],
+            volumes_ft3=case.active_cell_property("STATIC_NATIVE", "riCELLVOLUME", 0),
+            properties={
+                name: case.active_cell_property(
+                    "STATIC_NATIVE" if name in {"DX", "DY", "DZ"} else "INPUT_PROPERTY", name, 0
+                )
+                for name, _ in model.inspection.properties.keyword_arrays()
+            },
+            expected=model.inspection.model_dump(mode="json"),
+        )
+
+    application.call(read, mutation=False)
+
+
+def injector_state(schedule: Any, report: int) -> tuple[Any, ...]:
+    well = schedule.get_well("INJ", report)
+    return (
+        well.pos(),
+        well.status(),
+        well.preferred_phase,
+        well.group(),
+        schedule.get_injection_properties("INJ", report),
+        tuple((row.pos, row.cf, row.kh, row.state) for row in well.connections()),
+    )
+
+
+def producer_controls(deck: Any) -> list[tuple[int, str, str]]:
+    report = 0
+    controls = []
+    for keyword in deck:
+        if keyword.name == "TSTEP":
+            report += len(keyword[0][0])
+        if keyword.name == "WCONPROD":
+            controls.extend(
+                (report, row[1].value, row[2].value) for row in keyword if row[0].value == "PROD"
+            )
+    return controls
+
+
+def check_connections(
+    deck: Any,
+    schedule: Any,
+    exported: CompletionExport,
+    default_depth_ft: float,
+    evidence: Evidence,
+) -> None:
+    rows = [
+        record
+        for keyword in deck
+        if keyword.name == "COMPDAT"
+        for record in keyword
+        if record[0].value == "PROD"
+    ]
+    table = []
+    readable = [
+        "# Native completion values and parsed child values\n",
+        "Cells use zero-based indices. Factors use cP·stb/(day·psia).\n",
+        "| Cell | Native factor | Parsed factor | Native Kh (mD ft) | Parsed Kh (mD ft) |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
+    for row, native in zip(rows, exported.connections, strict=True):
+        items = {item.name(): item for item in row}
+        raw = {
+            name: items[name].get_raw_data_list()[0]
+            for name in ("CONNECTION_TRANSMISSIBILITY_FACTOR", "Kh", "DIAMETER", "SKIN")
+        }
+        evidence.check(
+            "parsed_native_completion",
+            all(
+                math.isclose(raw[name], expected, rel_tol=4 * sys.float_info.epsilon, abs_tol=0.0)
+                for name, expected in (
+                    ("CONNECTION_TRANSMISSIBILITY_FACTOR", native.compdat_factor_field),
+                    ("Kh", native.permeability_length_md_ft),
+                    ("DIAMETER", native.diameter_ft),
+                    ("SKIN", native.skin),
+                )
+            )
+            and items["DIR"].value == native.direction,
+            cell=native.cell.model_dump(mode="json"),
+        )
+        table.append(
+            {
+                "cell": native.cell.model_dump(mode="json"),
+                "native_factor_field": native.compdat_factor_field,
+                "parsed_factor_field": raw["CONNECTION_TRANSMISSIBILITY_FACTOR"],
+                "native_kh_md_ft": native.permeability_length_md_ft,
+                "parsed_kh_md_ft": raw["Kh"],
+            }
+        )
+        readable.append(
+            f"| ({native.cell.i}, {native.cell.j}, {native.cell.k}) "
+            f"| {native.compdat_factor_field:.16g} "
+            f"| {raw['CONNECTION_TRANSMISSIBILITY_FACTOR']:.16g} "
+            f"| {native.permeability_length_md_ft:.16g} | {raw['Kh']:.16g} |"
+        )
+    reference_depth_ft = exported.wellhead.reference_depth_ft
+    if reference_depth_ft is None:
+        reference_depth_ft = default_depth_ft
+        heads = [
+            record
+            for keyword in deck
+            if keyword.name == "WELSPECS"
+            for record in keyword
+            if record[0].value == "PROD"
+        ]
+        evidence.check("defaulted_reference_depth", all(record[4].defaulted for record in heads))
+    for report in range(len(schedule.reportsteps)):
+        well = schedule.get_well("PROD", report)
+        evidence.check(
+            "parsed_connection_cells",
+            [row.pos for row in schedule.get_well("PROD", report).connections()]
+            == [(row.cell.i, row.cell.j, row.cell.k) for row in exported.connections],
+            report=report,
+        )
+        evidence.check(
+            "parsed_wellhead",
+            well.pos()[:2] == (exported.wellhead.i, exported.wellhead.j)
+            and math.isclose(well.pos()[2], reference_depth_ft * 0.3048, rel_tol=1e-12),
+            report=report,
+        )
+        for connection, row in zip(well.connections(), rows, strict=True):
+            items = {item.name(): item for item in row}
+            evidence.check(
+                "schedule_connection_values",
+                math.isclose(
+                    connection.cf,
+                    items["CONNECTION_TRANSMISSIBILITY_FACTOR"].get_SI(0),
+                    rel_tol=1e-12,
+                )
+                and math.isclose(connection.kh, items["Kh"].get_SI(0), rel_tol=1e-12),
+                report=report,
+            )
+    evidence.record("native_to_schedule_connections", rows=table)
+    (evidence.output / "connections.md").write_text("\n".join(readable) + "\n")
+
+
+def check_schedule(
+    store: SqliteWorkspaceStore,
+    imports: OpmImportService,
+    wells: ResInsightWellService,
+    receipt: ImportReceipt,
+    exported: CompletionExport,
+    evidence: Evidence,
+) -> None:
+    parent = receipt.prepared.revision
+    with imports.materialize(parent.model) as before:
+        original_semantics = deck_semantics(before.entrypoint)
+    published = value(
+        OpmWellScheduleService(imports, wells).publish(
+            WellScheduleRequest(
+                parent=parent.model,
+                wells=(
+                    ScheduledWell(
+                        export=exported.artifact,
+                        controls=(
+                            ScheduledControl(
+                                report_index=1,
+                                control=ProducerControl(
+                                    status=WellStatus.OPEN, mode="BHP", bhp_psia=1200.1234567890123
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            )
+        )
+    )
+    child = published.prepared.revision
+    (evidence.output / "schedule-receipt.json").write_text(
+        published.model_dump_json(indent=2) + "\n"
+    )
+    evidence.check(
+        "exact_parent_lineage",
+        child.parent == parent.model
+        and child.model != parent.model
+        and child.coordinates == parent.coordinates,
+    )
+    evidence.check("immutable_parent_record", value(store.get_revision(parent.model)) == parent)
+    with imports.materialize(parent.model) as original, imports.materialize(child.model) as changed:
+        evidence.check(
+            "immutable_parent_semantics", deck_semantics(original.entrypoint) == original_semantics
+        )
+        parent_deck = Parser().parse(str(original.entrypoint))
+        parent_schedule = Schedule(parent_deck, EclipseState(parent_deck))
+        deck = Parser().parse(str(changed.entrypoint))
+        schedule = Schedule(deck, EclipseState(deck))
+        evidence.check(
+            "retained_parent_model",
+            changed.inspection.properties == original.inspection.properties
+            and changed.inspection.cell_depths_ft == original.inspection.cell_depths_ft
+            and changed.inspection.cell_volumes_ft3 == original.inspection.cell_volumes_ft3,
+        )
+        evidence.check("retained_report_dates", schedule.reportsteps == parent_schedule.reportsteps)
+        evidence.check(
+            "retained_injector_events",
+            [injector_state(schedule, report) for report in range(len(schedule.reportsteps))]
+            == [
+                injector_state(parent_schedule, report)
+                for report in range(len(parent_schedule.reportsteps))
+            ],
+        )
+        evidence.check(
+            "retained_initial_producer_control",
+            schedule.get_production_properties("PROD", 0)
+            == parent_schedule.get_production_properties("PROD", 0),
+        )
+        evidence.check(
+            "published_producer_control",
+            schedule.get_production_properties("PROD", 1)["bhp_target"] == 1200.1234567890123,
+        )
+        first = exported.connections[0].cell
+        ni, nj, _ = changed.inspection.summary.dimensions
+        default_depth_ft = changed.inspection.cell_depths_ft[
+            first.k * ni * nj + first.j * ni + first.i
+        ]
+        check_connections(deck, schedule, exported, default_depth_ft, evidence)
+        evidence.check(
+            "retained_published_control",
+            schedule.get_production_properties("PROD", 2)["bhp_target"] == 1200.1234567890123,
+        )
+        overlays = [
+            record
+            for keyword in deck
+            if keyword.name == "WCONPROD"
+            for record in keyword
+            if record[0].value == "PROD" and record[2].value == "BHP"
+        ]
+        evidence.check(
+            "published_open_bhp_mode",
+            len(overlays) == 1
+            and overlays[0][1].value == "OPEN"
+            and schedule.get_well("PROD", 1).status() == "OPEN"
+            and schedule.get_well("PROD", 2).status() == "OPEN",
+        )
+        control_trace = producer_controls(deck)
+        evidence.check(
+            "overlay_control_report", (1, "OPEN", "BHP") in control_trace, controls=control_trace
+        )
 
 
 def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
@@ -102,6 +405,18 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
                 sessions.attach(AttachRequest(session_id=session.session_id, endpoint=endpoint))
             )
             evidence.record("connection", data=connection.model_dump(mode="json"))
+            evidence.check(
+                "attached_owned_process",
+                connection.process is not None
+                and connection.process.pid == process.pid
+                and connection.process.start_marker == str(identity),
+            )
+            native_process = psutil.Process(process.pid)
+            evidence.check(
+                "owned_executable",
+                Path(native_process.exe()).resolve() == executable
+                and native_process.cmdline() == command,
+            )
             binding = value(
                 wells.load(
                     PreparedCaseRequest(
@@ -110,6 +425,11 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
                 )
             )
             evidence.record("prepared_case", data=binding.model_dump(mode="json"))
+            with (
+                imports.materialize(binding.model) as model,
+                sessions.access_objects((binding.case,)) as access,
+            ):
+                prepared_readback(access, model, evidence)
             definition = ModeledWellDefinition(
                 name="PROD",
                 coordinates=receipt.prepared.revision.coordinates,
@@ -148,6 +468,16 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
                     k=row.cell.k,
                     factor=row.compdat_factor_field,
                 )
+                evidence.check(
+                    "reference_permeability_length",
+                    math.isclose(
+                        row.permeability_length_md_ft,
+                        {0: 9500.0, 1: 1500.0, 2: 9800.0}[row.cell.k],
+                        rel_tol=1e-6,
+                    ),
+                    k=row.cell.k,
+                    kh_md_ft=row.permeability_length_md_ft,
+                )
             changed = ModeledWellDefinition.model_validate(
                 {
                     **definition.model_dump(),
@@ -171,6 +501,7 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
             evidence.check(
                 "immutable_export", value(wells.get_export(exported.artifact)) == exported
             )
+            check_schedule(store, imports, wells, receipt, exported, evidence)
             stale = wells.export(WellExportRequest(well=updated.well, expected_version=0))
             evidence.check(
                 "stale_version",
@@ -201,22 +532,49 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
             project = value(sessions.inspect_project(session.session_id))
             with sessions.access_objects((invalid.binding.case,)) as access:
                 case_address = access.objects[0].address
-            sessions.mutate_project(
+            captured = sessions.mutate_project(
                 project.context, lambda access: snapshot(access, case_address, output)
+            )
+            evidence.record(
+                "snapshot_project", data=captured.access.project.model_dump(mode="json")
+            )
+            images = tuple(output.glob("service*.png"))
+            evidence.check("snapshot_exists", len(images) == 1)
+            with Image.open(images[0]) as picture:
+                picture.load()
+                evidence.check("snapshot_dimensions", picture.size == (1000, 800))
+            references = {
+                native.address: issued.ref
+                for native, issued in zip(
+                    captured.access.objects, captured.access.project.objects, strict=True
+                )
+            }
+            evidence.record(
+                "snapshot_provenance",
+                image=images[0].name,
+                view_address=captured.value,
+                case_address=case_address,
+                view=references[str(captured.value)].model_dump(mode="json"),
+                case=references[case_address].model_dump(mode="json"),
+                model=updated.binding.model.model_dump(mode="json"),
+                displayed_well_version=updated.version,
+                exported_well_version=exported.modeled_well.version,
             )
         except BaseException as error:
             evidence.record("probe_error", error=repr(error))
             raise
         finally:
+            detached = None
             if connection is not None:
+                detached = sessions.close(
+                    CloseRequest(
+                        session_id=session.session_id,
+                        connection_id=connection.context.connection_id,
+                    )
+                )
                 evidence.record(
                     "detached",
-                    result=sessions.close(
-                        CloseRequest(
-                            session_id=session.session_id,
-                            connection_id=connection.context.connection_id,
-                        )
-                    ).model_dump(mode="json"),
+                    result=detached.model_dump(mode="json"),
                 )
             if process.poll() is None:
                 if psutil.Process(process.pid).create_time() != identity:
@@ -233,6 +591,9 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
             evidence.record("source_cleanup", result=closed.model_dump(mode="json"))
             if isinstance(closed.outcome, Failure):
                 raise RuntimeError(closed.outcome.error.message)
+            evidence.check("owned_process_exited", process.poll() is not None)
+            if detached is not None:
+                evidence.check("detached_successfully", not isinstance(detached.outcome, Failure))
 
 
 def main() -> None:
