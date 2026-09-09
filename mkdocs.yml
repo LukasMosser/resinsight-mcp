@@ -28,6 +28,7 @@ nav:
   - Constrained models: synthetic-models.md
   - Modeled wells and schedules: wells.md
   - OPM Flow runs: opm.md
+  - Accepted results: results.md
   - Security: security.md
   - License: license.md
   - Development:
@@ -68,6 +69,7 @@ nav:
       - Job evidence: development/p10-evidence.md
       - OPM Flow service: development/opm.md
       - OPM runtime evidence: development/evidence/p11/README.md
+      - Result services: development/results.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - OPM workflow delivery: development/p13-delivery.md

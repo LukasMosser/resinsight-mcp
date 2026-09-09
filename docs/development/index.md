@@ -11,6 +11,7 @@ Session and view adapters control verified application connections and capture f
 Model import and job services provide additional domain components.
 The OPM adapter runs the fixed FIELD profile in owned containers and publishes verified numerical results.
 Constrained model creation supplies validated layered inputs through the model import boundary.
+Result services connect accepted immutable outputs to verified native cases, aligned numerical queries, and summary plot observations.
 
 Model materialization supplies isolated stored inputs and validated child revisions for domain consumers.
 Well services create native paths, export fixed connections, and publish child schedules through separate operations.
@@ -33,6 +34,7 @@ Start with these pages:
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
 - [OPM Flow service](opm.md) explains isolated runs, dependency checks, immutable output publication, and numerical acceptance.
 - [OPM runtime evidence](evidence/p11/README.md) records successful runs, changed controls, failures, fresh-service recovery, and a deterministic reference comparison.
+- [Result services](results.md) explains accepted output verification, native bindings, aligned queries, comparisons, and summary plot receipts.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.
 - [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.

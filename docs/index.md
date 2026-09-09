@@ -30,6 +30,7 @@ The [session reference](sessions.md), [view reference](views.md), and [job refer
 The [model guide](synthetic-models.md) describes the constrained specification, fixed physics template, and Python interface.
 The [well guide](wells.md) describes native well edits and separate publication of immutable simulator schedules through Python services.
 The [OPM guide](opm.md) explains bounded Flow runs, cancellation, and accepted immutable results through Python services.
+The [result guide](results.md) explains verified native loading, numerical queries, aligned comparisons, and summary plot receipts through Python services.
 
 ## Know where information goes
 
