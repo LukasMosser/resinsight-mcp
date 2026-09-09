@@ -1,0 +1,41 @@
+{
+  "reviewed_at": "2026-09-09T08:20:29.104Z",
+  "source_commit": "02edbd483f02c92ca5db99f396bd05777b332ea8",
+  "working_tree": " M src/resinsight_mcp/resinsight/sessions/_backend.py\n M src/resinsight_mcp/resinsight/sessions/service.py\n?? docs/development/evidence/session-mutations/\n?? docs/development/session-mutations.md\n?? tests/resinsight/sessions/test_native_mutations.py\n",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/session-mutations/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "session-mutations.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/evidence/session-mutations/focused-tests.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/session-mutations/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/session-mutations/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/session-mutations/dependency-sync.log",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}

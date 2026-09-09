@@ -63,6 +63,11 @@ P02 owns shared types and interface definitions.
 Other packages depend on those interfaces and keep simulator-specific details in their own modules.
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
+[Issue #41](https://github.com/LukasMosser/resinsight-mcp/issues/41) assigns the [trusted mutation boundary](session-mutations.md) to the P04 session owner.
+P04 owns its internal callback records, locking, reference renewal, and failure tests.
+P09 consumes the reviewed interface and retains native well algorithms and model input ownership.
+The lead integration owner retains MCP wiring and combined acceptance.
+
 The [well control follow-up](well-contracts.md) supplies common FIELD controls for P08 and P09.
 Package owners keep grid creation and native well geometry separate while using these shared control records.
 
@@ -192,6 +197,9 @@ The native API does not expose a complete external event history, so identical e
 The [session implementation](sessions.md) records those boundaries and the supported save and reopen operations.
 
 The [P04 record](p04-evidence.md) reports the real two-session trial, MCP disconnect behavior, and stale reference evidence.
+The [mutation follow-up](session-mutations.md) adds a trusted callback boundary for empty and populated projects.
+It holds ownership through mutation and observation, then renews references even when the observed inventory stays unchanged.
+Its focused library tests remain separate from native P09 acceptance and public MCP integration.
 
 ## P05: Expose MCP operations
 

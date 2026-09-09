@@ -98,7 +98,7 @@ require(
 print(saved.last_saved_path)
 ```
 
-Public service methods return `OperationResult` with either a successful value or a typed failure.
+Session and project request methods return `OperationResult` with either a successful value or a typed failure.
 The example raises `ContractError` when an operation fails.
 Request construction can instead raise a Pydantic validation error.
 A launch failure can leave an application running, and its error reports the launched process and log location.
@@ -143,6 +143,25 @@ Termination checks request identity and trusted ownership before contacting the 
 An attached application requires `attached_termination_authorized=True` through trusted caller code.
 The adapter verifies process lifetime before requesting exit and waits for exit confirmation.
 The service retires the connection before channel cleanup, preserving detachment if cleanup fails.
+
+## Trusted domain mutations
+
+[Issue #41](https://github.com/LukasMosser/resinsight-mcp/issues/41) extends P04 with `mutate_project(context, change)` for trusted Python domain services.
+The [mutation guide](session-mutations.md) owns its callback contract and focused evidence.
+The callback receives the complete native mapping, including an empty project, under the existing session and application locks.
+The service returns the callback value and refreshed references before releasing those locks.
+Callers must reacquire `access_objects` before later native work.
+An optional final validator checks the refreshed result before those locks are released.
+
+Every completed callback advances the project generation, even when its changes are invisible in the observed inventory.
+Known callback failures preserve their mutation effect.
+Unexpected failures and failed observation after mutation report uncertainty and retire the connection.
+This internal interface raises `ContractError` and does not expose a callback tool through MCP.
+The existing view access path remains unchanged.
+
+P04 owns the mutation boundary, its internal records, and reference renewal.
+P09 consumes that agreed interface while owning native well behavior and model input changes.
+The library evidence does not establish P09 native acceptance.
 
 ## Project observations
 

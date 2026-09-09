@@ -1,0 +1,21 @@
+{
+  "source_base": "02edbd483f02c92ca5db99f396bd05777b332ea8",
+  "working_state": "M src/resinsight_mcp/resinsight/sessions/_backend.py\n M src/resinsight_mcp/resinsight/sessions/service.py\n?? docs/development/evidence/session-mutations/\n?? docs/development/session-mutations.md\n?? tests/resinsight/sessions/test_native_mutations.py",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "versions": {
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2",
+    "mkdocs": "1.6.1",
+    "mkdocs-material": "9.7.7"
+  },
+  "commands": [
+    "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv sync --locked --all-groups",
+    "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python -m pytest -q tests/resinsight/sessions/test_native_mutations.py",
+    "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py"
+  ],
+  "scope": "Public library tests with controlled application doubles. No native process or simulator run."
+}

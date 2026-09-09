@@ -1,0 +1,20 @@
+{
+  "source_commit": "6fa42b233f005898af203bc562722b9b13bf778c",
+  "main_base": "db3ec151c918feeaf6a1a81b954db164a0b41f91",
+  "pages_passed": 7,
+  "unique_pages": 5,
+  "local_links_passed": 43,
+  "page_errors": [],
+  "screenshots_inspected": [
+    "combined-capabilities.png",
+    "mutation-row.png",
+    "combined-navigation.png",
+    "combined-ownership.png",
+    "final-validation-interface.png",
+    "final-validation-failures.png",
+    "session-boundary.png"
+  ],
+  "finding": "The integrated capability map, navigation, shared ownership, and final validation rules are readable without clipping or overlap.",
+  "command": "NODE_PATH=/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules /Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/resinsight-p08-correction-review.cjs /private/tmp/resinsight-session-mutations /private/tmp/resinsight-session-mutations-combined-review /private/tmp/resinsight-session-mutations-combined-manifest.json",
+  "network_scope": "Only the local documentation origin was allowed."
+}

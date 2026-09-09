@@ -1,0 +1,9 @@
+{
+  "screenshot_inspected": "session-mutations.png",
+  "finding": "The interface, ownership, and reference lifetime text is readable without clipping or overlap.",
+  "page_errors": [],
+  "local_pages_passed": 1,
+  "local_links_passed": 4,
+  "command": "NODE_PATH=/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules /Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/resinsight-launcher-doc-review.cjs /private/tmp/resinsight-session-mutations-agent /private/tmp/resinsight-session-mutations-agent/docs/development/evidence/session-mutations/browser /private/tmp/resinsight-session-mutations-agent/docs/development/evidence/session-mutations/browser/manifest.json",
+  "network_scope": "Only the local documentation origin was allowed."
+}

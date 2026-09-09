@@ -23,6 +23,7 @@ Start with these pages:
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
 - [Launcher evidence](launcher-evidence.md) records native session control from a clean installation.
 - [Sessions](sessions.md) explains application ownership, project operations, and observed change limits.
+- [Project mutations](session-mutations.md) defines the trusted callback boundary, refreshed references, and failure evidence.
 - [Jobs](jobs.md) explains durable supervision, resource policy, and recovery limits.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.

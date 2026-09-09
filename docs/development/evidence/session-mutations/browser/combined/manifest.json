@@ -1,0 +1,35 @@
+[
+  {
+    "path": "/development/agent-workflows/",
+    "image": "combined-capabilities.png"
+  },
+  {
+    "path": "/development/agent-workflows/",
+    "text": "Mutate a native project through trusted domain code",
+    "image": "mutation-row.png"
+  },
+  {
+    "path": "/development/",
+    "image": "combined-navigation.png"
+  },
+  {
+    "path": "/development/implementation-plan/",
+    "heading": "Ownership and integration",
+    "image": "combined-ownership.png"
+  },
+  {
+    "path": "/development/session-mutations/",
+    "heading": "Interface and ownership",
+    "image": "final-validation-interface.png"
+  },
+  {
+    "path": "/development/session-mutations/",
+    "heading": "Failure behavior",
+    "image": "final-validation-failures.png"
+  },
+  {
+    "path": "/development/sessions/",
+    "heading": "Trusted domain mutations",
+    "image": "session-boundary.png"
+  }
+]

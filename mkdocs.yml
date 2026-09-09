@@ -44,6 +44,7 @@ nav:
       - Workspace storage: development/workspaces.md
       - Session implementation: development/sessions.md
       - Session evidence: development/p04-evidence.md
+      - Trusted project mutations: development/session-mutations.md
       - MCP transport: development/mcp.md
       - MCP evidence: development/mcp-evidence.md
       - Launcher evidence: development/launcher-evidence.md

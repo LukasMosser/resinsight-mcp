@@ -1,0 +1,15 @@
+{
+  "source_base": "a91d83dcf46d52705e404851c63256d8f03adedc",
+  "working_state": " M docs/development/session-mutations.md\n M src/resinsight_mcp/resinsight/sessions/service.py\n M tests/resinsight/sessions/test_native_mutations.py\n?? docs/development/evidence/session-mutations/final-validation/\n",
+  "focused_command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python -m pytest -q tests/resinsight/sessions/test_native_mutations.py",
+  "focused_tests_passed": 12,
+  "scope": "The optional final validator holds ownership after reference renewal. Two added cases retire the connection after known and unexpected validation failures. The existing concurrency case now covers all three phases.",
+  "native_process_launched": false,
+  "simulator_run": false,
+  "environment": "The unchanged locked environment is recorded in ../environment.json.",
+  "shared_command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py",
+  "shared_tests_passed": 465,
+  "ruff_passed": true,
+  "ty_passed": true,
+  "strict_documentation_build_passed": true
+}

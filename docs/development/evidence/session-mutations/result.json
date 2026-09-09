@@ -1,0 +1,12 @@
+{
+  "source_base": "02edbd483f02c92ca5db99f396bd05777b332ea8",
+  "focused_tests_passed": 10,
+  "shared_tests_passed": 413,
+  "shared_tests_seconds": 48.17,
+  "ruff_passed": true,
+  "ty_passed": true,
+  "strict_documentation_build_passed": true,
+  "native_process_launched": false,
+  "simulator_run": false,
+  "ci_run": false
+}
