@@ -105,9 +105,18 @@ def configure_snapshot(case: Any, evidence: Evidence) -> Any:
     legend.user_defined_min = 50
     legend.user_defined_max = 500
     legend.update()
+    target = (0.0, -500.0, 0.0)
+    direction = (16000.0, -15500.0, 14000.0)
+    direction_length = math.sqrt(sum(value * value for value in direction))
+    # The native orthographic camera ties eye distance to view height and field of view.
+    distance = 6000 / math.tan(math.radians(20))
     camera = Camera(
-        position=(16000, -16000, 14000),
-        target=(0, -500, 0),
+        position=(
+            target[0] + direction[0] * distance / direction_length,
+            target[1] + direction[1] * distance / direction_length,
+            target[2] + direction[2] * distance / direction_length,
+        ),
+        target=target,
         up=(0, 0, 1),
         projection=Projection.ORTHOGRAPHIC,
         parallel_scale=6000,
