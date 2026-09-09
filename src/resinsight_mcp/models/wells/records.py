@@ -150,6 +150,18 @@ class PreparedCaseReceipt(Record):
         return self
 
 
+class PreparedCaseLookupRequest(PreparedCaseRequest):
+    """Find one current case through its immutable prepared source receipt."""
+
+    receipt: ArtifactRef
+
+    @model_validator(mode="after")
+    def check_receipt_session(self) -> Self:
+        if self.receipt.session_id != self.model.session_id:
+            raise ValueError("The receipt and model must belong to the same session.")
+        return self
+
+
 class PreparedCaseRestoreRequest(PreparedCase):
     """Verify a current case against an explicitly selected immutable receipt."""
 

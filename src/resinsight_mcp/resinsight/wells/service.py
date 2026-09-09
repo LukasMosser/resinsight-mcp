@@ -12,6 +12,7 @@ from typing import Concatenate, NoReturn, Protocol
 
 from pydantic import ValidationError
 
+from resinsight_mcp.contracts.engineering import ModelRef
 from resinsight_mcp.contracts.errors import (
     ContractError,
     Error,
@@ -37,6 +38,7 @@ from resinsight_mcp.models.wells.records import (
     ModeledWell,
     ModeledWellDefinition,
     PreparedCase,
+    PreparedCaseLookupRequest,
     PreparedCaseReceipt,
     PreparedCaseRequest,
     PreparedCaseRestoreRequest,
@@ -385,47 +387,79 @@ class ResInsightWellService:
         with self._sessions.access_objects(tuple(item.ref for item in project.objects)) as access:
             yield access
 
-    @_operation
-    def restore_case(self, request: PreparedCaseRestoreRequest) -> PreparedCase:
+    def _restore_sources(
+        self, model: ModelRef, reference: ArtifactRef
+    ) -> tuple[PreparedCaseReceipt, MaterializedModel]:
         receipt = PreparedCaseReceipt.model_validate_json(
-            self._metadata(request.receipt, "prepared-cases")
+            self._metadata(reference, "prepared-cases")
         )
         if (
-            receipt.artifact != request.receipt
-            or receipt.revision.model != request.model
-            or receipt.revision != _value(self._workspaces.get_revision(request.model))
-            or receipt.directory != self._source_directory(request.receipt)
+            receipt.artifact != reference
+            or receipt.revision.model != model
+            or receipt.revision != _value(self._workspaces.get_revision(model))
+            or receipt.directory != self._source_directory(reference)
         ):
             _stale("The prepared receipt does not identify these fixed model sources.")
-        materialized = self._imports.reopen_persistent(request.model, receipt.directory)
-        with self._access_project(request.case.context) as access:
+        return receipt, self._imports.reopen_persistent(model, receipt.directory)
+
+    @_operation
+    def restore(self, request: PreparedCaseLookupRequest) -> PreparedCase:
+        receipt, materialized = self._restore_sources(request.model, request.receipt)
+        grid = receipt.directory / "grid.EGRID"
+        if grid.resolve() != grid or not grid.is_file():
+            _stale("The prepared grid source is unavailable or redirected.")
+        with self._access_project(request.context) as access:
             matches = [
-                native.address
+                issued.ref
                 for issued, native in zip(access.project.objects, access.objects, strict=True)
-                if issued.ref == request.case
+                if native.kind == ObjectKind.CASE
+                and dict(native.attributes).get("file_path") == str(grid)
             ]
             if len(matches) != 1:
-                _stale("The selected native case is not current.")
-            case = _Case(matches[0], materialized, receipt)
-            self._validate_case(access, case)
-            with self._state_lock:
-                context = request.case.context
-                changed = self._contexts.get(context.session_id) != context
-                self._wells = {
+                _stale("The prepared source must identify exactly one current native case.")
+            binding = PreparedCase(model=request.model, case=matches[0], receipt=request.receipt)
+            return self._restore_binding(access, binding, receipt, materialized)
+
+    @_operation
+    def restore_case(self, request: PreparedCaseRestoreRequest) -> PreparedCase:
+        receipt, materialized = self._restore_sources(request.model, request.receipt)
+        with self._access_project(request.case.context) as access:
+            return self._restore_binding(access, request, receipt, materialized)
+
+    def _restore_binding(
+        self,
+        access: ApplicationAccess,
+        binding: PreparedCase,
+        receipt: PreparedCaseReceipt,
+        materialized: MaterializedModel,
+    ) -> PreparedCase:
+        matches = [
+            native.address
+            for issued, native in zip(access.project.objects, access.objects, strict=True)
+            if issued.ref == binding.case
+        ]
+        if len(matches) != 1:
+            _stale("The selected native case is not current.")
+        case = _Case(matches[0], materialized, receipt)
+        self._validate_case(access, case)
+        with self._state_lock:
+            context = binding.case.context
+            changed = self._contexts.get(context.session_id) != context
+            self._wells = {
+                key: state
+                for key, state in self._wells.items()
+                if key[0] != context.connection_id
+                or (not changed and state.case.address != case.address)
+            }
+            if changed:
+                self._cases = {
                     key: state
-                    for key, state in self._wells.items()
+                    for key, state in self._cases.items()
                     if key[0] != context.connection_id
-                    or (not changed and state.case.address != case.address)
                 }
-                if changed:
-                    self._cases = {
-                        key: state
-                        for key, state in self._cases.items()
-                        if key[0] != context.connection_id
-                    }
-                self._refresh(access)
-                self._cases[(context.connection_id, case.address)] = case
-        return PreparedCase(model=request.model, case=request.case, receipt=request.receipt)
+            self._refresh(access)
+            self._cases[(context.connection_id, case.address)] = case
+        return PreparedCase(model=binding.model, case=binding.case, receipt=binding.receipt)
 
     @_operation
     def adopt_well(self, request: WellAdoptRequest) -> ModeledWell:

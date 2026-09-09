@@ -1,13 +1,17 @@
 """Restore fixed model bindings without reusing a previous native lifetime."""
 
+import io
+from contextlib import contextmanager
 from dataclasses import replace
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 from sessions._support import error, value
 
 from resinsight_mcp.contracts.errors import ContractError, ErrorCode
-from resinsight_mcp.contracts.identifiers import RevisionId
+from resinsight_mcp.contracts.identifiers import ArtifactId, RevisionId, SessionId
+from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.sessions import (
     AttachRequest,
     CloseRequest,
@@ -16,6 +20,8 @@ from resinsight_mcp.contracts.sessions import (
 )
 from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.wells.records import (
+    PreparedCaseLookupRequest,
+    PreparedCaseReceipt,
     PreparedCaseRequest,
     PreparedCaseRestoreRequest,
     WellAdoptRequest,
@@ -23,6 +29,7 @@ from resinsight_mcp.models.wells.records import (
     WellExportRequest,
     WellUpdateRequest,
 )
+from resinsight_mcp.resinsight.sessions._backend import NativeObject
 from resinsight_mcp.resinsight.wells import ResInsightWellService
 
 from ._support import Harness, harness
@@ -250,3 +257,176 @@ def test_source_root_requires_an_explicit_canonical_path(
             source_root=root,
         )
     assert not (tmp_path / "actual").exists()
+
+
+def lookup_request(harness: Harness) -> PreparedCaseLookupRequest:
+    assert harness.backend.loaded is not None
+    grid = harness.backend.loaded.directory.parent / "grid.EGRID"
+    application = harness.backend.application
+    application.project = replace(
+        application.project,
+        objects=tuple(
+            replace(item, attributes=(("file_path", str(grid)),))
+            if item.kind == ObjectKind.CASE
+            else item
+            for item in application.project.objects
+        ),
+    )
+    project = value(harness.sessions.inspect_project(harness.binding.model.session_id))
+    return PreparedCaseLookupRequest(
+        context=project.context, model=harness.binding.model, receipt=harness.binding.receipt
+    )
+
+
+def test_lookup_selects_source_path_between_same_name_cases(harness: Harness) -> None:
+    original = harness.binding
+    assert harness.backend.loaded is not None
+    original_grid = harness.backend.loaded.directory.parent / "grid.EGRID"
+    cloned = value(harness.store.clone_revision(original.model, RevisionId.new()))
+    other = value(
+        harness.service.load(PreparedCaseRequest(context=original.case.context, model=cloned.model))
+    )
+    other_grid = harness.backend.loaded.directory.parent / "grid.EGRID"
+    assert original_grid != other_grid
+    application = harness.backend.application
+    application.project = replace(
+        application.project,
+        objects=(
+            NativeObject(ObjectKind.CASE, "other", "Prepared", (("file_path", str(other_grid)),)),
+            NativeObject(
+                ObjectKind.CASE, "prepared", "Prepared", (("file_path", str(original_grid)),)
+            ),
+        ),
+    )
+    project = value(harness.sessions.inspect_project(original.model.session_id))
+    service = reopened_service(harness)
+    restored = value(
+        service.restore(
+            PreparedCaseLookupRequest(
+                context=project.context, model=original.model, receipt=original.receipt
+            )
+        )
+    )
+    assert restored.case == project.objects[1].ref
+    assert restored.case.context.project_generation > original.case.context.project_generation
+    assert restored.receipt == original.receipt != other.receipt
+    assert restored.model == original.model
+    created = value(
+        service.create(WellCreateRequest(binding=restored, definition=harness.definition()))
+    )
+    assert created.binding.model == original.model
+    service.close()
+
+
+@pytest.mark.parametrize("change", ["missing", "wrong", "ambiguous", "geometry", "grid"])
+def test_lookup_rejects_unverified_cases_without_adoption(harness: Harness, change: str) -> None:
+    request = lookup_request(harness)
+    application = harness.backend.application
+    native = application.project.objects[0]
+    if change == "missing":
+        application.project = replace(
+            application.project, objects=(replace(native, attributes=()),)
+        )
+    elif change == "wrong":
+        application.project = replace(
+            application.project,
+            objects=(replace(native, attributes=(("file_path", "/another/grid.EGRID"),)),),
+        )
+    elif change == "ambiguous":
+        application.project = replace(
+            application.project, objects=(native, replace(native, address="duplicate"))
+        )
+    elif change == "geometry":
+        harness.backend.changed_case = True
+    else:
+        assert harness.backend.loaded is not None
+        (harness.backend.loaded.directory.parent / "grid.EGRID").unlink()
+    project = value(harness.sessions.inspect_project(request.model.session_id))
+    request = request.model_copy(update={"context": project.context})
+    service = reopened_service(harness)
+    mutations = harness.backend.mutations
+    assert error(service.restore(request)).code == ErrorCode.STALE_OBJECT
+    assert value(harness.sessions.inspect_project(request.model.session_id)) == project
+    fabricated = harness.binding.model_copy(update={"case": project.objects[0].ref})
+    assert (
+        error(
+            service.create(WellCreateRequest(binding=fabricated, definition=harness.definition()))
+        ).code
+        == ErrorCode.STALE_OBJECT
+    )
+    assert harness.backend.mutations == mutations
+    service.close()
+
+
+@pytest.mark.parametrize("field", ["context", "model", "receipt"])
+def test_lookup_request_rejects_mixed_sessions(harness: Harness, field: str) -> None:
+    request = lookup_request(harness)
+    mismatched = getattr(request, field).model_copy(update={"session_id": SessionId.new()})
+    with pytest.raises(ValidationError, match="same session"):
+        PreparedCaseLookupRequest.model_validate({**request.model_dump(), field: mismatched})
+
+
+@pytest.mark.parametrize("change", ["artifact", "revision", "directory"])
+def test_lookup_rejects_tampered_receipt_before_native_validation(
+    harness: Harness, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, change: str
+) -> None:
+    request = lookup_request(harness)
+    with harness.store.open_artifact(request.receipt) as stream:
+        receipt = PreparedCaseReceipt.model_validate_json(stream.read())
+    updates: dict[str, object] = {}
+    if change == "artifact":
+        updates["artifact"] = ArtifactRef(
+            session_id=request.model.session_id, artifact_id=ArtifactId.new()
+        )
+    elif change == "revision":
+        updates["revision"] = receipt.revision.model_copy(
+            update={
+                "coordinates": receipt.revision.coordinates.model_copy(
+                    update={"datum": "Changed datum"}
+                )
+            }
+        )
+    else:
+        updates["directory"] = tmp_path / "other-sources"
+    forged = receipt.model_copy(update=updates)
+    open_artifact = harness.store.open_artifact
+
+    @contextmanager
+    def corrupted_artifact(reference):
+        if reference == request.receipt:
+            with io.BytesIO(forged.model_dump_json().encode()) as stream:
+                yield stream
+        else:
+            with open_artifact(reference) as stream:
+                yield stream
+
+    monkeypatch.setattr(harness.store, "open_artifact", corrupted_artifact)
+    service = reopened_service(harness)
+    checks = harness.backend.checks
+    assert error(service.restore(request)).code == ErrorCode.STALE_OBJECT
+    assert harness.backend.checks == checks
+    service.close()
+
+
+def test_lookup_rejects_project_change_before_locked_access(
+    harness: Harness, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    request = lookup_request(harness)
+    access_objects = harness.sessions.access_objects
+
+    @contextmanager
+    def change_project(references):
+        value(
+            harness.sessions.save_project(
+                ProjectSaveRequest(context=request.context, path=tmp_path / "changed.rsp")
+            )
+        )
+        with access_objects(references) as access:
+            yield access
+
+    monkeypatch.setattr(harness.sessions, "access_objects", change_project)
+    service = reopened_service(harness)
+    checks = harness.backend.checks
+    assert error(service.restore(request)).code == ErrorCode.STALE_OBJECT
+    assert harness.backend.checks == checks
+    service.close()
