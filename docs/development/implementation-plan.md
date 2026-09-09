@@ -243,17 +243,17 @@ An invalid input must stop before simulator submission.
 
 ## P08: Create constrained models
 
-Define one tested model specification for a small Cartesian or layered grid.
-Include rock properties, fluids, initial state, wells, controls, and reporting times.
-Generate both visualization geometry and simulator inputs from that specification.
+P08 implements `SyntheticModelService` for a complete layered FIELD model with an explicit datum.
+Its reusable specification includes grid dimensions, layer properties, fixed SPE1 fluids, equilibrium, one injector, one producer, controls, and report intervals.
+The source preserves its template version, generation specification, and stable grid identifier.
+The service delegates validation and immutable publication to P07.
 
-Do not treat grid geometry as a complete simulation model.
-Use explicit units and record the physics template version.
-Test active-cell mapping, generated properties, and a small deterministic reference run.
-
-Acceptance requires an injector and producer in the intended active cells.
-Numerical results must meet documented tolerances for the reference case.
-The user guide must state the accepted model limits.
+The [user guide](../synthetic-models.md) states the accepted cell, schedule, physics, and control limits.
+Focused tests compare properties, every active-cell position, completion indices, reconstruction, and publication failures.
+Four bounded Flow trials compare the generated reference with the preserved P07 model and repeat both sources.
+The [P08 record](synthetic-models.md) preserves exact parsed values, justified tolerances, commands, and runtime limits.
+Its native trial verifies the generated geometry and all final pressure values, with a reviewed image and verified process cleanup.
+Model creation has no public MCP operation yet and remains part of [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) integration.
 
 ## P09: Connect wells to simulator inputs
 

@@ -20,6 +20,9 @@ The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
 - Change properties, report times, cameras, filters, and legends, then inspect native images.
 - Monitor configured local jobs, request cancellation, and inspect state after reconnecting.
 
+The [model guide](docs/synthetic-models.md) describes constrained layered model creation through the Python service.
+Its numerical acceptance compares generated inputs with the preserved reference under documented tolerances.
+
 Native application control and rendering run locally.
 Your configured client can send prompts, tool results, metadata, and images to its model provider.
 The product assumes that users have appropriate provider data sharing agreements.

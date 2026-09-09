@@ -6,10 +6,14 @@ The service validates and stores the generated inputs as a fixed model revision.
 It does not start Flow or open ResInsight.
 A valid model still requires separate simulation convergence checks.
 
+Model creation is available through the Python service.
+The shipped launcher does not advertise a model creation tool.
+
 ## Create the reference model
 
-Install the parser with `uv sync --extra imports`.
-Run this example with `uv run --extra imports python` in a new workspace directory.
+Install the parser with `uv sync --locked --extra imports`.
+Run this example with `uv run --locked --extra imports python` from the repository root.
+The `synthetic-workspace` directory must not exist.
 
 ```python
 from pathlib import Path
@@ -34,7 +38,8 @@ def value(result):
 
 
 store = SqliteWorkspaceStore.create(Path("synthetic-workspace").resolve())
-session = value(store.create_session(Session(session_id=SessionId.new(), name="SPE1")))
+record = Session(session_id=SessionId.new(), name="SPE1")
+session = value(store.create_session(record))
 receipt = value(
     SyntheticModelService(store).create_model(
         SyntheticModelRequest(
@@ -60,6 +65,7 @@ Its `synthetic-grid-id` comment preserves the grid identity across reconstructio
 Its `synthetic-specification` comment contains the complete specification as JSON.
 `read_specification` reads this metadata and rejects missing or repeated specification comments.
 The reader does not validate arbitrary simulator input against those comments.
+The comments describe generation inputs and do not prove the contents of later edited schedules.
 
 ## Accepted limits
 
@@ -102,3 +108,4 @@ Retain attribution and applicable data notices with public results.
 Focused tests check generated properties, active-cell order, stored specification recovery, and OPM completion cells.
 The [development record](development/synthetic-models.md) records four successful reference runs and their numerical tolerances.
 That numerical evidence covers the supplied two-day gas-injection reference on the pinned Flow runtime.
+The [native record](development/evidence/p08-native/README.md) connects the generated result to its grid geometry and final pressure image.

@@ -46,7 +46,11 @@ Cell pressure tolerance is 0.0009765625 psia, and field oil-rate tolerance is 0.
 The rule was fixed before execution and does not expand with measured repeat differences.
 This evidence covers the pinned Flow runtime and the supplied gas-injection reference on the tested host.
 Other generated specifications still require separate convergence checks.
-Native geometry review and production MCP simulation acceptance remain separate work.
+The [native acceptance](evidence/p08-native/README.md) separately verifies generated geometry and pressure in ResInsight.
+All 300 cell centers, corner extents, active-cell positions, and final pressure values matched their references.
+The accepted image shows the final report, three layers, and opposite pressure changes at the injector and producer.
+The record preserves a rejected first snapshot and the correction that produced the accepted image.
+Production MCP model creation, simulation, and result loading remain separate integration work.
 
 The service cleanup tests also cover failed cleanup after successful publication and after delegated import failures.
 They preserve the created revision identity and retain `UNKNOWN` whenever publication may have happened.

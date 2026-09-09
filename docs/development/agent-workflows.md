@@ -8,6 +8,7 @@ The first release remains bounded to macOS and the supported OPM physics.
 
 The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
 This map now includes configured session access through the shipped launcher.
+It also includes constrained model creation through the P08 Python service.
 It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 The [implementation plan](implementation-plan.md) owns package scope and delivery status.
 This page maps that scope to current access paths and integration gaps.
@@ -49,6 +50,7 @@ The [MCP guide](mcp.md) explains that boundary.
 | Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
 | Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
 | Import and prepare supported model inputs | Python-only: `OpmImportService.import_model()` and `OpmImportService.prepare()` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v1` profile. No MCP import tools exist. | [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
+| Create a constrained layered model | Python-only: `SyntheticModelService.create_model()` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. No MCP creation tool exists. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
 | Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
 | Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original local workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. No MCP reconciliation tool exists. | [Recovery boundary](jobs.md#reconciliation-boundary), [P10 evidence](p10-evidence.md) |
 
@@ -102,7 +104,7 @@ The lead integration owner also owns the combined agent acceptance sequence and 
 | --- | --- | --- |
 | Extend the agent host | The launcher configures workspace and native session tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
 | Expose supported import and preparation | P07 has Python services without MCP tools. | P07 owner supplies import contracts and failure evidence. Lead integration owner owns catalog wiring and agent acceptance. |
-| Create constrained models | No production model creation service or MCP operation exists. | P08 owner supplies supported model creation and stored revision evidence. Lead integration owner owns later MCP wiring. |
+| Expose constrained model creation | P08 creates validated model revisions through its Python service. No MCP creation operation exists. | Lead integration owner owns catalog wiring and agent acceptance using the P08 service and its typed records. |
 | Create wells and edit simulator schedules | View well references do not implement well setup or simulator input edits. | P09 owner supplies native well and model input services. Evidence must connect geometry, completions, controls, and immutable revisions. |
 | Run OPM through prepared jobs | P10 supervises trusted commands. It does not prepare simulator commands or accept numerical results. | P11 owner supplies the OPM adapter and trusted command resolution. Lead integration owner joins preparation to the configured job tools. |
 | Load results with trusted lineage | General result import and native case binding remain absent. Acceptance setup does not implement these services. | P12 owner supplies result import and verified native loading. Lead integration owner connects those services to views and MCP. |
