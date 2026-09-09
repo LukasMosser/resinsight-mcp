@@ -87,11 +87,13 @@ The first slice connects implemented session services through [documented launch
 Its [acceptance record](launcher-evidence.md) proves public session and project operations from a clean installation.
 The model slice binds P07 import and P08 creation through seven [public model tools](../tutorials/models.md).
 It validates the pinned parser before opening workspace storage and preserves exact revision identities across reconnection.
-Issue #35 remains open for view, job, and domain integration as dependent services become ready.
+The OPM slice composes wells, schedules, bounded Flow jobs, verified results, comparisons, and native views through the supplied launcher.
+It verifies required dependencies before opening workspace storage and retains domain ownership behind typed service interfaces.
+Issue #35 remains open until reviewed integration and complete public acceptance establish those paths together.
 Users must not need to author a Python server for the completed product workflow.
 
 The [operation map](agent-workflows.md#gaps-and-proposed-ownership) records missing MCP paths and their package owners.
-Views need trusted result loading, while jobs need simulator preparation and command resolution.
+The result service supplies trusted view bindings, while the Flow adapter supplies preparation and command resolution.
 P08, P09, P11, and P12 retain their accepted domain scope.
 P13 and P17 require the integrated launcher and public domain tools before their acceptance can pass.
 

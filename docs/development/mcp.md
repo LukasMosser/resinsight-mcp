@@ -21,11 +21,11 @@ P04 provides that extra independently of the MCP runtime dependencies.
 The workspace configuration does not import the optional ResInsight runtime.
 The launcher imports it only when the user requests native session configuration.
 Model tools use the reviewed P07 and P08 services through optional bindings.
-Simulator tools require their own package implementations and reviewed catalog additions.
+The OPM workflow binds the reviewed well, schedule, Flow, result, and view services through their explicit configuration.
 
 ## Public entry points
 
-`Bindings` holds one required `WorkspaceStore` and optional `SessionService` and `Renderer` implementations.
+`Bindings` holds one required `WorkspaceStore` and optional session, rendering, model, well, schedule, job, Flow, and result implementations.
 These implementations retain ownership of engineering state.
 `create_server(bindings)` creates an SDK `Server` with no application lifecycle changes.
 `serve_stdio(bindings)` serves one dedicated process using the SDK stdio transport.
@@ -49,8 +49,8 @@ This injection point does not establish external application behavior.
 
 ## Shipped launcher configuration
 
-`LauncherConfiguration` owns workspace, model, and optional native session composition.
-The command accepts `--workspace-root`, `--create-workspace`, `--enable-models`, and `--resinsight-log-directory`.
+`LauncherConfiguration` owns workspace, model, native session, and OPM workflow composition.
+The command accepts `--workspace-root`, `--create-workspace`, `--enable-models`, `--resinsight-log-directory`, `--enable-opm-workflow`, and `--docker-executable`.
 The native option validates the log directory, imports the optional factory, and checks `lsof` before opening workspace storage.
 Configuration failures return exit status 2 with a standard error message.
 
@@ -67,6 +67,20 @@ P07 owns parser validation, while P08 owns constrained model creation.
 The transport only binds their typed requests and outcomes.
 The [launcher evidence](launcher-evidence.md) records real native acceptance through the installed command.
 
+The OPM option requires native logs and includes the model configuration.
+`_workflow.check_dependencies()` verifies the required generated RIPS interfaces and delegates local Docker validation to `FlowConfiguration`.
+All checks finish before workspace creation or opening.
+They do not launch a native application or container.
+An explicit Docker executable requires the full workflow and an absolute path.
+
+`_workflow.workflow_bindings()` composes concrete services against the same canonical workspace root and session coordinator.
+Prepared native inputs use persistent `native-models` paths, and accepted result bundles use persistent `native-results` paths.
+The Flow service supplies both job control and the result output verifier.
+The view service supplies view edits and rendering after verified result binding.
+The transport does not duplicate parser, completion, simulation, or numerical validation rules.
+Prepared-case recovery uses `PreparedCaseLookupRequest` to locate and verify one case through its immutable source receipt.
+This request includes the current project context instead of requiring a native address or an ambiguous case name.
+
 ## One operation catalog
 
 `catalog.py` owns tool names, descriptions, request types, result types, session lookup, and annotations.
@@ -79,7 +93,14 @@ A session service adds selection, connection inspection, application lifecycle, 
 A renderer adds `view_render` with an explicit session, view context, and requested image dimensions.
 The optional import and synthetic bindings add the seven [public model operations](../tutorials/models.md).
 `_model_operations.py` owns their catalog entries without duplicating input validation or publication rules.
+`_workflow_operations.py` binds prepared cases, modeled wells, schedule publication, result collection, queries, comparisons, and native summary plots.
+Job submission retains the existing typed `JobRequest`, with prepared inputs and bounded limits.
+It accepts no command, shell, Python, image selection, or backend substitution argument.
 Operations appear only when their implementation was explicitly supplied.
+
+`view_list` accepts a current `LoadedResult` and returns typed `ResultViewState` records without image content.
+The service verifies actual native view ownership and returns observed cameras, display scales, and scene versions.
+The public operation cannot establish a trusted result binding or adopt a confirmed renderable scene.
 
 `view_render` resolves the stored result before constructing the shared `RenderRequest`.
 It rejects a context from another session or a report absent from that result.
@@ -137,10 +158,11 @@ Successful observations append `ImageContent` with `image/png` and no visibility
 Pillow decodes the stored image and checks its format and declared dimensions.
 An empty, corrupt, mislabeled, missing, or mismatched image produces an explicit failure.
 
-A successful `EditedView` preserves its applied edit receipt when image delivery fails.
+A successful `EditedView` or `EditedSummaryPlot` preserves its applied edit receipt when image delivery fails.
 The nested observation records the failure, and the outer operation remains successful.
 No prior image replaces a failed observation.
 The transport does not infer that a saved image represents the current application state.
+Summary observations retain the exact curve, result, plot address, source summary artifact, and current application context.
 
 ## Maintained evidence
 
@@ -165,4 +187,16 @@ The [model log](evidence/model-launcher/model-tools.log), [shared check log](evi
 The tests create and clone a model, disconnect, reopen its workspace, inspect inputs, and prepare the exact child revision.
 They also exercise imported inputs, invalid units, absent sessions, unavailable dependencies, disabled tools, and unsupported backends.
 The [browser record](evidence/model-launcher/review.json) and [model tutorial image](evidence/model-launcher/model-tutorial.png) support the guide review.
-This model slice leaves native wells, simulation, and result composition within issue #35.
+The following workflow integration extends that model slice within issue #35.
+
+## Workflow launcher evidence
+
+The new launcher tests use the shipped module, real SDK processes, concrete services, and the real supported OPM parser.
+They verify full discovery, explicit session boundaries, persistent model access, disabled tools, and startup failures before workspace creation.
+Only external dependency preflight is replaced in the complete composition test.
+The maintained suite starts no ResInsight application or Flow container for these checks.
+
+Summary content tests create a confirmed plot through the result service's controlled native boundary.
+They verify exact curve identity and applied receipts when the stored image is missing, has wrong dimensions, or was never produced.
+Pillow decodes the successful delivered PNG.
+These tests do not replace the separate native result and complete public workflow acceptance records.

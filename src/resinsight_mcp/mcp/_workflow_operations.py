@@ -13,8 +13,8 @@ from resinsight_mcp.models.wells.records import (
     CompletionExport,
     ModeledWell,
     PreparedCase,
+    PreparedCaseLookupRequest,
     PreparedCaseRequest,
-    PreparedCaseRestoreRequest,
     WellAdoptRequest,
     WellCreateRequest,
     WellExportRequest,
@@ -67,10 +67,10 @@ def workflow_operations(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
                 ),
                 Operation(
                     "model_restore_case",
-                    "Verify a current native case against its fixed model and saved receipt.",
-                    PreparedCaseRestoreRequest,
+                    "Find and verify one current native case through its model and saved receipt.",
+                    PreparedCaseLookupRequest,
                     OperationResult[PreparedCase],
-                    wells.restore_case,
+                    wells.restore,
                     session_id=lambda request: request.model.session_id,
                 ),
                 Operation(

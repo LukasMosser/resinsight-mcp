@@ -1,17 +1,27 @@
 """Discover owned views without adopting unsupported native display settings."""
 
+import asyncio
+import json
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any, cast
 from uuid import uuid4
 
 import pytest
+from mcp.shared.memory import create_connected_server_and_client_session
 
-from resinsight_mcp.contracts.errors import ErrorCode, Failure
+from resinsight_mcp.contracts.errors import ErrorCode, Failure, OperationResult
 from resinsight_mcp.contracts.identifiers import GridId, ResultId
 from resinsight_mcp.contracts.jobs import LoadedResult, Result
-from resinsight_mcp.contracts.observations import Camera, Projection, RenderRequest, ViewContext
+from resinsight_mcp.contracts.observations import (
+    Camera,
+    Projection,
+    RenderRequest,
+    ResultViewState,
+    ViewContext,
+)
 from resinsight_mcp.contracts.sessions import AttachRequest, Endpoint, ObjectKind, ProcessIdentity
+from resinsight_mcp.mcp import Bindings, create_server
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import NativeObject, ProjectSnapshot
 from resinsight_mcp.resinsight.sessions.rips import RipsApplication
@@ -215,6 +225,41 @@ def test_discovery_requires_trusted_binding(discovery: Discovery):
     outcome = discovery.service.list_views(discovery.loaded).outcome
     assert isinstance(outcome, Failure)
     assert outcome.error.code == ErrorCode.STALE_OBJECT
+
+
+def test_sdk_discovers_current_views_and_rejects_a_replaced_project(discovery: Discovery, store):
+    value(discovery.service.bind_result(discovery.loaded))
+
+    async def exercise():
+        server = create_server(Bindings(workspaces=store, views=discovery.service))
+        async with create_connected_server_and_client_session(server) as client:
+            tools = {tool.name: tool for tool in (await client.list_tools()).tools}
+            assert tools["view_list"].annotations is not None
+            assert tools["view_list"].annotations.readOnlyHint is True
+            request = discovery.loaded.model_dump(mode="json")
+            response = await client.call_tool("view_list", request)
+            assert not response.isError
+            result = OperationResult[tuple[ResultViewState, ...]].model_validate_json(
+                json.dumps(response.structuredContent)
+            )
+            rows = value(result)
+            assert len(rows) == 2
+            assert [row.camera for row in rows] == [
+                discovery.application.native.view_rows[index].camera for index in (0, 2)
+            ]
+            assert [row.vertical_exaggeration for row in rows] == [2, 5]
+            assert all(row.loaded == discovery.loaded and row.scene_version == 0 for row in rows)
+            assert [item.type for item in response.content] == ["text"]
+            malformed = await client.call_tool("view_list", request | {"native_address": "11"})
+            assert malformed.isError and malformed.structuredContent is not None
+            assert malformed.structuredContent["outcome"]["error"]["code"] == "invalid_model"
+            discovery.application.native.root_address = "replaced-project"
+            stale = await client.call_tool("view_list", request)
+            assert stale.isError and stale.structuredContent is not None
+            assert stale.structuredContent["outcome"]["error"]["code"] == "stale_object"
+            assert discovery.application.mutations == 0
+
+    asyncio.run(exercise())
 
 
 @pytest.mark.parametrize("changed", ["stored_result", "other_result", "project"])

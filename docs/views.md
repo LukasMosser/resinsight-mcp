@@ -2,15 +2,14 @@
 
 An MCP-enabled agent can apply complete display settings and inspect the returned native image.
 MCP is the Model Context Protocol for tool access.
-A configured server exposes `view_apply`, `view_render`, and `observation_get` for this workflow.
+A configured server exposes `view_list`, `view_apply`, `view_render`, and `observation_get` for this workflow.
 A scene version identifies one confirmed set of display settings.
 Each apply or render request identifies its model revision, stored result, case, view, and scene version.
 View edits do not change simulator inputs or run a simulator.
 
 ## Requirements
 
-The server must have session and view services supplied by its host integration.
-The default workspace launcher does not configure these services.
+Enable the launcher's [OPM workflow configuration](mcp.md#enable-the-opm-workflow) or supply session and view services through a host integration.
 Use the rebuilt ResInsight application and its matching generated RIPS client.
 RIPS is the Python client for ResInsight remote calls.
 
@@ -19,14 +18,16 @@ The [developer guide](development/views.md) lists the required native APIs.
 The [session guide](sessions.md) describes application connections and process checks.
 
 A trusted application loader must bind the loaded case to its stored result before view operations.
-This binding is an application integration responsibility.
-The MCP tools do not create this binding from caller claims.
+The public `result_load` and `result_rebind` operations verify source files and native values before issuing these bindings.
+The [result guide](results.md) explains their exact identity and geometry checks.
 
 ## Agent workflow
 
 Call `project_inspect` with the explicit session identifier.
-Select the case, view, and optional wells from the returned object references.
-Use the model revision and result context provided by the trusted host setup.
+Select optional wells from the returned object references.
+Call `view_list` with a current loaded-result binding to find its associated views, cameras, display scales, and scene versions.
+The operation verifies the current project and result binding without applying display changes.
+Use that result, model revision, and one returned view to construct complete settings.
 Send complete settings to `view_apply` and inspect its returned image and edit receipt.
 For a visual comparison, keep the legend bounds fixed while changing the report time or camera.
 
@@ -93,8 +94,8 @@ A stale observation cannot serve as proof of the current scene.
 If only the scene changed, apply complete settings using current references and the latest confirmed scene version.
 
 Reconnecting or replacing the project invalidates object references and trusted case bindings.
-Resolve fresh references and let the trusted loader bind the result again.
-For the newly referenced view, start with scene version `0`.
+Use `result_rebind` with the current project context and exact result identifiers to obtain fresh bindings.
+Call `view_list` with each fresh binding to obtain its current views and scene versions.
 
 A rejected request returns a typed failure.
 `invalid_model` reports inconsistent requested metadata or filter bounds.

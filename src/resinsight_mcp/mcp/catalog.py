@@ -26,12 +26,13 @@ from resinsight_mcp.contracts.interfaces import (
     ViewService,
     WorkspaceStore,
 )
-from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest
+from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest, LoadedResult
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.observations import (
     EditedView,
     Observation,
     RenderRequest,
+    ResultViewState,
     ViewContext,
     ViewUpdateRequest,
 )
@@ -230,6 +231,17 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
             )
         )
     if bindings.views is not None:
+        operations.append(
+            Operation(
+                "view_list",
+                "Read current views and native cameras for an exact trusted loaded result.",
+                LoadedResult,
+                OperationResult[tuple[ResultViewState, ...]],
+                bindings.views.list_views,
+                session_id=lambda request: request.result.model.session_id,
+                read_only=True,
+            )
+        )
         operations.append(
             Operation(
                 "view_apply",

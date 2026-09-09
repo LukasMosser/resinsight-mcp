@@ -17,7 +17,13 @@ from test_launcher import (
 from test_model_launcher import MODEL_TOOLS
 
 from resinsight_mcp.contracts.errors import Success
-from resinsight_mcp.contracts.identifiers import ConnectionId, JobId, ResultId, SessionId
+from resinsight_mcp.contracts.identifiers import (
+    ArtifactId,
+    ConnectionId,
+    JobId,
+    ResultId,
+    SessionId,
+)
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 WORKFLOW_TOOLS = {
@@ -43,6 +49,7 @@ WORKFLOW_TOOLS = {
     "result_compare_curves",
     "result_show_curve",
     "view_apply",
+    "view_list",
     "view_render",
 }
 
@@ -91,6 +98,24 @@ def test_full_launcher_uses_concrete_services_and_explicit_sessions(tmp_path: Pa
             }
             calls = (
                 ("model_load_case", {"context": context, "model": model}, "not_found"),
+                (
+                    "model_restore_case",
+                    {
+                        "context": context,
+                        "model": model,
+                        "receipt": {"session_id": session_id, "artifact_id": str(ArtifactId.new())},
+                    },
+                    "not_found",
+                ),
+                (
+                    "model_restore_case",
+                    {
+                        "context": context,
+                        "model": model,
+                        "receipt": {"session_id": foreign_id, "artifact_id": str(ArtifactId.new())},
+                    },
+                    "invalid_model",
+                ),
                 (
                     "model_load_case",
                     {"context": context | {"session_id": foreign_id}, "model": model},
