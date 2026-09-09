@@ -100,7 +100,9 @@ def native_evidence(
         arrays = []
         for prop in dataset.cell_properties:
             for report, expected in zip(dataset.report_series.reports, prop.values, strict=True):
-                observed = case.active_cell_property("DYNAMIC_NATIVE", prop.name, report.index)
+                observed = list(
+                    case.active_cell_property("DYNAMIC_NATIVE", prop.name, report.index)
+                )
                 arrays.append(
                     {
                         "property": prop.name,
@@ -116,7 +118,7 @@ def native_evidence(
             for item in project.summary_cases()
             if Path(item.summary_header_filename) == Path(case.file_path).with_suffix(".SMSPEC")
         )
-        stamps = summary.available_time_steps().values
+        stamps = list(summary.available_time_steps().values)
         indices = [
             stamps.index(
                 round(
@@ -133,7 +135,7 @@ def native_evidence(
             address = (
                 curve.keyword if curve.scope == "field" else f"{curve.keyword}:{curve.well_name}"
             )
-            raw_values = summary.summary_vector_values(address).values
+            raw_values = list(summary.summary_vector_values(address).values)
             observed = [raw_values[index] for index in indices]
             curves.append(
                 {
@@ -156,7 +158,7 @@ def native_evidence(
                     [item.grid_index, item.local_ijk.i, item.local_ijk.j, item.local_ijk.k]
                     for item in case.cell_info_for_active_cells()
                 ],
-                "native_elapsed_days": case.days_since_start(),
+                "native_elapsed_days": list(case.days_since_start()),
                 "native_dates": [[day.year, day.month, day.day] for day in case.time_steps()],
                 "source_geometry": dataset.geometry.model_dump(mode="json"),
                 "native_corners": raw,
