@@ -370,11 +370,13 @@ def trial(arguments: argparse.Namespace) -> None:
             for item in (baseline, scenario)
         ]
         record(output / "well-comparison.json", value(results.compare_curves(*queries)))
-        plot = value(
+        edited_plot = value(
             results.show_curve(
                 SummaryPlotRequest(context=context, query=queries[1], width=1200, height=800)
             )
         )
+        record(output / "well-plot-edit.json", edited_plot)
+        plot = value(edited_plot.observation)
         record(output / "well-plot.json", plot)
         export_artifact(store, plot.image.artifact, output / "well-plot.png")
         state = value(sessions.inspect_project(arguments.session))

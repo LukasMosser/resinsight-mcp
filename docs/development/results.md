@@ -91,6 +91,10 @@ Saved object identifiers never authorize new bindings.
 ## Summary images
 
 `show_curve(SummaryPlotRequest)` verifies the native summary data and creates a plot for the exact requested curve.
+It returns `EditedSummaryPlot` with an applied `SummaryPlotEditReceipt` and a separate observation outcome.
+The receipt preserves the current application context, complete numerical curve, and native plot address.
+Image persistence or delivery failures replace only the observation outcome after confirmed plot creation.
+
 The plot title includes the result identifier, quantity, and unit.
 Curve normalization is disabled.
 The service exports and decodes one new PNG with the requested dimensions.
@@ -98,7 +102,7 @@ It never returns an earlier image after an export failure.
 
 `SummaryObservation` carries the complete numerical curve, application context, native plot address, and source SMSPEC artifact.
 It also carries an observation identifier, image artifact, UTC capture time, and metadata artifact containing its complete provenance.
-A failure after plot creation reports an uncertain mutation effect.
+A native failure without confirmed plot creation returns an uncertain mutation effect without an applied receipt.
 The 3D observation store remains separate because its context describes a grid view.
 
 ## Evidence and limits

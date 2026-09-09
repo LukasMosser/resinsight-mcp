@@ -7,8 +7,10 @@ from .records import (
     CurveComparison,
     CurveQuery,
     CurveValues,
+    EditedSummaryPlot,
     ResultRef,
     SummaryObservation,
+    SummaryPlotEditReceipt,
     SummaryPlotRequest,
 )
 from .service import ResultsService
@@ -20,8 +22,10 @@ __all__ = [
     "CurveComparison",
     "CurveQuery",
     "CurveValues",
+    "EditedSummaryPlot",
     "ResultRef",
     "ResultsService",
     "SummaryObservation",
+    "SummaryPlotEditReceipt",
     "SummaryPlotRequest",
 ]

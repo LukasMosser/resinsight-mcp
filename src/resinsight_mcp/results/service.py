@@ -14,12 +14,15 @@ from resinsight_mcp.contracts.errors import (
     ContractError,
     Error,
     ErrorCode,
+    Failure,
     MutationEffect,
     OperationResult,
+    Success,
 )
 from resinsight_mcp.contracts.identifiers import (
     ArtifactId,
     CheckpointId,
+    EditId,
     ObservationId,
     ResultId,
     SessionId,
@@ -53,8 +56,10 @@ from .records import (
     CurveComparison,
     CurveQuery,
     CurveValues,
+    EditedSummaryPlot,
     ResultRef,
     SummaryObservation,
+    SummaryPlotEditReceipt,
     SummaryPlotRequest,
 )
 
@@ -342,40 +347,71 @@ class ResultsService:
         return tuple(value(self._views.bind_result(item)) for item in loaded)
 
     @operation
-    def show_curve(self, request: SummaryPlotRequest) -> SummaryObservation:
+    def show_curve(self, request: SummaryPlotRequest) -> EditedSummaryPlot:
         if request.context.session_id != request.query.result.session_id:
             fail(ErrorCode.INVALID_MODEL, "The summary plot and result must share one session.")
         curve = value(self.curve(request.query))
         result, dataset = self._read(request.query.result)
         bundle = self._materialize(result, dataset)
         observation_id = ObservationId.new()
-        with TemporaryDirectory(prefix="resinsight-summary-") as temporary:
-            folder = Path(temporary)
-            mutation = self._sessions.mutate_project(
-                request.context,
-                lambda access: self._backend.show_curve(
-                    access, bundle, dataset, curve, folder, request.width, request.height
-                ),
+        edit: SummaryPlotEditReceipt | None = None
+        native_started = False
+        try:
+            with TemporaryDirectory(prefix="resinsight-summary-") as temporary:
+                folder = Path(temporary)
+                native_started = True
+                mutation = self._sessions.mutate_project(
+                    request.context,
+                    lambda access: self._backend.show_curve(
+                        access, bundle, dataset, curve, folder, request.width, request.height
+                    ),
+                )
+                edit = SummaryPlotEditReceipt(
+                    edit_id=EditId.new(),
+                    context=mutation.access.project.context,
+                    curve=curve,
+                    plot_address=mutation.value,
+                )
+                observation = self._save_summary(request, edit, observation_id, folder)
+            return EditedSummaryPlot(
+                edit=edit, observation=OperationResult(outcome=Success(value=observation))
             )
-            try:
-                return self._save_summary(request, curve, observation_id, mutation, folder)
-            except (ContractError, OSError, ValueError, Image.DecompressionBombError) as error:
+        except (ContractError, OSError, ValueError, Image.DecompressionBombError) as error:
+            if edit is not None:
+                detail = error.error.message if isinstance(error, ContractError) else str(error)
+                return EditedSummaryPlot(
+                    edit=edit,
+                    observation=OperationResult(
+                        outcome=Failure(
+                            error=Error(
+                                code=ErrorCode.RENDER_FAILED,
+                                message=(
+                                    "The summary plot was created, but image handling failed: "
+                                    f"{detail}"
+                                ),
+                                effect=MutationEffect.UNKNOWN,
+                            )
+                        )
+                    ),
+                )
+            if native_started and not isinstance(error, ContractError):
                 raise ContractError(
                     Error(
-                        code=ErrorCode.RENDER_FAILED,
-                        message="The summary plot changed, but its fresh image could not be saved.",
+                        code=ErrorCode.EXECUTION_FAILED,
+                        message="The summary plot outcome could not be confirmed.",
                         effect=MutationEffect.UNKNOWN,
                     )
                 ) from error
+            raise
 
     def _save_summary(
         self,
         request: SummaryPlotRequest,
-        curve: CurveValues,
+        edit: SummaryPlotEditReceipt,
         observation_id: ObservationId,
-        mutation: ProjectMutation[str],
         folder: Path,
     ) -> SummaryObservation:
+        curve = edit.curve
         images = tuple(folder.glob("*.png"))
         if len(images) != 1:
             fail(ErrorCode.RENDER_FAILED, "The summary export requires exactly one new PNG image.")
@@ -406,9 +442,9 @@ class ResultsService:
         )
         observation = SummaryObservation(
             observation_id=observation_id,
-            context=mutation.access.project.context,
+            context=edit.context,
             curve=curve,
-            plot_address=mutation.value,
+            plot_address=edit.plot_address,
             source=smspec,
             image=ImageArtifact(artifact=artifact.ref, width=request.width, height=request.height),
             captured_at=datetime.now(UTC),

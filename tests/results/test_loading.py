@@ -3,7 +3,9 @@
 from io import BytesIO
 from typing import cast
 
+import pytest
 from PIL import Image
+from pydantic import ValidationError
 
 from resinsight_mcp.contracts.errors import (
     ContractError,
@@ -20,7 +22,12 @@ from resinsight_mcp.contracts.sessions import AttachRequest, Endpoint, ObjectKin
 from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind, ProjectCheckpoint
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import NativeObject, ProjectSnapshot
-from resinsight_mcp.results import ResultsService, SummaryObservation, SummaryPlotRequest
+from resinsight_mcp.results import (
+    EditedSummaryPlot,
+    ResultsService,
+    SummaryObservation,
+    SummaryPlotRequest,
+)
 from resinsight_mcp.results._common import value
 
 from ._support import FixtureVerifier
@@ -79,6 +86,10 @@ class BindingDouble:
 class BackendDouble:
     mismatch = False
     export = True
+    unconfirmed = False
+
+    def __init__(self):
+        self.created_plots = []
 
     def load(self, access, bundle, dataset):
         app = cast(ApplicationDouble, access.application)
@@ -101,6 +112,9 @@ class BackendDouble:
             )
 
     def show_curve(self, access, bundle, dataset, curve, folder, width, height):
+        self.created_plots.append("summary-plot")
+        if self.unconfirmed:
+            raise RuntimeError("The plot response was lost.")
         if self.export:
             Image.new("RGB", (width, height), "white").save(folder / "plot.png")
         return "summary-plot"
@@ -182,11 +196,16 @@ def test_rebinds_two_unsaved_results_after_loading_scenario(store, publish, tmp_
 def test_summary_image_persists_exact_numerical_provenance(store, publish, tmp_path):
     result, _, _ = publish()
     results, _, _, _, _, context = setup(store, result, tmp_path)
-    observation = value(
+    edited = value(
         results.show_curve(
             SummaryPlotRequest(context=context, query=curve(result), width=80, height=60)
         )
     )
+    observation = value(edited.observation)
+    assert edited.edit.effect == "applied"
+    assert edited.edit.context == observation.context
+    assert edited.edit.curve == observation.curve
+    assert edited.edit.plot_address == observation.plot_address
     assert observation.curve.result == result
     assert observation.curve.values == (95,)
     with store.open_artifact(observation.provenance) as source:
@@ -196,12 +215,70 @@ def test_summary_image_persists_exact_numerical_provenance(store, publish, tmp_p
             assert image.size == (80, 60)
 
 
-def test_missing_fresh_summary_image_reports_changed_state(store, publish, tmp_path):
+def test_missing_fresh_summary_image_preserves_completed_plot(store, publish, tmp_path):
     result, _, _ = publish()
     results, _, _, _, backend, context = setup(store, result, tmp_path)
     backend.export = False
+    edited = value(
+        results.show_curve(
+            SummaryPlotRequest(context=context, query=curve(result), width=80, height=60)
+        )
+    )
+    assert backend.created_plots == [edited.edit.plot_address]
+    assert edited.edit.effect == "applied"
+    assert isinstance(edited.observation.outcome, Failure)
+    assert edited.observation.outcome.error.code == ErrorCode.RENDER_FAILED
+
+
+@pytest.mark.parametrize("kind", [ArtifactKind.IMAGE, ArtifactKind.METADATA])
+def test_summary_persistence_failure_keeps_plot_receipt(
+    store, publish, tmp_path, monkeypatch, kind
+):
+    result, _, _ = publish()
+    results, _, _, _, backend, context = setup(store, result, tmp_path)
+    original = store.write_artifact
+
+    def fail_image_storage(artifact, source):
+        if artifact.kind == kind and artifact.relative_path.startswith("summary-observations/"):
+            raise OSError("Injected summary storage failure")
+        return original(artifact, source)
+
+    monkeypatch.setattr(store, "write_artifact", fail_image_storage)
+    edited = value(
+        results.show_curve(
+            SummaryPlotRequest(context=context, query=curve(result), width=80, height=60)
+        )
+    )
+    assert edited.edit.effect == "applied"
+    assert edited.edit.curve.result == result
+    assert backend.created_plots == [edited.edit.plot_address]
+    assert isinstance(edited.observation.outcome, Failure)
+    assert edited.observation.outcome.error.effect.value == "unknown"
+    assert "Injected summary storage failure" in edited.observation.outcome.error.message
+
+
+def test_unconfirmed_native_plot_returns_unknown_without_receipt(store, publish, tmp_path):
+    result, _, _ = publish()
+    results, _, _, _, backend, context = setup(store, result, tmp_path)
+    backend.unconfirmed = True
     outcome = results.show_curve(
         SummaryPlotRequest(context=context, query=curve(result), width=80, height=60)
     ).outcome
+    assert backend.created_plots == ["summary-plot"]
     assert isinstance(outcome, Failure)
     assert outcome.error.effect.value == "unknown"
+
+
+def test_summary_observation_cannot_identify_a_different_completed_plot(store, publish, tmp_path):
+    result, _, _ = publish()
+    results, _, _, _, _, context = setup(store, result, tmp_path)
+    edited = value(
+        results.show_curve(
+            SummaryPlotRequest(context=context, query=curve(result), width=80, height=60)
+        )
+    )
+    with pytest.raises(ValidationError, match="complete plot edit"):
+        EditedSummaryPlot(
+            edit=edited.edit.model_copy(update={"plot_address": "another-plot"}),
+            observation=edited.observation,
+        )

@@ -7,7 +7,8 @@ from pydantic import AwareDatetime, FiniteFloat, PositiveInt, model_validator
 
 from resinsight_mcp.contracts._base import Record, Text
 from resinsight_mcp.contracts.engineering import ActiveCellMap, ReportTime, Unit
-from resinsight_mcp.contracts.identifiers import ObservationId, ResultId, SessionId
+from resinsight_mcp.contracts.errors import OperationResult, Success
+from resinsight_mcp.contracts.identifiers import EditId, ObservationId, ResultId, SessionId
 from resinsight_mcp.contracts.jobs import Result
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.observations import ImageArtifact, Legend
@@ -111,4 +112,37 @@ class SummaryObservation(Record):
             raise ValueError("The summary source must identify this result's SMSPEC artifact.")
         if self.captured_at.utcoffset() != timedelta(0):
             raise ValueError("Summary capture timestamps must use UTC.")
+        return self
+
+
+class SummaryPlotEditReceipt(Record):
+    """A completed native plot remains known when its image fails."""
+
+    effect: Literal["applied"] = "applied"
+    edit_id: EditId
+    context: ApplicationContext
+    curve: CurveValues
+    plot_address: Text
+
+    @model_validator(mode="after")
+    def check_session(self) -> Self:
+        if self.context.session_id != self.curve.result.model.session_id:
+            raise ValueError("The summary plot receipt must retain its result session.")
+        return self
+
+
+class EditedSummaryPlot(Record):
+    edit: SummaryPlotEditReceipt
+    observation: OperationResult[SummaryObservation]
+
+    @model_validator(mode="after")
+    def check_observation(self) -> Self:
+        if isinstance(self.observation.outcome, Success):
+            observation = self.observation.outcome.value
+            if (
+                observation.context != self.edit.context
+                or observation.curve != self.edit.curve
+                or observation.plot_address != self.edit.plot_address
+            ):
+                raise ValueError("The summary observation must identify the complete plot edit.")
         return self
