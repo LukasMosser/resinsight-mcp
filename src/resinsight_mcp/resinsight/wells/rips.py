@@ -362,11 +362,12 @@ class RipsWellBackend:
                 )
             if not connections:
                 raise _fail("The native well has no active reservoir connections.")
+            reference_depth = settings.reference_depth_for_export
             return NativeCompletions(
                 Wellhead(
                     i=head.grid_i - 1,
                     j=head.grid_j - 1,
-                    reference_depth_ft=settings.reference_depth_for_export,
+                    reference_depth_ft=None if reference_depth == "" else reference_depth,
                 ),
                 tuple(connections),
             )

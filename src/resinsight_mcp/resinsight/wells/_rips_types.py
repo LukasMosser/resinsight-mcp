@@ -1,6 +1,6 @@
 """Supported generated RIPS methods used by the modeled well backend."""
 
-from typing import Protocol
+from typing import Literal, Protocol
 
 
 class PdmObject(Protocol):
@@ -98,7 +98,7 @@ class Completions(Protocol):
 
 
 class CompletionSettings(Protocol):
-    reference_depth_for_export: float | None
+    reference_depth_for_export: float | Literal[""] | None
     well_name_for_export: str
 
 
