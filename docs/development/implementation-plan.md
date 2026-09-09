@@ -303,28 +303,31 @@ MCP wiring and staged-source recovery remain part of [issue #35](https://github.
 
 P10 implements asynchronous submission through `DurableJobController` and an independent supervisor for each job.
 Workspace records preserve input revision, resources, process identities, state history, logs, and exit status.
-Cancellation targets only the supervisor's owned process group.
+Cancellation targets verified owned process groups and, for Docker jobs, the recorded owned container.
 Explicit reconciliation preserves uncertain outcomes without relaunching commands or signaling stored process identifiers.
 
 The approved `wall_time_only` policy enforces wall deadlines and records CPU and memory requests without enforcement.
-The default `enforce` policy is rejected before submission because this generic controller cannot enforce all requested limits.
+Docker jobs support the default `enforce` policy for CPU, memory, and wall limits.
+Local process jobs reject `enforce` because they cannot enforce all requested limits.
 The [job guide](jobs.md) defines the process ownership boundary and recovery preconditions.
 The [P10 record](p10-evidence.md) reports real child cancellation, stale ownership, disconnect, restart, and failure races.
-Simulator preparation and numerical result acceptance remain in later packages.
+The [Docker guide](docker-jobs.md) defines container ownership and explicit lost-controller recovery.
 
 ## P11: Run OPM Flow
 
-Prepare an isolated run directory from one fixed model revision.
-Start the chosen OPM executable through job control and record its version and arguments.
-Keep the adapter independent of MCP request handling.
+`OpmFlowService` prepares isolated inputs from one fixed FIELD revision and submits Flow through the owned Docker job controller.
+Its pinned local image uses Flow 2026.04 on `linux/arm64`, with no image pull and disabled networking.
+The service records the expected version and arguments, then checks the actual Flow banner during collection.
 
-Distinguish process completion from acceptable simulation results.
-Record final simulated time, convergence warnings, expected outputs, and agreed numerical tolerances.
-Reject outputs that do not match the submitted revision or expected model identity.
+Process success remains distinct from accepted numerical output.
+Collection checks the five required output files, complete simulated time, warnings, exact model identity, FIELD units, and declared numerical bounds.
+It stores immutable outputs, numerical data, and assessment evidence before issuing an accepted result.
+Independent reference agreement remains a separate assessment.
 
-Acceptance requires successful, invalid-input, failed, and canceled runs.
-Include a restart test for a recorded job and a deterministic reference comparison.
-Use semantic input and result records, without byte-for-byte output tests.
+The [OPM service guide](opm.md) defines the supported interfaces, limits, and precision rules.
+The [runtime evidence](evidence/p11/README.md) records successful runs, changed controls, memory failure, cancellation, deadlines, and fresh-service recovery.
+All 104 deterministic reference checks passed with zero numerical differences.
+The corrected cancellation and deadline trials preserve the actual container exit code, and all seven owned containers were removed with verified identity.
 
 ## P12: Load and compare results
 

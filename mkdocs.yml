@@ -27,6 +27,7 @@ nav:
   - Local jobs: jobs.md
   - Constrained models: synthetic-models.md
   - Modeled wells and schedules: wells.md
+  - OPM Flow runs: opm.md
   - Security: security.md
   - License: license.md
   - Development:
@@ -64,6 +65,8 @@ nav:
       - Job implementation: development/jobs.md
       - Docker job ownership: development/docker-jobs.md
       - Job evidence: development/p10-evidence.md
+      - OPM Flow service: development/opm.md
+      - OPM runtime evidence: development/evidence/p11/README.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - OPM workflow delivery: development/p13-delivery.md
