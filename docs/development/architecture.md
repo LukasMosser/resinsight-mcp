@@ -1,14 +1,19 @@
 # Architecture
 
-The repository implements shared contracts, workspace storage, and ResInsight session and project operations as a Python library.
-The [contract guide](contracts.md) defines their current behavior and conventions.
-Its seven protocols cover sessions, process control, workspace storage, rendering, model preparation, jobs, and result import.
-The [workspace guide](workspaces.md) describes the implemented SQLite record store and immutable artifact files.
+The product connects an MCP-enabled agent to ResInsight workflows.
+Its Python services separate application control, simulator inputs, job supervision, result provenance, and MCP transport.
+The [operation map](agent-workflows.md) identifies which services currently have public MCP paths.
 
 The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
 The [MCP transport](mcp.md) binds shared services through typed operations and preserves native image content.
+The [view service](views.md) applies complete native settings and returns fresh images with confirmed context.
+The [model import service](model-imports.md) preserves and prepares the supported OPM input profile through Python APIs.
 The [job controller](jobs.md) supervises trusted commands through durable records and owned process groups.
-Rendering and simulator adapters remain separate work packages.
+The supplied launcher exposes workspace tools only, so complete host composition and domain workflows remain integration work.
+
+The [contract guide](contracts.md) defines shared data and interface conventions.
+Its protocols keep shared service interfaces separate from native implementations.
+The [workspace guide](workspaces.md) describes the SQLite record store and immutable artifact files.
 
 The [scope review](scope-review.md) records external evidence and open questions.
 The [P05 record](mcp-evidence.md) proves blind synthetic-image delivery through the production transport.
@@ -16,7 +21,7 @@ The [P05 record](mcp-evidence.md) proves blind synthetic-image delivery through 
 ## Responsibilities
 
 An adapter translates between the service and an external system.
-The proposed service coordinates application sessions, model revisions, simulation runs, and observations.
+The service modules coordinate application sessions, model revisions, jobs, and observations.
 The simulator performs the numerical calculation.
 
 The workspace store already preserves engineering sessions, model revisions, artifacts, and run-related records.
@@ -26,10 +31,15 @@ Recovery requires stopped supervisors and never signals a process from a saved i
 
 The session service already controls application connections, ownership, project operations, and object reference validity.
 Its observed change detection has explicit [limits](sessions.md#project-observations).
-The remaining runtime responsibilities are:
+The remaining integration responsibilities are:
 
-- A view adapter obtains fresh rendered observations.
-- A simulator adapter prepares, starts, and monitors runs.
+- The lead integration owner composes services through the shipped launcher and connects their public MCP tools.
+- Domain package owners supply model creation, well setup, simulator preparation, numerical acceptance, and trusted result loading.
+- The combined acceptance uses those tools for the complete engineering workflow.
+
+[Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) owns launcher composition and domain MCP wiring.
+The [implementation plan](implementation-plan.md#ownership-and-integration) preserves each package's responsibility.
+Service trials can use explicit fixture setup, but P13 and P17 must perform domain setup through the shipped tools.
 
 A backend is the simulator selected for a run.
 The service must report unsupported backend capabilities before submission.

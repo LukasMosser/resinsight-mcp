@@ -1,5 +1,5 @@
 site_name: resinsight-mcp
-site_description: Workspaces, ResInsight sessions, and development documentation for resinsight-mcp.
+site_description: Operate ResInsight workflows through an MCP-enabled agent.
 site_url: https://lukasmosser.github.io/resinsight-mcp/
 repo_url: https://github.com/LukasMosser/resinsight-mcp
 repo_name: LukasMosser/resinsight-mcp
@@ -15,14 +15,20 @@ theme:
 
 nav:
   - Home: index.md
+  - Connect an agent: mcp.md
+  - Tutorials:
+      - Overview: tutorials/index.md
+      - Sessions and projects: tutorials/sessions.md
+      - Views and images: tutorials/views.md
+      - Local jobs: tutorials/jobs.md
   - ResInsight sessions: sessions.md
   - ResInsight views: views.md
-  - MCP operations: mcp.md
   - Local jobs: jobs.md
   - Security: security.md
   - License: license.md
   - Development:
       - Overview: development/index.md
+      - Agent workflows: development/agent-workflows.md
       - Agent guide: development/agent-guide.md
       - Local setup: development/local-setup.md
       - GitHub organization: development/project-organization.md

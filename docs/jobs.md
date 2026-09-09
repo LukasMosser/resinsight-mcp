@@ -4,6 +4,7 @@ An agent can submit, inspect, and cancel prepared local jobs through a configure
 MCP is the Model Context Protocol for tool access.
 The available operations are `job_submit`, `job_poll`, and `job_cancel`.
 Jobs continue when the submitting client disconnects or exits.
+The [job tutorial](tutorials/jobs.md) shows requests for submission, polling, cancellation, and reconnecting.
 
 ## Configure a controller
 

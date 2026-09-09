@@ -49,7 +49,7 @@ The [MCP guide](mcp.md) explains that boundary.
 | Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
 | Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original local workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. No MCP reconciliation tool exists. | [Recovery boundary](jobs.md#reconciliation-boundary), [P10 evidence](p10-evidence.md) |
 
-The [session guide](../sessions.md), [view guide](../views.md), and [job guide](../jobs.md) describe the available access paths.
+The [session tutorial](../tutorials/sessions.md), [view tutorial](../tutorials/views.md), and [job tutorial](../tutorials/jobs.md) show requests and outcomes.
 Their configuration requirements remain part of each workflow.
 A tool's presence does not establish native capabilities or simulator readiness.
 
@@ -86,7 +86,7 @@ Saved observations also do not reconstruct confirmed view service state after re
 ## Gaps and proposed ownership
 
 These assignments propose integration work within the [existing packages](implementation-plan.md#ownership-and-integration).
-They do not add tool names, broaden supported physics, or authorize publication.
+Package owners retain their domain algorithms behind agreed typed interfaces.
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) tracks launcher composition and domain MCP wiring.
 This documentation change does not implement that integration.
 The lead integration owner owns launcher composition and all domain-tool wiring in `src/resinsight_mcp/mcp/`.

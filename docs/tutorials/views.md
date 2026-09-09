@@ -37,96 +37,19 @@ A scene version identifies one confirmed set of display settings.
 Use version `0` for a view without a confirmed edit in the current service.
 For later edits, use the version from that view's latest edit receipt.
 
-The following is the first `view_apply` argument object from the [P06 exchange](../development/evidence/p06/observer/server-responses.jsonl).
+Use this argument template after resolving the current references and trusted result context.
+The complete example comes from the [P06 exchange](../development/evidence/p06/observer/server-responses.jsonl).
 Its identifiers belong to that historical trial and must not be reused against another workspace.
 The preceding `project_inspect` issued its case, view, and well references.
 Trusted trial setup supplied its model, result, grid, coordinates, and report metadata.
 The camera values describe that trial's native display coordinates.
 
-```json
-{
-  "context": {
-    "model": {
-      "session_id": "session_7d212713fad642988fe375c6213136e7",
-      "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
-    },
-    "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
-    "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
-    "scene_version": 0,
-    "property": {
-      "name": "PRESSURE",
-      "unit": "psi"
-    },
-    "report_time": {
-      "index": 0,
-      "elapsed_days": 0,
-      "calendar_date": "2015-01-01"
-    },
-    "coordinates": {
-      "length_unit": "ft",
-      "depth_direction": "positive_down",
-      "datum": "SPE1 local origin"
-    },
-    "camera": {
-      "position": [
-        23003.56868899781,
-        -23003.56868899781,
-        23003.56868899781
-      ],
-      "target": [
-        0,
-        0,
-        0
-      ],
-      "up": [
-        0,
-        0,
-        1
-      ],
-      "projection": "perspective",
-      "field_of_view_degrees": 40,
-      "parallel_scale": null
-    },
-    "vertical_exaggeration": 20,
-    "legend": {
-      "minimum": 1000,
-      "maximum": 5000
-    },
-    "filters": [],
-    "case": {
-      "context": {
-        "session_id": "session_7d212713fad642988fe375c6213136e7",
-        "connection_id": "connection_e1d9127ee550422495e219b504627a92",
-        "project_generation": 0
-      },
-      "kind": "case",
-      "object_id": "3f6067de9af64f44b5c500624831ebcd"
-    },
-    "view": {
-      "context": {
-        "session_id": "session_7d212713fad642988fe375c6213136e7",
-        "connection_id": "connection_e1d9127ee550422495e219b504627a92",
-        "project_generation": 0
-      },
-      "kind": "view",
-      "object_id": "8ea3a36712514d9499f45e50faa70e94"
-    },
-    "selected_wells": [
-      {
-        "context": {
-          "session_id": "session_7d212713fad642988fe375c6213136e7",
-          "connection_id": "connection_e1d9127ee550422495e219b504627a92",
-          "project_generation": 0
-        },
-        "kind": "well",
-        "object_id": "98cbd4a8fa3f4e84809ec39ed121c401"
-      }
-    ]
-  },
-  "width": 1200,
-  "height": 800
-}
+```text
+view_apply({"context": CURRENT_VIEW_CONTEXT, "width": 1200, "height": 800})
 ```
+
+`CURRENT_VIEW_CONTEXT` means the complete current context object supplied and resolved in the preceding steps.
+The [recorded full request](examples/p06-view-apply.json) shows every field from the first P06 `view_apply` call.
 
 For your project, replace every trial identity with the corresponding current reference or trusted host value.
 Choose camera values appropriate for your loaded scene.
@@ -154,6 +77,14 @@ The [preserved answer](../development/evidence/p06/observer/answer.json) and [im
 | [4](../development/evidence/p06/observer/native-04.png) | Apply target `SGAS` at report `120`, scene version `2`. | A green upper layer and blue lower side layers. |
 | [5](../development/evidence/p06/observer/native-05.png) | Apply the changed target camera and filter, scene version `3`. | A rotated half-block with exposed blue side layers. |
 | [6](../development/evidence/p06/observer/native-06.png) | Render the second view's returned context at scene version `1`. | The initial control scene remains visibly unchanged. |
+
+
+These captures compare initial and final pressure with the same legend bounds.
+Open either image to inspect its full size.
+
+| Initial pressure, report 0 | Final pressure, report 120 |
+| --- | --- |
+| [![Initial pressure with a red-orange full block](../development/evidence/p06/observer/native-01.png)](../development/evidence/p06/observer/native-01.png) | [![Final pressure with yellow and olive cells](../development/evidence/p06/observer/native-03.png)](../development/evidence/p06/observer/native-03.png) |
 
 For image 3, the exact report and legend fragments were:
 

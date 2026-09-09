@@ -32,8 +32,8 @@ Every later request must still identify its session.
 `connection_get` reads the recorded connection without probing application health.
 `project_inspect` observes the project and returns its current context and object references.
 
-For a new session, obtain a fresh identifier from the host's session identifier generator.
-The [identifier guide](../mcp.md#use-explicit-sessions) describes `SessionId.new()` for host integrations.
+For a new session, supply a fresh identifier that follows the discovered schema.
+The [identifier guide](../mcp.md#use-explicit-sessions) describes the required format.
 Then call this template:
 
 ```text

@@ -77,7 +77,7 @@ It also does not load results into ResInsight.
 `Job.logs` contains immutable artifact references after publication.
 The MCP catalog has no general log-reading tool.
 The host operator can inspect live `stdout.log`, `stderr.log`, and `supervisor.log` files under the job's runtime directory.
-The [job guide](../jobs.md) describes their paths and publication limits.
+The [runtime log guide](../development/jobs.md#logs-and-failures) describes their paths and publication limits.
 
 ## Reconnect without submitting twice
 

@@ -55,4 +55,4 @@ The configured client can send prompts, tool results, metadata, and images to it
 Users operate under data sharing agreements with their configured provider.
 The product adds no separate approval flow for that provider transfer.
 
-See the [workflow roadmap](../development/implementation-plan.md) for work beyond these current tutorials.
+See the [operation map](../development/agent-workflows.md) for work beyond these current tutorials.

@@ -5,6 +5,7 @@ MCP is the Model Context Protocol for tool access.
 A session is a durable workspace identity.
 An application connection identifies one running ResInsight instance.
 Every change names its session explicitly, so selecting one does not redirect later changes.
+The [session tutorial](tutorials/sessions.md) shows requests for project work and recovery.
 
 ## Requirements
 

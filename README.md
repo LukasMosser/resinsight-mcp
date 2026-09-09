@@ -1,31 +1,30 @@
 # resinsight-mcp
 
-This Python 3.12 library provides shared contracts, local workspace storage, and ResInsight session and project operations.
-Contracts define the data and interfaces that components share.
+resinsight-mcp connects an MCP-enabled agent to ResInsight workflows.
 MCP is the Model Context Protocol for tool access.
-The optional ResInsight adapter launches or attaches to verified local application processes.
+Through a configured host, an agent can manage sessions and projects, inspect objects, change views, and examine fresh native images.
 
-The package includes a local MCP server and a workspace launcher.
-Application tools require an explicitly supplied session service.
-Fresh rendering requires a renderer implementation, and simulator adapters remain separate work.
+The project builds an agent interface for ResInsight-based modeling, simulation, and result analysis.
+The [first-release plan](docs/development/implementation-plan.md#product-boundary) targets macOS and OPM Flow with explicit model and physics limits.
+The [operation map](docs/development/agent-workflows.md) separates current tools from the remaining work toward that workflow.
 
-The library validates shared records with Pydantic and defines typed component boundaries with standard-library protocols.
-The workspace store preserves sessions, immutable model revisions, artifacts, jobs, results, observations, and project checkpoints.
-It uses SQLite and local files on trusted macOS or Linux filesystems.
-The repository also provides maintained tests, a locked development environment, and documentation.
-GitHub Actions runs the shared checks on Linux and macOS.
+## Start with an agent
 
-Read the [shared contract guide](docs/development/contracts.md) for conventions.
-The [workspace guide](docs/development/workspaces.md) explains storage behavior and provides a runnable example.
-The [MCP operations guide](docs/mcp.md) explains local server setup and native response content.
-The [session guide](docs/sessions.md) explains application ownership, project operations, and observed change limits.
+Read the [connection guide](docs/mcp.md), then use capability discovery to find the tools your host supplies.
+The supplied launcher currently provides workspace tools.
+Application workflows require a separately configured host, and a complete simulation workflow is not yet available through the supplied launcher.
 
-The [job controller](docs/jobs.md) supervises trusted local commands independently of MCP connections.
-It preserves job identity, process ownership, resources, logs, and uncertain outcomes across service restarts.
-Its explicit wall-time-only policy records CPU and memory requests without enforcing them.
+The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
 
-The completed [P01 experiments](docs/development/platform-proof.md) record bounded ResInsight, OPM, and native-image results on one Mac.
-Those experiments remain separate from the installable library and do not establish a supported host or simulator matrix.
+- Manage named sessions, open and save projects, and resolve project objects.
+- Change properties, report times, cameras, filters, and legends, then inspect native images.
+- Monitor configured local jobs, request cancellation, and inspect state after reconnecting.
+
+Native application control and rendering run locally.
+Your configured client can send prompts, tool results, metadata, and images to its model provider.
+The product assumes that users have appropriate provider data sharing agreements.
+The [data boundary](docs/views.md#data-boundary) explains this configuration.
+
 Read the [project documentation](https://lukasmosser.github.io/resinsight-mcp/) on GitHub Pages.
 
 ## Development
@@ -42,7 +41,8 @@ uv run --locked mkdocs serve
 
 Read the [contribution guide](CONTRIBUTING.md) before you change files.
 The [local setup guide](docs/development/local-setup.md) explains the tools.
-The [implementation plan](docs/development/implementation-plan.md) defines the proposed work packages.
+The [development guide](docs/development/index.md) explains the service architecture, contracts, storage, tests, and acceptance evidence.
+GitHub Actions runs the shared checks on Linux and macOS.
 
 ## Project records
 

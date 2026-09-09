@@ -1,8 +1,8 @@
 # Implementation plan
 
-This plan describes proposed work, not current application behavior.
+This plan separates delivered packages from remaining integration work.
 The first target is macOS, with OPM Flow as the first simulator.
-The repository contains shared contracts, workspace storage, session operations, durable jobs, development tools, and runtime evidence.
+The [operation map](agent-workflows.md) records current MCP access and its acceptance evidence.
 
 A work package is a bounded change with its own owner.
 Each package needs a separate pull request against `main`.
@@ -10,8 +10,10 @@ The plan uses acceptance evidence and dependencies, without delivery estimates.
 
 ## Product boundary
 
-The proposed service controls named ResInsight sessions through rips.
-It manages model revisions, simulator runs, numerical results, and native MCP images.
+The product goal is an agent-operated ResInsight workflow, from project navigation to model setup, simulation, result inspection, and recovery.
+MCP is the Model Context Protocol for tool access.
+The agent must perform supported domain operations through public MCP tools connected to explicit ResInsight sessions.
+Python services, shared contracts, and storage support that workflow.
 A model revision is a fixed set of engineering inputs.
 
 The first engineering workflow imports a supported OPM input model.
@@ -66,6 +68,16 @@ P05 implements the [MCP transport](mcp.md) against reviewed shared service contr
 The remaining application paths below retain separate work package ownership.
 Each owner also owns tests under the matching test path.
 The lead agent owns combined acceptance tests and integration documentation.
+
+[Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) assigns one lead integration owner for the shipped launcher, service composition, and domain MCP wiring.
+Package owners retain model, well, simulator, and result algorithms behind agreed typed interfaces.
+The integration owner first connects implemented session services through documented configuration, then adds dependent workflows as their services become ready.
+Users must not need to author a Python server for the completed product workflow.
+
+The [operation map](agent-workflows.md#gaps-and-proposed-ownership) records missing MCP paths and their package owners.
+P07 import services still need domain tools, while views need trusted result loading and jobs need simulator preparation and command resolution.
+P08, P09, P11, and P12 retain their accepted domain scope.
+P13 and P17 require the integrated launcher and public domain tools before their acceptance can pass.
 
 | Package | Owned application paths | Dependencies |
 | --- | --- | --- |
@@ -295,6 +307,11 @@ Show pressure, saturation, and well curves with their source run records.
 
 ## P13: Prove the OPM workflow
 
+Start from a clean installation with the shipped launcher and documented configuration.
+Discover capabilities and perform every domain setup step through public MCP tools.
+Do not compose a custom server or seed model, job, result, or native case records through hidden Python setup.
+The [launcher integration](https://github.com/LukasMosser/resinsight-mcp/issues/35) is an acceptance prerequisite.
+
 Create two named sessions and import or generate a small layered model.
 Create an injector and producer, show their completions, run OPM, and load the results.
 Clone the scenario, change a control, run it, and compare the results.
@@ -304,6 +321,7 @@ Cancel a run and demonstrate the resulting state.
 Make sure that session identities, model revisions, units, times, and well controls remain consistent.
 
 Acceptance combines command logs, screenshots, native image results, and numerical comparisons.
+Preserve the agent's requests and responses across setup, simulation, result loading, comparison, and recovery.
 Record exact tool versions and the tested commit.
 The macOS demonstration is required even when isolated tests pass on another platform.
 
@@ -363,6 +381,9 @@ Run GitHub Actions and create a draft GitHub Release from the reviewed commit.
 Publish the release after the owner accepts the documented support boundary.
 
 Acceptance requires installation in a clean environment and the complete documented demonstration.
+Use the shipped launcher, documented configuration, and public MCP tools throughout that demonstration.
+Do not require a custom Python server or hidden record seeding for domain setup.
+The OPM release must satisfy the [launcher integration acceptance](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 User pages must describe only implemented behavior and known limits.
 Publish documentation updates through the existing GitHub Pages workflow.
 
