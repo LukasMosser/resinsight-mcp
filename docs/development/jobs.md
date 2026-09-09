@@ -10,6 +10,89 @@ A separate supervisor owns each command's lifetime.
 The resolver owns command selection through the public `CommandResolver` and `JobCommand` interfaces.
 Simulator preparation and numerical acceptance remain outside this package.
 
+## Configure a controller
+
+Import `DurableJobController` and `JobCommand` from `resinsight_mcp.jobs`.
+Pass the workspace path and resolver to `DurableJobController(workspace, resolver)`.
+The resolver receives a `JobRequest` and returns a `JobCommand`.
+Its `argv` must contain an absolute executable path followed by arguments.
+Its `working_directory` must be an absolute path to an existing directory.
+Commands run without a shell.
+
+The request must reference the exact model revision already stored in the workspace.
+The adapter remains responsible for preparing inputs and selecting the command.
+The default command-line server does not supply a job resolver.
+
+## Submit an existing request
+
+This example runs a small Python command using an existing prepared request.
+The JSON file must contain a valid `JobRequest` for a revision already stored in the workspace.
+The example makes no simulator preparation or execution claim.
+
+Save the following code as `submit_job.py`:
+
+```python
+import sys
+from pathlib import Path
+
+from resinsight_mcp.contracts.errors import Failure
+from resinsight_mcp.contracts.jobs import (
+    JobRef,
+    JobRequest,
+    ResourcePolicy,
+)
+from resinsight_mcp.jobs import (
+    DurableJobController,
+    JobCommand,
+)
+
+workspace = Path(sys.argv[1]).resolve(strict=True)
+request_path = Path(sys.argv[2])
+request = JobRequest.model_validate_json(
+    request_path.read_text(),
+)
+request = JobRequest(
+    prepared=request.prepared,
+    limits=request.limits,
+    resource_policy=ResourcePolicy.WALL_TIME_ONLY,
+)
+
+
+def resolve(request: JobRequest) -> JobCommand:
+    return JobCommand(
+        argv=(
+            str(Path(sys.executable).resolve()),
+            "-c",
+            "print('local job completed')",
+        ),
+        working_directory=workspace,
+    )
+
+
+controller = DurableJobController(workspace, resolve)
+submitted = controller.submit(request)
+if isinstance(submitted.outcome, Failure):
+    raise RuntimeError(submitted.outcome.error)
+job = submitted.outcome.value
+reference = JobRef(
+    session_id=job.model.session_id,
+    job_id=job.job_id,
+)
+print(reference.model_dump_json())
+print(controller.poll(reference).model_dump_json())
+```
+
+Run it from the installed project environment:
+
+```sh
+uv run --locked python submit_job.py /absolute/workspace /absolute/job-request.json
+```
+
+The returned submission records `queued`, even if the supervisor has already advanced the stored state.
+`poll(reference)` returns the current stored job without changing it.
+Methods return an `OperationResult` containing either `Success` or `Failure`.
+Constructor errors can raise `ContractError` directly.
+
 ## Submission and persistence
 
 Submission checks the explicit resource policy and exact stored model revision before resolving the command.
@@ -80,7 +163,8 @@ If completion wins the race, a successful job retains the late cancellation inte
 
 ## Logs and failures
 
-Each runtime directory contains separate stdout, stderr, and supervisor spool logs.
+The runtime path is `workspace/jobs-runtime/<session_id>/<job_id>/`.
+It contains `stdout.log`, `stderr.log`, and `supervisor.log`.
 Spool files remain mutable while their writers run.
 The supervisor publishes immutable workspace artifacts before recording the final execution state.
 `Job.logs` contains those artifact references.
@@ -93,6 +177,8 @@ A supervisor crash can leave both a live command and an outdated stored job.
 No automatic restart or recovery signal follows that crash.
 
 ## Reconciliation boundary
+
+Trusted operator code calls `reconcile(session_id)` only after the session's supervisors have stopped.
 
 Reconciliation acquires the session lease and all applicable supervisor leases before invoking workspace reconciliation.
 An active supervisor causes a busy failure.
@@ -116,7 +202,7 @@ Transport polling does not reconcile or mutate jobs.
 Prepared input records still require a simulator adapter or trusted Python setup.
 Result lineage and ResInsight result loading remain separate integration steps.
 There is no MCP reconciliation operation.
-The [user guide](../jobs.md) shows the narrow library workflow.
+The [user guide](../jobs.md) describes current agent operations and outcomes.
 The [P10 record](p10-evidence.md) links the maintained acceptance cases and review evidence.
 
 The ownership rules follow [POSIX process lifetime definitions](https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html).
