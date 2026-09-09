@@ -35,7 +35,7 @@ Trial 03 preserves the rejected unnormalized request and its observed camera.
 The runner uses `ResInsightWellService` directly as the schedule service's `CompletionSource`.
 It creates PROD, exports version zero, updates PROD, and publishes the earlier immutable export into a child schedule.
 The complete native readback contains 300 centers, 2,400 corners, 300 volumes, and seven property arrays.
-The original and updated trajectories end at 8,430 and 8,450 feet, with positive-down measured depth.
+The original and updated trajectories end at 8,430 and 8,450 feet, with positive-down depth and increasing measured depth.
 The complete [parent inputs](trial-04/inputs/parent/SPE1.DATA) and [child input](trial-04/inputs/child/SCHEDULE.DATA) remain available for inspection.
 
 The [completion export](trial-04/completion-export.json) preserves the three zero-based cells `(4, 4, 0..2)`.

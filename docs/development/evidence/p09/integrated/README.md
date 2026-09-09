@@ -11,6 +11,12 @@ Its [source record](final-validation.json) identifies the integrated fix and the
 The [independent depth review](reference-depth-independent-review.json) records the exact native serialization sources and four passing focused cases.
 The fix maps the native empty sentinel to an unset depth while preserving explicit values and malformed-value failures.
 
+The [maintained native acceptance](../service/README.md) records a separate 64-check trial with an independently accepted image and owned process cleanup.
+Its tested source is `d862ec79f0dcee26ff88782c3db241c0ba191f1d`.
+Integration commit `7825d2515691f9a34bf21aee9a362a843cadaf62` preserves identical contract, model, native service, workspace, and native runner source.
+The source comparison found only the separately merged MCP launcher differences.
+The native runner does not exercise MCP, so this evidence does not establish a combined agent workflow.
+
 ## Test collection repair
 
 The [first combined check](initial-collection.log) found duplicate `wells.test_service` modules.
@@ -33,6 +39,7 @@ Native operations use the existing session connection and mutation boundary.
 Input publication uses the existing import validation and revision boundary.
 The schedule review also checked parsed input preservation and native consistency tolerances.
 The combined guide review found no API or lifecycle mismatch and clarified support for multiple perforation intervals.
+The [final source review](final-source-review.json) accepted the full P09 scope and checked the proposed pull request claims against the recorded evidence.
 
 ## Browser review
 
@@ -41,3 +48,8 @@ Every page and local link returned HTTP 200, and the browser reported no page er
 The lead inspected all ten screenshots listed in the [visual review](../browser/guides/visual-review.json).
 The schedule example, lifecycle rules, operation map, ownership, and developer references remain readable without clipping or overlap.
 The record includes the exact source commit, browser version, capture script, and local server log.
+
+The [final browser record](../browser/final/review.json) covers seven visits across five pages and 57 local links.
+Every page and local link returned HTTP 200, with no page errors or document overflow.
+The lead inspected all seven screenshots in the [final visual review](../browser/final/visual-review.json).
+The native image, connection table, reproduction command, architecture, and acceptance records remain readable without clipping or overlap.

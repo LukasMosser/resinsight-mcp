@@ -4,6 +4,7 @@ P09 connects modeled well paths to fixed simulator input revisions.
 A completion connects a well to reservoir cells.
 Native edits and simulator input publication remain separate operations.
 This page records the maintained services and their bounded native acceptance.
+The [maintained service acceptance](#maintained-service-acceptance) records the final combined result.
 
 ## Native feasibility
 
@@ -84,7 +85,7 @@ The additional multisegment files remain evidence artifacts and are not accepted
 
 ## Bounded probe
 
-The manual probe is `tests/resinsight/wells/native_probe.py`.
+The manual probe is `tests/resinsight/modeled_wells/native_probe.py`.
 It is excluded from default pytest collection by its filename.
 It requires explicit executable, grid, output, and creation arguments.
 Each run requires a new output directory and records the launch command, process identity, observations, and cleanup.
@@ -106,7 +107,7 @@ That profile preserves the existing black-oil physics.
 
 ## Prepared input probe
 
-The manual probe `tests/resinsight/wells/input_probe.py` tests fixed inputs without a simulator run.
+The manual probe `tests/resinsight/modeled_wells/input_probe.py` tests fixed inputs without a simulator run.
 It imports the preserved SPE1 files through the model service and materializes the stored revision.
 It compares native dimensions, active cells, depths, volumes, and imported properties with the validated inspection.
 It then checks a modeled trajectory and the three reference completion factors described above.

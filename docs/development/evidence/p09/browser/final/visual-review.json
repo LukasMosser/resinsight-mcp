@@ -1,0 +1,26 @@
+{
+  "source_commit": "b0d3ed487407891935e279a3b8e0213491587e40",
+  "working_tree": " M docs/development/evidence/p09/integrated/README.md\n M docs/development/evidence/p09/service/README.md\n M docs/development/wells.md\n",
+  "reviewer": "lead agent",
+  "result": "accepted",
+  "screenshots": [
+    "native-acceptance.png",
+    "native-trial-record.png",
+    "native-slice.png",
+    "native-reproduction.png",
+    "native-connections.png",
+    "well-architecture.png",
+    "final-integration-evidence.png"
+  ],
+  "findings": [
+    "All seven screenshots were inspected.",
+    "The native image and its caption remain readable without clipping or overlap.",
+    "The connection table shows all three cells and complete factor and permeability-length values.",
+    "The reproduction command fits its code block.",
+    "The acceptance record, architecture, and integration pages remain readable."
+  ],
+  "page_visits": 7,
+  "unique_pages": 5,
+  "local_links": 57,
+  "page_errors": []
+}
