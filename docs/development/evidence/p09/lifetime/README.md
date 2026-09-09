@@ -92,5 +92,6 @@ The new lookup uses the same verified restoration boundary, while full public MC
 This trial establishes the bounded FIELD grid and well lifetime needed by the P13 launcher.
 It does not establish full P13 MCP acceptance or simulator execution.
 P11, P12, and the lead's clean launcher trial retain their separate evidence requirements.
-The browser URL policy blocked inspection of the local rendered guide.
-The strict documentation build passed, and the native screenshot was inspected directly.
+The approved [localhost browser review](browser/README.md) passed six rendered views and 102 local links.
+The lead inspected all six guide screenshots, including the embedded native result.
+The strict documentation build passed, and the native screenshot was also inspected directly.
