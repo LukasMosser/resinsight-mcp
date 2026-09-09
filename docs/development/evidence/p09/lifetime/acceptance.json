@@ -1,0 +1,33 @@
+{
+  "tested_repository_commit": "ce76239",
+  "tested_native_commit": "551dc02e19a1eb75ae462a0313f7a9a3101c2f45",
+  "native_proposal_commits": [
+    "196b92b",
+    "04bc03f",
+    "d3ad577",
+    "b782d02"
+  ],
+  "maintained_checks": 550,
+  "native_checks": 45,
+  "python": "Python 3.12.13",
+  "command": [
+    "/private/tmp/resinsight-well-rips-package/environment/bin/python",
+    "-m",
+    "tests.resinsight.modeled_wells.lifecycle_probe",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--source",
+    "/private/tmp/resinsight-well-lifetime/tests/models/imports/data/spe1",
+    "--output",
+    "/private/tmp/resinsight-well-lifetime-trial03",
+    "--native-commit",
+    "551dc02e19a1eb75ae462a0313f7a9a3101c2f45"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8"
+  },
+  "simulator_run": false,
+  "browser_review": "The browser URL policy rejected the local documentation file. No alternate access was attempted.",
+  "visual_review": "The restored PERMX J=5 slice shows PROD, three grid layers, and the 50 to 500 mD legend. Numeric readback establishes the hidden subsurface path.",
+  "installed_application_source_commit": "a60788d"
+}

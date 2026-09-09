@@ -1,0 +1,495 @@
+[
+  {
+    "label": "versions",
+    "file": "versions.json"
+  },
+  {
+    "label": "launch-request",
+    "file": "launch-request.json"
+  },
+  {
+    "label": "owned-connection",
+    "file": "owned-connection.json"
+  },
+  {
+    "label": "native_command",
+    "command": [
+      "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+      "--server",
+      "0",
+      "--portnumberfile",
+      "/private/tmp/resinsight-well-lifetime-trial01/client-logs/c9d02db272dd4df9aa536a273357169d.port"
+    ],
+    "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"
+  },
+  {
+    "label": "reject_parser",
+    "passed": true,
+    "request": {
+      "path": "/private/tmp/resinsight-well-lifetime-trial01/parser/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial01/parser/rejected.EGRID"
+    },
+    "error": "Prepared input grid export failed: Problem with keyword NOTAKEYWORD\nIn /private/tmp/resinsight-well-lifetime-trial01/parser/SPE1.DATA line 16\nUnknown keyword: NOTAKEYWORD"
+  },
+  {
+    "label": "reject_units",
+    "passed": true,
+    "request": {
+      "path": "/private/tmp/resinsight-well-lifetime-trial01/units/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial01/units/rejected.EGRID"
+    },
+    "error": "Prepared input grid export requires FIELD units."
+  },
+  {
+    "label": "reject_existing_export",
+    "passed": true,
+    "request": {
+      "path": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/opm-materialize-6zx09cjv/inputs/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial01/existing.EGRID"
+    },
+    "error": "The output requires a new absolute EGRID path in an existing directory."
+  },
+  {
+    "label": "load-request",
+    "file": "load-request.json"
+  },
+  {
+    "label": "before_field_grid",
+    "passed": true,
+    "units": [
+      "FEET",
+      ""
+    ]
+  },
+  {
+    "label": "available_properties",
+    "native": [
+      "DEPTH",
+      "DX",
+      "DY",
+      "DZ",
+      "TOPS",
+      "BOTTOM",
+      "riCELLVOLUME",
+      "Completion Type",
+      "INDEX_I",
+      "INDEX_J",
+      "INDEX_K",
+      "FAULTDIST",
+      "riNncCells"
+    ],
+    "inputs": [
+      "DX_1",
+      "DY_1",
+      "DZ_1",
+      "PORO",
+      "PERMX",
+      "PERMY",
+      "PERMZ"
+    ]
+  },
+  {
+    "label": "grid_dimensions",
+    "passed": true
+  },
+  {
+    "label": "active_cell_count",
+    "passed": true
+  },
+  {
+    "label": "cell_depths",
+    "passed": true,
+    "first_center": {
+      "x": 500.0,
+      "y": 500.0,
+      "z": 8335.0
+    }
+  },
+  {
+    "label": "cell_volumes",
+    "passed": true,
+    "first_volume_ft3": 20000000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DX",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DY",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DZ",
+    "category": "STATIC_NATIVE",
+    "first": 20.0,
+    "last": 50.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PORO",
+    "category": "INPUT_PROPERTY",
+    "first": 0.30000001192092896,
+    "last": 0.30000001192092896
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMX",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMY",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMZ",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "before",
+    "file": "before.json"
+  },
+  {
+    "label": "before-receipt",
+    "file": "before-receipt.json"
+  },
+  {
+    "label": "working_view_created",
+    "passed": true
+  },
+  {
+    "label": "create-request",
+    "file": "create-request.json"
+  },
+  {
+    "label": "created",
+    "file": "created.json"
+  },
+  {
+    "label": "export-before",
+    "file": "export-before.json"
+  },
+  {
+    "label": "reopened-project",
+    "file": "reopened-project.json"
+  },
+  {
+    "label": "same_owned_process",
+    "passed": true
+  },
+  {
+    "label": "restore-request",
+    "file": "restore-request.json"
+  },
+  {
+    "label": "after_field_grid",
+    "passed": true,
+    "units": [
+      "FEET",
+      ""
+    ]
+  },
+  {
+    "label": "available_properties",
+    "native": [
+      "DEPTH",
+      "DX",
+      "DY",
+      "DZ",
+      "TOPS",
+      "BOTTOM",
+      "riCELLVOLUME",
+      "Completion Type",
+      "INDEX_I",
+      "INDEX_J",
+      "INDEX_K",
+      "FAULTDIST",
+      "riNncCells"
+    ],
+    "inputs": [
+      "DX",
+      "DY",
+      "DZ",
+      "PORO",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "DX_1",
+      "DY_1",
+      "DZ_1",
+      "PORO_1",
+      "PERMX_1",
+      "PERMY_1",
+      "PERMZ_1",
+      "DX_2",
+      "DY_2",
+      "DZ_2",
+      "PORO_2",
+      "PERMX_2",
+      "PERMY_2",
+      "PERMZ_2",
+      "DX_3",
+      "DY_3",
+      "DZ_3",
+      "PORO_3",
+      "PERMX_3",
+      "PERMY_3",
+      "PERMZ_3",
+      "DX_4",
+      "DY_4",
+      "DZ_4",
+      "PORO_4",
+      "PERMX_4",
+      "PERMY_4",
+      "PERMZ_4",
+      "DX_5",
+      "DY_5",
+      "DZ_5",
+      "PORO_5",
+      "PERMX_5",
+      "PERMY_5",
+      "PERMZ_5",
+      "DX_6",
+      "DY_6",
+      "DZ_6",
+      "PORO_6",
+      "PERMX_6",
+      "PERMY_6",
+      "PERMZ_6"
+    ]
+  },
+  {
+    "label": "grid_dimensions",
+    "passed": true
+  },
+  {
+    "label": "active_cell_count",
+    "passed": true
+  },
+  {
+    "label": "cell_depths",
+    "passed": true,
+    "first_center": {
+      "x": 500.0,
+      "y": 500.0,
+      "z": 8335.0
+    }
+  },
+  {
+    "label": "cell_volumes",
+    "passed": true,
+    "first_volume_ft3": 20000000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DX",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DY",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DZ",
+    "category": "STATIC_NATIVE",
+    "first": 20.0,
+    "last": 50.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PORO",
+    "category": "INPUT_PROPERTY",
+    "first": 0.30000001192092896,
+    "last": 0.30000001192092896
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMX",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMY",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMZ",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "after",
+    "file": "after.json"
+  },
+  {
+    "label": "after-receipt",
+    "file": "after-receipt.json"
+  },
+  {
+    "label": "saved_model_readback_matches",
+    "passed": true
+  },
+  {
+    "label": "adopt-request",
+    "file": "adopt-request.json"
+  },
+  {
+    "label": "adopted",
+    "file": "adopted.json"
+  },
+  {
+    "label": "new_well_lifetime",
+    "passed": true
+  },
+  {
+    "label": "old_reference_rejected",
+    "passed": true
+  },
+  {
+    "label": "durable_export_retrieved",
+    "passed": true
+  },
+  {
+    "label": "export-after",
+    "file": "export-after.json"
+  },
+  {
+    "label": "completion_identity",
+    "passed": true
+  },
+  {
+    "label": "reference_completion_factors",
+    "passed": true
+  },
+  {
+    "label": "snapshot_camera",
+    "passed": true,
+    "requested": {
+      "position": [
+        10024.757657904418,
+        -10211.483981094905,
+        8771.662950666365
+      ],
+      "target": [
+        0.0,
+        -500.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "projection": "orthographic",
+      "field_of_view_degrees": null,
+      "parallel_scale": 6000.0
+    },
+    "observed": {
+      "position": [
+        10024.757657904422,
+        -10211.483981094907,
+        8771.662950666367
+      ],
+      "target": [
+        0.0,
+        -500.0,
+        0.0
+      ],
+      "up": [
+        -0.3821785217293499,
+        0.3702354429253077,
+        0.8466789795020722
+      ],
+      "projection": "orthographic",
+      "field_of_view_degrees": null,
+      "parallel_scale": 6000.0
+    }
+  },
+  {
+    "label": "snapshot_slice",
+    "passed": true,
+    "one_based_start": [
+      1,
+      5,
+      1
+    ],
+    "counts": [
+      10,
+      1,
+      3
+    ]
+  },
+  {
+    "label": "snapshot_property",
+    "passed": true,
+    "property": "PERMX",
+    "unit": "mD",
+    "legend": [
+      50,
+      500
+    ],
+    "vertical_exaggeration": 20
+  },
+  {
+    "label": "snapshot_legend",
+    "passed": true,
+    "minimum": 50.0,
+    "maximum": 500.0
+  },
+  {
+    "label": "snapshot_created",
+    "passed": true
+  },
+  {
+    "label": "cleanup_identity",
+    "passed": true
+  },
+  {
+    "label": "cleanup",
+    "file": "cleanup.json"
+  },
+  {
+    "label": "owned_process_absent",
+    "passed": true
+  }
+]

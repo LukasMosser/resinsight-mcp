@@ -1,0 +1,54 @@
+{
+  "binding": {
+    "model": {
+      "session_id": "session_675a471bb0084420a6d5a548168cb294",
+      "revision_id": "revision_73468126e1d6406fb97b448badd5b88c"
+    },
+    "case": {
+      "context": {
+        "session_id": "session_675a471bb0084420a6d5a548168cb294",
+        "connection_id": "connection_a2fe77c5680845abae50c2fd9092ef05",
+        "project_generation": 1
+      },
+      "kind": "case",
+      "object_id": "f236f3257f5548218877b292fd1e994b"
+    },
+    "receipt": {
+      "session_id": "session_675a471bb0084420a6d5a548168cb294",
+      "artifact_id": "artifact_b85d65beda24490682a1d9bbb62676f3"
+    }
+  },
+  "definition": {
+    "name": "PROD",
+    "coordinates": {
+      "length_unit": "ft",
+      "depth_direction": "positive_down",
+      "datum": "SPE1 local datum"
+    },
+    "targets": [
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 0.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8325.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8430.0
+      }
+    ],
+    "perforations": [
+      {
+        "start_md_ft": 8326.0,
+        "end_md_ft": 8424.0,
+        "diameter_ft": 0.5,
+        "skin": 0.0
+      }
+    ]
+  }
+}

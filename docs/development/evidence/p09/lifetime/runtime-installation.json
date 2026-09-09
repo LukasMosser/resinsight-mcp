@@ -1,0 +1,28 @@
+{
+  "native_commit": "e9baf8b9eaa86ba2d44b9c9f5c1e29faa8321a67",
+  "versions": {
+    "resinsight-mcp": "0.1.0",
+    "rips": "2026.9.0.1",
+    "opm": "2025.10",
+    "grpcio": "1.83.1",
+    "protobuf": "7.36.1"
+  },
+  "module_paths": {
+    "rips": "/private/tmp/resinsight-well-rips-package/environment/lib/python3.12/site-packages/rips/__init__.py",
+    "resinsight_mcp": "/private/tmp/resinsight-well-rips-package/environment/lib/python3.12/site-packages/resinsight_mcp/__init__.py",
+    "opm.io.parser": "/private/tmp/resinsight-well-rips-package/environment/lib/python3.12/site-packages/opm/io/parser/__init__.py"
+  },
+  "direct_urls": {
+    "resinsight-mcp": {
+      "url": "file:///private/tmp/resinsight-well-rips-package/application-dist/resinsight_mcp-0.1.0-py3-none-any.whl",
+      "archive_info": {}
+    },
+    "rips": {
+      "url": "file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+      "archive_info": {}
+    }
+  },
+  "dependency_install": "uv sync --offline --locked --no-dev --extra imports --extra resinsight --no-install-project --no-install-package rips",
+  "application_install": "uv pip install --offline --no-deps --reinstall APPLICATION_WHEEL MATCHING_RIPS_WHEEL",
+  "native_process_started": false
+}

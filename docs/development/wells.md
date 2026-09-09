@@ -268,7 +268,9 @@ The isolated client installation passed against native commit `e9baf8b9eaa86ba2d
 The [client record](evidence/p09/lifetime/client-installation.json) records the noneditable wheel provenance.
 The manual runner `tests/resinsight/modeled_wells/lifecycle_probe.py` checks one owned native process.
 It compares complete grid, well, and completion readback after project close/reopen and service reconnection.
-Native runtime acceptance remains pending until the trial record below is complete.
+The [persistent lifetime acceptance](evidence/p09/lifetime/README.md) passed all 45 native checks.
+That trial used the installed application and matching RIPS wheels with one verified owned process.
+Its full geometry, trajectory, completion, and cleanup records remain separate from final P13 launcher acceptance.
 
 ## Maintained service acceptance
 

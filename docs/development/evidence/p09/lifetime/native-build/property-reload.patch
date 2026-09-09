@@ -1,0 +1,41 @@
+diff --git a/ApplicationLibCode/ProjectDataModel/RimEclipseCase.cpp b/ApplicationLibCode/ProjectDataModel/RimEclipseCase.cpp
+index d9b03e6..c98cc5d 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimEclipseCase.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimEclipseCase.cpp
+@@ -845,11 +845,13 @@ RimDataFilterCollection* RimEclipseCase::dataFilterCollection() const
+ std::vector<QString> RimEclipseCase::additionalFiles() const
+ {
+     std::vector<QString> additionalFiles;
++    std::set<QString>    seenFiles;
+     for ( const RimEclipseInputProperty* inputProperty : m_inputPropertyCollection()->items() )
+     {
+         if ( inputProperty->fileName == gridFileName() ) continue;
+ 
+-        additionalFiles.push_back( inputProperty->fileName().path() );
++        const QString fileName = inputProperty->fileName().path();
++        if ( seenFiles.insert( fileName ).second ) additionalFiles.push_back( fileName );
+     }
+ 
+     return additionalFiles;
+diff --git a/ApplicationLibCode/ProjectDataModel/RimEclipseResultCase.cpp b/ApplicationLibCode/ProjectDataModel/RimEclipseResultCase.cpp
+index 8c7c10d..642c818 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimEclipseResultCase.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimEclipseResultCase.cpp
+@@ -311,7 +311,6 @@ bool RimEclipseResultCase::importGridAndResultMetaData( bool showTimeStepFilter
+         else
+         {
+             computeCachedData();
+-            loadAndSynchronizeInputProperties( false );
+         }
+ 
+         m_gridAndWellDataIsReadFromFile = true;
+@@ -337,6 +336,9 @@ bool RimEclipseResultCase::importGridAndResultMetaData( bool showTimeStepFilter
+ 
+         results( RiaDefines::PorosityModelType::MATRIX_MODEL )->computeCellVolumes();
+ 
++        // Create derived results first so input property names stay stable after reopening.
++        if ( !hasNestedHybridSidecars ) loadAndSynchronizeInputProperties( false );
++
+         // Nested hybrid grid: pre-compute the coarse aggregate of the key QC results.
+         computeNestedHybridCoarseAggregatesIfPresent();
+     }

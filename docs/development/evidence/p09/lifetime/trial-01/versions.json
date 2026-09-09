@@ -1,0 +1,16 @@
+{
+  "repository_commit": "a60788d32d935fe34cd0ac322afb5cece9a2cdb5",
+  "native_commit": "e9baf8b9eaa86ba2d44b9c9f5c1e29faa8321a67",
+  "versions": {
+    "resinsight-mcp": "0.1.0",
+    "rips": "2026.9.0.1",
+    "opm": "2025.10",
+    "grpcio": "1.83.1",
+    "protobuf": "7.36.1"
+  },
+  "rips_file": "/private/tmp/resinsight-well-rips-package/environment/lib/python3.12/site-packages/rips/__init__.py",
+  "rips_install": {
+    "url": "file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+    "archive_info": {}
+  }
+}
