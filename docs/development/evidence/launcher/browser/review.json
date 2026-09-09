@@ -1,0 +1,355 @@
+{
+  "reviewed_at": "2026-09-09T07:51:42.007Z",
+  "source_commit": "de6035b2a0fb927808f3b492c1f3c66baacea888",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "home.png"
+    },
+    {
+      "path": "/mcp/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "connection.png"
+    },
+    {
+      "path": "/sessions/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "sessions.png"
+    },
+    {
+      "path": "/tutorials/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "tutorials.png"
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/jobs/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "development.png"
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "launcher-configuration.png"
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "operation-map.png"
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:58524/development/evidence/launcher/images/P04_first_3D_View_PRESSURE_00_01_Jan_2015.png",
+          "complete": true,
+          "width": 1200,
+          "height": 800
+        }
+      ],
+      "screenshot": "acceptance.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/views/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/views/",
+      "status": 200
+    },
+    {
+      "path": "/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/",
+      "status": 200
+    },
+    {
+      "path": "/development/local-setup/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-resinsight/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p04/events.jsonl",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p06/observer/server-responses.jsonl",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/project-organization/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/releases/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/install-command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/install.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/native-build.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p04/P04%20first.rsp",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/project-input.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/result.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/events.jsonl",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/acceptance.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/saved-project.rsp",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/checks.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/checks.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/README.txt",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}

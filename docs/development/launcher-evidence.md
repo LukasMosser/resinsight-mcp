@@ -69,4 +69,9 @@ The 10 maintained launcher tests separately cover configuration failures, depend
 Their gRPC fixture does not claim native application acceptance.
 The [shared check record](evidence/launcher/checks.json) and [log](evidence/launcher/checks.log) record 350 passing tests, Ruff, ty, and strict MkDocs.
 The [package notes](evidence/launcher/README.txt) identify omitted local runtime files.
-The lead reviews shared user guides and browser presentation separately.
+The lead inspected the native snapshot and the updated user guides.
+The [browser record](evidence/launcher/browser/review.json) covers 13 pages and 49 local links at commit `de6035b2a0fb927808f3b492c1f3c66baacea888`.
+All pages and links returned HTTP 200, with no page errors, missing images, or document overflow.
+The [visual review](evidence/launcher/browser/visual-review.json) records eight inspected desktop screenshots.
+The [connection command](evidence/launcher/browser/connection.png) and [operation map](evidence/launcher/browser/operation-map.png) show the configured session boundary.
+The [guide commit log](evidence/launcher/browser/guide-commit.log) records the passing shared repository hook after integration.

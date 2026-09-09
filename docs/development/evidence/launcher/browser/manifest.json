@@ -1,0 +1,15 @@
+[
+  {"path":"/", "image":"home.png"},
+  {"path":"/mcp/", "image":"connection.png", "heading":"Enable ResInsight sessions"},
+  {"path":"/sessions/", "image":"sessions.png"},
+  {"path":"/tutorials/", "image":"tutorials.png"},
+  {"path":"/tutorials/sessions/"},
+  {"path":"/jobs/"},
+  {"path":"/development/", "image":"development.png"},
+  {"path":"/development/mcp/", "image":"launcher-configuration.png", "heading":"Shipped launcher configuration"},
+  {"path":"/development/sessions/"},
+  {"path":"/development/architecture/"},
+  {"path":"/development/implementation-plan/", "heading":"Ownership and integration"},
+  {"path":"/development/agent-workflows/", "image":"operation-map.png", "heading":"Current operation map"},
+  {"path":"/development/launcher-evidence/", "image":"acceptance.png", "heading":"Observed operations"}
+]
