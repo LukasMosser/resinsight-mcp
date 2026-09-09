@@ -1,0 +1,13 @@
+{
+  "python": "Python 3.12.13",
+  "opm": "2025.10",
+  "rips": "2026.9.0.1",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "model_service_commit": "711bdc89bf4909be82cb3ea77f2514d8e7b4f63f",
+  "probe_source": "tests/resinsight/wells/input_probe.py",
+  "result": "Incorrect test assumption about API depth sign stopped the probe before volume, property, or completion checks.",
+  "build_overlays": [
+    "P01 macOS grpc vcpkg configuration",
+    "P01 OpenZGY submodule modifications"
+  ]
+}

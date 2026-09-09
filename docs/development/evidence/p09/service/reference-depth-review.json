@@ -1,0 +1,16 @@
+{
+  "reviewed_commit": "302f837e06a588ef9218cb284b85729010b3409d",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "finding": "No blocking finding. The native optional field writes no text when unset. The generated RIPS parser preserves this as an empty string. The backend maps only the observed empty sentinel to None and rejects malformed values.",
+  "native_sources": [
+    "ApplicationLibCode/ProjectDataModel/Completions/RimWellPathCompletionSettings.cpp:103",
+    "Fwk/AppFwk/cafPdmScripting/cafPdmFieldScriptingCapability.h:391"
+  ],
+  "generated_sources": [
+    "rips/generated/generated_classes.py:4668",
+    "rips/pdmobject.py:220"
+  ],
+  "test_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -p no:cacheprovider tests/resinsight/modeled_wells/test_rips.py -q",
+  "test_result": "4 passed in 0.11s",
+  "native_processes_launched": 0
+}

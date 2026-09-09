@@ -12,6 +12,7 @@ Model import and job services provide additional domain components.
 Constrained model creation supplies validated layered inputs through the model import boundary.
 
 Model materialization supplies isolated stored inputs and validated child revisions for domain consumers.
+Well services create native paths, export fixed connections, and publish child schedules through separate operations.
 The supplied launcher exposes workspace tools and can configure native session services.
 
 Start with these pages:
@@ -30,6 +31,8 @@ Start with these pages:
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.
 - [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.
 - [Model materialization evidence](model-materialization-evidence.md) covers isolated inputs, child revision publication, and cleanup failures.
+- [Native wells](wells.md) explains prepared cases, native well edits, completion exports, and acceptance evidence.
+- [Well schedules](well-schedules.md) explains control overlays, FIELD values, immutable child revisions, and preservation checks.
 - [Platform proof](platform-proof.md) records completed P01 experiments and their runtime limits.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.
 - [Testing and review](testing-and-review.md) explains the evidence for a change.

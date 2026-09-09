@@ -275,17 +275,22 @@ Model creation has no public MCP operation yet and remains part of [issue #35](h
 
 ## P09: Connect wells to simulator inputs
 
-Create or update modeled well paths, completions, and schedules through an agreed ResInsight adapter interface.
+P09 implements native well operations and separate immutable schedule publication through Python services.
 A completion connects a well to reservoir cells.
-Combine exported connections with the intended simulator names and controls.
+`ResInsightWellService` loads validated fixed inputs and creates or updates modeled paths through the owned session connection.
+It exports snapshots containing the exact model revision, well version, trajectory, active cells, and FIELD connection values.
 
-Make depth direction and measured-depth intervals explicit.
-Reject controls, names, or intervals that do not match the prepared model.
-Do not rely on a visible filter unless completion export demonstrably consumes it.
+`OpmWellScheduleService` combines issued snapshots with controls at existing report indices.
+It checks model identity, coordinates, active cells, intervals, well roles, and simulator names before publication.
+It preserves unrequested inputs and delegates child publication to P07.
+Native edits alone do not change simulator inputs, and completion export does not use a visible view filter.
 
-Acceptance requires matching trajectories, active cells, exported connections, and simulator well records.
-Include a depth-sign regression and a rejected invalid completion.
-Attach screenshots and a readable connection summary to the PR.
+The [well guide](../wells.md), [native record](wells.md), and [schedule boundary](well-schedules.md) define current operations and evidence.
+Acceptance connects trajectories, active cells, exported connections, and parsed simulator well records.
+It includes positive-down depth checks, rejected invalid completions, a native screenshot, and a readable connection summary.
+The native owner supplies well records and services, while the schedule owner supplies input rewriting and schedule validation.
+The lead owns shared guides, combined integration checks, and the final feature PR.
+MCP wiring and staged-source recovery remain part of [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 
 ## P10: Supervise durable jobs
 

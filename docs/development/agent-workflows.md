@@ -11,6 +11,7 @@ This map now includes configured session access through the shipped launcher.
 It also includes constrained model creation through the P08 Python service.
 P07 supplies temporary stored inputs and validated child revision publication for domain services.
 Trusted domain services can now mutate native projects through the P04 session boundary.
+P09 supplies native well operations and separate child schedule publication through Python services.
 
 It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 The [implementation plan](implementation-plan.md) owns package scope and delivery status.
@@ -56,6 +57,8 @@ The [MCP guide](mcp.md) explains that boundary.
 | Import and prepare supported model inputs | Python-only: `OpmImportService.import_model()` and `OpmImportService.prepare()` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v2` profile. No MCP import tools exist. | [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
 | Stage stored inputs and publish child revisions | Python-only: `OpmImportService.materialize()` and `OpmImportService.derive_model()` | Valid stored parent, isolated pinned parser, and caller-owned changed inputs. Materialization owns temporary file cleanup. No MCP operation exists. | [Import interface](model-imports.md#materialization-and-child-revisions), [materialization evidence](model-materialization-evidence.md) |
 | Create a constrained layered model | Python-only: `SyntheticModelService.create_model()` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. No MCP creation tool exists. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
+| Load a fixed model and edit native wells | Python-only: `ResInsightWellService.load()`, `create()`, `update()`, and `inspect()` | P07 materialization, P04 session ownership, reviewed native commands, and the matching generated client. Model names, datum, and FIELD geometry must match. | [Well guide](../wells.md), [native evidence](wells.md) |
+| Export completions and publish a child schedule | Python-only: `ResInsightWellService.export()` and `OpmWellScheduleService.publish()` | A service-issued export from the exact parent revision and supported FIELD controls. Publication creates immutable inputs. No MCP well tools exist. | [Well guide](../wells.md#publish-a-child-schedule), [schedule boundary](well-schedules.md) |
 | Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
 | Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original local workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. No MCP reconciliation tool exists. | [Recovery boundary](jobs.md#reconciliation-boundary), [P10 evidence](p10-evidence.md) |
 
@@ -87,6 +90,13 @@ That trial does not supply a production MCP import operation, simulator adapter,
 Its supported input physics remain the bounded black-oil profile, with oil, water, gas, and dissolved gas.
 The [import guide](model-imports.md#supported-model-profile) owns the exact support restrictions.
 
+P09 keeps native well edits separate from simulator input publication.
+An exported completion snapshot fixes the source model, trajectory, well version, and active cells.
+Schedule publication consumes that snapshot, preserves unrequested inputs, and creates a child revision through P07.
+The native service retains staged working case sources until explicit closure.
+Launcher recovery must manage that source lifetime before integrated well tools become available.
+The [well guide](../wells.md) and [schedule boundary](well-schedules.md) define the current Python operations.
+
 P10 proves durable command supervision through configured production MCP transport.
 Its acceptance commands are small Python processes, not simulator runs.
 CPU and memory requests remain unenforced under `wall_time_only`, while the controller enforces the wall deadline.
@@ -115,7 +125,7 @@ The lead integration owner also owns the combined agent acceptance sequence and 
 | Extend the agent host | The launcher configures workspace and native session tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
 | Expose supported import and preparation | P07 has Python services without MCP tools. | P07 owner supplies import contracts and failure evidence. Lead integration owner owns catalog wiring and agent acceptance. |
 | Expose constrained model creation | P08 creates validated model revisions through its Python service. No MCP creation operation exists. | Lead integration owner owns catalog wiring and agent acceptance using the P08 service and its typed records. |
-| Create wells and edit simulator schedules | View well references do not implement well setup or simulator input edits. | P09 owner supplies native well and model input services. Evidence must connect geometry, completions, controls, and immutable revisions. |
+| Expose wells and simulator schedules | P09 implements native well and immutable schedule services through Python. No MCP well operations or launcher source-lifetime management exist. | Lead integration owner supplies catalog wiring and lifecycle management using P09 interfaces. Agent acceptance must preserve export identity and child revision lineage. |
 | Run OPM through prepared jobs | P10 supervises trusted commands. It does not prepare simulator commands or accept numerical results. | P11 owner supplies the OPM adapter and trusted command resolution. Lead integration owner joins preparation to the configured job tools. |
 | Load results with trusted lineage | General result import and native case binding remain absent. Acceptance setup does not implement these services. | P12 owner supplies result import and verified native loading. Lead integration owner connects those services to views and MCP. |
 | Compare revisions and results | No production result comparison operation exists. | P12 owner supplies comparison services and compatibility checks. Evidence must cover units, cell identity, report times, and revision relationships. |

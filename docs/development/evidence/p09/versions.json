@@ -1,0 +1,11 @@
+{
+  "python": "Python 3.12.13",
+  "opm": "2025.10",
+  "rips": "2026.9.0.1",
+  "native_commit": "6ad2833930b3c1f8cc2939b08584f89e79dfd082",
+  "python_commit": "66c1f39367afc0d1a740bdea01f9ce4a4ef87346",
+  "build_overlays": [
+    "P01 macOS grpc vcpkg configuration",
+    "P01 OpenZGY submodule modifications"
+  ]
+}

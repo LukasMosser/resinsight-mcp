@@ -1,0 +1,24 @@
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+209 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /private/tmp/resinsight-p09-wells/.venv/bin/python3 -m pytest -q
+
+==================================== ERRORS ====================================
+___________ ERROR collecting tests/resinsight/wells/test_service.py ____________
+import file mismatch:
+imported module 'wells.test_service' has this __file__ attribute:
+  /private/tmp/resinsight-p09-wells/tests/models/wells/test_service.py
+which is not the same as the test file we want to collect:
+  /private/tmp/resinsight-p09-wells/tests/resinsight/wells/test_service.py
+HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+=========================== short test summary info ============================
+ERROR tests/resinsight/wells/test_service.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 5.91s

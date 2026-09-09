@@ -1,0 +1,109 @@
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.cpp b/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.cpp
+index ed82e07..37deaef 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.cpp
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.cpp
+@@ -21,6 +21,8 @@
+ #include "RiaApplication.h"
+ #include "RiaKeyValueStoreUtil.h"
+ 
++#include "RigEclipseCaseData.h"
++
+ #include "WellPathCommands/RicImportWellPaths.h"
+ 
+ #include "RimEclipseCase.h"
+@@ -34,6 +36,69 @@
+ 
+ #include "cvfVector3.h"
+ 
++CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimWellPathCollection,
++                                   RimcWellPathCollection_createModeledWellPathForCase,
++                                   "CreateModeledWellPathForCase" );
++
++RimcWellPathCollection_createModeledWellPathForCase::RimcWellPathCollection_createModeledWellPathForCase( caf::PdmObjectHandle* self )
++    : caf::PdmObjectCreationMethod( self )
++{
++    CAF_PDM_InitObject( "Create Modeled Well Path For Case" );
++    CAF_PDM_InitScriptableField( &m_caseId, "CaseId", -1, "Case ID" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_name, "Name", "Name" );
++}
++
++std::expected<caf::PdmObjectHandle*, QString> RimcWellPathCollection_createModeledWellPathForCase::execute()
++{
++    auto collection = self<RimWellPathCollection>();
++    auto project = RimProject::current();
++    if ( !collection || !project )
++    {
++        return std::unexpected( QString( "A current project and well path collection are required." ) );
++    }
++    if ( m_name().trimmed().isEmpty() )
++    {
++        return std::unexpected( QString( "The well path name must not be empty." ) );
++    }
++    if ( project->wellPathByName( m_name() ) )
++    {
++        return std::unexpected( QString( "The well path name already exists." ) );
++    }
++
++    RimEclipseCase* selectedCase = nullptr;
++    for ( auto gridCase : project->allGridCases() )
++    {
++        if ( gridCase->caseId() == m_caseId() )
++        {
++            selectedCase = dynamic_cast<RimEclipseCase*>( gridCase );
++            break;
++        }
++    }
++    if ( !selectedCase || !selectedCase->eclipseCaseData() )
++    {
++        return std::unexpected( QString( "The selected Eclipse case is missing or has no loaded data." ) );
++    }
++    auto units = selectedCase->eclipseCaseData()->unitsType();
++    if ( units != RiaDefines::EclipseUnitSystem::UNITS_FIELD && units != RiaDefines::EclipseUnitSystem::UNITS_METRIC )
++    {
++        return std::unexpected( QString( "Modeled well creation requires FIELD or METRIC case units." ) );
++    }
++
++    auto well = std::make_unique<RimModeledWellPath>();
++    well->setName( m_name() );
++    well->setUnitSystem( units );
++    auto result = well.release();
++    collection->addWellPath( result );
++    collection->updateConnectedEditors();
++    project->scheduleCreateDisplayModelAndRedrawAllViews();
++    return result;
++}
++
++QString RimcWellPathCollection_createModeledWellPathForCase::classKeywordReturnedType() const
++{
++    return RimModeledWellPath::classKeywordStatic();
++}
++
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimWellPathCollection, RimcWellPathCollection_importWellPath, "ImportWellPath" );
+ 
+ //--------------------------------------------------------------------------------------------------
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.h b/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.h
+index 80d8341..7b7830c 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.h
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcWellPathCollection.h
+@@ -26,6 +26,21 @@
+ 
+ class RimEclipseResultCase;
+ 
++class RimcWellPathCollection_createModeledWellPathForCase : public caf::PdmObjectCreationMethod
++{
++    CAF_PDM_HEADER_INIT;
++
++public:
++    RimcWellPathCollection_createModeledWellPathForCase( caf::PdmObjectHandle* self );
++
++    std::expected<caf::PdmObjectHandle*, QString> execute() override;
++    QString classKeywordReturnedType() const override;
++
++private:
++    caf::PdmField<int> m_caseId;
++    caf::PdmField<QString> m_name;
++};
++
+ //==================================================================================================
+ ///
+ //==================================================================================================

@@ -1,0 +1,19 @@
+{
+  "label": "versions",
+  "repository_commit": "3c04fb81977ca52882cd1873b393253ca134a354",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "checks": 16,
+  "failed_checks": [],
+  "probe_errors": [
+    {
+      "label": "probe_error",
+      "error": "RuntimeError('status=\\'failure\\' error=Error(code=<ErrorCode.EXECUTION_FAILED: \\'execution_failed\\'>, message=\"The native well inspection returned invalid data: 1 validation error for Wellhead\\\\nreference_depth_ft\\\\n  Input should be a valid number [type=float_type, input_value=\\'\\', input_type=str]\\\\n    For further information visit https://errors.pydantic.dev/2.13/v/float_type\", effect=<MutationEffect.NOT_APPLIED: \\'not_applied\\'>)')"
+    }
+  ],
+  "cleanup": {
+    "label": "cleanup",
+    "pid": 94839,
+    "exit_code": -15,
+    "alive": false
+  }
+}

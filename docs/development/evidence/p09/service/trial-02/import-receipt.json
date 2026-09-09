@@ -1,0 +1,98 @@
+{
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_f425d0989232486596fc01c7ada619f2",
+        "revision_id": "revision_fa06ed0246154d30ab8a39ff84f9fc00"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_defc8f23956f41618ac0c2ee40ab5433",
+          "artifact_78460a56b3b94c2e92e1cec1dcfac24f",
+          "artifact_f95e9de7cc8c4893bfe744fdf5372da3",
+          "artifact_a948a839bf93469a8e70d18fcd12c906",
+          "artifact_77fb4090d0974c18b3071fe03fec2182"
+        ],
+        "entrypoint": "artifact_defc8f23956f41618ac0c2ee40ab5433"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local datum"
+      },
+      "parent": null
+    },
+    "backend": "opm_flow"
+  },
+  "record": {
+    "session_id": "session_f425d0989232486596fc01c7ada619f2",
+    "artifact_id": "artifact_dca738da5d5741c0ad4e3d22c910efa3"
+  },
+  "summary": {
+    "parser_version": "2025.10",
+    "support_profile": "spe1-field-v2",
+    "unit_system": "FIELD",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "wells": [
+      "PROD",
+      "INJ"
+    ],
+    "report_steps": 2,
+    "elapsed_days": 2.0,
+    "keywords": [
+      "COMPDAT",
+      "DENSITY",
+      "DIMENS",
+      "DISGAS",
+      "DRSDT",
+      "DX",
+      "DY",
+      "DZ",
+      "EQLDIMS",
+      "EQUIL",
+      "FIELD",
+      "FIPNUM",
+      "FOPR",
+      "GAS",
+      "GRID",
+      "INIT",
+      "OIL",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "PORO",
+      "PROPS",
+      "PVDG",
+      "PVTO",
+      "PVTW",
+      "REGIONS",
+      "ROCK",
+      "RPTRST",
+      "RSVD",
+      "RUNSPEC",
+      "SCHEDULE",
+      "SGOF",
+      "SOLUTION",
+      "START",
+      "SUMMARY",
+      "SWOF",
+      "TABDIMS",
+      "TITLE",
+      "TOPS",
+      "TSTEP",
+      "UNIFOUT",
+      "WATER",
+      "WBHP",
+      "WCONINJE",
+      "WCONPROD",
+      "WELLDIMS",
+      "WELSPECS"
+    ]
+  }
+}

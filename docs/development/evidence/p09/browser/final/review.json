@@ -1,0 +1,359 @@
+{
+  "reviewed_at": "2026-09-09T09:56:56.848Z",
+  "source_commit": "b0d3ed487407891935e279a3b8e0213491587e40",
+  "working_tree": " M docs/development/evidence/p09/integrated/README.md\n M docs/development/evidence/p09/service/README.md\n M docs/development/wells.md\n",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/wells/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/case-aware/modeled-wells.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        },
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/prepared-input-validated/prepared-input.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        },
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/service/trial-04/serviceP09_PROD_J5_slice_PERMX_%28mD%29_3D_View_PERMX.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        }
+      ],
+      "screenshot": "native-acceptance.png"
+    },
+    {
+      "path": "/development/evidence/p09/service/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/service/trial-04/serviceP09_PROD_J5_slice_PERMX_%28mD%29_3D_View_PERMX.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        }
+      ],
+      "screenshot": "native-trial-record.png"
+    },
+    {
+      "path": "/development/evidence/p09/service/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/service/trial-04/serviceP09_PROD_J5_slice_PERMX_%28mD%29_3D_View_PERMX.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        }
+      ],
+      "screenshot": "native-slice.png"
+    },
+    {
+      "path": "/development/evidence/p09/service/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:52006/development/evidence/p09/service/trial-04/serviceP09_PROD_J5_slice_PERMX_%28mD%29_3D_View_PERMX.png",
+          "complete": true,
+          "width": 1000,
+          "height": 800
+        }
+      ],
+      "screenshot": "native-reproduction.png"
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/connections/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "native-connections.png"
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "well-architecture.png"
+    },
+    {
+      "path": "/development/evidence/p09/integrated/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "final-integration-evidence.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/wells/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/baseline/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/baseline/application.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/native-build/build-command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/native-build/modeled-well-units.patch",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/case-aware/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/versions.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/case-aware/P09NOAUTO.inc",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/prepared-input-initial/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/prepared-input-property-names/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/prepared-input-validated/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/prepared-input-validated/versions.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/prepared-input-validated/P09INPUT.inc",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/connections/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/independent-numerical-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/independent-visual-lifecycle-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/versions.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/events.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-01/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-02/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-03/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/reference-depth-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/inputs/parent/SPE1.DATA",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/inputs/child/SCHEDULE.DATA",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-04/completion-export.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/trial-02/independent-numerical-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/service/shared-check.json",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-schedules/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/final-shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/final-validation.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/reference-depth-independent-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/initial-collection.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/module-rename-collection.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/independent-native-service-tests.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/integrated/independent-native-service-probe.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/browser/guides/review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p09/browser/guides/visual-review.json",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}

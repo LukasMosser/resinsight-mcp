@@ -1,0 +1,97 @@
+{
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+        "revision_id": "revision_0884810af4d340d6b2d84f0daafb34b7"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_7d4adb83be1d4666bc09002a7d4d5612"
+        ],
+        "entrypoint": "artifact_7d4adb83be1d4666bc09002a7d4d5612"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local datum"
+      },
+      "parent": {
+        "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+        "revision_id": "revision_66b3f10fc2ed4b82a6b25f5ba76a07a0"
+      }
+    },
+    "backend": "opm_flow"
+  },
+  "record": {
+    "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+    "artifact_id": "artifact_7082b86a85e44247bba098538ac811a4"
+  },
+  "summary": {
+    "parser_version": "2025.10",
+    "support_profile": "spe1-field-v2",
+    "unit_system": "FIELD",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "wells": [
+      "PROD",
+      "INJ"
+    ],
+    "report_steps": 2,
+    "elapsed_days": 2.0,
+    "keywords": [
+      "COMPDAT",
+      "DENSITY",
+      "DIMENS",
+      "DISGAS",
+      "DRSDT",
+      "DX",
+      "DY",
+      "DZ",
+      "EQLDIMS",
+      "EQUIL",
+      "FIELD",
+      "FIPNUM",
+      "FOPR",
+      "GAS",
+      "GRID",
+      "INIT",
+      "OIL",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "PORO",
+      "PROPS",
+      "PVDG",
+      "PVTO",
+      "PVTW",
+      "REGIONS",
+      "ROCK",
+      "RPTRST",
+      "RSVD",
+      "RUNSPEC",
+      "SCHEDULE",
+      "SGOF",
+      "SOLUTION",
+      "START",
+      "SUMMARY",
+      "SWOF",
+      "TABDIMS",
+      "TITLE",
+      "TOPS",
+      "TSTEP",
+      "UNIFOUT",
+      "WATER",
+      "WBHP",
+      "WCONINJE",
+      "WCONPROD",
+      "WELLDIMS",
+      "WELSPECS"
+    ]
+  }
+}

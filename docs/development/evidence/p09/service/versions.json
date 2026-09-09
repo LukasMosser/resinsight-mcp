@@ -1,0 +1,17 @@
+{
+  "python": "3.12.13",
+  "packages": {
+    "opm": "2025.10",
+    "rips": "2026.9.0.1",
+    "pydantic": "2.13.5",
+    "psutil": "7.2.2",
+    "Pillow": "12.3.0",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2",
+    "mkdocs": "1.6.1"
+  },
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "generated_rips_path": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python",
+  "uv": "0.9.18 (Homebrew 2025-12-16)"
+}
