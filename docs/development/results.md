@@ -111,6 +111,8 @@ The maintained tests use real workspace storage and controlled native interfaces
 They cover known scenario differences, wrong mappings and times, wrong values and paths, fresh bindings, and saved image provenance.
 They do not launch ResInsight or OPM Flow.
 The lead records separate native acceptance before claiming application behavior.
+The [lead integration record](evidence/p12/integration/environment.json) identifies the tested source, runtime versions, and remaining acceptance gates.
+The [shared check log](evidence/p12/integration/shared-check.log) records 600 passing maintained tests, Ruff, ty, and strict documentation checks.
 
 Source inspection used native commit `119850cfcfc761b5d4deffce42910c74e5853214` and its generated RIPS client.
 The implementation uses `Project.load_case`, `Case.create_view`, and `Project.import_summary_case`.
