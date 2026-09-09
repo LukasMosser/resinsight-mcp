@@ -9,10 +9,17 @@ import rips
 
 from resinsight_mcp.contracts.engineering import CellIndex, ReportTime
 from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, MutationEffect
-from resinsight_mcp.contracts.observations import CellRangeFilter, Legend, Property, ViewContext
+from resinsight_mcp.contracts.observations import (
+    Camera,
+    CellRangeFilter,
+    Legend,
+    Property,
+    ViewContext,
+)
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess
 from resinsight_mcp.resinsight.sessions.rips import RipsApplication
 
+from ._backend import NativeViewState
 from ._camera import camera_matches, read_camera, view_matrix
 from ._properties import PROPERTY_CATEGORIES
 
@@ -132,7 +139,42 @@ def _one[T: _Object](objects: list[T], address: str) -> T:
     return matches[0]
 
 
+def _read_camera(view: _View) -> Camera:
+    return read_camera(
+        view.camera_matrix,
+        view.camera_point_of_interest,
+        view.perspective_projection,
+        view.actual_camera_field_of_view_y_degrees,
+        view.actual_camera_parallel_projection_height,
+    )
+
+
 class RipsViewBackend:
+    def list_views(
+        self, access: ApplicationAccess, case_address: str
+    ) -> tuple[NativeViewState, ...]:
+        if not isinstance(access.application, RipsApplication):
+            raise _fail("The view backend requires the session's native RipsApplication.")
+        application = access.application
+
+        def discover() -> tuple[NativeViewState, ...]:
+            project = cast(_Project, application.project())
+            case = _one(project.cases(), case_address)
+            return tuple(
+                NativeViewState(
+                    address=str(view.address()),
+                    camera=_read_camera(view),
+                    vertical_exaggeration=view.grid_z_scale,
+                )
+                for view in project.views()
+                if view.case().address() == case.address()
+            )
+
+        try:
+            return application.call(discover)
+        except (AttributeError, ValueError, TypeError) as error:
+            raise _fail(f"The native views could not be read: {error}") from error
+
     def select(self, access: ApplicationAccess, context: ViewContext) -> "RipsNativeView":
         if not isinstance(access.application, RipsApplication):
             raise _fail("The view backend requires the session's native RipsApplication.")
@@ -421,13 +463,7 @@ class RipsNativeView:
                 **context.model_dump(),
                 "property": Property(name=colors.result_variable, unit=context.property.unit),
                 "report_time": self._report(view.current_time_step),
-                "camera": read_camera(
-                    view.camera_matrix,
-                    view.camera_point_of_interest,
-                    view.perspective_projection,
-                    view.actual_camera_field_of_view_y_degrees,
-                    view.actual_camera_parallel_projection_height,
-                ),
+                "camera": _read_camera(view),
                 "vertical_exaggeration": view.grid_z_scale,
                 "legend": Legend(minimum=legend.actual_minimum, maximum=legend.actual_maximum),
                 "filters": tuple(filters),

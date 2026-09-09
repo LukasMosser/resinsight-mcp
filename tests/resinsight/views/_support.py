@@ -14,6 +14,7 @@ from resinsight_mcp.resinsight.sessions._backend import (
     NativeObject,
     ProjectSnapshot,
 )
+from resinsight_mcp.resinsight.views._backend import NativeViewState
 
 
 @dataclass
@@ -96,6 +97,12 @@ class ControlledView:
 class ControlledBackend:
     native: ControlledView
     selections: list[tuple[NativeObject, ...]] = field(default_factory=list)
+    discovered: tuple[NativeViewState, ...] = ()
+
+    def list_views(
+        self, access: ApplicationAccess, case_address: str
+    ) -> tuple[NativeViewState, ...]:
+        return self.discovered
 
     def select(self, access: ApplicationAccess, context: ViewContext) -> ControlledView:
         self.selections.append(access.objects)

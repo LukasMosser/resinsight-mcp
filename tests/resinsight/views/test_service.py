@@ -26,6 +26,7 @@ from resinsight_mcp.contracts.observations import (
 from resinsight_mcp.contracts.sessions import AttachRequest, ConnectionState, ObjectRef
 from resinsight_mcp.resinsight.sessions.service import ResInsightSessionService
 from resinsight_mcp.resinsight.views import _capture
+from resinsight_mcp.resinsight.views._backend import NativeViewState
 from resinsight_mcp.resinsight.views.service import ResInsightViewService
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
@@ -106,6 +107,25 @@ def test_apply_requires_trusted_result_binding(harness: Harness) -> None:
         )
         == observation
     )
+
+
+def test_discovery_reports_existing_scene_version_without_advancing_it(harness: Harness) -> None:
+    harness.bind()
+    observation = value(value(harness.service.apply(request(harness.context))).observation)
+    harness.backend.discovered = (
+        NativeViewState(
+            address="view",
+            camera=observation.context.camera,
+            vertical_exaggeration=observation.context.vertical_exaggeration,
+        ),
+    )
+    rows = value(
+        harness.service.list_views(LoadedResult(case=harness.context.case, result=harness.result))
+    )
+    assert rows[0].scene_version == observation.context.scene_version == 1
+    assert harness.backend.native.current == observation.context
+    next_observation = value(value(harness.service.apply(request(observation.context))).observation)
+    assert next_observation.context.scene_version == 2
 
 
 @pytest.mark.parametrize("reference", ["case", "view", "well"])
