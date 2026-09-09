@@ -61,6 +61,7 @@ nav:
       - Model numerical evidence: development/evidence/p08/README.md
       - Model native evidence: development/evidence/p08-native/README.md
       - Native wells and evidence: development/wells.md
+      - Persistent well lifetime: development/evidence/p09/lifetime/README.md
       - Immutable well schedules: development/well-schedules.md
       - Job implementation: development/jobs.md
       - Docker job ownership: development/docker-jobs.md

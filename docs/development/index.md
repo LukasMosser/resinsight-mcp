@@ -38,6 +38,7 @@ Start with these pages:
 - [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.
 - [Model materialization evidence](model-materialization-evidence.md) covers isolated inputs, child revision publication, and cleanup failures.
 - [Native wells](wells.md) explains prepared cases, native well edits, completion exports, and acceptance evidence.
+- [Persistent well lifetime](evidence/p09/lifetime/README.md) records full FIELD case and well restoration across two project reopen cycles.
 - [Well schedules](well-schedules.md) explains control overlays, FIELD values, immutable child revisions, and preservation checks.
 - [Platform proof](platform-proof.md) records completed P01 experiments and their runtime limits.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.
