@@ -1,0 +1,9 @@
+[
+  {"path":"/development/", "image":"development.png"},
+  {"path":"/development/sessions/", "heading":"Trusted domain mutations", "image":"sessions.png"},
+  {"path":"/development/agent-workflows/", "heading":"Current operation map", "image":"operation-map.png"},
+  {"path":"/development/agent-workflows/", "heading":"Important boundaries", "image":"operation-boundaries.png"},
+  {"path":"/development/implementation-plan/", "heading":"Ownership and integration", "image":"ownership.png"},
+  {"path":"/development/implementation-plan/", "heading":"P04: Manage sessions and projects", "image":"p04.png"},
+  {"path":"/development/session-mutations/", "image":"mutations-navigation.png"}
+]

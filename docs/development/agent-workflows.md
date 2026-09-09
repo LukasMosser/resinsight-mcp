@@ -10,6 +10,7 @@ The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
 This map now includes configured session access through the shipped launcher.
 It also includes constrained model creation through the P08 Python service.
 P07 supplies temporary stored inputs and validated child revision publication for domain services.
+Trusted domain services can now mutate native projects through the P04 session boundary.
 
 It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 The [implementation plan](implementation-plan.md) owns package scope and delivery status.
@@ -48,6 +49,7 @@ The [MCP guide](mcp.md) explains that boundary.
 | Launch, attach, detach, or close ResInsight | Launcher sessions: `application_launch`, `application_attach`, `application_close` | Session service and native backend. Launch needs an application executable. Attach needs an explicit local endpoint. Termination requires verified ownership. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
 | Inspect, open, save, and close projects | Launcher sessions: `project_inspect`, `project_open`, `project_save`, `project_close` | Session binding and a connected native application. Mutations require the expected project context. | [Session guide](../sessions.md), [launcher evidence](launcher-evidence.md) |
 | Navigate known project objects | Launcher sessions: `project_inspect`, `object_resolve` | Service-issued object references and the current project context. This is object discovery and resolution, not general graphical navigation. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
+| Mutate a native project through trusted domain code | Python-only: session service `mutate_project()` | An explicit current application context and trusted Python callback. Session ownership spans the mutation and reference refresh. No MCP callback tool exists. | [Mutation contract and evidence](session-mutations.md) |
 | Apply camera, property, report step, legend, and display filters | Configured: `view_apply` | `Bindings.views`, a connected session, trusted result binding, patched ResInsight, and its matching generated RIPS client. | [View guide](../views.md), [view boundary](views.md), [P06 evidence](p06-evidence.md) |
 | Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
 | Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
@@ -62,6 +64,11 @@ Their configuration requirements remain part of each workflow.
 A tool's presence does not establish native capabilities or simulator readiness.
 
 ## Important boundaries
+
+The P04 mutation boundary supplies fresh references after trusted domain edits, including creation in an empty project.
+It does not implement well geometry, simulator inputs, or an unrestricted agent execution tool.
+P09 owns its domain callback and must reacquire native access after the mutation returns.
+[Issue #41](https://github.com/LukasMosser/resinsight-mcp/issues/41) records the agreed interface and focused library evidence.
 
 P06 requires a trusted loader to establish the relationship between stored results and loaded native cases.
 `ResInsightViewService.bind_result()` checks the supplied stored record, but cannot prove file provenance from a caller's case identifier.

@@ -1,0 +1,30 @@
+{
+  "source_commit": "f6382ec5d1b9f2243ddd472bc385f1f90bf3050d",
+  "main_base": "cab6aaa42b3e57fc29f7df51a89b2aa28b834185",
+  "working_state": "M docs/development/agent-workflows.md\n M docs/development/implementation-plan.md\n M docs/development/index.md\n M docs/development/sessions.md\n M mkdocs.yml\n?? docs/development/evidence/session-mutations/browser/integration/",
+  "mkdocs": "1.6.1",
+  "mkdocs_material": "9.7.7",
+  "build_command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked mkdocs build --strict",
+  "build_exit_code": 0,
+  "browser_helper": "/private/tmp/resinsight-launcher-doc-review.cjs",
+  "table_helper": "/private/tmp/session-mutations-table-review.cjs",
+  "table_helper_change": "Before capture, scroll the row matching manifest.row into the center of the viewport.",
+  "node_executable": "/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "node_path": "/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules",
+  "screenshots_inspected": [
+    "development.png",
+    "sessions.png",
+    "operation-map.png",
+    "operation-boundaries.png",
+    "ownership.png",
+    "p04.png",
+    "mutations-navigation.png",
+    "table/mutation-row.png"
+  ],
+  "finding": "Navigation, links, ownership text, callback limits, and the final operation row are readable without clipping or overlap.",
+  "follow_up": "The long table method label was shortened before the final row capture.",
+  "pages_checked": 7,
+  "local_links_checked": 38,
+  "page_errors": [],
+  "network_scope": "Only the local documentation origin was allowed."
+}
