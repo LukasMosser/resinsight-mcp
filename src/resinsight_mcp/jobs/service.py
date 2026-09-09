@@ -15,6 +15,7 @@ from resinsight_mcp.contracts._base import Record
 from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, MutationEffect
 from resinsight_mcp.contracts.identifiers import JobId, SessionId
 from resinsight_mcp.contracts.jobs import (
+    DockerExecution,
     Job,
     JobRef,
     JobRequest,
@@ -22,10 +23,12 @@ from resinsight_mcp.contracts.jobs import (
     JobSubmission,
     ResourcePolicy,
 )
+from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.workspace import RecoveryReport
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._common import event, job_directory, lease, operation, require, update
+from ._container import ContainerOwnershipError, OwnedContainer
 
 TERMINAL = frozenset({JobState.SUCCEEDED, JobState.FAILED, JobState.CANCELED})
 
@@ -35,6 +38,8 @@ class JobCommand(Record):
 
     argv: Annotated[tuple[str, ...], Field(min_length=1)]
     working_directory: Path
+    execution: DockerExecution | None = None
+    run_metadata: ArtifactRef | None = None
 
     @model_validator(mode="after")
     def check_paths(self) -> Self:
@@ -69,13 +74,6 @@ class DurableJobController:
 
     @operation
     def submit(self, request: JobRequest) -> Job:
-        if request.resource_policy != ResourcePolicy.WALL_TIME_ONLY:
-            raise ContractError(
-                Error(
-                    code=ErrorCode.UNSUPPORTED_OPERATION,
-                    message="Select wall_time_only. CPU and memory enforcement is unavailable.",
-                )
-            )
         stored = require(self.store.get_revision(request.prepared.revision.model))
         if stored != request.prepared.revision:
             raise ContractError(
@@ -85,6 +83,13 @@ class DurableJobController:
                 )
             )
         command = self.resolver(request)
+        if request.resource_policy != ResourcePolicy.WALL_TIME_ONLY and command.execution is None:
+            raise ContractError(
+                Error(
+                    code=ErrorCode.UNSUPPORTED_OPERATION,
+                    message="Select wall_time_only. CPU and memory enforcement is unavailable.",
+                )
+            )
         if not command.working_directory.is_dir():
             raise ContractError(
                 Error(code=ErrorCode.INVALID_PATH, message="The run directory is missing.")
@@ -100,6 +105,8 @@ class DurableJobController:
                 working_directory=str(command.working_directory),
                 submitted_at=datetime.now(UTC),
                 resource_policy=request.resource_policy,
+                execution=command.execution,
+                run_metadata=command.run_metadata,
             ),
         )
         job = event(job, "Submission recorded before supervisor launch.")
@@ -200,4 +207,18 @@ class DurableJobController:
                         )
                     )
                 locks.enter_context(lease(runtime / "supervisor.lock"))
+            try:
+                for job in selected:
+                    if job.submission is not None and job.submission.execution is not None:
+                        container = OwnedContainer(job.submission, job.container_id)
+                        if container.find() is not None:
+                            container.stop()
+            except ContainerOwnershipError as error:
+                raise ContractError(
+                    Error(
+                        code=ErrorCode.EXECUTION_FAILED,
+                        message=str(error),
+                        effect=MutationEffect.UNKNOWN,
+                    )
+                ) from error
             return require(self.store.reconcile(session_id, expected_jobs=selected))
