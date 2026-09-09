@@ -25,6 +25,7 @@ nav:
   - ResInsight views: views.md
   - Local jobs: jobs.md
   - Constrained models: synthetic-models.md
+  - Modeled wells and schedules: wells.md
   - Security: security.md
   - License: license.md
   - Development:
@@ -56,6 +57,8 @@ nav:
       - Constrained models: development/synthetic-models.md
       - Model numerical evidence: development/evidence/p08/README.md
       - Model native evidence: development/evidence/p08-native/README.md
+      - Native wells and evidence: development/wells.md
+      - Immutable well schedules: development/well-schedules.md
       - Job implementation: development/jobs.md
       - Job evidence: development/p10-evidence.md
       - Architecture: development/architecture.md

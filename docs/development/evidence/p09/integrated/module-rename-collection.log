@@ -1,0 +1,25 @@
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+209 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /private/tmp/resinsight-p09-wells/.venv/bin/python3 -m pytest -q
+
+==================================== ERRORS ====================================
+___________ ERROR collecting tests/resinsight/wells/test_service.py ____________
+ImportError while importing test module '/private/tmp/resinsight-p09-wells/tests/resinsight/wells/test_service.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/importlib/__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'wells.test_service'
+=========================== short test summary info ============================
+ERROR tests/resinsight/wells/test_service.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.58s

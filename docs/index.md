@@ -26,6 +26,7 @@ The [tutorials](tutorials/index.md) use implemented tools and identify the setup
 
 The [session reference](sessions.md), [view reference](views.md), and [job reference](jobs.md) describe outcomes and supported limits.
 The [model guide](synthetic-models.md) describes constrained model creation through the Python service and its fixed physics template.
+The [well guide](wells.md) describes native well edits and separate publication of immutable simulator schedules through Python services.
 
 ## Know where information goes
 

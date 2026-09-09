@@ -138,3 +138,4 @@ The normal repository hook also passed during the local P08 dependency integrati
 These tests use the OPM library and repository fixture processes.
 They do not launch ResInsight or a simulator.
 The lead owns the combined browser review and native-export acceptance.
+The [combined review](evidence/p09/integrated/README.md) records merged prerequisites, test collection repairs, and independent service findings.
