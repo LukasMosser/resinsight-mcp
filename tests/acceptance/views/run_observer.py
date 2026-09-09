@@ -202,6 +202,8 @@ def command(codex: Path, observer: Path, evidence: Path, manifest: Path, trial: 
         "mcp_servers.p06_views.env.PYTHONPATH": json.dumps(python_path),
         "mcp_servers.p06_views.required": "true",
         "mcp_servers.p06_views.enabled_tools": '["project_inspect","view_apply","view_render"]',
+        "mcp_servers.p06_views.tools.view_apply.approval_mode": '"approve"',
+        "mcp_servers.p06_views.tools.view_render.approval_mode": '"approve"',
     }
     for key, value in settings.items():
         result.extend(("-c", f"{key}={value}"))

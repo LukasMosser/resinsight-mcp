@@ -2,6 +2,7 @@
 
 import base64
 import json
+import tomllib
 from datetime import UTC, datetime
 from io import BytesIO
 from pathlib import Path
@@ -362,3 +363,28 @@ def test_command_preserves_generated_native_client_path(
     paths = json.loads(setting.split("=", 1)[1]).split(observer.os.pathsep)
     assert native_python in paths
     assert paths.index(native_python) < len(paths) - 1
+
+
+def test_command_limits_preapproval_to_owned_view_operations(
+    tmp_path: Path, trial: tuple[observer.Trial, ProjectState]
+) -> None:
+    manifest, _ = trial
+    invocation = observer.command(
+        tmp_path / "codex",
+        tmp_path / "observer",
+        tmp_path / "evidence",
+        tmp_path / "trial.json",
+        manifest,
+    )
+    configuration = tomllib.loads(
+        "\n".join(invocation[index + 1] for index, item in enumerate(invocation) if item == "-c")
+    )
+    assert set(configuration["mcp_servers"]) == {"p06_views"}
+    server = configuration["mcp_servers"]["p06_views"]
+    assert server["tools"] == {
+        "view_apply": {"approval_mode": "approve"},
+        "view_render": {"approval_mode": "approve"},
+    }
+    assert set(server["enabled_tools"]) == {"project_inspect", "view_apply", "view_render"}
+    assert "default_tools_approval_mode" not in server
+    assert "approval_policy" not in configuration

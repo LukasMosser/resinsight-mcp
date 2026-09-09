@@ -70,9 +70,15 @@ The trusted setup binds that case to the stored result before the MCP server sta
 The planned isolated Codex observer will use the existing authenticated OpenAI account for model inference.
 Its planned payload contains public SPE1-derived images, required view metadata, and issued test identifiers.
 The observer cannot read simulator decks, output files, unrelated workspace files, or secrets through its supplied tools.
-The owner accepted model-provider sharing in general.
-Automatic approval review requires exact payload confirmation before this trial, so execution remains paused.
+The owner approved the exact six public SPE1 images, view metadata, and test identifiers for this isolated provider transfer.
 The [data boundary](../views.md#data-boundary) describes the product's provider configuration.
+
+Trial 03 reached project inspection but captured no images.
+The client reported `MCP tool call requires approval, but approval policy is never`.
+The isolated runner now uses [per-tool approval settings](https://learn.chatgpt.com/docs/extend/mcp) for `view_apply` and `view_render`, which the owner authorized.
+These settings apply only to this invocation and its owned trial views.
+The exact tool allowlist, read-only shell sandbox, and disabled unrelated tools remain unchanged.
+The repair does not establish image acceptance, which requires another observer run.
 
 The observer must resolve the case, two views, and a well through `project_inspect`.
 It must apply five complete requests and render the unchanged control view once.
