@@ -97,3 +97,8 @@ The [environment record](evidence/run-result-contracts/environment.json) identif
 The [browser record](evidence/run-result-contracts/review.json) covers four rendered pages and their local links.
 The lead inspected every saved screenshot and found readable text and tables without page overflow.
 The [contract page](evidence/run-result-contracts/run-result-contracts.png) and [delivery plan](evidence/run-result-contracts/p13-delivery.png) show representative layouts.
+
+The geometry follow-up also passed the [shared command](evidence/run-result-contracts/geometry/shared-check.log) with 527 tests.
+Its [environment record](evidence/run-result-contracts/geometry/environment.json) identifies source commit `4d66685` and the tested tools.
+The lead inspected both updated screenshots in the [geometry browser record](evidence/run-result-contracts/geometry/review.json).
+The [geometry contract image](evidence/run-result-contracts/geometry/geometry-contract.png) shows the comparison rules.

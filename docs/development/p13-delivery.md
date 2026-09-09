@@ -13,6 +13,7 @@ One contract owner defines Docker execution identity, output roles, numerical da
 P11 produces those records, while P12 validates and consumes them.
 Workspace storage checks record relationships and immutable artifact ownership.
 Domain services remain responsible for parsing and numerical acceptance.
+
 Review found that separate runs receive different grid identifiers, even when their physical geometry matches.
 The shared dataset therefore records active-cell geometry for explicit comparison, with one common contract owner.
 
@@ -47,6 +48,7 @@ The transport must deliver native grid and summary plot images with their observ
 
 Prepared well-editing grids currently keep their geometry in native memory.
 P13 save and reopen acceptance requires a supported file-backed grid path.
+The follow-up is recorded in [issue #48](https://github.com/LukasMosser/resinsight-mcp/issues/48).
 The P07 and P09 follow-up must preserve all corners, properties, trajectories, and completions across reopening.
 It must reject stale references and verify restored objects before adopting them.
 The lead owns launcher composition of the reviewed follow-up interfaces.

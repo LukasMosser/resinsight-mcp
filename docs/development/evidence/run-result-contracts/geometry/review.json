@@ -1,0 +1,60 @@
+{
+  "reviewed_at": "2026-09-09T15:51:58.045Z",
+  "source_commit": "4d66685d6aa24c62103368a43bb83bdd8ba5a122",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/run-result-contracts/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "geometry-contract.png"
+    },
+    {
+      "path": "/development/p13-delivery/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "geometry-delivery.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/evidence/run-result-contracts/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/run-result-contracts/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/run-result-contracts/review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/run-result-contracts/run-result-contracts.png",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/run-result-contracts/p13-delivery.png",
+      "status": 200
+    },
+    {
+      "path": "/development/run-result-contracts/",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
