@@ -157,3 +157,12 @@ Their native protocol fixture covers launch, project changes, stale references, 
 Model launcher tests exercise real parser validation and public import, creation, inspection, cloning, preparation, and retrieval after reconnection.
 They also verify unavailable dependencies before workspace creation and clear failures for unsupported inputs or backends.
 The separate [launcher record](launcher-evidence.md) proves the corresponding real application path from a noneditable installation.
+
+## Model launcher evidence
+
+The model configuration passed five focused public MCP tests and 532 shared repository tests.
+The [model log](evidence/model-launcher/model-tools.log), [shared check log](evidence/model-launcher/shared-check.log), and [environment record](evidence/model-launcher/environment.json) preserve that evidence.
+The tests create and clone a model, disconnect, reopen its workspace, inspect inputs, and prepare the exact child revision.
+They also exercise imported inputs, invalid units, absent sessions, unavailable dependencies, disabled tools, and unsupported backends.
+The [browser record](evidence/model-launcher/review.json) and [model tutorial image](evidence/model-launcher/model-tutorial.png) support the guide review.
+This model slice leaves native wells, simulation, and result composition within issue #35.
