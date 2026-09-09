@@ -1,0 +1,43 @@
+{
+  "windows": [
+    {
+      "parent": {
+        "Id": "3",
+        "ShowPlotTitle": "True",
+        "ShowTitleInPlot": "True",
+        "ShowPlotTitles": "True",
+        "AutoPlotTitle": "True",
+        "AutoSubPlotTitle": "False",
+        "PlotDescription": "SPE1, PROD, Bottom Hole Pressure"
+      },
+      "children": [
+        {
+          "Id": "-1",
+          "ShowPlotTitle": "True",
+          "IsUsingAutoName": "False",
+          "PlotDescription": "result_0a9a1d40327748f9b8bcef48153143c5 WBHP:PROD (psi)"
+        }
+      ]
+    },
+    {
+      "parent": {
+        "Id": "4",
+        "ShowPlotTitle": "True",
+        "ShowTitleInPlot": "True",
+        "ShowPlotTitles": "True",
+        "AutoPlotTitle": "True",
+        "AutoSubPlotTitle": "False",
+        "PlotDescription": "SPE1, Oil Production Rate"
+      },
+      "children": [
+        {
+          "Id": "-1",
+          "ShowPlotTitle": "True",
+          "IsUsingAutoName": "False",
+          "PlotDescription": "result_0a9a1d40327748f9b8bcef48153143c5 FOPR (stb/day)"
+        }
+      ]
+    }
+  ],
+  "conclusion": "Child descriptions contain result identity, quantity, and unit. Saved title flags are enabled. No Python metadata repair is needed."
+}

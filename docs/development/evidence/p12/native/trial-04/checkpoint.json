@@ -1,0 +1,16 @@
+{
+  "checkpoint_id": "checkpoint_314724a3d1ca493cb4971842caafef8e",
+  "name": "P12 baseline and scenario",
+  "model": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "revision_id": "revision_591679b682d0443eba27984a8ab98f7d"
+  },
+  "project": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "artifact_id": "artifact_f04447bd82e64a1382eba0926c649a72"
+  },
+  "result_ids": [
+    "result_be862689498f41ca9abe0c91b4ed722c",
+    "result_0a9a1d40327748f9b8bcef48153143c5"
+  ]
+}

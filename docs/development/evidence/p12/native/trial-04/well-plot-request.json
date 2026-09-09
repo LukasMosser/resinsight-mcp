@@ -1,0 +1,18 @@
+{
+  "context": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "connection_id": "connection_60f3e48efcac4e6f8c38605c9ee00f01",
+    "project_generation": 2
+  },
+  "query": {
+    "result": {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "result_id": "result_0a9a1d40327748f9b8bcef48153143c5"
+    },
+    "scope": "well",
+    "keyword": "WBHP",
+    "well_name": "PROD"
+  },
+  "width": 1200,
+  "height": 800
+}

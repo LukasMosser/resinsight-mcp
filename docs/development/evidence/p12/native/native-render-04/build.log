@@ -1,0 +1,11 @@
+[1/9] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/9] Automatic MOC and UIC for target ApplicationLibCode
+[3/8] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigHexIntersectionTools.cpp.o
+[4/8] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMultiPlotPage.cpp.o
+[5/8] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[6/8] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[7/8] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[8/8] Running utility command for RipsGeneratedPythonClasses

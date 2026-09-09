@@ -1,0 +1,255 @@
+{
+  "native_records": {
+    "baseline-native": {
+      "dimensions": [
+        10,
+        10,
+        3
+      ],
+      "active_cells": 300,
+      "corner_coordinates_checked": 7200,
+      "maximum_corner_difference": 0.0,
+      "cell_arrays_checked": 6,
+      "cell_values_checked": 1800,
+      "maximum_cell_value_difference": 0,
+      "summary_curves_checked": 3,
+      "summary_values_checked": 6,
+      "maximum_summary_value_difference": 0,
+      "native_elapsed_days": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "native_dates": [
+        [
+          2015,
+          1,
+          1
+        ],
+        [
+          2015,
+          1,
+          2
+        ],
+        [
+          2015,
+          1,
+          3
+        ]
+      ],
+      "summary_report_indices": [
+        0,
+        1
+      ]
+    },
+    "baseline-restored-native": {
+      "dimensions": [
+        10,
+        10,
+        3
+      ],
+      "active_cells": 300,
+      "corner_coordinates_checked": 7200,
+      "maximum_corner_difference": 0.0,
+      "cell_arrays_checked": 6,
+      "cell_values_checked": 1800,
+      "maximum_cell_value_difference": 0,
+      "summary_curves_checked": 3,
+      "summary_values_checked": 6,
+      "maximum_summary_value_difference": 0,
+      "native_elapsed_days": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "native_dates": [
+        [
+          2015,
+          1,
+          1
+        ],
+        [
+          2015,
+          1,
+          2
+        ],
+        [
+          2015,
+          1,
+          3
+        ]
+      ],
+      "summary_report_indices": [
+        0,
+        1
+      ]
+    },
+    "scenario-native": {
+      "dimensions": [
+        10,
+        10,
+        3
+      ],
+      "active_cells": 300,
+      "corner_coordinates_checked": 7200,
+      "maximum_corner_difference": 0.0,
+      "cell_arrays_checked": 6,
+      "cell_values_checked": 1800,
+      "maximum_cell_value_difference": 0,
+      "summary_curves_checked": 3,
+      "summary_values_checked": 6,
+      "maximum_summary_value_difference": 0,
+      "native_elapsed_days": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "native_dates": [
+        [
+          2015,
+          1,
+          1
+        ],
+        [
+          2015,
+          1,
+          2
+        ],
+        [
+          2015,
+          1,
+          3
+        ]
+      ],
+      "summary_report_indices": [
+        0,
+        1
+      ]
+    },
+    "scenario-restored-native": {
+      "dimensions": [
+        10,
+        10,
+        3
+      ],
+      "active_cells": 300,
+      "corner_coordinates_checked": 7200,
+      "maximum_corner_difference": 0.0,
+      "cell_arrays_checked": 6,
+      "cell_values_checked": 1800,
+      "maximum_cell_value_difference": 0,
+      "summary_curves_checked": 3,
+      "summary_values_checked": 6,
+      "maximum_summary_value_difference": 0,
+      "native_elapsed_days": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "native_dates": [
+        [
+          2015,
+          1,
+          1
+        ],
+        [
+          2015,
+          1,
+          2
+        ],
+        [
+          2015,
+          1,
+          3
+        ]
+      ],
+      "summary_report_indices": [
+        0,
+        1
+      ]
+    }
+  },
+  "comparisons": {
+    "pressure": {
+      "unit": "psi",
+      "minimum_difference": 0.0,
+      "maximum_difference": 87.21044921875,
+      "legend": {
+        "minimum": 4438.43212890625,
+        "maximum": 5421.6787109375
+      },
+      "native_legend": {
+        "minimum": 4438.43212890625,
+        "maximum": 5421.6787109375
+      },
+      "legend_relative_tolerance": 1e-14,
+      "shared_camera": true,
+      "report_time": {
+        "index": 2,
+        "elapsed_days": 2.0,
+        "calendar_date": "2015-01-03"
+      }
+    },
+    "swat": {
+      "unit": "1",
+      "minimum_difference": -6.521493196487427e-05,
+      "maximum_difference": 0.0,
+      "legend": {
+        "minimum": 0.11952809244394302,
+        "maximum": 0.12026096880435944
+      },
+      "native_legend": {
+        "minimum": 0.119528092443943,
+        "maximum": 0.12026096880436
+      },
+      "legend_relative_tolerance": 1e-14,
+      "shared_camera": true,
+      "report_time": {
+        "index": 2,
+        "elapsed_days": 2.0,
+        "calendar_date": "2015-01-03"
+      }
+    },
+    "well": {
+      "unit": "psi",
+      "minimum_difference": 470.05029296875,
+      "maximum_difference": 498.1962890625
+    }
+  },
+  "restored_results_match": true,
+  "old_reference_failure": {
+    "code": "stale_object",
+    "message": "The object context is no longer current.",
+    "effect": "not_applied"
+  },
+  "summary_edit_preserved": true,
+  "decoded_images": {
+    "scenario-swat.png": {
+      "width": 1200,
+      "height": 800,
+      "mode": "RGB"
+    },
+    "baseline-swat.png": {
+      "width": 1200,
+      "height": 800,
+      "mode": "RGB"
+    },
+    "well-plot.png": {
+      "width": 1200,
+      "height": 800,
+      "mode": "RGBA"
+    },
+    "scenario-pressure.png": {
+      "width": 1200,
+      "height": 800,
+      "mode": "RGB"
+    },
+    "baseline-pressure.png": {
+      "width": 1200,
+      "height": 800,
+      "mode": "RGB"
+    }
+  },
+  "complete_native_acceptance": false,
+  "visual_review": "visual-review.json rejects the unreadable summary image."
+}

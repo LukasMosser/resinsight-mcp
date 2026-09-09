@@ -1,0 +1,139 @@
+commit 70399abb9eba31f713f72028ffe94ae0be4db2c4
+Author:     Lukas Mosser <lukas.mosser@gmail.com>
+AuthorDate: Wed Sep 9 20:41:35 2026 +0200
+Commit:     Lukas Mosser <lukas.mosser@gmail.com>
+CommitDate: Wed Sep 9 20:45:29 2026 +0200
+
+    Render complete multi-plot snapshots at requested size
+    
+    Flush plot updates and render the current page through the native plot renderer. Preserve viewer constraints, preview mode, and page sizes around the requested output layout. This avoids capturing an incompletely sized scroll-area book. Native build and visual acceptance remain pending.
+
+diff --git a/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp b/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
+index 028cc03..fcff2cd 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
+@@ -18,6 +18,7 @@
+ 
+ #include "RimMultiPlot.h"
+ 
++#include "RiaPlotWindowRedrawScheduler.h"
+ #include "RiaPreferences.h"
+ #include "RiaPreferencesSummary.h"
+ #include "RiaVersionInfo.h"
+@@ -27,6 +28,7 @@
+ #include "RimSummaryTimeAxisProperties.h"
+ 
+ #include "RiuMultiPlotBook.h"
++#include "RiuMultiPlotPage.h"
+ #include "RiuPlotMainWindow.h"
+ #include "RiuPlotMainWindowTools.h"
+ 
+@@ -34,8 +36,13 @@
+ #include "cafPdmUiComboBoxEditor.h"
+ #include "cafPdmUiToolButtonEditor.h"
+ 
++#include "DockWidget.h"
++
++#include <QApplication>
++#include <QLayout>
+ #include <QPaintDevice>
+ #include <QRegularExpression>
++#include <QScopeGuard>
+ 
+ #include "cafAssert.h"
+ 
+@@ -651,18 +658,65 @@ QImage RimMultiPlot::snapshotWindowContent()
+ //--------------------------------------------------------------------------------------------------
+ QImage RimMultiPlot::captureSnapshot( int width, int height )
+ {
+-    QImage image;
++    if ( m_viewer.isNull() ) return QImage();
+ 
+-    if ( m_viewer.isNull() ) return image;
++    if ( m_dockWidget && !m_dockWidget->isCurrentTab() ) m_dockWidget->setAsCurrentTab();
+ 
+-    QSize orgViewSize = m_viewer->size();
++    auto* scheduler = RiaPlotWindowRedrawScheduler::instance();
++    scheduler->performScheduledUpdates();
++    QApplication::processEvents();
+ 
+-    image = RimViewWindow::internalCaptureSnapshot( m_dockWidget, m_viewer->bookWidget(), width, height );
++    const QSize originalSize        = m_viewer->size();
++    const QSize originalMinimumSize = m_viewer->minimumSize();
++    const QSize originalMaximumSize = m_viewer->maximumSize();
++    const bool  originalPreviewMode = m_viewer->pagePreviewModeEnabled();
++    const QSize snapshotSize        = width > 0 && height > 0 ? QSize( width, height ) : originalSize;
+ 
+-    m_viewer->resize( orgViewSize );
+-    doUpdateLayout();
++    const auto pages = m_viewer->pages();
++    std::vector<QSize> originalPageSizes;
++    for ( const auto& page : pages ) originalPageSizes.push_back( page->size() );
+ 
+-    return image;
++    const auto restoreViewer = qScopeGuard(
++        [&]()
++        {
++            m_viewer->setPagePreviewModeEnabled( originalPreviewMode );
++            m_viewer->setFixedSize( originalSize );
++            m_viewer->scheduleUpdate();
++            scheduler->performScheduledUpdates();
++            QApplication::processEvents();
++            scheduler->performScheduledUpdates();
++            m_viewer->setMinimumSize( originalMinimumSize );
++            m_viewer->setMaximumSize( originalMaximumSize );
++            m_viewer->resize( originalSize );
++            const auto restoredPages = m_viewer->pages();
++            for ( qsizetype i = 0; i < restoredPages.size() && i < static_cast<qsizetype>( originalPageSizes.size() ); ++i )
++            {
++                restoredPages[i]->resize( originalPageSizes[i] );
++                restoredPages[i]->layout()->activate();
++            }
++        } );
++
++    // Size the pages through their viewer before rendering the complete current page.
++    m_viewer->setPagePreviewModeEnabled( false );
++    m_viewer->setFixedSize( snapshotSize );
++    m_viewer->scheduleUpdate();
++    scheduler->performScheduledUpdates();
++    QApplication::processEvents();
++    scheduler->performScheduledUpdates();
++
++    // A full update creates new pages after the viewer resize event.
++    for ( const auto& page : m_viewer->pages() )
++    {
++        page->resize( snapshotSize );
++        page->layout()->activate();
++    }
++    m_viewer->scheduleReplotOfAllPlots();
++    scheduler->performScheduledUpdates();
++
++    QPixmap pix( snapshotSize );
++    pix.fill( Qt::white );
++    m_viewer->renderTo( &pix );
++    return pix.toImage();
+ }
+ 
+ //--------------------------------------------------------------------------------------------------
+diff --git a/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h b/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
+index 94e7b4e..8e4bcee 100644
+--- a/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
++++ b/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
+@@ -100,6 +100,8 @@ public:
+ 
+     QWidget* bookWidget();
+ 
++    const QList<QPointer<RiuMultiPlotPage>>& pages() const;
++
+ protected:
+     void contextMenuEvent( QContextMenuEvent* ) override;
+ 
+@@ -128,8 +130,6 @@ protected:
+     void adjustBookFrame();
+     void applyPageSettings( RiuMultiPlotPage* page );
+ 
+-    const QList<QPointer<RiuMultiPlotPage>>& pages() const;
+-
+     void updatePageTitles();
+ 
+ private:

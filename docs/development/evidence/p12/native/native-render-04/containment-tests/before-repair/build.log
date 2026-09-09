@@ -1,0 +1,4 @@
+[1/5] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/5] Automatic MOC and UIC for target ResInsight-tests
+[3/4] Building CXX object ApplicationLibCode/UnitTests/CMakeFiles/ResInsight-tests.dir/RigHexIntersectionTools-Test.cpp.o
+[4/4] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests

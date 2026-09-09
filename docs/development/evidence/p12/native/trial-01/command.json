@@ -1,0 +1,25 @@
+{
+  "working_directory": "/private/tmp/resinsight-p13-integration",
+  "command": [
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "-m",
+    "tests.results.native_acceptance",
+    "--workspace",
+    "/private/tmp/resinsight-p11-runtime-20260909/workspace",
+    "--session",
+    "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "--baseline",
+    "result_be862689498f41ca9abe0c91b4ed722c",
+    "--scenario",
+    "result_0a9a1d40327748f9b8bcef48153143c5",
+    "--well",
+    "PROD",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--native-source",
+    "/private/tmp/resinsight-p01-build/source",
+    "--output",
+    "/private/tmp/resinsight-p12-native-20260909/trial-01"
+  ],
+  "scope": "The same two generated P11 results, with the reviewed installed wheel and matching native client."
+}

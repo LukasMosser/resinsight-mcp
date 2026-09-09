@@ -1,0 +1,365 @@
+diff --git a/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp b/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
+index 028cc03..fcff2cd 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimMultiPlot.cpp
+@@ -18,6 +18,7 @@
+ 
+ #include "RimMultiPlot.h"
+ 
++#include "RiaPlotWindowRedrawScheduler.h"
+ #include "RiaPreferences.h"
+ #include "RiaPreferencesSummary.h"
+ #include "RiaVersionInfo.h"
+@@ -27,6 +28,7 @@
+ #include "RimSummaryTimeAxisProperties.h"
+ 
+ #include "RiuMultiPlotBook.h"
++#include "RiuMultiPlotPage.h"
+ #include "RiuPlotMainWindow.h"
+ #include "RiuPlotMainWindowTools.h"
+ 
+@@ -34,8 +36,13 @@
+ #include "cafPdmUiComboBoxEditor.h"
+ #include "cafPdmUiToolButtonEditor.h"
+ 
++#include "DockWidget.h"
++
++#include <QApplication>
++#include <QLayout>
+ #include <QPaintDevice>
+ #include <QRegularExpression>
++#include <QScopeGuard>
+ 
+ #include "cafAssert.h"
+ 
+@@ -651,18 +658,65 @@ QImage RimMultiPlot::snapshotWindowContent()
+ //--------------------------------------------------------------------------------------------------
+ QImage RimMultiPlot::captureSnapshot( int width, int height )
+ {
+-    QImage image;
++    if ( m_viewer.isNull() ) return QImage();
+ 
+-    if ( m_viewer.isNull() ) return image;
++    if ( m_dockWidget && !m_dockWidget->isCurrentTab() ) m_dockWidget->setAsCurrentTab();
+ 
+-    QSize orgViewSize = m_viewer->size();
++    auto* scheduler = RiaPlotWindowRedrawScheduler::instance();
++    scheduler->performScheduledUpdates();
++    QApplication::processEvents();
+ 
+-    image = RimViewWindow::internalCaptureSnapshot( m_dockWidget, m_viewer->bookWidget(), width, height );
++    const QSize originalSize        = m_viewer->size();
++    const QSize originalMinimumSize = m_viewer->minimumSize();
++    const QSize originalMaximumSize = m_viewer->maximumSize();
++    const bool  originalPreviewMode = m_viewer->pagePreviewModeEnabled();
++    const QSize snapshotSize        = width > 0 && height > 0 ? QSize( width, height ) : originalSize;
+ 
+-    m_viewer->resize( orgViewSize );
+-    doUpdateLayout();
++    const auto pages = m_viewer->pages();
++    std::vector<QSize> originalPageSizes;
++    for ( const auto& page : pages ) originalPageSizes.push_back( page->size() );
+ 
+-    return image;
++    const auto restoreViewer = qScopeGuard(
++        [&]()
++        {
++            m_viewer->setPagePreviewModeEnabled( originalPreviewMode );
++            m_viewer->setFixedSize( originalSize );
++            m_viewer->scheduleUpdate();
++            scheduler->performScheduledUpdates();
++            QApplication::processEvents();
++            scheduler->performScheduledUpdates();
++            m_viewer->setMinimumSize( originalMinimumSize );
++            m_viewer->setMaximumSize( originalMaximumSize );
++            m_viewer->resize( originalSize );
++            const auto restoredPages = m_viewer->pages();
++            for ( qsizetype i = 0; i < restoredPages.size() && i < static_cast<qsizetype>( originalPageSizes.size() ); ++i )
++            {
++                restoredPages[i]->resize( originalPageSizes[i] );
++                restoredPages[i]->layout()->activate();
++            }
++        } );
++
++    // Size the pages through their viewer before rendering the complete current page.
++    m_viewer->setPagePreviewModeEnabled( false );
++    m_viewer->setFixedSize( snapshotSize );
++    m_viewer->scheduleUpdate();
++    scheduler->performScheduledUpdates();
++    QApplication::processEvents();
++    scheduler->performScheduledUpdates();
++
++    // A full update creates new pages after the viewer resize event.
++    for ( const auto& page : m_viewer->pages() )
++    {
++        page->resize( snapshotSize );
++        page->layout()->activate();
++    }
++    m_viewer->scheduleReplotOfAllPlots();
++    scheduler->performScheduledUpdates();
++
++    QPixmap pix( snapshotSize );
++    pix.fill( Qt::white );
++    m_viewer->renderTo( &pix );
++    return pix.toImage();
+ }
+ 
+ //--------------------------------------------------------------------------------------------------
+diff --git a/ApplicationLibCode/ReservoirDataModel/RigHexIntersectionTools.cpp b/ApplicationLibCode/ReservoirDataModel/RigHexIntersectionTools.cpp
+index dd8d9ec..0082176 100644
+--- a/ApplicationLibCode/ReservoirDataModel/RigHexIntersectionTools.cpp
++++ b/ApplicationLibCode/ReservoirDataModel/RigHexIntersectionTools.cpp
+@@ -26,6 +26,14 @@
+ #include "cafAssert.h"
+ #include "cafHexGridIntersectionTools/cafHexGridIntersectionTools.h"
+ 
++#include <algorithm>
++#include <vector>
++
++namespace
++{
++constexpr double intersectionCoordinateTolerance = 1e-6;
++}
++
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
+@@ -122,9 +130,16 @@ bool RigHexIntersectionTools::lineIntersectsHexCell( const cvf::Vec3d& p1, const
+ //--------------------------------------------------------------------------------------------------
+ bool RigHexIntersectionTools::isPointInCell( const cvf::Vec3d& point, const std::array<cvf::Vec3d, 8>& hexCorners )
+ {
++    struct BoundaryHit
++    {
++        cvf::Vec3d point;
++        bool       entering;
++        bool       leaving;
++    };
++
+     cvf::Ray ray;
+     ray.setOrigin( point );
+-    size_t intersections = 0;
++    std::vector<BoundaryHit> intersections;
+ 
+     for ( int face = 0; face < 6; ++face )
+     {
+@@ -137,14 +152,35 @@ bool RigHexIntersectionTools::isPointInCell( const cvf::Vec3d& point, const std:
+ 
+         for ( int i = 0; i < 4; ++i )
+         {
+-            int next = i < 3 ? i + 1 : 0;
+-            if ( ray.triangleIntersect( hexCorners[faceVertexIndices[i]], hexCorners[faceVertexIndices[next]], faceCenter ) )
++            int               next   = i < 3 ? i + 1 : 0;
++            const cvf::Vec3d& first  = hexCorners[faceVertexIndices[i]];
++            const cvf::Vec3d& second = hexCorners[faceVertexIndices[next]];
++            cvf::Vec3d        intersection;
++            if ( !ray.triangleIntersect( first, second, faceCenter, &intersection ) ) continue;
++
++            const bool entering = ( ( second - first ) ^ ( faceCenter - first ) ) * ray.direction() < 0.0;
++            auto matching = std::find_if( intersections.begin(), intersections.end(), [&]( const BoundaryHit& hit ) {
++                return cvf::Math::abs( hit.point.x() - intersection.x() ) <= intersectionCoordinateTolerance &&
++                       cvf::Math::abs( hit.point.y() - intersection.y() ) <= intersectionCoordinateTolerance &&
++                       cvf::Math::abs( hit.point.z() - intersection.z() ) <= intersectionCoordinateTolerance;
++            } );
++            if ( matching == intersections.end() )
++            {
++                intersections.push_back( { intersection, entering, !entering } );
++            }
++            else
+             {
+-                ++intersections;
++                matching->entering |= entering;
++                matching->leaving |= !entering;
+             }
+         }
+     }
+-    return intersections % 2 == 1;
++
++    // Coincident hits cross once unless opposite directions meet at a tangent edge.
++    const auto crossings = std::count_if( intersections.begin(), intersections.end(), []( const BoundaryHit& hit ) {
++        return hit.entering != hit.leaving;
++    } );
++    return crossings % 2 == 1;
+ }
+ 
+ //--------------------------------------------------------------------------------------------------
+@@ -221,18 +257,16 @@ bool RigHexIntersectionTools::planeHexIntersectionPolygons( const std::array<cvf
+ //--------------------------------------------------------------------------------------------------
+ bool operator<( const HexIntersectionInfo& hi1, const HexIntersectionInfo& hi2 )
+ {
+-    const double tolerance = 1e-6;
+-
+     if ( hi1.m_hexIndex != hi2.m_hexIndex ) return hi1.m_hexIndex < hi2.m_hexIndex;
+     if ( hi1.m_face != hi2.m_face ) return hi1.m_face < hi2.m_face;
+     if ( hi1.m_isIntersectionEntering != hi2.m_isIntersectionEntering ) return hi1.m_isIntersectionEntering < hi2.m_isIntersectionEntering;
+     if ( hi1.m_face != hi2.m_face ) return hi1.m_face < hi2.m_face;
+ 
+-    if ( cvf::Math::abs( hi2.m_intersectionPoint.x() - hi1.m_intersectionPoint.x() ) > tolerance )
++    if ( cvf::Math::abs( hi2.m_intersectionPoint.x() - hi1.m_intersectionPoint.x() ) > intersectionCoordinateTolerance )
+         return hi1.m_intersectionPoint.x() < hi2.m_intersectionPoint.x();
+-    if ( cvf::Math::abs( hi2.m_intersectionPoint.y() - hi1.m_intersectionPoint.y() ) > tolerance )
++    if ( cvf::Math::abs( hi2.m_intersectionPoint.y() - hi1.m_intersectionPoint.y() ) > intersectionCoordinateTolerance )
+         return hi1.m_intersectionPoint.y() < hi2.m_intersectionPoint.y();
+-    if ( cvf::Math::abs( hi2.m_intersectionPoint.z() - hi1.m_intersectionPoint.z() ) > tolerance )
++    if ( cvf::Math::abs( hi2.m_intersectionPoint.z() - hi1.m_intersectionPoint.z() ) > intersectionCoordinateTolerance )
+         return hi1.m_intersectionPoint.z() < hi2.m_intersectionPoint.z();
+ 
+     return false;
+diff --git a/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp b/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp
+index 15e0cd7..fa96e15 100644
+--- a/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp
++++ b/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp
+@@ -24,6 +24,73 @@
+ 
+ #include "RigHexIntersectionTools.h"
+ 
++namespace
++{
++std::array<cvf::Vec3d, 8> unitCellCorners()
++{
++    return { cvf::Vec3d( 0, 0, 0 ), cvf::Vec3d( 1, 0, 0 ), cvf::Vec3d( 1, 1, 0 ), cvf::Vec3d( 0, 1, 0 ),
++             cvf::Vec3d( 0, 0, 1 ), cvf::Vec3d( 1, 0, 1 ), cvf::Vec3d( 1, 1, 1 ), cvf::Vec3d( 0, 1, 1 ) };
++}
++} // namespace
++
++TEST( RigHexIntersectionTools, pointInsideAtFaceCenter )
++{
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 0.5 ), unitCellCorners() ) );
++}
++
++TEST( RigHexIntersectionTools, pointInsideAtFaceTriangleEdge )
++{
++    const auto corners = unitCellCorners();
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.25, 0.5 ), corners ) );
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.75, 0.5 ), corners ) );
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.5, 0.5 ), corners ) );
++}
++
++TEST( RigHexIntersectionTools, pointOutsideWithZeroOrTwoBoundaryCrossings )
++{
++    const auto corners = unitCellCorners();
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 1.5 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.25, 1.5 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, -0.5 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( -0.5, 0.5, 0.5 ), corners ) );
++}
++
++TEST( RigHexIntersectionTools, pointContainmentWithWarpedFace )
++{
++    auto corners = unitCellCorners();
++    corners[0].z() = -0.2;
++    corners[1].z() = 0.1;
++    corners[2].z() = -0.1;
++    corners[3].z() = 0.2;
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 0.5 ), corners ) );
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.25, 0.5 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 1.5 ), corners ) );
++}
++
++TEST( RigHexIntersectionTools, pointContainmentAtSharedCellEdge )
++{
++    auto corners = unitCellCorners();
++    for ( auto& corner : corners )
++    {
++        corner = cvf::Vec3d( corner.x() + corner.z() - 1, corner.y(), corner.z() - corner.x() );
++    }
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0, 0.5, 0 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 1, 0.5, 1 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0, 0.5, 2 ), corners ) );
++}
++
++TEST( RigHexIntersectionTools, pointContainmentAtFieldCoordinates )
++{
++    auto corners = unitCellCorners();
++    for ( auto& corner : corners )
++    {
++        corner = cvf::Vec3d( 9000 + 1000 * corner.x(), 9000 + 1000 * corner.y(), -8425 + 50 * corner.z() );
++    }
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 9500, 9500, -8400 ), corners ) );
++    EXPECT_TRUE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 9250, 9250, -8400 ), corners ) );
++    EXPECT_FALSE( RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 9500, 9500, -8300 ), corners ) );
++}
++
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
+diff --git a/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h b/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
+index 94e7b4e..8e4bcee 100644
+--- a/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
++++ b/ApplicationLibCode/UserInterface/RiuMultiPlotBook.h
+@@ -100,6 +100,8 @@ public:
+ 
+     QWidget* bookWidget();
+ 
++    const QList<QPointer<RiuMultiPlotPage>>& pages() const;
++
+ protected:
+     void contextMenuEvent( QContextMenuEvent* ) override;
+ 
+@@ -128,8 +130,6 @@ protected:
+     void adjustBookFrame();
+     void applyPageSettings( RiuMultiPlotPage* page );
+ 
+-    const QList<QPointer<RiuMultiPlotPage>>& pages() const;
+-
+     void updatePageTitles();
+ 
+ private:
+diff --git a/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp b/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
+index 8d3b8c6..df125a3 100644
+--- a/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
++++ b/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
+@@ -61,6 +61,7 @@
+ #include <QHBoxLayout>
+ #include <QMenu>
+ #include <QPainter>
++#include <QScopeGuard>
+ #include <QScrollBar>
+ #include <QTimer>
+ #include <QWidget>
+@@ -387,18 +388,43 @@ void RiuMultiPlotPage::renderTo( QPaintDevice* paintDevice )
+ //--------------------------------------------------------------------------------------------------
+ void RiuMultiPlotPage::renderTo( QPainter* painter, double scalingFactor )
+ {
++    const auto renderLabel = [&]( QLabel* label, const QPoint& position )
++    {
++        const auto originalStyleSheet = label->styleSheet();
++        const auto originalPalette    = label->palette();
++        const auto originalFont       = label->font();
++        const auto restoreLabel = qScopeGuard(
++            [&]()
++            {
++                label->setStyleSheet( originalStyleSheet );
++                label->setPalette( originalPalette );
++                label->setFont( originalFont );
++            } );
++
++        // A local color rule overrides the application theme on the white export canvas.
++        label->setStyleSheet( "color: #000000;" );
++        label->setFont( originalFont );
++        painter->save();
++        label->render( painter, position );
++        painter->restore();
++    };
++
+     painter->fillRect( painter->viewport(), Qt::white );
+-    m_plotTitle->render( painter );
++    // A hidden ancestor does not hide titles within the exported page.
++    if ( m_plotTitle->isVisibleTo( this ) )
++    {
++        renderLabel( m_plotTitle, m_plotTitle->pos() );
++    }
+ 
+     // Subtract margins because we are rendering into part inside the margins
+     QPoint marginOffset( m_layout->contentsMargins().left(), m_layout->contentsMargins().top() );
+ 
+     for ( auto subTitle : subTitlesForVisiblePlots() )
+     {
+-        if ( subTitle->isVisible() )
++        if ( subTitle->isVisibleTo( this ) )
+         {
+             QPoint renderOffset = m_plotWidgetFrame->mapToParent( subTitle->frameGeometry().topLeft() ) - marginOffset;
+-            subTitle->render( painter, renderOffset );
++            renderLabel( subTitle, renderOffset );
+         }
+     }
+ 

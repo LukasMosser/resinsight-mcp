@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ],
+  "native_commit": "9c920334e338dab4908aa4dabdfae22803e70411",
+  "source_worktree": " M ThirdParty/openzgy\n M vcpkg.json\n",
+  "source_scope": "Reviewed dark plot export titles and distinct oriented cell boundary crossings, with six containment regressions. Temporary diagnostics are removed. Existing macOS dependency configuration remains.",
+  "started_at": "2026-09-09T19:25:14.456890+00:00",
+  "exit_code": 0,
+  "completed_at": "2026-09-09T19:25:25.776328+00:00"
+}

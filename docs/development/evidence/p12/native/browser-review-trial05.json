@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-09",
+  "source_commit": "4e08f14",
+  "working_changes": "Curated trial01 through trial05 evidence and result guide corrections.",
+  "browser": "Chrome",
+  "origin": "http://127.0.0.1:8937",
+  "pages": [
+    "/development/evidence/p12/native/",
+    "/development/results/",
+    "/results/#summary-plots-and-receipts"
+  ],
+  "checks": [
+    "Readable headings and body layout",
+    "Native build provenance and exact patch links present",
+    "Five trial histories present",
+    "All seventeen native image embeds served",
+    "User guide states observed title omission",
+    "Summary-first loading sequence matches implementation"
+  ],
+  "result": "passed",
+  "cleanup": "All three review tabs and the owned local server closed."
+}

@@ -333,17 +333,19 @@ The corrected cancellation and deadline trials preserve the actual container exi
 
 ## P12: Load and compare results
 
-Load grid results and summary curves into the correct ResInsight session.
-Return numerical queries with units, report times, well names, and revision identity.
-Compare scenarios on aligned report times and fixed view legends.
+`ResultsService` verifies accepted immutable files before loading grid and summary cases into the requested ResInsight session.
+Numerical queries retain exact model and job identity, units, report times, and well names.
+Aligned comparisons retain both source records, signed differences, and fixed shared legends.
+The service rejects incompatible geometry, active-cell order, quantities, units, and report times.
 
-Keep field quantities, cell properties, and well curves distinct.
-Reject mismatched cell mappings or unsupported unit conversions.
-Test a result set with known values and clear differences between scenarios.
+New results receive separate native cases and do not replace an earlier case silently.
+Summary plots return an applied edit receipt separately from their image outcome.
+Project restoration verifies selected result files, native values, and complete geometry before issuing fresh bindings.
+The [result guide](results.md) records maintained behavior and the prepared native acceptance command.
 
-Acceptance requires the same run identity in numerical queries and images.
-An old job's output must not replace a newer case silently.
-Show pressure, saturation, and well curves with their source run records.
+The [native acceptance record](evidence/p12/native/README.md#trial-07) verifies pressure, saturation, and summary plots against both exact source results.
+The lead inspected all six images and complete numerical readbacks before and after project reopening.
+The recorded custom macOS native build passes P12 acceptance with verified owned-process cleanup.
 
 ## P13: Prove the OPM workflow
 

@@ -1,0 +1,17 @@
+{
+  "context": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "connection_id": "connection_60f3e48efcac4e6f8c38605c9ee00f01",
+    "project_generation": 4
+  },
+  "plots": [
+    {
+      "address": "4983442448",
+      "parent_window_id": 3
+    },
+    {
+      "address": "4986010640",
+      "parent_window_id": 4
+    }
+  ]
+}

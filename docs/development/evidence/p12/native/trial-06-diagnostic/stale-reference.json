@@ -1,0 +1,10 @@
+{
+  "outcome": {
+    "status": "failure",
+    "error": {
+      "code": "stale_object",
+      "message": "The object context is no longer current.",
+      "effect": "not_applied"
+    }
+  }
+}
