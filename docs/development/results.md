@@ -44,11 +44,17 @@ A failed or conflicting bundle operation does not replace another result's files
 ## Native loading and binding
 
 `load(ResultImportRequest)` checks the stored result and job before loading their files.
-It loads a new grid case, creates its view, and imports the summary case.
+It imports the summary case, loads a new grid case, and creates its view.
 The grid case name includes its result and model revision identifiers.
 It does not replace an existing case or summary case at the result path.
 The session service holds ownership through mutation and native verification.
 Only a verified current case receives a trusted view binding.
+
+Normal native grid import can also import the companion summary file.
+Importing the summary first supports both native summary import settings through one fixed load order.
+Native grid import can replace that summary object with another object at the same file path.
+Verification resolves the current exact-path summary after grid import instead of retaining the first object.
+Existing exact grid or summary paths still fail before any import.
 
 Native verification checks the exact file paths, grid dimensions, main-grid active cell order, and report indices.
 It also checks every active-cell corner against the accepted geometry.
@@ -119,6 +125,13 @@ The implementation uses `Project.load_case`, `Case.create_view`, and `Project.im
 It reads `SummaryCase.available_time_steps` and `SummaryCase.summary_vector_values`.
 Plots use `SummaryPlotCollection.new_summary_plot` and `Plot.export_snapshot`.
 Source inspection establishes these supported calls, not a successful runtime trial.
+
+The first native trial failed when summary import followed grid import.
+The native API returned `No result returned from Method`, and public owned-process cleanup succeeded.
+Source inspection shows that normal grid readers enable summary import and that separate summary import skips an existing filename.
+This supports a duplicate-import explanation, but the failed trial did not capture intermediate native inventory.
+The fixed load order has maintained tests for both native summary import settings and duplicate-path rejection.
+A fresh native trial must establish the repaired runtime behavior.
 
 ## Prepared native acceptance
 

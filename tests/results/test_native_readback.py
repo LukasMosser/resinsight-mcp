@@ -6,7 +6,7 @@ from typing import cast
 
 import pytest
 
-from resinsight_mcp.contracts.errors import ContractError
+from resinsight_mcp.contracts.errors import ContractError, ErrorCode
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess
 from resinsight_mcp.results import rips as native
 from resinsight_mcp.results._bundles import ResultBundle
@@ -20,6 +20,11 @@ class Case:
         ]
         self.days = [0, 1]
         self.pressure = [100, 200]
+        self.name = "Original result"
+        self.name_setting = "AUTO"
+        self.saved_name = self.name
+        self.views = 0
+        self.native_address = 10
         # ResInsight uses clockwise face corners, unlike OPM's I-fastest order.
         self.corners = [
             SimpleNamespace(
@@ -43,7 +48,13 @@ class Case:
         ]
 
     def address(self):
-        return 10
+        return self.native_address
+
+    def update(self):
+        self.saved_name = self.name
+
+    def create_view(self):
+        self.views += 1
 
     def grid(self):
         return SimpleNamespace(dimensions=lambda: SimpleNamespace(i=2, j=1, k=1))
@@ -77,6 +88,95 @@ class Summary:
     def summary_vector_values(self, address):
         assert address == "WBHP:PROD"
         return SimpleNamespace(values=self.values)
+
+
+class LoadingProject:
+    def __init__(self, bundle, auto_summary):
+        self.bundle = bundle
+        self.auto_summary = auto_summary
+        self.case_rows = []
+        self.summary_rows = []
+
+    def cases(self):
+        return self.case_rows
+
+    def summary_cases(self):
+        return self.summary_rows
+
+    def import_summary_case(self, *, file_name):
+        if any(item.summary_header_filename == file_name for item in self.summary_rows):
+            raise RuntimeError("No result returned from Method")
+        summary = Summary(self.bundle)
+        assert summary.summary_header_filename == file_name
+        self.summary_rows.append(summary)
+        return summary
+
+    def load_case(self, path):
+        assert path == str(self.bundle.egrid)
+        case = Case(self.bundle)
+        self.case_rows.append(case)
+        if self.auto_summary:
+            self.summary_rows = [
+                item
+                for item in self.summary_rows
+                if item.summary_header_filename != str(self.bundle.smspec)
+            ]
+            self.summary_rows.append(Summary(self.bundle))
+        return case
+
+
+def loading_setup(monkeypatch, publish, tmp_path, auto_summary):
+    result, _, dataset = publish()
+    bundle = ResultBundle(result, tmp_path, tmp_path / "CASE.EGRID", tmp_path / "CASE.SMSPEC")
+    project = LoadingProject(bundle, auto_summary)
+    application = SimpleNamespace(call=lambda callback, **kwargs: callback())
+    monkeypatch.setattr(native, "_client", lambda access: (application, project))
+    return native.RipsResultBackend(), cast(ApplicationAccess, None), bundle, dataset, project
+
+
+@pytest.mark.parametrize("auto_summary", [False, True])
+def test_load_and_verify_with_native_summary_import_preferences(
+    monkeypatch, publish, tmp_path, auto_summary
+):
+    backend, access, bundle, dataset, project = loading_setup(
+        monkeypatch, publish, tmp_path, auto_summary
+    )
+    other = ResultBundle(
+        bundle.result, tmp_path, tmp_path / "OTHER.EGRID", tmp_path / "OTHER.SMSPEC"
+    )
+    other_case, other_summary = Case(other), Summary(other)
+    other_case.native_address = 20
+    project.case_rows.append(other_case)
+    project.summary_rows.append(other_summary)
+    address = backend.load(access, bundle, dataset)
+    backend.verify(access, address, bundle, dataset)
+    loaded = project.case_rows[1]
+    assert loaded.file_path == str(bundle.egrid)
+    assert loaded.saved_name == f"{bundle.result.result_id} ({bundle.result.model.revision_id})"
+    assert loaded.name_setting == "CUSTOM_NAME" and loaded.views == 1
+    assert len(project.summary_rows) == 2
+    assert project.case_rows[0] is other_case and project.summary_rows[0] is other_summary
+    assert other_case.saved_name == "Original result" and other_case.views == 0
+    assert other_case.pressure == [100, 200] and other_summary.values == [90, 95]
+
+
+@pytest.mark.parametrize("existing", ["grid", "summary"])
+def test_load_rejects_existing_result_paths_without_changing_them(
+    monkeypatch, publish, tmp_path, existing
+):
+    backend, access, bundle, dataset, project = loading_setup(monkeypatch, publish, tmp_path, True)
+    case, summary = Case(bundle), Summary(bundle)
+    if existing == "grid":
+        project.case_rows.append(case)
+    else:
+        project.summary_rows.append(summary)
+    before_cases, before_summaries = list(project.case_rows), list(project.summary_rows)
+    with pytest.raises(ContractError) as raised:
+        backend.load(access, bundle, dataset)
+    assert raised.value.error.code == ErrorCode.CONFLICT
+    assert project.case_rows == before_cases and project.summary_rows == before_summaries
+    assert case.saved_name == "Original result" and case.views == 0
+    assert case.pressure == [100, 200] and summary.values == [90, 95]
 
 
 def setup(monkeypatch, publish, tmp_path):

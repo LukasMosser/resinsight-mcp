@@ -176,12 +176,12 @@ class RipsResultBackend:
                 for case in project.summary_cases()
             ):
                 fail(ErrorCode.CONFLICT, "This result already has a native summary case.")
+            project.import_summary_case(file_name=str(bundle.smspec))
             case = project.load_case(str(bundle.egrid))
             case.name_setting = "CUSTOM_NAME"
             case.name = f"{bundle.result.result_id} ({bundle.result.model.revision_id})"
             case.update()
             case.create_view()
-            project.import_summary_case(file_name=str(bundle.smspec))
             return str(case.address())
 
         return application.call(change, mutation=True)
