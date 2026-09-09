@@ -71,6 +71,11 @@ def reject_inputs(instance: Any, model: MaterializedModel, evidence: Evidence) -
 
 def inspect_case(case: Any, model: MaterializedModel, evidence: Evidence) -> None:
     expected = model.inspection
+    evidence.record(
+        "available_properties",
+        native=list(case.available_properties("STATIC_NATIVE")),
+        inputs=list(case.available_properties("INPUT_PROPERTY")),
+    )
     dims = case.grid().dimensions()
     evidence.check("grid_dimensions", (dims.i, dims.j, dims.k) == expected.summary.dimensions)
     evidence.check(
@@ -97,7 +102,8 @@ def inspect_case(case: Any, model: MaterializedModel, evidence: Evidence) -> Non
         first_volume_ft3=volumes[0],
     )
     for name, wanted in expected.properties.keyword_arrays():
-        observed = case.active_cell_property("INPUT_PROPERTY", name, 0)
+        category = "STATIC_NATIVE" if name in {"DX", "DY", "DZ"} else "INPUT_PROPERTY"
+        observed = case.active_cell_property(category, name, 0)
         evidence.check(
             "property_values",
             len(observed) == len(wanted)
@@ -106,6 +112,7 @@ def inspect_case(case: Any, model: MaterializedModel, evidence: Evidence) -> Non
                 for actual, intended in zip(observed, wanted, strict=True)
             ),
             name=name,
+            category=category,
             first=observed[0],
             last=observed[-1],
         )

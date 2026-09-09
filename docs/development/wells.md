@@ -99,10 +99,10 @@ It does not change simulator physics or use an imported trajectory after failure
 
 Shared controls belong to `contracts/wells.py`.
 P09 owns native trajectory and completion records.
-The lead owns shared import inspection and revision publication interfaces.
-The new completion support profile will accept explicit connection factors, permeability-length values, skin factors, and directions.
-That profile will preserve the existing black-oil physics.
-Its parser and native checks remain pending.
+The lead reviews shared import inspection and revision publication interfaces.
+The P07 follow-up implements these interfaces in a separate logical commit.
+Its completion profile accepts explicit connection factors, permeability-length values, skin factors, and directions.
+That profile preserves the existing black-oil physics.
 
 ## Prepared input probe
 
@@ -127,3 +127,25 @@ Proposed native commit `4a9f259` would duplicate the conversion and will not be 
 The failed process 34091 exited with status `-15`, and the probe confirmed its absence.
 Its start marker was `1788940220.433936`.
 The preserved inspection and property file record the independent expected values.
+
+The [second trial](evidence/p09/prepared-input-property-names/events.json) passed depth and volume checks, then failed on an unavailable property name.
+The native property importer assigns unique result names but returns the original simulator keyword names.
+The existing native `DX`, `DY`, and `DZ` geometry results cause their imported copies to receive suffixes.
+The probe now compares computed native geometry values for these three dimensions.
+It reads porosity and permeability through their advertised input property names.
+
+The [third trial](evidence/p09/prepared-input-validated/events.json) passed all 20 checks at native commit `119850c` without a simulator run.
+The [version record](evidence/p09/prepared-input-validated/versions.json) identifies the tested service and dependencies.
+The first cell has positive-down depth 8,335 feet and volume 20,000,000 cubic feet.
+Every native dimension, depth, volume, porosity, and permeability value matches the independent parser inspection within the recorded tolerances.
+The modeled well produces the same three connection factors as the reference EGRID case.
+The [export](evidence/p09/prepared-input-validated/P09INPUT.inc) preserves the native simulator records.
+
+Process 43752 used start marker `1788940909.994174` and local port 59578.
+It exited with status `-15`, and the probe confirmed its absence.
+The screenshot shows the grid and `P09INPUT` label at the intended column.
+The numeric trajectory and completion records establish subsurface geometry separately.
+The screenshot displays the imported `DX_1` property, which has the expected constant value of 1,000 feet.
+This experiment establishes native feasibility, while maintained well services and full P09 acceptance remain pending.
+
+![Prepared input grid and modeled well](evidence/p09/prepared-input-validated/prepared-input.png)
