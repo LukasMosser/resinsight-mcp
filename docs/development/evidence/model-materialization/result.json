@@ -1,0 +1,13 @@
+{
+  "source_commit": "32fd79e7238a7dad416da4e5be7318ca2febecf3",
+  "shared_command_exit_code": 0,
+  "pytest_passed": 427,
+  "pytest_seconds": 53.22,
+  "ruff_passed": true,
+  "ty_passed": true,
+  "strict_documentation_build_passed": true,
+  "native_run": false,
+  "simulator_run": false,
+  "linux_ci": "Not run in this local evidence task.",
+  "macos_ci": "Not run in this local evidence task."
+}

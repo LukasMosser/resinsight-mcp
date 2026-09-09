@@ -1,0 +1,25 @@
+Serving HTTP on 127.0.0.1 port 60333 (http://127.0.0.1:60333/) ...
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /development/model-imports/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /assets/stylesheets/main.ec1eaa64.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /assets/javascripts/bundle.d7400e89.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /javascripts/mathjax.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /assets/javascripts/workers/search.2c215733.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /sitemap.xml HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /search/search_index.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:55] "GET /assets/images/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /development/model-materialization-evidence/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /assets/stylesheets/main.ec1eaa64.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /assets/javascripts/bundle.d7400e89.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /javascripts/mathjax.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /assets/javascripts/workers/search.2c215733.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /sitemap.xml HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /search/search_index.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:56] "GET /assets/images/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/p07-evidence/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/platform-opm/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/platform-proof/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/model-imports/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/evidence/model-materialization/environment.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/evidence/model-materialization/shared-check.log HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/evidence/model-materialization/issue-39.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:09:57] "GET /development/evidence/model-materialization/dependency-sync.log HTTP/1.1" 200 -

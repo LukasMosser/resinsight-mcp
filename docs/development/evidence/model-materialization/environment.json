@@ -1,0 +1,21 @@
+{
+  "source_commit": "32fd79e7238a7dad416da4e5be7318ca2febecf3",
+  "working_state": "?? docs/development/evidence/model-materialization/",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "packages": {
+    "opm": "2025.10",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pytest": "9.1.1",
+    "mkdocs": "1.6.1",
+    "mkdocs-material": "9.7.7",
+    "pre-commit": "4.6.2"
+  },
+  "commands": [
+    "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv sync --locked --all-groups",
+    "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py"
+  ],
+  "scope": "Public library and repository checks. No native or simulator run."
+}

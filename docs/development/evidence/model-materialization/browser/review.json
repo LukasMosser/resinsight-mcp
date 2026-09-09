@@ -1,0 +1,74 @@
+{
+  "reviewed_at": "2026-09-09T08:09:57.020Z",
+  "source_commit": "32fd79e7238a7dad416da4e5be7318ca2febecf3",
+  "working_tree": "?? docs/development/evidence/model-materialization/\n?? docs/development/model-materialization-evidence.md\n",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/model-imports/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 745
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "import-materialization.png"
+    },
+    {
+      "path": "/development/model-materialization-evidence/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "materialization-evidence.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-opm/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/model-materialization/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/model-materialization/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/model-materialization/issue-39.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/model-materialization/dependency-sync.log",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
