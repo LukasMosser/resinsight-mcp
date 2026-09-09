@@ -1,0 +1,563 @@
+diff --git a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp
+index 37ad312..0c4708f 100644
+--- a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp
++++ b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp
+@@ -28,6 +28,7 @@
+ #include "RimViewController.h"
+ 
+ #include "cafPdmUiComboBoxEditor.h"
++#include "cafPdmFieldScriptingCapability.h"
+ 
+ #include "cvfStructGridGeometryGenerator.h"
+ 
+@@ -62,9 +63,9 @@ RimCellFilter::RimCellFilter( FilterDefinitionType defType )
+     CAF_PDM_InitFieldNoDefault( &m_srcCase, "Case", "Case" );
+     m_srcCase.uiCapability()->setUiHidden( true );
+ 
+-    CAF_PDM_InitFieldNoDefault( &m_filterMode, "FilterType", "Filter Type" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_filterMode, "FilterType", "Filter Type" );
+ 
+-    CAF_PDM_InitField( &m_gridIndex, "GridIndex", 0, "Grid" );
++    CAF_PDM_InitScriptableField( &m_gridIndex, "GridIndex", 0, "Grid" );
+     m_gridIndex.uiCapability()->setUiEditorTypeName( caf::PdmUiComboBoxEditor::uiEditorTypeName() );
+ 
+     CAF_PDM_InitField( &m_propagateToSubGrids, "PropagateToSubGrids", true, "Apply to Subgrids" );
+diff --git a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp
+index d036cca..0af711b 100644
+--- a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp
++++ b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp
+@@ -40,10 +40,23 @@
+ #include "cafPdmFieldReorderCapability.h"
+ #include "cafPdmFieldScriptingCapability.h"
+ #include "cafPdmObjectScriptingCapability.h"
++#include "cafPdmScriptEnumNameRegistry.h"
+ #include "cafPdmUiLabelEditor.h"
+ 
+ #include "cvfStructGridGeometryGenerator.h"
+ 
++namespace
++{
++struct RegisterScriptEnumNames
++{
++    RegisterScriptEnumNames()
++    {
++        caf::PdmScriptEnumNameRegistry::registerName<RimCellFilterCollection::CombineFilterModeType>( "CombineMode" );
++    }
++};
++const RegisterScriptEnumNames s_registerScriptEnumNames;
++}
++
+ namespace caf
+ {
+ template <>
+@@ -68,13 +81,13 @@ RimCellFilterCollection::RimCellFilterCollection()
+     CAF_PDM_InitScriptableField( &m_isActive, "Active", true, "Active" );
+     m_isActive.uiCapability()->setUiHidden( true );
+ 
+-    CAF_PDM_InitFieldNoDefault( &m_combineFilterMode, "CombineFilterMode", "" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_combineFilterMode, "CombineFilterMode", "" );
+ 
+     CAF_PDM_InitField( &m_combineModeLabel, "CombineModeLabel", QString( "" ), "Combine Polygon and Range Filters Using Operation" );
+     m_combineModeLabel.uiCapability()->setUiEditorTypeName( caf::PdmUiLabelEditor::uiEditorTypeName() );
+     m_combineModeLabel.xmlCapability()->disableIO();
+ 
+-    CAF_PDM_InitFieldNoDefault( &m_cellFilters, "CellFilters", "Filters" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_cellFilters, "CellFilters", "Filters" );
+     caf::PdmFieldReorderCapability::addToField( &m_cellFilters );
+ 
+     // for backwards project file compatibility with old CellRangeFilterCollection
+@@ -497,6 +510,19 @@ void RimCellFilterCollection::setAutoName( RimCellFilter* pFilter )
+     }
+ }
+ 
++//--------------------------------------------------------------------------------------------------
++///
++//--------------------------------------------------------------------------------------------------
++void RimCellFilterCollection::onChildAdded( caf::PdmFieldHandle* containerForNewObject )
++{
++    if ( containerForNewObject != &m_cellFilters || m_cellFilters.empty() ) return;
++    auto filter = m_cellFilters[m_cellFilters.size() - 1];
++    auto view = firstAncestorOrThisOfType<Rim3dView>();
++    if ( view ) filter->setCase( view->ownerCase() );
++    connectToFilterUpdates( filter );
++    onFilterUpdated( filter );
++}
++
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
+diff --git a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h
+index 143c5ad..aacd1b9 100644
+--- a/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h
++++ b/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h
+@@ -87,6 +87,7 @@ public:
+     bool hasActiveIncludeRangeFilters() const;
+ 
+     void updateIconState();
++    void onChildAdded( caf::PdmFieldHandle* containerForNewObject ) override;
+     void onChildDeleted( caf::PdmChildArrayFieldHandle* childArray, std::vector<caf::PdmObjectHandle*>& referringObjects ) override;
+ 
+     void connectToFilterUpdates( RimCellFilter* filter );
+diff --git a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
+index 3707783..b5a1386 100644
+--- a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
++++ b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
+@@ -27,7 +27,6 @@
+ #include "RiaPreferencesSystem.h"
+ #include "RiaViewRedrawScheduler.h"
+ #include "RiaZScaleTools.h"
+-
+ #include "Rim2dIntersectionView.h"
+ #include "Rim3dWellLogCurve.h"
+ #include "RimAnnotationCollection.h"
+@@ -134,6 +133,14 @@ Rim3dView::Rim3dView()
+     m_cameraPointOfInterestProxy.registerSetMethod( this, &Rim3dView::setCameraPointOfInterest );
+ 
+     CAF_PDM_InitScriptableField( &isPerspectiveView, "PerspectiveProjection", true, "Perspective Projection" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraFieldOfViewYDegrees, "ActualCameraFieldOfViewYDegrees", "Actual Camera Field of View Y Degrees" );
++    m_actualCameraFieldOfViewYDegrees.registerGetMethod( this, &Rim3dView::actualCameraFieldOfViewYDegrees );
++    m_actualCameraFieldOfViewYDegrees.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraFieldOfViewYDegrees.uiCapability()->setUiHidden( true );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraParallelProjectionHeight, "ActualCameraParallelProjectionHeight", "Actual Camera Parallel Projection Height" );
++    m_actualCameraParallelProjectionHeight.registerGetMethod( this, &Rim3dView::actualCameraParallelProjectionHeight );
++    m_actualCameraParallelProjectionHeight.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraParallelProjectionHeight.uiCapability()->setUiHidden( true );
+ 
+     double defaultScaleFactor = preferences->defaultScaleFactorZ();
+     CAF_PDM_InitScriptableField( &m_scaleZ, "GridZScale", defaultScaleFactor, "Z Scale", "", "Scales the scene in the Z direction", "" );
+@@ -1630,6 +1637,16 @@ QList<caf::PdmOptionItemInfo> Rim3dView::calculateValueOptions( const caf::PdmFi
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
++double Rim3dView::actualCameraFieldOfViewYDegrees() const
++{
++    return m_viewer ? m_viewer->cameraFieldOfViewYDegrees() : 0.0;
++}
++
++double Rim3dView::actualCameraParallelProjectionHeight() const
++{
++    return m_viewer ? m_viewer->cameraParallelProjectionHeight() : 0.0;
++}
++
+ cvf::Mat4d Rim3dView::cameraPosition() const
+ {
+     if ( m_viewer && m_viewer->mainCamera() )
+diff --git a/ApplicationLibCode/ProjectDataModel/Rim3dView.h b/ApplicationLibCode/ProjectDataModel/Rim3dView.h
+index 01e2d8e..4d93a8e 100644
+--- a/ApplicationLibCode/ProjectDataModel/Rim3dView.h
++++ b/ApplicationLibCode/ProjectDataModel/Rim3dView.h
+@@ -212,6 +212,8 @@ protected:
+     static void removeModelByName( cvf::Scene* scene, const cvf::String& modelName );
+ 
+     virtual void setDefaultView();
++    double actualCameraFieldOfViewYDegrees() const;
++    double actualCameraParallelProjectionHeight() const;
+     cvf::Mat4d   cameraPosition() const;
+     cvf::Vec3d   cameraPointOfInterest() const;
+     bool         isCameraOriented( const cvf::Vec3d& viewDirection, const cvf::Vec3d& upDirection ) const;
+@@ -348,6 +350,8 @@ private:
+     // Camera position and point of interest. The member variables are mutable to allow for setting them from const methods.
+     // The camera position and point of interest can change rapidly as the user interacts with the 3D view. Only update the Pdm field values
+     // when the application requests the camera position or point of interest.
++    caf::PdmProxyValueField<double> m_actualCameraFieldOfViewYDegrees;
++    caf::PdmProxyValueField<double> m_actualCameraParallelProjectionHeight;
+     mutable caf::PdmField<cvf::Mat4d>   m_cameraPosition;
+     mutable caf::PdmField<cvf::Vec3d>   m_cameraPointOfInterest;
+     caf::PdmProxyValueField<cvf::Vec3d> m_cameraPointOfInterestProxy;
+diff --git a/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp b/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp
+index 02ae0df..440f707 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp
+@@ -19,6 +19,7 @@
+ /////////////////////////////////////////////////////////////////////////////////
+ 
+ #include "RimEclipseCellColors.h"
++#include "cafPdmFieldScriptingCapability.h"
+ 
+ #include "RiaResultNames.h"
+ 
+@@ -57,7 +58,7 @@ RimEclipseCellColors::RimEclipseCellColors()
+     CAF_PDM_InitFieldNoDefault( &obsoleteField_legendConfig, "LegendDefinition", "Color Legend" );
+     obsoleteField_legendConfig.xmlCapability()->setIOWritable( false );
+ 
+-    CAF_PDM_InitFieldNoDefault( &m_legendConfigData, "ResultVarLegendDefinitionList", "" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_legendConfigData, "ResultVarLegendDefinitionList", "" );
+ 
+     CAF_PDM_InitFieldNoDefault( &m_ternaryLegendConfig, "TernaryLegendDefinition", "Ternary Color Legend" );
+     m_ternaryLegendConfig = new RimTernaryLegendConfig();
+@@ -257,6 +258,7 @@ void RimEclipseCellColors::defineUiTreeOrdering( caf::PdmUiTreeOrdering& uiTreeO
+ void RimEclipseCellColors::loadResult()
+ {
+     RimEclipseResultDefinition::loadResult();
++    changeLegendConfig( resultVariableUiName() );
+     updateUiTreeName();
+ }
+ 
+diff --git a/ApplicationLibCode/ProjectDataModel/RimGridView.cpp b/ApplicationLibCode/ProjectDataModel/RimGridView.cpp
+index 0b02e0c..006e64f 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimGridView.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimGridView.cpp
+@@ -17,6 +17,8 @@
+ /////////////////////////////////////////////////////////////////////////////////
+ 
+ #include "RimGridView.h"
++#include "cafPdmFieldScriptingCapability.h"
++#include "cafPdmObjectScriptingCapability.h"
+ 
+ #include "Rim3dOverlayInfoConfig.h"
+ #include "RimCellFilter.h"
+@@ -72,6 +74,8 @@ CAF_PDM_XML_ABSTRACT_SOURCE_INIT( RimGridView, "GenericGridView" ); // Do not us
+ RimGridView::RimGridView()
+     : cellVisibilityChanged( this )
+ {
++    CAF_PDM_InitScriptableObjectWithNameAndComment( "Grid View", "", "", "", "GridView", "A grid view" );
++
+     CAF_PDM_InitFieldNoDefault( &m_overrideCellFilterCollection, "CellFiltersControlled", "Cell Filters (controlled)" );
+     m_overrideCellFilterCollection.xmlCapability()->disableIO();
+ 
+@@ -107,7 +111,7 @@ RimGridView::RimGridView()
+     m_polygonInViewCollection = new RimPolygonInViewCollection();
+     m_polygonInViewCollection->uiCapability()->setUiIcon( caf::IconProvider( ":/PolylinesFromFile16x16.png" ) );
+ 
+-    CAF_PDM_InitFieldNoDefault( &m_cellFilterCollection, "RangeFilters", "Cell Filter Collection Field" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_cellFilterCollection, "RangeFilters", "Cell Filter Collection Field" );
+     m_cellFilterCollection = new RimCellFilterCollection();
+ 
+     m_surfaceVizModel = new cvf::ModelBasicList;
+diff --git a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
+index 1da3e90..7722139 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
+@@ -50,6 +50,8 @@
+ #include "RiuCategoryLegendFrame.h"
+ #include "RiuScalarMapperLegendFrame.h"
+ 
++#include "cafPdmFieldScriptingCapability.h"
++#include "cafPdmObjectScriptingCapability.h"
+ #include "cafCategoryLegend.h"
+ #include "cafCategoryMapper.h"
+ #include "cafOverlayScalarMapperLegend.h"
+@@ -144,11 +146,11 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+     , m_isAllTimeStepsRangeDisabled( false )
+     , m_resetUserDefinedValues( false )
+ {
+-    CAF_PDM_InitObject( "Color Legend", ":/Legend.png" );
++    CAF_PDM_InitScriptableObject( "Color Legend", ":/Legend.png" );
+     CAF_PDM_InitField( &m_showLegend, "ShowLegend", true, "Show Legend" );
+     m_showLegend.uiCapability()->setUiHidden( true );
+     CAF_PDM_InitField( &m_numLevels, "NumberOfLevels", 8, "Number of Levels", "", "A hint on how many tick marks to display", "" );
+-    CAF_PDM_InitField( &m_precision, "Precision", 4, "Significant Digits", "", "The number of significant digits displayed in the legend numbers", "" );
++    CAF_PDM_InitScriptableField( &m_precision, "Precision", 4, "Significant Digits", "", "The number of significant digits displayed in the legend numbers", "" );
+     m_significantDigitsInData = m_precision;
+     CAF_PDM_InitField( &m_tickNumberFormat,
+                        "TickNumberFormat",
+@@ -166,16 +168,16 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+     m_selectColorLegendButton.uiCapability()->setUiLabelPosition( caf::PdmUiItemInfo::LabelPosition::HIDDEN );
+     m_selectColorLegendButton.xmlCapability()->disableIO();
+ 
+-    CAF_PDM_InitField( &m_mappingMode, "MappingMode", MappingEnum( MappingType::LINEAR_CONTINUOUS ), "Mapping" );
+-    CAF_PDM_InitField( &m_rangeMode,
++    CAF_PDM_InitScriptableField( &m_mappingMode, "MappingMode", MappingEnum( MappingType::LINEAR_CONTINUOUS ), "Mapping" );
++    CAF_PDM_InitScriptableField( &m_rangeMode,
+                        "RangeType",
+                        RangeModeEnum( RangeModeType::AUTOMATIC_ALLTIMESTEPS ),
+                        "Range Type",
+                        "",
+                        "Switches between automatic and user defined range on the legend",
+                        "" );
+-    CAF_PDM_InitField( &m_userDefinedMaxValue, "UserDefinedMax", 1.0, "Max", "", "Max value of the legend", "" );
+-    CAF_PDM_InitField( &m_userDefinedMinValue,
++    CAF_PDM_InitScriptableField( &m_userDefinedMaxValue, "UserDefinedMax", 1.0, "Max", "", "Max value of the legend", "" );
++    CAF_PDM_InitScriptableField( &m_userDefinedMinValue,
+                        "UserDefinedMin",
+                        0.0,
+                        "Min",
+@@ -185,8 +187,17 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+ 
+     CAF_PDM_InitFieldNoDefault( &m_categoryColorMode, "CategoryColorMode", "Category Mode" );
+ 
+-    CAF_PDM_InitField( &resultVariableName, "ResultVariableUsage", QString( "" ), "" );
++    CAF_PDM_InitScriptableField( &resultVariableName, "ResultVariableUsage", QString( "" ), "" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_actualMinimum, "ActualMinimum", "Actual Minimum" );
++    m_actualMinimum.registerGetMethod( this, &RimRegularLegendConfig::actualMinimum );
++    m_actualMinimum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMinimum.uiCapability()->setUiHidden( true );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_actualMaximum, "ActualMaximum", "Actual Maximum" );
++    m_actualMaximum.registerGetMethod( this, &RimRegularLegendConfig::actualMaximum );
++    m_actualMaximum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMaximum.uiCapability()->setUiHidden( true );
+     resultVariableName.uiCapability()->setUiHidden( true );
++    resultVariableName.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
+ 
+     m_linDiscreteScalarMapper = new cvf::ScalarMapperDiscreteLinear;
+     m_logDiscreteScalarMapper = new cvf::ScalarMapperDiscreteLog;
+@@ -201,7 +212,7 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+     m_scalarMapperLegend    = new caf::OverlayScalarMapperLegend( standardFont );
+     m_categoryLegend        = new caf::CategoryLegend( standardFont, m_categoryMapper.p() );
+ 
+-    CAF_PDM_InitField( &m_centerLegendAroundZero, "CenterLegendAroundZero", false, "Center Legend Around Zero" );
++    CAF_PDM_InitScriptableField( &m_centerLegendAroundZero, "CenterLegendAroundZero", false, "Center Legend Around Zero" );
+ 
+     updateFieldVisibility();
+     updateLegend();
+@@ -600,6 +611,24 @@ void RimRegularLegendConfig::setTickNumberFormat( caf::NumberFormatType numberFo
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
++double RimRegularLegendConfig::actualMinimum() const
++{
++    if ( m_mappingMode() == MappingType::CATEGORY_INTEGER || m_currentScalarMapper == m_categoryMapper )
++    {
++        return cvf::UNDEFINED_DOUBLE;
++    }
++    return m_currentScalarMapper.notNull() ? m_currentScalarMapper->domainValue( 0.0 ) : 0.0;
++}
++
++double RimRegularLegendConfig::actualMaximum() const
++{
++    if ( m_mappingMode() == MappingType::CATEGORY_INTEGER || m_currentScalarMapper == m_categoryMapper )
++    {
++        return cvf::UNDEFINED_DOUBLE;
++    }
++    return m_currentScalarMapper.notNull() ? m_currentScalarMapper->domainValue( 1.0 ) : 0.0;
++}
++
+ void RimRegularLegendConfig::setUserDefinedRange( double minVal, double maxVal )
+ {
+     m_userDefinedMinValue = minVal;
+diff --git a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h
+index 52381a7..b4cae3b 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h
++++ b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h
+@@ -27,6 +27,7 @@
+ #include "cvfObject.h"
+ 
+ #include "cafPdmPtrField.h"
++#include "cafPdmProxyValueField.h"
+ #include "cafPdmUiNumberFormat.h"
+ #include "cafSignal.h"
+ 
+@@ -137,6 +138,8 @@ public:
+     void resetUserDefinedValues();
+     void setCenterLegendAroundZero( bool enable );
+     void setUserDefinedRange( double minVal, double maxVal );
++    double actualMinimum() const;
++    double actualMaximum() const;
+ 
+     void disableAllTimeStepsRange( bool doDisable );
+ 
+@@ -236,6 +239,8 @@ private:
+     caf::PdmField<RangeModeEnum>                       m_rangeMode;
+     caf::PdmField<double>                              m_userDefinedMaxValue;
+     caf::PdmField<double>                              m_userDefinedMinValue;
++    caf::PdmProxyValueField<double>                    m_actualMinimum;
++    caf::PdmProxyValueField<double>                    m_actualMaximum;
+     caf::PdmField<caf::AppEnum<ColorRangesType>>       m_colorRangeMode_OBSOLETE;
+     caf::PdmField<caf::AppEnum<MappingType>>           m_mappingMode;
+     caf::PdmField<caf::AppEnum<CategoryColorModeType>> m_categoryColorMode;
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp b/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp
+index 91e2c95..c09e778 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp
+@@ -20,10 +20,13 @@
+ 
+ #include "RiaApplication.h"
+ #include "RiaKeyValueStoreUtil.h"
++#include "RiuViewer.h"
+ 
+ #include "Polygons/RimPolygon.h"
+ #include "Polygons/RimPolygonInViewCollection.h"
+ #include "Rim3dView.h"
++#include "RimCellFilterCollection.h"
++#include "RimCellRangeFilter.h"
+ #include "RimEclipseView.h"
+ #include "RimGridView.h"
+ #include "Surfaces/RimSurface.h"
+@@ -33,6 +36,8 @@
+ 
+ #include "cvfArray.h"
+ 
++#include <cmath>
++
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimEclipseView, RimcGridView_visibleCellsInternal, "visible_cells_internal" );
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( Rim3dView, RimcGridView_setPolygonVisible, "set_polygon_visible" );
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( Rim3dView, RimcGridView_setSurfaceVisible, "set_surface_visible" );
+@@ -204,3 +209,87 @@ std::expected<caf::PdmObjectHandle*, QString> RimcGridView_setSurfaceProperty::e
+     gridView->scheduleCreateDisplayModelAndRedraw();
+     return nullptr;
+ }
++
++namespace
++{
++std::expected<void, QString> validateViewControls( Rim3dView* view )
++{
++    if ( !view || !view->viewer() )
++    {
++        return std::unexpected( QString( "View controls require an open view" ) );
++    }
++    if ( view->assosiatedViewLinker() || view->viewController() )
++    {
++        return std::unexpected( QString( "View controls do not support linked or controlled views" ) );
++    }
++    if ( auto gridView = dynamic_cast<RimGridView*>( view ) )
++    {
++        for ( auto filter : gridView->cellFilterCollection()->filters() )
++        {
++            if ( !dynamic_cast<RimCellRangeFilter*>( filter ) )
++            {
++                return std::unexpected( QString( "View controls support only displayed cell range filters" ) );
++            }
++        }
++    }
++    auto eclipseView = dynamic_cast<RimEclipseView*>( view );
++    if ( eclipseView && eclipseView->hasActivePropertyOrDataFilters() )
++    {
++        return std::unexpected( QString( "View controls do not support active property or data filters" ) );
++    }
++    return {};
++}
++}
++
++CAF_PDM_OBJECT_METHOD_SOURCE_INIT( Rim3dView, RimcGridView_validateViewControls, "validate_view_controls" );
++CAF_PDM_OBJECT_METHOD_SOURCE_INIT( Rim3dView, RimcGridView_setCameraProjection, "set_camera_projection" );
++
++RimcGridView_validateViewControls::RimcGridView_validateViewControls( caf::PdmObjectHandle* self )
++    : caf::PdmVoidObjectMethod( self )
++{
++    CAF_PDM_InitObject( "Validate View Controls", "", "", "Validate isolated view controls without changing the view" );
++}
++
++std::expected<caf::PdmObjectHandle*, QString> RimcGridView_validateViewControls::execute()
++{
++    auto result = validateViewControls( self<Rim3dView>() );
++    if ( !result ) return std::unexpected( result.error() );
++    return nullptr;
++}
++
++RimcGridView_setCameraProjection::RimcGridView_setCameraProjection( caf::PdmObjectHandle* self )
++    : caf::PdmVoidObjectMethod( self )
++{
++    CAF_PDM_InitObject( "Set Camera Projection", "", "", "Set camera projection on an open view" );
++    CAF_PDM_InitScriptableField( &m_perspective, "Perspective", true, "Perspective" );
++    CAF_PDM_InitScriptableField( &m_fieldOfViewYDegrees, "FieldOfViewYDegrees", 40.0, "Field of View Y Degrees" );
++    CAF_PDM_InitScriptableField( &m_parallelProjectionHeight, "ParallelProjectionHeight", 1.0, "Parallel Projection Height" );
++}
++
++std::expected<caf::PdmObjectHandle*, QString> RimcGridView_setCameraProjection::execute()
++{
++    auto view = self<Rim3dView>();
++    auto validation = validateViewControls( view );
++    if ( !validation ) return std::unexpected( validation.error() );
++    const double degrees = m_fieldOfViewYDegrees();
++    const double height  = m_parallelProjectionHeight();
++    if ( !std::isfinite( degrees ) || degrees <= 0.0 || degrees >= 180.0 )
++    {
++        return std::unexpected( QString( "Field of view must be finite and between 0 and 180 degrees" ) );
++    }
++    if ( !std::isfinite( height ) || height <= 0.0 )
++    {
++        return std::unexpected( QString( "Parallel projection height must be finite and positive" ) );
++    }
++
++    auto viewer = view->viewer();
++    view->isPerspectiveView = m_perspective();
++    viewer->enableParallelProjection( !m_perspective() );
++    viewer->setCameraFieldOfViewYDegrees( degrees );
++    if ( !m_perspective() )
++    {
++        viewer->setCameraParallelProjectionHeight( height, viewer->pointOfInterest() );
++    }
++    view->updateConnectedEditors();
++    return nullptr;
++}
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h b/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h
+index 3ba4a35..646e48b 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h
+@@ -95,3 +95,26 @@ private:
+     caf::PdmPtrField<RimSurface*> m_surface;
+     caf::PdmField<QString>        m_propertyName;
+ };
++
++class RimcGridView_setCameraProjection : public caf::PdmVoidObjectMethod
++{
++    CAF_PDM_HEADER_INIT;
++
++public:
++    RimcGridView_setCameraProjection( caf::PdmObjectHandle* self );
++    std::expected<caf::PdmObjectHandle*, QString> execute() override;
++
++private:
++    caf::PdmField<bool>   m_perspective;
++    caf::PdmField<double> m_fieldOfViewYDegrees;
++    caf::PdmField<double> m_parallelProjectionHeight;
++};
++
++class RimcGridView_validateViewControls : public caf::PdmVoidObjectMethod
++{
++    CAF_PDM_HEADER_INIT;
++
++public:
++    RimcGridView_validateViewControls( caf::PdmObjectHandle* self );
++    std::expected<caf::PdmObjectHandle*, QString> execute() override;
++};
+diff --git a/Fwk/AppFwk/cafViewer/cafViewer.cpp b/Fwk/AppFwk/cafViewer/cafViewer.cpp
+index 109d3a0..5b130c8 100644
+--- a/Fwk/AppFwk/cafViewer/cafViewer.cpp
++++ b/Fwk/AppFwk/cafViewer/cafViewer.cpp
+@@ -1578,6 +1578,40 @@ cvf::OverlayItem* caf::Viewer::overlayItem( int winPosX, int winPosY )
+ //--------------------------------------------------------------------------------------------------
+ ///
+ //--------------------------------------------------------------------------------------------------
++double caf::Viewer::cameraFieldOfViewYDegrees() const
++{
++    return m_cameraFieldOfViewYDeg;
++}
++
++void caf::Viewer::setCameraFieldOfViewYDegrees( double degrees )
++{
++    CVF_ASSERT( std::isfinite( degrees ) && degrees > 0.0 && degrees < 180.0 );
++    m_cameraFieldOfViewYDeg = degrees;
++    if ( m_mainCamera->projection() == cvf::Camera::PERSPECTIVE )
++    {
++        m_mainCamera->setProjectionAsPerspective( degrees, m_mainCamera->nearPlane(), m_mainCamera->farPlane() );
++    }
++    else if ( m_navigationPolicy.notNull() )
++    {
++        updateParallelProjectionCameraPosFromPointOfInterestMove( m_navigationPolicy->pointOfInterest() );
++    }
++    update();
++}
++
++double caf::Viewer::cameraParallelProjectionHeight() const
++{
++    return m_mainCamera->frontPlaneFrustumHeight();
++}
++
++void caf::Viewer::setCameraParallelProjectionHeight( double height, const cvf::Vec3d& pointOfInterest )
++{
++    CVF_ASSERT( std::isfinite( height ) && height > 0.0 );
++    CVF_ASSERT( m_mainCamera->projection() == cvf::Camera::ORTHO );
++    m_mainCamera->setProjectionAsOrtho( height, m_mainCamera->nearPlane(), m_mainCamera->farPlane() );
++    updateParallelProjectionCameraPosFromPointOfInterestMove( pointOfInterest );
++    update();
++}
++
+ void caf::Viewer::enableParallelProjection( bool enableOrtho )
+ {
+     if ( enableOrtho && m_mainCamera->projection() == cvf::Camera::PERSPECTIVE )
+diff --git a/Fwk/AppFwk/cafViewer/cafViewer.h b/Fwk/AppFwk/cafViewer/cafViewer.h
+index 4e13ab9..008a7fc 100644
+--- a/Fwk/AppFwk/cafViewer/cafViewer.h
++++ b/Fwk/AppFwk/cafViewer/cafViewer.h
+@@ -133,6 +133,10 @@ public:
+     void                         enableNavigationPolicy( bool enable );
+     void                         setView( const cvf::Vec3d& alongDirection, const cvf::Vec3d& upDirection );
+     void                         zoomAll();
++    double                       cameraFieldOfViewYDegrees() const;
++    void                         setCameraFieldOfViewYDegrees( double degrees );
++    double                       cameraParallelProjectionHeight() const;
++    void                         setCameraParallelProjectionHeight( double height, const cvf::Vec3d& pointOfInterest );
+     void                         enableParallelProjection( bool enable );
+     void                         setParallelProjectionHeadLightDirection( const cvf::Vec3f& direction );
+     void                         setPointOfInterestVisualizer( PointOfInterestVisualizer* poiVisualizer );

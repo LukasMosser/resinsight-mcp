@@ -199,6 +199,14 @@ class RipsApplication:
     def _project(self) -> _Project:
         return cast(_ProjectType, rips.Project).create(self._calls)
 
+    def project(self) -> _Project:
+        """Resolve the project through the existing deadline-bound client channel."""
+        return _rpc(self._project)
+
+    def call[T](self, action: Callable[[], T], *, mutation: bool = False) -> T:
+        """Map native failures while using objects from this client's project."""
+        return _rpc(action, mutation=mutation)
+
     def snapshot(self) -> ProjectSnapshot:
         self.verify_process()
         snapshot = _rpc(self._snapshot)

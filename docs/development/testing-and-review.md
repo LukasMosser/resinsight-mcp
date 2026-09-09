@@ -12,6 +12,7 @@ The default suite does not launch ResInsight or a simulator.
 The [P04 record](p04-evidence.md) reports separate real application acceptance.
 MCP tests launch real SDK client and server processes with explicit test services.
 The [P05 record](mcp-evidence.md) reports separate blind image acceptance through the production transport.
+The [P06 record](p06-evidence.md) separates native view checks, local MCP delivery, and model-facing image acceptance.
 
 For contract changes, exercise valid records, rejected inputs, serialization, and relationships between identifiers and states.
 Make sure that a successful edit remains distinguishable from a failed observation.

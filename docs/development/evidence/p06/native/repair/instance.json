@@ -1,0 +1,7 @@
+{
+  "port": 49600,
+  "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "synthetic_only": true,
+  "closed": true,
+  "close_outcome": "Already exited before explicit close. Port 49600 refused connections. Process inventory found no running ResInsight executable."
+}

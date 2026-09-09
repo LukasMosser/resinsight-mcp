@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python",
+    "/private/tmp/resinsight-p06-native-repair-smoke.py"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "QT_PLUGIN_PATH": "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/plugins",
+    "PYTHONPATH": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python"
+  },
+  "native_commit": "1859d96e9a40093abfc43c42df9e9ef5b3846c9d",
+  "log": "/private/tmp/resinsight-p06-native-repair-smoke.log",
+  "exit_code": 0,
+  "synthetic_only": true
+}

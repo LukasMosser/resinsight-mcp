@@ -21,11 +21,18 @@ from resinsight_mcp.contracts.interfaces import (
     JobController,
     Renderer,
     SessionService,
+    ViewService,
     WorkspaceStore,
 )
 from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest
 from resinsight_mcp.contracts.models import Session
-from resinsight_mcp.contracts.observations import Observation, RenderRequest, ViewContext
+from resinsight_mcp.contracts.observations import (
+    EditedView,
+    Observation,
+    RenderRequest,
+    ViewContext,
+    ViewUpdateRequest,
+)
 from resinsight_mcp.contracts.sessions import (
     AttachRequest,
     CloseReceipt,
@@ -80,6 +87,7 @@ class Bindings:
     renderer: Renderer | None = None
     sessions: SessionService | None = None
     jobs: JobController | None = None
+    views: ViewService | None = None
 
 
 @dataclass(frozen=True)
@@ -134,8 +142,9 @@ def _render(bindings: Bindings, request: ViewRenderRequest) -> OperationResult[O
                 code=ErrorCode.INVALID_MODEL, message="The view does not match the stored result."
             )
         ) from exc
-    assert bindings.renderer is not None
-    response = bindings.renderer.render(render_request)
+    renderer = bindings.views if bindings.views is not None else bindings.renderer
+    assert renderer is not None
+    response = renderer.render(render_request)
     if isinstance(response.outcome, Success):
         observation = response.outcome.value
         if observation.context != request.context:
@@ -156,6 +165,7 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
     """Advertise only operations whose service implementation was explicitly supplied."""
     store = bindings.workspaces
     session_service = bindings.sessions if bindings.sessions is not None else store
+    observations = bindings.views if bindings.views is not None else store
     operations: list[Operation[Any, Any]] = [
         Operation(
             "session_create",
@@ -185,12 +195,14 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
             "Read a saved observation with native image content. This does not render a new frame.",
             ObservationRequest,
             OperationResult[Observation],
-            lambda request: store.get_observation(request.session_id, request.observation_id),
+            lambda request: observations.get_observation(
+                request.session_id, request.observation_id
+            ),
             session_id=lambda request: request.session_id,
             read_only=True,
         ),
     ]
-    if bindings.renderer is not None:
+    if bindings.renderer is not None or bindings.views is not None:
         operations.append(
             Operation(
                 "view_render",
@@ -199,6 +211,17 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
                 OperationResult[Observation],
                 lambda request: _render(bindings, request),
                 session_id=lambda request: request.session_id,
+            )
+        )
+    if bindings.views is not None:
+        operations.append(
+            Operation(
+                "view_apply",
+                "Apply explicit view settings and return the edit receipt with a native image.",
+                ViewUpdateRequest,
+                OperationResult[EditedView],
+                bindings.views.apply,
+                session_id=lambda request: request.context.model.session_id,
             )
         )
     if bindings.sessions is not None:

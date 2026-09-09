@@ -1,0 +1,39 @@
+{
+  "base_commit": "197d58a750dd0bc243025b3939ab2a8a01a2c709",
+  "native_commit": "1859d96e9a40093abfc43c42df9e9ef5b3846c9d",
+  "previous_tested_commit": "949c4d3cb279b36ae500477f8a02405413ae5d79",
+  "previous_results": "/private/tmp/resinsight-p06-native-smoke/results.json",
+  "previous_result_limit": "34 checks passed at 949c4d3, not rerun at 1859d96",
+  "patch": "/private/tmp/resinsight-p06-native-view-controls-1859d96.patch",
+  "repair_delta": "/private/tmp/resinsight-p06-native-repair-delta.patch",
+  "generated_api": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python/rips/generated/generated_classes.py",
+  "results": "/private/tmp/resinsight-p06-native-repair-smoke/results.json",
+  "current_checks_passed": 11,
+  "build_command": "/private/tmp/resinsight-p06-native-repair-smoke/build-command.json",
+  "smoke_command": "/private/tmp/resinsight-p06-native-repair-smoke/smoke-command.json",
+  "versions": "/private/tmp/resinsight-p06-native-repair-smoke/versions.json",
+  "ui_hidden_evidence": "Reviewed four setUiHidden(true) calls in RimRegularLegendConfig.cpp and Rim3dView.cpp. Runtime readback remains available.",
+  "legend_editor_visual_inspection": {
+    "status": "not_performed",
+    "reason": "Sky Computer Use service startup request failed",
+    "local_attempts": 2,
+    "independent_parent_attempts": 1,
+    "screenshots_captured": false
+  },
+  "files": [
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilter.cpp",
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp",
+    "ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.h",
+    "ApplicationLibCode/ProjectDataModel/Rim3dView.cpp",
+    "ApplicationLibCode/ProjectDataModel/Rim3dView.h",
+    "ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimGridView.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp",
+    "ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.h",
+    "ApplicationLibCode/ProjectDataModelCommands/RimcGridView.cpp",
+    "ApplicationLibCode/ProjectDataModelCommands/RimcGridView.h",
+    "Fwk/AppFwk/cafViewer/cafViewer.cpp",
+    "Fwk/AppFwk/cafViewer/cafViewer.h"
+  ],
+  "owned_instance_end_state": "/private/tmp/resinsight-p06-native-repair-smoke/instance.json"
+}

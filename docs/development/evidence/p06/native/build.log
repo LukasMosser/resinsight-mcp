@@ -1,0 +1,1402 @@
+[0/1] Re-running CMake...
+-- Running vcpkg install
+Detecting compiler hash for triplet arm64-osx-p01...
+Compiler found: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++
+The following packages are already installed:
+  * abseil:arm64-osx-p01@20250814.1
+    arrow[core,parquet,json,filesystem,csv]:arm64-osx-p01@21.0.0#2
+  * boost-algorithm:arm64-osx-p01@1.89.0
+  * boost-align:arm64-osx-p01@1.89.0
+  * boost-array:arm64-osx-p01@1.89.0
+  * boost-assert:arm64-osx-p01@1.89.0
+  * boost-atomic:arm64-osx-p01@1.89.0
+  * boost-bind:arm64-osx-p01@1.89.0
+  * boost-charconv:arm64-osx-p01@1.89.0
+  * boost-chrono:arm64-osx-p01@1.89.0
+  * boost-cmake:arm64-osx-p01@1.89.0
+  * boost-concept-check:arm64-osx-p01@1.89.0
+  * boost-config:arm64-osx-p01@1.89.0
+  * boost-container:arm64-osx-p01@1.89.0
+  * boost-container-hash:arm64-osx-p01@1.89.0
+  * boost-conversion:arm64-osx-p01@1.89.0
+  * boost-core:arm64-osx-p01@1.89.0
+  * boost-date-time:arm64-osx-p01@1.89.0
+  * boost-describe:arm64-osx-p01@1.89.0
+  * boost-detail:arm64-osx-p01@1.89.0
+  * boost-dynamic-bitset:arm64-osx-p01@1.89.0
+  * boost-endian:arm64-osx-p01@1.89.0
+  * boost-exception:arm64-osx-p01@1.89.0
+    boost-filesystem:arm64-osx-p01@1.89.0
+  * boost-function:arm64-osx-p01@1.89.0
+  * boost-function-types:arm64-osx-p01@1.89.0
+  * boost-functional:arm64-osx-p01@1.89.0
+  * boost-fusion:arm64-osx-p01@1.89.0
+  * boost-headers:arm64-osx-p01@1.89.0
+  * boost-integer:arm64-osx-p01@1.89.0
+  * boost-intrusive:arm64-osx-p01@1.89.0
+  * boost-io:arm64-osx-p01@1.89.0
+  * boost-iterator:arm64-osx-p01@1.89.0
+  * boost-lexical-cast:arm64-osx-p01@1.89.0
+  * boost-locale:arm64-osx-p01@1.89.0
+  * boost-math:arm64-osx-p01@1.89.0
+  * boost-move:arm64-osx-p01@1.89.0
+  * boost-mp11:arm64-osx-p01@1.89.0
+  * boost-mpl:arm64-osx-p01@1.89.0
+  * boost-multiprecision:arm64-osx-p01@1.89.0
+  * boost-numeric-conversion:arm64-osx-p01@1.89.0
+  * boost-optional:arm64-osx-p01@1.89.0
+  * boost-phoenix:arm64-osx-p01@1.89.0
+  * boost-pool:arm64-osx-p01@1.89.0
+  * boost-predef:arm64-osx-p01@1.89.0
+  * boost-preprocessor:arm64-osx-p01@1.89.0
+  * boost-proto:arm64-osx-p01@1.89.0
+  * boost-random:arm64-osx-p01@1.89.0
+  * boost-range:arm64-osx-p01@1.89.0
+  * boost-ratio:arm64-osx-p01@1.89.0
+  * boost-regex:arm64-osx-p01@1.89.0
+  * boost-scope:arm64-osx-p01@1.89.0
+  * boost-scope-exit:arm64-osx-p01@1.89.0
+  * boost-smart-ptr:arm64-osx-p01@1.89.0
+    boost-spirit:arm64-osx-p01@1.89.0
+  * boost-static-assert:arm64-osx-p01@1.89.0
+  * boost-system:arm64-osx-p01@1.89.0
+    boost-test:arm64-osx-p01@1.89.0
+  * boost-thread:arm64-osx-p01@1.89.0
+  * boost-throw-exception:arm64-osx-p01@1.89.0
+  * boost-tokenizer:arm64-osx-p01@1.89.0
+  * boost-tuple:arm64-osx-p01@1.89.0
+  * boost-type-index:arm64-osx-p01@1.89.0
+  * boost-type-traits:arm64-osx-p01@1.89.0
+  * boost-typeof:arm64-osx-p01@1.89.0
+  * boost-uninstall:arm64-osx-p01@1.89.0
+  * boost-unordered:arm64-osx-p01@1.89.0
+  * boost-utility:arm64-osx-p01@1.89.0
+  * boost-uuid:arm64-osx-p01@1.89.0
+  * boost-variant:arm64-osx-p01@1.89.0
+  * boost-variant2:arm64-osx-p01@1.89.0
+  * boost-winapi:arm64-osx-p01@1.89.0
+  * brotli:arm64-osx-p01@1.2.0
+  * bzip2[core,tool]:arm64-osx-p01@1.0.8#6
+  * c-ares:arm64-osx-p01@1.34.6
+    clipper2:arm64-osx-p01@1.5.4
+    eigen3:arm64-osx-p01@3.4.1#1
+    fast-float:arm64-osx-p01@8.1.0
+  * fmt:arm64-osx-p01@10.1.1
+  * gflags:arm64-osx-p01@2.3.0
+    grpc[core,codegen]:arm64-osx-p01@1.71.0#3
+  * libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1
+  * libiconv:arm64-osx-p01@1.18#3
+  * lz4:arm64-osx-p01@1.10.0
+    nanoflann:arm64-osx-p01@1.8.0
+  * openssl:arm64-osx-p01@3.6.0#3
+  * protobuf:arm64-osx-p01@5.29.5#3
+    pugixml:arm64-osx-p01@1.15#1
+  * rapidjson:arm64-osx-p01@2025-02-26
+  * re2:arm64-osx-p01@2025-11-05
+  * snappy:arm64-osx-p01@1.2.2#1
+    spdlog:arm64-osx-p01@1.16.0
+  * thrift:arm64-osx-p01@0.22.0
+    type-lite:arm64-osx-p01@0.2.0
+  * utf8-range:arm64-osx-p01@5.29.5
+  * utf8proc:arm64-osx-p01@2.11.2
+  * vcpkg-boost:arm64-osx-p01@2025-03-29
+  * vcpkg-cmake:arm64-osx-p01@2024-04-23
+  * vcpkg-cmake-config:arm64-osx-p01@2024-05-23
+  * vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29
+  * xsimd:arm64-osx-p01@14.0.0
+  * zlib:arm64-osx-p01@1.3.1
+  * zstd:arm64-osx-p01@1.5.7
+The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS filesystem)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+The package arrow provides CMake targets:
+
+    find_package(Arrow CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Arrow::arrow_static,Arrow::arrow_shared>")
+
+    find_package(Parquet CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Parquet::parquet_static,Parquet::parquet_shared>")
+
+The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS spirit)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+The package boost-test is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS test)
+    target_link_libraries(main PRIVATE Boost::test)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::test)
+
+The package clipper2 can be imported via CMake FindPkgConfig module:
+
+    # Clipper2
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2 REQUIRED IMPORTED_TARGET Clipper2)
+    target_link_libraries(main PkgConfig::Clipper2)
+
+    # Clipper2Z
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2Z REQUIRED IMPORTED_TARGET Clipper2Z)
+    target_link_libraries(main PkgConfig::Clipper2Z)
+
+clipper2 provides CMake targets:
+
+    # Clipper2
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2)
+
+    # Clipper2Z
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2Z)
+
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+fast-float provides CMake targets:
+
+    find_package(FastFloat CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE FastFloat::fast_float)
+
+grpc provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(gRPC CONFIG REQUIRED)
+  # note: 15 additional targets are not displayed.
+  target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+
+grpc provides pkg-config modules:
+
+  # gRPC platform support library
+  gpr
+
+  # C++ wrapper for gRPC
+  grpc++
+
+  # C++ wrapper for gRPC without SSL
+  grpc++_unsecure
+
+  # high performance general RPC framework
+  grpc
+
+  # high performance general RPC framework without SSL
+  grpc_unsecure
+
+nanoflann provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(nanoflann CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nanoflann::nanoflann)
+
+nanoflann provides pkg-config modules:
+
+  # nanoflann - A C++11 header-only library for kd-trees
+  nanoflann
+
+pugixml provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(pugixml CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE pugixml::static pugixml::pugixml)
+
+pugixml provides pkg-config modules:
+
+  # Light-weight, simple and fast XML parser for C++ with XPath support.
+  pugixml
+
+The package spdlog provides CMake targets:
+
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog)
+
+    # Or use the header-only version
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog_header_only)
+
+type-lite provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(type-lite CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nonstd::type-lite)
+
+All requested installations completed successfully in: 1.11 ms
+-- Running vcpkg install - done
+-- Set CEE_USE_QT6 to ON
+-- Disabling OpenMP support
+-- No buildcache found
+-- Could NOT find Octave (missing: OCTAVE_EXECUTABLE OCTAVE_ROOT_DIR OCTAVE_LIBRARIES) 
+-- Found Darwin
+-- OpenMP package not found
+-- OpenMP disabled
+-- Initializing GIT submodules
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0")
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/googletest/CMakeLists.txt:56 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0") found components: filesystem
+-- openzgy: macOS patch already applied
+-- Compiling with C standard: 99
+-- Compiling with C++ standard: 20
+-- Forced to use Qt version 6
+CMake Warning (dev) at /tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/share/cmake-3.31/Modules/FetchContent.cmake:1953 (message):
+  Calling FetchContent_Populate(mdspan) is deprecated, call
+  FetchContent_MakeAvailable(mdspan) instead.  Policy CMP0169 can be set to
+  OLD to allow FetchContent_Populate(mdspan) to be called directly for now,
+  but the ability to call it with declared details will be removed completely
+  in a future version.
+Call Stack (most recent call first):
+  ThirdParty/custom-surfio/CMakeLists.txt:15 (FetchContent_Populate)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Detected support for C++23 standard
+-- Arrow version: 21.0.0
+-- Found the Arrow shared library: 
+-- Found the Arrow import library: 
+-- Found the Arrow static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libarrow.a
+-- Found thrift: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01
+-- Found libevent: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libevent.a
+-- Parquet version: 21.0.0
+-- Found the Parquet shared library: 
+-- Found the Parquet import library: 
+-- Found the Parquet static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libparquet.a
+-- In LibGuiQt, CEE_USE_QT6=ON
+-- In LibGuiQt, CEE_USE_QT5=OFF
+CMake Warning (dev) at CMakeLists.txt:1176 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Using Python Version: 3.12.13
+Dynamic Deoptimalization is disabled on : ApplicationLibCode
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/source/ThirdParty/gtest/gtest-all.cc;qrc_cafAnimControl.cpp;qrc_ResInsight.cpp;qrc_cafCommandFeatures.cpp;qrc_ApplicationLibCode.cpp;ProjectDataModel/RimVfpTableExtractor.cpp;ProjectDataModel/RimVfpPlot.cpp;/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/mocs_compilation.cpp;ProjectDataModel/RiaOpmParserTools.cpp;ProjectDataModel/RiaOpmKeywordTools.cpp;FileInterface/RifOsduWellPathReader.cpp;FileInterface/RifOsduWellLogReader.cpp;FileInterface/RifByteArrayArrowRandomAccessFile.cpp;FileInterface/RifArrowTools.cpp;FileInterface/RifReaderOpmRft.cpp
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/application-build/ApplicationLibCode/Commands/Commands_autogen/mocs_compilation.cpp
+-- GRPC enabled
+-- Using protobuf 
+-- Found RE2 via CMake.
+-- Generate C++ code using grpc : 1.71.0
+-- Using Python Executable: /Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python
+-- Using Python grpc protoc compiler: libprotoc 35.1
+CMake Warning (dev) at GrpcInterface/CMakeLists.txt:278 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Could not find OCTAVE_MKOCTFILE, skipping OctavePlugin library
+CMake Warning (dev) at CMakeLists.txt:1365 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (9.5s)
+CMake Error: AUTOUIC for target qwt: Test run of "uic" executable "/tmp/resinsight-p01-build/qt/6.7.0/macos/./libexec/uic" failed.
+/tmp/resinsight-p01-build/qt/6.7.0/macos/./libexec/uic -h
+
+Incompatible processor. This Qt build requires the following features:
+    neon
+Subprocess aborted
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+FAILED: [code=1] build.ninja 
+/private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake --regenerate-during-build -S/tmp/resinsight-p01-build/source -B/tmp/resinsight-p01-build/application-build
+ninja: error: rebuilding 'build.ninja': subcommand failed
+
+Retry outside sandbox for Qt processor detection.
+[0/1] Re-running CMake...
+-- Running vcpkg install
+Detecting compiler hash for triplet arm64-osx-p01...
+Compiler found: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++
+The following packages are already installed:
+  * abseil:arm64-osx-p01@20250814.1
+    arrow[core,parquet,json,filesystem,csv]:arm64-osx-p01@21.0.0#2
+  * boost-algorithm:arm64-osx-p01@1.89.0
+  * boost-align:arm64-osx-p01@1.89.0
+  * boost-array:arm64-osx-p01@1.89.0
+  * boost-assert:arm64-osx-p01@1.89.0
+  * boost-atomic:arm64-osx-p01@1.89.0
+  * boost-bind:arm64-osx-p01@1.89.0
+  * boost-charconv:arm64-osx-p01@1.89.0
+  * boost-chrono:arm64-osx-p01@1.89.0
+  * boost-cmake:arm64-osx-p01@1.89.0
+  * boost-concept-check:arm64-osx-p01@1.89.0
+  * boost-config:arm64-osx-p01@1.89.0
+  * boost-container:arm64-osx-p01@1.89.0
+  * boost-container-hash:arm64-osx-p01@1.89.0
+  * boost-conversion:arm64-osx-p01@1.89.0
+  * boost-core:arm64-osx-p01@1.89.0
+  * boost-date-time:arm64-osx-p01@1.89.0
+  * boost-describe:arm64-osx-p01@1.89.0
+  * boost-detail:arm64-osx-p01@1.89.0
+  * boost-dynamic-bitset:arm64-osx-p01@1.89.0
+  * boost-endian:arm64-osx-p01@1.89.0
+  * boost-exception:arm64-osx-p01@1.89.0
+    boost-filesystem:arm64-osx-p01@1.89.0
+  * boost-function:arm64-osx-p01@1.89.0
+  * boost-function-types:arm64-osx-p01@1.89.0
+  * boost-functional:arm64-osx-p01@1.89.0
+  * boost-fusion:arm64-osx-p01@1.89.0
+  * boost-headers:arm64-osx-p01@1.89.0
+  * boost-integer:arm64-osx-p01@1.89.0
+  * boost-intrusive:arm64-osx-p01@1.89.0
+  * boost-io:arm64-osx-p01@1.89.0
+  * boost-iterator:arm64-osx-p01@1.89.0
+  * boost-lexical-cast:arm64-osx-p01@1.89.0
+  * boost-locale:arm64-osx-p01@1.89.0
+  * boost-math:arm64-osx-p01@1.89.0
+  * boost-move:arm64-osx-p01@1.89.0
+  * boost-mp11:arm64-osx-p01@1.89.0
+  * boost-mpl:arm64-osx-p01@1.89.0
+  * boost-multiprecision:arm64-osx-p01@1.89.0
+  * boost-numeric-conversion:arm64-osx-p01@1.89.0
+  * boost-optional:arm64-osx-p01@1.89.0
+  * boost-phoenix:arm64-osx-p01@1.89.0
+  * boost-pool:arm64-osx-p01@1.89.0
+  * boost-predef:arm64-osx-p01@1.89.0
+  * boost-preprocessor:arm64-osx-p01@1.89.0
+  * boost-proto:arm64-osx-p01@1.89.0
+  * boost-random:arm64-osx-p01@1.89.0
+  * boost-range:arm64-osx-p01@1.89.0
+  * boost-ratio:arm64-osx-p01@1.89.0
+  * boost-regex:arm64-osx-p01@1.89.0
+  * boost-scope:arm64-osx-p01@1.89.0
+  * boost-scope-exit:arm64-osx-p01@1.89.0
+  * boost-smart-ptr:arm64-osx-p01@1.89.0
+    boost-spirit:arm64-osx-p01@1.89.0
+  * boost-static-assert:arm64-osx-p01@1.89.0
+  * boost-system:arm64-osx-p01@1.89.0
+    boost-test:arm64-osx-p01@1.89.0
+  * boost-thread:arm64-osx-p01@1.89.0
+  * boost-throw-exception:arm64-osx-p01@1.89.0
+  * boost-tokenizer:arm64-osx-p01@1.89.0
+  * boost-tuple:arm64-osx-p01@1.89.0
+  * boost-type-index:arm64-osx-p01@1.89.0
+  * boost-type-traits:arm64-osx-p01@1.89.0
+  * boost-typeof:arm64-osx-p01@1.89.0
+  * boost-uninstall:arm64-osx-p01@1.89.0
+  * boost-unordered:arm64-osx-p01@1.89.0
+  * boost-utility:arm64-osx-p01@1.89.0
+  * boost-uuid:arm64-osx-p01@1.89.0
+  * boost-variant:arm64-osx-p01@1.89.0
+  * boost-variant2:arm64-osx-p01@1.89.0
+  * boost-winapi:arm64-osx-p01@1.89.0
+  * brotli:arm64-osx-p01@1.2.0
+  * bzip2[core,tool]:arm64-osx-p01@1.0.8#6
+  * c-ares:arm64-osx-p01@1.34.6
+    clipper2:arm64-osx-p01@1.5.4
+    eigen3:arm64-osx-p01@3.4.1#1
+    fast-float:arm64-osx-p01@8.1.0
+  * fmt:arm64-osx-p01@10.1.1
+  * gflags:arm64-osx-p01@2.3.0
+    grpc[core,codegen]:arm64-osx-p01@1.71.0#3
+  * libevent[core,thread]:arm64-osx-p01@2.1.12+20230128#1
+  * libiconv:arm64-osx-p01@1.18#3
+  * lz4:arm64-osx-p01@1.10.0
+    nanoflann:arm64-osx-p01@1.8.0
+  * openssl:arm64-osx-p01@3.6.0#3
+  * protobuf:arm64-osx-p01@5.29.5#3
+    pugixml:arm64-osx-p01@1.15#1
+  * rapidjson:arm64-osx-p01@2025-02-26
+  * re2:arm64-osx-p01@2025-11-05
+  * snappy:arm64-osx-p01@1.2.2#1
+    spdlog:arm64-osx-p01@1.16.0
+  * thrift:arm64-osx-p01@0.22.0
+    type-lite:arm64-osx-p01@0.2.0
+  * utf8-range:arm64-osx-p01@5.29.5
+  * utf8proc:arm64-osx-p01@2.11.2
+  * vcpkg-boost:arm64-osx-p01@2025-03-29
+  * vcpkg-cmake:arm64-osx-p01@2024-04-23
+  * vcpkg-cmake-config:arm64-osx-p01@2024-05-23
+  * vcpkg-cmake-get-vars:arm64-osx-p01@2025-05-29
+  * xsimd:arm64-osx-p01@14.0.0
+  * zlib:arm64-osx-p01@1.3.1
+  * zstd:arm64-osx-p01@1.5.7
+The package boost-filesystem is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS filesystem)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::filesystem)
+
+The package arrow provides CMake targets:
+
+    find_package(Arrow CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Arrow::arrow_static,Arrow::arrow_shared>")
+
+    find_package(Parquet CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE "$<IF:$<BOOL:${ARROW_BUILD_STATIC}>,Parquet::parquet_static,Parquet::parquet_shared>")
+
+The package boost-spirit is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS spirit)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::spirit)
+
+The package boost-test is compatible with built-in CMake targets of FindBoost.cmake:
+
+    find_package(Boost REQUIRED COMPONENTS test)
+    target_link_libraries(main PRIVATE Boost::test)
+
+or the generated cmake configs via:
+
+    find_package( REQUIRED CONFIG)
+    target_link_libraries(main PRIVATE Boost::test)
+
+The package clipper2 can be imported via CMake FindPkgConfig module:
+
+    # Clipper2
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2 REQUIRED IMPORTED_TARGET Clipper2)
+    target_link_libraries(main PkgConfig::Clipper2)
+
+    # Clipper2Z
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(Clipper2Z REQUIRED IMPORTED_TARGET Clipper2Z)
+    target_link_libraries(main PkgConfig::Clipper2Z)
+
+clipper2 provides CMake targets:
+
+    # Clipper2
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2)
+
+    # Clipper2Z
+    find_package(Clipper2 CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE Clipper2::Clipper2Z)
+
+eigen3 provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Eigen3 CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Eigen3::Eigen)
+
+eigen3 provides pkg-config modules:
+
+  # A C++ template library for linear algebra: vectors, matrices, and related algorithms
+  eigen3
+
+fast-float provides CMake targets:
+
+    find_package(FastFloat CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE FastFloat::fast_float)
+
+grpc provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(gRPC CONFIG REQUIRED)
+  # note: 15 additional targets are not displayed.
+  target_link_libraries(main PRIVATE gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts)
+
+grpc provides pkg-config modules:
+
+  # gRPC platform support library
+  gpr
+
+  # C++ wrapper for gRPC
+  grpc++
+
+  # C++ wrapper for gRPC without SSL
+  grpc++_unsecure
+
+  # high performance general RPC framework
+  grpc
+
+  # high performance general RPC framework without SSL
+  grpc_unsecure
+
+nanoflann provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(nanoflann CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nanoflann::nanoflann)
+
+nanoflann provides pkg-config modules:
+
+  # nanoflann - A C++11 header-only library for kd-trees
+  nanoflann
+
+pugixml provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(pugixml CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE pugixml::static pugixml::pugixml)
+
+pugixml provides pkg-config modules:
+
+  # Light-weight, simple and fast XML parser for C++ with XPath support.
+  pugixml
+
+The package spdlog provides CMake targets:
+
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog)
+
+    # Or use the header-only version
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog_header_only)
+
+type-lite provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(type-lite CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE nonstd::type-lite)
+
+All requested installations completed successfully in: 665 us
+-- Running vcpkg install - done
+-- Set CEE_USE_QT6 to ON
+-- Disabling OpenMP support
+-- No buildcache found
+-- Could NOT find Octave (missing: OCTAVE_EXECUTABLE OCTAVE_ROOT_DIR OCTAVE_LIBRARIES) 
+-- Found Darwin
+-- OpenMP package not found
+-- OpenMP disabled
+-- Initializing GIT submodules
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0")
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+CMake Deprecation Warning at /tmp/resinsight-p01-build/application-build/_deps/googletest-src/googletest/CMakeLists.txt:56 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- Found Boost: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/share/boost/BoostConfig.cmake (found version "1.89.0") found components: filesystem
+-- openzgy: macOS patch already applied
+-- Compiling with C standard: 99
+-- Compiling with C++ standard: 20
+-- Forced to use Qt version 6
+CMake Warning (dev) at /tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/share/cmake-3.31/Modules/FetchContent.cmake:1953 (message):
+  Calling FetchContent_Populate(mdspan) is deprecated, call
+  FetchContent_MakeAvailable(mdspan) instead.  Policy CMP0169 can be set to
+  OLD to allow FetchContent_Populate(mdspan) to be called directly for now,
+  but the ability to call it with declared details will be removed completely
+  in a future version.
+Call Stack (most recent call first):
+  ThirdParty/custom-surfio/CMakeLists.txt:15 (FetchContent_Populate)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Detected support for C++23 standard
+-- Arrow version: 21.0.0
+-- Found the Arrow shared library: 
+-- Found the Arrow import library: 
+-- Found the Arrow static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libarrow.a
+-- Found thrift: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01
+-- Found libevent: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libevent.a
+-- Parquet version: 21.0.0
+-- Found the Parquet shared library: 
+-- Found the Parquet import library: 
+-- Found the Parquet static library: /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/libparquet.a
+-- In LibGuiQt, CEE_USE_QT6=ON
+-- In LibGuiQt, CEE_USE_QT5=OFF
+CMake Warning (dev) at CMakeLists.txt:1176 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Using Python Version: 3.12.13
+Dynamic Deoptimalization is disabled on : ApplicationLibCode
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/source/ThirdParty/gtest/gtest-all.cc;qrc_cafAnimControl.cpp;qrc_ResInsight.cpp;qrc_cafCommandFeatures.cpp;qrc_ApplicationLibCode.cpp;ProjectDataModel/RimVfpTableExtractor.cpp;ProjectDataModel/RimVfpPlot.cpp;/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/mocs_compilation.cpp;ProjectDataModel/RiaOpmParserTools.cpp;ProjectDataModel/RiaOpmKeywordTools.cpp;FileInterface/RifOsduWellPathReader.cpp;FileInterface/RifOsduWellLogReader.cpp;FileInterface/RifByteArrayArrowRandomAccessFile.cpp;FileInterface/RifArrowTools.cpp;FileInterface/RifReaderOpmRft.cpp
+Files excluded from UNITY_BUILD : /tmp/resinsight-p01-build/application-build/ApplicationLibCode/Commands/Commands_autogen/mocs_compilation.cpp
+-- GRPC enabled
+-- Using protobuf 
+-- Found RE2 via CMake.
+-- Generate C++ code using grpc : 1.71.0
+-- Using Python Executable: /Users/lmoss/Documents/ChatGPT/resinsight-mcp/.venv/bin/python
+-- Using Python grpc protoc compiler: libprotoc 35.1
+CMake Warning (dev) at GrpcInterface/CMakeLists.txt:278 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at ApplicationExeCode/CMakeLists.txt:157 (add_custom_command):
+  COMMENT requires exactly one argument, but multiple values or COMMENT
+  keywords have been given.
+
+  Policy CMP0175 is not set: add_custom_command() rejects invalid arguments.
+  Run "cmake --help-policy CMP0175" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Could not find OCTAVE_MKOCTFILE, skipping OctavePlugin library
+CMake Warning (dev) at CMakeLists.txt:1365 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (6.8s)
+-- Generating done (2.0s)
+-- Build files have been written to: /tmp/resinsight-p01-build/application-build
+[1/440] Automatic MOC and UIC for target cafViewer
+[2/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafViewer_autogen/mocs_compilation.cpp.o
+[3/440] Building CXX object ApplicationLibCode/GeoMech/GeoMechDataModel/CMakeFiles/RigGeoMechDataModel.dir/RimGeoMechGeometrySelectionItem.cpp.o
+[4/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafCadNavigation.cpp.o
+[5/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafCeetronNavigation.cpp.o
+[6/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafCeetronPlusNavigation.cpp.o
+[7/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafTrackBallBasedNavigation.cpp.o
+[8/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafNavigationPolicy.cpp.o
+[9/440] Linking CXX static library ApplicationLibCode/GeoMech/GeoMechDataModel/libRigGeoMechDataModel.a
+[10/440] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[11/440] Building CXX object Fwk/AppFwk/cafViewer/CMakeFiles/cafViewer.dir/cafViewer.cpp.o
+[12/440] Linking CXX static library Fwk/AppFwk/cafViewer/libcafViewer.a
+[13/440] Automatic MOC and UIC for target ApplicationLibCode
+[14/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ApplicationLibCode_autogen/mocs_compilation.cpp.o
+[15/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaApplication.cpp.o
+[16/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaConsoleApplication.cpp.o
+[17/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaCompletionTypeCalculationScheduler.cpp.o
+[18/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaGuiApplication.cpp.o
+[19/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaViewRedrawScheduler.cpp.o
+[20/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaMemoryCleanup.cpp.o
+[21/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/RiaImportEclipseCaseTools.cpp.o
+[22/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/RiaOptionItemFactory.cpp.o
+[23/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigEclipseResultTools.cpp.o
+[24/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigFaultReactivationModelGenerator.cpp.o
+[25/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigVisibleCategoriesCalculator.cpp.o
+[26/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigReservoirGridTools.cpp.o
+[27/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigMswCenterLineCalculator.cpp.o
+[28/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigSimulationWellCenterLineCalculator.cpp.o
+[29/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigWellTargetMapping.cpp.o
+[30/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/FileInterface/RifFaultReactivationModelExporter.cpp.o
+[31/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o
+FAILED: [code=1] ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o 
+/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -DADS_STATIC -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DCLIPPER2_MAX_DECIMAL_PRECISION=8 -DCVF_OSX -DENABLE_GRPC -DOPENZGY_STATIC -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORKAUTH_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_FOREACH -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DUSINGZ -I/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/include -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands/EclipseCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands/CommandRouter -I/tmp/resinsight-p01-build/source/ApplicationLibCode -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Adm -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/WellPathTools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/KeyValueStore -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/Telemetry -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface/Core -I/tmp/resinsight-p01-build/source/ApplicationLibCode/FileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/GridBox -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CorrelationPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Annotations -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Flow -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GridCrossPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Parameters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Measurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/StimPlanModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Summary -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CellFilters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/ProcessControl -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog/WellLogTrack -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellMeasurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellPath -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellEvents -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultAccessors -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultCalculators -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/SimulationFile -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ResultStatisticsCache -I/tmp/resinsight-p01-build/source/ApplicationLibCode/SocketInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/OdbReader -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Measurement -I/tmp/resinsight-p01-build/source/ThirdParty -I/tmp/resinsight-p01-build/application-build/Generated -I/tmp/resinsight-p01-build/source/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/application-build/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/source/ThirdParty/NRLib/nrlib/well -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/array -I/tmp/resinsight-p01-build/source/ThirdParty/qwt/src -I/tmp/resinsight-p01-build/source/ThirdParty/qtadvanceddocking/src -I/tmp/resinsight-p01-build/source/ThirdParty/nightcharts -I/tmp/resinsight-p01-build/source/ThirdParty/expressionparser -I/tmp/resinsight-p01-build/source/ThirdParty/roffcpp/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/regression-analysis/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/custom-surfio/surfio/src/lib/include -I/tmp/resinsight-p01-build/application-build/_deps/mdspan-src/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/opm-common -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/generated-opm-common/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiagnostics/opm-flowdiagnostics -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiag-app/opm-flowdiagnostics-applications -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmUiCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmXml -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafUserInterface -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmScripting -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf/cafPdmMat3d -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafViewer -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGeometry -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibViewing -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibRender -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGuiQt -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafAnimControl -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafCommand -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafTensor -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafDataLoader -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/CommonCode -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafVizExtensions -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include/eigen3 -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtConcurrent.framework/Headers -iframework /tmp/resinsight-p01-build/qt/6.7.0/macos/lib -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtCore.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/mkspecs/macx-clang -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtGui.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGLWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGL.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtPrintSupport.framework/Headers -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/pkgconfig/../../include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetwork.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetworkAuth.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtXml.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSvg.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSql.framework/Headers -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1 -O3 -DNDEBUG -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wall -Wno-reorder -Wno-switch -Wno-undefined-var-template -Wno-delete-abstract-non-virtual-dtor -Wno-call-to-pure-virtual-from-ctor-dtor -Wno-delete-non-abstract-non-virtual-dtor -Wno-ambiguous-reversed-operator -Wno-deprecated-declarations -MD -MT ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o -MF ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o.d -o ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o -c /tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
+/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp:148:5: error: use of undeclared identifier 'CAF_PDM_InitScriptableObject'
+  148 |     CAF_PDM_InitScriptableObject( "Color Legend", ":/Legend.png" );
+      |     ^
+1 error generated.
+[32/440] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimProject.cpp.o
+ninja: build stopped: subcommand failed.
+
+Build corrected explicit camera method and filter creation hook.
+[1/434] Automatic MOC and UIC for target ApplicationLibCode
+[2/433] Building CXX object ApplicationLibCode/GeoMech/GeoMechDataModel/CMakeFiles/RigGeoMechDataModel.dir/RimGeoMechGeometrySelectionItem.cpp.o
+[3/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaApplication.cpp.o
+[4/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaGuiApplication.cpp.o
+[5/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaCompletionTypeCalculationScheduler.cpp.o
+[6/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaViewRedrawScheduler.cpp.o
+[7/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaMemoryCleanup.cpp.o
+[8/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/RiaImportEclipseCaseTools.cpp.o
+[9/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/RiaOptionItemFactory.cpp.o
+[10/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigEclipseResultTools.cpp.o
+[11/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigFaultReactivationModelGenerator.cpp.o
+[12/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigVisibleCategoriesCalculator.cpp.o
+[13/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/RigReservoirGridTools.cpp.o
+[14/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigMswCenterLineCalculator.cpp.o
+[15/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigSimulationWellCenterLineCalculator.cpp.o
+[16/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ReservoirDataModel/Well/RigWellTargetMapping.cpp.o
+[17/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o
+[18/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimProject.cpp.o
+[19/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCase.cpp.o
+[20/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimIdenticalGridCaseGroup.cpp.o
+[21/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseResultCase.cpp.o
+[22/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseView.cpp.o
+[23/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseResultDefinition.cpp.o
+[24/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o
+FAILED: [code=1] ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o 
+/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -DADS_STATIC -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DCLIPPER2_MAX_DECIMAL_PRECISION=8 -DCVF_OSX -DENABLE_GRPC -DOPENZGY_STATIC -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORKAUTH_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_FOREACH -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DUSINGZ -I/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/include -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands/EclipseCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands/CommandRouter -I/tmp/resinsight-p01-build/source/ApplicationLibCode -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Adm -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/WellPathTools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/KeyValueStore -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/Telemetry -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface/Core -I/tmp/resinsight-p01-build/source/ApplicationLibCode/FileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/GridBox -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CorrelationPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Annotations -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Flow -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GridCrossPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Parameters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Measurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/StimPlanModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Summary -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CellFilters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/ProcessControl -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog/WellLogTrack -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellMeasurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellPath -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellEvents -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultAccessors -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultCalculators -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/SimulationFile -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ResultStatisticsCache -I/tmp/resinsight-p01-build/source/ApplicationLibCode/SocketInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/OdbReader -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Measurement -I/tmp/resinsight-p01-build/source/ThirdParty -I/tmp/resinsight-p01-build/application-build/Generated -I/tmp/resinsight-p01-build/source/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/application-build/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/source/ThirdParty/NRLib/nrlib/well -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/array -I/tmp/resinsight-p01-build/source/ThirdParty/qwt/src -I/tmp/resinsight-p01-build/source/ThirdParty/qtadvanceddocking/src -I/tmp/resinsight-p01-build/source/ThirdParty/nightcharts -I/tmp/resinsight-p01-build/source/ThirdParty/expressionparser -I/tmp/resinsight-p01-build/source/ThirdParty/roffcpp/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/regression-analysis/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/custom-surfio/surfio/src/lib/include -I/tmp/resinsight-p01-build/application-build/_deps/mdspan-src/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/opm-common -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/generated-opm-common/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiagnostics/opm-flowdiagnostics -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiag-app/opm-flowdiagnostics-applications -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmUiCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmXml -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafUserInterface -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmScripting -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf/cafPdmMat3d -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafViewer -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGeometry -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibViewing -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibRender -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGuiQt -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafAnimControl -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafCommand -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafTensor -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafDataLoader -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/CommonCode -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafVizExtensions -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include/eigen3 -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtConcurrent.framework/Headers -iframework /tmp/resinsight-p01-build/qt/6.7.0/macos/lib -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtCore.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/mkspecs/macx-clang -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtGui.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGLWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGL.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtPrintSupport.framework/Headers -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/pkgconfig/../../include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetwork.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetworkAuth.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtXml.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSvg.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSql.framework/Headers -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1 -O3 -DNDEBUG -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wall -Wno-reorder -Wno-switch -Wno-undefined-var-template -Wno-delete-abstract-non-virtual-dtor -Wno-call-to-pure-virtual-from-ctor-dtor -Wno-delete-non-abstract-non-virtual-dtor -Wno-ambiguous-reversed-operator -Wno-deprecated-declarations -MD -MT ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o -MF ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o.d -o ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o -c /tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp
+/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/RimEclipseCellColors.cpp:60:5: error: use of undeclared identifier 'CAF_PDM_InitScriptableFieldNoDefault'
+   60 |     CAF_PDM_InitScriptableFieldNoDefault( &m_legendConfigData, "ResultVarLegendDefinitionList", "" );
+      |     ^
+1 error generated.
+[25/433] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimCellEdgeColors.cpp.o
+ninja: build stopped: subcommand failed.
+
+Build with complete scripting includes.
+[1/411] Linking CXX static library ApplicationLibCode/GeoMech/GeoMechDataModel/libRigGeoMechDataModel.a
+[2/411] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[3/411] Automatic MOC and UIC for target ApplicationLibCode
+[4/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o
+[5/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimSimWellInView.cpp.o
+[6/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimSimWellInViewTools.cpp.o
+[7/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimSimWellInViewCollection.cpp.o
+[8/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseStatisticsCase.cpp.o
+[9/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Rim3dOverlayInfoConfig.cpp.o
+[10/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimHistogramCalculator.cpp.o
+[11/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseStatisticsCaseEvaluator.cpp.o
+[12/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimTensorResults.cpp.o
+[13/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseFaultColors.cpp.o
+[14/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimTernaryLegendConfig.cpp.o
+[15/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimGridView.cpp.o
+[16/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Rim3dView.cpp.o
+[17/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Rim2dIntersectionView.cpp.o
+[18/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Rim2dIntersectionViewCollection.cpp.o
+[19/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimViewManipulator.cpp.o
+[20/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimCase.cpp.o
+[21/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimViewController.cpp.o
+[22/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimViewLinker.cpp.o
+[23/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimMultiPlot.cpp.o
+[24/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimGridCollection.cpp.o
+[25/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimContextCommandBuilder.cpp.o
+[26/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRefinementRegionCollection.cpp.o
+[27/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRefinementRegion.cpp.o
+[28/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimDockWindowController.cpp.o
+[29/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimAdvancedSnapshotExportDefinition.cpp.o
+[30/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseGeometrySelectionItem.cpp.o
+[31/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimStimPlanColors.cpp.o
+[32/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimGridCalculation.cpp.o
+[33/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimVirtualPerforationResults.cpp.o
+[34/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimReloadCaseTools.cpp.o
+[35/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimElementVectorResult.cpp.o
+[36/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimColorLegend.cpp.o
+[37/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRoffCase.cpp.o
+[38/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimMultipleEclipseResults.cpp.o
+[39/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseResultDefinitionTools.cpp.o
+[40/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseViewCollection.cpp.o
+[41/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCaseEnsemble.cpp.o
+[42/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimWellTargetMapping.cpp.o
+[43/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimReservoirGridEnsemble.cpp.o
+[44/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimContourMapProjection.cpp.o
+[45/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimEclipseContourMapProjection.cpp.o
+[46/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimEclipseContourMapView.cpp.o
+[47/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimEclipseContourMapViewCollection.cpp.o
+[48/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimStatisticsContourMapProjection.cpp.o
+[49/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimStatisticsContourMapView.cpp.o
+[50/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimStatisticsContourMap.cpp.o
+[51/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Faults/RimFaultDistance.cpp.o
+[52/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Faults/RimFaultInView.cpp.o
+[53/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Faults/RimFaultInViewCollection.cpp.o
+[54/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Faults/RimFaultReactivationModel.cpp.o
+[55/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Faults/RimFaultReactivationModelCollection.cpp.o
+[56/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechModels.cpp.o
+[57/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechCase.cpp.o
+[58/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechView.cpp.o
+[59/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechResultDefinition.cpp.o
+[60/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechCellColors.cpp.o
+[61/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechContourMapProjection.cpp.o
+[62/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechContourMapView.cpp.o
+[63/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechContourMapViewCollection.cpp.o
+[64/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechPart.cpp.o
+[65/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechFaultReactivationResult.cpp.o
+[66/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Jobs/RimJobCollection.cpp.o
+[67/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GridCrossPlots/RimGridCrossPlotDataSet.cpp.o
+[68/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimFlowDiagSolution.cpp.o
+[69/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryTable.cpp.o
+[70/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellAllocationPlot.cpp.o
+[71/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimTotalWellAllocationPlot.cpp.o
+[72/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimTofAccumulatedPhaseFractionsPlot.cpp.o
+[73/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimFlowCharacteristicsPlot.cpp.o
+[74/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellAllocationOverTimePlot.cpp.o
+[75/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Formations/RimFormationNames.cpp.o
+[76/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellConnectivityTable.cpp.o
+[77/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimAnnotationCollectionBase.cpp.o
+[78/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimPolylinesAnnotation.cpp.o
+[79/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimAnnotationCollection.cpp.o
+[80/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimReachCircleAnnotation.cpp.o
+[81/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimTextAnnotation.cpp.o
+[82/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimAnnotationGroupCollection.cpp.o
+[83/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimAnnotationInViewCollection.cpp.o
+[84/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimPerforationCollection.cpp.o
+[85/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimEllipseFractureTemplate.cpp.o
+[86/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimFractureContainmentTools.cpp.o
+[87/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimFracture.cpp.o
+[88/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimFractureTemplateCollection.cpp.o
+[89/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimMeshFractureTemplate.cpp.o
+[90/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimThermalFractureTemplate.cpp.o
+[91/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimStimPlanFractureTemplate.cpp.o
+[92/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Completions/RimWellPathFractureCollection.cpp.o
+[93/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Measurement/RimMeasurement.cpp.o
+[94/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/StimPlanModel/RimStimPlanModelTemplate.cpp.o
+[95/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/StimPlanModel/RimStimPlanModelTemplateCollection.cpp.o
+[96/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/StimPlanModel/RimStimPlanModel.cpp.o
+[97/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicDataCollection.cpp.o
+[98/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Streamlines/RimStreamlineInViewCollection.cpp.o
+[99/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicSectionCollection.cpp.o
+[100/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicSection.cpp.o
+[101/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicDifferenceData.cpp.o
+[102/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicViewCollection.cpp.o
+[103/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicView.cpp.o
+[104/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceCollection.cpp.o
+[105/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceInView.cpp.o
+[106/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceResultDefinition.cpp.o
+[107/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceInViewCollection.cpp.o
+[108/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIntersection.cpp.o
+[109/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimExtrudedCurveIntersection.cpp.o
+[110/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIntersectionCollection.cpp.o
+[111/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIntersectionResultDefinition.cpp.o
+[112/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIntersectionResultsDefinitionCollection.cpp.o
+[113/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIjkIntersection.cpp.o
+[114/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimBoxIntersection.cpp.o
+[115/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o
+FAILED: [code=1] ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o 
+/private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin/clang++ -DADS_STATIC -DBOOST_FILESYSTEM_NO_LIB -DBOOST_FILESYSTEM_STATIC_LINK=1 -DCLIPPER2_MAX_DECIMAL_PRECISION=8 -DCVF_OSX -DENABLE_GRPC -DOPENZGY_STATIC -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORKAUTH_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_NO_FOREACH -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_XML_LIB -DSPDLOG_COMPILED_LIB -DSPDLOG_FMT_EXTERNAL -DUSINGZ -I/tmp/resinsight-p01-build/application-build/ApplicationLibCode/ApplicationLibCode_autogen/include -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Commands/EclipseCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands/CommandRouter -I/tmp/resinsight-p01-build/source/ApplicationLibCode -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Adm -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/WellPathTools -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/KeyValueStore -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Application/Tools/Telemetry -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/CommandFileInterface/Core -I/tmp/resinsight-p01-build/source/ApplicationLibCode/FileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/GridBox -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ModelVisualization/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CorrelationPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Annotations -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Faults -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Flow -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GridCrossPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/GeoMech -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Parameters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Measurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/StimPlanModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Summary -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Surfaces -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Intersections -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Streamlines -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/Seismic -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CellFilters -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/ProcessControl -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellLog/WellLogTrack -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellMeasurement -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellPath -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/WellEvents -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModelCommands -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/Completions -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultAccessors -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/ResultCalculators -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ReservoirDataModel/SimulationFile -I/tmp/resinsight-p01-build/source/ApplicationLibCode/ResultStatisticsCache -I/tmp/resinsight-p01-build/source/ApplicationLibCode/SocketInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/UserInterface/AnalysisPlots -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechDataModel -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechVisualization -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/GeoMechFileInterface -I/tmp/resinsight-p01-build/source/ApplicationLibCode/GeoMech/OdbReader -I/tmp/resinsight-p01-build/source/ApplicationLibCode/Measurement -I/tmp/resinsight-p01-build/source/ThirdParty -I/tmp/resinsight-p01-build/application-build/Generated -I/tmp/resinsight-p01-build/source/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/application-build/ThirdParty/Ert/lib/include -I/tmp/resinsight-p01-build/source/ThirdParty/NRLib/nrlib/well -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/include -I/tmp/resinsight-p01-build/source/ThirdParty/openzgy/zfp/array -I/tmp/resinsight-p01-build/source/ThirdParty/qwt/src -I/tmp/resinsight-p01-build/source/ThirdParty/qtadvanceddocking/src -I/tmp/resinsight-p01-build/source/ThirdParty/nightcharts -I/tmp/resinsight-p01-build/source/ThirdParty/expressionparser -I/tmp/resinsight-p01-build/source/ThirdParty/roffcpp/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/regression-analysis/src/. -I/tmp/resinsight-p01-build/source/ThirdParty/custom-surfio/surfio/src/lib/include -I/tmp/resinsight-p01-build/application-build/_deps/mdspan-src/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/opm-common -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-common/generated-opm-common/include -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiagnostics/opm-flowdiagnostics -I/tmp/resinsight-p01-build/source/ThirdParty/custom-opm-flowdiag-app/opm-flowdiagnostics-applications -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmUiCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafProjectDataModel/cafPdmXml -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafUserInterface -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmScripting -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafPdmCvf/cafPdmMat3d -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibCore -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafViewer -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGeometry -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibViewing -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibRender -I/tmp/resinsight-p01-build/source/Fwk/VizFwk/LibGuiQt -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafAnimControl -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafCommand -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafTensor -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafDataLoader -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/CommonCode -I/tmp/resinsight-p01-build/source/Fwk/AppFwk/cafVizExtensions -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include/eigen3 -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtConcurrent.framework/Headers -iframework /tmp/resinsight-p01-build/qt/6.7.0/macos/lib -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtCore.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/mkspecs/macx-clang -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtGui.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGLWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtOpenGL.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtWidgets.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtPrintSupport.framework/Headers -isystem /tmp/resinsight-p01-build/vcpkg-installed/arm64-osx-p01/lib/pkgconfig/../../include -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetwork.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtNetworkAuth.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtXml.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSvg.framework/Headers -isystem /tmp/resinsight-p01-build/qt/6.7.0/macos/lib/QtSql.framework/Headers -fPIC   -stdlib=libc++ -nostdinc++ -isystem /private/tmp/resinsight-p01-build/apple-libcxx/include/c++/v1 -O3 -DNDEBUG -std=c++23 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=14.2 -Wall -Wno-reorder -Wno-switch -Wno-undefined-var-template -Wno-delete-abstract-non-virtual-dtor -Wno-call-to-pure-virtual-from-ctor-dtor -Wno-delete-non-abstract-non-virtual-dtor -Wno-ambiguous-reversed-operator -Wno-deprecated-declarations -MD -MT ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o -MF ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o.d -o ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o -c /tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp
+/tmp/resinsight-p01-build/source/ApplicationLibCode/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp:506:33: error: no member named 'back' in 'caf::PdmChildArrayField<RimCellFilter *>'
+  506 |     auto filter = m_cellFilters.back();
+      |                   ~~~~~~~~~~~~~ ^
+1 error generated.
+[116/410] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilter.cpp.o
+ninja: build stopped: subcommand failed.
+
+Build with validation method and supported child-array indexing.
+[1/298] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/298] Automatic MOC and UIC for target ApplicationLibCode
+[3/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellRangeFilter.cpp.o
+[4/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o
+[5/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimDataFilterCollection.cpp.o
+[6/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCombinedFilter.cpp.o
+[7/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimDataFilterInView.cpp.o
+[8/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimDataFilterInViewCollection.cpp.o
+[9/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimPropertyFilterCollection.cpp.o
+[10/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimEclipsePropertyFilterCollection.cpp.o
+[11/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimEclipsePropertyFilter.cpp.o
+[12/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimGeoMechPropertyFilterCollection.cpp.o
+[13/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimGeoMechPropertyFilter.cpp.o
+[14/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimFilterInViewCollection.cpp.o
+[15/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimPolygonFilter.cpp.o
+[16/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Polygons/RimPolygon.cpp.o
+[17/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Polygons/RimPolygonCollection.cpp.o
+[18/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Polygons/RimPolygonInView.cpp.o
+[19/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Polygons/RimPolygonInViewCollection.cpp.o
+[20/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Polygons/RimPolygonTools.cpp.o
+[21/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/Rim3dWellLogExtractionCurve.cpp.o
+[22/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/RimWellLogExtractionCurve.cpp.o
+[23/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellMeasurement/RimWellMeasurementInViewCollection.cpp.o
+[24/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellMeasurement/RimWellMeasurementInView.cpp.o
+[25/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Tools/RimEclipseViewTools.cpp.o
+[26/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellPath/RimWellPathCollection.cpp.o
+[27/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcProject.cpp.o
+[28/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcIntersection.cpp.o
+[29/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcCornerPointCase.cpp.o
+[30/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcEclipseView.cpp.o
+[31/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcGridView.cpp.o
+[32/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcDataFilterCollection.cpp.o
+[33/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcCombinedFilter.cpp.o
+[34/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/QuickAccess/RimFieldQuickAccessGroup.cpp.o
+[35/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/QuickAccess/RimQuickAccessCollection.cpp.o
+[36/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/GeoMech/GeoMechVisualization/RivFemPartPartMgr.cpp.o
+[37/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Histogram/RimGridStatisticsHistogramDataSource.cpp.o
+[38/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/GeoMech/GeoMechVisualization/RivGeoMechVizLogic.cpp.o
+[39/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/GeoMech/GeoMechVisualization/RivFemElmVisibilityCalculator.cpp.o
+[40/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivGridPartMgr.cpp.o
+[41/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivReservoirViewPartMgr.cpp.o
+[42/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivReservoirSimWellsPartMgr.cpp.o
+[43/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellPathSourceInfo.cpp.o
+[44/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellPathsPartMgr.cpp.o
+[45/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellPathPartMgr.cpp.o
+[46/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivSimWellPipesPartMgr.cpp.o
+[47/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellHeadPartMgr.cpp.o
+[48/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTextureCoordsCreator.cpp.o
+[49/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTernaryTextureCoordsCreator.cpp.o
+[50/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivScalarMapperUtils.cpp.o
+[51/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivCellEdgeGeometryUtils.cpp.o
+[52/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivSimWellPipeSourceInfo.cpp.o
+[53/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellSpheresPartMgr.cpp.o
+[54/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellConnectionsPartMgr.cpp.o
+[55/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTensorResultPartMgr.cpp.o
+[56/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellFracturePartMgr.cpp.o
+[57/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Riv3dWellLogPlanePartMgr.cpp.o
+[58/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellConnectionFactorPartMgr.cpp.o
+[59/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivAnnotationsPartMgr.cpp.o
+[60/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTextAnnotationPartMgr.cpp.o
+[61/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivReachCircleAnnotationPartMgr.cpp.o
+[62/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivReachCircleAnnotationSourceInfo.cpp.o
+[63/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivPolylinesAnnotationSourceInfo.cpp.o
+[64/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivMeasurementPartMgr.cpp.o
+[65/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellDiskPartMgr.cpp.o
+[66/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivElementVectorResultPartMgr.cpp.o
+[67/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivPolylinePartMgr.cpp.o
+[68/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivRefinementRegionPartMgr.cpp.o
+[69/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Faults/RivFaultPartMgr.cpp.o
+[70/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Faults/RivReservoirFaultsPartMgr.cpp.o
+[71/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Faults/RivFaultReactivationModelPartMgr.cpp.o
+[72/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivExtrudedCurveIntersectionGeometryGenerator.cpp.o
+[73/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivExtrudedCurveIntersectionPartMgr.cpp.o
+[74/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivIntersectionResultsColoringTools.cpp.o
+[75/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivBoxIntersectionGeometryGenerator.cpp.o
+[76/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivBoxIntersectionPartMgr.cpp.o
+[77/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivIjkIntersectionPartMgr.cpp.o
+[78/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Seismic/RivSeismicSectionPartMgr.cpp.o
+[79/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Streamlines/RivStreamlinesPartMgr.cpp.o
+[80/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Surfaces/RivSurfacePartMgr.cpp.o
+[81/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Surfaces/RivSurfaceIntersectionGeometryGenerator.cpp.o
+[82/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Surfaces/RivSurfaceIntersectionCurveTools.cpp.o
+[83/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuCadNavigation.cpp.o
+[84/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuGeoQuestNavigation.cpp.o
+[85/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuFemResultTextBuilder.cpp.o
+[86/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMainWindowBase.cpp.o
+[87/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMainWindow.cpp.o
+[88/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuPvtPlotUpdater.cpp.o
+[89/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuPlotUpdater.cpp.o
+[90/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuRelativePermeabilityPlotUpdater.cpp.o
+[91/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuResultTextBuilder.cpp.o
+[92/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuRmsNavigation.cpp.o
+[93/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/Riu3dSelectionManager.cpp.o
+[94/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuSelectionChangedHandler.cpp.o
+[95/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuTimeStepChangedHandler.cpp.o
+[96/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuTreeViewEventFilter.cpp.o
+[97/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuViewer.cpp.o
+[98/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuViewerCommands.cpp.o
+[99/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuCellAndNncPickEventHandler.cpp.o
+[100/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuAdvancedSnapshotExportWidget.cpp.o
+[101/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMohrsCirclePlot.cpp.o
+[102/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuDockWidgetTools.cpp.o
+[103/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMainWindowTools.cpp.o
+[104/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuComparisonViewMover.cpp.o
+[105/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuCellSelectionTool.cpp.o
+[106/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfComputeCaseGroupStatistics.cpp.o
+[107/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfExportProperty.cpp.o
+[108/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfSetTimeStep.cpp.o
+[109/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfExportVisibleCells.cpp.o
+[110/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfExportPropertyInViews.cpp.o
+[111/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfApplicationTools.cpp.o
+[112/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfCreateView.cpp.o
+[113/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfCloneView.cpp.o
+[114/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/CommandFileInterface/RicfCreateWellBoreStabilityPlotFeature.cpp.o
+[115/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaSocketServer.cpp.o
+[116/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaProjectInfoCommands.cpp.o
+[117/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaGeometryCommands.cpp.o
+[118/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaCaseInfoCommands.cpp.o
+[119/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaNNCCommands.cpp.o
+[120/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaPropertyDataCommands.cpp.o
+[121/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/SocketInterface/RiaSocketTools.cpp.o
+[122/297] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/RiaPreferencesOpenTelemetry.cpp.o
+[123/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewViewFeature.cpp.o
+[124/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicWellLogTools.cpp.o
+[125/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicImportFormationNamesFeature.cpp.o
+[126/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewContourMapViewFeature.cpp.o
+[127/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicHideIntersectionFeature.cpp.o
+[128/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicHideIntersectionBoxFeature.cpp.o
+[129/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicSelectColorResult.cpp.o
+[130/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicImportElementPropertyFeature.cpp.o
+[131/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicTogglePerspectiveViewFeature.cpp.o
+[132/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicSelectOrCreateViewFeatureImpl.cpp.o
+[133/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicVec3dPickEventHandler.cpp.o
+[134/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicContourMapPickEventHandler.cpp.o
+[135/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicFlyToObjectFeature.cpp.o
+[136/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicWellMeasurementImportTools.cpp.o
+[137/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicSummaryCaseRestartDialog.cpp.o
+[138/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicCreateTemporaryLgrFeature.cpp.o
+[139/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewRefinementRegionFeature.cpp.o
+[140/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicExportContourMapToTextFeature.cpp.o
+[141/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicCopyGridStatisticsToClipboardFeature.cpp.o
+[142/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewViewForGridEnsembleFeature.cpp.o
+[143/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewStatisticsContourMapViewFeature.cpp.o
+[144/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicCreateContourMapPolygonTools.cpp.o
+[145/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicImportGridAndSummaryEnsembleFeature.cpp.o
+[146/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicCreateGridStatisticsPlotFeature.cpp.o
+[147/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ApplicationCommands/RicShowMainWindowFeature.cpp.o
+[148/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ApplicationCommands/RicExportObjectAndFieldKeywordsFeature.cpp.o
+[149/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ApplicationCommands/RicHelpFeatures.cpp.o
+[150/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/AnnotationCommands/RicCreateTextAnnotationIn3dViewFeature.cpp.o
+[151/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/AnnotationCommands/RicTextAnnotation3dEditor.cpp.o
+[152/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewPolygonFilterFeature.cpp.o
+[153/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewUserDefinedFilterFeature.cpp.o
+[154/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewRangeFilterSliceFeature.cpp.o
+[155/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewUserDefinedIndexFilterFeature.cpp.o
+[156/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewPolygonFilter3dviewFeature.cpp.o
+[157/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewRangeFilterSlice3dviewFeature.cpp.o
+[158/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CompletionCommands/RicNewFishbonesSubsFeature.cpp.o
+[159/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CellFilterCommands/RicNewCellIndexFilterFeature.cpp.o
+[160/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CompletionCommands/RicNewValveTemplateFeature.cpp.o
+[161/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CompletionCommands/RicNewStimPlanModelPlotFeature.cpp.o
+[162/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicAppendIntersectionFeature.cpp.o
+[163/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CompletionExportCommands/RicExportFractureCompletionsImpl.cpp.o
+[164/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicAppendSeparateIntersectionResultFeature.cpp.o
+[165/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicNewSimWellIntersectionFeature.cpp.o
+[166/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicNewWellPathIntersectionFeature.cpp.o
+[167/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicNewPolylineIntersectionFeature.cpp.o
+[168/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicNewAzimuthDipIntersectionFeature.cpp.o
+[169/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicCopyIntersectionsToAllViewsInCaseFeature.cpp.o
+[170/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CrossSectionCommands/RicNewPolygonIntersectionFeature.cpp.o
+[171/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicAddEclipseInputPropertyFeature.cpp.o
+[172/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipsePropertyFilterFeatureImpl.cpp.o
+[173/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipsePropertyFilterNewExec.cpp.o
+[174/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipsePropertyFilterNewFeature.cpp.o
+[175/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicImportEclipseCaseFeature.cpp.o
+[176/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicImportGridModelFeature.cpp.o
+[177/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicApplyPropertyFilterAsCellResultFeature.cpp.o
+[178/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipsePropertyFilterNewInViewFeature.cpp.o
+[179/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipseHideFaultFeature.cpp.o
+[180/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipseShowOnlyFaultFeature.cpp.o
+[181/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicNewFaultDistanceResultFeature.cpp.o
+[182/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicCreateGridCaseEnsemblesFromFilesFeature.cpp.o
+[183/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EclipseCommands/RicEclipseCombinedPropertyFilterNewFeature.cpp.o
+[184/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/EnsembleFileSetCommands/RicCreateReservoirGridEnsembleFromFileSetFeature.cpp.o
+[185/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicAdvancedSnapshotExportFeature.cpp.o
+[186/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicSaveEclipseInputVisibleCellsFeature.cpp.o
+[187/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportEclipseSectorModelFeature.cpp.o
+[188/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportEclipseSectorModelUi.cpp.o
+[189/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportSectorModelFeature.cpp.o
+[190/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicRefinementSettings.cpp.o
+[191/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportSectorModelUi.cpp.o
+[192/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicSaveEclipseResultAsInputPropertyExec.cpp.o
+[193/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicSaveEclipseResultAsInputPropertyFeature.cpp.o
+[194/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicSnapshotAllViewsToFileFeature.cpp.o
+[195/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicSnapshotFilenameGenerator.cpp.o
+[196/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportWellPathsUi.cpp.o
+[197/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ExportCommands/RicExportLgrFeature.cpp.o
+[198/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowWellAllocationPlotFeature.cpp.o
+[199/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowFlowCharacteristicsPlotFeature.cpp.o
+[200/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowContributingWellsFeature.cpp.o
+[201/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowContributingWellsFeatureImpl.cpp.o
+[202/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicPlotProductionRateFeature.cpp.o
+[203/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicSelectViewUI.cpp.o
+[204/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowCumulativePhasePlotFeature.cpp.o
+[205/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GridCrossPlotCommands/RicCreateGridCrossPlotFeature.cpp.o
+[206/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicGeoMechPropertyFilterFeatureImpl.cpp.o
+[207/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicGeoMechPropertyFilterNewInViewFeature.cpp.o
+[208/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicNewWellIntegrityAnalysisFeature.cpp.o
+[209/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicRunWellIntegrityAnalysisFeature.cpp.o
+[210/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicNewFaultReactModelingFeature.cpp.o
+[211/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicRunFaultReactModelingFeature.cpp.o
+[212/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/GeoMechCommands/RicShowFaultReactModelFeature.cpp.o
+[213/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/HoloLensCommands/RicHoloLensExportToFolderFeature.cpp.o
+[214/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/HoloLensCommands/RicHoloLensExportImpl.cpp.o
+[215/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/HoloLensCommands/RicHoloLensExportToFolderUi.cpp.o
+[216/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/HoloLensCommands/RicHoloLensExportToSharingServerFeature.cpp.o
+[217/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/HoloLensCommands/RicHoloLensAutoExportToSharingServerFeature.cpp.o
+[218/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicIntersectionFeatureImpl.cpp.o
+[219/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicBoxManipulatorEventHandler.cpp.o
+[220/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicAppendIntersectionBoxFeature.cpp.o
+[221/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicAppendIjkIntersectionFeature.cpp.o
+[222/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicNewIjkIntersection3dviewFeature.cpp.o
+[223/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicIntersectionBoxXSliceFeature.cpp.o
+[224/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicIntersectionBoxYSliceFeature.cpp.o
+[225/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicIntersectionBoxZSliceFeature.cpp.o
+[226/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionBoxCommands/RicIntersectionBoxAtPosFeature.cpp.o
+[227/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/IntersectionViewCommands/RicNewIntersectionViewFeature.cpp.o
+[228/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/MeasurementCommands/RicToggleMeasurementModeFeature.cpp.o
+[229/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/MeasurementCommands/RicMeasurementPickEventHandler.cpp.o
+[230/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicCopyReferencesToClipboardFeature.cpp.o
+[231/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicPasteFeatureImpl.cpp.o
+[232/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicPasteEclipseCasesFeature.cpp.o
+[233/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicPasteEclipseViewsFeature.cpp.o
+[234/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicPasteGeoMechViewsFeature.cpp.o
+[235/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicPasteCellFiltersFeature.cpp.o
+[236/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicViewZoomAllFeature.cpp.o
+[237/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicNewGridTimeHistoryCurveFeature.cpp.o
+[238/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SeismicCommands/RicSeismicSectionFromIntersectionFeature.cpp.o
+[239/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicSelectSummaryPlotUI.cpp.o
+[240/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SeismicCommands/RicNewSeismicViewFeature.cpp.o
+[241/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ToggleCommands/RicCollapseSiblingsFeature.cpp.o
+[242/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicLinkVisibleViewsFeature.cpp.o
+[243/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicLinkVisibleViewsFeatureUi.cpp.o
+[244/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicLinkViewFeature.cpp.o
+[245/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicUnLinkViewFeature.cpp.o
+[246/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicShowLinkOptionsFeature.cpp.o
+[247/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicDeleteAllLinkedViewsFeature.cpp.o
+[248/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicRemoveComparison3dViewFeature.cpp.o
+[249/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicSetMasterViewFeature.cpp.o
+[250/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/ViewLink/RicCompareTo3dViewFeature.cpp.o
+[251/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellLogCommands/RicNewWellLogExtractionCurveFeature.cpp.o
+[252/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellLogCommands/RicNewPltPlotFeature.cpp.o
+[253/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellLogCommands/RicAdd3dWellLogCurveFeature.cpp.o
+[254/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicWellPathPickEventHandler.cpp.o
+[255/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellLogCommands/RicNewWellBoreStabilityPlotFeature.cpp.o
+[256/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicCreateWellTargetsPickEventHandler.cpp.o
+[257/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicIntersectionPickEventHandler.cpp.o
+[258/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicPolylineTargetsPickEventHandler.cpp.o
+[259/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicNewPolylineTargetFeature.cpp.o
+[260/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicImportWellMeasurementsFeature.cpp.o
+[261/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/PointTangentManipulator/Ric3dObjectEditorHandle.cpp.o
+[262/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/PointTangentManipulator/RicPointTangentManipulator.cpp.o
+[263/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/PointTangentManipulator/RicWellTarget3dEditor.cpp.o
+[264/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/PointTangentManipulator/RicPolylineTarget3dEditor.cpp.o
+[265/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicHideGridGeometryFeature.cpp.o
+[266/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellPathCommands/RicShowAllGeometryFeature.cpp.o
+[267/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PlotTemplateCommands/RicSelectPlotTemplateUi.cpp.o
+[268/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicConvertAllFractureTemplatesToFieldFeature.cpp.o
+[269/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicConvertAllFractureTemplatesToMetricFeature.cpp.o
+[270/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicCreateDuplicateTemplateInOtherUnitSystemFeature.cpp.o
+[271/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewEllipseFractureTemplateFeature.cpp.o
+[272/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewStimPlanFractureTemplateFeature.cpp.o
+[273/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewThermalFractureTemplateFeature.cpp.o
+[274/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewWellPathFractureFeature.cpp.o
+[275/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewStimPlanModelFeature.cpp.o
+[276/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewWellPathStimPlanModelAtPosFeature.cpp.o
+[277/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicNewStimPlanModelTemplateFeature.cpp.o
+[278/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FractureCommands/RicCreateMultipleFracturesFeature.cpp.o
+[279/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PolygonCommands/RicCreatePolygonFeature.cpp.o
+[280/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PolygonCommands/RicDuplicatePolygonFeature.cpp.o
+[281/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/3dView/RicApplyUserDefinedCameraFeature.cpp.o
+[282/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/3dView/RicStoreUserDefinedCameraFeature.cpp.o
+[283/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/3dView/RicDockInPlotViewFeature.cpp.o
+[284/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/3dView/RicDockIn3dViewFeature.cpp.o
+[285/297] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/3dView/RicZScaleFeatures.cpp.o
+[286/297] Building CXX object GrpcInterface/CMakeFiles/GrpcInterface.dir/RiaGrpcProjectService.cpp.o
+[287/297] Building CXX object GrpcInterface/CMakeFiles/GrpcInterface.dir/RiaGrpcAppService.cpp.o
+[288/297] Building CXX object GrpcInterface/CMakeFiles/GrpcInterface.dir/RiaGrpcPropertiesService.cpp.o
+[289/297] Building CXX object GrpcInterface/CMakeFiles/GrpcInterface.dir/RiaGrpcNNCPropertiesService.cpp.o
+[290/297] Building CXX object ApplicationLibCode/UnitTests/CMakeFiles/ResInsight-tests.dir/ListKeywordsForObjectsAndFields-Test.cpp.o
+[291/297] Building CXX object ApplicationExeCode/CMakeFiles/ResInsight.dir/RiaMainTools.cpp.o
+[292/297] Building CXX object ApplicationLibCode/UnitTests/CMakeFiles/ResInsight-tests.dir/RimDataFilterCollection-Test.cpp.o
+[293/297] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[294/297] Building CXX object ApplicationLibCode/UnitTests/CMakeFiles/ResInsight-tests.dir/RimFilterInViewCollection-Test.cpp.o
+[295/297] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+FAILED: [code=2] /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py 
+cd /tmp/resinsight-p01-build/application-build/ApplicationExeCode && /tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight --console --generate /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+ERROR: Error: Ambiguous Python enum class names 'CombineFilterMode' and 'CombineMode' inferred from fields 'CellFilterCollection.CombineFilterMode' and 'CombinedFilter.CombineMode'. Register a canonical name with caf::PdmScriptEnumNameRegistry.
+
+[296/297] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+ninja: build stopped: subcommand failed.
+
+Build with canonical filter enum and scriptable grid view base.
+[1/9] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/9] Automatic MOC and UIC for target ApplicationLibCode
+[3/8] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimGridView.cpp.o
+[4/8] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CellFilters/RimCellFilterCollection.cpp.o
+[5/8] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[6/8] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[7/8] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[8/8] Running utility command for RipsGeneratedPythonClasses
+
+Build with scripted result legend synchronization.
+[1/8] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/8] Automatic MOC and UIC for target ApplicationLibCode
+[3/7] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o
+[4/7] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[5/7] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[6/7] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[7/7] Running utility command for RipsGeneratedPythonClasses
+
+Build with actual legend range readback and displayed-filter validation.
+[1/143] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/143] Automatic MOC and UIC for target ApplicationLibCode
+[3/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/RiaOptionItemFactory.cpp.o
+[4/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/Summary/RiaSummaryAddressModifier.cpp.o
+[5/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/Summary/RiaSummaryPlotTools.cpp.o
+[6/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/Summary/RiaSummaryTools.cpp.o
+[7/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/Summary/RiaSummaryAddressCollectionTools.cpp.o
+[8/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/Application/Tools/Summary/RiaSummaryPlotTemplateTools.cpp.o
+[9/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o
+[10/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimProject.cpp.o
+[11/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseView.cpp.o
+[12/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseResultDefinition.cpp.o
+[13/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCellColors.cpp.o
+[14/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimCellEdgeColors.cpp.o
+[15/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimTensorResults.cpp.o
+[16/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Rim2dIntersectionView.cpp.o
+[17/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimMainPlotCollection.cpp.o
+[18/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimViewLinker.cpp.o
+[19/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimDepthTrackPlot.cpp.o
+[20/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimStimPlanLegendConfig.cpp.o
+[21/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimContextCommandBuilder.cpp.o
+[22/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimStimPlanColors.cpp.o
+[23/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimVirtualPerforationResults.cpp.o
+[24/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimColorLegendCollection.cpp.o
+[25/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimElementVectorResult.cpp.o
+[26/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimCustomObjectiveFunction.cpp.o
+[27/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimCustomObjectiveFunctionWeight.cpp.o
+[28/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseResultDefinitionTools.cpp.o
+[29/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Appearance/RimCurveSetAppearance.cpp.o
+[30/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CorrelationPlots/RimAbstractCorrelationPlot.cpp.o
+[31/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CorrelationPlots/RimCorrelationPlot.cpp.o
+[32/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CorrelationPlots/RimCorrelationMatrixPlot.cpp.o
+[33/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/CorrelationPlots/RimCorrelationReportPlot.cpp.o
+[34/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimEclipseContourMapProjection.cpp.o
+[35/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimContourMapProjection.cpp.o
+[36/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimStatisticsContourMapProjection.cpp.o
+[37/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimEclipseContourMapView.cpp.o
+[38/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/ContourMap/RimStatisticsContourMapView.cpp.o
+[39/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechView.cpp.o
+[40/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechCellColors.cpp.o
+[41/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechResultDefinition.cpp.o
+[42/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechContourMapProjection.cpp.o
+[43/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GeoMech/RimGeoMechContourMapView.cpp.o
+[44/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/GridCrossPlots/RimGridCrossPlotDataSet.cpp.o
+[45/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryEnsemble.cpp.o
+[46/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryCurveAutoName.cpp.o
+[47/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryCurve.cpp.o
+[48/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryPlotSourceStepping.cpp.o
+[49/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryPlot.cpp.o
+[50/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCurveSetCollection.cpp.o
+[51/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCurveSetColorManager.cpp.o
+[52/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCurveSet.cpp.o
+[53/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCurveFilter.cpp.o
+[54/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCurveFilterCollection.cpp.o
+[55/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleStatistics.cpp.o
+[56/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimObjectiveFunctionTools.cpp.o
+[57/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryPlotManager.cpp.o
+[58/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryMultiPlot.cpp.o
+[59/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryTable.cpp.o
+[60/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryTableCollection.cpp.o
+[61/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimEnsembleCrossPlotStatisticsCase.cpp.o
+[62/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryRegressionAnalysisCurve.cpp.o
+[63/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Summary/RimSummaryEnsembleTools.cpp.o
+[64/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimFlowPlotCollection.cpp.o
+[65/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellRftEnsembleCurveSet.cpp.o
+[66/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellRftPlot.cpp.o
+[67/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Annotations/RimTimeAxisAnnotationUpdater.cpp.o
+[68/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/StimPlanModel/RimFaciesProperties.cpp.o
+[69/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Flow/RimWellConnectivityTable.cpp.o
+[70/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicData.cpp.o
+[71/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Streamlines/RimStreamlineInViewCollection.cpp.o
+[72/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicSectionCollection.cpp.o
+[73/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicSection.cpp.o
+[74/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicDataInterface.cpp.o
+[75/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicDifferenceData.cpp.o
+[76/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Seismic/RimSeismicView.cpp.o
+[77/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurface.cpp.o
+[78/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceCollection.cpp.o
+[79/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceInView.cpp.o
+[80/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimSurfaceResultDefinition.cpp.o
+[81/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimEnsembleSurface.cpp.o
+[82/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Surfaces/RimFractureSurface.cpp.o
+[83/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Intersections/RimIntersectionResultDefinition.cpp.o
+[84/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/RimWellLogRftCurve.cpp.o
+[85/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/RimEnsembleWellLogStatisticsCurve.cpp.o
+[86/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/RimEnsembleWellLogCurveSet.cpp.o
+[87/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/WellLogTrack/RimWellLogRegionAnnotationSettings.cpp.o
+[88/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellMeasurement/RimWellMeasurementInViewCollection.cpp.o
+[89/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellLog/WellLogTrack/RimWellLogTrack.cpp.o
+[90/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/WellMeasurement/RimWellMeasurementInView.cpp.o
+[91/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModelCommands/RimcGridView.cpp.o
+[92/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/Histogram/RimHistogramMultiPlot.cpp.o
+[93/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/VerticalFlowPerformance/RimCustomVfpPlot.cpp.o
+[94/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/GeoMech/GeoMechVisualization/RivFemPartPartMgr.cpp.o
+[95/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivGridPartMgr.cpp.o
+[96/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellPathPartMgr.cpp.o
+[97/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivSimWellPipesPartMgr.cpp.o
+[98/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTextureCoordsCreator.cpp.o
+[99/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivScalarMapperUtils.cpp.o
+[100/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivCellEdgeGeometryUtils.cpp.o
+[101/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivTensorResultPartMgr.cpp.o
+[102/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellFracturePartMgr.cpp.o
+[103/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivWellConnectionFactorPartMgr.cpp.o
+[104/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivElementVectorResultPartMgr.cpp.o
+[105/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/RivRefinementRegionPartMgr.cpp.o
+[106/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Faults/RivFaultPartMgr.cpp.o
+[107/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Intersections/RivIntersectionResultsColoringTools.cpp.o
+[108/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Streamlines/RivStreamlinesPartMgr.cpp.o
+[109/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Seismic/RivSeismicSectionPartMgr.cpp.o
+[110/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ModelVisualization/Surfaces/RivSurfacePartMgr.cpp.o
+[111/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuResultTextBuilder.cpp.o
+[112/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuGridCrossQwtPlot.cpp.o
+[113/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuSummaryPlot.cpp.o
+[114/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuSeismicHistogramPanel.cpp.o
+[115/142] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/UserInterface/RiuMatrixPlotWidget.cpp.o
+[116/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicImportFormationNamesFeature.cpp.o
+[117/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicNewContourMapViewFeature.cpp.o
+[118/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicImportSummaryCasesFeature.cpp.o
+[119/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/RicCreateEnsembleWellLogFeature.cpp.o
+[120/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/CorrelationPlotCommands/RicCreateEnsembleFromFilteredCasesFeature.cpp.o
+[121/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/FlowCommands/RicShowWellAllocationPlotFeature.cpp.o
+[122/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/OperationsUsingObjReferences/RicCopyReferencesToClipboardFeature.cpp.o
+[123/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicOpenSummaryPlotEditorFeature.cpp.o
+[124/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicNewDefaultSummaryPlotFeature.cpp.o
+[125/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicSummaryPlotFeatureImpl.cpp.o
+[126/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicSummaryPlotEditorUi.cpp.o
+[127/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicNewSummaryEnsembleCurveSetFeature.cpp.o
+[128/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicPasteEnsembleCurveSetFeature.cpp.o
+[129/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicNewEnsembleCurveFilterFeature.cpp.o
+[130/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicClearSourceSteppingEnsembleCurveSetFeature.cpp.o
+[131/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicSetSourceSteppingEnsembleCurveSetFeature.cpp.o
+[132/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicNewSummaryTableFeature.cpp.o
+[133/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicDuplicateSummaryTableFeature.cpp.o
+[134/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/SummaryPlotCommands/RicCreateRegressionAnalysisCurveFeature.cpp.o
+[135/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/WellLogCommands/RicNewEnsembleWellLogCurveSetFeature.cpp.o
+[136/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PlotTemplateCommands/RicSaveMultiPlotTemplateFeature.cpp.o
+[137/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PlotBuilderCommands/RicAppendSummaryPlotsForObjectsFeature.cpp.o
+[138/142] Building CXX object ApplicationLibCode/Commands/CMakeFiles/Commands.dir/PlotBuilderCommands/RicSplitMultiPlotFeature.cpp.o
+[139/142] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[140/142] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[141/142] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[142/142] Running utility command for RipsGeneratedPythonClasses
+
+Build with safe category legend readback.
+[1/8] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/8] Automatic MOC and UIC for target ApplicationLibCode
+[3/7] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimRegularLegendConfig.cpp.o
+[4/7] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[5/7] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[6/7] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[7/7] Running utility command for RipsGeneratedPythonClasses

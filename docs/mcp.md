@@ -4,10 +4,13 @@ The package exposes typed workspace operations through the MCP Python SDK.
 MCP is the Model Context Protocol for tool access.
 The transport uses local standard input and output.
 Application output goes to standard error.
+The configured client can use a remote model, as described in the [data boundary](views.md#data-boundary).
 
 The supplied launcher manages durable workspace records and reads saved observations.
 Application control and fresh rendering require explicitly supplied service implementations.
 The launcher does not configure those services.
+With session and view services supplied, an agent can inspect project objects, apply view settings, and receive fresh native images.
+The [view guide](views.md) describes that configured workflow and its trusted result setup.
 
 ## Start a workspace server
 

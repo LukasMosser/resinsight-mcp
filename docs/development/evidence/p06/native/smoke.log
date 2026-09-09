@@ -1,0 +1,228 @@
+qt.qpa.fonts: Populating font family aliases took 66 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 32, in <module>
+    view = next(v for v in instance.project.views() if v.case().id == case.id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+qt.qpa.fonts: Populating font family aliases took 63 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 62, in <module>
+    legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'PRESSURE')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+qt.qpa.fonts: Populating font family aliases took 68 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Legend diagnostic: [('None', 'AUTOMATIC_ALLTIMESTEPS')] result= PRESSURE
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 63, in <module>
+    legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'PRESSURE')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+qt.qpa.fonts: Populating font family aliases took 66 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Legend diagnostic: [('None', 'AUTOMATIC_ALLTIMESTEPS'), ('SOIL', 'AUTOMATIC_ALLTIMESTEPS'), ('PRESSURE', 'AUTOMATIC_ALLTIMESTEPS'), ('SGAS', 'AUTOMATIC_ALLTIMESTEPS')] result= PRESSURE
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 113, in <module>
+    reject('active data filter validation fails', view.validate_view_controls)
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 27, in reject
+    check(name, False)
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 16, in check
+    assert condition, name
+           ^^^^^^^^^
+AssertionError: active data filter validation fails
+qt.qpa.fonts: Populating font family aliases took 71 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Legend diagnostic: [('None', 'AUTOMATIC_ALLTIMESTEPS'), ('SOIL', 'AUTOMATIC_ALLTIMESTEPS'), ('PRESSURE', 'AUTOMATIC_ALLTIMESTEPS'), ('SGAS', 'AUTOMATIC_ALLTIMESTEPS')] result= PRESSURE
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 130, in <module>
+    wrappers = view.children('DataFiltersInView', PdmObjectBase)[0].children('Wrappers', PdmObjectBase)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+qt.qpa.fonts: Populating font family aliases took 61 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+Traceback (most recent call last):
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 74, in <module>
+    check('inactive category legend readback is safe', inactive_legend.actual_minimum == sys.float_info.max
+  File "/private/tmp/resinsight-p06-native-smoke.py", line 18, in check
+    assert condition, name
+           ^^^^^^^^^
+AssertionError: inactive category legend readback is safe
+qt.qpa.fonts: Populating font family aliases took 61 ms. Replace uses of missing font family "Red Hat Display" with one that exists to avoid this cost. 
+[
+  {
+    "name": "ordinary view validation",
+    "passed": true
+  },
+  {
+    "name": "ordinary orthographic switch keeps scene extent",
+    "passed": true,
+    "height": 27908.7142823107
+  },
+  {
+    "name": "explicit projection readback",
+    "passed": true,
+    "fov": 55.0,
+    "height": 400.0
+  },
+  {
+    "name": "repeated explicit projection call",
+    "passed": true
+  },
+  {
+    "name": "invalid field of view 0.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view 180.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view -1.0",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view nan",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid field of view inf",
+    "passed": true,
+    "error": "Field of view must be finite and between 0 and 180 degrees",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height 0.0",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height -1.0",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height nan",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid parallel height inf",
+    "passed": true,
+    "error": "Parallel projection height must be finite and positive",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "invalid arguments leave projection unchanged",
+    "passed": true
+  },
+  {
+    "name": "inactive category legend readback is safe",
+    "passed": true,
+    "minimum": "inf",
+    "maximum": "inf"
+  },
+  {
+    "name": "preexisting legend settings",
+    "passed": true
+  },
+  {
+    "name": "fixed legend readback",
+    "passed": true,
+    "actual_minimum": 0.12345,
+    "actual_maximum": 0.9876500000000001
+  },
+  {
+    "name": "direct result update creates per-property legends",
+    "passed": true
+  },
+  {
+    "name": "display filter created",
+    "passed": true
+  },
+  {
+    "name": "range filter validation",
+    "passed": true
+  },
+  {
+    "name": "display filter changes visibility",
+    "passed": true,
+    "visible_cells": 1
+  },
+  {
+    "name": "other view filters unchanged",
+    "passed": true
+  },
+  {
+    "name": "snapshot file count",
+    "passed": true
+  },
+  {
+    "name": "snapshot dimensions",
+    "passed": true,
+    "size": [
+      320,
+      240
+    ]
+  },
+  {
+    "name": "display filter removed",
+    "passed": true
+  },
+  {
+    "name": "unsupported displayed filter validation fails",
+    "passed": true,
+    "error": "View controls support only displayed cell range filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "data filter wrapper exists",
+    "passed": true
+  },
+  {
+    "name": "active data filter validation fails",
+    "passed": true,
+    "error": "View controls do not support active property or data filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "active data filter camera change fails",
+    "passed": true,
+    "error": "View controls do not support active property or data filters",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "rejected camera change leaves state unchanged",
+    "passed": true
+  },
+  {
+    "name": "validation succeeds after test filter removal",
+    "passed": true
+  },
+  {
+    "name": "missing viewer reports unavailable",
+    "passed": true
+  },
+  {
+    "name": "missing viewer validation fails",
+    "passed": true,
+    "error": "View controls require an open view",
+    "error_type": "RipsError"
+  },
+  {
+    "name": "missing viewer projection fails",
+    "passed": true,
+    "error": "View controls require an open view",
+    "error_type": "RipsError"
+  }
+]
+ERROR: Method 'validate_view_controls' failed. Error: View controls require an open view
+ERROR: Method 'set_camera_projection' failed. Error: View controls require an open view
+info: Received Exit Request
+info: Shutting down gRPC server

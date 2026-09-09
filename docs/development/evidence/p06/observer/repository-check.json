@@ -1,0 +1,24 @@
+{
+  "source_base": "b0b41f65bb72599e6f12ba647cb4d47c2f53446c",
+  "scope": "Evidence packaging only. The working tree contains the P06 evidence page and observer package.",
+  "command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py",
+  "exit_code": 0,
+  "checks": [
+    "Ruff lint and format",
+    "ty",
+    "340 pytest tests",
+    "Strict MkDocs build"
+  ],
+  "pre_commit": "uv run --locked pre-commit validate-config passed. The shared command ran directly.",
+  "versions": {
+    "ruff": "ruff 0.16.6",
+    "ty": "ty 0.0.79 (b4cd79275 2026-09-07)",
+    "pytest": "pytest 9.1.1",
+    "pre-commit": "pre-commit 4.6.2",
+    "mkdocs": "mkdocs, version 1.6.1 from /private/tmp/resinsight-p06-final-evidence/.venv/lib/python3.12/site-packages/mkdocs (Python 3.12)"
+  },
+  "limits": [
+    "The initial sandboxed uv command failed during macOS configuration initialization. The required command passed outside the sandbox.",
+    "Rendered browser inspection remains separate from this check."
+  ]
+}

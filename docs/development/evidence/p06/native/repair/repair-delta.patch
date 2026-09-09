@@ -1,0 +1,32 @@
+diff --git a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
+index c5112a6..b5a1386 100644
+--- a/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
++++ b/ApplicationLibCode/ProjectDataModel/Rim3dView.cpp
+@@ -136,9 +136,11 @@ Rim3dView::Rim3dView()
+     CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraFieldOfViewYDegrees, "ActualCameraFieldOfViewYDegrees", "Actual Camera Field of View Y Degrees" );
+     m_actualCameraFieldOfViewYDegrees.registerGetMethod( this, &Rim3dView::actualCameraFieldOfViewYDegrees );
+     m_actualCameraFieldOfViewYDegrees.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraFieldOfViewYDegrees.uiCapability()->setUiHidden( true );
+     CAF_PDM_InitScriptableFieldNoDefault( &m_actualCameraParallelProjectionHeight, "ActualCameraParallelProjectionHeight", "Actual Camera Parallel Projection Height" );
+     m_actualCameraParallelProjectionHeight.registerGetMethod( this, &Rim3dView::actualCameraParallelProjectionHeight );
+     m_actualCameraParallelProjectionHeight.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualCameraParallelProjectionHeight.uiCapability()->setUiHidden( true );
+ 
+     double defaultScaleFactor = preferences->defaultScaleFactorZ();
+     CAF_PDM_InitScriptableField( &m_scaleZ, "GridZScale", defaultScaleFactor, "Z Scale", "", "Scales the scene in the Z direction", "" );
+diff --git a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
+index e493a77..7722139 100644
+--- a/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
++++ b/ApplicationLibCode/ProjectDataModel/RimRegularLegendConfig.cpp
+@@ -191,9 +191,11 @@ RimRegularLegendConfig::RimRegularLegendConfig()
+     CAF_PDM_InitScriptableFieldNoDefault( &m_actualMinimum, "ActualMinimum", "Actual Minimum" );
+     m_actualMinimum.registerGetMethod( this, &RimRegularLegendConfig::actualMinimum );
+     m_actualMinimum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMinimum.uiCapability()->setUiHidden( true );
+     CAF_PDM_InitScriptableFieldNoDefault( &m_actualMaximum, "ActualMaximum", "Actual Maximum" );
+     m_actualMaximum.registerGetMethod( this, &RimRegularLegendConfig::actualMaximum );
+     m_actualMaximum.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
++    m_actualMaximum.uiCapability()->setUiHidden( true );
+     resultVariableName.uiCapability()->setUiHidden( true );
+     resultVariableName.capability<caf::PdmAbstractFieldScriptingCapability>()->setIOWriteable( false );
+ 

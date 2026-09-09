@@ -1,0 +1,41 @@
+{
+  "review_date": "2026-09-09",
+  "source_commit": "b0b41f65bb72599e6f12ba647cb4d47c2f53446c",
+  "native_commit": "1859d96e9a40093abfc43c42df9e9ef5b3846c9d",
+  "images": [
+    "native-01.png",
+    "native-02.png",
+    "native-03.png",
+    "native-04.png",
+    "native-05.png",
+    "native-06.png"
+  ],
+  "answer": "answer.json",
+  "automated_audit": "audit.json",
+  "reviews": [
+    {
+      "reviewer": "Lead Codex agent",
+      "result": "accepted",
+      "scope": "All six images and all four answer fields."
+    },
+    {
+      "reviewer": "Independent Codex agent p06_image_review",
+      "result": "accepted",
+      "scope": "All six images and all four answer fields."
+    }
+  ],
+  "supported_claims": {
+    "pressure_change": "Initial pressure is nearly uniform red-orange. Final pressure is yellow and green under the same 1000 to 5000 psi legend.",
+    "saturation_display": "Visible upper cells are green. Exposed lower side layers are blue under the zero to one legend.",
+    "filtered_geometry_change": "The filtered image shows a half-width block and a rotated camera.",
+    "control_view_change": "Image six visibly matches control image two."
+  },
+  "model_image_gate": "accepted",
+  "limits": [
+    "Saturation claims apply only to visible cells.",
+    "Image evidence does not establish numerical simulator accuracy.",
+    "These are Codex reviews, not human reviews.",
+    "Native GUI legend inspection remains pending.",
+    "The original audit retains visual_claims_verified: false because visual review is separate."
+  ]
+}

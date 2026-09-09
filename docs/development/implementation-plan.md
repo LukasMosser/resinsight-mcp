@@ -201,6 +201,15 @@ Acceptance requires visible changes in the real client and fixed legends for com
 Test stale observations and the case where an edit succeeds but rendering fails.
 Keep screenshots and decoded image properties as evidence without exact pixel comparisons.
 
+The bounded implementation adds a reviewed native scripting patch for camera, legend, and display-filter APIs.
+Its property set includes `PRESSURE`, `SWAT`, `SGAS`, `SOIL`, and `PORO`.
+Pressure display currently requires proved `FIELD` inputs, and display filters use the main grid.
+The host must supply session and view services and establish trusted result bindings.
+The [P06 evidence](p06-evidence.md) separates those integration requirements from model-facing acceptance.
+
+On September 9, 2026, the owner deferred the native editor visual inspection from P06 completion.
+The [follow-up](https://github.com/LukasMosser/resinsight-mcp/issues/34) retains that inspection, and the evidence record does not claim a visual pass.
+
 ## P07: Import supported models
 
 Import an OPM deck and its include files into a new revision.

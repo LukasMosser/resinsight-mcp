@@ -164,6 +164,7 @@ def test_applied_edit_survives_failed_render_without_old_observation(receipt: Ed
     )
     outcome = EditedView(edit=receipt, observation=OperationResult[Observation](outcome=failure))
     restored = EditedView.model_validate_json(outcome.model_dump_json())
+    assert isinstance(restored.edit, EditReceipt)
     assert restored.edit.edit_id == receipt.edit_id
     assert restored.edit.effect == "applied"
     assert restored.edit.request.interval.end == 8424.0

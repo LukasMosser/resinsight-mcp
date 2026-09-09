@@ -1,0 +1,85 @@
+import json
+import math
+from pathlib import Path
+import rips
+
+OUT = Path('/private/tmp/resinsight-p06-native-repair-smoke')
+OUT.mkdir(exist_ok=True)
+EXE = '/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+checks = []
+
+def check(name, passed, **details):
+    checks.append({'name': name, 'passed': bool(passed), **details})
+    assert passed, name
+
+def reject(name, call):
+    try:
+        call()
+    except rips.exception.RipsError as error:
+        check(name, 'linked or controlled' in str(error), error=str(error))
+    else:
+        check(name, False)
+
+instance = rips.Instance.launch(resinsight_executable=EXE)
+try:
+    case = instance.project.create_corner_point_grid(
+        'P06 synthetic controls', 1, 1, 1,
+        [0,0,0, 0,0,1, 1,0,0, 1,0,1, 0,1,0, 0,1,1, 1,1,0, 1,1,1],
+        [0,0,0,0,1,1,1,1], [1])
+    view = case.create_view()
+    other = case.create_view()
+    def refresh(view_id):
+        return next(item for item in instance.project.views() if item.id == view_id)
+    def state(view_id):
+        current = refresh(view_id)
+        return {'matrix': current.camera_matrix, 'point_of_interest': current.camera_point_of_interest,
+                'perspective': current.perspective_projection,
+                'field_of_view': current.actual_camera_field_of_view_y_degrees,
+                'height': current.actual_camera_parallel_projection_height}
+    result = view.cell_result()
+    result.result_type = 'STATIC_NATIVE'
+    result.result_variable = 'DEPTH'
+    result.update()
+    view.set_camera_projection(False, 55.0, 2.0)
+    view = refresh(view.id)
+    check('hidden camera fields retain scripting readback',
+          math.isclose(view.actual_camera_field_of_view_y_degrees, 55.0)
+          and math.isclose(view.actual_camera_parallel_projection_height, 2.0))
+    legend = next(item for item in view.cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'DEPTH')
+    legend.range_type = 'USER_DEFINED_MAX_MIN'
+    legend.mapping_mode = 'LinearContinuous'
+    legend.center_legend_around_zero = False
+    legend.precision = 15
+    legend.update()
+    legend.user_defined_min = 0.12345
+    legend.user_defined_max = 0.98765
+    legend.update()
+    legend = next(item for item in refresh(view.id).cell_result().result_var_legend_definition_list() if item.result_variable_usage == 'DEPTH')
+    check('hidden legend fields retain scripting readback',
+          math.isclose(legend.actual_minimum, 0.12345, rel_tol=1e-14)
+          and math.isclose(legend.actual_maximum, 0.98765, rel_tol=1e-14),
+          actual_minimum=legend.actual_minimum, actual_maximum=legend.actual_maximum)
+    instance.project.link_views(views=[view, other])
+    for item, label in [(view, 'master'), (other, 'controlled')]:
+        before = state(item.id)
+        reject(f'{label} linked-view validation rejects', item.validate_view_controls)
+        reject(f'{label} linked-view camera update rejects', lambda item=item: item.set_camera_projection(True, 60.0, 3.0))
+        check(f'{label} rejected calls preserve camera', state(item.id) == before)
+    instance.project.unlink_views(views=[other])
+    other.validate_view_controls()
+    check('unlinked controlled view accepts validation', True)
+    instance.project.unlink_views(views=[view])
+    view.validate_view_controls()
+    check('unlinked master accepts validation', True)
+    view.set_camera_projection(False, 55.0, 2.0)
+    view = refresh(view.id)
+    check('unlinked explicit camera update succeeds', math.isclose(view.actual_camera_parallel_projection_height, 2.0))
+    instance.set_main_window_size(1100, 800)
+    instance.project.save(str(OUT / 'p06-synthetic-controls.rsp'))
+    (OUT / 'instance.json').write_text(json.dumps({'port': instance.port, 'executable': EXE, 'synthetic_only': True}) + '\n')
+    (OUT / 'results.json').write_text(json.dumps(checks, indent=2) + '\n')
+    print(json.dumps(checks, indent=2))
+except BaseException:
+    (OUT / 'results.json').write_text(json.dumps(checks, indent=2) + '\n')
+    instance.exit()
+    raise

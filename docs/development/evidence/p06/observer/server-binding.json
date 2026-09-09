@@ -1,0 +1,707 @@
+{
+  "connection": {
+    "context": {
+      "session_id": "session_7d212713fad642988fe375c6213136e7",
+      "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+      "project_generation": 0
+    },
+    "endpoint": {
+      "host": "127.0.0.1",
+      "port": 65451
+    },
+    "ownership": "attached",
+    "state": "ready",
+    "process": {
+      "pid": 56239,
+      "start_marker": "1788932073.348466"
+    }
+  },
+  "project": {
+    "context": {
+      "session_id": "session_7d212713fad642988fe375c6213136e7",
+      "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+      "project_generation": 0
+    },
+    "objects": [
+      {
+        "ref": {
+          "context": {
+            "session_id": "session_7d212713fad642988fe375c6213136e7",
+            "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+            "project_generation": 0
+          },
+          "kind": "case",
+          "object_id": "3f6067de9af64f44b5c500624831ebcd"
+        },
+        "name": "SPE1CASE1"
+      },
+      {
+        "ref": {
+          "context": {
+            "session_id": "session_7d212713fad642988fe375c6213136e7",
+            "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+            "project_generation": 0
+          },
+          "kind": "view",
+          "object_id": "8ea3a36712514d9499f45e50faa70e94"
+        },
+        "name": "View 0"
+      },
+      {
+        "ref": {
+          "context": {
+            "session_id": "session_7d212713fad642988fe375c6213136e7",
+            "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+            "project_generation": 0
+          },
+          "kind": "view",
+          "object_id": "aa60aecb47c5405dbf5a94993b3c677c"
+        },
+        "name": "View 1"
+      },
+      {
+        "ref": {
+          "context": {
+            "session_id": "session_7d212713fad642988fe375c6213136e7",
+            "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+            "project_generation": 0
+          },
+          "kind": "well",
+          "object_id": "98cbd4a8fa3f4e84809ec39ed121c401"
+        },
+        "name": "P06 selection well"
+      }
+    ],
+    "last_saved_path": null
+  },
+  "loaded_result": {
+    "case": {
+      "context": {
+        "session_id": "session_7d212713fad642988fe375c6213136e7",
+        "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+        "project_generation": 0
+      },
+      "kind": "case",
+      "object_id": "3f6067de9af64f44b5c500624831ebcd"
+    },
+    "result": {
+      "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+      "job_id": "job_5fc56811ff5444c6b45f1b5192f1bce3",
+      "model": {
+        "session_id": "session_7d212713fad642988fe375c6213136e7",
+        "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+      },
+      "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+      "report_series": {
+        "reports": [
+          {
+            "index": 0,
+            "elapsed_days": 0.0,
+            "calendar_date": "2015-01-01"
+          },
+          {
+            "index": 1,
+            "elapsed_days": 31.0,
+            "calendar_date": "2015-02-01"
+          },
+          {
+            "index": 2,
+            "elapsed_days": 59.0,
+            "calendar_date": "2015-03-01"
+          },
+          {
+            "index": 3,
+            "elapsed_days": 90.0,
+            "calendar_date": "2015-04-01"
+          },
+          {
+            "index": 4,
+            "elapsed_days": 120.0,
+            "calendar_date": "2015-05-01"
+          },
+          {
+            "index": 5,
+            "elapsed_days": 151.0,
+            "calendar_date": "2015-06-01"
+          },
+          {
+            "index": 6,
+            "elapsed_days": 181.0,
+            "calendar_date": "2015-07-01"
+          },
+          {
+            "index": 7,
+            "elapsed_days": 212.0,
+            "calendar_date": "2015-08-01"
+          },
+          {
+            "index": 8,
+            "elapsed_days": 243.0,
+            "calendar_date": "2015-09-01"
+          },
+          {
+            "index": 9,
+            "elapsed_days": 273.0,
+            "calendar_date": "2015-10-01"
+          },
+          {
+            "index": 10,
+            "elapsed_days": 304.0,
+            "calendar_date": "2015-11-01"
+          },
+          {
+            "index": 11,
+            "elapsed_days": 334.0,
+            "calendar_date": "2015-12-01"
+          },
+          {
+            "index": 12,
+            "elapsed_days": 365.0,
+            "calendar_date": "2016-01-01"
+          },
+          {
+            "index": 13,
+            "elapsed_days": 396.0,
+            "calendar_date": "2016-02-01"
+          },
+          {
+            "index": 14,
+            "elapsed_days": 424.0,
+            "calendar_date": "2016-02-29"
+          },
+          {
+            "index": 15,
+            "elapsed_days": 455.0,
+            "calendar_date": "2016-03-31"
+          },
+          {
+            "index": 16,
+            "elapsed_days": 485.0,
+            "calendar_date": "2016-04-30"
+          },
+          {
+            "index": 17,
+            "elapsed_days": 516.0,
+            "calendar_date": "2016-05-31"
+          },
+          {
+            "index": 18,
+            "elapsed_days": 546.0,
+            "calendar_date": "2016-06-30"
+          },
+          {
+            "index": 19,
+            "elapsed_days": 577.0,
+            "calendar_date": "2016-07-31"
+          },
+          {
+            "index": 20,
+            "elapsed_days": 608.0,
+            "calendar_date": "2016-08-31"
+          },
+          {
+            "index": 21,
+            "elapsed_days": 638.0,
+            "calendar_date": "2016-09-30"
+          },
+          {
+            "index": 22,
+            "elapsed_days": 669.0,
+            "calendar_date": "2016-10-31"
+          },
+          {
+            "index": 23,
+            "elapsed_days": 699.0,
+            "calendar_date": "2016-11-30"
+          },
+          {
+            "index": 24,
+            "elapsed_days": 730.0,
+            "calendar_date": "2016-12-31"
+          },
+          {
+            "index": 25,
+            "elapsed_days": 761.0,
+            "calendar_date": "2017-01-31"
+          },
+          {
+            "index": 26,
+            "elapsed_days": 789.0,
+            "calendar_date": "2017-02-28"
+          },
+          {
+            "index": 27,
+            "elapsed_days": 820.0,
+            "calendar_date": "2017-03-31"
+          },
+          {
+            "index": 28,
+            "elapsed_days": 850.0,
+            "calendar_date": "2017-04-30"
+          },
+          {
+            "index": 29,
+            "elapsed_days": 881.0,
+            "calendar_date": "2017-05-31"
+          },
+          {
+            "index": 30,
+            "elapsed_days": 911.0,
+            "calendar_date": "2017-06-30"
+          },
+          {
+            "index": 31,
+            "elapsed_days": 942.0,
+            "calendar_date": "2017-07-31"
+          },
+          {
+            "index": 32,
+            "elapsed_days": 973.0,
+            "calendar_date": "2017-08-31"
+          },
+          {
+            "index": 33,
+            "elapsed_days": 1003.0,
+            "calendar_date": "2017-09-30"
+          },
+          {
+            "index": 34,
+            "elapsed_days": 1034.0,
+            "calendar_date": "2017-10-31"
+          },
+          {
+            "index": 35,
+            "elapsed_days": 1064.0,
+            "calendar_date": "2017-11-30"
+          },
+          {
+            "index": 36,
+            "elapsed_days": 1095.0,
+            "calendar_date": "2017-12-31"
+          },
+          {
+            "index": 37,
+            "elapsed_days": 1126.0,
+            "calendar_date": "2018-01-31"
+          },
+          {
+            "index": 38,
+            "elapsed_days": 1154.0,
+            "calendar_date": "2018-02-28"
+          },
+          {
+            "index": 39,
+            "elapsed_days": 1185.0,
+            "calendar_date": "2018-03-31"
+          },
+          {
+            "index": 40,
+            "elapsed_days": 1215.0,
+            "calendar_date": "2018-04-30"
+          },
+          {
+            "index": 41,
+            "elapsed_days": 1246.0,
+            "calendar_date": "2018-05-31"
+          },
+          {
+            "index": 42,
+            "elapsed_days": 1276.0,
+            "calendar_date": "2018-06-30"
+          },
+          {
+            "index": 43,
+            "elapsed_days": 1307.0,
+            "calendar_date": "2018-07-31"
+          },
+          {
+            "index": 44,
+            "elapsed_days": 1338.0,
+            "calendar_date": "2018-08-31"
+          },
+          {
+            "index": 45,
+            "elapsed_days": 1368.0,
+            "calendar_date": "2018-09-30"
+          },
+          {
+            "index": 46,
+            "elapsed_days": 1399.0,
+            "calendar_date": "2018-10-31"
+          },
+          {
+            "index": 47,
+            "elapsed_days": 1429.0,
+            "calendar_date": "2018-11-30"
+          },
+          {
+            "index": 48,
+            "elapsed_days": 1460.0,
+            "calendar_date": "2018-12-31"
+          },
+          {
+            "index": 49,
+            "elapsed_days": 1491.0,
+            "calendar_date": "2019-01-31"
+          },
+          {
+            "index": 50,
+            "elapsed_days": 1519.0,
+            "calendar_date": "2019-02-28"
+          },
+          {
+            "index": 51,
+            "elapsed_days": 1550.0,
+            "calendar_date": "2019-03-31"
+          },
+          {
+            "index": 52,
+            "elapsed_days": 1580.0,
+            "calendar_date": "2019-04-30"
+          },
+          {
+            "index": 53,
+            "elapsed_days": 1611.0,
+            "calendar_date": "2019-05-31"
+          },
+          {
+            "index": 54,
+            "elapsed_days": 1641.0,
+            "calendar_date": "2019-06-30"
+          },
+          {
+            "index": 55,
+            "elapsed_days": 1672.0,
+            "calendar_date": "2019-07-31"
+          },
+          {
+            "index": 56,
+            "elapsed_days": 1703.0,
+            "calendar_date": "2019-08-31"
+          },
+          {
+            "index": 57,
+            "elapsed_days": 1733.0,
+            "calendar_date": "2019-09-30"
+          },
+          {
+            "index": 58,
+            "elapsed_days": 1764.0,
+            "calendar_date": "2019-10-31"
+          },
+          {
+            "index": 59,
+            "elapsed_days": 1794.0,
+            "calendar_date": "2019-11-30"
+          },
+          {
+            "index": 60,
+            "elapsed_days": 1825.0,
+            "calendar_date": "2019-12-31"
+          },
+          {
+            "index": 61,
+            "elapsed_days": 1856.0,
+            "calendar_date": "2020-01-31"
+          },
+          {
+            "index": 62,
+            "elapsed_days": 1884.0,
+            "calendar_date": "2020-02-28"
+          },
+          {
+            "index": 63,
+            "elapsed_days": 1915.0,
+            "calendar_date": "2020-03-30"
+          },
+          {
+            "index": 64,
+            "elapsed_days": 1945.0,
+            "calendar_date": "2020-04-29"
+          },
+          {
+            "index": 65,
+            "elapsed_days": 1976.0,
+            "calendar_date": "2020-05-30"
+          },
+          {
+            "index": 66,
+            "elapsed_days": 2006.0,
+            "calendar_date": "2020-06-29"
+          },
+          {
+            "index": 67,
+            "elapsed_days": 2037.0,
+            "calendar_date": "2020-07-30"
+          },
+          {
+            "index": 68,
+            "elapsed_days": 2068.0,
+            "calendar_date": "2020-08-30"
+          },
+          {
+            "index": 69,
+            "elapsed_days": 2098.0,
+            "calendar_date": "2020-09-29"
+          },
+          {
+            "index": 70,
+            "elapsed_days": 2129.0,
+            "calendar_date": "2020-10-30"
+          },
+          {
+            "index": 71,
+            "elapsed_days": 2159.0,
+            "calendar_date": "2020-11-29"
+          },
+          {
+            "index": 72,
+            "elapsed_days": 2190.0,
+            "calendar_date": "2020-12-30"
+          },
+          {
+            "index": 73,
+            "elapsed_days": 2221.0,
+            "calendar_date": "2021-01-30"
+          },
+          {
+            "index": 74,
+            "elapsed_days": 2249.0,
+            "calendar_date": "2021-02-27"
+          },
+          {
+            "index": 75,
+            "elapsed_days": 2280.0,
+            "calendar_date": "2021-03-30"
+          },
+          {
+            "index": 76,
+            "elapsed_days": 2310.0,
+            "calendar_date": "2021-04-29"
+          },
+          {
+            "index": 77,
+            "elapsed_days": 2341.0,
+            "calendar_date": "2021-05-30"
+          },
+          {
+            "index": 78,
+            "elapsed_days": 2371.0,
+            "calendar_date": "2021-06-29"
+          },
+          {
+            "index": 79,
+            "elapsed_days": 2402.0,
+            "calendar_date": "2021-07-30"
+          },
+          {
+            "index": 80,
+            "elapsed_days": 2433.0,
+            "calendar_date": "2021-08-30"
+          },
+          {
+            "index": 81,
+            "elapsed_days": 2463.0,
+            "calendar_date": "2021-09-29"
+          },
+          {
+            "index": 82,
+            "elapsed_days": 2494.0,
+            "calendar_date": "2021-10-30"
+          },
+          {
+            "index": 83,
+            "elapsed_days": 2524.0,
+            "calendar_date": "2021-11-29"
+          },
+          {
+            "index": 84,
+            "elapsed_days": 2555.0,
+            "calendar_date": "2021-12-30"
+          },
+          {
+            "index": 85,
+            "elapsed_days": 2586.0,
+            "calendar_date": "2022-01-30"
+          },
+          {
+            "index": 86,
+            "elapsed_days": 2614.0,
+            "calendar_date": "2022-02-27"
+          },
+          {
+            "index": 87,
+            "elapsed_days": 2645.0,
+            "calendar_date": "2022-03-30"
+          },
+          {
+            "index": 88,
+            "elapsed_days": 2675.0,
+            "calendar_date": "2022-04-29"
+          },
+          {
+            "index": 89,
+            "elapsed_days": 2706.0,
+            "calendar_date": "2022-05-30"
+          },
+          {
+            "index": 90,
+            "elapsed_days": 2736.0,
+            "calendar_date": "2022-06-29"
+          },
+          {
+            "index": 91,
+            "elapsed_days": 2767.0,
+            "calendar_date": "2022-07-30"
+          },
+          {
+            "index": 92,
+            "elapsed_days": 2798.0,
+            "calendar_date": "2022-08-30"
+          },
+          {
+            "index": 93,
+            "elapsed_days": 2828.0,
+            "calendar_date": "2022-09-29"
+          },
+          {
+            "index": 94,
+            "elapsed_days": 2859.0,
+            "calendar_date": "2022-10-30"
+          },
+          {
+            "index": 95,
+            "elapsed_days": 2889.0,
+            "calendar_date": "2022-11-29"
+          },
+          {
+            "index": 96,
+            "elapsed_days": 2920.0,
+            "calendar_date": "2022-12-30"
+          },
+          {
+            "index": 97,
+            "elapsed_days": 2951.0,
+            "calendar_date": "2023-01-30"
+          },
+          {
+            "index": 98,
+            "elapsed_days": 2979.0,
+            "calendar_date": "2023-02-27"
+          },
+          {
+            "index": 99,
+            "elapsed_days": 3010.0,
+            "calendar_date": "2023-03-30"
+          },
+          {
+            "index": 100,
+            "elapsed_days": 3040.0,
+            "calendar_date": "2023-04-29"
+          },
+          {
+            "index": 101,
+            "elapsed_days": 3071.0,
+            "calendar_date": "2023-05-30"
+          },
+          {
+            "index": 102,
+            "elapsed_days": 3101.0,
+            "calendar_date": "2023-06-29"
+          },
+          {
+            "index": 103,
+            "elapsed_days": 3132.0,
+            "calendar_date": "2023-07-30"
+          },
+          {
+            "index": 104,
+            "elapsed_days": 3163.0,
+            "calendar_date": "2023-08-30"
+          },
+          {
+            "index": 105,
+            "elapsed_days": 3193.0,
+            "calendar_date": "2023-09-29"
+          },
+          {
+            "index": 106,
+            "elapsed_days": 3224.0,
+            "calendar_date": "2023-10-30"
+          },
+          {
+            "index": 107,
+            "elapsed_days": 3254.0,
+            "calendar_date": "2023-11-29"
+          },
+          {
+            "index": 108,
+            "elapsed_days": 3285.0,
+            "calendar_date": "2023-12-30"
+          },
+          {
+            "index": 109,
+            "elapsed_days": 3316.0,
+            "calendar_date": "2024-01-30"
+          },
+          {
+            "index": 110,
+            "elapsed_days": 3344.0,
+            "calendar_date": "2024-02-27"
+          },
+          {
+            "index": 111,
+            "elapsed_days": 3375.0,
+            "calendar_date": "2024-03-29"
+          },
+          {
+            "index": 112,
+            "elapsed_days": 3405.0,
+            "calendar_date": "2024-04-28"
+          },
+          {
+            "index": 113,
+            "elapsed_days": 3436.0,
+            "calendar_date": "2024-05-29"
+          },
+          {
+            "index": 114,
+            "elapsed_days": 3466.0,
+            "calendar_date": "2024-06-28"
+          },
+          {
+            "index": 115,
+            "elapsed_days": 3497.0,
+            "calendar_date": "2024-07-29"
+          },
+          {
+            "index": 116,
+            "elapsed_days": 3528.0,
+            "calendar_date": "2024-08-29"
+          },
+          {
+            "index": 117,
+            "elapsed_days": 3558.0,
+            "calendar_date": "2024-09-28"
+          },
+          {
+            "index": 118,
+            "elapsed_days": 3589.0,
+            "calendar_date": "2024-10-29"
+          },
+          {
+            "index": 119,
+            "elapsed_days": 3619.0,
+            "calendar_date": "2024-11-28"
+          },
+          {
+            "index": 120,
+            "elapsed_days": 3650.0,
+            "calendar_date": "2024-12-29"
+          }
+        ]
+      },
+      "assessment": "not_assessed"
+    }
+  }
+}

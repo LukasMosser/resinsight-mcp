@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "status": {"type": "string", "enum": ["observed", "no_image"]},
+    "pressure_change": {"type": ["string", "null"]},
+    "saturation_display": {"type": ["string", "null"]},
+    "filtered_geometry_change": {"type": ["string", "null"]},
+    "control_view_change": {"type": ["string", "null"]}
+  },
+  "required": [
+    "status",
+    "pressure_change",
+    "saturation_display",
+    "filtered_geometry_change",
+    "control_view_change"
+  ],
+  "additionalProperties": false
+}

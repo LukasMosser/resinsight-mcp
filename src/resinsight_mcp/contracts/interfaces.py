@@ -8,7 +8,7 @@ from .errors import OperationResult
 from .identifiers import ArtifactId, CheckpointId, ObservationId, ResultId, RevisionId, SessionId
 from .jobs import Job, JobRef, JobRequest, LoadedResult, Result, ResultImportRequest
 from .models import ArtifactRef, ModelRevision, PreparationRequest, PreparedModel, Session
-from .observations import Observation, RenderRequest
+from .observations import EditedView, Observation, RenderRequest, ViewUpdateRequest
 from .sessions import (
     AttachRequest,
     CloseReceipt,
@@ -139,6 +139,18 @@ class WorkspaceStore(Protocol):
 class Renderer(Protocol):
     def render(self, request: RenderRequest) -> OperationResult[Observation]:
         """Decode fresh output and record actual view context before returning success."""
+        ...
+
+
+class ViewService(Renderer, Protocol):
+    def apply(self, request: ViewUpdateRequest) -> OperationResult[EditedView]:
+        """Preserve a completed view edit when its fresh image fails."""
+        ...
+
+    def get_observation(
+        self, session_id: SessionId, observation_id: ObservationId
+    ) -> OperationResult[Observation]:
+        """Reject observations whose application or scene context is no longer current."""
         ...
 
 

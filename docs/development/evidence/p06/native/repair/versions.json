@@ -1,0 +1,7 @@
+{
+  "cmake": "cmake version 3.31.6",
+  "clang": "clang version 19.1.7 (/Users/runner/work/llvm-project/llvm-project/clang cd708029e0b2869e80abe31ddb175f7c35361f90)",
+  "python": "Python 3.12.13",
+  "qt": "6.7.0",
+  "native_commit": "1859d96e9a40093abfc43c42df9e9ef5b3846c9d"
+}
