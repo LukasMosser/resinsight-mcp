@@ -29,7 +29,7 @@ from resinsight_mcp.models.wells.records import (
 )
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
-from .test_service import Case, case_for, completion, value
+from .test_schedule_service import Case, case_for, completion, value
 
 
 def rejected(
