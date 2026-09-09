@@ -89,6 +89,7 @@ These assignments propose integration work within the [existing packages](implem
 Package owners retain their domain algorithms behind agreed typed interfaces.
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) tracks launcher composition and domain MCP wiring.
 This documentation change does not implement that integration.
+
 The lead integration owner owns launcher composition and all domain-tool wiring in `src/resinsight_mcp/mcp/`.
 Domain-tool wiring connects model, simulator, and result services to MCP.
 Package owners supply domain services and evidence through agreed typed interfaces.

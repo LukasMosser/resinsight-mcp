@@ -52,7 +52,10 @@ The executable must be an absolute path supplied for this host.
 Use `application_launch` with this template:
 
 ```text
-application_launch({"session_id": "<SESSION_ID>", "executable": "<ABSOLUTE_EXECUTABLE_PATH>"})
+application_launch({
+  "session_id": "<SESSION_ID>",
+  "executable": "<ABSOLUTE_EXECUTABLE_PATH>"
+})
 ```
 
 A successful response records an owned connection and its endpoint.
@@ -67,7 +70,10 @@ Use the operator's current port instead of a guessed or historical port.
 The following template uses `<PORT>` as an integer placeholder:
 
 ```text
-application_attach({"session_id": "<SESSION_ID>", "endpoint": {"host": "127.0.0.1", "port": <PORT>}})
+application_attach({
+  "session_id": "<SESSION_ID>",
+  "endpoint": {"host": "127.0.0.1", "port": <PORT>}
+})
 ```
 
 Attachment verifies the local listening process and application version.
@@ -88,10 +94,20 @@ It contains `session_id`, `connection_id`, and `project_generation`.
 It is an object placeholder, not a quoted string or an MCP parameter name.
 
 ```text
-project_open({"context": CURRENT_CONTEXT, "path": "<ABSOLUTE_INPUT_PROJECT_PATH>"})
-project_save({"context": CURRENT_CONTEXT, "path": "<ABSOLUTE_OUTPUT_PROJECT_PATH>", "overwrite": false})
+project_open({
+  "context": CURRENT_CONTEXT,
+  "path": "<ABSOLUTE_INPUT_PROJECT_PATH>"
+})
+project_save({
+  "context": CURRENT_CONTEXT,
+  "path": "<ABSOLUTE_OUTPUT_PROJECT_PATH>",
+  "overwrite": false
+})
 project_close({"context": CURRENT_CONTEXT})
-project_open({"context": CURRENT_CONTEXT, "path": "<ABSOLUTE_OUTPUT_PROJECT_PATH>"})
+project_open({
+  "context": CURRENT_CONTEXT,
+  "path": "<ABSOLUTE_OUTPUT_PROJECT_PATH>"
+})
 ```
 
 After each successful command, replace `CURRENT_CONTEXT` with that response's context before continuing.
@@ -152,7 +168,11 @@ To leave ResInsight running, ask:
 Obtain `connection_id` from the current `connection_get` response, then use this template:
 
 ```text
-application_close({"session_id": "<SESSION_ID>", "connection_id": "<CONNECTION_ID>", "action": "detach"})
+application_close({
+  "session_id": "<SESSION_ID>",
+  "connection_id": "<CONNECTION_ID>",
+  "action": "detach"
+})
 ```
 
 Termination requires verified ownership.

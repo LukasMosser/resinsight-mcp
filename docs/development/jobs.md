@@ -200,6 +200,7 @@ The transport exposes `job_submit`, `job_poll`, and `job_cancel` through that se
 The default command-line server supplies no resolver or job binding.
 Transport polling does not reconcile or mutate jobs.
 Prepared input records still require a simulator adapter or trusted Python setup.
+
 Result lineage and ResInsight result loading remain separate integration steps.
 There is no MCP reconciliation operation.
 The [user guide](../jobs.md) describes current agent operations and outcomes.

@@ -90,7 +90,11 @@ For image 3, the exact report and legend fragments were:
 
 ```json
 {
-  "report_time": {"index": 120, "elapsed_days": 3650, "calendar_date": "2024-12-29"},
+  "report_time": {
+    "index": 120,
+    "elapsed_days": 3650,
+    "calendar_date": "2024-12-29"
+  },
   "legend": {"minimum": 1000, "maximum": 5000}
 }
 ```
@@ -138,7 +142,12 @@ Orthographic cameras instead require `parallel_scale`, which equals half the vis
 To capture image 6, use this template:
 
 ```text
-view_render({"session_id": "<SESSION_ID>", "context": CONTROL_CONTEXT, "width": 1200, "height": 800})
+view_render({
+  "session_id": "<SESSION_ID>",
+  "context": CONTROL_CONTEXT,
+  "width": 1200,
+  "height": 800
+})
 ```
 
 `CONTROL_CONTEXT` is the complete actual context returned for image 2.
@@ -160,7 +169,10 @@ Native editor inspection remains deferred to [issue #34](https://github.com/Luka
 To retrieve a saved observation, use this template:
 
 ```text
-observation_get({"session_id": "<SESSION_ID>", "observation_id": "<OBSERVATION_ID>"})
+observation_get({
+  "session_id": "<SESSION_ID>",
+  "observation_id": "<OBSERVATION_ID>"
+})
 ```
 
 Take both identifiers from the successful observation response.

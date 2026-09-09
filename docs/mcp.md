@@ -4,6 +4,7 @@ Connect an MCP-enabled client to discover and use the tools supplied by your hos
 MCP is the Model Context Protocol for tool access.
 The transport uses local standard input and output.
 Application output goes to standard error.
+
 The configured client can send prompts, tool results, metadata, and images to its model provider.
 The product assumes that users have appropriate provider data sharing agreements.
 The [data boundary](views.md#data-boundary) explains local tools and remote model inference.
