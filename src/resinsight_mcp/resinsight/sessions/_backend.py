@@ -62,3 +62,11 @@ class ApplicationAccess:
     application: Application
     project: ProjectState
     objects: tuple[NativeObject, ...]
+
+
+@dataclass(frozen=True)
+class ProjectMutation[T]:
+    """A completed callback value and the session's refreshed object mapping."""
+
+    value: T
+    access: ApplicationAccess

@@ -43,7 +43,13 @@ from resinsight_mcp.contracts.sessions import (
     authorize_close,
 )
 
-from ._backend import Application, ApplicationAccess, ApplicationFactory, ProjectSnapshot
+from ._backend import (
+    Application,
+    ApplicationAccess,
+    ApplicationFactory,
+    ProjectMutation,
+    ProjectSnapshot,
+)
 
 
 def _fail(code: ErrorCode, message: str) -> NoReturn:
@@ -310,6 +316,40 @@ class ResInsightSessionService:
                 project=project,
                 objects=tuple(objects[reference] for reference in references),
             )
+
+    @staticmethod
+    def _project_access(
+        slot: _Slot, application: Application, project: ProjectState
+    ) -> ApplicationAccess:
+        assert slot.snapshot is not None
+        return ApplicationAccess(
+            application=application, project=project, objects=slot.snapshot.objects
+        )
+
+    def mutate_project[T](
+        self, context: ApplicationContext, change: Callable[[ApplicationAccess], T]
+    ) -> ProjectMutation[T]:
+        """Hold session ownership through a trusted mutation and reference refresh."""
+        with self._application(context.session_id) as (slot, application):
+            project = self._observe(slot, application)
+            self._require_context(context, project)
+            access = self._project_access(slot, application, project)
+            try:
+                value = change(access)
+                refreshed = self._after_change(slot, application)
+                return ProjectMutation(
+                    value=value, access=self._project_access(slot, application, refreshed)
+                )
+            except ContractError:
+                raise
+            except Exception as error:
+                raise ContractError(
+                    Error(
+                        code=ErrorCode.EXECUTION_FAILED,
+                        message="The native project mutation failed without a confirmed outcome.",
+                        effect=MutationEffect.UNKNOWN,
+                    )
+                ) from error
 
     @_operation
     def open_project(self, request: ProjectOpenRequest) -> ProjectState:

@@ -1,0 +1,13 @@
+Serving HTTP on 127.0.0.1 port 61131 (http://127.0.0.1:61131/) ...
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /development/session-mutations/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /assets/stylesheets/main.ec1eaa64.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /assets/javascripts/bundle.d7400e89.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /javascripts/mathjax.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /sitemap.xml HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /search/search_index.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /assets/javascripts/workers/search.2c215733.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:28] "GET /assets/images/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:29] "GET /development/evidence/session-mutations/focused-tests.log HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:29] "GET /development/evidence/session-mutations/shared-check.log HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:29] "GET /development/evidence/session-mutations/environment.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 10:20:29] "GET /development/evidence/session-mutations/dependency-sync.log HTTP/1.1" 200 -
