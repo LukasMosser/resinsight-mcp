@@ -343,8 +343,9 @@ Summary plots return an applied edit receipt separately from their image outcome
 Project restoration verifies selected result files, native values, and complete geometry before issuing fresh bindings.
 The [result guide](results.md) records maintained behavior and the prepared native acceptance command.
 
-Native acceptance must show pressure, saturation, and well curves with the same source identity in images and numerical records.
-That real application trial remains a separate gate before P12 closes.
+The [native acceptance record](evidence/p12/native/README.md#trial-07) verifies pressure, saturation, and summary plots against both exact source results.
+The lead inspected all six images and complete numerical readbacks before and after project reopening.
+The recorded custom macOS native build passes P12 acceptance with verified owned-process cleanup.
 
 ## P13: Prove the OPM workflow
 

@@ -1,0 +1,29 @@
+{
+  "tested_commit": "b7b9d1e5729983224ecc7c7e0bdf3fc6744b7570",
+  "tracked_source_clean_at_check": true,
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "scripts/check.py"
+  ],
+  "maintained_tests": 644,
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "packages": {
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2",
+    "pydantic": "2.13.5",
+    "opm": "2025.10",
+    "numpy": "2.5.3"
+  },
+  "native_acceptance": "Passed trial 07 with separate lead numerical, image, reopened-project, and owned-process reviews.",
+  "native_evidence": "../native/trial-07/lead-review.json",
+  "browser_review": "../native/browser-review.json",
+  "review": "Lead reviewed all production source changes, complete probe, original images, numerical readbacks, native source patches, and failure records.",
+  "scope": "P12 domain result services. Full public launcher acceptance remains in P13."
+}
