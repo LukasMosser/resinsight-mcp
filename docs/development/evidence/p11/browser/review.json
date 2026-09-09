@@ -1,0 +1,504 @@
+{
+  "reviewed_at": "2026-09-09T18:16:04.752Z",
+  "source_commit": "11c4acd1dfc6aabe562406da0136134cd73837df",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "origin": "http://127.0.0.1:63008",
+  "external_requests_blocked": true,
+  "blocked_requests": [
+    "https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback",
+    "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+    "https://api.github.com/repos/LukasMosser/resinsight-mcp/releases/latest",
+    "https://api.github.com/repos/LukasMosser/resinsight-mcp"
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 843
+          },
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 827
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "user-guide.png"
+    },
+    {
+      "path": "/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 843
+          },
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 827
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "python-workflow.png"
+    },
+    {
+      "path": "/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 843
+          },
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 827
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "result-policy.png"
+    },
+    {
+      "path": "/development/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "developer-guide.png"
+    },
+    {
+      "path": "/development/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "output-verification.png"
+    },
+    {
+      "path": "/development/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "manual-runtime.png"
+    },
+    {
+      "path": "/development/evidence/p11/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "runtime-evidence.png"
+    },
+    {
+      "path": "/development/evidence/p11/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "reference-comparison.png"
+    },
+    {
+      "path": "/development/evidence/p11/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "termination-evidence.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/models/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/views/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/views/",
+      "status": 200
+    },
+    {
+      "path": "/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/wells/",
+      "status": 200
+    },
+    {
+      "path": "/opm/",
+      "status": 200
+    },
+    {
+      "path": "/security/",
+      "status": 200
+    },
+    {
+      "path": "/license/",
+      "status": 200
+    },
+    {
+      "path": "/development/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-guide/",
+      "status": 200
+    },
+    {
+      "path": "/development/local-setup/",
+      "status": 200
+    },
+    {
+      "path": "/development/project-organization/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-resinsight/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-opm/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-images/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/run-result-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/session-mutations/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-materialization-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08-native/",
+      "status": 200
+    },
+    {
+      "path": "/development/wells/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-schedules/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/docker-jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/opm/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/",
+      "status": 200
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/development/p13-delivery/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/foundation-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/releases/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/baseline-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/changed-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/changed-schedule.inc",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/baseline-dataset.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/changed-dataset.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/baseline-assessment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/changed-assessment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/reference-assessment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/reference-assessment-raw.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/long-schedule.inc",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/memory-failure-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/canceled-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/deadline-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/canceled-repaired-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/deadline-repaired-trial.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/cleanup.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/cleanup-client.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/runtime-preflight.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/tool-versions.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/focused-checks.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/docker-repair-checks.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/integration/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/integration/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/integration/lead-evidence-review.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/manual-probe-help.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/manual-probe-reference-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/curation-checks.log",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
