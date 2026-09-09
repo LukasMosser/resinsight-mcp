@@ -28,6 +28,7 @@ Start with these pages:
 - [Sessions](sessions.md) explains application ownership, project operations, and observed change limits.
 - [Project mutations](session-mutations.md) defines the trusted callback boundary, refreshed references, and failure evidence.
 - [Jobs](jobs.md) explains durable supervision, resource policy, and recovery limits.
+- [Docker job ownership](docker-jobs.md) explains container identity, deadlines, cancellation, and explicit recovery.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.

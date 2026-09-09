@@ -19,6 +19,7 @@ from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from ._common import event, job_directory, require, update
+from ._container import OwnedContainer
 from ._process import (
     OwnedProcess,
     ProcessInspectionBusy,
@@ -51,9 +52,10 @@ def _publish_logs(
     return tuple(artifacts)
 
 
-def _empty(process: OwnedProcess) -> bool:
+def _empty(process: OwnedProcess, container: OwnedContainer | None = None) -> bool:
     try:
-        return not process.live_members()
+        local_empty = not process.live_members()
+        return local_empty and (container is None or not container.inspect().state.running)
     except ProcessInspectionBusy:
         return False
 
@@ -93,8 +95,11 @@ def _signal(process: OwnedProcess, sig: int) -> None:
 class _Deadline:
     """Enforce the wall deadline even while workspace operations wait."""
 
-    def __init__(self, process: OwnedProcess, deadline: float) -> None:
+    def __init__(
+        self, process: OwnedProcess, deadline: float, container: OwnedContainer | None = None
+    ) -> None:
         self.process = process
+        self.container = container
         self.reason = "exit"
         self.error: Exception | None = None
         self.lock = Lock()
@@ -113,12 +118,16 @@ class _Deadline:
                 return
             inspection_error = None
             try:
-                if _empty(self.process):
+                if _empty(self.process, self.container):
                     return
             except ProcessOwnershipError as error:
                 inspection_error = error
             self.reason = reason
-            _stop(self.process)
+            try:
+                if self.container is not None:
+                    self.container.stop()
+            finally:
+                _stop(self.process)
             if inspection_error is not None:
                 raise inspection_error
 
@@ -133,7 +142,7 @@ class _Deadline:
 def _observe(
     store: SqliteWorkspaceStore, ref: JobRef, process: OwnedProcess, deadline: _Deadline
 ) -> None:
-    while not _empty(process):
+    while not _empty(process, deadline.container):
         if deadline.error is not None:
             raise deadline.error
         job = require(store.get_job(ref))
@@ -187,11 +196,15 @@ def _reap(process: OwnedProcess) -> int:
 
 
 def _run_command(
-    store: SqliteWorkspaceStore, ref: JobRef, process: OwnedProcess, end: float
+    store: SqliteWorkspaceStore,
+    ref: JobRef,
+    process: OwnedProcess,
+    end: float,
+    container: OwnedContainer | None = None,
 ) -> tuple[str, int]:
     deadline: _Deadline | None = None
     try:
-        deadline = _Deadline(process, end)
+        deadline = _Deadline(process, end, container)
         update(
             store,
             ref,
@@ -206,14 +219,27 @@ def _run_command(
         )
         _observe(store, ref, process, deadline)
         reason = deadline.close()
-        return reason, _reap(process)
+        container_code = None
+        if container is not None:
+            snapshot = container.inspect()
+            if snapshot.state.running or snapshot.state.status != "exited":
+                raise RuntimeError("The container has no confirmed completed execution.")
+            container_code = snapshot.state.exit_code
+        code = _reap(process)
+        if reason == "exit" and code == 0 and container_code is not None:
+            code = container_code
+        return reason, code
     except Exception:
         try:
             if deadline is not None:
                 deadline.close()
         finally:
-            _stop(process)
-            _reap(process)
+            try:
+                if container is not None:
+                    container.stop()
+            finally:
+                _stop(process)
+                _reap(process)
         raise
 
 
@@ -235,11 +261,22 @@ def _execute(store: SqliteWorkspaceStore, ref: JobRef, directory: Path) -> None:
             reason, code = "cancel", 0
         else:
             end = time.monotonic() + submission.limits.wall_time_seconds
+            container = None
+            argv = submission.argv
+            if submission.execution is not None:
+                container = OwnedContainer(submission)
+                container_id = container.create(min(10.0, submission.limits.wall_time_seconds))
+                update(store, ref, lambda previous: _metadata(previous, container_id=container_id))
+                if time.monotonic() >= end:
+                    raise RuntimeError("The wall deadline expired before container start.")
+                argv = container.start(end)
             try:
                 process = OwnedProcess.start(
-                    submission.argv, Path(submission.working_directory), stdout, stderr
+                    argv, Path(submission.working_directory), stdout, stderr
                 )
             except ProcessLaunchError as error:
+                if container is not None:
+                    container.stop()
                 print(f"Command launch failed: {error.__cause__}", flush=True)
                 logs = _publish_logs(store, ref, directory)
                 update(
@@ -261,7 +298,11 @@ def _execute(store: SqliteWorkspaceStore, ref: JobRef, directory: Path) -> None:
                     ),
                 )
                 return
-            reason, code = _run_command(store, ref, process, end)
+            except Exception:
+                if container is not None:
+                    container.stop()
+                raise
+            reason, code = _run_command(store, ref, process, end, container)
         stdout.flush()
         stderr.flush()
         os.fsync(stdout.fileno())
