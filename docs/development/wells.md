@@ -149,3 +149,37 @@ The screenshot displays the imported `DX_1` property, which has the expected con
 This experiment establishes native feasibility, while maintained well services and full P09 acceptance remain pending.
 
 ![Prepared input grid and modeled well](evidence/p09/prepared-input-validated/prepared-input.png)
+
+## Typed service contract
+
+The shared P09 records and `CompletionSource` protocol live in `models/wells/records.py`.
+The native service owns prepared case bindings and revalidates exact model geometry before well operations.
+Caller-supplied bindings cannot establish trusted case ownership.
+Every observed well carries its issued reference, version, definition, and sampled measured depths with positive-down coordinates.
+Native changes require a current application context and advance the project generation.
+
+Completion exports are immutable snapshots tied to the exact model, well reference, and well version.
+The native service writes each snapshot to a workspace artifact and retains its issued identity.
+`CompletionSource.get_export(reference)` returns `OperationResult[CompletionExport]` after verifying that identity and the stored artifact.
+An export retains zero-based wellhead indices and the native reference depth in feet.
+A missing reference depth preserves the native default, which uses the first connection.
+Later visual edits do not rewrite an exported snapshot.
+
+`compdat_factor_field` stores the FIELD COMPDAT connection factor.
+Its unit convention is centipoise times stock-tank barrels divided by days times psia.
+The pinned [OPM FIELD unit definitions](https://github.com/OPM/opm-common/blob/015a8107623afb4ea6ec35cff0d3d334fdb4c637/opm/input/eclipse/Units/Units.hpp#L310) define this conversion.
+`permeability_length_md_ft` stores millidarcies times feet.
+Exported connections require positive factors and diameters, nonnegative skin, explicit cell indices, and increasing measured-depth endpoints.
+The service checks active cells against the stored model inspection.
+
+`WellScheduleRequest` edits only existing prepared well names and preserves unrequested wells.
+The schedule service rejects role changes, phase changes, duplicate names, and exports from another model revision.
+Requested controls use existing report indices in increasing order without duplicates.
+Connection replacement applies to the requested well from the initial report.
+Each requested control applies at its report index, while unrequested controls retain their original timing.
+The service publishes changed inputs through `derive_model()` and preserves grid identity because this operation does not change geometry.
+
+Generation comments describe the inputs originally used to generate a model.
+`read_specification()` recovers those inputs and does not establish a later edited schedule.
+The stored parser-validated input graph defines the current simulator schedule.
+These records define agreed interfaces, while the native and schedule implementations remain pending.
