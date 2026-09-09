@@ -49,11 +49,12 @@ Public well tools must expose native paths, completion exports, and child schedu
 Public run and result tools must preserve exact session, model, job, and result identities.
 The transport must deliver native grid and summary plot images with their observations.
 
-Prepared well-editing grids currently keep their geometry in native memory.
-P13 save and reopen acceptance requires a supported file-backed grid path.
+Prepared well-editing grids use persistent EGRID and property files through the reviewed native FIELD export command.
 The follow-up is recorded in [issue #48](https://github.com/LukasMosser/resinsight-mcp/issues/48).
-The P07 and P09 follow-up must preserve all corners, properties, trajectories, and completions across reopening.
-It must reject stale references and verify restored objects before adopting them.
+Its [lifetime acceptance](evidence/p09/lifetime/README.md) preserves all corners, properties, trajectories, and completions across two reopen cycles.
+Restoration rejects stale references and verifies restored cases before explicit well adoption.
+The public recovery request uses the current project context, exact model, and immutable receipt to locate a unique native case.
+This lookup avoids ambiguous display names and retains the complete restoration checks.
 The lead owns launcher composition of the reviewed follow-up interfaces.
 
 ## Acceptance gates

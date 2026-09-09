@@ -15,7 +15,6 @@ from resinsight_mcp.contracts.sessions import AttachRequest, ObjectKind
 from resinsight_mcp.models.imports import (
     ImportRequest,
     MaterializedModel,
-    ModelInspection,
     OpmImportService,
 )
 from resinsight_mcp.models.wells.records import (
@@ -56,22 +55,41 @@ class ControlledBackend:
     def load(self, access: ApplicationAccess, materialized: MaterializedModel) -> str:
         assert access.application is self.application
         self.loaded = materialized
+        (materialized.directory.parent / "grid.EGRID").write_text("Controlled grid source.")
         self.application.project = ProjectSnapshot(
-            "root", (NativeObject(ObjectKind.CASE, "prepared", "Prepared"),)
+            "root",
+            (
+                NativeObject(ObjectKind.CASE, "prepared", "Prepared"),
+                *(
+                    item
+                    for item in self.application.project.objects
+                    if item.kind == ObjectKind.WELL
+                ),
+            ),
         )
         self.mutations += 1
         return "prepared"
 
     def verify_case(
-        self, access: ApplicationAccess, address: str, expected: ModelInspection
+        self,
+        access: ApplicationAccess,
+        address: str,
+        materialized: MaterializedModel,
+        corners: tuple[float, ...],
     ) -> None:
-        assert self.loaded is not None and expected == self.loaded.inspection
+        assert corners == self.case_geometry(access, address, materialized)
+
+    def case_geometry(
+        self, access: ApplicationAccess, address: str, materialized: MaterializedModel
+    ) -> tuple[float, ...]:
+        assert self.loaded is not None and materialized.inspection == self.loaded.inspection
         assert access.application is self.application and address == "prepared"
         self.checks += 1
         if self.changed_case:
             raise ContractError(
                 Error(code=ErrorCode.STALE_OBJECT, message="Native geometry changed.")
             )
+        return (0.0,) * (24 * len(materialized.inspection.cell_depths_ft))
 
     def create(
         self, access: ApplicationAccess, case_address: str, definition: ModeledWellDefinition
@@ -211,7 +229,9 @@ def harness(tmp_path: Path):
         sessions.attach(AttachRequest(session_id=session.session_id, endpoint=application.endpoint))
     )
     backend = ControlledBackend(application)
-    service = ResInsightWellService(store, sessions, imports, backend)
+    service = ResInsightWellService(
+        store, sessions, imports, backend, source_root=tmp_path / "native-sources"
+    )
     binding = value(
         service.load(
             PreparedCaseRequest(context=connection.context, model=receipt.prepared.revision.model)

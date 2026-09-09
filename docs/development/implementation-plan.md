@@ -297,7 +297,9 @@ Acceptance connects trajectories, active cells, exported connections, and parsed
 It includes positive-down depth checks, rejected invalid completions, a native screenshot, and a readable connection summary.
 The native owner supplies well records and services, while the schedule owner supplies input rewriting and schedule validation.
 The lead owns shared guides, combined integration checks, and the final feature PR.
-MCP wiring and staged-source recovery remain part of [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
+Persistent FIELD sources and explicit case and well restoration are implemented under [issue #48](https://github.com/LukasMosser/resinsight-mcp/issues/48).
+The [lifetime evidence](evidence/p09/lifetime/README.md) records exact values across two native project reopen cycles.
+MCP wiring remains part of [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 
 ## P10: Supervise durable jobs
 

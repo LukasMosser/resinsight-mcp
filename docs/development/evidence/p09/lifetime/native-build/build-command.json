@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ],
+  "native_commit": "e9baf8b9eaa86ba2d44b9c9f5c1e29faa8321a67",
+  "started_at": "2026-09-09T13:41:16.246025+00:00",
+  "source_worktree": " m ThirdParty/openzgy\n M vcpkg.json\n",
+  "source_scope": "Reviewed prepared FIELD grid export plus existing local macOS dependency configuration.",
+  "exit_code": 0,
+  "completed_at": "2026-09-09T13:41:28.759713+00:00"
+}

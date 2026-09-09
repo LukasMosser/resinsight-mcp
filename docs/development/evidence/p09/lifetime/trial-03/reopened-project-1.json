@@ -1,0 +1,46 @@
+{
+  "context": {
+    "session_id": "session_8d528ec6f55941ffb3c40c0bfd4b96f9",
+    "connection_id": "connection_a89868283d014ab19cc99f87717130d0",
+    "project_generation": 5
+  },
+  "objects": [
+    {
+      "ref": {
+        "context": {
+          "session_id": "session_8d528ec6f55941ffb3c40c0bfd4b96f9",
+          "connection_id": "connection_a89868283d014ab19cc99f87717130d0",
+          "project_generation": 5
+        },
+        "kind": "case",
+        "object_id": "6fa92a9f51714e7f89ec53e0d12746f3"
+      },
+      "name": "grid"
+    },
+    {
+      "ref": {
+        "context": {
+          "session_id": "session_8d528ec6f55941ffb3c40c0bfd4b96f9",
+          "connection_id": "connection_a89868283d014ab19cc99f87717130d0",
+          "project_generation": 5
+        },
+        "kind": "view",
+        "object_id": "b3c1b99731044bffb1d0e9993cf8c472"
+      },
+      "name": "View 0"
+    },
+    {
+      "ref": {
+        "context": {
+          "session_id": "session_8d528ec6f55941ffb3c40c0bfd4b96f9",
+          "connection_id": "connection_a89868283d014ab19cc99f87717130d0",
+          "project_generation": 5
+        },
+        "kind": "well",
+        "object_id": "fbca33799fdf427399698455da77d391"
+      },
+      "name": "PROD"
+    }
+  ],
+  "last_saved_path": null
+}

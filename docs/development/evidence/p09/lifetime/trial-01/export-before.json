@@ -1,0 +1,1144 @@
+{
+  "artifact": {
+    "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+    "artifact_id": "artifact_1331b76c309e4338bd7141018ff8d509"
+  },
+  "modeled_well": {
+    "binding": {
+      "model": {
+        "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+        "revision_id": "revision_91c2b63d2ec8432986cdbb6acde9a395"
+      },
+      "case": {
+        "context": {
+          "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+          "connection_id": "connection_6cd131562fcf4410a1a5f2533b6b7288",
+          "project_generation": 2
+        },
+        "kind": "case",
+        "object_id": "e308ce9455e0402db0a9411308d18a54"
+      },
+      "receipt": {
+        "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+        "artifact_id": "artifact_b1133cf67df941068686cafaf8fcaddd"
+      }
+    },
+    "well": {
+      "context": {
+        "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+        "connection_id": "connection_6cd131562fcf4410a1a5f2533b6b7288",
+        "project_generation": 2
+      },
+      "kind": "well",
+      "object_id": "045d3471586e4dc28a0c81410ed07aa7"
+    },
+    "version": 0,
+    "definition": {
+      "name": "PROD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local datum"
+      },
+      "targets": [
+        {
+          "x_ft": 4500.0,
+          "y_ft": 4500.0,
+          "depth_ft": 0.0
+        },
+        {
+          "x_ft": 4500.0,
+          "y_ft": 4500.0,
+          "depth_ft": 8325.0
+        },
+        {
+          "x_ft": 4500.0,
+          "y_ft": 4500.0,
+          "depth_ft": 8430.0
+        }
+      ],
+      "perforations": [
+        {
+          "start_md_ft": 8326.0,
+          "end_md_ft": 8424.0,
+          "diameter_ft": 0.5,
+          "skin": 0.0
+        }
+      ]
+    },
+    "trajectory": [
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": -0.0,
+        "measured_depth_ft": 0.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 50.0,
+        "measured_depth_ft": 50.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 100.0,
+        "measured_depth_ft": 100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 150.0,
+        "measured_depth_ft": 150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 200.0,
+        "measured_depth_ft": 200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 250.0,
+        "measured_depth_ft": 250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 300.0,
+        "measured_depth_ft": 300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 350.0,
+        "measured_depth_ft": 350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 400.0,
+        "measured_depth_ft": 400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 450.0,
+        "measured_depth_ft": 450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 500.0,
+        "measured_depth_ft": 500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 550.0,
+        "measured_depth_ft": 550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 600.0,
+        "measured_depth_ft": 600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 650.0,
+        "measured_depth_ft": 650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 700.0,
+        "measured_depth_ft": 700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 750.0,
+        "measured_depth_ft": 750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 800.0,
+        "measured_depth_ft": 800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 850.0,
+        "measured_depth_ft": 850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 900.0,
+        "measured_depth_ft": 900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 950.0,
+        "measured_depth_ft": 950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1000.0,
+        "measured_depth_ft": 1000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1050.0,
+        "measured_depth_ft": 1050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1100.0,
+        "measured_depth_ft": 1100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1150.0,
+        "measured_depth_ft": 1150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1200.0,
+        "measured_depth_ft": 1200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1250.0,
+        "measured_depth_ft": 1250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1300.0,
+        "measured_depth_ft": 1300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1350.0,
+        "measured_depth_ft": 1350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1400.0,
+        "measured_depth_ft": 1400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1450.0,
+        "measured_depth_ft": 1450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1500.0,
+        "measured_depth_ft": 1500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1550.0,
+        "measured_depth_ft": 1550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1600.0,
+        "measured_depth_ft": 1600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1650.0,
+        "measured_depth_ft": 1650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1700.0,
+        "measured_depth_ft": 1700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1750.0,
+        "measured_depth_ft": 1750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1800.0,
+        "measured_depth_ft": 1800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1850.0,
+        "measured_depth_ft": 1850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1900.0,
+        "measured_depth_ft": 1900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 1950.0,
+        "measured_depth_ft": 1950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2000.0,
+        "measured_depth_ft": 2000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2050.0,
+        "measured_depth_ft": 2050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2100.0,
+        "measured_depth_ft": 2100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2150.0,
+        "measured_depth_ft": 2150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2200.0,
+        "measured_depth_ft": 2200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2250.0,
+        "measured_depth_ft": 2250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2300.0,
+        "measured_depth_ft": 2300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2350.0,
+        "measured_depth_ft": 2350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2400.0,
+        "measured_depth_ft": 2400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2450.0,
+        "measured_depth_ft": 2450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2500.0,
+        "measured_depth_ft": 2500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2550.0,
+        "measured_depth_ft": 2550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2600.0,
+        "measured_depth_ft": 2600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2650.0,
+        "measured_depth_ft": 2650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2700.0,
+        "measured_depth_ft": 2700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2750.0,
+        "measured_depth_ft": 2750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2800.0,
+        "measured_depth_ft": 2800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2850.0,
+        "measured_depth_ft": 2850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2900.0,
+        "measured_depth_ft": 2900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 2950.0,
+        "measured_depth_ft": 2950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3000.0,
+        "measured_depth_ft": 3000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3050.0,
+        "measured_depth_ft": 3050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3100.0,
+        "measured_depth_ft": 3100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3150.0,
+        "measured_depth_ft": 3150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3200.0,
+        "measured_depth_ft": 3200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3250.0,
+        "measured_depth_ft": 3250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3300.0,
+        "measured_depth_ft": 3300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3350.0,
+        "measured_depth_ft": 3350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3400.0,
+        "measured_depth_ft": 3400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3450.0,
+        "measured_depth_ft": 3450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3500.0,
+        "measured_depth_ft": 3500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3550.0,
+        "measured_depth_ft": 3550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3600.0,
+        "measured_depth_ft": 3600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3650.0,
+        "measured_depth_ft": 3650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3700.0,
+        "measured_depth_ft": 3700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3750.0,
+        "measured_depth_ft": 3750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3800.0,
+        "measured_depth_ft": 3800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3850.0,
+        "measured_depth_ft": 3850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3900.0,
+        "measured_depth_ft": 3900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 3950.0,
+        "measured_depth_ft": 3950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4000.0,
+        "measured_depth_ft": 4000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4050.0,
+        "measured_depth_ft": 4050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4100.0,
+        "measured_depth_ft": 4100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4150.0,
+        "measured_depth_ft": 4150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4200.0,
+        "measured_depth_ft": 4200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4250.0,
+        "measured_depth_ft": 4250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4300.0,
+        "measured_depth_ft": 4300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4350.0,
+        "measured_depth_ft": 4350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4400.0,
+        "measured_depth_ft": 4400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4450.0,
+        "measured_depth_ft": 4450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4500.0,
+        "measured_depth_ft": 4500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4550.0,
+        "measured_depth_ft": 4550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4600.0,
+        "measured_depth_ft": 4600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4650.0,
+        "measured_depth_ft": 4650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4700.0,
+        "measured_depth_ft": 4700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4750.0,
+        "measured_depth_ft": 4750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4800.0,
+        "measured_depth_ft": 4800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4850.0,
+        "measured_depth_ft": 4850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4900.0,
+        "measured_depth_ft": 4900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 4950.0,
+        "measured_depth_ft": 4950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5000.0,
+        "measured_depth_ft": 5000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5050.0,
+        "measured_depth_ft": 5050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5100.0,
+        "measured_depth_ft": 5100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5150.0,
+        "measured_depth_ft": 5150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5200.0,
+        "measured_depth_ft": 5200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5250.0,
+        "measured_depth_ft": 5250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5300.0,
+        "measured_depth_ft": 5300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5350.0,
+        "measured_depth_ft": 5350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5400.0,
+        "measured_depth_ft": 5400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5450.0,
+        "measured_depth_ft": 5450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5500.0,
+        "measured_depth_ft": 5500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5550.0,
+        "measured_depth_ft": 5550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5600.0,
+        "measured_depth_ft": 5600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5650.0,
+        "measured_depth_ft": 5650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5700.0,
+        "measured_depth_ft": 5700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5750.0,
+        "measured_depth_ft": 5750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5800.0,
+        "measured_depth_ft": 5800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5850.0,
+        "measured_depth_ft": 5850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5900.0,
+        "measured_depth_ft": 5900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 5950.0,
+        "measured_depth_ft": 5950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6000.0,
+        "measured_depth_ft": 6000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6050.0,
+        "measured_depth_ft": 6050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6100.0,
+        "measured_depth_ft": 6100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6150.0,
+        "measured_depth_ft": 6150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6200.0,
+        "measured_depth_ft": 6200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6250.0,
+        "measured_depth_ft": 6250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6300.0,
+        "measured_depth_ft": 6300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6350.0,
+        "measured_depth_ft": 6350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6400.0,
+        "measured_depth_ft": 6400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6450.0,
+        "measured_depth_ft": 6450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6500.0,
+        "measured_depth_ft": 6500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6550.0,
+        "measured_depth_ft": 6550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6600.0,
+        "measured_depth_ft": 6600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6650.0,
+        "measured_depth_ft": 6650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6700.0,
+        "measured_depth_ft": 6700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6750.0,
+        "measured_depth_ft": 6750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6800.0,
+        "measured_depth_ft": 6800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6850.0,
+        "measured_depth_ft": 6850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6900.0,
+        "measured_depth_ft": 6900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 6950.0,
+        "measured_depth_ft": 6950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7000.0,
+        "measured_depth_ft": 7000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7050.0,
+        "measured_depth_ft": 7050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7100.0,
+        "measured_depth_ft": 7100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7150.0,
+        "measured_depth_ft": 7150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7200.0,
+        "measured_depth_ft": 7200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7250.0,
+        "measured_depth_ft": 7250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7300.0,
+        "measured_depth_ft": 7300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7350.0,
+        "measured_depth_ft": 7350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7400.0,
+        "measured_depth_ft": 7400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7450.0,
+        "measured_depth_ft": 7450.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7500.0,
+        "measured_depth_ft": 7500.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7550.0,
+        "measured_depth_ft": 7550.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7600.0,
+        "measured_depth_ft": 7600.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7650.0,
+        "measured_depth_ft": 7650.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7700.0,
+        "measured_depth_ft": 7700.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7750.0,
+        "measured_depth_ft": 7750.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7800.0,
+        "measured_depth_ft": 7800.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7850.0,
+        "measured_depth_ft": 7850.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7900.0,
+        "measured_depth_ft": 7900.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 7950.0,
+        "measured_depth_ft": 7950.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8000.0,
+        "measured_depth_ft": 8000.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8050.0,
+        "measured_depth_ft": 8050.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8100.0,
+        "measured_depth_ft": 8100.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8150.0,
+        "measured_depth_ft": 8150.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8200.0,
+        "measured_depth_ft": 8200.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8250.0,
+        "measured_depth_ft": 8250.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8300.0,
+        "measured_depth_ft": 8300.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8350.0,
+        "measured_depth_ft": 8350.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8400.0,
+        "measured_depth_ft": 8400.0
+      },
+      {
+        "x_ft": 4500.0,
+        "y_ft": 4500.0,
+        "depth_ft": 8430.0,
+        "measured_depth_ft": 8430.0
+      }
+    ]
+  },
+  "wellhead": {
+    "i": 4,
+    "j": 4,
+    "reference_depth_ft": null
+  },
+  "connections": [
+    {
+      "cell": {
+        "i": 4,
+        "j": 4,
+        "k": 0
+      },
+      "status": "OPEN",
+      "compdat_factor_field": 10.078780273272798,
+      "permeability_length_md_ft": 9500.0,
+      "diameter_ft": 0.5,
+      "skin": 0.0,
+      "direction": "Z",
+      "start_md_ft": 8326.0,
+      "end_md_ft": 8345.0
+    },
+    {
+      "cell": {
+        "i": 4,
+        "j": 4,
+        "k": 1
+      },
+      "status": "OPEN",
+      "compdat_factor_field": 1.5913863589378099,
+      "permeability_length_md_ft": 1500.0,
+      "diameter_ft": 0.49999999999999994,
+      "skin": 0.0,
+      "direction": "Z",
+      "start_md_ft": 8345.0,
+      "end_md_ft": 8375.0
+    },
+    {
+      "cell": {
+        "i": 4,
+        "j": 4,
+        "k": 2
+      },
+      "status": "OPEN",
+      "compdat_factor_field": 10.397057545060358,
+      "permeability_length_md_ft": 9800.0,
+      "diameter_ft": 0.5,
+      "skin": 0.0,
+      "direction": "Z",
+      "start_md_ft": 8375.0,
+      "end_md_ft": 8424.0
+    }
+  ]
+}

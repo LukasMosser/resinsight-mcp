@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from resinsight_mcp.contracts.engineering import CoordinateFrame
-from resinsight_mcp.models.imports import MaterializedModel, ModelInspection
+from resinsight_mcp.models.imports import MaterializedModel
 from resinsight_mcp.models.wells.records import (
     CompletionConnection,
     ModeledWellDefinition,
@@ -33,8 +33,18 @@ class WellBackend(Protocol):
         ...
 
     def verify_case(
-        self, access: ApplicationAccess, address: str, expected: ModelInspection
+        self,
+        access: ApplicationAccess,
+        address: str,
+        materialized: MaterializedModel,
+        corners: tuple[float, ...],
     ) -> None: ...
+
+    def case_geometry(
+        self, access: ApplicationAccess, address: str, materialized: MaterializedModel
+    ) -> tuple[float, ...]:
+        """Verify the file identity and model values before returning every native corner."""
+        ...
 
     def create(
         self, access: ApplicationAccess, case_address: str, definition: ModeledWellDefinition

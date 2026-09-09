@@ -1,0 +1,94 @@
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcProject.cpp b/ApplicationLibCode/ProjectDataModelCommands/RimcProject.cpp
+index 55ececb..d2dc73a 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcProject.cpp
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcProject.cpp
+@@ -55,6 +55,7 @@
+ 
+ #include "opm/input/eclipse/Deck/Deck.hpp"
+ #include "opm/input/eclipse/EclipseState/Grid/EclipseGrid.hpp"
++#include "opm/input/eclipse/EclipseState/Grid/NNC.hpp"
+ #include "opm/input/eclipse/Parser/ErrorGuard.hpp"
+ #include "opm/input/eclipse/Parser/InputErrorAction.hpp"
+ #include "opm/input/eclipse/Parser/ParseContext.hpp"
+@@ -69,6 +70,57 @@
+ #include <memory>
+ #include <set>
+ 
++CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimProject, RimProject_exportPreparedInputGrid, "exportPreparedInputGrid" );
++
++RimProject_exportPreparedInputGrid::RimProject_exportPreparedInputGrid( caf::PdmObjectHandle* self )
++    : caf::PdmVoidObjectMethod( self )
++{
++    CAF_PDM_InitObject( "Export Prepared Input Grid" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_path, "Path", "Input Deck Path" );
++    CAF_PDM_InitScriptableFieldNoDefault( &m_outputPath, "OutputPath", "Output EGRID Path" );
++}
++
++std::expected<caf::PdmObjectHandle*, QString> RimProject_exportPreparedInputGrid::execute()
++{
++    QFileInfo input( m_path() );
++    QFileInfo output( m_outputPath() );
++    if ( !input.isAbsolute() || !input.isFile() )
++        return std::unexpected( QString( "The input deck requires an existing absolute file path." ) );
++    if ( !output.isAbsolute() || output.exists() || output.isSymLink() || !output.dir().exists() ||
++         output.suffix().compare( "EGRID", Qt::CaseInsensitive ) != 0 )
++        return std::unexpected( QString( "The output requires a new absolute EGRID path in an existing directory." ) );
++
++    Opm::ErrorGuard errors;
++    try
++    {
++        auto deck = Opm::Parser{}.parseFile( m_path().toStdString(), Opm::ParseContext( Opm::InputErrorAction::THROW_EXCEPTION ), errors );
++        const auto& units = deck.getActiveUnitSystem();
++        if ( units.getType() != Opm::UnitSystem::UnitType::UNIT_TYPE_FIELD )
++            return std::unexpected( QString( "Prepared input grid export requires FIELD units." ) );
++
++        Opm::GridDims dimensions( deck );
++        if ( dimensions.getCartesianSize() > 10000 )
++            return std::unexpected( QString( "Prepared input grids cannot exceed 10000 cells." ) );
++        for ( int size : dimensions.getNXYZ() )
++        {
++            if ( size < 1 || size > 10000 )
++                return std::unexpected( QString( "Prepared input grids require dimensions from 1 through 10000." ) );
++        }
++        std::vector<int> activeCells;
++        if ( deck.hasKeyword( "ACTNUM" ) ) activeCells = deck["ACTNUM"].back().getIntData();
++        if ( !activeCells.empty() && activeCells.size() != dimensions.getCartesianSize() )
++            return std::unexpected( QString( "ACTNUM must contain one value for each grid cell." ) );
++        Opm::EclipseGrid grid( deck, activeCells.empty() ? nullptr : activeCells.data() );
++        grid.save( m_outputPath().toStdString(), false, {}, units );
++    }
++    catch ( const std::exception& error )
++    {
++        errors.clear();
++        return std::unexpected( QString( "Prepared input grid export failed: %1" ).arg( error.what() ) );
++    }
++    return nullptr;
++}
++
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimProject, RimProject_loadPreparedInputGrid, "loadPreparedInputGrid" );
+ 
+ RimProject_loadPreparedInputGrid::RimProject_loadPreparedInputGrid( caf::PdmObjectHandle* self )
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcProject.h b/ApplicationLibCode/ProjectDataModelCommands/RimcProject.h
+index 902d23f..cd1f1f3 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcProject.h
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcProject.h
+@@ -29,6 +29,19 @@
+ 
+ class Rim3dView;
+ 
++class RimProject_exportPreparedInputGrid : public caf::PdmVoidObjectMethod
++{
++    CAF_PDM_HEADER_INIT;
++
++public:
++    RimProject_exportPreparedInputGrid( caf::PdmObjectHandle* self );
++    std::expected<caf::PdmObjectHandle*, QString> execute() override;
++
++private:
++    caf::PdmField<QString> m_path;
++    caf::PdmField<QString> m_outputPath;
++};
++
+ class RimProject_loadPreparedInputGrid : public caf::PdmObjectCreationMethod
+ {
+     CAF_PDM_HEADER_INIT;

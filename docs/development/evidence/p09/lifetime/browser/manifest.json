@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/wells/",
+    "heading": "Modeled wells and schedules",
+    "image": "user-guide.png"
+  },
+  {
+    "path": "/wells/#working-case-lifetime",
+    "heading": "Working case lifetime",
+    "image": "lifetime-restoration.png"
+  },
+  {
+    "path": "/development/wells/#persistent-source-follow-up",
+    "heading": "Persistent source follow-up",
+    "image": "developer-lifetime.png"
+  },
+  {
+    "path": "/development/evidence/p09/lifetime/",
+    "heading": "Persistent well lifetime acceptance",
+    "image": "acceptance-record.png"
+  },
+  {
+    "path": "/development/evidence/p09/lifetime/#saved-project-result",
+    "heading": "Saved-project result",
+    "image": "saved-project-evidence.png"
+  },
+  {
+    "path": "/development/evidence/p09/lifetime/",
+    "image": "native-result-image.png",
+    "imageAlt": "Restored prepared grid and PROD after native project reopening"
+  }
+]

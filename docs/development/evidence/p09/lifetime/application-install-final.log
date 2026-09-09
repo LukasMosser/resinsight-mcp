@@ -1,0 +1,6 @@
+Using Python 3.12.13 environment at: /private/tmp/resinsight-well-rips-package/environment
+Resolved 2 packages in 7ms
+Prepared 2 packages in 11ms
+Installed 2 packages in 4ms
+ + resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-well-rips-package/application-dist/resinsight_mcp-0.1.0-py3-none-any.whl)
+ + rips==2026.9.0.1 (from file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl)

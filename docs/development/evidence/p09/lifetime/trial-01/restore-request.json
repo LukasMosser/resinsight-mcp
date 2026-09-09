@@ -1,0 +1,19 @@
+{
+  "model": {
+    "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+    "revision_id": "revision_91c2b63d2ec8432986cdbb6acde9a395"
+  },
+  "case": {
+    "context": {
+      "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+      "connection_id": "connection_cea9e19e7b614ae0a85aa0b9ecfd9c49",
+      "project_generation": 0
+    },
+    "kind": "case",
+    "object_id": "3ec8c9360d0b474dad55ff85f6c3ae46"
+  },
+  "receipt": {
+    "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+    "artifact_id": "artifact_b1133cf67df941068686cafaf8fcaddd"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "outcome": {
+    "status": "success",
+    "value": {
+      "session_id": "session_0321dda11eb349b59eb1698d7cecc0bc",
+      "connection_id": "connection_cea9e19e7b614ae0a85aa0b9ecfd9c49",
+      "action": "terminate"
+    }
+  }
+}

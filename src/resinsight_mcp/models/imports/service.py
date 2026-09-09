@@ -74,7 +74,9 @@ def _operation[**P, T](method: Callable[P, T]) -> Callable[P, OperationResult[T]
     return run
 
 
-def _validate(entrypoint: Path, output: Path) -> ModelInspection:
+def _validate(
+    entrypoint: Path, output: Path, *, expected_source: Path | None = None
+) -> ModelInspection:
     try:
         process = subprocess.run(
             [
@@ -84,6 +86,7 @@ def _validate(entrypoint: Path, output: Path) -> ModelInspection:
                 "resinsight_mcp.models.imports._worker",
                 str(entrypoint),
                 str(output),
+                *([str(expected_source)] if expected_source is not None else []),
             ],
             stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
@@ -271,6 +274,56 @@ class OpmImportService:
         ):
             raise invalid("FIELD inputs require feet and positive-down depth coordinates.")
         return revision
+
+    def materialize_persistent(self, model: ModelRef, destination: Path) -> MaterializedModel:
+        """Create validated sources in a new owned directory without automatic cleanup."""
+        revision = self._stored_revision(model)
+        try:
+            if not destination.is_absolute() or destination.resolve() != destination:
+                raise invalid("Persistent model sources require an absolute canonical directory.")
+            destination.mkdir(parents=True, exist_ok=False)
+            return self._materialized(revision, destination.resolve())
+        except (OSError, UnicodeError, ValidationError) as error:
+            raise invalid(f"Persistent model materialization failed: {error}") from error
+
+    def reopen_persistent(self, model: ModelRef, destination: Path) -> MaterializedModel:
+        """Reparse retained inputs against the fixed revision before native restoration."""
+        if not destination.is_absolute() or destination.resolve() != destination:
+            raise invalid("Persistent sources require their original absolute directory.")
+        with self.materialize(model) as expected:
+            entrypoint = expected.entrypoint.relative_to(expected.directory)
+            names = tuple(
+                _value(
+                    self._store.get_artifact(
+                        ArtifactRef(session_id=model.session_id, artifact_id=artifact)
+                    )
+                ).relative_path
+                for artifact in expected.revision.inputs.artifacts
+            )
+            paths = tuple(destination / "inputs" / name for name in names) + (
+                destination / "properties.GRDECL",
+            )
+            if any(path.resolve() != path or not path.is_file() for path in paths):
+                raise invalid("A persistent model source is unavailable or redirected.")
+            with TemporaryDirectory(prefix="opm-reopen-") as directory:
+                temporary = Path(directory)
+                actual, _ = collect(destination / "inputs", str(entrypoint), temporary / "inputs")
+                if set(actual) != set(names):
+                    raise invalid("The persistent include graph differs from the fixed revision.")
+                inspection = _validate(
+                    temporary / "inputs" / entrypoint,
+                    temporary / "validation.json",
+                    expected_source=expected.entrypoint,
+                )
+                if inspection != expected.inspection:
+                    raise invalid("The persistent model differs from its fixed parser inspection.")
+            return expected.model_copy(
+                update={
+                    "directory": destination / "inputs",
+                    "entrypoint": destination / "inputs" / entrypoint,
+                    "property_file": destination / "properties.GRDECL",
+                }
+            )
 
     @contextmanager
     def materialize(self, model: ModelRef) -> Iterator[MaterializedModel]:

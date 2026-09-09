@@ -19,18 +19,22 @@ The modeled well name must already exist in the prepared simulator model.
 ## Python operations
 
 `ResInsightWellService` receives a workspace store, session service, import service, and `RipsWellBackend`.
+It also requires an absolute, canonical `source_root` for persistent native model files.
 The native backend uses the session's existing verified ResInsight connection.
 It requires the reviewed native commands for prepared input grids and case-aware modeled well creation.
 The [native setup record](development/wells.md#native-feasibility) identifies the patches and matching generated client.
 It does not open another native connection or run a simulator.
 
 - `load(PreparedCaseRequest)` loads and validates one fixed model as a working case.
+- `restore(PreparedCaseLookupRequest)` locates and verifies one reopened case through its saved receipt and current project context.
+- `restore_case(PreparedCaseRestoreRequest)` verifies a reopened case against its saved model receipt.
 - `create(WellCreateRequest)` creates a modeled well and returns its observed trajectory.
 - `update(WellUpdateRequest)` replaces a well's targets and perforations at its expected version.
 - `inspect(ObjectRef)` returns a current well after checking its native geometry.
+- `adopt_well(WellAdoptRequest)` verifies an existing modeled well and issues its new service binding.
 - `export(WellExportRequest)` stores an immutable completion snapshot for the expected well version.
 - `get_export(ArtifactRef)` reads a service-issued snapshot after checking its stored content.
-- `close()` ends the lifetime of the service's staged sources.
+- `close()` waits for active calls and closes the service while preserving native source files.
 
 Each operation returns `OperationResult` with either a value or a clear failure.
 A failure marked `UNKNOWN` means that a native edit or artifact write can be incomplete.
@@ -40,7 +44,7 @@ A native change advances the application project generation and refreshes object
 Use the returned well and case references for the next operation.
 After another well changes, inspect the project to obtain its current well references.
 The well service accepts refreshed references only within the project state it established.
-An external project change requires a new well service lifetime.
+After a project reopens, restore its case and explicitly adopt the existing wells before using their new references.
 
 ## Completion snapshots
 
@@ -54,11 +58,11 @@ Cell indices are zero-based in the Python records.
 `permeability_length_md_ft` uses millidarcies times feet.
 The snapshot preserves an explicit native reference depth or its first-connection default.
 Later native edits do not change a stored snapshot.
-A separate schedule publication operation consumes that snapshot while its issuing well service remains open.
+A separate schedule publication operation consumes that immutable snapshot through an open well service.
 
 ## Publish a child schedule
 
-`OpmWellScheduleService` receives the import service and the well service that issued the completion export.
+`OpmWellScheduleService` receives the import service and a well service that verifies stored completion exports.
 Its `publish(WellScheduleRequest)` operation returns `OperationResult[ImportReceipt]`.
 The request names the exact parent revision, issued export artifacts, and controls at existing report indices.
 Each named well must already exist in the parent model at report zero.
@@ -114,12 +118,24 @@ The [schedule reference](development/well-schedules.md) defines supported contro
 
 ## Working case lifetime
 
-The native working case depends on staged source files retained by the well service.
-Explicit `close()` removes those files and ends the working case's supported source lifetime.
-Close waits for running service calls and rejects new work before removing the files.
-Do not close this service merely because an MCP connection disconnects while ResInsight survives.
-Cleanup failures remain visible through the operation result.
+The native working case depends on persistent EGRID and property files under `source_root`.
+Each load uses its own session and receipt directory.
+Service close preserves those files, which saved native projects need when reopening.
+Keep these files at their original canonical paths.
 
-This package does not establish restoration of these working cases from a saved native project.
-Load the fixed model through a new service lifetime when starting a new application project.
+The returned `PreparedCase.receipt` identifies an immutable record of the revision, source paths, and complete native grid corners.
+After reopening a project, inspect it to obtain its current context.
+Call `restore()` with that context, the exact model, and the saved receipt.
+The service locates exactly one case through the receipt's verified persistent grid path.
+Cases can share display names without creating an ambiguous lookup.
+If you already hold a current case reference, `restore_case()` verifies that explicitly selected case through the same checks.
+The service checks parsed inputs, file identity, active-cell order, all properties, and all corners before returning a binding.
+
+Call `adopt_well()` with the restored binding, a current well reference, its expected definition, and its expected sampled trajectory.
+Adoption verifies the existing native well and returns version zero in a new binding.
+An old reference remains stale, even if its earlier version was also zero.
+Duplicate creation still fails and does not adopt an existing name.
+Stored completion exports remain available through `get_export()` after service restart.
+
+The [lifetime acceptance](development/evidence/p09/lifetime/README.md) records two save and reopen cycles with exact restored values.
 The supplied launcher does not expose well or schedule tools.

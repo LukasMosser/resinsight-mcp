@@ -188,20 +188,15 @@ The schedule service consumes immutable exports through the same records and `Co
 
 ## Native service ownership
 
-The native service retains each prepared case's materialization context until explicit `close()`.
-The case depends on these staged source files throughout that service lifetime.
-MCP disconnect does not end this lifetime while the application survives.
-Cleanup errors remain visible, and closed working cases lose their supported source lifetime.
-Close waits for active service calls and rejects new work before removing staged sources.
-
-Repeated close calls return the same cleanup result.
-Saved-project restoration of these in-memory corner-point grids is not established by P09.
-Launcher recovery must handle this lifetime before advertising integrated well tools.
+The initial P09 service retained temporary source files until explicit `close()`.
+Its saved projects did not retain corner-point grid geometry.
+The [persistent source follow-up](#persistent-source-follow-up) replaces that lifetime for launcher integration.
 
 Each owned load captures the complete native corner geometry.
 Later operations compare those corners and the parser-derived active cells, dimensions, depths, volumes, porosity, and permeability.
 Numeric comparisons use relative and absolute tolerance `1e-6` for native floating-point storage.
-The service refuses untracked project states and native well edits.
+The service requires explicit restoration after an untracked project state.
+It refuses unexpected native well edits.
 It also rejects unsupported filters, valves, fractures, and fishbones.
 Sampled trajectory endpoints must match their positive-down targets within the same tolerance.
 
@@ -211,6 +206,77 @@ Failed native result validation remains inside session ownership and retires the
 Refreshed inventories replace old address mappings before the service accepts new references.
 Those controlled tests remain separate from real application acceptance.
 The [integrated checks](evidence/p09/integrated/README.md) record the shared suite and independent service review.
+
+## Persistent source follow-up
+
+[Issue 48](https://github.com/LukasMosser/resinsight-mcp/issues/48) tracks the required P07 and P09 work for P13.
+The change preserves the existing FIELD model profile and does not run a simulator.
+Model inputs, native wells, simulator execution, and result analysis retain separate owners.
+
+`OpmImportService.materialize_persistent(model, destination)` creates validated sources in a new, absolute, canonical directory.
+Canonical paths contain no redirected ancestors.
+The service rejects existing destinations, relative paths, and symbolic links before writing sources.
+Temporary `materialize()` remains available for bounded parser and schedule operations.
+`reopen_persistent()` compares retained sources with a fresh materialization of the immutable workspace revision.
+It checks the include graph, parsed keyword values, default markers, report times, and model inspection.
+
+The native `export_prepared_input_grid(path, output_path)` command uses the supported OPM `EclipseGrid::save()` writer.
+It accepts FIELD units, bounds the grid size, and rejects existing output paths.
+OPM writes unit metadata and corner geometry without application coordinate scaling or custom EGRID headers.
+The backend loads that file through `project.load_case(path, grid_only=True)`.
+It imports the verified property file and creates the working case view.
+The existing session mutation boundary issues fresh case and view references.
+
+`ResInsightWellService` requires an explicit, absolute, canonical `source_root`.
+Each load creates a separate directory under its session and receipt identifiers.
+`close()` waits for active calls and rejects new calls without removing these persistent sources.
+Saved projects therefore retain their required EGRID and property paths after service shutdown.
+Moving or deleting these files invalidates their supported source identity.
+The service does not provide automatic source deletion.
+
+Each prepared case returns an immutable `METADATA` receipt artifact.
+The receipt records its exact revision, persistent source directory, and complete native corner baseline.
+`restore_case()` requires a current case reference, the chosen model, and that receipt.
+It verifies the workspace revision, retained parsed inputs, actual native EGRID path, active-cell order, and every corner and property value.
+It does not accept an old object reference or a filename as proof of model identity.
+
+`restore()` accepts `PreparedCaseLookupRequest` with the current project context, exact model, and saved receipt.
+It validates the immutable receipt and retained inputs before finding one case at its canonical persistent EGRID path.
+Missing, redirected, absent, or ambiguous source paths fail without creating a binding.
+The lookup shares all existing restoration checks and does not infer identity from display names.
+This public recovery path supplies the case lookup required by P13 without exposing native addresses.
+
+`adopt_well()` requires a restored binding, a current modeled well reference, and the expected definition and sampled trajectory.
+It checks native type, name, geometry settings, perforations, and all sampled points.
+Successful adoption advances the project generation and issues version zero for the new binding.
+Earlier references remain stale, including earlier version-zero requests.
+A cloned model can explicitly adopt an existing native well name after obtaining its own prepared binding.
+Duplicate creation still fails and never adopts a path silently.
+
+Completion snapshots use immutable `METADATA` artifacts instead of an in-memory export registry.
+`get_export()` verifies artifact identity, prepared receipt, model revision, well definition, and active-cell completion semantics.
+It can resolve a prior export after a service restart without requiring live native objects.
+Later native edits and adoption never rewrite an existing export.
+
+### Matching generated client
+
+The published `rips==2026.9.0.1` package does not contain these custom native commands.
+The tested native bundle contains a matching generated Python package at `ResInsight.app/Contents/MacOS/Python`.
+Copy that complete package directory into an isolated packaging directory.
+Build its wheel with the supplied `pyproject.toml` and cached setuptools and wheel dependencies.
+Install the application wheel and then explicitly install the matching RIPS wheel without editable mode.
+Verify that `rips.__file__` identifies the selected environment and that `export_prepared_input_grid` exists.
+
+Record the native commit, installed versions, and RIPS `direct_url.json` with the trial evidence.
+Runtime `sys.path` changes and silent client substitution are not supported.
+
+The isolated client installation passed against native commit `e9baf8b9eaa86ba2d44b9c9f5c1e29faa8321a67`.
+The [client record](evidence/p09/lifetime/client-installation.json) records the noneditable wheel provenance.
+The manual runner `tests/resinsight/modeled_wells/lifecycle_probe.py` checks one owned native process.
+It compares complete grid, well, and completion readback after project close/reopen and service reconnection.
+The [persistent lifetime acceptance](evidence/p09/lifetime/README.md) passed all 45 native checks.
+That trial used the installed application and matching RIPS wheels with one verified owned process.
+Its full geometry, trajectory, completion, and cleanup records remain separate from final P13 launcher acceptance.
 
 ## Maintained service acceptance
 

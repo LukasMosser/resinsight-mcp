@@ -141,7 +141,7 @@ class ModelInspection(BaseModel):
 
 
 class MaterializedModel(BaseModel):
-    """Staged files remain valid only inside the materialization context."""
+    """Temporary contexts remove sources; persistent materialization retains them."""
 
     model_config = ConfigDict(frozen=True, extra="forbid")
     revision: ModelRevision

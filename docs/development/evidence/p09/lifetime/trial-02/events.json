@@ -1,0 +1,225 @@
+[
+  {
+    "label": "versions",
+    "file": "versions.json"
+  },
+  {
+    "label": "launch-request",
+    "file": "launch-request.json"
+  },
+  {
+    "label": "owned-connection",
+    "file": "owned-connection.json"
+  },
+  {
+    "label": "native_command",
+    "command": [
+      "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+      "--server",
+      "0",
+      "--portnumberfile",
+      "/private/tmp/resinsight-well-lifetime-trial02/client-logs/afe4b3f83bb34a10a12c5e9e6aa8e123.port"
+    ],
+    "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight"
+  },
+  {
+    "label": "reject_parser",
+    "passed": true,
+    "request": {
+      "path": "/private/tmp/resinsight-well-lifetime-trial02/parser/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial02/parser/rejected.EGRID"
+    },
+    "error": "Prepared input grid export failed: Problem with keyword NOTAKEYWORD\nIn /private/tmp/resinsight-well-lifetime-trial02/parser/SPE1.DATA line 16\nUnknown keyword: NOTAKEYWORD"
+  },
+  {
+    "label": "reject_units",
+    "passed": true,
+    "request": {
+      "path": "/private/tmp/resinsight-well-lifetime-trial02/units/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial02/units/rejected.EGRID"
+    },
+    "error": "Prepared input grid export requires FIELD units."
+  },
+  {
+    "label": "reject_existing_export",
+    "passed": true,
+    "request": {
+      "path": "/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/opm-materialize-01m3o93g/inputs/SPE1.DATA",
+      "output_path": "/private/tmp/resinsight-well-lifetime-trial02/existing.EGRID"
+    },
+    "error": "The output requires a new absolute EGRID path in an existing directory."
+  },
+  {
+    "label": "load-request",
+    "file": "load-request.json"
+  },
+  {
+    "label": "before_field_grid",
+    "passed": true,
+    "units": [
+      "FEET",
+      ""
+    ]
+  },
+  {
+    "label": "available_properties",
+    "native": [
+      "DEPTH",
+      "DX",
+      "DY",
+      "DZ",
+      "TOPS",
+      "BOTTOM",
+      "riCELLVOLUME",
+      "Completion Type",
+      "INDEX_I",
+      "INDEX_J",
+      "INDEX_K",
+      "FAULTDIST",
+      "riNncCells"
+    ],
+    "inputs": [
+      "DX_1",
+      "DY_1",
+      "DZ_1",
+      "PORO",
+      "PERMX",
+      "PERMY",
+      "PERMZ"
+    ]
+  },
+  {
+    "label": "grid_dimensions",
+    "passed": true
+  },
+  {
+    "label": "active_cell_count",
+    "passed": true
+  },
+  {
+    "label": "cell_depths",
+    "passed": true,
+    "first_center": {
+      "x": 500.0,
+      "y": 500.0,
+      "z": 8335.0
+    }
+  },
+  {
+    "label": "cell_volumes",
+    "passed": true,
+    "first_volume_ft3": 20000000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DX",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DY",
+    "category": "STATIC_NATIVE",
+    "first": 1000.0,
+    "last": 1000.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "DZ",
+    "category": "STATIC_NATIVE",
+    "first": 20.0,
+    "last": 50.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PORO",
+    "category": "INPUT_PROPERTY",
+    "first": 0.30000001192092896,
+    "last": 0.30000001192092896
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMX",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMY",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "property_values",
+    "passed": true,
+    "name": "PERMZ",
+    "category": "INPUT_PROPERTY",
+    "first": 500.0,
+    "last": 200.0
+  },
+  {
+    "label": "before",
+    "file": "before.json"
+  },
+  {
+    "label": "before-receipt",
+    "file": "before-receipt.json"
+  },
+  {
+    "label": "working_view_created",
+    "passed": true
+  },
+  {
+    "label": "initial_property_inventory",
+    "passed": true
+  },
+  {
+    "label": "create-request",
+    "file": "create-request.json"
+  },
+  {
+    "label": "created",
+    "file": "created.json"
+  },
+  {
+    "label": "export-before",
+    "file": "export-before.json"
+  },
+  {
+    "label": "reopened-project-1",
+    "file": "reopened-project-1.json"
+  },
+  {
+    "label": "input-properties-1",
+    "file": "input-properties-1.json"
+  },
+  {
+    "label": "stable_property_inventory_1",
+    "passed": false
+  },
+  {
+    "label": "probe_error",
+    "error": "RuntimeError('stable_property_inventory_1')"
+  },
+  {
+    "label": "cleanup_identity",
+    "passed": true
+  },
+  {
+    "label": "cleanup",
+    "file": "cleanup.json"
+  },
+  {
+    "label": "owned_process_absent",
+    "passed": true
+  }
+]

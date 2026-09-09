@@ -43,6 +43,7 @@ def test_observed_well_retains_positive_down_depth_and_measured_depth() -> None:
     binding = PreparedCase(
         model=ModelRef(session_id=session, revision_id=RevisionId.new()),
         case=ObjectRef(context=context, kind=ObjectKind.CASE, object_id="case"),
+        receipt=ArtifactRef(session_id=session, artifact_id=ArtifactId.new()),
     )
     well = ModeledWell(
         binding=binding,
@@ -97,6 +98,7 @@ def test_upward_frame_and_overlapping_perforations_are_rejected() -> None:
 def test_prepared_case_rejects_another_session() -> None:
     with pytest.raises(ValidationError, match="model session"):
         PreparedCase(
+            receipt=ArtifactRef(session_id=SessionId.new(), artifact_id=ArtifactId.new()),
             model=ModelRef(session_id=SessionId.new(), revision_id=RevisionId.new()),
             case=ObjectRef(
                 context=ApplicationContext(

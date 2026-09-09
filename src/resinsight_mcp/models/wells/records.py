@@ -2,6 +2,7 @@
 
 from itertools import pairwise
 from math import isclose
+from pathlib import Path
 from typing import Annotated, Literal, Protocol, Self
 
 from pydantic import (
@@ -22,7 +23,7 @@ from resinsight_mcp.contracts.engineering import (
     Unit,
 )
 from resinsight_mcp.contracts.errors import OperationResult
-from resinsight_mcp.contracts.models import ArtifactRef
+from resinsight_mcp.contracts.models import ArtifactRef, ModelRevision
 from resinsight_mcp.contracts.sessions import ApplicationContext, ObjectKind, ObjectRef
 from resinsight_mcp.contracts.wells import WellControl, WellName, WellStatus
 
@@ -117,14 +118,69 @@ class PreparedCase(Record):
 
     model: ModelRef
     case: ObjectRef
+    receipt: ArtifactRef
 
     @model_validator(mode="after")
     def check_case(self) -> Self:
         if (
             self.case.kind != ObjectKind.CASE
             or self.case.context.session_id != self.model.session_id
+            or self.receipt.session_id != self.model.session_id
         ):
             raise ValueError("The prepared binding requires a case from the model session.")
+        return self
+
+
+class PreparedCaseReceipt(Record):
+    """An immutable receipt identifies persistent sources and the verified native geometry."""
+
+    artifact: ArtifactRef
+    revision: ModelRevision
+    directory: Path
+    corners: Annotated[tuple[FiniteFloat, ...], Field(min_length=24)]
+
+    @model_validator(mode="after")
+    def check_identity(self) -> Self:
+        if self.artifact.session_id != self.revision.model.session_id:
+            raise ValueError("The prepared receipt must belong to the model session.")
+        if not self.directory.is_absolute() or len(self.corners) % 24:
+            raise ValueError(
+                "The receipt requires an absolute source path and eight corners per cell."
+            )
+        return self
+
+
+class PreparedCaseLookupRequest(PreparedCaseRequest):
+    """Find one current case through its immutable prepared source receipt."""
+
+    receipt: ArtifactRef
+
+    @model_validator(mode="after")
+    def check_receipt_session(self) -> Self:
+        if self.receipt.session_id != self.model.session_id:
+            raise ValueError("The receipt and model must belong to the same session.")
+        return self
+
+
+class PreparedCaseRestoreRequest(PreparedCase):
+    """Verify a current case against an explicitly selected immutable receipt."""
+
+
+class WellAdoptRequest(Record):
+    """Verify an existing modeled path before issuing a new version-zero lifetime."""
+
+    binding: PreparedCase
+    well: ObjectRef
+    definition: ModeledWellDefinition
+    trajectory: Annotated[tuple[TrajectorySample, ...], Field(min_length=2)]
+
+    @model_validator(mode="after")
+    def check_identity(self) -> Self:
+        if self.well.kind != ObjectKind.WELL or self.well.context != self.binding.case.context:
+            raise ValueError(
+                "The adopted well and case must share the current application context."
+            )
+        self.definition.require_trajectory(self.trajectory)
         return self
 
 

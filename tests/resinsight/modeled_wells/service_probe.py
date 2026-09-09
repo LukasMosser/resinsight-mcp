@@ -502,7 +502,9 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
     )
     (output / "import-receipt.json").write_text(receipt.model_dump_json(indent=2) + "\n")
     sessions = ResInsightSessionService(store, RipsApplicationFactory(output / "client-logs"))
-    wells = ResInsightWellService(store, sessions, imports, RipsWellBackend())
+    wells = ResInsightWellService(
+        store, sessions, imports, RipsWellBackend(), source_root=output / "native-sources"
+    )
     command = [str(executable), "--server", "0", "--portnumberfile", str(output / "port.txt")]
     evidence.record(
         "command",

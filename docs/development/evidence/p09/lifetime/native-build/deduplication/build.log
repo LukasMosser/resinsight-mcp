@@ -1,0 +1,10 @@
+[1/8] cd /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests && /private/tmp/resinsight-p01-build/build-tools/lib/python3.12/site-packages/cmake/data/bin/cmake -E make_directory /tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests
+[2/8] Automatic MOC and UIC for target ApplicationLibCode
+[3/7] Building CXX object ApplicationLibCode/CMakeFiles/ApplicationLibCode.dir/ProjectDataModel/RimEclipseCase.cpp.o
+[4/7] Linking CXX executable ApplicationLibCode/UnitTests/ResInsight-tests
+[5/7] Linking CXX executable ResInsight.app/Contents/MacOS/ResInsight
+INFO | fixing executable '/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight'
+INFO | fixing plugins
+INFO | macdeployqtfix terminated with success
+[6/7] Generating /tmp/resinsight-p01-build/source/GrpcInterface/Python/rips/generated/generated_classes.py
+[7/7] Running utility command for RipsGeneratedPythonClasses

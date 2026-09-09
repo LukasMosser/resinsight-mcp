@@ -2,7 +2,6 @@
 
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from dataclasses import replace
-from tempfile import TemporaryDirectory
 from threading import Event
 
 import pytest
@@ -138,40 +137,29 @@ def test_unknown_export_artifact_is_not_trusted(harness: Harness) -> None:
     reference = ArtifactRef(
         session_id=harness.binding.model.session_id, artifact_id=ArtifactId.new()
     )
-    assert error(harness.service.get_export(reference)).code == ErrorCode.STALE_OBJECT
+    assert error(harness.service.get_export(reference)).code == ErrorCode.NOT_FOUND
 
 
-def test_staged_sources_survive_until_explicit_service_close(harness: Harness) -> None:
+def test_persistent_sources_survive_explicit_service_close(harness: Harness) -> None:
     assert harness.backend.loaded is not None
     materialized = harness.backend.loaded
     assert materialized.entrypoint.is_file() and materialized.property_file.is_file()
     value(harness.service.close())
-    assert not materialized.directory.exists()
-    assert not materialized.property_file.exists()
+    assert materialized.directory.exists()
+    assert materialized.property_file.exists()
     rejected = harness.service.create(
         WellCreateRequest(binding=harness.binding, definition=harness.definition())
     )
     assert error(rejected).code == ErrorCode.STALE_OBJECT
 
 
-def test_service_close_reports_cleanup_failure(
-    harness: Harness, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    cleanup = TemporaryDirectory.cleanup
-
-    def fail_cleanup(directory: TemporaryDirectory[str]) -> None:
-        cleanup(directory)
-        raise OSError("Injected well source cleanup failure.")
-
-    monkeypatch.setattr(TemporaryDirectory, "cleanup", fail_cleanup)
-    rejected = harness.service.close()
-    assert error(rejected).code == ErrorCode.STORAGE_FAILED
-    assert error(rejected).effect == MutationEffect.UNKNOWN
-    assert "cleanup failure" in error(rejected).message
-    assert harness.service.close() == rejected
+def test_service_close_is_idempotent(harness: Harness) -> None:
+    closed = harness.service.close()
+    value(closed)
+    assert harness.service.close() == closed
 
 
-def test_modified_export_content_is_not_trusted(
+def test_export_with_another_artifact_identity_is_not_trusted(
     harness: Harness, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     import io
@@ -183,8 +171,8 @@ def test_modified_export_content_is_not_trusted(
     )
     changed = exported.model_copy(
         update={
-            "connections": (
-                exported.connections[0].model_copy(update={"compdat_factor_field": 99.0}),
+            "artifact": ArtifactRef(
+                session_id=exported.artifact.session_id, artifact_id=ArtifactId.new()
             )
         }
     )
@@ -273,7 +261,7 @@ def test_close_waits_for_native_load_and_rejects_new_work(
             release.set()
         value(loading.result(timeout=5))
         value(closing.result(timeout=5))
-    assert not staged[0].directory.exists() and not staged[0].property_file.exists()
+    assert staged[0].directory.exists() and staged[0].property_file.exists()
 
 
 def test_removed_case_address_cannot_reuse_an_old_reference(

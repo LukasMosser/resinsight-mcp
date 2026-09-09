@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/private/tmp/resinsight-well-lifetime/tests/resinsight/modeled_wells/lifecycle_probe.py", line 373, in <module>
+    main()
+  File "/private/tmp/resinsight-well-lifetime/tests/resinsight/modeled_wells/lifecycle_probe.py", line 369, in main
+    run(arguments.executable.resolve(strict=True), arguments.source.resolve(strict=True), evidence)
+  File "/private/tmp/resinsight-well-lifetime/tests/resinsight/modeled_wells/lifecycle_probe.py", line 229, in run
+    evidence.check(
+  File "/private/tmp/resinsight-well-lifetime/tests/resinsight/modeled_wells/input_probe.py", line 42, in check
+    raise RuntimeError(label)
+RuntimeError: stable_property_inventory_1
