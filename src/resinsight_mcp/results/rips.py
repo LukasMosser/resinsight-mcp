@@ -87,7 +87,10 @@ class _Summary(Protocol):
 
 class _PlotWindow(Protocol):
     id: int
+    number_of_columns: rips.NumberOfColumns
+    rows_per_page: rips.RowsPerPage
 
+    def update(self) -> None: ...
     def export_snapshot(self, *, export_folder: str, width: int, height: int) -> None: ...
 
 
@@ -333,6 +336,9 @@ class RipsResultBackend:
                         ErrorCode.RENDER_FAILED,
                         "The summary plot has no specific native plot window for export.",
                     )
+                window.number_of_columns = rips.NumberOfColumns._1
+                window.rows_per_page = rips.RowsPerPage._1
+                window.update()
                 window.export_snapshot(export_folder=str(folder), width=width, height=height)
             except ContractError as error:
                 raise ContractError(

@@ -15,9 +15,15 @@ class Window:
     def __init__(self, identifier):
         self.id = identifier
         self.exports = []
+        self.number_of_columns = native.rips.NumberOfColumns._2
+        self.rows_per_page = native.rips.RowsPerPage._2
+        self.applied_layout = (self.number_of_columns, self.rows_per_page)
+
+    def update(self):
+        self.applied_layout = (self.number_of_columns, self.rows_per_page)
 
     def export_snapshot(self, *, export_folder, width, height):
-        self.exports.append((export_folder, width, height))
+        self.exports.append((export_folder, width, height, self.applied_layout))
 
 
 class Plot:
@@ -74,7 +80,9 @@ def test_summary_export_targets_its_parent_among_multiple_windows(monkeypatch, p
     address = backend.show_curve(access, bundle, dataset, curve, tmp_path, 1200, 800)
     assert address == "77"
     assert windows[0].exports == []
-    assert windows[1].exports == [(str(tmp_path), 1200, 800)]
+    assert windows[1].exports == [(str(tmp_path), 1200, 800, ("1", "1"))]
+    assert windows[0].applied_layout == ("2", "2")
+    assert (windows[0].number_of_columns, windows[0].rows_per_page) == ("2", "2")
     assert plot.normalize_curve_y_values is False and plot.is_using_auto_name is False
     assert plot.plot_description == f"{curve.result.result_id} WBHP:PROD ({curve.unit.value})"
 
@@ -98,3 +106,4 @@ def test_summary_export_rejects_missing_target_or_changed_values(
     assert raised.value.error.code == expected
     assert raised.value.error.effect == MutationEffect.UNKNOWN
     assert all(window.exports == [] for window in windows)
+    assert all(window.applied_layout == ("2", "2") for window in windows)
