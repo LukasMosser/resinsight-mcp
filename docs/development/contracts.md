@@ -146,6 +146,10 @@ The [P01 control record](https://github.com/LukasMosser/resinsight-mcp/blob/main
 That experiment uses FIELD feet and verifies imported trajectory data against the intended cell column.
 The shared types do not perform that external verification themselves.
 
+The [well control contracts](well-contracts.md) define authored FIELD rates, pressure limits, phases, and statuses.
+Model creation and well editing share these records.
+Imported controls remain subject to the import parser's support profile.
+
 ## Cells and report times
 
 `CellIndex` uses zero-based I, J, and K values.
