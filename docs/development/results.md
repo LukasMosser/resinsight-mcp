@@ -145,7 +145,9 @@ Both results must pass the production accepted-result requirement before applica
 The probe does not create simulator jobs or change numerical acceptance records.
 
 The lead must authorize the native lane before running this command.
-Use the reviewed `70399abb9eba31f713f72028ffe94ae0be4db2c4` build and its installed matching RIPS wheel.
+Use the reviewed `cd6450ab0757a9f4643e7dd18f3d7c76745ee95e` build and its installed matching RIPS wheel.
+The required `--expected-native-commit` accepts exactly 40 lowercase hexadecimal characters.
+The probe records expected and actual commits, then requires exact equality before native launch.
 Do not add Python, Qt, or library path overrides.
 
 ```sh
@@ -157,6 +159,7 @@ uv run --no-sync python -m tests.results.native_acceptance \
   --well PROD \
   --executable /absolute/ResInsight \
   --native-source /absolute/ResInsight-source \
+  --expected-native-commit cd6450ab0757a9f4643e7dd18f3d7c76745ee95e \
   --output /absolute/new-p12-evidence
 ```
 

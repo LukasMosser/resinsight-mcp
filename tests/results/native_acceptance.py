@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 from datetime import UTC, datetime, time, timedelta
@@ -343,9 +344,6 @@ def trial(arguments: argparse.Namespace) -> None:
     source_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=arguments.native_source, text=True
     ).strip()
-    assert source_commit.startswith("cd6450ab0757a9f4643e7dd18f3d7c76745ee95e"), (
-        "The trial requires the reviewed native build."
-    )
     record(
         output / "environment.json",
         {
@@ -353,6 +351,7 @@ def trial(arguments: argparse.Namespace) -> None:
                 ["git", "rev-parse", "HEAD"], text=True
             ).strip(),
             "native_source_commit": source_commit,
+            "expected_native_commit": arguments.expected_native_commit,
             "executable": str(arguments.executable),
             "rips_version": version("rips"),
             "rips_installation": distribution("rips").read_text("direct_url.json"),
@@ -362,6 +361,9 @@ def trial(arguments: argparse.Namespace) -> None:
             },
             "started_at": datetime.now(UTC).isoformat(),
         },
+    )
+    assert source_commit == arguments.expected_native_commit, (
+        "The native source commit does not match the required reviewed commit."
     )
     connection = value(
         sessions.launch(
@@ -454,6 +456,12 @@ def trial(arguments: argparse.Namespace) -> None:
         value(closed)
 
 
+def native_commit(value: str) -> str:
+    if re.fullmatch(r"[0-9a-f]{40}", value) is None:
+        raise argparse.ArgumentTypeError("Use a complete lowercase 40-character Git commit.")
+    return value
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("workspace", "output", "executable", "native-source"):
@@ -462,6 +470,7 @@ def main() -> None:
     parser.add_argument("--baseline", type=ResultId, required=True)
     parser.add_argument("--scenario", type=ResultId, required=True)
     parser.add_argument("--well", required=True)
+    parser.add_argument("--expected-native-commit", type=native_commit, required=True)
     arguments = parser.parse_args()
     for name in ("workspace", "executable", "native_source"):
         setattr(arguments, name, getattr(arguments, name).resolve(strict=True))
