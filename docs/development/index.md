@@ -15,7 +15,8 @@ Result services connect accepted immutable outputs to verified native cases, ali
 
 Model materialization supplies isolated stored inputs and validated child revisions for domain consumers.
 Well services create native paths, export fixed connections, and publish child schedules through separate operations.
-The supplied launcher exposes workspace tools and can configure native session and model services.
+The supplied launcher configures workspace, native session, model, and complete OPM workflow services through explicit options.
+The OPM option joins native wells, bounded Flow jobs, verified results, comparisons, and views without moving their algorithms into transport code.
 
 Start with these pages:
 
@@ -31,6 +32,9 @@ Start with these pages:
 - [Project mutations](session-mutations.md) defines the trusted callback boundary, refreshed references, and failure evidence.
 - [Jobs](jobs.md) explains durable supervision, resource policy, and recovery limits.
 - [Docker job ownership](docker-jobs.md) explains container identity, deadlines, cancellation, and explicit recovery.
+- [OPM execution](opm.md) explains pinned Flow preparation, limits, output verification, and accepted result publication.
+- [OPM runtime evidence](evidence/p11/README.md) records actual runs, failures, cancellation, deadlines, and reference agreement.
+- [Result services](results.md) explains verified native loading, aligned queries, comparisons, and summary plot receipts.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
 - [OPM Flow service](opm.md) explains isolated runs, dependency checks, immutable output publication, and numerical acceptance.
 - [OPM runtime evidence](evidence/p11/README.md) records successful runs, changed controls, failures, fresh-service recovery, and a deterministic reference comparison.

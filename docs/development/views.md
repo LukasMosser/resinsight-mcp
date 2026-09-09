@@ -20,6 +20,13 @@ The host integration must establish that relationship before calling it.
 No MCP operation exposes arbitrary result binding.
 Bindings and confirmed scene versions belong to the service instance.
 
+`list_views(LoadedResult)` requires the exact stored result and its current trusted binding.
+It holds session ownership while checking full project inventories before and after the native read.
+It filters views through their actual case addresses and maps each address to one current issued reference.
+Duplicate, missing, or stale identities fail without creating scene state.
+Each `ResultViewState` contains the loaded result, view reference, observed camera, display scale, and existing scene version or zero.
+Discovery reads no property or filter state and does not adopt a renderable scene.
+
 The service verifies the result, revision, grid identity, report membership, units, and coordinate metadata before native edits.
 `PRESSURE` supports only stored `FIELD` inputs with `psi`.
 `SWAT`, `SGAS`, `SOIL`, and `PORO` require unit `1`.
@@ -52,7 +59,8 @@ def bind_views(
 The returned service accepts `bind_result(loaded_result)` after the trusted loader establishes the case relationship.
 Make sure that this operation succeeds before exposing the view to callers.
 Pass the bindings to the existing `create_server()` or asynchronous `serve_stdio()` entry point.
-These bindings expose `view_apply`, `view_render`, and current-scene observation retrieval.
+These bindings expose `view_list`, `view_apply`, `view_render`, and current-scene observation retrieval.
+The shipped launcher's [OPM configuration](../mcp.md#enable-the-opm-workflow) composes these services with the verified result loader.
 
 ## Model provider boundary
 

@@ -7,7 +7,8 @@ P13 proves the full workflow through the shipped launcher and public MCP tools.
 This plan records scope, ownership, and remaining acceptance gates.
 
 The [P11 record](evidence/p11/README.md) now establishes bounded Flow execution and verified numerical output through the Python service.
-Native P12 and complete public MCP P13 acceptance remain separate gates.
+The [P12 native record](evidence/p12/native/README.md#trial-07) establishes result loading, comparison, images, and project reopening.
+Complete public MCP P13 acceptance remains a separate gate.
 
 ## Shared prerequisites
 
@@ -43,18 +44,19 @@ Shared interface changes require agreement before dependent implementation.
 ## Public workflow integration
 
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) owns the shipped launcher and domain tool composition.
-The launcher must validate required dependencies before advertising enabled operations.
-Public model tools must support import, creation, inspection, preparation, and immutable cloning.
-Public well tools must expose native paths, completion exports, and child schedule publication.
-Public run and result tools must preserve exact session, model, job, and result identities.
-The transport must deliver native grid and summary plot images with their observations.
+The launcher validates required dependencies before advertising enabled operations and opening workspace storage.
+Public model tools support import, creation, inspection, preparation, and immutable cloning.
+Public well tools expose native paths, completion exports, and child schedule publication.
+Public run and result tools preserve exact session, model, job, and result identities.
+The transport delivers native grid and summary plot images while preserving applied edits if later image delivery fails.
 
 Prepared well-editing grids use persistent EGRID and property files through the reviewed native FIELD export command.
 The follow-up is recorded in [issue #48](https://github.com/LukasMosser/resinsight-mcp/issues/48).
 Its [lifetime acceptance](evidence/p09/lifetime/README.md) preserves all corners, properties, trajectories, and completions across two reopen cycles.
 Restoration rejects stale references and verifies restored cases before explicit well adoption.
-The public recovery request uses the current project context, exact model, and immutable receipt to locate a unique native case.
-This lookup avoids ambiguous display names and retains the complete restoration checks.
+The public lookup accepts the current project context, exact model, and immutable receipt to find one verified native source path.
+The view lookup accepts a current loaded result and returns its actual view references, cameras, display scales, and scene versions.
+Both lookups verify ownership without exposing native addresses or inferring identity from display names.
 The lead owns launcher composition of the reviewed follow-up interfaces.
 
 ## Acceptance gates

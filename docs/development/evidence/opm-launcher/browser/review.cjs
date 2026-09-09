@@ -1,0 +1,96 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { spawn, execFileSync } = require('node:child_process');
+const { chromium } = require('playwright');
+
+const [repository, output, manifestPath] = process.argv.slice(2);
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+fs.mkdirSync(output, { recursive: true });
+const server = spawn(path.join(repository, '.venv/bin/python'), [
+  '-u', '-m', 'http.server', '0', '--bind', '127.0.0.1', '--directory', path.join(repository, 'site'),
+], { stdio: ['ignore', 'pipe', 'pipe'] });
+let browser;
+let serverLog = '';
+server.stderr.on('data', chunk => { serverLog += chunk.toString(); });
+
+(async () => {
+  try {
+    const port = await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('The local server did not start.')), 10000);
+      server.once('error', reject);
+      server.stdout.on('data', chunk => {
+        serverLog += chunk.toString();
+        const match = /port (\d+)/.exec(chunk.toString());
+        if (match) { clearTimeout(timer); resolve(Number(match[1])); }
+      });
+    });
+    const origin = `http://127.0.0.1:${port}`;
+    browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', chromiumSandbox: true, headless: true });
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1050 }, reducedMotion: 'reduce' });
+    const blocked = [];
+    await context.route('**/*', route => {
+      const url = route.request().url();
+      if (new URL(url).origin === origin) return route.continue();
+      blocked.push(url);
+      return route.abort();
+    });
+    const page = await context.newPage();
+    const errors = [];
+    const localLinks = new Set();
+    page.on('pageerror', error => errors.push(String(error)));
+    const pages = [];
+    for (const item of manifest) {
+      await page.goto("about:blank");
+      const response = await page.goto(`${origin}${item.path}`, { waitUntil: 'networkidle' });
+      if (response.status() !== 200) throw new Error(`Page status ${response.status()}: ${item.path}`);
+      await page.evaluate(() => document.fonts.ready);
+      if (item.text) {
+        await page.getByText(item.text, { exact: true }).evaluate(element => element.scrollIntoView({ block: 'center' }));
+      }
+      if (item.imageAlt) {
+        await page.getByAltText(item.imageAlt, { exact: true }).evaluate(element => element.scrollIntoView({ block: "center" }));
+      }
+      if (item.heading) {
+        await page.getByRole('heading', { name: item.heading, exact: true }).evaluate(element => element.scrollIntoView({ block: 'start' }));
+        await page.evaluate(() => window.scrollBy(0, -96));
+      }
+      if (item.bottom) await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      if (item.image) await page.screenshot({ path: path.join(output, item.image) });
+      const layout = await page.evaluate(() => ({
+        viewport: innerWidth,
+        document: document.documentElement.scrollWidth,
+        scroll_regions: [...document.querySelectorAll('article table, article pre code')].filter(item => item.scrollWidth > item.clientWidth + 1).map(item => ({ tag: item.tagName, width: item.clientWidth, scroll_width: item.scrollWidth })),
+      }));
+      if (layout.document > layout.viewport) throw new Error(`Document overflow: ${item.path}`);
+      const images = await page.locator('article img').evaluateAll(items => items.map(item => ({ source: item.getAttribute('src'), complete: item.complete, width: item.naturalWidth, height: item.naturalHeight })));
+      if (images.some(item => !item.complete || !item.width || !item.height)) throw new Error(`An image failed to load: ${item.path}`);
+      for (const link of await page.locator('article a[href], nav a[href]').evaluateAll(items => items.map(item => item.href))) {
+        const url = new URL(link);
+        if (url.origin === origin) { url.hash = ''; localLinks.add(url.href); }
+      }
+      pages.push({ path: item.path, status: response.status(), layout, images, screenshot: item.image });
+    }
+    const links = [];
+    for (const url of localLinks) {
+      const response = await page.request.get(url);
+      links.push({ path: new URL(url).pathname, status: response.status() });
+      if (response.status() !== 200) throw new Error(`Local link status ${response.status()}: ${url}`);
+    }
+    if (errors.length) throw new Error(`Page errors: ${errors.join('; ')}`);
+    const record = {
+      reviewed_at: new Date().toISOString(),
+      source_commit: execFileSync('git', ['-C', repository, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+      working_tree: execFileSync('git', ['-C', repository, 'status', '--short'], { encoding: 'utf8' }),
+      browser: browser.version(),
+      playwright: require('playwright/package.json').version,
+      node: process.version,
+      pages, links, blocked_external_requests: [...new Set(blocked)], page_errors: errors, visual_review_required: true,
+    };
+    fs.writeFileSync(path.join(output, 'review.json'), JSON.stringify(record, null, 2) + '\n');
+    console.log(JSON.stringify({ source_commit: record.source_commit, pages: pages.length, links: links.length, page_errors: errors }, null, 2));
+  } finally {
+    if (browser) await browser.close();
+    server.kill('SIGTERM');
+    fs.writeFileSync(path.join(output, 'server.log'), serverLog);
+  }
+})().catch(error => { console.error(error); process.exitCode = 1; });

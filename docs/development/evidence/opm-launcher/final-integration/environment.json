@@ -1,0 +1,42 @@
+{
+  "tested_commit": "d6b1d9e970643c081a468ba926b443e5e4f8be16",
+  "tracked_changes_at_check": [
+    "docs/mcp.md",
+    "docs/development/p13-delivery.md"
+  ],
+  "application_source_unchanged_during_check": true,
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "scripts/check.py"
+  ],
+  "maintained_tests": 666,
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "packages": {
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pre-commit": "4.6.2",
+    "pydantic": "2.13.5",
+    "opm": "2025.10",
+    "numpy": "2.5.3"
+  },
+  "reviewed_source_equivalence": {
+    "command": [
+      "git",
+      "diff",
+      "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+      "--",
+      "src/resinsight_mcp"
+    ],
+    "output": "",
+    "meaning": "Final application source matches the clean installed application source used by native P12 and P13 trials."
+  },
+  "prerequisites": "P11, persistent well lifecycle, and P12 merged into main. The MCP branch contains only its reviewed source and documentation changes.",
+  "browser_review": "browser-review.json",
+  "scope": "Public launcher composition, contracts, read-only view discovery, guide configuration, and maintained checks. Complete public runtime evidence belongs to P13."
+}

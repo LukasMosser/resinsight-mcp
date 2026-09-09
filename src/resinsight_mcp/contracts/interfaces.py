@@ -8,7 +8,7 @@ from .errors import OperationResult
 from .identifiers import ArtifactId, CheckpointId, ObservationId, ResultId, RevisionId, SessionId
 from .jobs import Job, JobRef, JobRequest, LoadedResult, Result, ResultImportRequest
 from .models import ArtifactRef, ModelRevision, PreparationRequest, PreparedModel, Session
-from .observations import EditedView, Observation, RenderRequest, ViewUpdateRequest
+from .observations import EditedView, Observation, RenderRequest, ResultViewState, ViewUpdateRequest
 from .sessions import (
     AttachRequest,
     CloseReceipt,
@@ -143,6 +143,10 @@ class Renderer(Protocol):
 
 
 class ViewService(Renderer, Protocol):
+    def list_views(self, loaded: LoadedResult) -> OperationResult[tuple[ResultViewState, ...]]:
+        """Read current result views and native cameras without adopting a renderable scene."""
+        ...
+
     def apply(self, request: ViewUpdateRequest) -> OperationResult[EditedView]:
         """Preserve a completed view edit when its fresh image fails."""
         ...

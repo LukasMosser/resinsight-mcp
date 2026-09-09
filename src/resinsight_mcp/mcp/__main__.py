@@ -21,6 +21,16 @@ def main() -> None:
         help="Enable validated FIELD model import, creation, inspection, and preparation.",
     )
     parser.add_argument(
+        "--enable-opm-workflow",
+        action="store_true",
+        help="Enable the bounded OPM model, well, job, result, and native image workflow.",
+    )
+    parser.add_argument(
+        "--docker-executable",
+        type=Path,
+        help="Use an explicit absolute Docker client path for the OPM workflow.",
+    )
+    parser.add_argument(
         "--resinsight-log-directory",
         type=Path,
         help="Enable native session tools with an absolute, existing application log directory.",
@@ -33,6 +43,8 @@ def main() -> None:
             create_workspace=arguments.create_workspace,
             resinsight_log_directory=arguments.resinsight_log_directory,
             enable_models=arguments.enable_models,
+            enable_opm_workflow=arguments.enable_opm_workflow,
+            docker_executable=arguments.docker_executable,
         )
         asyncio.run(_serve_stdio_from(configuration.bindings))
     except (ConfigurationError, ContractError, OSError) as error:

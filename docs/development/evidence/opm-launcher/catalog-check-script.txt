@@ -1,0 +1,98 @@
+"""Inspect the installed public catalog without starting native or simulator work."""
+
+import asyncio
+import importlib.metadata as metadata
+import json
+import os
+import platform
+import sys
+from datetime import timedelta
+from pathlib import Path
+
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+from mcp.types import TextResourceContents
+
+
+def write(path: Path, value: object) -> None:
+    path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+
+
+async def main() -> None:
+    root = Path(__file__).resolve().parent
+    output = root / "catalog-check"
+    output.mkdir()
+    logs = output / "native-logs"
+    logs.mkdir()
+    packages = {}
+    for name in ("resinsight-mcp", "rips", "opm", "mcp", "pydantic", "pillow", "grpcio", "protobuf"):
+        package = metadata.distribution(name)
+        origin = json.loads(package.read_text("direct_url.json") or "null")
+        packages[name] = {
+            "version": package.version,
+            "location": str(package.locate_file("")),
+            "direct_url": origin,
+        }
+        if name in {"resinsight-mcp", "rips"}:
+            assert origin and not origin.get("dir_info", {}).get("editable")
+    write(output / "installed-packages.json", {
+        "python": sys.version,
+        "executable": sys.executable,
+        "platform": platform.platform(),
+        "packages": packages,
+    })
+    parameters = StdioServerParameters(
+        command=sys.executable,
+        args=[
+            "-I", "-m", "resinsight_mcp.mcp",
+            "--workspace-root", str(output / "workspace"), "--create-workspace",
+            "--enable-opm-workflow", "--resinsight-log-directory", str(logs),
+            "--docker-executable", "/Applications/Docker.app/Contents/Resources/bin/docker",
+        ],
+        env={name: value for name, value in os.environ.items() if not name.startswith("PYTHON")},
+    )
+    write(output / "launcher-command.json", [parameters.command, *parameters.args])
+    with (output / "launcher-stderr.log").open("w") as errors:
+        async with stdio_client(parameters, errlog=errors) as (read, send):
+            async with ClientSession(read, send, read_timeout_seconds=timedelta(seconds=60)) as client:
+                write(output / "initialize.json", (await client.initialize()).model_dump(mode="json"))
+                listed = await client.list_tools()
+                write(output / "tools.json", listed.model_dump(mode="json"))
+                resources = await client.list_resources()
+                write(output / "resources.json", resources.model_dump(mode="json"))
+                catalog = next(item for item in resources.resources if str(item.uri) == "resinsight://catalog")
+                fetched = await client.read_resource(catalog.uri)
+                write(output / "catalog.json", fetched.model_dump(mode="json"))
+                records = [item for item in fetched.contents if isinstance(item, TextResourceContents)]
+                assert len(records) == 1
+                described = json.loads(records[0].text)
+                by_name = {tool.name: tool for tool in listed.tools}
+                assert set(by_name) == {tool["name"] for tool in described["tools"]}
+                required = {
+                    "model_create", "model_restore_case", "well_create", "well_export",
+                    "model_publish_schedule", "job_submit", "job_poll", "job_cancel",
+                    "opm_collect", "result_load", "result_rebind", "result_compare_cells",
+                    "result_compare_curves", "result_show_curve", "view_list", "view_apply",
+                    "view_render", "project_save", "project_open", "application_close",
+                }
+                assert required <= set(by_name)
+                assert set(by_name["job_submit"].inputSchema["properties"]) == {
+                    "prepared", "limits", "resource_policy"
+                }
+                assert set(by_name["model_restore_case"].inputSchema["properties"]) == {
+                    "context", "model", "receipt"
+                }
+                assert set(by_name["view_list"].inputSchema["properties"]) == {"result", "case"}
+                assert by_name["view_list"].annotations.readOnlyHint is True
+                write(output / "acceptance.json", {
+                    "catalog_verified": True,
+                    "tool_count": len(by_name),
+                    "native_application_started": False,
+                    "simulator_started": False,
+                    "domain_tool_calls": 0,
+                    "dependency_checks": "Actual installed dependencies and local Docker image were checked.",
+                    "scope": "Installed launcher initialization, discovery, and schema agreement only.",
+                })
+
+
+asyncio.run(main())

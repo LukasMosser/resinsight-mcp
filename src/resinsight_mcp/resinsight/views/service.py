@@ -19,11 +19,12 @@ from resinsight_mcp.contracts.observations import (
     EditedView,
     Observation,
     RenderRequest,
+    ResultViewState,
     ViewContext,
     ViewEditReceipt,
     ViewUpdateRequest,
 )
-from resinsight_mcp.contracts.sessions import ObjectRef
+from resinsight_mcp.contracts.sessions import ObjectKind, ObjectRef, ProjectState
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess
 
 from ._backend import NativeView, ViewBackend
@@ -32,6 +33,8 @@ from ._properties import require_units
 
 
 class SessionAccess(Protocol):
+    def inspect_project(self, session_id: SessionId) -> OperationResult[ProjectState]: ...
+
     def access_objects(
         self, references: tuple[ObjectRef, ...]
     ) -> AbstractContextManager[ApplicationAccess]: ...
@@ -76,6 +79,68 @@ class ResInsightViewService:
             return OperationResult(outcome=Success(value=loaded))
         except ContractError as error:
             return OperationResult(outcome=Failure(error=error.error))
+
+    def list_views(self, loaded: LoadedResult) -> OperationResult[tuple[ResultViewState, ...]]:
+        """Discover current views without applying settings or adopting native scene state."""
+        try:
+            project = _value(self._sessions.inspect_project(loaded.result.model.session_id))
+            references = tuple(item.ref for item in project.objects)
+            if loaded.case.context != project.context or loaded.case not in references:
+                _stale("The loaded case is not current in this project.")
+            with self._sessions.access_objects(references) as access:
+                if access.project.context != project.context:
+                    _stale("The project changed before view discovery.")
+                stored = _value(
+                    self._workspaces.get_result(
+                        loaded.result.model.session_id, loaded.result.result_id
+                    )
+                )
+                if stored != loaded.result or self._results.get(loaded.case) != stored:
+                    _stale("The loaded case has no trusted binding to this exact result.")
+                native = dict(zip(references, access.objects, strict=True))
+                before = access.application.snapshot()
+                if before.objects != access.objects:
+                    _stale("The native inventory changed before view discovery.")
+                states = self._backend.list_views(access, native[loaded.case].address)
+                if access.application.snapshot() != before:
+                    _stale("The native project changed during view discovery.")
+                issued_views = tuple(
+                    (item.address, ref)
+                    for ref, item in native.items()
+                    if ref.kind == ObjectKind.VIEW
+                )
+                view_refs = dict(issued_views)
+                addresses = tuple(item.address for item in states)
+                if (
+                    len(view_refs) != len(issued_views)
+                    or len(set(addresses)) != len(addresses)
+                    or any(address not in view_refs for address in addresses)
+                ):
+                    _stale("A discovered native view has no unique current reference.")
+                views = tuple(
+                    ResultViewState(
+                        loaded=loaded,
+                        view=view_refs[item.address],
+                        camera=item.camera,
+                        vertical_exaggeration=item.vertical_exaggeration,
+                        scene_version=self._scenes[view_refs[item.address]].scene_version
+                        if view_refs[item.address] in self._scenes
+                        else 0,
+                    )
+                    for item in states
+                )
+            return OperationResult(outcome=Success(value=views))
+        except ContractError as error:
+            return OperationResult(outcome=Failure(error=error.error))
+        except (ValueError, TypeError) as error:
+            return OperationResult(
+                outcome=Failure(
+                    error=Error(
+                        code=ErrorCode.EXECUTION_FAILED,
+                        message=f"Native view discovery returned invalid settings: {error}",
+                    )
+                )
+            )
 
     def _require_result(self, context: ViewContext) -> Result:
         result = _value(self._workspaces.get_result(context.model.session_id, context.result_id))

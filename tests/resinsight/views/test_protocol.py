@@ -12,10 +12,12 @@ from PIL import Image
 from resinsight_mcp.contracts.errors import Error, ErrorCode, Failure, OperationResult, Success
 from resinsight_mcp.contracts.identifiers import EditId, ObservationId, SessionId
 from resinsight_mcp.contracts.interfaces import ViewService
+from resinsight_mcp.contracts.jobs import LoadedResult
 from resinsight_mcp.contracts.observations import (
     EditedView,
     Observation,
     RenderRequest,
+    ResultViewState,
     ViewContext,
     ViewEditReceipt,
     ViewUpdateRequest,
@@ -33,6 +35,10 @@ class RecordingViews:
         self.calls: list[object] = []
         self.current: Observation | None = None
         self.fail_export = False
+
+    def list_views(self, loaded: LoadedResult) -> OperationResult[tuple[ResultViewState, ...]]:
+        self.calls.append(loaded)
+        return OperationResult(outcome=Success(value=()))
 
     def apply(self, request: ViewUpdateRequest) -> OperationResult[EditedView]:
         self.calls.append(request)

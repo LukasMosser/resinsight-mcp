@@ -1,8 +1,10 @@
 """One catalog binds typed operations without owning application state."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from mcp import types
 from pydantic import BaseModel, Field, PositiveInt, ValidationError
@@ -24,12 +26,13 @@ from resinsight_mcp.contracts.interfaces import (
     ViewService,
     WorkspaceStore,
 )
-from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest
+from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest, LoadedResult
 from resinsight_mcp.contracts.models import Session
 from resinsight_mcp.contracts.observations import (
     EditedView,
     Observation,
     RenderRequest,
+    ResultViewState,
     ViewContext,
     ViewUpdateRequest,
 )
@@ -48,6 +51,12 @@ from resinsight_mcp.contracts.sessions import (
 )
 from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.synthetic import SyntheticModelService
+
+if TYPE_CHECKING:
+    from resinsight_mcp.models.wells.service import OpmWellScheduleService
+    from resinsight_mcp.resinsight.wells.service import ResInsightWellService
+    from resinsight_mcp.results import ResultsService
+    from resinsight_mcp.simulators.opm import OpmFlowService
 
 CATALOG_RESOURCE = types.Resource(
     uri="resinsight://catalog",
@@ -92,6 +101,10 @@ class Bindings:
     views: ViewService | None = None
     imports: OpmImportService | None = None
     synthetic_models: SyntheticModelService | None = None
+    wells: ResInsightWellService | None = None
+    schedules: OpmWellScheduleService | None = None
+    flow: OpmFlowService | None = None
+    results: ResultsService | None = None
 
 
 @dataclass(frozen=True)
@@ -220,6 +233,17 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
     if bindings.views is not None:
         operations.append(
             Operation(
+                "view_list",
+                "Read current views and native cameras for an exact trusted loaded result.",
+                LoadedResult,
+                OperationResult[tuple[ResultViewState, ...]],
+                bindings.views.list_views,
+                session_id=lambda request: request.result.model.session_id,
+                read_only=True,
+            )
+        )
+        operations.append(
+            Operation(
                 "view_apply",
                 "Apply explicit view settings and return the edit receipt with a native image.",
                 ViewUpdateRequest,
@@ -236,6 +260,10 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
         from ._model_operations import model_operations
 
         operations.extend(model_operations(bindings))
+    if any((bindings.wells, bindings.schedules, bindings.flow, bindings.results)):
+        from ._workflow_operations import workflow_operations
+
+        operations.extend(workflow_operations(bindings))
     return tuple(operations)
 
 

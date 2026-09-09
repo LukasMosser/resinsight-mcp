@@ -2,139 +2,109 @@
 
 resinsight-mcp provides an MCP interface for agents to operate ResInsight.
 MCP is the Model Context Protocol for tool access.
-The mission covers sessions, projects, navigation, views, supported model and well setup, simulations, results, comparison, and recovery.
-The eventual goal covers full ResInsight workflows.
-The first release remains bounded to macOS and the supported OPM physics.
-
-The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
-This map now includes configured session and model access through the shipped launcher.
-P08 constrained model creation uses the same Python service behind its public tools.
-P07 supplies temporary stored inputs and validated child revision publication for domain services.
-Trusted domain services can now mutate native projects through the P04 session boundary.
-P09 supplies native well operations and separate child schedule publication through Python services.
-
-It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
-The [implementation plan](implementation-plan.md) owns package scope and delivery status.
-This page maps that scope to current access paths and integration gaps.
-It does not define tool arguments or replace runtime discovery.
+The first release targets macOS and the supported OPM physics.
+The [implementation plan](implementation-plan.md) owns package scope and acceptance requirements.
+This map follows [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) and records implemented access paths and remaining acceptance work.
+It does not replace runtime discovery or claim that separate service checks establish the complete workflow.
 
 ## Sources of truth
 
 The [operation catalog](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/catalog.py) owns advertised tool names and typed request bindings.
 A binding supplies a service to the MCP host.
-The server derives tool schemas and the `resinsight://catalog` resource from that same catalog.
+Tool discovery and `resinsight://catalog` derive their schemas from the same records.
 Before calling tools, read the connected server's tool list and catalog resource.
 Only supplied services contribute their optional tools.
+No tool accepts an arbitrary shell command, Python callback, or native address for trusted result binding.
 
-The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) always supplies `Bindings.workspaces`.
-Its configuration accepts an absolute `--workspace-root`, optional `--create-workspace`, `--enable-models`, and optional `--resinsight-log-directory`.
-The native option composes `Bindings.sessions` after checking its directory and dependencies.
-The model option composes `Bindings.imports` and `Bindings.synthetic_models` after checking the pinned parser.
-Starting the launcher does not launch or attach ResInsight.
-A configured host calls `create_server()` or `serve_stdio()` with explicit service bindings.
-Native sessions require the optional `resinsight` dependency and the [documented launcher configuration](../mcp.md#enable-resinsight-sessions) or a custom host.
-The [MCP guide](mcp.md) explains that boundary.
+The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) always supplies workspace storage.
+Its [configuration](../mcp.md) enables these additional service groups:
+
+| Configuration | Supplied services |
+| --- | --- |
+| Default workspace | Durable sessions and saved observations. |
+| `--resinsight-log-directory` | Native sessions, application lifecycle, projects, and object references. |
+| `--enable-models` | FIELD input import, constrained creation, inspection, preparation, and cloning. |
+| `--enable-opm-workflow` with native logs | All preceding services, native wells, schedules, Flow jobs, accepted results, comparisons, and views. |
+
+The full workflow requires the pinned OPM parser, reviewed native build, matching generated RIPS wheel, local pinned Flow image, and Docker.
+An optional `--docker-executable` selects one absolute executable path within the full workflow configuration.
+Startup checks required dependencies before opening workspace storage.
+Startup does not launch ResInsight, start a container, or pull an image.
+A custom host can also supply reviewed service bindings through `create_server()` or `serve_stdio()`.
 
 ## Current operation map
 
 “Default” means available through the packaged workspace launcher.
-“Launcher sessions” means available with `--resinsight-log-directory` and its native dependencies.
-“Launcher models” means available with `--enable-models` and the pinned OPM parser.
-“Configured” means available only when a host supplies the named service.
+“Sessions” and “Models” refer to the optional configurations above.
+“OPM workflow” means the full launcher configuration.
 “Python-only” means implemented library behavior without an advertised MCP tool.
-“Unimplemented” means the complete operation has no current production implementation.
 
-| Agent operation | Current access and exact tool names | Required configuration or native capability | Guide and evidence |
+| Agent operation | Current access and exact tool names | Required boundary | Guide |
 | --- | --- | --- | --- |
-| Create and inspect durable sessions | Default: `session_create`, `session_list`, `session_get` | Local workspace storage. These tools alone do not connect to ResInsight. | [MCP guide](../mcp.md), [workspace boundary](workspaces.md), [P05 evidence](mcp-evidence.md) |
-| Read a saved image observation | Default: `observation_get` | An existing observation and its stored image artifact. This does not render a new frame. | [View guide](../views.md), [P05 evidence](mcp-evidence.md) |
-| Select an explicit session and inspect connections | Launcher sessions: `session_select`, `connection_list`, `connection_get` | `Bindings.sessions` with `ResInsightSessionService`. Selection does not set a default mutation target. | [Session guide](../sessions.md), [launcher evidence](launcher-evidence.md) |
-| Launch, attach, detach, or close ResInsight | Launcher sessions: `application_launch`, `application_attach`, `application_close` | Session service and native backend. Launch needs an application executable. Attach needs an explicit local endpoint. Termination requires verified ownership. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
-| Inspect, open, save, and close projects | Launcher sessions: `project_inspect`, `project_open`, `project_save`, `project_close` | Session binding and a connected native application. Mutations require the expected project context. | [Session guide](../sessions.md), [launcher evidence](launcher-evidence.md) |
-| Navigate known project objects | Launcher sessions: `project_inspect`, `object_resolve` | Service-issued object references and the current project context. This is object discovery and resolution, not general graphical navigation. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
-| Mutate a native project through trusted domain code | Python-only: session service `mutate_project()` | An explicit current application context and trusted Python callback. Session ownership spans the mutation and reference refresh. No MCP callback tool exists. | [Mutation contract and evidence](session-mutations.md) |
-| Apply camera, property, report step, legend, and display filters | Configured: `view_apply` | `Bindings.views`, a connected session, trusted result binding, patched ResInsight, and its matching generated RIPS client. | [View guide](../views.md), [view boundary](views.md), [P06 evidence](p06-evidence.md) |
-| Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
-| Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
-| Import and prepare supported model inputs | Launcher models: `model_import`, `model_prepare` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v2` profile. | [Model tutorial](../tutorials/models.md), [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
-| Read, inspect, and clone fixed model revisions | Launcher models: `model_get`, `model_inspect`, `model_clone` | Explicit stored model identity. Cloning retains the parent inputs and requires a new revision identifier. | [Model tutorial](../tutorials/models.md), [Workspace boundary](workspaces.md) |
-| Stage stored inputs and publish child revisions | Python-only: `OpmImportService.materialize()` and `OpmImportService.derive_model()` | Valid stored parent, isolated pinned parser, and caller-owned changed inputs. Materialization owns temporary file cleanup. No MCP operation exists. | [Import interface](model-imports.md#materialization-and-child-revisions), [materialization evidence](model-materialization-evidence.md) |
-| Create a constrained layered model | Launcher models: `model_template`, `model_create` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
-| Load a fixed model and edit native wells | Python-only: `ResInsightWellService.load()`, `create()`, `update()`, and `inspect()` | P07 materialization, P04 session ownership, reviewed native commands, and the matching generated client. Model names, datum, and FIELD geometry must match. | [Well guide](../wells.md), [native evidence](wells.md) |
-| Export completions and publish a child schedule | Python-only: `ResInsightWellService.export()` and `OpmWellScheduleService.publish()` | A service-issued export from the exact parent revision and supported FIELD controls. Publication creates immutable inputs. No MCP well tools exist. | [Well guide](../wells.md#publish-a-child-schedule), [schedule boundary](well-schedules.md) |
-| Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
-| Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original local workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. No MCP reconciliation tool exists. | [Recovery boundary](jobs.md#reconciliation-boundary), [P10 evidence](p10-evidence.md) |
+| Create and inspect durable sessions | Default: `session_create`, `session_list`, `session_get` | Local workspace records. These tools do not connect to ResInsight. | [Workspace guide](workspaces.md) |
+| Read a saved image | Default: `observation_get` | Existing observation and stored image. A configured view service also checks current scene state. | [View guide](../views.md) |
+| Select sessions and inspect connections | Sessions: `session_select`, `connection_list`, `connection_get` | Explicit session identity. Selection never supplies another request's target. | [Session guide](../sessions.md) |
+| Launch, attach, detach, and close applications | Sessions: `application_launch`, `application_attach`, `application_close` | Verified endpoint and process identity. Termination requires service ownership. | [Session implementation](sessions.md) |
+| Inspect, open, save, and close projects | Sessions: `project_inspect`, `project_open`, `project_save`, `project_close` | Connected native application and current expected project context. | [Session tutorial](../tutorials/sessions.md) |
+| Resolve current project objects | Sessions: `project_inspect`, `object_resolve` | Current service-issued object references. This is bounded discovery, not complete graphical navigation. | [Session implementation](sessions.md) |
+| Import and prepare FIELD inputs | Models: `model_import`, `model_prepare` | Pinned parser, supported input profile, and explicit datum. | [Model tutorial](../tutorials/models.md) |
+| Read, inspect, and clone revisions | Models: `model_get`, `model_inspect`, `model_clone` | Exact stored identity. Cloning retains inputs under a new revision identifier. | [Model tutorial](../tutorials/models.md) |
+| Create a constrained layered model | Models: `model_template`, `model_create` | FIELD specification, one injector, one producer, and fixed supported fluid template. | [Model guide](../synthetic-models.md) |
+| Load or restore prepared cases | OPM workflow: `model_load_case`, `model_restore_case` | Persistent grid sources, immutable receipts, exact model, and current project context. | [Well guide](../wells.md) |
+| Create, update, inspect, and adopt native wells | OPM workflow: `well_create`, `well_update`, `well_inspect`, `well_adopt` | Verified case binding, FIELD coordinates, native geometry, and expected well version. | [Well guide](../wells.md) |
+| Export and retrieve native completions | OPM workflow: `well_export`, `well_export_get` | Immutable native connection records tied to exact source geometry and model. | [Well guide](../wells.md) |
+| Publish a child schedule | OPM workflow: `model_publish_schedule` | Verified exports and supported controls at existing report indices. | [Schedule boundary](well-schedules.md) |
+| Submit, poll, and cancel Flow jobs | OPM workflow: `job_submit`, `job_poll`, `job_cancel` | Prepared fixed inputs, bounded limits, pinned image, and verified Docker ownership. | [OPM guide](../opm.md) |
+| Assess and collect accepted outputs | OPM workflow: `opm_collect` | Confirmed successful job, complete outputs, exact lineage, and numerical acceptance policy. | [OPM implementation](opm.md) |
+| Read, load, and restore results | OPM workflow: `result_get`, `result_load`, `result_rebind` | Immutable output files and verified native values, reports, and geometry. | [Result guide](../results.md) |
+| Query cells and curves | OPM workflow: `result_cell_property`, `result_curve` | Accepted result with explicit property or curve identity and supported units. | [Result guide](../results.md) |
+| Compare result scenarios | OPM workflow: `result_compare_cells`, `result_compare_curves` | Matching geometry, reports, quantities, units, and session. Cell comparison returns one common legend. | [Result guide](../results.md) |
+| Discover current result views | OPM workflow: `view_list` | Current trusted loaded result and actual native case ownership. Returns cameras without changing display state. | [View boundary](views.md) |
+| Apply and capture native views | OPM workflow: `view_apply`, `view_render` | Current model, result, case, view, scene version, and complete settings. | [View tutorial](../tutorials/views.md) |
+| Create a native summary image | OPM workflow: `result_show_curve` | Verified curve and native summary case. Applied receipt remains separate from image outcome. | [Result guide](../results.md) |
+| Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. | [Job recovery](jobs.md#reconciliation-boundary) |
+| Run trusted native mutations | Python-only: `ResInsightSessionService.mutate_project()` | Trusted domain callback with session ownership and reference refresh. No callback tool exists. | [Mutation boundary](session-mutations.md) |
 
-The [session tutorial](../tutorials/sessions.md), [view tutorial](../tutorials/views.md), and [job tutorial](../tutorials/jobs.md) show requests and outcomes.
-Their configuration requirements remain part of each workflow.
-A tool's presence does not establish native capabilities or simulator readiness.
+The [FIELD workflow tutorial](../tutorials/opm.md) orders model, well, simulation, result, comparison, and recovery operations.
+A tool's presence establishes configured implementation, while separate acceptance records establish observed runtime behavior.
 
 ## Important boundaries
 
-The P04 mutation boundary supplies fresh references after trusted domain edits, including creation in an empty project.
-It does not implement well geometry, simulator inputs, or an unrestricted agent execution tool.
-P09 owns its domain callback and must reacquire native access after the mutation returns.
-[Issue #41](https://github.com/LukasMosser/resinsight-mcp/issues/41) records the agreed interface and focused library evidence.
+Model inputs, native display state, simulator execution, and MCP transport retain separate owners.
+Native well edits and completion exports do not change simulator inputs.
+Schedule publication creates a separate immutable child revision with explicit controls.
+Selected well references record object existence and do not change visibility.
 
-P06 requires a trusted loader to establish the relationship between stored results and loaded native cases.
-`ResInsightViewService.bind_result()` checks the supplied stored record, but cannot prove file provenance from a caller's case identifier.
-No MCP tool exposes arbitrary result binding.
-The [native requirements](views.md#native-patch-requirements) identify the source patch and generated client requirements.
-The released RIPS package alone does not provide the added view APIs.
+Prepared grid sources and accepted result bundles remain at their canonical paths for saved projects.
+Restoration verifies current native content before issuing fresh bindings.
+Case display names and old references never establish model or result identity.
+The [persistent well evidence](evidence/p09/lifetime/README.md) records the bounded source and well lifetime checks.
 
-P06 native checks and model-facing image acceptance passed in their recorded environments.
-The native editor visual inspection remains deferred to [issue #34](https://github.com/LukasMosser/resinsight-mcp/issues/34).
-No native editor visual pass is claimed.
-The [P06 evidence](p06-evidence.md) separates these outcomes and records the tested builds.
+Flow jobs use independent supervisors and survive MCP server restart.
+Process success remains separate from accepted simulation results and independent numerical reference agreement.
+The [P11 record](evidence/p11/README.md) preserves actual runtime trials and reference comparisons.
+P12 native loading verifies output semantics and complete geometry through its separate service boundary.
 
-P07 preserves and validates supported inputs through services bound to public model tools.
-Its native trial ran Flow and loaded results through explicit acceptance setup.
-That trial does not establish the later simulator adapter or result loader.
-Its supported input physics remain the bounded black-oil profile, with oil, water, gas, and dissolved gas.
-The [import guide](model-imports.md#supported-model-profile) owns the exact support restrictions.
-
-P09 keeps native well edits separate from simulator input publication.
-An exported completion snapshot fixes the source model, trajectory, well version, and active cells.
-Schedule publication consumes that snapshot, preserves unrequested inputs, and creates a child revision through P07.
-The native service retains staged working case sources until explicit closure.
-Launcher recovery must manage that source lifetime before integrated well tools become available.
-The [well guide](../wells.md) and [schedule boundary](well-schedules.md) define the current Python operations.
-
-P10 proves durable command supervision through configured production MCP transport.
-Its acceptance commands are small Python processes, not simulator runs.
-CPU and memory requests remain unenforced under `wall_time_only`, while the controller enforces the wall deadline.
-A successful process exit does not establish numerical acceptance.
-The [P10 evidence](p10-evidence.md) records those limits.
-
-View edits change display state, not simulator inputs.
-Selected well references remain view provenance metadata, which records the source of a view.
-They do not create well geometry, completions, or simulator controls.
-Saved observations also do not reconstruct confirmed view service state after restart.
+Native application ownership remains with the session service that launched the application.
+Before restarting that server, save the native project and terminate its owned application through the public close tool.
+After reconnecting, launch a fresh owned application, reopen the saved project, and explicitly restore case and result bindings.
+Old observations do not recreate confirmed native scene state.
+The public catalog exposes no automatic reconciliation or attached-process termination override.
 
 ## Gaps and proposed ownership
 
-These assignments propose integration work within the [existing packages](implementation-plan.md#ownership-and-integration).
-Package owners retain their domain algorithms behind agreed typed interfaces.
-[Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) tracks launcher composition and domain MCP wiring.
-The launcher supplies native sessions, project operations, and optional public model tools.
+The lead owns launcher composition and domain-tool wiring in `src/resinsight_mcp/mcp/`.
+Package owners retain domain algorithms behind typed interfaces.
+The [delivery plan](p13-delivery.md) records scope changes and remaining acceptance gates.
 
-The lead integration owner owns launcher composition and all domain-tool wiring in `src/resinsight_mcp/mcp/`.
-Domain-tool wiring connects model, simulator, and result services to MCP.
-Package owners supply domain services and evidence through agreed typed interfaces.
-The lead integration owner also owns the combined agent acceptance sequence and configuration documentation.
+| Remaining work | Owner and completion evidence |
+| --- | --- |
+| Complete native result acceptance | P12 verifies real pressure, saturation, curves, comparisons, and saved project restoration with exact run identities. |
+| Prove the complete public workflow | P13 runs the shipped launcher from a clean installation and preserves every domain request, response, image, and recovery result. |
+| Complete broader job recovery | P16 supplies OPM recovery acceptance and any agreed reconciliation interface. Current job tools expose explicit state and cancellation. |
+| Extend native navigation | The lead agrees bounded scope with session and view owners before adding further native operations. |
+| Inspect repaired native editors | [Issue #34](https://github.com/LukasMosser/resinsight-mcp/issues/34) records the deferred build and editor screenshots. |
+| Produce an installable release | P17 verifies supported installation and distribution after P13 and OPM recovery acceptance. |
 
-| Gap | Current limit | Proposed package owner and completion evidence |
-| --- | --- | --- |
-| Extend the agent host | The launcher configures workspace, native session, and model tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
-| Expose wells and simulator schedules | P09 implements native well and immutable schedule services through Python. No MCP well operations or launcher source-lifetime management exist. | Lead integration owner supplies catalog wiring and lifecycle management using P09 interfaces. Agent acceptance must preserve export identity and child revision lineage. |
-| Run OPM through prepared jobs | P10 supervises trusted commands. It does not prepare simulator commands or accept numerical results. | P11 owner supplies the OPM adapter and trusted command resolution. Lead integration owner joins preparation to the configured job tools. |
-| Load results with trusted lineage | General result import and native case binding remain absent. Acceptance setup does not implement these services. | P12 owner supplies result import and verified native loading. Lead integration owner connects those services to views and MCP. |
-| Compare revisions and results | No production result comparison operation exists. | P12 owner supplies comparison services and compatibility checks. Evidence must cover units, cell identity, report times, and revision relationships. |
-| Extend native navigation | Current discovery and resolution do not cover full ResInsight navigation or every native feature. | Lead integration owner records bounded follow-up scope with the session and view owners before implementation. |
-| Complete agent recovery | Job reconnection works, but no MCP reconciliation operation or complete workflow recovery exists. | P16 owner supplies OPM recovery acceptance. Lead integration owner owns any agreed recovery wiring and combined session, job, and result checks. |
-| Prove the complete OPM agent workflow | Separate P04, P06, P07, and P10 evidence does not prove one complete production workflow. | P13 owner supplies real OPM acceptance. Lead integration owner verifies import, setup, run, loading, inspection, comparison, and recovery boundaries. |
-| Inspect repaired native editors | P06 completed with the visual check deferred. | Issue #34 owner records the build and editor screenshots. This remains separate from launcher and domain integration. |
-
-Future packages must retain explicit failures and distinct ownership of model inputs, native views, simulator execution, and MCP transport.
-The integration owner must make sure that tutorials describe only operations available in their stated configuration.
-The [test guide](testing-and-review.md) defines required checks and evidence review.
+Required checks and independent evidence review must pass before the corresponding work issues close.
+The [test guide](testing-and-review.md) defines these requirements.

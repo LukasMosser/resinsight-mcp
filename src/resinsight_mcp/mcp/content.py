@@ -15,18 +15,16 @@ from resinsight_mcp.contracts.errors import (
     Success,
 )
 from resinsight_mcp.contracts.interfaces import WorkspaceStore
-from resinsight_mcp.contracts.observations import EditedView, Observation
+from resinsight_mcp.contracts.observations import EditedView, ImageArtifact, Observation
+from resinsight_mcp.results.records import EditedSummaryPlot, SummaryObservation
 
 
-def _image(observation: Observation, store: WorkspaceStore) -> ImageContent | Failure:
+def _image(artifact: ImageArtifact, store: WorkspaceStore) -> ImageContent | Failure:
     try:
-        with store.open_artifact(observation.image.artifact) as stream:
+        with store.open_artifact(artifact.artifact) as stream:
             data = stream.read()
         with Image.open(BytesIO(data)) as image:
-            if image.format != "PNG" or image.size != (
-                observation.image.width,
-                observation.image.height,
-            ):
+            if image.format != "PNG" or image.size != (artifact.width, artifact.height):
                 return Failure(
                     error=Error(
                         code=ErrorCode.RENDER_FAILED,
@@ -55,12 +53,14 @@ def encode_result[T](result: OperationResult[T], store: WorkspaceStore) -> CallT
     if isinstance(result.outcome, Success):
         value = result.outcome.value
         observation = None
-        if isinstance(value, Observation):
+        if isinstance(value, (Observation, SummaryObservation)):
             observation = value
-        elif isinstance(value, EditedView) and isinstance(value.observation.outcome, Success):
+        elif isinstance(value, (EditedView, EditedSummaryPlot)) and isinstance(
+            value.observation.outcome, Success
+        ):
             observation = value.observation.outcome.value
         if observation is not None:
-            image_result = _image(observation, store)
+            image_result = _image(observation.image, store)
             if isinstance(image_result, ImageContent):
                 native_image = image_result
             elif isinstance(value, EditedView):
@@ -69,6 +69,12 @@ def encode_result[T](result: OperationResult[T], store: WorkspaceStore) -> CallT
                     observation=OperationResult[Observation](outcome=image_result),
                 )
                 encoded = OperationResult[object](outcome=Success(value=edited))
+            elif isinstance(value, EditedSummaryPlot):
+                summary = EditedSummaryPlot(
+                    edit=value.edit,
+                    observation=OperationResult[SummaryObservation](outcome=image_result),
+                )
+                encoded = OperationResult[object](outcome=Success(value=summary))
             else:
                 encoded = OperationResult[object](outcome=image_result)
     response = CallToolResult(

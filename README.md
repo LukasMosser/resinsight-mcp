@@ -13,18 +13,20 @@ The [operation map](docs/development/agent-workflows.md) separates current tools
 Read the [connection guide](docs/mcp.md), then use capability discovery to find the tools your host supplies.
 The supplied launcher provides workspace tools and optional [ResInsight session configuration](docs/mcp.md#enable-resinsight-sessions).
 Its [model configuration](docs/mcp.md#enable-model-tools) enables supported FIELD imports and constrained model creation.
-View and job workflows require additional host services, and the launcher does not yet provide a complete simulation workflow.
+Its [OPM workflow configuration](docs/mcp.md#enable-the-opm-workflow) supplies native wells, bounded Flow jobs, verified result loading, comparisons, and native images.
 
 The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
 
 - Manage named sessions, open and save projects, and resolve project objects.
+- Create FIELD inputs and native wells, run a baseline and changed scenario, and compare their results.
 - Change properties, report times, cameras, filters, and legends, then inspect native images.
 - Monitor configured local jobs, request cancellation, and inspect state after reconnecting.
 
 The [model tutorial](docs/tutorials/models.md) uses public tools to create, import, inspect, clone, and prepare fixed revisions.
 The [model guide](docs/synthetic-models.md) describes the constrained layered specification and Python interface.
 Its numerical acceptance compares generated inputs with the preserved reference under documented tolerances.
-The [well guide](docs/wells.md) describes native well edits and separate publication of immutable simulator schedules through Python services.
+The [well guide](docs/wells.md) describes native well edits and separate publication of immutable simulator schedules.
+The [FIELD workflow tutorial](docs/tutorials/opm.md) uses public tools for simulation, result inspection, comparison, and explicit project restoration.
 
 Native application control and rendering run locally.
 Your configured client can send prompts, tool results, metadata, and images to its model provider.

@@ -1,0 +1,17 @@
+{
+  "meta": null,
+  "nextCursor": null,
+  "resources": [
+    {
+      "name": "operation_catalog",
+      "title": null,
+      "uri": "resinsight://catalog",
+      "description": "Available operations and their typed request and response descriptions.",
+      "mimeType": "application/json",
+      "size": null,
+      "icons": null,
+      "annotations": null,
+      "meta": null
+    }
+  ]
+}

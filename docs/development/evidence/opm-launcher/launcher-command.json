@@ -1,0 +1,14 @@
+[
+  "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+  "-I",
+  "-m",
+  "resinsight_mcp.mcp",
+  "--workspace-root",
+  "/private/tmp/resinsight-p13-installed-runtime/catalog-check/workspace",
+  "--create-workspace",
+  "--enable-opm-workflow",
+  "--resinsight-log-directory",
+  "/private/tmp/resinsight-p13-installed-runtime/catalog-check/native-logs",
+  "--docker-executable",
+  "/Applications/Docker.app/Contents/Resources/bin/docker"
+]
