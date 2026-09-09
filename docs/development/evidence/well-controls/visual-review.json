@@ -1,0 +1,32 @@
+{
+  "reviewed_at": "2026-09-09T07:33:38.498417+00:00",
+  "source_commit": "6a02a7da5ede04a026949997f6e10ba52dd70d8a",
+  "screenshots_inspected": [
+    "well-controls.png",
+    "shared-contracts.png",
+    "ownership.png"
+  ],
+  "visual_result": "All three page regions are readable. The new contract page, navigation entry, and related links are visible.",
+  "repository_check": "The required repository hook passed Ruff, ty, 393 tests, and strict MkDocs for this source content.",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13",
+  "tools": {
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pytest": "9.1.1",
+    "pre-commit": "4.6.2",
+    "mkdocs": "1.6.1",
+    "mkdocs-material": "9.7.7"
+  },
+  "review_concerns": {
+    "duplication": "P08 and P09 use one set of authored control records. Record owns common numeric and immutability rules.",
+    "complexity": "Each concrete control has one short validation method. No service dispatch or native state is added.",
+    "ownership": "Shared contracts own names, modes, and units. Package owners retain geometry, imported data, and publication.",
+    "behavior_and_failures": "Focused tests cover round trips, rate and phase mismatches, shut zero rates, invalid names, and nonfinite values.",
+    "evidence": "The browser record reports three pages and 13 successful local links. Screenshots were inspected by the lead."
+  },
+  "limits": [
+    "The review covers desktop page regions at 1440 by 1050.",
+    "No native application or simulator acceptance is claimed."
+  ]
+}

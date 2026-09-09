@@ -1,0 +1,105 @@
+{
+  "reviewed_at": "2026-09-09T07:27:49.754Z",
+  "source_commit": "6a02a7da5ede04a026949997f6e10ba52dd70d8a",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/well-contracts/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "well-controls.png"
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 818
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "shared-contracts.png"
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "ownership.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}

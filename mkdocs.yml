@@ -39,6 +39,7 @@ nav:
           - Native images: development/platform-images.md
       - Testing and review: development/testing-and-review.md
       - Shared contracts: development/contracts.md
+      - Well control contracts: development/well-contracts.md
       - Workspace storage: development/workspaces.md
       - Session implementation: development/sessions.md
       - Session evidence: development/p04-evidence.md

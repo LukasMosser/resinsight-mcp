@@ -63,6 +63,9 @@ P02 owns shared types and interface definitions.
 Other packages depend on those interfaces and keep simulator-specific details in their own modules.
 An interface change needs a small P02 follow-up before dependent implementation changes.
 
+The [well control follow-up](well-contracts.md) supplies common FIELD controls for P08 and P09.
+Package owners keep grid creation and native well geometry separate while using these shared control records.
+
 P02 implements the shared contracts, P03 implements workspace storage, and P04 implements application sessions and projects.
 P05 implements the [MCP transport](mcp.md) against reviewed shared service contracts.
 The remaining application paths below retain separate work package ownership.
