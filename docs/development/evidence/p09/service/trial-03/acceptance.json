@@ -1,0 +1,64 @@
+{
+  "label": "versions",
+  "repository_commit": "6fb0975bf791a2b586156a8763155a5ae8b8fe49",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "checks": 59,
+  "failed_checks": [
+    {
+      "label": "snapshot_camera",
+      "passed": false,
+      "requested": {
+        "position": [
+          16000.0,
+          -16000.0,
+          14000.0
+        ],
+        "target": [
+          0.0,
+          -500.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "projection": "orthographic",
+        "field_of_view_degrees": null,
+        "parallel_scale": 6000.0
+      },
+      "observed": {
+        "position": [
+          10024.757657900725,
+          -10211.483981093565,
+          8771.66295067207
+        ],
+        "target": [
+          0.0,
+          -500.0,
+          0.0
+        ],
+        "up": [
+          -0.3821785217293497,
+          0.3702354429253076,
+          0.8466789795020717
+        ],
+        "projection": "orthographic",
+        "field_of_view_degrees": null,
+        "parallel_scale": 6000.0
+      }
+    }
+  ],
+  "probe_errors": [
+    {
+      "label": "probe_error",
+      "error": "ContractError('The native project mutation failed without a confirmed outcome.')"
+    }
+  ],
+  "cleanup": {
+    "label": "cleanup",
+    "pid": 3334,
+    "exit_code": -15,
+    "alive": false
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "trial": "trial04",
+  "evidence_directory": "/private/tmp/p09-service-04",
+  "source_commit": "d862ec79f0dcee26ff88782c3db241c0ba191f1d",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "reviewer": "p08_models",
+  "numeric_result": "pass",
+  "visual_result": "pass",
+  "method": "Read saved artifacts and compare them with the independently accepted trial02 audit. Native readback, full trajectories, completion values, parent sources, and child input text without comments match trial02 exactly. Inspect the final PNG directly. No application launch occurred.",
+  "counts": {
+    "recorded_passed_checks": 64,
+    "recorded_failed_checks": 0,
+    "cell_centers": 300,
+    "cell_corners": 2400,
+    "cell_volumes": 300,
+    "property_arrays": 7,
+    "full_trajectories": 2,
+    "completion_connections": 3,
+    "schedule_reports": 3
+  },
+  "grid_findings": "All centers, corners, volumes, and DX, DY, DZ, PORO, PERMX, PERMY, PERMZ arrays match the reference geometry. Property comparison allows relative tolerance 1e-6 for native float storage.",
+  "trajectory_findings": "Both trajectories retain x=y=4500 ft and positive-down depth equal to measured depth. Depth increases strictly. Original and updated endpoints are 8430 ft and 8450 ft.",
+  "completion_findings": {
+    "cells_zero_based": [
+      [
+        4,
+        4,
+        0
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        4,
+        4,
+        2
+      ]
+    ],
+    "factors_field": [
+      10.078780273272798,
+      1.5913863589378099,
+      10.397057545060358
+    ],
+    "factor_unit": "cP*stb/(day*psia)",
+    "kh_md_ft": [
+      9500,
+      1500,
+      9800
+    ],
+    "comparison": "Native export and parsed child factors, Kh, diameter, and skin agree within four machine epsilons, with zero absolute tolerance."
+  },
+  "preservation_findings": {
+    "parent_revision": "revision_66b3f10fc2ed4b82a6b25f5ba76a07a0",
+    "child_revision": "revision_0884810af4d340d6b2d84f0daafb34b7",
+    "session": "session_899e07a087294b18874338c6b30ec4f8",
+    "lineage": "Child names the exact parent and retains its session and FIELD positive-down ft coordinate datum. Recorded parent immutability checks pass.",
+    "schedule": "Report dates and injector states, connections, and injection properties match at all three reports. Initial producer control is retained. OPEN BHP control starts at report 1 and its target 1200.1234567890123 persists at report 2.",
+    "unchanged_keywords": "Parsed keyword names, record structure, and values outside COMPDAT, WELSPECS, WCONPROD, TSTEP, and WELLDIMS agree except for the reported SWOF rounding difference."
+  },
+  "rounding_difference": {
+    "keyword": "SWOF",
+    "parent_value": 7.438016529e-07,
+    "child_value": 7.438016529000001e-07,
+    "difference": "One floating-point step",
+    "relative_tolerance": 8.881784197001252e-16,
+    "absolute_tolerance": 0.0,
+    "result": "Within documented serializer tolerance"
+  },
+  "cleanup": "Recorded detach and source cleanup succeed. Owned PID 5412 recorded exit -15. PID absent during independent review: True.",
+  "visual_finding": {
+    "image": "serviceP09_PROD_J5_slice_PERMX_(mD)_3D_View_PERMX.png",
+    "dimensions": [
+      1000,
+      800
+    ],
+    "result": "Pass. The central J=5 slice shows ten columns and three distinct layers. PROD and the PERMX legend are readable. The upper, middle, and lower colors agree with 500, 50, and 200 mD.",
+    "configuration": {
+      "one_based_start": [
+        1,
+        5,
+        1
+      ],
+      "counts": [
+        10,
+        1,
+        3
+      ],
+      "property": "PERMX",
+      "unit": "mD",
+      "legend": [
+        50,
+        500
+      ],
+      "vertical_exaggeration": 20,
+      "projection": "orthographic"
+    },
+    "limits": "The opaque cells obscure the interior well segment. Numeric trajectory and completion evidence establishes its cell intersections. This is a labeled slice with vertical exaggeration, not a full-grid geometry image.",
+    "provenance": "Fresh trial04 image records displayed well version 1 and exported version 0. The image model matches the fixed parent revision."
+  },
+  "blocking_numeric_findings": [],
+  "comparison_baseline": "/private/tmp/p09-service-02-independent-review.json"
+}

@@ -1,0 +1,67 @@
+{
+  "reviewed_commit": "d862ec79f0dcee26ff88782c3db241c0ba191f1d",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "trial": "/private/tmp/p09-service-04",
+  "image": "serviceP09_PROD_J5_slice_PERMX_(mD)_3D_View_PERMX.png",
+  "visual_pass": true,
+  "visual_findings": [
+    "The full ten-cell J=5 display row fits within the image.",
+    "Three layers are clearly visible.",
+    "The PROD label and well marker are visible at the intended column.",
+    "The PERMX legend spans 50 to 500 mD.",
+    "The image labels the J=5 filter and vertical scale 20."
+  ],
+  "lifecycle_pass": true,
+  "owned_process": {
+    "label": "owned_process",
+    "pid": 5412,
+    "start_marker": 1788946806.643104
+  },
+  "cleanup": {
+    "label": "cleanup",
+    "pid": 5412,
+    "exit_code": -15,
+    "alive": false
+  },
+  "provenance_pass": true,
+  "provenance": {
+    "label": "snapshot_provenance",
+    "image": "serviceP09_PROD_J5_slice_PERMX_(mD)_3D_View_PERMX.png",
+    "view_address": 5404200960,
+    "case_address": "5379628032",
+    "view": {
+      "context": {
+        "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+        "connection_id": "connection_f66e3a2aff5a43148dd1c566957410f4",
+        "project_generation": 5
+      },
+      "kind": "view",
+      "object_id": "c57c378f40404b97aa8695b18765d275"
+    },
+    "case": {
+      "context": {
+        "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+        "connection_id": "connection_f66e3a2aff5a43148dd1c566957410f4",
+        "project_generation": 5
+      },
+      "kind": "case",
+      "object_id": "e422b4c5a0844857b4cb354bbafab3b0"
+    },
+    "model": {
+      "session_id": "session_899e07a087294b18874338c6b30ec4f8",
+      "revision_id": "revision_66b3f10fc2ed4b82a6b25f5ba76a07a0"
+    },
+    "displayed_well_version": 1,
+    "exported_well_version": 0
+  },
+  "runner_checks": {
+    "count": 64,
+    "failed": 0
+  },
+  "limits": [
+    "The image shows a filtered parent working case with displayed well version 1.",
+    "The child schedule consumes the immutable completion export from well version 0.",
+    "The image alone does not establish connection values or simulator execution."
+  ],
+  "review_method": "Read the event records, join the issued references, and inspect the actual PNG. No native process was launched."
+}

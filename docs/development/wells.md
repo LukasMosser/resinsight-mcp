@@ -3,7 +3,7 @@
 P09 connects modeled well paths to fixed simulator input revisions.
 A completion connects a well to reservoir cells.
 Native edits and simulator input publication remain separate operations.
-This page records development evidence before the services are complete.
+This page records the maintained services and their bounded native acceptance.
 
 ## Native feasibility
 
@@ -146,7 +146,7 @@ It exited with status `-15`, and the probe confirmed its absence.
 The screenshot shows the grid and `P09INPUT` label at the intended column.
 The numeric trajectory and completion records establish subsurface geometry separately.
 The screenshot displays the imported `DX_1` property, which has the expected constant value of 1,000 feet.
-This experiment establishes native feasibility, while maintained well services and full P09 acceptance remain pending.
+This earlier experiment established native feasibility before the maintained service acceptance described below.
 
 ![Prepared input grid and modeled well](evidence/p09/prepared-input-validated/prepared-input.png)
 
@@ -183,7 +183,7 @@ Generation comments describe the inputs originally used to generate a model.
 `read_specification()` recovers those inputs and does not establish a later edited schedule.
 The stored parser-validated input graph defines the current simulator schedule.
 The native service implements these interfaces through the session's existing verified RIPS connection.
-The schedule implementation proceeds independently against the same records and `CompletionSource` protocol.
+The schedule service consumes immutable exports through the same records and `CompletionSource` protocol.
 
 ## Native service ownership
 
@@ -192,6 +192,7 @@ The case depends on these staged source files throughout that service lifetime.
 MCP disconnect does not end this lifetime while the application survives.
 Cleanup errors remain visible, and closed working cases lose their supported source lifetime.
 Close waits for active service calls and rejects new work before removing staged sources.
+
 Repeated close calls return the same cleanup result.
 Saved-project restoration of these in-memory corner-point grids is not established by P09.
 Launcher recovery must handle this lifetime before advertising integrated well tools.
@@ -207,5 +208,48 @@ Public service tests use real workspace storage and session coordination with co
 They cover creation, update, immutable exports, fresh references, depth signs, changed geometry, invalid cells, uncertain updates, artifact identity, and source cleanup.
 Failed native result validation remains inside session ownership and retires the connection with an `UNKNOWN` outcome.
 Refreshed inventories replace old address mappings before the service accepts new references.
-Those controlled tests do not establish real application acceptance.
-The maintained service's native acceptance remains a separate required check.
+Those controlled tests remain separate from real application acceptance.
+The [integrated checks](evidence/p09/integrated/README.md) record the shared suite and independent service review.
+
+## Maintained service acceptance
+
+The final [combined trial](evidence/p09/service/README.md) passed all 64 checks on September 9, 2026.
+It used service source `d862ec79f0dcee26ff88782c3db241c0ba191f1d` and native source `119850cfcfc761b5d4deffce42910c74e5853214`.
+The runner is `tests/resinsight/modeled_wells/service_probe.py`.
+It used one owned ResInsight process and the public well, schedule, import, workspace, and session services.
+It did not run a simulator or use an imported trajectory.
+
+The native readback preserves all 300 cell centers, 2,400 corners, volumes, and seven property arrays.
+Create and update return positive-down trajectories ending at 8,430 and 8,450 feet.
+The original immutable completion export retains version zero after the native well advances to version one.
+The schedule service consumes that same issued export through the live well service.
+It publishes a child with the exact parent revision and three parsed connections.
+The [connection table](evidence/p09/service/trial-04/connections.md) compares native and parsed FIELD values.
+
+The parsed child retains the parent geometry, properties, report dates, injector events, and initial producer control.
+Its requested OPEN BHP control starts at report one and remains at report two.
+The BHP target is `1200.1234567890123` psia.
+Stored parent metadata and parsed parent values remain unchanged after publication.
+Stale well versions and a well without active completions fail clearly.
+
+Native geometry and reference completion comparisons use relative tolerance `1e-6` for floating-point storage.
+The cell-depth comparison also allows `0.001` feet absolute tolerance.
+Native property readback allows `1e-8` absolute tolerance.
+Parsed completion values allow four machine epsilons relative tolerance and zero absolute tolerance.
+OPM connection factors and permeability-length values use relative tolerance `1e-12` after conversion to SI units, with zero absolute tolerance.
+Cell identities, controls, references, and parent lineage remain exact checks.
+
+The accepted image shows the J=5 display slice through PROD, with PERMX from 50 to 500 mD.
+Its vertical scale is 20, and its legend, slice bounds, property, and explicit camera are read back before capture.
+The native display offset uses the full grid's center, so the slice target is `(0, -500, 0)`.
+ResInsight ties orthographic eye distance to view height and field of view.
+The runner computes that distance before setting the camera and retains strict readback checks.
+Opaque cells hide the interior well segment, whose cell intersections are established by numeric records.
+
+![Accepted native PERMX slice through PROD](evidence/p09/service/trial-04/serviceP09_PROD_J5_slice_PERMX_(mD)_3D_View_PERMX.png)
+
+The snapshot record identifies the displayed native well as version one and the consumed completion export as version zero.
+Its issued case and view references agree with the snapshot project and exact parent revision.
+Owned process 5412 exited with status `-15`, and its PID was absent afterward.
+Detach and staged-source cleanup both succeeded.
+The [independent numerical review](evidence/p09/service/trial-04/independent-numerical-review.json) and [visual review](evidence/p09/service/trial-04/independent-visual-lifecycle-review.json) accepted these bounded results.

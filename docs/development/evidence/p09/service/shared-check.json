@@ -1,0 +1,36 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "scripts/check.py"
+  ],
+  "repository_commit": "d862ec79f0dcee26ff88782c3db241c0ba191f1d",
+  "application_source_changed": false,
+  "working_changes": [
+    "docs/development/wells.md",
+    "docs/development/evidence/p09/service/"
+  ],
+  "documentation_dependencies": {
+    "source_commit": "7825d2515691f9a34bf21aee9a362a843cadaf62",
+    "copied_for_local_validation": [
+      "docs/development/evidence/p09/integrated/",
+      "docs/development/evidence/p09/browser/"
+    ],
+    "ownership": "These existing lead-owned evidence directories are excluded from the agent handback."
+  },
+  "result": "passed",
+  "tests_passed": 508,
+  "checks": [
+    "Ruff",
+    "formatting",
+    "ty",
+    "pytest",
+    "strict MkDocs"
+  ],
+  "earlier_attempts": {
+    "shared-check-sandbox.log": "uv cache access was denied before checks started.",
+    "shared-check-missing-docs-dependency.log": "Application checks passed; strict docs required the existing linked browser evidence."
+  }
+}
