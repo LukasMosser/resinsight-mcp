@@ -435,3 +435,47 @@ def test_native_default_reference_depth_uses_first_new_connection(tmp_path: Path
         declaration = next(record for record in deck["WELSPECS"] if record[0].value == "PROD")
         assert {item.name(): item for item in declaration}["REF_DEPTH"].defaulted
         assert schedule.get_well("PROD", 0).pos()[2] / 0.3048 == pytest.approx(8335.0)
+
+
+def test_native_roundoff_is_accepted_without_changing_exported_values(tmp_path: Path) -> None:
+    case = case_for(tmp_path)
+    export = case.export
+    perforation = export.modeled_well.definition.perforations[0].model_copy(
+        update={"start_md_ft": 8326.0, "end_md_ft": 8424.0}
+    )
+    definition = export.modeled_well.definition.model_copy(update={"perforations": (perforation,)})
+    actual_diameter = 0.49999999999999994
+    actual_skin = 5e-7
+    connections = (
+        export.connections[0].model_copy(update={"start_md_ft": 8326.0 - 5e-7}),
+        export.connections[1].model_copy(
+            update={"diameter_ft": actual_diameter, "skin": actual_skin}
+        ),
+        export.connections[2].model_copy(update={"end_md_ft": 8424.0 + 5e-7}),
+    )
+    case.export = CompletionExport.model_validate(
+        {
+            **export.model_dump(),
+            "modeled_well": export.modeled_well.model_copy(update={"definition": definition}),
+            "connections": connections,
+        }
+    )
+    child = value(case.service().publish(case.request())).prepared.revision
+    with case.imports.materialize(child.model) as materialized:
+        deck, schedule = parsed(materialized.entrypoint)
+        rows = [
+            record
+            for keyword in deck
+            if keyword.name == "COMPDAT"
+            for record in keyword
+            if record[0].value == "PROD"
+        ]
+        middle = {item.name(): item for item in rows[1]}
+        assert middle["DIAMETER"].get_raw_data_list()[0] == actual_diameter
+        assert middle["SKIN"].get_raw_data_list()[0] == pytest.approx(
+            actual_skin, rel=4 * sys.float_info.epsilon, abs=0.0
+        )
+        assert [connection.pos for connection in schedule.get_well("PROD", 0).connections()] == [
+            (4, 4, layer) for layer in range(3)
+        ]
+    assert value(case.store.get_revision(case.parent.model)) == case.parent

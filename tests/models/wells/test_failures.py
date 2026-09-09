@@ -301,3 +301,25 @@ TSTEP
         update={"wells": (requested.wells[0].model_copy(update={"export": export.artifact}),)}
     )
     rejected(case, request, "report zero", export)
+
+
+@pytest.mark.parametrize("field", ["start_md_ft", "end_md_ft", "diameter_ft", "skin"])
+def test_native_difference_beyond_tolerance_does_not_publish(tmp_path: Path, field: str) -> None:
+    case = case_for(tmp_path)
+    connection = case.export.connections[0]
+    perforation = case.export.modeled_well.definition.perforations[0]
+    outside = {
+        "start_md_ft": perforation.start_md_ft - 2e-6,
+        "end_md_ft": perforation.end_md_ft + 2e-6,
+        "diameter_ft": perforation.diameter_ft + 2e-6,
+        "skin": perforation.skin + 2e-6,
+    }
+    case.export = case.export.model_copy(
+        update={
+            "connections": (
+                connection.model_copy(update={field: outside[field]}),
+                *case.export.connections[1:],
+            ),
+        }
+    )
+    rejected(case, case.request(), "perforation")

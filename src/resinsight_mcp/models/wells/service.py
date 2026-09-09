@@ -120,12 +120,14 @@ def _check_export(edit: _Edit, materialized: MaterializedModel) -> None:
         if connection.cell not in active or connection.status != WellStatus.OPEN:
             raise _invalid("Every exported connection must identify an active cell and be OPEN.")
         if not any(
-            interval.start_md_ft
+            interval.start_md_ft - 1e-6
             <= connection.start_md_ft
             < connection.end_md_ft
-            <= interval.end_md_ft
-            and interval.diameter_ft == connection.diameter_ft
-            and interval.skin == connection.skin
+            <= interval.end_md_ft + 1e-6
+            and math.isclose(
+                interval.diameter_ft, connection.diameter_ft, rel_tol=1e-6, abs_tol=1e-6
+            )
+            and math.isclose(interval.skin, connection.skin, rel_tol=1e-6, abs_tol=1e-6)
             for interval in definition.perforations
         ):
             raise _invalid("Connection intervals, diameter, and skin must match a perforation.")

@@ -16,8 +16,15 @@ Every export must name the exact parent revision and its coordinate frame, inclu
 Requested well names must already exist at report zero.
 Distinct exports cannot request the same well name twice.
 Each connection must identify an active cell and use OPEN status.
-Its measured-depth interval, diameter, and skin must match one supplied perforation interval.
+Its measured-depth interval, diameter, and skin must match one supplied perforation interval within the native consistency tolerances.
 The exported wellhead must fit the parent grid.
+
+Native diameter and skin comparisons use relative and absolute tolerances of `1e-6`.
+Measured-depth containment allows an absolute `1e-6` feet at each perforation boundary.
+Connection endpoints must still increase strictly.
+Cells, names, roles, and report indices remain exact.
+The child retains the actual exported values without rounding them to the requested perforation values.
+These native consistency tolerances are separate from the four-epsilon untouched-input comparison below.
 
 The service retains the parent group and preferred phase in WELSPECS.
 It applies the exported wellhead and reference depth.
@@ -110,19 +117,19 @@ The local branch includes the reviewed P08 dependency for its generated referenc
 Its integration resolves only two shared guide conflicts and preserves the base launcher description.
 The P08 dependency commit is separate from the P09 delivery commit.
 
-On September 9, 2026, the focused command passed 29 tests.
+On September 9, 2026, the focused command passed 34 tests.
 
 ```text
 UV_CACHE_DIR=/private/tmp/resinsight-review-uv-cache uv run --locked --no-sync pytest -q tests/models/wells
-29 passed in 13.86s
+34 passed in 15.87s
 ```
 
-The shared command passed Ruff, formatting, ty, 472 tests, and the strict documentation build.
+The shared command passed Ruff, formatting, ty, 477 tests, and the strict documentation build.
 
 ```text
 UV_CACHE_DIR=/private/tmp/resinsight-review-uv-cache uv run --locked python scripts/check.py
-472 passed in 62.64s
-Documentation built in 0.91 seconds
+477 passed in 56.08s
+Documentation built in 1.01 seconds
 ```
 
 The environment used Python 3.12.13, uv 0.9.18, OPM 2025.10, and Pydantic 2.13.5.
