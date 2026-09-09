@@ -2,6 +2,7 @@
 
 from collections.abc import Callable, Sequence
 from math import isclose
+from pathlib import Path
 from typing import cast
 
 import rips
@@ -9,7 +10,6 @@ from pydantic import ValidationError
 
 from resinsight_mcp.contracts.engineering import CellIndex, CoordinateFrame
 from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, MutationEffect
-from resinsight_mcp.contracts.sessions import ProcessIdentity
 from resinsight_mcp.contracts.wells import WellStatus
 from resinsight_mcp.models.imports import MaterializedModel, ModelInspection
 from resinsight_mcp.models.wells.records import (
@@ -130,6 +130,8 @@ def _geometry(well: Well) -> Geometry:
 
 
 def _inspect(well: Well, coordinates: CoordinateFrame) -> NativeWell:
+    if not isinstance(well, rips.ModeledWellPath):
+        raise _fail("The native path is not a modeled well.", ErrorCode.STALE_OBJECT)
     geometry = _geometry(well)
     if well.descendants(rips.WellPathFracture) or well.descendants(rips.Fishbones):
         raise _fail(
@@ -238,42 +240,59 @@ def _read[T](application: RipsApplication, action: Callable[[], T]) -> T:
 
 
 class RipsWellBackend:
-    def __init__(self) -> None:
-        self._loaded_geometry: dict[tuple[ProcessIdentity, str], tuple[float, ...]] = {}
-
     def load(self, access: ApplicationAccess, materialized: MaterializedModel) -> str:
         application = _application(access)
         project = _project(application)
 
         def change() -> str:
-            case = project.load_prepared_input_grid(path=str(materialized.entrypoint))
+            grid = materialized.directory.parent / "grid.EGRID"
+            project.export_prepared_input_grid(
+                path=str(materialized.entrypoint), output_path=str(grid)
+            )
+            case = project.load_case(path=str(grid), grid_only=True)
             loaded = case.import_properties(file_names=[str(materialized.property_file)])
             if set(loaded.values) != {
                 name for name, _ in materialized.inspection.properties.keyword_arrays()
             }:
                 raise _fail("The native case did not import every prepared property.")
             _verify_values(case, materialized.inspection)
-            address = str(case.address())
-            self._loaded_geometry[(application.process, address)] = _corners(case)
-            return address
+            case.create_view()
+            return str(case.address())
 
         return _mutate(application, change)
 
     def verify_case(
-        self, access: ApplicationAccess, address: str, expected: ModelInspection
+        self,
+        access: ApplicationAccess,
+        address: str,
+        materialized: MaterializedModel,
+        corners: tuple[float, ...],
     ) -> None:
+        actual = self.case_geometry(access, address, materialized)
+        if not _values_match(actual, corners):
+            raise _fail("The prepared native corner geometry changed.", ErrorCode.STALE_OBJECT)
+
+    def case_geometry(
+        self, access: ApplicationAccess, address: str, materialized: MaterializedModel
+    ) -> tuple[float, ...]:
         application = _application(access)
-        baseline = self._loaded_geometry.get((application.process, address))
-        if baseline is None:
-            raise _fail("The case was not loaded by this well backend.", ErrorCode.STALE_OBJECT)
 
-        def inspect() -> None:
+        def inspect() -> tuple[float, ...]:
             case = _one(_project(application).cases(), address)
-            _verify_values(case, expected)
-            if not _values_match(_corners(case), baseline):
-                raise _fail("The prepared native corner geometry changed.", ErrorCode.STALE_OBJECT)
+            grid = materialized.directory.parent / "grid.EGRID"
+            if case.file_path is None or Path(case.file_path) != grid:
+                raise _fail("The native case uses another source file.", ErrorCode.STALE_OBJECT)
+            if grid.resolve() != grid or not grid.is_file():
+                raise _fail("The prepared grid source is unavailable.", ErrorCode.STALE_OBJECT)
+            _verify_values(case, materialized.inspection)
+            corners = _corners(case)
+            if len(corners) != 24 * len(materialized.inspection.cell_depths_ft):
+                raise _fail(
+                    "The native case did not return every cell corner.", ErrorCode.STALE_OBJECT
+                )
+            return corners
 
-        _read(application, inspect)
+        return _read(application, inspect)
 
     def create(
         self, access: ApplicationAccess, case_address: str, definition: ModeledWellDefinition

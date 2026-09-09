@@ -318,6 +318,32 @@ def inspect(path: Path) -> ModelInspection:
     )
 
 
+def _item_values(item: Any) -> tuple[Any, ...]:
+    if not len(item):
+        return (item.name(), ())
+    if item.is_uda():
+        values = tuple(
+            value.value if value.is_double() or value.is_string() else None
+            for value in (item.get_uda(index) for index in range(len(item)))
+        )
+    elif item.is_double():
+        values = tuple(item.get_raw_data_list())
+    else:
+        values = tuple(item.get_data_list())
+    return (item.name(), item.defaulted, values)
+
+
+def _source_values(path: Path) -> tuple[Any, ...]:
+    import opm.io.deck  # noqa: F401
+    from opm.io.parser import ParseContext, Parser, action
+
+    deck = Parser().parse(str(path), ParseContext([("*", action.throw)]))
+    return tuple(
+        (keyword.name, tuple(tuple(_item_values(item) for item in record) for record in keyword))
+        for keyword in deck
+    )
+
+
 def main() -> None:
     if sys.argv[1:] == ["--check-dependencies"]:
         try:
@@ -329,6 +355,10 @@ def main() -> None:
     output = Path(sys.argv[2])
     try:
         inspection = inspect(Path(sys.argv[1]))
+        if len(sys.argv) > 3 and _source_values(Path(sys.argv[1])) != _source_values(
+            Path(sys.argv[3])
+        ):
+            raise ValueError("Persistent parsed input values differ from the fixed model sources.")
         payload = {"inspection": inspection.model_dump(mode="json")}
     except (ValueError, RuntimeError, IndexError, KeyError, ImportError) as error:
         payload = {"error": str(error)}

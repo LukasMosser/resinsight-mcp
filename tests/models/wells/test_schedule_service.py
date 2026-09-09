@@ -77,6 +77,7 @@ def completion(parent: ModelRevision, name: str = "PROD") -> CompletionExport:
     modeled = ModeledWell(
         binding=PreparedCase(
             model=parent.model,
+            receipt=ArtifactRef(session_id=parent.model.session_id, artifact_id=ArtifactId.new()),
             case=ObjectRef(
                 context=context,
                 kind=ObjectKind.CASE,

@@ -49,6 +49,65 @@ def request_model(store: SqliteWorkspaceStore, source: Path) -> ImportRequest:
     )
 
 
+def test_persistent_sources_reopen_through_a_new_store(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, tmp_path: Path
+) -> None:
+    service = OpmImportService(store)
+    model = value(service.import_model(request_model)).prepared.revision.model
+    directory = tmp_path / "persistent"
+    first = service.materialize_persistent(model, directory)
+    shutil.rmtree(request_model.source_root)
+    reopened = OpmImportService(SqliteWorkspaceStore.open(tmp_path / "workspace"))
+    actual = reopened.reopen_persistent(model, directory)
+    assert actual == first
+    assert actual.inspection.active_cells[0] == CellIndex(i=0, j=0, k=0)
+    assert actual.inspection.properties.permx_millidarcy[0] == pytest.approx(500.0, rel=1e-12)
+
+
+@pytest.mark.parametrize("change", ["property", "control", "source-link"])
+def test_persistent_sources_reject_changed_values_and_redirected_files(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, tmp_path: Path, change: str
+) -> None:
+    service = OpmImportService(store)
+    model = value(service.import_model(request_model)).prepared.revision.model
+    directory = tmp_path / "persistent"
+    materialized = service.materialize_persistent(model, directory)
+    if change == "property":
+        path = materialized.directory / "includes" / "grid.inc"
+        path.write_text(path.read_text().replace("500", "501"))
+    elif change == "control":
+        path = materialized.directory / "includes" / "schedule.inc"
+        path.write_text(path.read_text().replace("20000", "20001"))
+    else:
+        path = materialized.directory / "includes" / "props.inc"
+        moved = tmp_path / "moved-properties.inc"
+        path.rename(moved)
+        path.symlink_to(moved)
+    with pytest.raises(ContractError, match="persistent|Persistent"):
+        service.reopen_persistent(model, directory)
+
+
+@pytest.mark.parametrize("kind", ["relative", "existing", "linked-parent"])
+def test_persistent_materialization_rejects_invalid_destinations_before_writes(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, tmp_path: Path, kind: str
+) -> None:
+    service = OpmImportService(store)
+    model = value(service.import_model(request_model)).prepared.revision.model
+    actual = tmp_path / "actual"
+    actual.mkdir()
+    if kind == "relative":
+        destination = Path("relative-model-directory")
+    elif kind == "existing":
+        destination = actual
+    else:
+        linked = tmp_path / "linked"
+        linked.symlink_to(actual, target_is_directory=True)
+        destination = linked / "new-model"
+    with pytest.raises(ContractError):
+        service.materialize_persistent(model, destination)
+    assert list(actual.iterdir()) == []
+
+
 def replace(source: Path, name: str, old: str, new: str) -> None:
     path = source / name
     text = path.read_text()
