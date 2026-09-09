@@ -55,3 +55,8 @@ Production MCP model creation, simulation, and result loading remain separate in
 The service cleanup tests also cover failed cleanup after successful publication and after delegated import failures.
 They preserve the created revision identity and retain `UNKNOWN` whenever publication may have happened.
 No application source change was needed for these cases.
+
+The [documentation review](evidence/p08/browser/visual-review.json) covers nine pages, the numerical table, and the accepted native image.
+It checked 61 local links and rechecked the shortened example and model capability row.
+All links returned HTTP 200, with no page errors, missing images, or document overflow.
+The [guide commit log](evidence/p08/browser/guide-commit.log) records the passing repository hook after integration.

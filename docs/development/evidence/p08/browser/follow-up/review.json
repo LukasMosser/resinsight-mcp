@@ -1,0 +1,128 @@
+{
+  "reviewed_at": "2026-09-09T08:12:48.474Z",
+  "source_commit": "5d98f14cb46b16b73ea7f606ec68ee078ddd6573",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/synthetic-models/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "model-guide.png"
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "operation-map.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08-native/",
+      "status": 200
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/views/",
+      "status": 200
+    },
+    {
+      "path": "/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/views/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}

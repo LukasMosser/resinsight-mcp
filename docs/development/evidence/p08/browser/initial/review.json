@@ -1,0 +1,383 @@
+{
+  "reviewed_at": "2026-09-09T08:06:22.426Z",
+  "source_commit": "18968f830ee2107bb2f249a4f0f0cfa014c00677",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 745
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "model-guide.png"
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": [
+          {
+            "tag": "CODE",
+            "width": 688,
+            "scroll_width": 745
+          }
+        ]
+      },
+      "images": [],
+      "screenshot": "model-limits.png"
+    },
+    {
+      "path": "/development/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "operation-map.png"
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": []
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "model-implementation.png"
+    },
+    {
+      "path": "/development/evidence/p08/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "numerical-evidence.png"
+    },
+    {
+      "path": "/development/evidence/p08-native/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:59936/development/evidence/p08-native/trial-02/images/P08_generated_FIELD_pressure_%28psia%29_day_2_3D_View_PRESSURE_02_03_Jan_2015.png",
+          "complete": true,
+          "width": 1400,
+          "height": 1000
+        }
+      ],
+      "screenshot": "native-evidence.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/views/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/views/",
+      "status": 200
+    },
+    {
+      "path": "/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/",
+      "status": 200
+    },
+    {
+      "path": "/development/local-setup/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08-native/",
+      "status": 200
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/project-organization/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/releases/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/comparison.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/numerical-values.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p07/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-source-record.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-source-record.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-receipt.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/input-semantics.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/image-inspect.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/flow-version.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/docker-version.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-1/flow.command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-1/flow.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-1/SPE1.PRT",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-2/flow.command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-2/flow.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/p07-2/SPE1.PRT",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-1/flow.command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-1/flow.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-1/SYNTHETIC.PRT",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-2/flow.command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-2/flow.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/generated-2/SYNTHETIC.PRT",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/checks.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/checks.log",
+      "status": 200
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
