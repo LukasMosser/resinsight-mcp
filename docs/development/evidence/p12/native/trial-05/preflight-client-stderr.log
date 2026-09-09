@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 472, in <module>
+    main()
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 468, in main
+    trial(arguments)
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 321, in trial
+    output.mkdir(exist_ok=False)
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/private/tmp/resinsight-p12-native-20260909/trial-05'

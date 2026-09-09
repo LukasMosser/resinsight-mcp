@@ -1,0 +1,7 @@
+Using Python 3.12.13 environment at: /private/tmp/resinsight-p13-installed-runtime/environment
+Resolved 1 package in 16ms
+Prepared 1 package in 18ms
+Uninstalled 1 package in 20ms
+Installed 1 package in 4ms
+ - resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-p13-installed-runtime/repair-01/dist/resinsight_mcp-0.1.0-py3-none-any.whl)
+ + resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-p13-installed-runtime/repair-02/dist/resinsight_mcp-0.1.0-py3-none-any.whl)

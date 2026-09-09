@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-09",
+  "source_commit": "61fd80f",
+  "working_changes": "Final curated seven-trial native evidence and matching result guides.",
+  "browser": "Chrome",
+  "origin": "http://127.0.0.1:8937",
+  "pages": [
+    "/development/evidence/p12/native/#trial-07",
+    "/development/results/#evidence-and-limits",
+    "/results/#requirements-and-identity",
+    "/results/#summary-plots-and-receipts"
+  ],
+  "checks": [
+    "Readable headings, body text, and embedded images",
+    "Seven trial histories and exact native build provenance present",
+    "Final lead acceptance linked",
+    "Final summary title rendering described accurately",
+    "Visible summary units distinguished from grid metadata units",
+    "Summary-first import order matches implementation"
+  ],
+  "result": "passed",
+  "cleanup": "The owned review tab and localhost server closed."
+}

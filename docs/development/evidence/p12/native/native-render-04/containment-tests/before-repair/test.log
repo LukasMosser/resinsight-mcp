@@ -1,0 +1,61 @@
+Detected locale "C" with character encoding "US-ASCII", which is not UTF-8.
+Qt depends on a UTF-8 locale, and has switched to "UTF-8" instead.
+If this causes problems, reconfigure your locale. See the locale(1) manual
+for more information.
+Note: Google Test filter = RigHexIntersectionTools.point*
+[==========] Running 6 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 6 tests from RigHexIntersectionTools
+[ RUN      ] RigHexIntersectionTools.pointInsideAtFaceCenter
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:38: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 0.5 ), unitCellCorners() )
+  Actual: false
+Expected: true
+[  FAILED  ] RigHexIntersectionTools.pointInsideAtFaceCenter (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointInsideAtFaceTriangleEdge
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:44: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.25, 0.5 ), corners )
+  Actual: false
+Expected: true
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:45: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.25, 0.75, 0.5 ), corners )
+  Actual: false
+Expected: true
+[  FAILED  ] RigHexIntersectionTools.pointInsideAtFaceTriangleEdge (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointOutsideWithZeroOrTwoBoundaryCrossings
+[       OK ] RigHexIntersectionTools.pointOutsideWithZeroOrTwoBoundaryCrossings (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentWithWarpedFace
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:67: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0.5, 0.5, 1.5 ), corners )
+  Actual: true
+Expected: false
+[  FAILED  ] RigHexIntersectionTools.pointContainmentWithWarpedFace (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentAtSharedCellEdge
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:77: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 0, 0.5, 0 ), corners )
+  Actual: false
+Expected: true
+[  FAILED  ] RigHexIntersectionTools.pointContainmentAtSharedCellEdge (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentAtFieldCoordinates
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:89: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 9500, 9500, -8400 ), corners )
+  Actual: false
+Expected: true
+/tmp/resinsight-p01-build/source/ApplicationLibCode/UnitTests/RigHexIntersectionTools-Test.cpp:90: Failure
+Value of: RigHexIntersectionTools::isPointInCell( cvf::Vec3d( 9250, 9250, -8400 ), corners )
+  Actual: false
+Expected: true
+[  FAILED  ] RigHexIntersectionTools.pointContainmentAtFieldCoordinates (0 ms)
+[----------] 6 tests from RigHexIntersectionTools (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+[  FAILED  ] 5 tests, listed below:
+[  FAILED  ] RigHexIntersectionTools.pointInsideAtFaceCenter
+[  FAILED  ] RigHexIntersectionTools.pointInsideAtFaceTriangleEdge
+[  FAILED  ] RigHexIntersectionTools.pointContainmentWithWarpedFace
+[  FAILED  ] RigHexIntersectionTools.pointContainmentAtSharedCellEdge
+[  FAILED  ] RigHexIntersectionTools.pointContainmentAtFieldCoordinates
+
+ 5 FAILED TESTS

@@ -1,0 +1,72 @@
+{
+  "reviewed_at": "2026-09-09T19:30:19.873627+00:00",
+  "acceptance_complete": true,
+  "reviewer": "Lead agent",
+  "automated_record": "completed.json",
+  "numerical_review": [
+    {
+      "record": "baseline-native",
+      "cell_values": 1800,
+      "curve_values": 6,
+      "corner_coordinates": 7200,
+      "maximum_difference": 0
+    },
+    {
+      "record": "scenario-native",
+      "cell_values": 1800,
+      "curve_values": 6,
+      "corner_coordinates": 7200,
+      "maximum_difference": 0
+    },
+    {
+      "record": "baseline-restored-native",
+      "cell_values": 1800,
+      "curve_values": 6,
+      "corner_coordinates": 7200,
+      "maximum_difference": 0
+    },
+    {
+      "record": "scenario-restored-native",
+      "cell_values": 1800,
+      "curve_values": 6,
+      "corner_coordinates": 7200,
+      "maximum_difference": 0
+    },
+    {
+      "comparison": "pressure-comparison",
+      "changed": 259,
+      "minimum": 0.0,
+      "maximum": 87.21044921875
+    },
+    {
+      "comparison": "swat-comparison",
+      "changed": 162,
+      "minimum": -6.521493196487427e-05,
+      "maximum": 0.0
+    },
+    {
+      "comparison": "well-comparison",
+      "changed": 2,
+      "minimum": 470.05029296875,
+      "maximum": 498.1962890625
+    }
+  ],
+  "visual_review": {
+    "images": [
+      "well-plot.png",
+      "field-plot.png",
+      "baseline-pressure.png",
+      "scenario-pressure.png",
+      "baseline-swat.png",
+      "scenario-swat.png"
+    ],
+    "result": "All six images inspected directly. Grid pairs retain common cameras, legends, reports, and source overlays. Both summaries show complete result titles, quantities, units, readable dates, and curves at requested dimensions.",
+    "unit_limit": "Grid pressure units are verified in accompanying metadata. The native grid legend does not print psi. Summary images print their units."
+  },
+  "owned_process": {
+    "pid": 23148,
+    "start_marker": "1788982079.518138"
+  },
+  "same_process_exists": false,
+  "scope": "P12 native result acceptance on the recorded macOS build. Full public P13 workflow remains separate."
+}

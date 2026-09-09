@@ -1,0 +1,8 @@
+{
+  "complete_native_acceptance": false,
+  "grid_images": "All four images show the intended result, report, property, shared legend, and shared camera.",
+  "summary_images": "Both show readable curves, units, and dates across the one-cell page, but omit the requested result title.",
+  "root_review": "Root independently viewed both summary PNGs and confirmed readable layout, dates, and units, with missing result titles.",
+  "preflight": "The recorder first created the required new output directory. That attempt failed before native launch. Its two logs are preserved. The empty directory was removed before the unchanged command ran.",
+  "process_cleanup": "Public owned termination succeeded and independent psutil verification found the owned PID absent."
+}

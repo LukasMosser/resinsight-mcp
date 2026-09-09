@@ -1,0 +1,127 @@
+"""Review saved P12 trial records without connecting to an application."""
+
+import json
+from math import isclose
+from pathlib import Path
+
+from PIL import Image
+
+
+root = Path("/private/tmp/resinsight-p12-native-acceptance/docs/development/evidence/p12/native/trial-03")
+
+
+def read(name):
+    return json.loads((root / f"{name}.json").read_text())
+
+
+reviews = {}
+for label in ("baseline", "scenario"):
+    dataset = read(f"{label}-dataset")
+    result = read(f"{label}-bundle")["result"]
+    expected_cells = [[0, cell["i"], cell["j"], cell["k"]] for cell in dataset["active_cells"]["cells"]]
+    for suffix in ("native", "restored-native"):
+        name = f"{label}-{suffix}"
+        native = read(name)
+        assert native["result"] == result
+        assert native["native_dimensions"] == dataset["active_cells"]["dimensions"]
+        assert native["native_active_cells"] == expected_cells
+        assert native["source_geometry"] == dataset["geometry"]
+        assert native["native_corners_opm_order"] == dataset["geometry"]["cell_corners"]
+        differences = [v for cell in native["corner_differences"] for point in cell for v in point]
+        assert all(value == 0 for value in differences)
+        properties = {row["name"]: row for row in dataset["cell_properties"]}
+        reports = dataset["report_series"]["reports"]
+        assert len(native["cell_arrays"]) == len(properties) * len(reports)
+        for row in native["cell_arrays"]:
+            prop = properties[row["property"]]
+            index = reports.index(row["report"])
+            assert row["source_unit"] == prop["unit"]
+            assert row["source"] == prop["values"][index]
+            assert row["native"] == row["source"]
+            assert all(value == 0 for value in row["differences"])
+        assert len(native["curves"]) == len(dataset["curves"])
+        for row, source in zip(native["curves"], dataset["curves"], strict=True):
+            address = source["keyword"]
+            if source["scope"] == "well":
+                address += ":" + source["well_name"]
+            assert row["address"] == address
+            assert row["source_unit"] == source["unit"]
+            assert row["source"] == source["values"]
+            assert row["native_report_values"] == source["values"]
+            assert all(value == 0 for value in row["differences"])
+        reviews[name] = {
+            "dimensions": native["native_dimensions"],
+            "active_cells": len(expected_cells),
+            "corner_coordinates_checked": len(differences),
+            "maximum_corner_difference": max(abs(v) for v in differences),
+            "cell_arrays_checked": len(native["cell_arrays"]),
+            "cell_values_checked": sum(len(row["native"]) for row in native["cell_arrays"]),
+            "maximum_cell_value_difference": 0,
+            "summary_curves_checked": len(native["curves"]),
+            "summary_values_checked": sum(len(row["source"]) for row in native["curves"]),
+            "maximum_summary_value_difference": 0,
+            "native_elapsed_days": native["native_elapsed_days"],
+            "native_dates": native["native_dates"],
+            "summary_report_indices": native["summary_report_indices"],
+        }
+
+comparisons = {}
+for name in ("pressure", "swat", "well"):
+    comparison = read(f"{name}-comparison")
+    baseline, scenario = comparison["baseline"], comparison["scenario"]
+    assert comparison["differences"] == [
+        b - a for a, b in zip(baseline["values"], scenario["values"], strict=True)
+    ]
+    assert baseline["unit"] == scenario["unit"]
+    comparisons[name] = {
+        "unit": baseline["unit"],
+        "minimum_difference": min(comparison["differences"]),
+        "maximum_difference": max(comparison["differences"]),
+    }
+    if name != "well":
+        left, right = read(f"baseline-{name}"), read(f"scenario-{name}")
+        actual_legend = left["context"]["legend"]
+        assert actual_legend == right["context"]["legend"]
+        assert all(
+            isclose(actual_legend[bound], comparison["legend"][bound], rel_tol=1e-14)
+            for bound in ("minimum", "maximum")
+        )
+        assert left["context"]["camera"] == right["context"]["camera"]
+        assert left["context"]["report_time"] == right["context"]["report_time"]
+        assert left["context"]["property"]["unit"] == baseline["unit"]
+        comparisons[name]["legend"] = comparison["legend"]
+        comparisons[name]["native_legend"] = actual_legend
+        comparisons[name]["legend_relative_tolerance"] = 1e-14
+        comparisons[name]["shared_camera"] = True
+        comparisons[name]["report_time"] = left["context"]["report_time"]
+
+expected_results = [read(f"{label}-bundle")["result"] for label in ("baseline", "scenario")]
+restored = read("restored")["bindings"]
+assert [row["result"] for row in restored] == expected_results
+assert read("checkpoint")["result_ids"] == [row["result_id"] for row in expected_results]
+assert read("stale-reference")["outcome"]["status"] == "failure"
+plot = read("well-plot")
+edit = read("well-plot-edit")
+assert edit["edit"]["effect"] == "applied"
+assert edit["edit"]["curve"] == plot["curve"]
+assert edit["observation"]["outcome"]["value"] == plot
+images = {}
+for path in root.glob("*.png"):
+    with Image.open(path) as image:
+        image.load()
+        assert image.format == "PNG" and image.size == (1200, 800)
+        images[path.name] = {"width": image.width, "height": image.height, "mode": image.mode}
+assert len(images) == 5
+summary = {
+    "native_records": reviews,
+    "comparisons": comparisons,
+    "restored_results_match": True,
+    "old_reference_failure": read("stale-reference")["outcome"]["error"],
+    "summary_edit_preserved": True,
+    "decoded_images": images,
+    "complete_native_acceptance": False,
+    "visual_review": "visual-review.json rejects the unreadable summary image.",
+}
+(root / "numerical-review.json").write_text(json.dumps(summary, indent=2) + "\n")
+print("Four native records, comparisons, restored identities, and five decoded PNGs checked.")
+print("Complete native acceptance remains false because the summary image failed visual review.")

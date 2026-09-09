@@ -1,0 +1,83 @@
+{
+  "application_source_commit": "527d40287abef52a10456ba0dd2d739c0b7fa20b",
+  "application_source_clean_at_build": true,
+  "source_checkout": "/private/tmp/resinsight-opm-workflow",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "executable": "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "packages": {
+    "resinsight-mcp": {
+      "version": "0.1.0",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": {
+        "url": "file:///private/tmp/resinsight-p13-installed-runtime/repair-02/dist/resinsight_mcp-0.1.0-py3-none-any.whl",
+        "archive_info": {}
+      }
+    },
+    "rips": {
+      "version": "2026.9.0.1",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": {
+        "url": "file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+        "archive_info": {}
+      }
+    },
+    "opm": {
+      "version": "2025.10",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": null
+    },
+    "mcp": {
+      "version": "1.30.0",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": null
+    },
+    "grpcio": {
+      "version": "1.83.1",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": null
+    },
+    "protobuf": {
+      "version": "7.36.1",
+      "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+      "direct_url": null
+    }
+  },
+  "build_log": "../repair-02-build.log",
+  "install_log": "../repair-02-install.log",
+  "launcher_help_log": "../repair-02-launcher-help.log",
+  "native_source_commit": "70399abb9eba31f713f72028ffe94ae0be4db2c4",
+  "native_source_status": "M ThirdParty/openzgy\n M vcpkg.json",
+  "native_build": {
+    "command": [
+      "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+      "--build",
+      "/private/tmp/resinsight-p01-build/application-build",
+      "--parallel",
+      "2"
+    ],
+    "environment": {
+      "LC_ALL": "en_US.UTF-8",
+      "VCPKG_DISABLE_METRICS": "1",
+      "VCPKG_MAX_CONCURRENCY": "2",
+      "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+      "VCPKG_BINARY_SOURCES": "clear",
+      "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+      "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+    },
+    "path_prefix": [
+      "/private/tmp/resinsight-p01-build/tools/bin",
+      "/private/tmp/resinsight-p01-build/build-tools/bin"
+    ],
+    "native_commit": "70399abb9eba31f713f72028ffe94ae0be4db2c4",
+    "source_worktree": " M ThirdParty/openzgy\n M vcpkg.json\n",
+    "source_scope": "Reviewed complete multi-plot PNG capture with existing native page renderer and restored viewer state. Existing macOS dependency configuration remains.",
+    "started_at": "2026-09-09T18:46:10.185571+00:00",
+    "exit_code": 0,
+    "completed_at": "2026-09-09T18:48:06.381207+00:00"
+  },
+  "cmake": "cmake version 3.31.6\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).",
+  "cxx_compiler": "clang version 19.1.7 (/Users/runner/work/llvm-project/llvm-project/clang cd708029e0b2869e80abe31ddb175f7c35361f90)\nTarget: arm64-apple-darwin23.2.0\nThread model: posix\nInstalledDir: /private/tmp/resinsight-p01-build/compiler/LLVM-19.1.7-macOS-ARM64/bin",
+  "native_changes_since_client_generation": ".../ProjectDataModel/RimEclipseCase.cpp            |  4 +-\n .../ProjectDataModel/RimEclipseResultCase.cpp      |  4 +-\n .../ProjectDataModel/RimMultiPlot.cpp              | 68 +++++++++++++++++++---\n .../UserInterface/RiuMultiPlotBook.h               |  4 +-\n 4 files changed, 69 insertions(+), 11 deletions(-)",
+  "scope": "Offline application targeting repair and internal native multi-plot capture repair. No generated RIPS interface change. The matching noneditable RIPS wheel and other dependencies remain unchanged."
+}

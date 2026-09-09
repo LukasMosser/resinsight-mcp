@@ -1,0 +1,81 @@
+{
+  "observation_id": "observation_1f50767369614775986599e54be058f4",
+  "context": {
+    "model": {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "revision_id": "revision_404bb6b3380143a691effe661d6f7626"
+    },
+    "result_id": "result_0a9a1d40327748f9b8bcef48153143c5",
+    "grid_id": "grid_f13cd5e02a7b4c91ac4487367cfd2993",
+    "case": {
+      "context": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "connection_id": "connection_f4d436aa30e748ac86ee5a308fb1d08b",
+        "project_generation": 2
+      },
+      "kind": "case",
+      "object_id": "e3ff34c856214b328ed54c4276d7c164"
+    },
+    "view": {
+      "context": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "connection_id": "connection_f4d436aa30e748ac86ee5a308fb1d08b",
+        "project_generation": 2
+      },
+      "kind": "view",
+      "object_id": "6ab274ccab624303b5ab21d9ef79fc74"
+    },
+    "scene_version": 1,
+    "property": {
+      "name": "PRESSURE",
+      "unit": "psi"
+    },
+    "report_time": {
+      "index": 2,
+      "elapsed_days": 2.0,
+      "calendar_date": "2015-01-03"
+    },
+    "coordinates": {
+      "length_unit": "ft",
+      "depth_direction": "positive_down",
+      "datum": "SPE1 local depth datum"
+    },
+    "camera": {
+      "position": [
+        -0.0,
+        -0.0,
+        38339.28114832968
+      ],
+      "target": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "projection": "perspective",
+      "field_of_view_degrees": 40.0,
+      "parallel_scale": null
+    },
+    "vertical_exaggeration": 1.0,
+    "legend": {
+      "minimum": 4438.43212890625,
+      "maximum": 5421.6787109375
+    },
+    "filters": [],
+    "selected_wells": []
+  },
+  "image": {
+    "artifact": {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "artifact_id": "artifact_03e41db3193043f8a0c69329ec6fc283"
+    },
+    "media_type": "image/png",
+    "width": 1200,
+    "height": 800
+  },
+  "captured_at": "2026-09-09T18:32:46.087375Z"
+}

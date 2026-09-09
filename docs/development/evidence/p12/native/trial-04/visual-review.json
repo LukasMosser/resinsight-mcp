@@ -1,0 +1,14 @@
+{
+  "accepted": false,
+  "images_reviewed": [
+    "baseline-pressure.png",
+    "scenario-pressure.png",
+    "baseline-swat.png",
+    "scenario-swat.png",
+    "well-plot.png",
+    "field-plot.png"
+  ],
+  "grid_images": "All four show the requested quantity, complete result identity, well labels, matching cameras and legends. Pressure units remain in the observation metadata.",
+  "summary_images": "Both now show readable curves and quantity/unit axes. Neither shows the configured result title. Date labels overlap. The graph occupies only the upper-left portion of the requested canvas.",
+  "limitation": "Automated numerical and targeting checks passed. Complete visual acceptance remains pending review of the missing titles and incomplete layout."
+}

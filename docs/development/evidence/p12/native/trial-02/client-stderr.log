@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 423, in <module>
+    main()
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 419, in main
+    trial(arguments)
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 362, in trial
+    native_evidence(
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 148, in native_evidence
+    record(
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 55, in record
+    path.write_text(json.dumps(content, indent=2, allow_nan=False) + "\n")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type RepeatedScalarContainer is not JSON serializable

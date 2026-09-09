@@ -1,0 +1,17 @@
+{
+  "context": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "connection_id": "connection_3d7ec805a22446469f0079cd21014da8",
+    "project_generation": 0
+  },
+  "endpoint": {
+    "host": "127.0.0.1",
+    "port": 64675
+  },
+  "ownership": "owned",
+  "state": "ready",
+  "process": {
+    "pid": 80450,
+    "start_marker": "1788978402.143487"
+  }
+}

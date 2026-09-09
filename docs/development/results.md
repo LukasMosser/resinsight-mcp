@@ -101,11 +101,14 @@ It returns `EditedSummaryPlot` with an applied `SummaryPlotEditReceipt` and a se
 The receipt preserves the current application context, complete numerical curve, and native plot address.
 Image persistence or delivery failures replace only the observation outcome after confirmed plot creation.
 
-The plot title includes the result identifier, quantity, and unit.
+The service sets the plot title to include the result identifier, quantity, and unit.
 Curve normalization is disabled.
 Export targets the new plot's `MultiPlot` ancestor with a nonnegative native window identifier.
 The child summary plot has identifier `-1`, which would export every docked plot.
 A missing parent or negative window identifier fails before export.
+The selected parent uses one column and one row per page for this single-curve image.
+The service applies that layout before export and leaves other plot windows unchanged.
+
 The service exports and decodes one new PNG with the requested dimensions.
 It never returns an earlier image after an export failure.
 
@@ -126,7 +129,7 @@ The [shared check log](evidence/p12/integration/shared-check.log) records 600 pa
 Source inspection used native commit `119850cfcfc761b5d4deffce42910c74e5853214` and its generated RIPS client.
 The implementation uses `Project.load_case`, `Case.create_view`, and `Project.import_summary_case`.
 It reads `SummaryCase.available_time_steps` and `SummaryCase.summary_vector_values`.
-Plots use `SummaryPlotCollection.new_summary_plot` and `Plot.export_snapshot`.
+Plots use `SummaryPlotCollection.new_summary_plot` and `MultiPlot.export_snapshot`.
 Source inspection establishes these supported calls, not a successful runtime trial.
 
 The first native trial failed when summary import followed grid import.
@@ -134,7 +137,14 @@ The native API returned `No result returned from Method`, and public owned-proce
 Source inspection shows that normal grid readers enable summary import and that separate summary import skips an existing filename.
 This supports a duplicate-import explanation, but the failed trial did not capture intermediate native inventory.
 The fixed load order has maintained tests for both native summary import settings and duplicate-path rejection.
-A fresh native trial must establish the repaired runtime behavior.
+Later trials verify the repaired loading behavior.
+
+The [native trial record](evidence/p12/native/README.md) preserves all seven attempts and their verified process cleanup.
+Trials 03 through 07 pass native value, geometry, comparison, and reopened-project checks.
+Trial 04 also exports two distinct summary windows at different image sizes.
+Trial 07 displays the summary titles, units, dates, and full plot layout in both requested image sizes.
+The lead review establishes P12 native acceptance on the recorded macOS build.
+The saved images and review records retain these limits.
 
 ## Prepared native acceptance
 
@@ -145,7 +155,7 @@ Both results must pass the production accepted-result requirement before applica
 The probe does not create simulator jobs or change numerical acceptance records.
 
 The lead must authorize the native lane before running this command.
-Use the reviewed `cd6450ab0757a9f4643e7dd18f3d7c76745ee95e` build and its installed matching RIPS wheel.
+Use the reviewed `9c920334e338dab4908aa4dabdfae22803e70411` build and its installed matching RIPS wheel.
 The required `--expected-native-commit` accepts exactly 40 lowercase hexadecimal characters.
 The probe records expected and actual commits, then requires exact equality before native launch.
 Do not add Python, Qt, or library path overrides.
@@ -159,7 +169,7 @@ uv run --no-sync python -m tests.results.native_acceptance \
   --well PROD \
   --executable /absolute/ResInsight \
   --native-source /absolute/ResInsight-source \
-  --expected-native-commit cd6450ab0757a9f4643e7dd18f3d7c76745ee95e \
+  --expected-native-commit 9c920334e338dab4908aa4dabdfae22803e70411 \
   --output /absolute/new-p12-evidence
 ```
 
@@ -169,6 +179,7 @@ It exports a native well bottom-hole pressure plot with numerical provenance.
 It then exports scenario `FOPR` at `1000 × 700` pixels while the `1200 × 800` well plot remains present.
 Both requests, edit receipts, observations, and native plot inventories are retained.
 The second request uses the inspected current project context and must identify a different parent window.
+
 It records source and native arrays, verified source units, report mappings, complete corners, and numerical differences.
 The source and native comparison records preserve complete model, job, result, and grid identities.
 
@@ -177,9 +188,10 @@ It makes sure that old references fail and restored bindings retain both exact r
 It then records fresh native values and geometry from the restored project.
 The probe terminates only its service-owned application and records the close outcome.
 
-After the trial, inspect all six images for meaningful content, correct quantities, visible units, and matching legends.
+After the trial, inspect all six images for meaningful content, correct quantities, and matching grid legends.
+Make sure that summary units are visible and grid units match the accompanying observation metadata.
 The completion record reports automated checks separately and leaves complete acceptance false until visual review.
 Record the tested repository commit, native source commit, executable, installed wheel, command, and application logs with the evidence.
 Review the raw geometry differences against the declared tolerance before accepting the trial.
 Preserve failed attempts with their errors and logs.
-This prepared probe does not establish completed native acceptance.
+The probe alone does not establish complete acceptance without the separate numerical, visual, and owned-process reviews.

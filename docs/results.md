@@ -18,12 +18,16 @@ Native operations require configured session and view services, a result backend
 RIPS is the Python client for ResInsight remote calls.
 The [developer guide](development/results.md) describes service configuration, verification rules, and evidence.
 The maintained tests cover queries, comparisons, binding failures, and image outcomes through controlled native interfaces.
-Those tests do not establish completed native application acceptance.
+The separate [native acceptance record](development/evidence/p12/native/README.md#trial-07) verifies the recorded macOS build.
+
+The [tested native build record](development/evidence/p12/native/README.md#native-rendering-build) identifies the required summary rendering repairs.
+The current image export workflow requires that reviewed native build and its matching RIPS client.
 
 ## Load and query
 
 Call `load(ResultImportRequest)` with the current application context, exact stored job, and accepted result.
-The service preserves all five result files at stable paths, loads a grid case, creates its view, and imports a summary case.
+The service preserves all five result files at stable paths.
+It imports the summary case, loads the grid case, and creates its view.
 It verifies native values and geometry before binding the case to the result.
 The grid case name includes the result and model revision identifiers.
 Keep the materialized files at their original paths while a saved native project refers to them.
@@ -59,7 +63,8 @@ The service does not interpolate values or convert units for comparison.
 ## Summary plots and receipts
 
 Call `show_curve(SummaryPlotRequest)` to create a native plot for an exact stored curve.
-The plot title includes the result identifier, quantity, and unit, with normalization disabled.
+The service sets the plot title to include the result identifier, quantity, and unit, with normalization disabled.
+The tested native build renders that title and the summary units in exported images.
 The response contains `EditedSummaryPlot`, which separates confirmed plot creation from the image outcome.
 Its applied receipt retains the current application context, complete curve, and native plot address.
 

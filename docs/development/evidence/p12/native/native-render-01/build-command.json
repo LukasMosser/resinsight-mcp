@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ],
+  "native_commit": "70399abb9eba31f713f72028ffe94ae0be4db2c4",
+  "source_worktree": " M ThirdParty/openzgy\n M vcpkg.json\n",
+  "source_scope": "Reviewed complete multi-plot PNG capture with existing native page renderer and restored viewer state. Existing macOS dependency configuration remains.",
+  "started_at": "2026-09-09T18:46:10.185571+00:00",
+  "exit_code": 0,
+  "completed_at": "2026-09-09T18:48:06.381207+00:00"
+}

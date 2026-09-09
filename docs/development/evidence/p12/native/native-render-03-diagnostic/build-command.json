@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "environment": {
+    "LC_ALL": "en_US.UTF-8",
+    "VCPKG_DISABLE_METRICS": "1",
+    "VCPKG_MAX_CONCURRENCY": "2",
+    "CMAKE_BUILD_PARALLEL_LEVEL": "2",
+    "VCPKG_BINARY_SOURCES": "clear",
+    "VCPKG_DOWNLOADS": "/private/tmp/resinsight-p01-build/downloads/vcpkg",
+    "XDG_CACHE_HOME": "/private/tmp/resinsight-p01-build/cache"
+  },
+  "path_prefix": [
+    "/private/tmp/resinsight-p01-build/tools/bin",
+    "/private/tmp/resinsight-p01-build/build-tools/bin"
+  ],
+  "native_commit": "630588f9dfc63e15ee7867134af5d18b6458f9a2",
+  "source_worktree": " M ThirdParty/openzgy\n M vcpkg.json\n",
+  "source_scope": "Temporary reviewed title and paint state diagnostics only. No rendering behavior changes. Remove instrumentation before final acceptance.",
+  "started_at": "2026-09-09T19:13:26.493824+00:00",
+  "exit_code": 0,
+  "completed_at": "2026-09-09T19:13:37.474477+00:00"
+}

@@ -1,0 +1,56 @@
+Detected locale "C" with character encoding "US-ASCII", which is not UTF-8.
+Qt depends on a UTF-8 locale, and has switched to "UTF-8" instead.
+If this causes problems, reconfigure your locale. See the locale(1) manual
+for more information.
+Note: Google Test filter = RigHexIntersectionTools.*:RigEclipseWellLogExtractor.*:RigWellPathTest.*:RigWellPathIntersectionToolsTest.*:RigMainGrid.*
+[==========] Running 14 tests from 5 test suites.
+[----------] Global test environment set-up.
+[----------] 3 tests from RigWellPathTest
+[ RUN      ] RigWellPathTest.FindWellPathCoordsIncludingIntersectionPoint
+[       OK ] RigWellPathTest.FindWellPathCoordsIncludingIntersectionPoint (0 ms)
+[ RUN      ] RigWellPathTest.InterpolatedPointForEmptyGeometry
+[       OK ] RigWellPathTest.InterpolatedPointForEmptyGeometry (0 ms)
+[ RUN      ] RigWellPathTest.InterpolatedPointAlongWellPath
+[       OK ] RigWellPathTest.InterpolatedPointAlongWellPath (0 ms)
+[----------] 3 tests from RigWellPathTest (0 ms total)
+
+[----------] 1 test from RigWellPathIntersectionToolsTest
+[ RUN      ] RigWellPathIntersectionToolsTest.BuildContinuousIntersectionsIsSortedByMeasuredDepth
+[       OK ] RigWellPathIntersectionToolsTest.BuildContinuousIntersectionsIsSortedByMeasuredDepth (0 ms)
+[----------] 1 test from RigWellPathIntersectionToolsTest (0 ms total)
+
+[----------] 7 tests from RigHexIntersectionTools
+[ RUN      ] RigHexIntersectionTools.pointInsideAtFaceCenter
+[       OK ] RigHexIntersectionTools.pointInsideAtFaceCenter (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointInsideAtFaceTriangleEdge
+[       OK ] RigHexIntersectionTools.pointInsideAtFaceTriangleEdge (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointOutsideWithZeroOrTwoBoundaryCrossings
+[       OK ] RigHexIntersectionTools.pointOutsideWithZeroOrTwoBoundaryCrossings (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentWithWarpedFace
+[       OK ] RigHexIntersectionTools.pointContainmentWithWarpedFace (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentAtSharedCellEdge
+[       OK ] RigHexIntersectionTools.pointContainmentAtSharedCellEdge (0 ms)
+[ RUN      ] RigHexIntersectionTools.pointContainmentAtFieldCoordinates
+[       OK ] RigHexIntersectionTools.pointContainmentAtFieldCoordinates (0 ms)
+[ RUN      ] RigHexIntersectionTools.planeHexCellIntersectionTest
+[       OK ] RigHexIntersectionTools.planeHexCellIntersectionTest (0 ms)
+[----------] 7 tests from RigHexIntersectionTools (0 ms total)
+
+[----------] 2 tests from RigEclipseWellLogExtractor
+[ RUN      ] RigEclipseWellLogExtractor.ShortWellPathInsideOneCell
+[       OK ] RigEclipseWellLogExtractor.ShortWellPathInsideOneCell (0 ms)
+[ RUN      ] RigEclipseWellLogExtractor.HorizontalWellAcrossFlippedGrid
+[       OK ] RigEclipseWellLogExtractor.HorizontalWellAcrossFlippedGrid (1 ms)
+[----------] 2 tests from RigEclipseWellLogExtractor (1 ms total)
+
+[----------] 1 test from RigMainGrid
+[ RUN      ] RigMainGrid.SetFlipAxisMirrorsNodeCoordinates
+[       OK ] RigMainGrid.SetFlipAxisMirrorsNodeCoordinates (0 ms)
+[----------] 1 test from RigMainGrid (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 14 tests from 5 test suites ran. (1 ms total)
+[  PASSED  ] 14 tests.
+
+  YOU HAVE 1 DISABLED TEST
+

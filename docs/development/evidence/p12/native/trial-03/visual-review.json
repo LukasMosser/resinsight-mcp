@@ -1,0 +1,13 @@
+{
+  "accepted": false,
+  "images_reviewed": [
+    "baseline-pressure.png",
+    "scenario-pressure.png",
+    "baseline-swat.png",
+    "scenario-swat.png",
+    "well-plot.png"
+  ],
+  "grid_images": "All four show the grid, well labels, result identity, quantity, report date, and matching legends within each pair. The camera is shared. Physical pressure units are provided by the observation records, not visible in the native grid legend.",
+  "summary_image": "The PNG has a white left strip and a mostly transparent region rendered black. No readable curve, result title, or axis labels are visible.",
+  "limitation": "The probe completed numerical checks, but this visual failure prevents complete P12 native acceptance."
+}

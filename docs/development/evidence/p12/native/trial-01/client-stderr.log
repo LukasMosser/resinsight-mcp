@@ -1,0 +1,15 @@
+ResInsight call failed: No result returned from Method
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 423, in <module>
+    main()
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 419, in main
+    trial(arguments)
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 357, in trial
+    item = value(results.load(ResultImportRequest(context=context, job=job, result=result)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/resinsight-p13-integration/tests/results/native_acceptance.py", line 49, in value
+    assert isinstance(result.outcome, Success), result.model_dump_json()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {"outcome":{"status":"failure","error":{"code":"execution_failed","message":"ResInsight call failed: No result returned from Method","effect":"unknown"}}}

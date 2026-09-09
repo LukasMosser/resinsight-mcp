@@ -1,0 +1,50 @@
+diff --git a/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp b/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
+index 4d6a1c7..7e371f8 100644
+--- a/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
++++ b/ApplicationLibCode/UserInterface/RiuMultiPlotPage.cpp
+@@ -387,6 +387,26 @@ void RiuMultiPlotPage::renderTo( QPaintDevice* paintDevice )
+ //--------------------------------------------------------------------------------------------------
+ void RiuMultiPlotPage::renderTo( QPainter* painter, double scalingFactor )
+ {
++    // Temporary diagnostic for missing titles in native snapshot exports.
++    const auto logLabel = [&]( const char* kind, const QLabel* label )
++    {
++        const auto palette = label->palette();
++        qInfo() << "P12_PLOT_LABEL" << "kind" << kind << "text" << label->text()
++                << "pageRect" << QRect( label->mapTo( this, QPoint() ), label->size() )
++                << "hidden" << label->isHidden() << "visible" << label->isVisible()
++                << "visibleToPage" << label->isVisibleTo( this ) << "foregroundRole" << label->foregroundRole()
++                << "paletteGroup" << palette.currentColorGroup()
++                << "foreground" << palette.color( label->foregroundRole() ).name( QColor::HexArgb )
++                << "background" << palette.color( label->backgroundRole() ).name( QColor::HexArgb )
++                << "font" << label->font().toString() << "viewport" << painter->viewport()
++                << "window" << painter->window() << "hasClipping" << painter->hasClipping()
++                << "clip" << painter->clipBoundingRect() << "opacity" << painter->opacity()
++                << "transform" << painter->combinedTransform()
++                << "deviceDpi" << painter->device()->logicalDpiX() << painter->device()->logicalDpiY()
++                << "devicePixelRatio" << painter->device()->devicePixelRatioF();
++    };
++    logLabel( "parent", m_plotTitle );
++
+     painter->fillRect( painter->viewport(), Qt::white );
+     // A hidden ancestor does not hide titles within the exported page.
+     if ( m_plotTitle->isVisibleTo( this ) )
+@@ -401,6 +421,7 @@ void RiuMultiPlotPage::renderTo( QPainter* painter, double scalingFactor )
+ 
+     for ( auto subTitle : subTitlesForVisiblePlots() )
+     {
++        logLabel( "child", subTitle );
+         if ( subTitle->isVisibleTo( this ) )
+         {
+             QPoint renderOffset = m_plotWidgetFrame->mapToParent( subTitle->frameGeometry().topLeft() ) - marginOffset;
+@@ -426,6 +447,10 @@ void RiuMultiPlotPage::renderTo( QPainter* painter, double scalingFactor )
+         QPoint plotWidgetFrameTopLeft = m_plotWidgetFrame->frameGeometry().topLeft();
+         plotWidgetGeometry.moveTo( plotWidgetTopLeft + plotWidgetFrameTopLeft - marginOffset );
+ 
++        qInfo() << "P12_PLOT_TARGET" << "title" << plotWidget->plotTitle() << "targetRect" << plotWidgetGeometry
++                << "viewport" << painter->viewport() << "hasClipping" << painter->hasClipping()
++                << "clip" << painter->clipBoundingRect() << "opacity" << painter->opacity()
++                << "transform" << painter->combinedTransform() << "scalingFactor" << scalingFactor;
+         plotWidget->renderTo( painter, plotWidgetGeometry, scalingFactor );
+     }
+ }

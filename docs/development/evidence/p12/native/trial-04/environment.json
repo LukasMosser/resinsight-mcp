@@ -1,0 +1,13 @@
+{
+  "repository_commit": "b7c0cccf11c65396fe3c693f3397d88d86f72a7b",
+  "native_source_commit": "70399abb9eba31f713f72028ffe94ae0be4db2c4",
+  "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "rips_version": "2026.9.0.1",
+  "rips_installation": "{\"url\":\"file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl\",\"archive_info\":{}}",
+  "environment": {
+    "PYTHONPATH": null,
+    "QT_PLUGIN_PATH": null,
+    "DYLD_LIBRARY_PATH": null
+  },
+  "started_at": "2026-09-09T18:52:48.516948+00:00"
+}

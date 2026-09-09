@@ -1,0 +1,9 @@
+{
+  "stage": "native_evidence JSON serialization after both loads and rebind succeeded",
+  "exit_code": 1,
+  "exception": "TypeError",
+  "message": "Object of type RepeatedScalarContainer is not JSON serializable",
+  "images_created": 0,
+  "completed": false,
+  "source": "Captured command stderr and output directory inspection."
+}

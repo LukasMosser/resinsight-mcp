@@ -1,0 +1,9 @@
+{
+  "complete_native_acceptance": true,
+  "p12_agent_review": "All six images inspected. Four grid images show intended result, property, report, matched legends and cameras. Both summary images show result titles, quantities, units, dates, and full one-cell layout.",
+  "root_review": "Root inspected all six PNGs and accepts their content and layout. Summary titles, units, dates, and curves are readable. Grid pressure units remain in metadata.",
+  "limitation": "Pressure units are retained in grid observation metadata, not native legends.",
+  "process_cleanup": "Public termination succeeded and the owned PID is independently absent.",
+  "visual_acceptance": true,
+  "acceptance_record": "lead-review.json"
+}

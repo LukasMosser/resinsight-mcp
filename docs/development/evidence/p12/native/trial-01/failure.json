@@ -1,0 +1,15 @@
+{
+  "stage": "first ResultsService.load",
+  "exit_code": 1,
+  "outcome": {
+    "status": "failure",
+    "error": {
+      "code": "execution_failed",
+      "message": "ResInsight call failed: No result returned from Method",
+      "effect": "unknown"
+    }
+  },
+  "images_created": 0,
+  "completed": false,
+  "source": "Captured command stderr and output directory inspection."
+}

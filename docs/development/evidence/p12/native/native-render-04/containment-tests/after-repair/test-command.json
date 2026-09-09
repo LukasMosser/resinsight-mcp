@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p01-build/application-build/ApplicationLibCode/UnitTests/ResInsight-tests",
+    "--gtest_filter=RigHexIntersectionTools.*:RigEclipseWellLogExtractor.*:RigWellPathTest.*:RigWellPathIntersectionToolsTest.*:RigMainGrid.*"
+  ],
+  "working_directory": "/private/tmp/resinsight-p01-build/source",
+  "source_commit": "9c920334e338dab4908aa4dabdfae22803e70411",
+  "scope": "Cell containment regressions and existing cell intersection, well extraction, and grid orientation tests.",
+  "started_at": "2026-09-09T19:26:21.832941+00:00",
+  "exit_code": 0,
+  "completed_at": "2026-09-09T19:26:23.288253+00:00"
+}
