@@ -127,6 +127,7 @@ Native well algorithms and MCP tools remain outside this follow-up.
 Consumer exceptions pass through unchanged.
 If cleanup also fails, the consumer exception includes a cleanup note.
 Cleanup failure after a successful consumer block reports `UNKNOWN`, because the consumer can change external state.
+
 It retrieves the stored revision, checks its units and include graph, and validates its staged inputs with the isolated pinned parser.
 It yields `MaterializedModel` only after those checks pass.
 Every context has its own temporary directory.
@@ -184,6 +185,7 @@ Existing input and import records are not rewritten.
 The current profile identifier is `spe1-field-v2`.
 Previously stored `spe1-field-v1` summaries still deserialize without changes.
 Validation does not rewrite those records.
+
 It supports black-oil physics, oil, water, gas, and dissolved gas.
 The grid is Cartesian, a rectangular arrangement of cells, with every cell active.
 The model has one equilibrium region and declares `FIELD` exactly once.
@@ -263,11 +265,13 @@ Connection factors and permeability-length values must be finite and positive.
 Skin factors must be finite and nonnegative.
 Directions must be `X`, `Y`, or `Z`.
 Each completion must identify active cells within the prepared grid.
+
 Defaulted cell indices and partial overlaps outside the grid fail validation.
 The official OPM schedule must retain positive connection factors and permeability-length values.
 The supported black-oil physics and parser version remain unchanged.
 Each completion must name an already declared well.
 Its explicit state must be `OPEN`, and its explicit diameter must be finite and positive.
+
 A `SHUT` completion fails before OPM can silently close an open well.
 Whole-well `SHUT` controls remain supported.
 
@@ -331,6 +335,7 @@ Oversized counts return a typed `INVALID_MODEL` failure instead of escaping thro
 ## Evidence and provenance
 
 The [P07 evidence record](p07-evidence.md) contains the native trial, tested versions, commands, and observed results.
+The [materialization evidence](model-materialization-evidence.md) covers temporary stored inputs, child publication, and cleanup failures.
 The [platform proof](platform-proof.md) records earlier experiments with separate acceptance boundaries.
 Neither parser acceptance nor one successful simulation establishes general model support or independent numerical accuracy.
 

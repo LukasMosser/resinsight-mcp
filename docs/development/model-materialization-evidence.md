@@ -28,7 +28,8 @@ This result requires recovery inspection and does not promise rollback.
 
 ## Profile and failure checks
 
-New validation uses `spe1-field-v2`; an existing `spe1-field-v1` summary still deserializes without rewriting its profile.
+New validation uses `spe1-field-v2`.
+An existing `spe1-field-v1` summary still deserializes without rewriting its profile.
 The pinned OPM version remains `2025.10`, and supported black-oil physics stays unchanged.
 The tests compare explicit connection factors and permeability-length values with OPM schedule values in its standard units.
 Invalid factors, permeability-length values, skin values, directions, and completion ranges fail validation.
@@ -50,9 +51,14 @@ The shared command passed all 427 tests, Ruff, ty, and the strict documentation 
 The [result record](evidence/model-materialization/result.json) separates those outcomes from external acceptance.
 The test output establishes public library behavior through the real workspace store and isolated parser.
 
+The [integrated check](evidence/model-materialization/integrated/shared-check.log) passed 453 tests, Ruff, ty, and strict documentation after P08 merged.
+The [integration record](evidence/model-materialization/integrated/result.json) identifies its source base and working changes.
+The current guides name profile version 2 while preserving version 1 in historical P08 trial records.
+
 The [browser record](evidence/model-materialization/browser/review.json) checked two local pages and eight local links without page errors.
 The [visual review](evidence/model-materialization/browser/visual-review.json) records inspection of both captured screenshots.
 The headings, text, and materialization table remained readable without clipping or overlap.
+The [integrated browser review](evidence/model-materialization/integrated/browser/visual-review.json) covers the navigation, current profile, capability map, and linked evidence.
 
 The review assessed duplicate behavior, control flow, ownership, failure handling, tests, and evidence limits.
 Original imports and child revisions share one validation and publication path.

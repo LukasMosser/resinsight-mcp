@@ -1,6 +1,6 @@
 # Constrained model creation
 
-P08 uses the P07 `spe1-field-v1` profile without adding simulator physics.
+P08 uses the current P07 `spe1-field-v2` profile without adding simulator physics.
 The model contains an all-active Cartesian grid, a rectangular arrangement of cells.
 Each horizontal layer has uniform thickness, porosity, and three directional permeability values.
 The grid contains at most 10,000 cells.
@@ -36,6 +36,7 @@ This reuse does not change the repository software license.
 ## Numerical acceptance
 
 Four isolated Flow trials passed at commit `f289e8eee5ea500f1a1f32535c6a262b35abaf16` on September 9, 2026.
+Those trials used the earlier `spe1-field-v1` profile and remain historical evidence for those exact inputs.
 Two trials used the preserved P07 fixture, and two used the generated reference specification.
 Every trial reached two days with 300 active cells and the intended injector and producer connections.
 All compared cell pressures, field oil rates, and well pressures had zero differences across both repeats and model sources.

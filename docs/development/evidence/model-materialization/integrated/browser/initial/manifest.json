@@ -1,0 +1,34 @@
+[
+  {
+    "path": "/development/",
+    "image": "development.png"
+  },
+  {
+    "path": "/development/model-imports/",
+    "heading": "Materialization and child revisions",
+    "image": "materialization-interface.png"
+  },
+  {
+    "path": "/development/model-imports/",
+    "heading": "Supported model profile",
+    "image": "model-profile.png"
+  },
+  {
+    "path": "/development/model-materialization-evidence/",
+    "image": "materialization-evidence.png"
+  },
+  {
+    "path": "/development/synthetic-models/",
+    "image": "synthetic-profile.png"
+  },
+  {
+    "path": "/development/agent-workflows/",
+    "text": "Stage stored inputs and publish child revisions",
+    "image": "operation-map.png"
+  },
+  {
+    "path": "/development/implementation-plan/",
+    "heading": "P07: Import supported models",
+    "image": "implementation-plan.png"
+  }
+]

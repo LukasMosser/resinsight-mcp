@@ -1,0 +1,13 @@
+{
+  "source_base": "fad2a37e3d8fceb9cb66c458d6aad32a194f0812",
+  "working_state": " M docs/development/agent-workflows.md\n M docs/development/implementation-plan.md\n M docs/development/index.md\n M docs/development/model-imports.md\n M docs/development/model-materialization-evidence.md\n M docs/development/synthetic-models.md\n M mkdocs.yml\n?? docs/development/evidence/model-materialization/integrated/\n",
+  "command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py",
+  "tests_passed": 453,
+  "tests_seconds": 56.72,
+  "ruff_passed": true,
+  "ty_passed": true,
+  "strict_documentation_build_passed": true,
+  "source_review": "The lead reviewed all changed application files and public failure tests. No blocking finding remained.",
+  "limits": "The run used the existing pinned environment. No native application, simulator, or MCP acceptance was run.",
+  "documentation_followup": "Paragraph boundaries and links were refined after this shared check. The normal commit hook checks the final content."
+}

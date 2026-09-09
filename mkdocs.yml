@@ -51,6 +51,7 @@ nav:
       - View evidence: development/p06-evidence.md
       - Model imports: development/model-imports.md
       - Model import evidence: development/p07-evidence.md
+      - Model materialization evidence: development/model-materialization-evidence.md
       - Constrained models: development/synthetic-models.md
       - Model numerical evidence: development/evidence/p08/README.md
       - Model native evidence: development/evidence/p08-native/README.md

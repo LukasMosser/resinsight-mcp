@@ -66,6 +66,10 @@ An interface change needs a small P02 follow-up before dependent implementation 
 The [well control follow-up](well-contracts.md) supplies common FIELD controls for P08 and P09.
 Package owners keep grid creation and native well geometry separate while using these shared control records.
 
+The [P07 materialization follow-up](model-materialization-evidence.md) supplies validated stored inputs, parser inspection, and one child publication path for P09.
+The lead transferred its bounded import files, tests, and guide to the P09 owner under [issue #39](https://github.com/LukasMosser/resinsight-mcp/issues/39).
+Native well and schedule services consume the reviewed interface without owning import validation or publication rules.
+
 P02 implements the shared contracts, P03 implements workspace storage, and P04 implements application sessions and projects.
 P05 implements the [MCP transport](mcp.md) against reviewed shared service contracts.
 The remaining application paths below retain separate work package ownership.
@@ -240,6 +244,12 @@ Test small representative models and clear failure cases without a general text-
 Acceptance requires a model that OPM accepts and ResInsight displays.
 The record must connect the source inputs, prepared revision, and loaded case.
 An invalid input must stop before simulator submission.
+
+P07 implements isolated materialization of stored inputs and validated child revision publication for domain consumers.
+Its [interface guide](model-imports.md#materialization-and-child-revisions) defines temporary ownership, geometry inspection, parent inheritance, and uncertain cleanup outcomes.
+The current `spe1-field-v2` profile accepts bounded explicit completion factors without changing parser version or black-oil physics.
+Earlier `spe1-field-v1` records still deserialize without rewriting their stored profile.
+The [follow-up evidence](model-materialization-evidence.md) records public library checks separately from native P09 acceptance.
 
 ## P08: Create constrained models
 

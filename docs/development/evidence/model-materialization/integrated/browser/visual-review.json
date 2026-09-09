@@ -1,0 +1,25 @@
+{
+  "initial_pages_passed": 7,
+  "initial_unique_pages": 6,
+  "initial_local_links_passed": 45,
+  "initial_screenshots_inspected": [
+    "development.png",
+    "materialization-interface.png",
+    "model-profile.png",
+    "materialization-evidence.png",
+    "synthetic-profile.png",
+    "operation-map.png",
+    "implementation-plan.png"
+  ],
+  "finding": "The pages, navigation, tables, and new capability row are readable without clipping or overlap.",
+  "followup": "The final profile paragraphs, completion limits, and evidence links remained readable without clipping or overlap.",
+  "network_scope": "Only the local documentation origin was allowed.",
+  "followup_pages_passed": 3,
+  "followup_local_links_passed": 15,
+  "followup_screenshots_inspected": [
+    "model-profile.png",
+    "completion-profile.png",
+    "materialization-evidence.png"
+  ],
+  "browser_command": "NODE_PATH=/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules /Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/resinsight-p08-correction-review.cjs /private/tmp/resinsight-model-materialization /private/tmp/resinsight-materialization-final-doc-review /private/tmp/resinsight-materialization-final-manifest.json"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/development/model-imports/",
+    "heading": "Supported model profile",
+    "image": "model-profile.png"
+  },
+  {
+    "path": "/development/model-imports/",
+    "heading": "Wells and controls",
+    "image": "completion-profile.png"
+  },
+  {
+    "path": "/development/model-materialization-evidence/",
+    "heading": "Validation record",
+    "image": "materialization-evidence.png"
+  }
+]
