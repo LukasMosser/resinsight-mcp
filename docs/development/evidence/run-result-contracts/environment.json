@@ -1,0 +1,18 @@
+{
+  "source_commit": "f19c51cf3447db60511a1cfb980b215061d4f965",
+  "source_scope": "Reviewed contract source with documentation and navigation edits.",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13",
+  "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+  "packages": {
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "pytest": "9.1.1",
+    "pre-commit": "4.6.2",
+    "mkdocs": "1.6.1"
+  },
+  "command": "uv run --locked python scripts/check.py",
+  "outcome": "Passed 527 maintained tests, Ruff, ty, and strict documentation build.",
+  "native_scope": "No simulator or ResInsight runtime acceptance in this change.",
+  "browser_review": "All four preserved screenshots were visually inspected. Text and tables are readable."
+}

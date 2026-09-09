@@ -20,6 +20,8 @@ Start with these pages:
 - [Local setup](local-setup.md) explains the development commands.
 - [Agent workflows](agent-workflows.md) maps current tools and assigns the remaining integration work.
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
+- [Run and result contracts](run-result-contracts.md) defines execution ownership, output roles, numerical data, and comparison checkpoints.
+- [OPM workflow delivery](p13-delivery.md) assigns the remaining P11, P12, and P13 integration work.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
 - [Launcher evidence](launcher-evidence.md) records native session control from a clean installation.

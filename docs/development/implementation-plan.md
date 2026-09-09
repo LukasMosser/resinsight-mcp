@@ -93,6 +93,10 @@ P07 import services still need domain tools, while views need trusted result loa
 P08, P09, P11, and P12 retain their accepted domain scope.
 P13 and P17 require the integrated launcher and public domain tools before their acceptance can pass.
 
+The [OPM workflow delivery plan](p13-delivery.md) assigns the remaining P11, P12, and P13 work.
+The [run and result contracts](run-result-contracts.md) define their shared execution, result, and checkpoint records under [issue #46](https://github.com/LukasMosser/resinsight-mcp/issues/46).
+The P11 owner implements generic Docker ownership separately under [issue #47](https://github.com/LukasMosser/resinsight-mcp/issues/47).
+
 | Package | Owned application paths | Dependencies |
 | --- | --- | --- |
 | P01 Platform proof | `experiments/platform/` | Foundation |

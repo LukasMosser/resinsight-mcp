@@ -83,3 +83,10 @@ These tests do not establish simulator or ResInsight acceptance.
 On September 9, 2026, the shared command passed with 527 maintained tests and a strict documentation build.
 After the fresh-process persistence tests changed, all nine focused tests passed again.
 The tools were uv 0.9.18, Ruff 0.16.6, ty 0.0.79, pytest 9.1.1, and pre-commit 4.6.2.
+
+The lead repeated the shared command after adding navigation and the delivery plan.
+The [raw log](evidence/run-result-contracts/shared-check.log) records another pass with 527 maintained tests.
+The [environment record](evidence/run-result-contracts/environment.json) identifies the tested source commit, documentation overlay, host, and tool versions.
+The [browser record](evidence/run-result-contracts/review.json) covers four rendered pages and their local links.
+The lead inspected every saved screenshot and found readable text and tables without page overflow.
+The [contract page](evidence/run-result-contracts/run-result-contracts.png) and [delivery plan](evidence/run-result-contracts/p13-delivery.png) show representative layouts.
