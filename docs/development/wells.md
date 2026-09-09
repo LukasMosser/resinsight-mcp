@@ -12,7 +12,8 @@ It loaded the P01 FIELD grid `SPE1CASE1.EGRID` through the supported RIPS API.
 It created three modeled well paths without importing trajectories.
 The owned process used an automatically assigned local port.
 Process 7383 had start marker `1788938007.638789` and exited with status 0.
-The raw records remain under `/private/tmp/p09-modeled-probe/`.
+The [baseline events](evidence/p09/baseline/events.json) preserve these observations.
+The [application log](evidence/p09/baseline/application.log) records the native process output.
 
 The source and runtime results establish these separate behaviors:
 
@@ -37,7 +38,8 @@ The native patch changes only `RimcWellPathCollection.h` and `RimcWellPathCollec
 Existing target APIs and the P06 repair remain unchanged.
 Native commit `9b469c2` contains that patch.
 The lead reviewed and integrated it as `6ad2833930b3c1f8cc2939b08584f89e79dfd082`.
-The native build and matching Python client generation passed.
+The [native build](evidence/p09/native-build/build-command.json) and matching Python client generation passed.
+The [native patch](evidence/p09/native-build/modeled-well-units.patch) preserves the reviewed source change.
 The existing P01 macOS overlays remain in place.
 Those overlays enable macOS gRPC and modify the pinned OpenZGY submodule.
 P09 changed neither overlay.
@@ -49,7 +51,8 @@ Its Python source matches repository commit `66c1f39367afc0d1a740bdea01f9ce4a4ef
 The native process reported ResInsight `2026.9.0` at integrated commit `6ad2833930b3c1f8cc2939b08584f89e79dfd082`.
 Process 14005 used start marker `1788938522.800408` and local port 56026.
 It exited with status 0, and the probe confirmed its absence.
-The raw records remain under `/private/tmp/p09-modeled-case-aware-01/`.
+The [case-aware events](evidence/p09/case-aware/events.json) preserve all 19 checks.
+The [version record](evidence/p09/versions.json) identifies the tested dependencies and source commits.
 
 Both paths persist FIELD units and return the intended three active connections.
 The one-based exported cells are `(5, 5, 1)`, `(5, 5, 2)`, and `(5, 5, 3)`.
@@ -63,6 +66,21 @@ It does not establish subsurface geometry by itself.
 The trajectory arrays and connection records establish that separate result.
 The shared repository command passed 340 tests, Ruff, ty, and the strict documentation build.
 Those 340 tests do not include the separately launched native probe.
+
+Both wells produce the same connections in this bounded geometry experiment.
+The [P09NOAUTO export](evidence/p09/case-aware/P09NOAUTO.inc) contains these rounded FIELD values.
+Permeability-length describes permeability multiplied by the connected interval length.
+
+| One-based cell | Measured depth, feet | Connection factor | Permeability-length, mD feet | Direction |
+| --- | --- | --- | --- | --- |
+| 5, 5, 1 | 8326–8345 | 10.07878 | 9500 | Z |
+| 5, 5, 2 | 8345–8375 | 1.591386 | 1500 | Z |
+| 5, 5, 3 | 8375–8424 | 10.39706 | 9800 | Z |
+
+Each connection is OPEN, with diameter 0.5 feet and skin factor zero.
+The additional multisegment files remain evidence artifacts and are not accepted simulator inputs.
+
+![Modeled well labels at the expected grid column](evidence/p09/case-aware/modeled-wells.png)
 
 ## Bounded probe
 
