@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "applications": 1,
+  "mcp_result_loading": false,
+  "model_provider_transfer": false,
+  "native_editor_inspection": "Deferred under issue 34"
+}

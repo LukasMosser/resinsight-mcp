@@ -1,0 +1,12 @@
+[
+  {"path":"/"},
+  {"path":"/synthetic-models/", "image":"model-guide.png"},
+  {"path":"/synthetic-models/", "image":"model-limits.png", "heading":"Accepted limits"},
+  {"path":"/development/"},
+  {"path":"/development/agent-workflows/", "image":"operation-map.png", "heading":"Current operation map"},
+  {"path":"/development/architecture/"},
+  {"path":"/development/implementation-plan/", "heading":"P08: Create constrained models"},
+  {"path":"/development/synthetic-models/", "image":"model-implementation.png"},
+  {"path":"/development/evidence/p08/", "image":"numerical-evidence.png", "heading":"Result"},
+  {"path":"/development/evidence/p08-native/", "image":"native-evidence.png", "heading":"Visual review"}
+]

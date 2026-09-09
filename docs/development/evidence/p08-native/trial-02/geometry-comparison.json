@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "cells_compared": 300,
+  "absolute_tolerance_ft": 1e-06,
+  "relative_tolerance": 0,
+  "tolerance_basis": "One millionth of a foot allows only native floating-point serialization rounding for exact integer-foot reference geometry.",
+  "errors": {
+    "center_maximum_error_ft": 0.0,
+    "corner_extent_maximum_error_ft": 0.0,
+    "corner_minimum_maximum_error_ft": 0.0,
+    "depth_range_maximum_error_ft": 0.0
+  },
+  "i_fastest_identity_matches": true
+}

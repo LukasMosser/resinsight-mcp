@@ -25,6 +25,7 @@ The [tutorials](tutorials/index.md) use implemented tools and identify the setup
 - [Monitor local jobs](tutorials/jobs.md): inspect progress, request cancellation, and recover the same job identity after reconnecting.
 
 The [session reference](sessions.md), [view reference](views.md), and [job reference](jobs.md) describe outcomes and supported limits.
+The [model guide](synthetic-models.md) describes constrained model creation through the Python service and its fixed physics template.
 
 ## Know where information goes
 

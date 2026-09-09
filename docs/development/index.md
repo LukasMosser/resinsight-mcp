@@ -9,6 +9,7 @@ Its SQLite workspace store preserves sessions, immutable model revisions, artifa
 The MCP transport binds these services and preserves native image responses.
 Session and view adapters control verified application connections and capture fresh observations.
 Model import and job services provide additional domain components.
+Constrained model creation supplies validated layered inputs through the model import boundary.
 The supplied launcher exposes workspace tools and can configure native session services.
 
 Start with these pages:
@@ -24,6 +25,7 @@ Start with these pages:
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.
+- [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.
 - [Platform proof](platform-proof.md) records completed P01 experiments and their runtime limits.
 - [GitHub organization](project-organization.md) explains labels, milestones, dependencies, and work issue links.
 - [Testing and review](testing-and-review.md) explains the evidence for a change.

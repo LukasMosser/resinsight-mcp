@@ -1,0 +1,29 @@
+{
+  "arguments": [
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--platform",
+    "linux/arm64",
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "--network",
+    "none",
+    "--name",
+    "resinsight-p08-3c418d470e6d4b56a6e1ef48fda5aa6f",
+    "--mount",
+    "type=bind,source=/private/tmp/resinsight-p08-numerical-01/p07-1/inputs,target=/input,readonly",
+    "--mount",
+    "type=bind,source=/private/tmp/resinsight-p08-numerical-01/p07-1/results,target=/output",
+    "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+    "flow",
+    "/input/SPE1.DATA",
+    "--output-dir=/output"
+  ],
+  "wall_limit_seconds": 60,
+  "exit_status": 0,
+  "wall_seconds": 1.4046643750043586
+}

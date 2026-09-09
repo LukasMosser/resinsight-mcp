@@ -1,0 +1,9 @@
+{
+  "arguments": [
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "version"
+  ],
+  "wall_limit_seconds": 60,
+  "exit_status": 0,
+  "wall_seconds": 0.1358987499261275
+}

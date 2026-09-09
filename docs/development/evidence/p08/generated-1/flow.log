@@ -1,0 +1,117 @@
+**********************************************************************
+*                                                                    *
+*                        This is flow 2026.04                        *
+*                                                                    *
+* Flow is a simulator for fully implicit three-phase black-oil flow, *
+*             including solvent and polymer capabilities.            *
+*          For more information, see https://opm-project.org         *
+*                                                                    *
+**********************************************************************
+
+Using 1 MPI processes with 2 OMP threads on each 
+
+Reading deck file '/input/SYNTHETIC.DATA'
+    0 Reading RUNSPEC  in /input/SYNTHETIC.DATA line 3
+    1 Reading DIMENS   in /input/SYNTHETIC.DATA line 4
+    2 Reading EQLDIMS  in /input/SYNTHETIC.DATA line 6
+    3 Reading TABDIMS  in /input/SYNTHETIC.DATA line 8
+    4 Reading OIL      in /input/SYNTHETIC.DATA line 10
+    5 Reading GAS      in /input/SYNTHETIC.DATA line 11
+    6 Reading WATER    in /input/SYNTHETIC.DATA line 12
+    7 Reading DISGAS   in /input/SYNTHETIC.DATA line 13
+    8 Reading FIELD    in /input/SYNTHETIC.DATA line 14
+    9 Reading START    in /input/SYNTHETIC.DATA line 15
+   10 Reading WELLDIMS in /input/SYNTHETIC.DATA line 17
+   11 Reading UNIFOUT  in /input/SYNTHETIC.DATA line 19
+   12 Reading GRID     in /input/SYNTHETIC.DATA line 20
+   13 Reading INIT     in /input/SYNTHETIC.DATA line 21
+   14 Reading DX       in /input/SYNTHETIC.DATA line 22
+   15 Reading DY       in /input/SYNTHETIC.DATA line 24
+   16 Reading DZ       in /input/SYNTHETIC.DATA line 26
+   17 Reading TOPS     in /input/SYNTHETIC.DATA line 28
+   18 Reading PORO     in /input/SYNTHETIC.DATA line 30
+   19 Reading PERMX    in /input/SYNTHETIC.DATA line 32
+   20 Reading PERMY    in /input/SYNTHETIC.DATA line 34
+   21 Reading PERMZ    in /input/SYNTHETIC.DATA line 36
+   22 Reading PROPS    in /input/SYNTHETIC.DATA line 53
+   23 Reading PVTW     in /input/SYNTHETIC.DATA line 55
+   24 Reading ROCK     in /input/SYNTHETIC.DATA line 58
+   25 Reading SWOF     in /input/SYNTHETIC.DATA line 61
+   26 Reading SGOF     in /input/SYNTHETIC.DATA line 68
+   27 Reading DENSITY  in /input/SYNTHETIC.DATA line 73
+   28 Reading PVDG     in /input/SYNTHETIC.DATA line 76
+   29 Reading PVTO     in /input/SYNTHETIC.DATA line 81
+   30 Reading SOLUTION in /input/SYNTHETIC.DATA line 92
+   31 Reading EQUIL    in /input/SYNTHETIC.DATA line 93
+   32 Reading RSVD     in /input/SYNTHETIC.DATA line 95
+   33 Reading SUMMARY  in /input/SYNTHETIC.DATA line 97
+   34 Reading FOPR     in /input/SYNTHETIC.DATA line 98
+   35 Reading WBHP     in /input/SYNTHETIC.DATA line 99
+   36 Reading SCHEDULE in /input/SYNTHETIC.DATA line 101
+   37 Reading RPTRST   in /input/SYNTHETIC.DATA line 102
+   38 Reading DRSDT    in /input/SYNTHETIC.DATA line 104
+   39 Reading WELSPECS in /input/SYNTHETIC.DATA line 106
+   40 Reading COMPDAT  in /input/SYNTHETIC.DATA line 110
+   41 Reading WCONPROD in /input/SYNTHETIC.DATA line 114
+   42 Reading WCONINJE in /input/SYNTHETIC.DATA line 117
+   43 Reading TSTEP    in /input/SYNTHETIC.DATA line 120
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SYNTHETIC.DATA line 101
+Initializing report step 0/2 at 2015-01-01 0 DAYS line 101
+Processing keyword RPTRST at line 102
+Processing keyword DRSDT at line 104
+Processing keyword WELSPECS at line 106
+Processing keyword COMPDAT at line 110
+Processing keyword WCONPROD at line 114
+Processing keyword WCONINJE at line 117
+Complete report step 1 (1 DAYS) at 2015-01-02 (0 DAYS)
+
+Initializing report step 2/2 at 2015-01-02 (0 DAYS) line 120
+Complete report step 2 (1 DAYS) at 2015-01-03 (1 DAYS)
+
+
+Processing grid
+Total number of active cells: 300 / total pore volume: 534322820 RB
+
+
+================ Starting main simulation loop ===============
+
+
+Report step  0/2 at day 0/2, date = 01-Jan-2015
+Using Newton nonlinear solver.
+
+Starting time step 0, stepsize 1 days, at day 0/1, date = 01-Jan-2015
+Restart file written for report step 0/2, date = 01-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  1/2 at day 1/2, date = 02-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 1/2, date = 02-Jan-2015
+Restart file written for report step 1/2, date = 02-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+Restart file written for report step 2/2, date = 03-Jan-2015 00:00:00
+
+
+================    End of simulation     ===============
+
+Number of MPI processes:         1
+Threads per MPI process:         2
+Setup time:                      0.09 s
+  Deck input:                    0.07 s
+Number of timesteps:             2
+Simulation time:                 0.03 s
+  Assembly time:                 0.00 s (Wasted: 0.0 s; 0.0%)
+    Well assembly:               0.00 s (Wasted: 0.0 s; 0.0%)
+  Linear solve time:             0.01 s (Wasted: 0.0 s; 0.0%)
+    Linear setup:                0.00 s (Wasted: 0.0 s; 0.0%)
+  Props/update time:             0.01 s (Wasted: 0.0 s; 0.0%)
+  Pre/post step:                 0.01 s (Wasted: 0.0 s; 0.0%)
+  Output write time:             0.01 s
+Overall Linearizations:          7      (Wasted:     0; 0.0%)
+Overall Newton Iterations:       5      (Wasted:     0; 0.0%)
+Overall Linear Iterations:       3      (Wasted:     0; 0.0%)
+

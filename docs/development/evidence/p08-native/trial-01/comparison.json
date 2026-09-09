@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "tolerance_basis": "Two representable output increments at the largest reference magnitude, using the dtype returned by OPM's reader. Relative tolerance is zero. Measured repeat differences do not enlarge this tolerance.",
+  "comparisons": {
+    "p07_repeatability": {
+      "PRESSURE:1": {
+        "unit": "PSIA",
+        "elapsed_days": 1.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "PRESSURE:2": {
+        "unit": "PSIA",
+        "elapsed_days": 2.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "FOPR": {
+        "unit": "STB/DAY",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00390625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:PROD": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00048828125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:INJ": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.001953125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      }
+    },
+    "generated_repeatability": {
+      "PRESSURE:1": {
+        "unit": "PSIA",
+        "elapsed_days": 1.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "PRESSURE:2": {
+        "unit": "PSIA",
+        "elapsed_days": 2.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "FOPR": {
+        "unit": "STB/DAY",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00390625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:PROD": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00048828125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:INJ": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.001953125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      }
+    },
+    "generated_against_p07": {
+      "PRESSURE:1": {
+        "unit": "PSIA",
+        "elapsed_days": 1.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "PRESSURE:2": {
+        "unit": "PSIA",
+        "elapsed_days": 2.0,
+        "absolute_tolerance": 0.0009765625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "FOPR": {
+        "unit": "STB/DAY",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00390625,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:PROD": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.00048828125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      },
+      "WBHP:INJ": {
+        "unit": "PSIA",
+        "elapsed_days": [
+          1.0,
+          2.0
+        ],
+        "absolute_tolerance": 0.001953125,
+        "relative_tolerance": 0,
+        "maximum_absolute_difference": 0.0,
+        "passed": true
+      }
+    }
+  }
+}

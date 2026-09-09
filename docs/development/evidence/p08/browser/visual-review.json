@@ -1,0 +1,32 @@
+{
+  "reviewed_at": "2026-09-09T08:18:14.973726+00:00",
+  "final_guide_commit": "5d98f14cb46b16b73ea7f606ec68ee078ddd6573",
+  "initial_page_checks": 10,
+  "unique_pages": 9,
+  "initial_local_links_checked": 61,
+  "follow_up_page_checks": 2,
+  "follow_up_local_links_checked": 23,
+  "screenshots_inspected": [
+    "initial/model-guide.png",
+    "initial/model-limits.png",
+    "initial/model-implementation.png",
+    "initial/operation-map.png",
+    "initial/numerical-evidence.png",
+    "initial/native-evidence.png",
+    "follow-up/model-guide.png",
+    "follow-up/operation-map.png"
+  ],
+  "result": "pass",
+  "observations": [
+    "Model limits, FIELD units, numerical tolerances, and data notices remain readable.",
+    "The example was shortened to avoid horizontal clipping and was rechecked.",
+    "The capability map identifies the Python-only creation service.",
+    "The numerical table and accepted native image are visible and readable.",
+    "All local links returned HTTP 200, with no page errors, failed images, or document overflow.",
+    "The lead also inspected the original native image and confirmed its final-report overlay and three layers."
+  ],
+  "limits": [
+    "Desktop browser review only.",
+    "MCP model creation and result loading remain separate integration work."
+  ]
+}

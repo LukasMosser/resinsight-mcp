@@ -24,6 +24,7 @@ nav:
   - ResInsight sessions: sessions.md
   - ResInsight views: views.md
   - Local jobs: jobs.md
+  - Constrained models: synthetic-models.md
   - Security: security.md
   - License: license.md
   - Development:
@@ -50,6 +51,9 @@ nav:
       - View evidence: development/p06-evidence.md
       - Model imports: development/model-imports.md
       - Model import evidence: development/p07-evidence.md
+      - Constrained models: development/synthetic-models.md
+      - Model numerical evidence: development/evidence/p08/README.md
+      - Model native evidence: development/evidence/p08-native/README.md
       - Job implementation: development/jobs.md
       - Job evidence: development/p10-evidence.md
       - Architecture: development/architecture.md

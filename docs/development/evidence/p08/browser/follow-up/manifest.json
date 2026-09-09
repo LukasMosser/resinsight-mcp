@@ -1,0 +1,11 @@
+[
+  {
+    "path": "/synthetic-models/",
+    "image": "model-guide.png"
+  },
+  {
+    "path": "/development/agent-workflows/",
+    "image": "operation-map.png",
+    "text": "Create a constrained layered model"
+  }
+]

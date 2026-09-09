@@ -1,0 +1,468 @@
+
+
+
+ ########  #          ######   #           #
+ #         #         #      #   #         # 
+ #####     #         #      #    #   #   #  
+ #         #         #      #     # # # #   
+ #         #######    ######       #   #    
+
+Flow is a simulator for fully implicit three-phase black-oil flow, and is part of OPM.
+For more information visit: https://opm-project.org 
+
+Flow Version     =  2026.04 (Ubuntu 24.04.4 LTS: 2026.04-1~noble)
+Machine name     =  03a2a8c46919 (Number of logical cores: 8, Memory size: 7836.67 MB) 
+Operating system =  Linux aarch64 (Kernel: 6.12.76-linuxkit, #1 SMP Sun Mar  8 14:41:59 UTC 2026 )
+Build time       =  
+Simulation started on 09-09-2026 at 07:43:05 hrs
+Using 1 MPI processes with 2 OMP threads on each 
+Parameters used by Flow:
+# [known parameters which were specified at run-time]
+EclDeckFileName="/input/SYNTHETIC.DATA" # default: ""
+OutputDir="/output" # default: ""
+# [parameters which were specified at compile-time]
+AcceleratorMode="none"
+ActionParsingStrictness="normal"
+AddCorners="0"
+AllowDistributedWells="0"
+AllowSplittingInactiveWells="1"
+AlternativeWellRateInit="1"
+CheckGroupConstraintsInnerWellIterations="1"
+CheckSatfuncConsistency="1"
+ConserveInnerEnergyThermal="0"
+ContinueOnConvergenceError="0"
+ConvergenceMonitoring="0"
+ConvergenceMonitoringCutOff="6"
+ConvergenceMonitoringDecayFactor="0.75"
+CprReuseInterval="30"
+CprReuseSetup="4"
+CprWeightsThreadParallel="0"
+DbhpMaxRel="1"
+DebugEmitCellPartition="0"
+DebugVerbosityLevel="1"
+DpMaxRel="0.3"
+DsMax="0.2"
+DwellFractionMax="0.2"
+EclOutputDoublePrecision="0"
+EclOutputInterval="-1"
+EdgeConformal="0"
+EdgeWeightsMethod="transmissibility"
+EnableAdaptiveTimeStepping="1"
+EnableAsyncEclOutput="1"
+EnableAsyncVtkOutput="1"
+EnableDriftCompensation="0"
+EnableDriftCompensationTemp="1"
+EnableDryRun="auto"
+EnableEclOutput="1"
+EnableEsmry="1"
+EnableGravity="1"
+EnableGridAdaptation="0"
+EnableIntensiveQuantityCache="1"
+EnableLoggingFalloutWarning="0"
+EnableOpmRstFile="0"
+EnableStorageCache="1"
+EnableTerminalOutput="1"
+EnableThermodynamicHints="0"
+EnableTuning="0"
+EnableVtkOutput="0"
+EnableWellOperabilityCheck="1"
+EnableWellOperabilityCheckIter="0"
+EnableWriteAllSolutions="0"
+EndTime="1e+100"
+ExplicitRockCompaction="0"
+ExternalPartition=""
+ForceDisableFluidInPlaceOutput="0"
+ForceDisableResvFluidInPlaceOutput="0"
+FullTimeStepInitially="0"
+GpuAwareMpi="0"
+GpuDeviceId="0"
+HybridNewtonConfigFile="hybridNewtonConfig.json"
+IgnoreKeywords=""
+IluFillinLevel="0"
+IluRedblack="0"
+IluRelaxation="0.9"
+IluReorderSpheres="0"
+ImbalanceTol="1.1"
+InitialTimeStepInDays="1"
+InitialTimeStepSize="86400"
+InjMultDampMult="0.9"
+InjMultMinDampFactor="0.05"
+InjMultOscThreshold="0.1"
+InputSkipMode="100"
+LinearSolver="cprw"
+LinearSolverAccelerator="cpu"
+LinearSolverIgnoreConvergenceFailure="0"
+LinearSolverMaxIter="200"
+LinearSolverPrintJsonDefinition="1"
+LinearSolverReduction="0.01"
+LinearSolverRestart="40"
+LinearSolverVerbosity="0"
+LoadFile=""
+LoadStep="-1"
+LocalDomainsOrderingMeasure="maxpressure"
+LocalDomainsPartitionWellNeighborLevels="1"
+LocalDomainsPartitioningImbalance="1.03"
+LocalDomainsPartitioningMethod="zoltan"
+LocalSolveApproach="gauss-seidel"
+LocalToleranceScalingCnv="0.1"
+LocalToleranceScalingMb="1"
+LocalWellSolveControlSwitching="1"
+MatrixAddWellContributions="0"
+MaxInnerIterMsWells="100"
+MaxInnerIterWells="50"
+MaxLocalSolveIterations="20"
+MaxNewtonIterationsWithInnerWellIterations="99"
+MaxPressureChangeMsWells="1e+06"
+MaxResidualAllowed="1e+07"
+MaxSinglePrecisionDays="20"
+MaxTemperatureChange="5"
+MaxTimeStepDivisions="10"
+MaxTimeStepSize="inf"
+MaxWellStatusSwitchForWells="99"
+MaxWellStatusSwitchInInnerIterWells="99"
+MaxWelleqIter="30"
+MaximumNumberOfGroupSwitches="3"
+MaximumNumberOfWellSwitches="3"
+MaximumWaterSaturation="1"
+MetisParams="default"
+MiluVariant="ilu"
+MinStrictCnvIter="-1"
+MinStrictMbIter="-1"
+MinTimeStepBasedOnNewtonIterations="0"
+MinTimeStepBeforeShuttingProblematicWellsInDays="0.01"
+MinTimeStepSize="0"
+NetworkMaxOuterIterations="3"
+NetworkMaxPressureUpdateInBars="5"
+NetworkMaxStrictOuterIterations="10"
+NetworkMaxSubIterations="100"
+NetworkPressureUpdateDampingFactor="0.1"
+NewtonMaxError="1e+100"
+NewtonMaxIterations="20"
+NewtonMaxRelax="0.5"
+NewtonMinIterations="2"
+NewtonRelaxationType="dampen"
+NewtonTargetIterations="10"
+NewtonTolerance="0.01"
+NewtonVerbose="1"
+NewtonWriteConvergence="0"
+NlddLocalLinearSolver="ilu0"
+NlddLocalLinearSolverMaxIter="200"
+NlddLocalLinearSolverReduction="0.01"
+NlddNumInitialNewtonIter="1"
+NlddRelativeMobilityChangeTol="0.1"
+NonlinearSolver="newton"
+NumLocalDomains="0"
+NumOverlap="1"
+NumPressurePointsEquil="2000"
+NumSatfuncConsistencySamplePoints="5"
+NupcolGroupRateTolerance="0.001"
+OpenclIluParallel="1"
+OpenclPlatformId="0"
+OutputExtraConvergenceInfo="none"
+OutputInterval="1"
+OutputMode="all"
+OwnerCellsFirst="1"
+ParameterFile=""
+ParsingStrictness="normal"
+PartitionMethod="zoltanwell"
+PreSolveNetwork="1"
+PredeterminedTimeStepsFile=""
+PressureMax="1e+99"
+PressureMin="-1e+99"
+PressureScale="1"
+PriVarOscilationThreshold="1e-05"
+PrintParameters="2"
+ProjectSaturations="0"
+RegularizationFactorWells="100"
+RelaxedLinearSolverReduction="0.01"
+RelaxedMaxPvFraction="0.03"
+RelaxedPressureTolMsw="10000"
+RelaxedWellFlowTol="0.001"
+RestartTime="-1e+35"
+RestartWritingInterval="16777215"
+SaveFile=""
+SaveStep=""
+ScaleLinearSystem="0"
+SchedRestart="0"
+SerialPartitioning="0"
+ShutUnsolvableWells="1"
+Slave="0"
+SolveWelleqInitially="1"
+SolverContinueOnConvergenceFailure="0"
+SolverGrowthFactor="2"
+SolverMaxGrowth="3"
+SolverMaxRestarts="10"
+SolverMaxTimeStepInDays="365"
+SolverMinTimeStep="1e-12"
+SolverRestartFactor="0.33"
+SolverVerbosity="1"
+StrictInnerIterWells="40"
+StrictOuterIterWells="6"
+TemperatureMax="1e+09"
+TemperatureMin="0"
+ThreadsPerProcess="2"
+TimeStepAfterEventInDays="-1"
+TimeStepControl="pid+newtoniteration"
+TimeStepControlDecayDampingFactor="1"
+TimeStepControlDecayRate="0.75"
+TimeStepControlFileName="timesteps"
+TimeStepControlGrowthDampingFactor="3.2"
+TimeStepControlGrowthRate="1.25"
+TimeStepControlMaxReductionTimeStep="0.1"
+TimeStepControlParameters="0.125;0.25;0.125;0.75;0.25"
+TimeStepControlRejectCompletedStep="0"
+TimeStepControlSafetyFactor="0.8"
+TimeStepControlTargetIterations="30"
+TimeStepControlTargetNewtonIterations="8"
+TimeStepControlTolerance="0.1"
+TimeStepControlToleranceTestVersion="standard"
+TimeStepVerbosity="1"
+ToleranceCnv="0.01"
+ToleranceCnvEnergy="0.4182"
+ToleranceCnvEnergyRelaxed="41.82"
+ToleranceCnvRelaxed="1"
+ToleranceEnergyBalance="4.182e-06"
+ToleranceEnergyBalanceRelaxed="4.182e-05"
+ToleranceMaxDp="0"
+ToleranceMaxDrs="0"
+ToleranceMaxDrv="0"
+ToleranceMaxDs="0"
+ToleranceMb="1e-07"
+ToleranceMbRelaxed="1e-06"
+TolerancePressureMsWells="1000"
+ToleranceWellControl="1e-07"
+ToleranceWells="0.0001"
+TpsaIluFillinLevel="0"
+TpsaIluRelaxation="0.9"
+TpsaLinearSolver="ilu0"
+TpsaLinearSolverIgnoreConvergenceFailure="0"
+TpsaLinearSolverMaxIter="200"
+TpsaLinearSolverPrintJsonDefinition="0"
+TpsaLinearSolverReduction="0.001"
+TpsaLinearSolverRestart="40"
+TpsaLinearSolverVerbosity="0"
+TpsaNewtonMaxError="1e+100"
+TpsaNewtonMaxIterations="20"
+TpsaNewtonMinIterations="1"
+TpsaNewtonTargetIterations="10"
+TpsaNewtonTolerance="0.001"
+TpsaNewtonVerbosity="1"
+TpsaRelaxedLinearSolverReduction="0.001"
+TpsaUseGmres="0"
+UpdateEquationsScaling="0"
+UseAverageDensityMsWells="0"
+UseGmres="0"
+UseHybridNewton="0"
+UseImplicitIpr="1"
+UseMultisegmentWell="1"
+UseUpdateStabilization="1"
+VerifyGpuAwareMpi="0"
+VtkWriteAverageMolarMasses="0"
+VtkWriteDensities="1"
+VtkWriteDiffusionCoefficients="0"
+VtkWriteDofIndex="0"
+VtkWriteEffectiveDiffusionCoefficients="0"
+VtkWriteExtrusionFactor="0"
+VtkWriteFilterVelocities="0"
+VtkWriteFugacities="0"
+VtkWriteFugacityCoeffs="0"
+VtkWriteGasDissolutionFactor="0"
+VtkWriteGasFormationVolumeFactor="0"
+VtkWriteGasSaturationPressure="0"
+VtkWriteIntrinsicPermeabilities="0"
+VtkWriteMassFractions="0"
+VtkWriteMobilities="0"
+VtkWriteMolarities="0"
+VtkWriteMoleFractions="1"
+VtkWriteOilFormationVolumeFactor="0"
+VtkWriteOilSaturationPressure="0"
+VtkWriteOilVaporizationFactor="0"
+VtkWritePorosity="1"
+VtkWritePotentialGradients="0"
+VtkWritePressures="1"
+VtkWritePrimaryVars="0"
+VtkWritePrimaryVarsMeaning="0"
+VtkWriteProcessRank="0"
+VtkWriteRelativePermeabilities="1"
+VtkWriteSaturatedGasOilVaporizationFactor="0"
+VtkWriteSaturatedOilGasDissolutionFactor="0"
+VtkWriteSaturationRatios="0"
+VtkWriteSaturations="1"
+VtkWriteTemperature="1"
+VtkWriteTortuosities="0"
+VtkWriteTotalMassFractions="0"
+VtkWriteTotalMoleFractions="0"
+VtkWriteTracerConcentration="0"
+VtkWriteViscosities="0"
+VtkWriteWaterFormationVolumeFactor="0"
+WaterOnlyThreshold="1"
+WellGroupConstraintsMaxIterations="1"
+ZoltanImbalanceTol="1.1"
+ZoltanParams="graph"
+ZoltanPhgEdgeSizeThreshold="0.35"
+
+Reading deck file '/input/SYNTHETIC.DATA'
+    0 Reading RUNSPEC  in /input/SYNTHETIC.DATA line 3
+    1 Reading DIMENS   in /input/SYNTHETIC.DATA line 4
+    2 Reading EQLDIMS  in /input/SYNTHETIC.DATA line 6
+    3 Reading TABDIMS  in /input/SYNTHETIC.DATA line 8
+    4 Reading OIL      in /input/SYNTHETIC.DATA line 10
+    5 Reading GAS      in /input/SYNTHETIC.DATA line 11
+    6 Reading WATER    in /input/SYNTHETIC.DATA line 12
+    7 Reading DISGAS   in /input/SYNTHETIC.DATA line 13
+    8 Reading FIELD    in /input/SYNTHETIC.DATA line 14
+    9 Reading START    in /input/SYNTHETIC.DATA line 15
+   10 Reading WELLDIMS in /input/SYNTHETIC.DATA line 17
+   11 Reading UNIFOUT  in /input/SYNTHETIC.DATA line 19
+   12 Reading GRID     in /input/SYNTHETIC.DATA line 20
+   13 Reading INIT     in /input/SYNTHETIC.DATA line 21
+   14 Reading DX       in /input/SYNTHETIC.DATA line 22
+   15 Reading DY       in /input/SYNTHETIC.DATA line 24
+   16 Reading DZ       in /input/SYNTHETIC.DATA line 26
+   17 Reading TOPS     in /input/SYNTHETIC.DATA line 28
+   18 Reading PORO     in /input/SYNTHETIC.DATA line 30
+   19 Reading PERMX    in /input/SYNTHETIC.DATA line 32
+   20 Reading PERMY    in /input/SYNTHETIC.DATA line 34
+   21 Reading PERMZ    in /input/SYNTHETIC.DATA line 36
+   22 Reading PROPS    in /input/SYNTHETIC.DATA line 53
+   23 Reading PVTW     in /input/SYNTHETIC.DATA line 55
+   24 Reading ROCK     in /input/SYNTHETIC.DATA line 58
+   25 Reading SWOF     in /input/SYNTHETIC.DATA line 61
+   26 Reading SGOF     in /input/SYNTHETIC.DATA line 68
+   27 Reading DENSITY  in /input/SYNTHETIC.DATA line 73
+   28 Reading PVDG     in /input/SYNTHETIC.DATA line 76
+   29 Reading PVTO     in /input/SYNTHETIC.DATA line 81
+   30 Reading SOLUTION in /input/SYNTHETIC.DATA line 92
+   31 Reading EQUIL    in /input/SYNTHETIC.DATA line 93
+   32 Reading RSVD     in /input/SYNTHETIC.DATA line 95
+   33 Reading SUMMARY  in /input/SYNTHETIC.DATA line 97
+   34 Reading FOPR     in /input/SYNTHETIC.DATA line 98
+   35 Reading WBHP     in /input/SYNTHETIC.DATA line 99
+   36 Reading SCHEDULE in /input/SYNTHETIC.DATA line 101
+   37 Reading RPTRST   in /input/SYNTHETIC.DATA line 102
+   38 Reading DRSDT    in /input/SYNTHETIC.DATA line 104
+   39 Reading WELSPECS in /input/SYNTHETIC.DATA line 106
+   40 Reading COMPDAT  in /input/SYNTHETIC.DATA line 110
+   41 Reading WCONPROD in /input/SYNTHETIC.DATA line 114
+   42 Reading WCONINJE in /input/SYNTHETIC.DATA line 117
+   43 Reading TSTEP    in /input/SYNTHETIC.DATA line 120
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SYNTHETIC.DATA line 101
+Initializing report step 0/2 at 2015-01-01 0 DAYS line 101
+Processing keyword RPTRST at line 102
+Processing keyword DRSDT at line 104
+Processing keyword WELSPECS at line 106
+Processing keyword COMPDAT at line 110
+Processing keyword WCONPROD at line 114
+Processing keyword WCONINJE at line 117
+Complete report step 1 (1 DAYS) at 2015-01-02 (0 DAYS)
+
+Initializing report step 2/2 at 2015-01-02 (0 DAYS) line 120
+Complete report step 2 (1 DAYS) at 2015-01-03 (1 DAYS)
+
+
+Processing grid
+Total number of active cells: 300 / total pore volume: 534322820 RB
+
+Property tree for linear solvers:
+{
+    "maxiter": "20",
+    "tol": "0.0050000000000000001",
+    "verbosity": "0",
+    "solver": "bicgstab",
+    "preconditioner": {
+        "type": "cprw",
+        "use_well_weights": "false",
+        "add_wells": "true",
+        "weight_type": "trueimpes",
+        "pre_smooth": "0",
+        "post_smooth": "1",
+        "finesmoother": {
+            "type": "paroverilu0",
+            "relaxation": "1"
+        },
+        "verbosity": "0",
+        "coarsesolver": {
+            "maxiter": "1",
+            "tol": "0.10000000000000001",
+            "solver": "loopsolver",
+            "verbosity": "0",
+            "preconditioner": {
+                "type": "amg",
+                "alpha": "0.33333333333300003",
+                "relaxation": "1",
+                "iterations": "1",
+                "coarsenTarget": "1200",
+                "pre_smooth": "1",
+                "post_smooth": "1",
+                "beta": "0",
+                "smoother": "ilu0",
+                "verbosity": "0",
+                "maxlevel": "15",
+                "skip_isolated": "0",
+                "accumulate": "1",
+                "prolongationdamping": "1",
+                "maxdistance": "2",
+                "maxconnectivity": "15",
+                "maxaggsize": "6",
+                "minaggsize": "4"
+            }
+        }
+    }
+}
+
+
+
+================ Starting main simulation loop ===============
+
+
+Report step  0/2 at day 0/2, date = 01-Jan-2015
+Using Newton nonlinear solver.
+
+Starting time step 0, stepsize 1 days, at day 0/1, date = 01-Jan-2015
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+Restart file written for report step 0/2, date = 01-Jan-2015 00:00:00
+
+
+Report step  1/2 at day 1/2, date = 02-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 1/2, date = 02-Jan-2015
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+Restart file written for report step 1/2, date = 02-Jan-2015 00:00:00
+
+Restart file written for report step 2/2, date = 03-Jan-2015 00:00:00
+
+
+================    End of simulation     ===============
+
+Number of MPI processes:         1
+Threads per MPI process:         2
+Setup time:                      0.09 s
+  Deck input:                    0.07 s
+Number of timesteps:             2
+Simulation time:                 0.06 s
+  Assembly time:                 0.00 s (Wasted: 0.0 s; 0.0%)
+    Well assembly:               0.00 s (Wasted: 0.0 s; 0.0%)
+  Linear solve time:             0.00 s (Wasted: 0.0 s; 0.0%)
+    Linear setup:                0.00 s (Wasted: 0.0 s; 0.0%)
+  Props/update time:             0.00 s (Wasted: 0.0 s; 0.0%)
+  Pre/post step:                 0.00 s (Wasted: 0.0 s; 0.0%)
+  Output write time:             0.05 s
+Overall Linearizations:          7      (Wasted:     0; 0.0%)
+Overall Newton Iterations:       5      (Wasted:     0; 0.0%)
+Overall Linear Iterations:       3      (Wasted:     0; 0.0%)
+
+
+
+Error summary:
+Warnings          0
+Info              76
+Errors            0
+Bugs              0
+Debug             0
+Problems          0
+

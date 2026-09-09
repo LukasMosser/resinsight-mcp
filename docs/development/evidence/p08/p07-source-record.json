@@ -1,0 +1,114 @@
+{
+  "model": {
+    "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+    "revision_id": "revision_37a5b76280294229b326170e3365ed3f"
+  },
+  "source_entrypoint": "SPE1.DATA",
+  "sources": {
+    "SPE1.DATA": {
+      "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+      "artifact_id": "artifact_72cfda9df3774d44bb4776a3ef3186d4"
+    },
+    "includes/grid.inc": {
+      "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+      "artifact_id": "artifact_c99306786ce94c7f9cf575da7f7dd840"
+    },
+    "includes/props.inc": {
+      "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+      "artifact_id": "artifact_13e5bbc0688f496ba713b15e262f5e9a"
+    },
+    "includes/regions.inc": {
+      "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+      "artifact_id": "artifact_dab94ae5c00546e1b6297789dcc2351e"
+    },
+    "includes/schedule.inc": {
+      "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+      "artifact_id": "artifact_047053c45b3347c58b851335c9ae7c51"
+    }
+  },
+  "includes": [
+    {
+      "source": "SPE1.DATA",
+      "target": "includes/grid.inc"
+    },
+    {
+      "source": "SPE1.DATA",
+      "target": "includes/props.inc"
+    },
+    {
+      "source": "SPE1.DATA",
+      "target": "includes/regions.inc"
+    },
+    {
+      "source": "SPE1.DATA",
+      "target": "includes/schedule.inc"
+    }
+  ],
+  "changes": [],
+  "summary": {
+    "parser_version": "2025.10",
+    "support_profile": "spe1-field-v1",
+    "unit_system": "FIELD",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "wells": [
+      "PROD",
+      "INJ"
+    ],
+    "report_steps": 2,
+    "elapsed_days": 2.0,
+    "keywords": [
+      "COMPDAT",
+      "DENSITY",
+      "DIMENS",
+      "DISGAS",
+      "DRSDT",
+      "DX",
+      "DY",
+      "DZ",
+      "EQLDIMS",
+      "EQUIL",
+      "FIELD",
+      "FIPNUM",
+      "FOPR",
+      "GAS",
+      "GRID",
+      "INIT",
+      "OIL",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "PORO",
+      "PROPS",
+      "PVDG",
+      "PVTO",
+      "PVTW",
+      "REGIONS",
+      "ROCK",
+      "RPTRST",
+      "RSVD",
+      "RUNSPEC",
+      "SCHEDULE",
+      "SGOF",
+      "SOLUTION",
+      "START",
+      "SUMMARY",
+      "SWOF",
+      "TABDIMS",
+      "TITLE",
+      "TOPS",
+      "TSTEP",
+      "UNIFOUT",
+      "WATER",
+      "WBHP",
+      "WCONINJE",
+      "WCONPROD",
+      "WELLDIMS",
+      "WELSPECS"
+    ]
+  }
+}
