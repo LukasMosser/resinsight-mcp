@@ -6,8 +6,9 @@ The service validates and stores the generated inputs as a fixed model revision.
 It does not start Flow or open ResInsight.
 A valid model still requires separate simulation convergence checks.
 
-Model creation is available through the Python service.
-The shipped launcher does not advertise a model creation tool.
+Model creation is available through `model_create` with the [model launcher configuration](mcp.md#enable-model-tools).
+The [model tutorial](tutorials/models.md) uses the public tools.
+The Python interface below exposes the same specification and validation.
 
 ## Create the reference model
 

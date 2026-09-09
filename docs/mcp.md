@@ -11,6 +11,7 @@ The [data boundary](views.md#data-boundary) explains local tools and remote mode
 
 The supplied launcher manages durable workspace records and reads saved observations.
 Its optional ResInsight configuration enables application sessions and project operations.
+Its optional model configuration enables FIELD input import, creation, inspection, preparation, and cloning.
 Fresh rendering and local jobs require explicitly supplied service implementations.
 With session and view services supplied, an agent can inspect project objects, apply view settings, and receive fresh native images.
 The [view guide](views.md) describes that configured workflow and its trusted result setup.
@@ -85,9 +86,30 @@ The [session tutorial](tutorials/sessions.md) shows the requests and recovery st
 
 Launch output goes to separate files in the configured log directory.
 The service uses its [default timeouts](development/sessions.md#configure-and-use-the-service).
-Without `--resinsight-log-directory`, the launcher advertises workspace operations only.
-View, job, and model tools are not part of this launcher configuration.
+Without a native log directory or model configuration, the launcher advertises workspace operations only.
+View and job tools require their supplied services.
 The [launcher evidence](development/launcher-evidence.md) records a clean installation and real ResInsight session trial.
+
+## Enable model tools
+
+Install the pinned parser with `uv sync --locked --extra imports`.
+For an existing workspace, start the model configuration:
+
+```console
+uv run --locked --extra imports python -m resinsight_mcp.mcp \
+  --workspace-root /absolute/path/workspace --enable-models
+```
+
+For a new workspace, add `--create-workspace`.
+The launcher verifies `opm==2025.10` and its required parser interfaces before opening workspace storage.
+This configuration does not require ResInsight or Docker.
+To combine model and session tools, supply both documented configurations and their optional dependencies.
+
+The configuration adds `model_import`, `model_get`, `model_inspect`, `model_prepare`, `model_clone`, `model_template`, and `model_create`.
+Import and creation require an existing session and an explicit local depth datum.
+All model operations retain the exact stored revision identity.
+Preparation validates inputs without running a simulator.
+The [model tutorial](tutorials/models.md) explains the public workflow and returned records.
 
 ## Use explicit sessions
 

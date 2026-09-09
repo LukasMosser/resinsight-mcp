@@ -5,6 +5,8 @@ import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
+from resinsight_mcp.models.imports import OpmImportService
+from resinsight_mcp.models.synthetic import SyntheticModelService
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import ApplicationFactory
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
@@ -34,6 +36,7 @@ class LauncherConfiguration:
     workspace_root: Path
     create_workspace: bool = False
     resinsight_log_directory: Path | None = None
+    enable_models: bool = False
 
     def __post_init__(self) -> None:
         if not self.workspace_root.is_absolute():
@@ -48,6 +51,8 @@ class LauncherConfiguration:
 
     def bindings(self) -> Bindings:
         """Check native dependencies before opening or creating the workspace."""
+        if self.enable_models:
+            OpmImportService.check_dependencies()
         factory = (
             _native_factory(self.resinsight_log_directory)
             if self.resinsight_log_directory is not None
@@ -58,4 +63,9 @@ class LauncherConfiguration:
         )
         workspaces = open_store(self.workspace_root)
         sessions = ResInsightSessionService(workspaces, factory) if factory is not None else None
-        return Bindings(workspaces=workspaces, sessions=sessions)
+        return Bindings(
+            workspaces=workspaces,
+            sessions=sessions,
+            imports=OpmImportService(workspaces) if self.enable_models else None,
+            synthetic_models=SyntheticModelService(workspaces) if self.enable_models else None,
+        )

@@ -26,6 +26,19 @@ def _import(
     if mode == "missing-rips" and name == "rips":
         raise ImportError("Launcher fixture hides optional rips")
     module = _original_import(name, globals, locals, fromlist, level)
+    if mode == "missing-model-dependencies" and name == "resinsight_mcp.models.imports":
+        from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode
+
+        patch.object(
+            module.OpmImportService,
+            "check_dependencies",
+            side_effect=ContractError(
+                Error(
+                    code=ErrorCode.INVALID_MODEL,
+                    message="OPM import dependencies are unavailable: fixture dependency failure.",
+                )
+            ),
+        ).start()
     if mode == "noisy" and name == "resinsight_mcp.resinsight.sessions.rips":
         print("Launcher fixture native import", flush=True)
         factory = module.RipsApplicationFactory

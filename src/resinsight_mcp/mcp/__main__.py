@@ -16,6 +16,11 @@ def main() -> None:
     parser.add_argument("--workspace-root", type=Path, required=True)
     parser.add_argument("--create-workspace", action="store_true")
     parser.add_argument(
+        "--enable-models",
+        action="store_true",
+        help="Enable validated FIELD model import, creation, inspection, and preparation.",
+    )
+    parser.add_argument(
         "--resinsight-log-directory",
         type=Path,
         help="Enable native session tools with an absolute, existing application log directory.",
@@ -27,6 +32,7 @@ def main() -> None:
             workspace_root=arguments.workspace_root,
             create_workspace=arguments.create_workspace,
             resinsight_log_directory=arguments.resinsight_log_directory,
+            enable_models=arguments.enable_models,
         )
         asyncio.run(_serve_stdio_from(configuration.bindings))
     except (ConfigurationError, ContractError, OSError) as error:
