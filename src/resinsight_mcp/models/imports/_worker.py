@@ -8,7 +8,9 @@ from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
-from .records import ModelSummary
+from resinsight_mcp.contracts.engineering import CellIndex
+
+from .records import FieldCellProperties, ModelInspection, ModelSummary
 
 REQUIRED = frozenset(
     "RUNSPEC DIMENS OIL WATER GAS DISGAS FIELD START WELLDIMS GRID DX DY DZ TOPS PORO "
@@ -72,7 +74,7 @@ def _control(keyword: Any, record: Any) -> str:
     return well
 
 
-def _controls(deck: Any) -> None:
+def _controls(deck: Any, active_cells: set[tuple[int, int, int]]) -> None:
     declared: set[str] = set()
     completed: set[str] = set()
     controlled: set[str] = set()
@@ -81,7 +83,7 @@ def _controls(deck: Any) -> None:
         if keyword.name == "WELSPECS":
             _declare(keyword, declared)
         elif keyword.name == "COMPDAT":
-            completed.update(_completion(record, declared) for record in keyword)
+            completed.update(_completion(record, declared, active_cells) for record in keyword)
         elif keyword.name in {"WCONPROD", "WCONINJE"}:
             for record in keyword:
                 name = _control(keyword, record)
@@ -109,17 +111,40 @@ def _declare(keyword: Any, declared: set[str]) -> None:
         declared.add(name)
 
 
-def _completion(record: Any, declared: set[str]) -> str:
+def _completion(record: Any, declared: set[str], active_cells: set[tuple[int, int, int]]) -> str:
     items = _items(record)
     name = _explicit(items, "WELL")
     if name not in declared:
         raise ValueError("Each completion must name a declared well without wildcards.")
-    _allowed_items(items, {"WELL", "I", "J", "K1", "K2", "STATE", "DIAMETER"})
+    _allowed_items(
+        items,
+        {
+            "WELL",
+            "I",
+            "J",
+            "K1",
+            "K2",
+            "STATE",
+            "DIAMETER",
+            "CONNECTION_TRANSMISSIBILITY_FACTOR",
+            "Kh",
+            "SKIN",
+            "DIR",
+        },
+    )
     if _explicit(items, "STATE") != "OPEN":
         raise ValueError(
             "This profile requires OPEN completions and controls well closure separately."
         )
     _positive(_explicit(items, "DIAMETER"), "Completion diameter")
+    i, j, k1, k2 = (_explicit(items, key) for key in ("I", "J", "K1", "K2"))
+    if k1 > k2 or any((i - 1, j - 1, k - 1) not in active_cells for k in range(k1, k2 + 1)):
+        raise ValueError("Every completion must identify active cells in the prepared grid.")
+    for key in ("CONNECTION_TRANSMISSIBILITY_FACTOR", "Kh", "SKIN"):
+        if not items[key].defaulted:
+            _positive(_explicit(items, key), key, zero=key == "SKIN")
+    if not items["DIR"].defaulted and _explicit(items, "DIR") not in {"X", "Y", "Z"}:
+        raise ValueError("Completion direction must be X, Y, or Z.")
     return name
 
 
@@ -147,6 +172,9 @@ def _check_schedule(schedule: Any) -> float:
                 connection.state == "OPEN" for connection in well.connections()
             ):
                 raise ValueError(f"Open well {well.name} requires an open completion.")
+            for connection in well.connections():
+                _positive(connection.cf, "Parsed connection factor")
+                _positive(connection.kh, "Parsed connection permeability-length")
     return elapsed
 
 
@@ -193,7 +221,39 @@ def _check_dimensions(deck: Any) -> None:
         raise ValueError("This profile supports one equilibrium region.")
 
 
-def validate(path: Path) -> ModelSummary:
+def _expanded_lengths(deck: Any, name: str, dimensions: tuple[int, int, int]) -> tuple[float, ...]:
+    """Expand OPM's inherited layer lengths in global cell order."""
+    values = [float(value) for value in deck[name].get_raw_array()]
+    ni, nj, nk = dimensions
+    area = ni * nj
+    total = area * nk
+    if not area <= len(values) <= total:
+        raise ValueError(f"{name} requires at least one full layer and at most the full grid.")
+    while len(values) < total:
+        values.append(values[len(values) - area])
+    return tuple(values)
+
+
+def _properties(deck: Any, state: Any, dimensions: tuple[int, int, int]) -> FieldCellProperties:
+    field = state.field_props()
+
+    def field_values(name: str) -> tuple[float, ...]:
+        keyword = deck[name]
+        scale = float(keyword.get_SI_array()[0]) / float(keyword.get_raw_array()[0])
+        return tuple(float(value) / scale for value in field.get_double_array(name))
+
+    return FieldCellProperties(
+        dx_ft=_expanded_lengths(deck, "DX", dimensions),
+        dy_ft=_expanded_lengths(deck, "DY", dimensions),
+        dz_ft=_expanded_lengths(deck, "DZ", dimensions),
+        porosity=field_values("PORO"),
+        permx_millidarcy=field_values("PERMX"),
+        permy_millidarcy=field_values("PERMY"),
+        permz_millidarcy=field_values("PERMZ"),
+    )
+
+
+def inspect(path: Path) -> ModelInspection:
     # Importing deck enables the supported item value and defaulted properties.
     import opm.io.deck  # noqa: F401
     from opm.io.ecl_state import EclipseState
@@ -213,12 +273,21 @@ def validate(path: Path) -> ModelSummary:
     if missing := REQUIRED - names:
         raise ValueError(f"Missing required keywords: {', '.join(sorted(missing))}.")
     dimensions = _check_inputs(deck)
-    _controls(deck)
     state = EclipseState(deck)
+    grid = state.grid()
+    actnum = state.field_props().get_int_array("ACTNUM")
+    active_cells = tuple(
+        CellIndex(i=int(i), j=int(j), k=int(k))
+        for index, active in enumerate(actnum)
+        if active
+        for i, j, k in (grid.getIJK(index),)
+    )
+    _controls(deck, {(cell.i, cell.j, cell.k) for cell in active_cells})
     schedule = Schedule(deck, state)
     reports = schedule.reportsteps
     elapsed = _check_schedule(schedule)
-    return ModelSummary(
+    summary = ModelSummary(
+        support_profile="spe1-field-v2",
         dimensions=dimensions,
         active_cells=state.grid().nactive,
         wells=tuple(well.name for well in schedule.get_wells(len(reports) - 1)),
@@ -226,13 +295,24 @@ def validate(path: Path) -> ModelSummary:
         elapsed_days=elapsed,
         keywords=tuple(sorted(names)),
     )
+    length_scale = float(deck["DX"].get_SI_array()[0]) / float(deck["DX"].get_raw_array()[0])
+    return ModelInspection(
+        summary=summary,
+        active_cells=active_cells,
+        cell_depths_ft=tuple(float(value) / length_scale for value in grid.getCellDepth()),
+        cell_volumes_ft3=tuple(float(value) / length_scale**3 for value in grid.getCellVolume()),
+        properties=_properties(deck, state, dimensions),
+        report_elapsed_days=tuple(
+            (report - reports[0]).total_seconds() / 86400 for report in reports
+        ),
+    )
 
 
 def main() -> None:
     output = Path(sys.argv[2])
     try:
-        summary = validate(Path(sys.argv[1]))
-        payload = {"summary": summary.model_dump(mode="json")}
+        inspection = inspect(Path(sys.argv[1]))
+        payload = {"inspection": inspection.model_dump(mode="json")}
     except (ValueError, RuntimeError, IndexError, KeyError, ImportError) as error:
         payload = {"error": str(error)}
     output.write_text(json.dumps(payload), encoding="utf-8")
