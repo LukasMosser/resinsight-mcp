@@ -78,3 +78,6 @@ Its [test log](evidence/session-mutations/final-validation/independent-tests.log
 It assessed duplicate behavior, control flow, names, ownership, coupling, failure handling, and public tests.
 The change reuses the existing lock, observation, generation, and connection-retirement paths.
 These library tests do not establish native P09 acceptance or Linux and macOS CI results.
+
+The [final shared check](evidence/session-mutations/final-validation/shared-check.log) passed 465 tests, Ruff, ty, and strict documentation after both model prerequisites were integrated.
+The [combined browser record](evidence/session-mutations/browser/combined/visual-review.json) covers seven page visits and 43 local links, with every screenshot inspected.
