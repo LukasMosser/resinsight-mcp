@@ -1,0 +1,82 @@
+{
+  "context": {
+    "model": {
+      "session_id": "session_7d212713fad642988fe375c6213136e7",
+      "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+    },
+    "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+    "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+    "scene_version": 0,
+    "property": {
+      "name": "PRESSURE",
+      "unit": "psi"
+    },
+    "report_time": {
+      "index": 0,
+      "elapsed_days": 0,
+      "calendar_date": "2015-01-01"
+    },
+    "coordinates": {
+      "length_unit": "ft",
+      "depth_direction": "positive_down",
+      "datum": "SPE1 local origin"
+    },
+    "camera": {
+      "position": [
+        23003.56868899781,
+        -23003.56868899781,
+        23003.56868899781
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        0,
+        1
+      ],
+      "projection": "perspective",
+      "field_of_view_degrees": 40,
+      "parallel_scale": null
+    },
+    "vertical_exaggeration": 20,
+    "legend": {
+      "minimum": 1000,
+      "maximum": 5000
+    },
+    "filters": [],
+    "case": {
+      "context": {
+        "session_id": "session_7d212713fad642988fe375c6213136e7",
+        "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+        "project_generation": 0
+      },
+      "kind": "case",
+      "object_id": "3f6067de9af64f44b5c500624831ebcd"
+    },
+    "view": {
+      "context": {
+        "session_id": "session_7d212713fad642988fe375c6213136e7",
+        "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+        "project_generation": 0
+      },
+      "kind": "view",
+      "object_id": "8ea3a36712514d9499f45e50faa70e94"
+    },
+    "selected_wells": [
+      {
+        "context": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "connection_id": "connection_e1d9127ee550422495e219b504627a92",
+          "project_generation": 0
+        },
+        "kind": "well",
+        "object_id": "98cbd4a8fa3f4e84809ec39ed121c401"
+      }
+    ]
+  },
+  "width": 1200,
+  "height": 800
+}

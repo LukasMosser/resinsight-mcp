@@ -1,0 +1,58 @@
+{
+  "reviewed_at": "2026-09-09T06:48:30.149609+00:00",
+  "reviewer": "Lead documentation agent",
+  "initial_source_commit": "a1d9e7b2f6c216d753a6eb309f6f50ae8e90069c",
+  "final_source_commit": "0989131f4f14cd5d54590403a4733e87a766ecbc",
+  "initial": {
+    "record": "initial/review.json",
+    "screenshots_inspected": [
+      "architecture.png",
+      "connection.png",
+      "development-overview.png",
+      "homepage.png",
+      "job-developer-example.png",
+      "job-reference.png",
+      "job-tutorial.png",
+      "operation-map.png",
+      "readme.png",
+      "session-developer-example.png",
+      "session-reference.png",
+      "session-tutorial.png",
+      "tutorials.png",
+      "view-comparison.png",
+      "workflow-acceptance.png"
+    ],
+    "result": "Readable page structure and images. Long session and view request lines required horizontal code scrolling.",
+    "correction": "Wrap request examples and split dense paragraphs. Preserve request values and support boundaries.",
+    "layout_check_limit": "The initial helper measured tables and pre elements. It did not measure inner code elements."
+  },
+  "final": {
+    "record": "layout/review.json",
+    "screenshots_inspected": [
+      "connection.png",
+      "integration-ownership.png",
+      "job-transport.png",
+      "session-tutorial.png",
+      "view-comparison.png"
+    ],
+    "result": "All five changed pages are readable. Session and view examples fit without horizontal scrolling.",
+    "limits": [
+      "The existing developer job example retains one inner code scroll region. The changed transport prose remains readable.",
+      "Screenshots capture selected desktop viewports. They do not establish every viewport or device layout."
+    ]
+  },
+  "review_concerns": {
+    "duplication": "User pages link developer construction details and the single production catalog. Tutorials link preserved acceptance records.",
+    "complexity": "No application interfaces or branching changed. Templates state identifier sources and update rules.",
+    "ownership": "Issue 35 assigns launcher composition and MCP wiring to one integration owner. Package owners retain domain algorithms.",
+    "behavior_and_failures": "Examples were checked against current contracts and recorded outcomes. Guides preserve stale context and recovery limits.",
+    "evidence": "Browser records, screenshots, parsed JSON checks, tool versions, and repository check logs support the documentation claims."
+  },
+  "scope_limits": [
+    "The README screenshot uses a local Python Markdown preview. It does not establish GitHub rendering.",
+    "The browser helper blocked external origins. Local article links returned HTTP 200.",
+    "Existing P04, P06, and P10 records support examples. This documentation review did not rerun native or model-provider acceptance.",
+    "Issue 34 retains the owner-approved native editor inspection deferral.",
+    "Issue 35 retains unimplemented launcher and domain integration."
+  ]
+}

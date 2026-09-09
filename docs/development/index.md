@@ -1,15 +1,19 @@
 # Development
 
-This section contains the development workflow, implemented library behavior, and proposed integration design.
-The library defines shared records, typed boundaries, a SQLite workspace store, and ResInsight session and project operations.
-The MCP transport binds shared services and preserves native image responses.
-Durable job supervision keeps trusted command execution independent of client connections.
-Configured view services apply native settings, capture fresh images, and reject stale observations.
-Simulator adapters remain separate work packages.
+This section explains the implementation behind an agent-operated ResInsight workflow.
+The [operation map](agent-workflows.md) connects user tasks to current tools, configuration, evidence, and remaining integration work.
+The [architecture](architecture.md) separates ResInsight control, simulator inputs, job supervision, and MCP transport.
+
+The Python 3.12 library validates shared records with Pydantic and defines typed boundaries with standard-library protocols.
+Its SQLite workspace store preserves sessions, immutable model revisions, artifacts, jobs, results, observations, and project checkpoints.
+The MCP transport binds these services and preserves native image responses.
+Session and view adapters control verified application connections and capture fresh observations.
+Model import and job services provide additional domain components, while the supplied launcher still exposes workspace tools only.
 
 Start with these pages:
 
 - [Local setup](local-setup.md) explains the development commands.
+- [Agent workflows](agent-workflows.md) maps current tools and assigns the remaining integration work.
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.

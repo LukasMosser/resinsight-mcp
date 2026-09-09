@@ -1,9 +1,106 @@
 # Session implementation
 
 P04 implements `ResInsightSessionService` against the shared `SessionService` protocol.
-The [user guide](../sessions.md) describes its current Python API.
+The [user guide](../sessions.md) describes current agent operations and outcomes.
 The service coordinates durable workspace records, verified application connections, project commands, and object reference validation.
 It does not provide an MCP transport or change simulator input revisions.
+
+## Configure and use the service
+
+The shipped launcher configures workspace operations only.
+A host must supply `Bindings.sessions` with this service to expose application and project operations.
+The [MCP guide](mcp.md) describes transport bindings.
+
+Install the optional ResInsight dependencies from the repository:
+
+```sh
+uv sync --locked --extra resinsight
+```
+
+The adapter requires `lsof` to verify the process listening at an explicit local endpoint.
+ResInsight must expose gRPC, its remote procedure call interface.
+The application and `rips` package must have matching major and minor versions.
+The optional dependency fixes `rips` at `2026.9.0.1`.
+The [platform record](platform-resinsight.md) describes the custom application build on macOS 14.2.1.
+
+Use a trusted local workspace and an absolute application executable path.
+`RipsApplicationFactory` takes a log directory, a launch timeout, and a timeout for each remote call.
+The default timeouts are 120 seconds for launch and 30 seconds for each remote call.
+Both timeout values must be finite and positive.
+Application output goes to separate launch log files.
+
+## Create, save, and detach
+
+This example creates a workspace, launches an application, saves its project, and detaches the connection.
+Replace the absolute paths with locations on your host.
+The workspace path must not exist, and its parent directory must exist.
+The project output directory must exist.
+Detaching leaves the application running.
+
+```python
+from pathlib import Path
+
+from resinsight_mcp.contracts.errors import (
+    ContractError,
+    Failure,
+    OperationResult,
+)
+from resinsight_mcp.contracts.identifiers import SessionId
+from resinsight_mcp.contracts.models import Session
+from resinsight_mcp.contracts.sessions import (
+    CloseRequest,
+    LaunchRequest,
+    ProjectSaveRequest,
+)
+from resinsight_mcp.resinsight.sessions import ResInsightSessionService
+from resinsight_mcp.resinsight.sessions.rips import RipsApplicationFactory
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
+
+
+def require[T](result: OperationResult[T]) -> T:
+    if isinstance(result.outcome, Failure):
+        raise ContractError(result.outcome.error)
+    return result.outcome.value
+
+
+workspace_root = Path("/absolute/path/new-workspace")
+app_root = Path("/absolute/path/ResInsight.app")
+executable = app_root / "Contents/MacOS/ResInsight"
+project_path = Path("/absolute/path/projects/example.rsp")
+store = SqliteWorkspaceStore.create(workspace_root)
+factory = RipsApplicationFactory(
+    log_directory=workspace_root / "application-logs",
+)
+service = ResInsightSessionService(store, factory)
+record = Session(session_id=SessionId.new(), name="Example")
+session = require(service.create_session(record))
+launch_request = LaunchRequest(
+    session_id=session.session_id,
+    executable=executable,
+)
+connection = require(service.launch(launch_request))
+project = require(service.inspect_project(session.session_id))
+save_request = ProjectSaveRequest(
+    context=project.context,
+    path=project_path,
+)
+saved = require(service.save_project(save_request))
+require(
+    service.close(
+        CloseRequest(
+            session_id=session.session_id,
+            connection_id=connection.context.connection_id,
+        )
+    )
+)
+print(saved.last_saved_path)
+```
+
+Public service methods return `OperationResult` with either a successful value or a typed failure.
+The example raises `ContractError` when an operation fails.
+Request construction can instead raise a Pydantic validation error.
+A launch failure can leave an application running, and its error reports the launched process and log location.
+Inspect that outcome before launching again.
 
 ## Ownership and boundaries
 
@@ -41,7 +138,7 @@ Detachment releases the client channel and preserves the application process.
 Default close behavior also detaches an owned application.
 
 Termination checks request identity and trusted ownership before contacting the application.
-An attached application requires authorization through a separate trusted keyword argument.
+An attached application requires `attached_termination_authorized=True` through trusted caller code.
 The adapter verifies process lifetime before requesting exit and waits for exit confirmation.
 The service retires the connection before channel cleanup, preserving detachment if cleanup fails.
 

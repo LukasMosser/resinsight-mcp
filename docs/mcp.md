@@ -1,16 +1,31 @@
-# Local MCP operations
+# Connect an agent
 
-The package exposes typed workspace operations through the MCP Python SDK.
+Connect an MCP-enabled client to discover and use the tools supplied by your host.
 MCP is the Model Context Protocol for tool access.
 The transport uses local standard input and output.
 Application output goes to standard error.
-The configured client can use a remote model, as described in the [data boundary](views.md#data-boundary).
+
+The configured client can send prompts, tool results, metadata, and images to its model provider.
+The product assumes that users have appropriate provider data sharing agreements.
+The [data boundary](views.md#data-boundary) explains local tools and remote model inference.
 
 The supplied launcher manages durable workspace records and reads saved observations.
 Application control and fresh rendering require explicitly supplied service implementations.
 The launcher does not configure those services.
 With session and view services supplied, an agent can inspect project objects, apply view settings, and receive fresh native images.
 The [view guide](views.md) describes that configured workflow and its trusted result setup.
+
+## Discover your tools
+
+Ask your agent to list the connected server's tools before starting an application task.
+Read `resinsight://catalog` for their complete request and response schemas.
+The resource and tool discovery use the same catalog.
+Optional operations appear only when their required service was supplied.
+
+The [tutorials](tutorials/index.md) identify the tools and configuration each task needs.
+If a required tool is absent, stop that task and inspect the host configuration.
+The [operation map](development/agent-workflows.md) explains which capabilities exist and which paths remain integration work.
+No tool accepts arbitrary shell commands or Python code.
 
 ## Start a workspace server
 
@@ -56,15 +71,11 @@ The `session_create` request uses an explicit identifier and a name:
 }
 ```
 
-For new application code, generate identifiers with `SessionId.new()` from `resinsight_mcp.contracts.identifiers`.
+The example identifier illustrates the declared format.
+For a new session, supply a new identifier that follows the discovered schema.
 Treat identifiers as opaque values.
 Use `session_list` with `{}` to discover durable session records.
 Use `session_get` with `session_id` to read one record.
-
-Read the `resinsight://catalog` resource for available tools and their complete request and response schemas.
-The resource and tool discovery use the same catalog.
-Optional operations appear only when their service implementation was supplied.
-No tool accepts arbitrary shell commands or Python code.
 
 ## Read outcomes and images
 
