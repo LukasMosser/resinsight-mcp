@@ -343,7 +343,7 @@ def trial(arguments: argparse.Namespace) -> None:
     source_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=arguments.native_source, text=True
     ).strip()
-    assert source_commit.startswith("70399abb9eba31f713f72028ffe94ae0be4db2c4"), (
+    assert source_commit.startswith("cd6450ab0757a9f4643e7dd18f3d7c76745ee95e"), (
         "The trial requires the reviewed native build."
     )
     record(
