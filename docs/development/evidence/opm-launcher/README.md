@@ -17,6 +17,13 @@ Two later native fixes changed only internal grid source loading and property na
 They did not change the generated interfaces.
 The installation record preserves the native source status and those source changes.
 
+The later P12 trial exposed a native summary import order defect.
+The [repaired installation](repair-01/installation.json) uses clean application source `917dd33a836aa0349d3620cf9e1d02cb8fb0a122`.
+Its [offline build](repair-01/build.log) and [installation](repair-01/install.log) replace only the application wheel.
+The matching generated RIPS client and other runtime dependencies remain unchanged.
+The [launcher help](repair-01/launcher-help.log) passed after installation.
+P12 records the separate native trial results.
+
 ## Public discovery
 
 The [recorded script](catalog-check-script.txt) uses the official SDK and installed interpreter with Python isolation enabled.
@@ -37,4 +44,7 @@ The empty local workspace remains outside the repository and is omitted from thi
 
 These checks establish installed launcher configuration, discovery, and schema agreement.
 They do not establish completed P12 native loading or P13 simulation, comparison, cancellation, and project recovery.
-The reviewed native trials and rendered documentation review remain pending owner approval.
+The owner approved the native trials and localhost guide review.
+The [rendered guide review](browser/README.md) passed eleven visits and 92 local links.
+The lead inspected every saved guide screenshot and found no layout defect.
+Complete native workflow acceptance remains part of P13.

@@ -1,0 +1,23 @@
+usage: __main__.py [-h] --workspace-root WORKSPACE_ROOT [--create-workspace]
+                   [--enable-models] [--enable-opm-workflow]
+                   [--docker-executable DOCKER_EXECUTABLE]
+                   [--resinsight-log-directory RESINSIGHT_LOG_DIRECTORY]
+
+Launch workspace and configured ResInsight services over local standard input
+and output.
+
+options:
+  -h, --help            show this help message and exit
+  --workspace-root WORKSPACE_ROOT
+  --create-workspace
+  --enable-models       Enable validated FIELD model import, creation,
+                        inspection, and preparation.
+  --enable-opm-workflow
+                        Enable the bounded OPM model, well, job, result, and
+                        native image workflow.
+  --docker-executable DOCKER_EXECUTABLE
+                        Use an explicit absolute Docker client path for the
+                        OPM workflow.
+  --resinsight-log-directory RESINSIGHT_LOG_DIRECTORY
+                        Enable native session tools with an absolute, existing
+                        application log directory.
