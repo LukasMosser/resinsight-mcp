@@ -3,7 +3,10 @@
 import json
 import subprocess
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import BinaryIO
 
 import pytest
@@ -20,8 +23,9 @@ from resinsight_mcp.contracts.errors import (
 from resinsight_mcp.contracts.identifiers import SessionId
 from resinsight_mcp.contracts.models import Backend, PreparationRequest, Session
 from resinsight_mcp.contracts.wells import WellStatus
-from resinsight_mcp.contracts.workspace import Artifact
-from resinsight_mcp.models.imports import OpmImportService
+from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind
+from resinsight_mcp.models.imports import ImportRecord, OpmImportService
+from resinsight_mcp.models.synthetic import service as synthetic_service
 from resinsight_mcp.models.synthetic.deck import read_grid_id, read_specification
 from resinsight_mcp.models.synthetic.records import (
     SyntheticModelRequest,
@@ -122,6 +126,8 @@ def test_invalid_complete_model_is_rejected(change: str) -> None:
 CONNECTIONS = """
 import json
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 from opm.io.parser import Parser
 from opm.io.ecl_state import EclipseState
 from opm.io.schedule import Schedule
@@ -197,6 +203,8 @@ def test_generated_controls_preserve_supported_modes(tmp_path: Path, variant: st
 CONTROLS = """
 import json
 import sys
+from collections.abc import Iterator
+from contextlib import contextmanager
 import opm.io.deck
 from opm.io.parser import Parser
 p = Parser().parse(sys.argv[1])
@@ -212,14 +220,7 @@ def test_import_publication_failure_retains_its_effect(
     store = SqliteWorkspaceStore.create(tmp_path / "workspace")
     session = value(store.create_session(Session(session_id=SessionId.new(), name="Failure")))
 
-    def fail_write(artifact: Artifact, source: BinaryIO) -> OperationResult[Artifact]:
-        return OperationResult(
-            outcome=Failure(
-                error=Error(code=ErrorCode.STORAGE_FAILED, message="Storage unavailable.")
-            )
-        )
-
-    monkeypatch.setattr(store, "write_artifact", fail_write)
+    monkeypatch.setattr(store, "write_artifact", reject_publication)
     result = SyntheticModelService(store).create_model(
         SyntheticModelRequest(
             session_id=session.session_id,
@@ -233,3 +234,85 @@ def test_import_publication_failure_retains_its_effect(
     assert "Storage unavailable" in result.outcome.error.message
     assert "publication may be incomplete" in result.outcome.error.message
     assert not value(store.list_jobs(session.session_id))
+
+
+@pytest.fixture
+def failing_cleanup(monkeypatch: pytest.MonkeyPatch) -> None:
+    @contextmanager
+    def cleanup_error(*, prefix: str) -> Iterator[str]:
+        with TemporaryDirectory(prefix=prefix) as directory:
+            yield directory
+        raise OSError("Cleanup unavailable.")
+
+    monkeypatch.setattr(synthetic_service, "TemporaryDirectory", cleanup_error)
+
+
+def test_cleanup_failure_reports_the_published_revision(
+    tmp_path: Path, failing_cleanup: None
+) -> None:
+    store = SqliteWorkspaceStore.create(tmp_path / "workspace")
+    session = value(store.create_session(Session(session_id=SessionId.new(), name="Cleanup")))
+    result = SyntheticModelService(store).create_model(
+        SyntheticModelRequest(
+            session_id=session.session_id,
+            datum="local datum",
+            specification=reference_specification(),
+        )
+    )
+    assert isinstance(result.outcome, Failure)
+    assert result.outcome.error.effect == MutationEffect.UNKNOWN
+    record_artifact = next(
+        artifact
+        for artifact in value(store.list_artifacts(session.session_id))
+        if artifact.kind == ArtifactKind.LOG
+    )
+    with store.open_artifact(record_artifact.ref) as stream:
+        record = ImportRecord.model_validate_json(stream.read())
+    revision = value(store.get_revision(record.model))
+    assert str(revision.model.revision_id) in result.outcome.error.message
+    assert "Cleanup unavailable" in result.outcome.error.message
+
+
+def test_cleanup_failure_preserves_delegated_publication_uncertainty(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, failing_cleanup: None
+) -> None:
+    store = SqliteWorkspaceStore.create(tmp_path / "workspace")
+    session = value(store.create_session(Session(session_id=SessionId.new(), name="Cleanup")))
+
+    monkeypatch.setattr(store, "write_artifact", reject_publication)
+    result = SyntheticModelService(store).create_model(
+        SyntheticModelRequest(
+            session_id=session.session_id,
+            datum="local datum",
+            specification=reference_specification(),
+        )
+    )
+    assert isinstance(result.outcome, Failure)
+    assert result.outcome.error.code == ErrorCode.STORAGE_FAILED
+    assert result.outcome.error.effect == MutationEffect.UNKNOWN
+    assert str(session.session_id) in result.outcome.error.message
+    assert "Storage unavailable" in result.outcome.error.message
+    assert "Cleanup unavailable" in result.outcome.error.message
+
+
+def test_cleanup_failure_preserves_unapplied_import_failure(
+    tmp_path: Path, failing_cleanup: None
+) -> None:
+    store = SqliteWorkspaceStore.create(tmp_path / "workspace")
+    result = SyntheticModelService(store).create_model(
+        SyntheticModelRequest(
+            session_id=SessionId.new(),
+            datum="local datum",
+            specification=reference_specification(),
+        )
+    )
+    assert isinstance(result.outcome, Failure)
+    assert result.outcome.error.code == ErrorCode.NOT_FOUND
+    assert result.outcome.error.effect == MutationEffect.NOT_APPLIED
+    assert "Cleanup unavailable" in result.outcome.error.message
+
+
+def reject_publication(artifact: Artifact, source: BinaryIO) -> OperationResult[Artifact]:
+    return OperationResult(
+        outcome=Failure(error=Error(code=ErrorCode.STORAGE_FAILED, message="Storage unavailable."))
+    )
