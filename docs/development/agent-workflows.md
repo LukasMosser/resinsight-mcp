@@ -6,8 +6,9 @@ The mission covers sessions, projects, navigation, views, supported model and we
 The eventual goal covers full ResInsight workflows.
 The first release remains bounded to macOS and the supported OPM physics.
 
-This audit covers `main` at `40b9b9f`, after P06, P07, and P10 merged.
-It supports [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29).
+The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
+This map now includes configured session access through the shipped launcher.
+It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 The [implementation plan](implementation-plan.md) owns package scope and delivery status.
 This page maps that scope to current access paths and integration gaps.
 It does not define tool arguments or replace runtime discovery.
@@ -20,16 +21,18 @@ The server derives tool schemas and the `resinsight://catalog` resource from tha
 Before calling tools, read the connected server's tool list and catalog resource.
 Only supplied services contribute their optional tools.
 
-The [default launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) supplies only `Bindings.workspaces`.
-Its configuration accepts an absolute `--workspace-root` and optional `--create-workspace`.
-Creating a workspace does not launch ResInsight or compose other services.
+The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) always supplies `Bindings.workspaces`.
+Its configuration accepts an absolute `--workspace-root`, optional `--create-workspace`, and optional `--resinsight-log-directory`.
+The native option composes `Bindings.sessions` after checking its directory and dependencies.
+Starting the launcher does not launch or attach ResInsight.
 A configured host calls `create_server()` or `serve_stdio()` with explicit service bindings.
-Native sessions require the optional `resinsight` dependency and an explicitly configured application backend.
+Native sessions require the optional `resinsight` dependency and the [documented launcher configuration](../mcp.md#enable-resinsight-sessions) or a custom host.
 The [MCP guide](mcp.md) explains that boundary.
 
 ## Current operation map
 
 “Default” means available through the packaged workspace launcher.
+“Launcher sessions” means available with `--resinsight-log-directory` and its native dependencies.
 “Configured” means available only when a host supplies the named service.
 “Python-only” means implemented library behavior without an advertised MCP tool.
 “Unimplemented” means the complete operation has no current production implementation.
@@ -38,10 +41,10 @@ The [MCP guide](mcp.md) explains that boundary.
 | --- | --- | --- | --- |
 | Create and inspect durable sessions | Default: `session_create`, `session_list`, `session_get` | Local workspace storage. These tools alone do not connect to ResInsight. | [MCP guide](../mcp.md), [workspace boundary](workspaces.md), [P05 evidence](mcp-evidence.md) |
 | Read a saved image observation | Default: `observation_get` | An existing observation and its stored image artifact. This does not render a new frame. | [View guide](../views.md), [P05 evidence](mcp-evidence.md) |
-| Select an explicit session and inspect connections | Configured: `session_select`, `connection_list`, `connection_get` | `Bindings.sessions` with `ResInsightSessionService`. Selection does not set a default mutation target. | [Session guide](../sessions.md), [P04 evidence](p04-evidence.md) |
-| Launch, attach, detach, or close ResInsight | Configured: `application_launch`, `application_attach`, `application_close` | Session service and native backend. Launch needs an application executable. Attach needs an explicit local endpoint. Termination requires verified ownership. | [Session implementation](sessions.md), [P04 evidence](p04-evidence.md) |
-| Inspect, open, save, and close projects | Configured: `project_inspect`, `project_open`, `project_save`, `project_close` | Session binding and a connected native application. Mutations require the expected project context. | [Session guide](../sessions.md), [P04 evidence](p04-evidence.md) |
-| Navigate known project objects | Configured: `project_inspect`, `object_resolve` | Service-issued object references and the current project context. This is object discovery and resolution, not general graphical navigation. | [Session implementation](sessions.md), [P04 evidence](p04-evidence.md) |
+| Select an explicit session and inspect connections | Launcher sessions: `session_select`, `connection_list`, `connection_get` | `Bindings.sessions` with `ResInsightSessionService`. Selection does not set a default mutation target. | [Session guide](../sessions.md), [launcher evidence](launcher-evidence.md) |
+| Launch, attach, detach, or close ResInsight | Launcher sessions: `application_launch`, `application_attach`, `application_close` | Session service and native backend. Launch needs an application executable. Attach needs an explicit local endpoint. Termination requires verified ownership. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
+| Inspect, open, save, and close projects | Launcher sessions: `project_inspect`, `project_open`, `project_save`, `project_close` | Session binding and a connected native application. Mutations require the expected project context. | [Session guide](../sessions.md), [launcher evidence](launcher-evidence.md) |
+| Navigate known project objects | Launcher sessions: `project_inspect`, `object_resolve` | Service-issued object references and the current project context. This is object discovery and resolution, not general graphical navigation. | [Session implementation](sessions.md), [launcher evidence](launcher-evidence.md) |
 | Apply camera, property, report step, legend, and display filters | Configured: `view_apply` | `Bindings.views`, a connected session, trusted result binding, patched ResInsight, and its matching generated RIPS client. | [View guide](../views.md), [view boundary](views.md), [P06 evidence](p06-evidence.md) |
 | Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
 | Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
@@ -88,7 +91,7 @@ Saved observations also do not reconstruct confirmed view service state after re
 These assignments propose integration work within the [existing packages](implementation-plan.md#ownership-and-integration).
 Package owners retain their domain algorithms behind agreed typed interfaces.
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) tracks launcher composition and domain MCP wiring.
-This documentation change does not implement that integration.
+The first launcher slice supplies native sessions and project operations.
 
 The lead integration owner owns launcher composition and all domain-tool wiring in `src/resinsight_mcp/mcp/`.
 Domain-tool wiring connects model, simulator, and result services to MCP.
@@ -97,7 +100,7 @@ The lead integration owner also owns the combined agent acceptance sequence and 
 
 | Gap | Current limit | Proposed package owner and completion evidence |
 | --- | --- | --- |
-| Compose the agent host | The default launcher supplies only workspace tools. Native sessions, views, and jobs require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Prove documented configuration against the advertised catalog and real native services. |
+| Extend the agent host | The launcher configures workspace and native session tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
 | Expose supported import and preparation | P07 has Python services without MCP tools. | P07 owner supplies import contracts and failure evidence. Lead integration owner owns catalog wiring and agent acceptance. |
 | Create constrained models | No production model creation service or MCP operation exists. | P08 owner supplies supported model creation and stored revision evidence. Lead integration owner owns later MCP wiring. |
 | Create wells and edit simulator schedules | View well references do not implement well setup or simulator input edits. | P09 owner supplies native well and model input services. Evidence must connect geometry, completions, controls, and immutable revisions. |

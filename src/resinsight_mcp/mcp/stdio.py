@@ -2,7 +2,7 @@
 
 import os
 import sys
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from typing import TextIO
 
@@ -29,7 +29,12 @@ def _protocol_output() -> Iterator[TextIO]:
 
 async def serve_stdio(bindings: Bindings) -> None:
     """Run one dedicated protocol process without closing service sessions on disconnect."""
+    await _serve_stdio_from(lambda: bindings)
+
+
+async def _serve_stdio_from(factory: Callable[[], Bindings]) -> None:
+    """Reserve protocol output before importing or constructing configured services."""
     with _protocol_output() as protocol:
-        server = create_server(bindings)
+        server = create_server(factory())
         async with stdio_server(stdout=anyio.wrap_file(protocol)) as (read_stream, write_stream):
             await server.run(read_stream, write_stream, server.create_initialization_options())

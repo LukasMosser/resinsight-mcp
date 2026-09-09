@@ -10,8 +10,8 @@ The [session tutorial](tutorials/sessions.md) shows requests for project work an
 ## Requirements
 
 Application operations require a configured session service.
-The shipped launcher provides workspace operations only.
-An operator must complete the [session service configuration](development/sessions.md#configure-and-use-the-service) before an agent can control ResInsight.
+Enable that service through the shipped launcher's [ResInsight configuration](mcp.md#enable-resinsight-sessions).
+The optional `--resinsight-log-directory` argument supplies an existing, writable directory for application output.
 
 Use a trusted local workspace and an absolute application executable path.
 ResInsight must expose gRPC, its remote procedure call interface.

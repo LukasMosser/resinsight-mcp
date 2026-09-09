@@ -1,0 +1,20 @@
+{
+  "command": [
+    "uv",
+    "sync",
+    "--locked",
+    "--no-dev",
+    "--extra",
+    "resinsight",
+    "--no-editable"
+  ],
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/resinsight-mcp-uv-cache",
+    "UV_PROJECT_ENVIRONMENT": "/private/tmp/resinsight-launcher-acceptance-runtime/environment"
+  },
+  "cwd": "/private/tmp/resinsight-launcher-tests",
+  "package_source_commit": "8470225cf74edb8a592a47d4777c7c4f03c98c58",
+  "working_tree_at_install": "clean",
+  "exit_code": 0,
+  "scope": "Install the package and optional session client from the existing lockfile. The acceptance runner was added afterward."
+}

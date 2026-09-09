@@ -6,11 +6,10 @@ The agent sends explicit requests and checks their outcomes before continuing.
 
 ## Start with a configured host
 
-The supplied command-line launcher exposes workspace tools only.
-It does not launch ResInsight, configure view services, load results, or configure jobs.
-No shipped turnkey configuration provides all tutorial prerequisites.
-A host integrator must supply the required services first.
-The [integration guide](../development/mcp.md) explains those bindings.
+The supplied launcher exposes workspace tools and can enable ResInsight sessions through [documented configuration](../mcp.md#enable-resinsight-sessions).
+The session tutorial uses that configuration and a compatible ResInsight application.
+View and job tutorials require a host integrator to supply their services and trusted inputs.
+The [integration guide](../development/mcp.md) explains those additional bindings.
 The [local setup guide](../development/local-setup.md) describes the development environment.
 
 Ask your agent:
@@ -20,14 +19,14 @@ Ask your agent:
 
 The catalog contains the current request and response schemas.
 Optional tools appear only when the host supplies their services.
-If a required tool is absent, have the host integrator configure its service.
+If a required tool is absent, inspect the launcher configuration or the host's supplied services.
 A prompt cannot enable an absent service.
 
 ## Choose a task
 
 | Task | Required setup | Tutorial |
 | --- | --- | --- |
-| Find a named session and open its project | Session service and compatible ResInsight | [Sessions and projects](sessions.md) |
+| Find a named session and open its project | Launcher ResInsight configuration and compatible ResInsight | [Sessions and projects](sessions.md) |
 | Compare report times and inspect returned images | Session and view services, native capabilities, and trusted result binding | [Views and image comparison](views.md) |
 | Follow or cancel an existing local job | Job controller and trusted command resolver | [Jobs and reconnect](jobs.md) |
 

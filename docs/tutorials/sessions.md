@@ -3,7 +3,8 @@
 This tutorial uses a configured session service and compatible ResInsight application.
 A session is a named, durable workspace identity.
 A connection identifies one verified application connection.
-See the [session setup](../sessions.md) and [host integration](../development/mcp.md) requirements before starting.
+Start the shipped launcher with its [ResInsight configuration](../mcp.md#enable-resinsight-sessions) before following these requests.
+The [session guide](../sessions.md) describes native requirements and connection ownership.
 
 ## Find the target session
 

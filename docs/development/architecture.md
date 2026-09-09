@@ -9,7 +9,8 @@ The [MCP transport](mcp.md) binds shared services through typed operations and p
 The [view service](views.md) applies complete native settings and returns fresh images with confirmed context.
 The [model import service](model-imports.md) preserves and prepares the supported OPM input profile through Python APIs.
 The [job controller](jobs.md) supervises trusted commands through durable records and owned process groups.
-The supplied launcher exposes workspace tools only, so complete host composition and domain workflows remain integration work.
+The supplied launcher exposes workspace tools and can configure native session services.
+View and job composition, trusted loading, and complete domain workflows remain integration work.
 
 The [contract guide](contracts.md) defines shared data and interface conventions.
 Its protocols keep shared service interfaces separate from native implementations.

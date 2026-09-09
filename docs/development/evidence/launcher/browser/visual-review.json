@@ -1,0 +1,29 @@
+{
+  "reviewed_at": "2026-09-09T07:53:07.361022+00:00",
+  "source_commit": "de6035b2a0fb927808f3b492c1f3c66baacea888",
+  "pages_checked": 13,
+  "local_links_checked": 49,
+  "screenshots_inspected": [
+    "home.png",
+    "connection.png",
+    "sessions.png",
+    "tutorials.png",
+    "development.png",
+    "launcher-configuration.png",
+    "operation-map.png",
+    "acceptance.png"
+  ],
+  "result": "pass",
+  "observations": [
+    "Headings, text, tables, commands, links, and navigation are readable at 1440 by 1050.",
+    "The native session command and its requirements appear together.",
+    "The operation map distinguishes launcher sessions from view and job host bindings.",
+    "The acceptance table separates native operations, independent snapshot, and cleanup.",
+    "No document overflow, missing article images, local link failures, or page errors were observed.",
+    "The lead separately inspected the native pressure snapshot and confirmed its 300-cell initial-report overlay."
+  ],
+  "limits": [
+    "Desktop browser review only.",
+    "The review does not establish native editor usability or MCP image delivery."
+  ]
+}

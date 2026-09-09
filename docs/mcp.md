@@ -10,8 +10,8 @@ The product assumes that users have appropriate provider data sharing agreements
 The [data boundary](views.md#data-boundary) explains local tools and remote model inference.
 
 The supplied launcher manages durable workspace records and reads saved observations.
-Application control and fresh rendering require explicitly supplied service implementations.
-The launcher does not configure those services.
+Its optional ResInsight configuration enables application sessions and project operations.
+Fresh rendering and local jobs require explicitly supplied service implementations.
 With session and view services supplied, an agent can inspect project objects, apply view settings, and receive fresh native images.
 The [view guide](views.md) describes that configured workflow and its trusted result setup.
 
@@ -54,6 +54,40 @@ The server waits for an MCP client after startup.
 Configure your local MCP client with the second command after creating the workspace once.
 Use absolute executable and checkout paths when your client starts outside the repository.
 The [SDK documentation](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x) describes client transport support.
+
+## Enable ResInsight sessions
+
+Install the optional native dependencies from the repository:
+
+```console
+uv sync --locked --extra resinsight
+```
+
+Choose an absolute log directory that already exists and is writable.
+For an existing workspace, start the configured launcher:
+
+```console
+uv run --locked --extra resinsight python -m resinsight_mcp.mcp \
+  --workspace-root /absolute/path/workspace \
+  --resinsight-log-directory /absolute/path/application-logs
+```
+
+For a new workspace, add `--create-workspace` to this command.
+The host requires `lsof` and the native dependencies described in the [session guide](sessions.md#requirements).
+The launcher rejects unavailable dependencies or an invalid log directory before creating a workspace.
+Startup failures appear on standard error and return exit status 2.
+
+This configuration adds session selection, connection inspection, application lifecycle, project operations, and object resolution to the advertised tools.
+Starting the server does not launch or attach ResInsight.
+Use `application_launch` with an absolute executable path or `application_attach` with an explicit local endpoint.
+Those operations verify the application version and process before returning a connection.
+The [session tutorial](tutorials/sessions.md) shows the requests and recovery steps.
+
+Launch output goes to separate files in the configured log directory.
+The service uses its [default timeouts](development/sessions.md#configure-and-use-the-service).
+Without `--resinsight-log-directory`, the launcher advertises workspace operations only.
+View, job, and model tools are not part of this launcher configuration.
+The [launcher evidence](development/launcher-evidence.md) records a clean installation and real ResInsight session trial.
 
 ## Use explicit sessions
 

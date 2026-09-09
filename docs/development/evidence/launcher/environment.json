@@ -1,0 +1,42 @@
+{
+  "started_at": "2026-09-09T07:44:19.430097+00:00",
+  "command": [
+    "/private/tmp/resinsight-launcher-tests/tests/acceptance/launcher/run.py",
+    "--output",
+    "/private/tmp/resinsight-launcher-native-01",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--project",
+    "/private/tmp/resinsight-launcher-tests/docs/development/evidence/p04/P04 first.rsp",
+    "--source-commit",
+    "8470225cf74edb8a592a47d4777c7c4f03c98c58",
+    "--native-commit",
+    "119850cfcfc761b5d4deffce42910c74e5853214",
+    "--native-build-record",
+    "/private/tmp/resinsight-p09-input-build/build-command.json"
+  ],
+  "source_commit": "8470225cf74edb8a592a47d4777c7c4f03c98c58",
+  "native_commit": "119850cfcfc761b5d4deffce42910c74e5853214",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "executable": "/private/tmp/resinsight-launcher-acceptance-runtime/environment/bin/python",
+  "package_path": "/private/tmp/resinsight-launcher-acceptance-runtime/environment/lib/python3.12/site-packages/resinsight_mcp/__init__.py",
+  "direct_url": {
+    "url": "file:///private/tmp/resinsight-launcher-tests",
+    "dir_info": {
+      "editable": false
+    }
+  },
+  "versions": {
+    "resinsight-mcp": "0.1.0",
+    "rips": "2026.9.0.1",
+    "psutil": "7.2.2",
+    "mcp": "1.30.0",
+    "grpcio": "1.83.1",
+    "Pillow": "12.3.0"
+  },
+  "working_directory": "/private/tmp",
+  "pythonpath": null,
+  "pythonhome": null,
+  "qt_plugin_path": "/private/tmp/resinsight-p01-build/qt/6.7.0/macos/plugins"
+}

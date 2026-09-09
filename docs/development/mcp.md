@@ -2,7 +2,7 @@
 
 P05 implements a local MCP transport over standard input and output.
 It binds typed shared services without implementing application control, rendering, or simulation backends.
-The [user guide](../mcp.md) describes the workspace launcher and tool outcomes.
+The [user guide](../mcp.md) describes workspace and native session configuration with their tool outcomes.
 
 The runtime uses `mcp>=1.28,<2`, `pillow>=12,<13`, and the existing Pydantic requirement.
 The lockfile records tested versions.
@@ -18,7 +18,8 @@ That contract extends the existing `ProcessController` without changing its sign
 The agreed optional `resinsight` extra contains rips and psutil for P04.
 An extra selects optional runtime dependencies.
 P04 provides that extra independently of the MCP runtime dependencies.
-P05 does not import the optional ResInsight runtime.
+The workspace configuration does not import the optional ResInsight runtime.
+The launcher imports it only when the user requests native session configuration.
 Future simulator and model tools require their own package implementations and reviewed catalog additions.
 
 ## Public entry points
@@ -44,6 +45,23 @@ The [session implementation guide](sessions.md) describes the provided ResInsigh
 To bind fresh images, supply `renderer=renderer` with a `Renderer` implementation.
 The caller must supply services that share the same workspace store.
 This injection point does not establish external application behavior.
+
+## Shipped launcher configuration
+
+`LauncherConfiguration` owns workspace and optional native session composition.
+The command accepts `--workspace-root`, `--create-workspace`, and `--resinsight-log-directory`.
+The native option validates the log directory, imports the optional factory, and checks `lsof` before opening workspace storage.
+Configuration failures return exit status 2 with a standard error message.
+
+The native configuration constructs `ResInsightSessionService` and `RipsApplicationFactory` with the same workspace store.
+It reuses the factory's timeouts and validation without opening an application during startup.
+Executable validation belongs to `application_launch`, while endpoint, version, and process validation belong to connection operations.
+These request values are not launcher configuration fields.
+
+The lead integration owner owns `launcher.py`, the command entry point, and catalog wiring under [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
+P04 retains native session behavior and process ownership.
+This slice exposes existing session tools without adding view, job, import, or arbitrary execution tools.
+The [launcher evidence](launcher-evidence.md) records real native acceptance through the installed command.
 
 ## One operation catalog
 
@@ -100,7 +118,8 @@ The maintained P05 fixture tests do not prove real ResInsight process survival.
 The separate [P04 acceptance trial](p04-evidence.md) records two real applications that remained running after the SDK client and server exited.
 
 The stdio runner reserves a separate output stream for the SDK.
-It redirects ordinary process stdout to stderr while serving requests.
+It redirects ordinary process stdout to stderr before the launcher imports optional native libraries or constructs services.
+The public `serve_stdio(bindings)` entry point keeps the same isolation while serving supplied bindings.
 This includes Python output, native library output, and inherited child-process output.
 The runner restores stdout when it exits.
 Use this runner only in a dedicated stdio process because descriptor redirection affects the whole process.
@@ -127,3 +146,6 @@ Image tests use supported Pillow decoding without byte or pixel comparisons.
 Session binding tests use an explicit test service through the SDK in-memory transport.
 They establish transport routing and lifecycle separation, not real application control.
 The [P05 evidence record](mcp-evidence.md) records reviewed commands, versions, and image acceptance results.
+Launcher tests start the shipped module through real SDK clients and exercise configured discovery, dependency failures, and output isolation.
+Their native protocol fixture covers launch, project changes, stale references, disconnect, and explicit attachment after restart.
+The separate [launcher record](launcher-evidence.md) proves the corresponding real application path from a noneditable installation.

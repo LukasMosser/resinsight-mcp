@@ -1,0 +1,13 @@
+INFO:mcp.server.lowlevel.server:Processing request of type ListToolsRequest
+INFO:mcp.server.lowlevel.server:Processing request of type ListResourcesRequest
+INFO:mcp.server.lowlevel.server:Processing request of type ReadResourceRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:resinsight_mcp.resinsight.sessions.rips:Launched ResInsight PID 28983. Output: /private/tmp/resinsight-launcher-native-01/native-logs/ba2e8c40e85c4e3a81915e1d718e2d3a.log
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest
+INFO:mcp.server.lowlevel.server:Processing request of type CallToolRequest

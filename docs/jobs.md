@@ -10,7 +10,7 @@ The [job tutorial](tutorials/jobs.md) shows requests for submission, polling, ca
 
 Job operations require a configured job controller and a trusted command resolver.
 A resolver maps a prepared request to an executable command.
-The shipped launcher provides workspace operations only.
+The shipped launcher does not configure job services.
 An operator must provide the [job service configuration](development/jobs.md#configure-a-controller) before these operations can execute work.
 
 The local controller supports macOS and Linux with a trusted local workspace.

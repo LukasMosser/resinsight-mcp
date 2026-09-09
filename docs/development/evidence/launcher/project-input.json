@@ -1,0 +1,21 @@
+{
+  "project": "/private/tmp/resinsight-launcher-tests/docs/development/evidence/p04/P04 first.rsp",
+  "references": [
+    {
+      "key": "$PathId_001$",
+      "path": "/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.EGRID",
+      "is_file": true
+    },
+    {
+      "key": "$PathId_002$",
+      "path": "/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.SMSPEC",
+      "is_file": true
+    },
+    {
+      "key": "$PathId_003$",
+      "path": "/Users/lmoss/Documents/ChatGPT/resinsight-mcp",
+      "is_file": false
+    }
+  ],
+  "result": "all paths exist"
+}
