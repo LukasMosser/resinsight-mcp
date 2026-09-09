@@ -19,6 +19,7 @@ nav:
   - Tutorials:
       - Overview: tutorials/index.md
       - Sessions and projects: tutorials/sessions.md
+      - Model inputs: tutorials/models.md
       - Views and images: tutorials/views.md
       - Local jobs: tutorials/jobs.md
   - ResInsight sessions: sessions.md

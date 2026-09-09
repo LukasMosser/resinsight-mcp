@@ -11,6 +11,7 @@ The [first-release plan](development/implementation-plan.md#product-boundary) ta
 
 Use the [connection guide](mcp.md) to connect an MCP client and discover its available tools.
 The supplied launcher provides workspace tools and optional [ResInsight session configuration](mcp.md#enable-resinsight-sessions).
+Its [model configuration](mcp.md#enable-model-tools) enables supported FIELD imports and constrained model creation.
 Views and local jobs require a separately configured host with their required services.
 A complete model-to-simulation workflow is not yet available through the supplied launcher.
 
@@ -21,11 +22,12 @@ The [operation map](development/agent-workflows.md) records the current tools, r
 The [tutorials](tutorials/index.md) use implemented tools and identify the setup each task requires.
 
 - [Manage sessions and projects](tutorials/sessions.md): open, save, reopen, and find the objects your agent will use.
+- [Create and prepare models](tutorials/models.md): import or generate FIELD inputs, inspect them, and clone immutable revisions.
 - [Inspect and change views](tutorials/views.md): compare properties and report times with fixed legends, filters, cameras, and native images.
 - [Monitor local jobs](tutorials/jobs.md): inspect progress, request cancellation, and recover the same job identity after reconnecting.
 
 The [session reference](sessions.md), [view reference](views.md), and [job reference](jobs.md) describe outcomes and supported limits.
-The [model guide](synthetic-models.md) describes constrained model creation through the Python service and its fixed physics template.
+The [model guide](synthetic-models.md) describes the constrained specification, fixed physics template, and Python interface.
 The [well guide](wells.md) describes native well edits and separate publication of immutable simulator schedules through Python services.
 
 ## Know where information goes

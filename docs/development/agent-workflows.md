@@ -7,8 +7,8 @@ The eventual goal covers full ResInsight workflows.
 The first release remains bounded to macOS and the supported OPM physics.
 
 The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
-This map now includes configured session access through the shipped launcher.
-It also includes constrained model creation through the P08 Python service.
+This map now includes configured session and model access through the shipped launcher.
+P08 constrained model creation uses the same Python service behind its public tools.
 P07 supplies temporary stored inputs and validated child revision publication for domain services.
 Trusted domain services can now mutate native projects through the P04 session boundary.
 P09 supplies native well operations and separate child schedule publication through Python services.
@@ -27,8 +27,9 @@ Before calling tools, read the connected server's tool list and catalog resource
 Only supplied services contribute their optional tools.
 
 The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) always supplies `Bindings.workspaces`.
-Its configuration accepts an absolute `--workspace-root`, optional `--create-workspace`, and optional `--resinsight-log-directory`.
+Its configuration accepts an absolute `--workspace-root`, optional `--create-workspace`, `--enable-models`, and optional `--resinsight-log-directory`.
 The native option composes `Bindings.sessions` after checking its directory and dependencies.
+The model option composes `Bindings.imports` and `Bindings.synthetic_models` after checking the pinned parser.
 Starting the launcher does not launch or attach ResInsight.
 A configured host calls `create_server()` or `serve_stdio()` with explicit service bindings.
 Native sessions require the optional `resinsight` dependency and the [documented launcher configuration](../mcp.md#enable-resinsight-sessions) or a custom host.
@@ -38,6 +39,7 @@ The [MCP guide](mcp.md) explains that boundary.
 
 “Default” means available through the packaged workspace launcher.
 “Launcher sessions” means available with `--resinsight-log-directory` and its native dependencies.
+“Launcher models” means available with `--enable-models` and the pinned OPM parser.
 “Configured” means available only when a host supplies the named service.
 “Python-only” means implemented library behavior without an advertised MCP tool.
 “Unimplemented” means the complete operation has no current production implementation.
@@ -54,9 +56,10 @@ The [MCP guide](mcp.md) explains that boundary.
 | Apply camera, property, report step, legend, and display filters | Configured: `view_apply` | `Bindings.views`, a connected session, trusted result binding, patched ResInsight, and its matching generated RIPS client. | [View guide](../views.md), [view boundary](views.md), [P06 evidence](p06-evidence.md) |
 | Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
 | Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
-| Import and prepare supported model inputs | Python-only: `OpmImportService.import_model()` and `OpmImportService.prepare()` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v2` profile. No MCP import tools exist. | [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
+| Import and prepare supported model inputs | Launcher models: `model_import`, `model_prepare` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v2` profile. | [Model tutorial](../tutorials/models.md), [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
+| Read, inspect, and clone fixed model revisions | Launcher models: `model_get`, `model_inspect`, `model_clone` | Explicit stored model identity. Cloning retains the parent inputs and requires a new revision identifier. | [Model tutorial](../tutorials/models.md), [Workspace boundary](workspaces.md) |
 | Stage stored inputs and publish child revisions | Python-only: `OpmImportService.materialize()` and `OpmImportService.derive_model()` | Valid stored parent, isolated pinned parser, and caller-owned changed inputs. Materialization owns temporary file cleanup. No MCP operation exists. | [Import interface](model-imports.md#materialization-and-child-revisions), [materialization evidence](model-materialization-evidence.md) |
-| Create a constrained layered model | Python-only: `SyntheticModelService.create_model()` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. No MCP creation tool exists. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
+| Create a constrained layered model | Launcher models: `model_template`, `model_create` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
 | Load a fixed model and edit native wells | Python-only: `ResInsightWellService.load()`, `create()`, `update()`, and `inspect()` | P07 materialization, P04 session ownership, reviewed native commands, and the matching generated client. Model names, datum, and FIELD geometry must match. | [Well guide](../wells.md), [native evidence](wells.md) |
 | Export completions and publish a child schedule | Python-only: `ResInsightWellService.export()` and `OpmWellScheduleService.publish()` | A service-issued export from the exact parent revision and supported FIELD controls. Publication creates immutable inputs. No MCP well tools exist. | [Well guide](../wells.md#publish-a-child-schedule), [schedule boundary](well-schedules.md) |
 | Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
@@ -84,9 +87,9 @@ The native editor visual inspection remains deferred to [issue #34](https://gith
 No native editor visual pass is claimed.
 The [P06 evidence](p06-evidence.md) separates these outcomes and records the tested builds.
 
-P07 preserves and validates supported inputs through Python services.
+P07 preserves and validates supported inputs through services bound to public model tools.
 Its native trial ran Flow and loaded results through explicit acceptance setup.
-That trial does not supply a production MCP import operation, simulator adapter, or result loader.
+That trial does not establish the later simulator adapter or result loader.
 Its supported input physics remain the bounded black-oil profile, with oil, water, gas, and dissolved gas.
 The [import guide](model-imports.md#supported-model-profile) owns the exact support restrictions.
 
@@ -113,7 +116,7 @@ Saved observations also do not reconstruct confirmed view service state after re
 These assignments propose integration work within the [existing packages](implementation-plan.md#ownership-and-integration).
 Package owners retain their domain algorithms behind agreed typed interfaces.
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) tracks launcher composition and domain MCP wiring.
-The first launcher slice supplies native sessions and project operations.
+The launcher supplies native sessions, project operations, and optional public model tools.
 
 The lead integration owner owns launcher composition and all domain-tool wiring in `src/resinsight_mcp/mcp/`.
 Domain-tool wiring connects model, simulator, and result services to MCP.
@@ -122,9 +125,7 @@ The lead integration owner also owns the combined agent acceptance sequence and 
 
 | Gap | Current limit | Proposed package owner and completion evidence |
 | --- | --- | --- |
-| Extend the agent host | The launcher configures workspace and native session tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
-| Expose supported import and preparation | P07 has Python services without MCP tools. | P07 owner supplies import contracts and failure evidence. Lead integration owner owns catalog wiring and agent acceptance. |
-| Expose constrained model creation | P08 creates validated model revisions through its Python service. No MCP creation operation exists. | Lead integration owner owns catalog wiring and agent acceptance using the P08 service and its typed records. |
+| Extend the agent host | The launcher configures workspace, native session, and model tools. Views and jobs still require custom host composition. | Lead integration owner, with P05 transport and P17 packaging. Extend documented configuration with trusted loading and job preparation as those services become ready. |
 | Expose wells and simulator schedules | P09 implements native well and immutable schedule services through Python. No MCP well operations or launcher source-lifetime management exist. | Lead integration owner supplies catalog wiring and lifecycle management using P09 interfaces. Agent acceptance must preserve export identity and child revision lineage. |
 | Run OPM through prepared jobs | P10 supervises trusted commands. It does not prepare simulator commands or accept numerical results. | P11 owner supplies the OPM adapter and trusted command resolution. Lead integration owner joins preparation to the configured job tools. |
 | Load results with trusted lineage | General result import and native case binding remain absent. Acceptance setup does not implement these services. | P12 owner supplies result import and verified native loading. Lead integration owner connects those services to views and MCP. |

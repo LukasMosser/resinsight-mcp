@@ -85,11 +85,13 @@ The lead agent owns combined acceptance tests and integration documentation.
 Package owners retain model, well, simulator, and result algorithms behind agreed typed interfaces.
 The first slice connects implemented session services through [documented launcher configuration](../mcp.md#enable-resinsight-sessions).
 Its [acceptance record](launcher-evidence.md) proves public session and project operations from a clean installation.
+The model slice binds P07 import and P08 creation through seven [public model tools](../tutorials/models.md).
+It validates the pinned parser before opening workspace storage and preserves exact revision identities across reconnection.
 Issue #35 remains open for view, job, and domain integration as dependent services become ready.
 Users must not need to author a Python server for the completed product workflow.
 
 The [operation map](agent-workflows.md#gaps-and-proposed-ownership) records missing MCP paths and their package owners.
-P07 import services still need domain tools, while views need trusted result loading and jobs need simulator preparation and command resolution.
+Views need trusted result loading, while jobs need simulator preparation and command resolution.
 P08, P09, P11, and P12 retain their accepted domain scope.
 P13 and P17 require the integrated launcher and public domain tools before their acceptance can pass.
 
@@ -275,7 +277,8 @@ Focused tests compare properties, every active-cell position, completion indices
 Four bounded Flow trials compare the generated reference with the preserved P07 model and repeat both sources.
 The [P08 record](synthetic-models.md) preserves exact parsed values, justified tolerances, commands, and runtime limits.
 Its native trial verifies the generated geometry and all final pressure values, with a reviewed image and verified process cleanup.
-Model creation has no public MCP operation yet and remains part of [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) integration.
+The shipped launcher exposes model creation through `model_create` when its model configuration is enabled.
+The [model tutorial](../tutorials/models.md) uses the public operations.
 
 ## P09: Connect wells to simulator inputs
 

@@ -12,6 +12,7 @@ The [operation map](docs/development/agent-workflows.md) separates current tools
 
 Read the [connection guide](docs/mcp.md), then use capability discovery to find the tools your host supplies.
 The supplied launcher provides workspace tools and optional [ResInsight session configuration](docs/mcp.md#enable-resinsight-sessions).
+Its [model configuration](docs/mcp.md#enable-model-tools) enables supported FIELD imports and constrained model creation.
 View and job workflows require additional host services, and the launcher does not yet provide a complete simulation workflow.
 
 The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
@@ -20,7 +21,8 @@ The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
 - Change properties, report times, cameras, filters, and legends, then inspect native images.
 - Monitor configured local jobs, request cancellation, and inspect state after reconnecting.
 
-The [model guide](docs/synthetic-models.md) describes constrained layered model creation through the Python service.
+The [model tutorial](docs/tutorials/models.md) uses public tools to create, import, inspect, clone, and prepare fixed revisions.
+The [model guide](docs/synthetic-models.md) describes the constrained layered specification and Python interface.
 Its numerical acceptance compares generated inputs with the preserved reference under documented tolerances.
 The [well guide](docs/wells.md) describes native well edits and separate publication of immutable simulator schedules through Python services.
 

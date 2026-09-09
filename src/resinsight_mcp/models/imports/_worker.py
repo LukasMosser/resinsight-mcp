@@ -253,15 +253,25 @@ def _properties(deck: Any, state: Any, dimensions: tuple[int, int, int]) -> Fiel
     )
 
 
+def check_dependencies() -> None:
+    """Require the pinned parser and its native modules without opening model inputs."""
+    import opm.io.deck  # noqa: F401
+    import opm.io.ecl_state  # noqa: F401
+    import opm.io.parser  # noqa: F401
+    import opm.io.schedule  # noqa: F401
+
+    if version("opm") != "2025.10":
+        raise ValueError("This import profile requires opm==2025.10.")
+
+
 def inspect(path: Path) -> ModelInspection:
+    check_dependencies()
     # Importing deck enables the supported item value and defaulted properties.
     import opm.io.deck  # noqa: F401
     from opm.io.ecl_state import EclipseState
     from opm.io.parser import ParseContext, Parser, action
     from opm.io.schedule import Schedule
 
-    if version("opm") != "2025.10":
-        raise ValueError("This import profile requires opm==2025.10.")
     context = ParseContext([("*", action.throw)])
     deck = Parser().parse(str(path), context)
     names = {keyword.name for keyword in deck}
@@ -309,6 +319,13 @@ def inspect(path: Path) -> ModelInspection:
 
 
 def main() -> None:
+    if sys.argv[1:] == ["--check-dependencies"]:
+        try:
+            check_dependencies()
+        except (ValueError, RuntimeError, ImportError, OSError) as error:
+            print(error, file=sys.stderr)
+            raise SystemExit(2) from error
+        return
     output = Path(sys.argv[2])
     try:
         inspection = inspect(Path(sys.argv[1]))

@@ -110,6 +110,32 @@ class OpmImportService:
     def __init__(self, store: WorkspaceStore) -> None:
         self._store = store
 
+    @staticmethod
+    def check_dependencies() -> None:
+        """Raise ContractError when the isolated import worker cannot load its dependencies."""
+        try:
+            checked = subprocess.run(
+                [
+                    sys.executable,
+                    "-I",
+                    "-m",
+                    "resinsight_mcp.models.imports._worker",
+                    "--check-dependencies",
+                ],
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                timeout=10,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired) as error:
+            raise invalid(f"Cannot check OPM import dependencies: {error}") from error
+        if checked.returncode != 0:
+            raise invalid(
+                f"OPM import dependencies are unavailable: {checked.stdout[-4000:].strip()}"
+            )
+
     def _write(
         self, session_id: SessionId, name: str, stream: BinaryIO, kind: ArtifactKind
     ) -> ArtifactRef:

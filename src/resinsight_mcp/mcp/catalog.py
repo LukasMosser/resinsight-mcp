@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from mcp import types
-from pydantic import Field, PositiveInt, ValidationError
+from pydantic import BaseModel, Field, PositiveInt, ValidationError
 
 from resinsight_mcp.contracts._base import Record
 from resinsight_mcp.contracts.errors import (
@@ -46,6 +46,8 @@ from resinsight_mcp.contracts.sessions import (
     ProjectSaveRequest,
     ProjectState,
 )
+from resinsight_mcp.models.imports import OpmImportService
+from resinsight_mcp.models.synthetic import SyntheticModelService
 
 CATALOG_RESOURCE = types.Resource(
     uri="resinsight://catalog",
@@ -88,10 +90,12 @@ class Bindings:
     sessions: SessionService | None = None
     jobs: JobController | None = None
     views: ViewService | None = None
+    imports: OpmImportService | None = None
+    synthetic_models: SyntheticModelService | None = None
 
 
 @dataclass(frozen=True)
-class Operation[Request: Record, Value]:
+class Operation[Request: BaseModel, Value]:
     name: str
     description: str
     request: type[Request]
@@ -228,6 +232,10 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
         operations.extend(_session_operations(bindings.sessions))
     if bindings.jobs is not None:
         operations.extend(_job_operations(bindings.jobs))
+    if bindings.imports is not None or bindings.synthetic_models is not None:
+        from ._model_operations import model_operations
+
+        operations.extend(model_operations(bindings))
     return tuple(operations)
 
 

@@ -20,7 +20,8 @@ An extra selects optional runtime dependencies.
 P04 provides that extra independently of the MCP runtime dependencies.
 The workspace configuration does not import the optional ResInsight runtime.
 The launcher imports it only when the user requests native session configuration.
-Future simulator and model tools require their own package implementations and reviewed catalog additions.
+Model tools use the reviewed P07 and P08 services through optional bindings.
+Simulator tools require their own package implementations and reviewed catalog additions.
 
 ## Public entry points
 
@@ -48,8 +49,8 @@ This injection point does not establish external application behavior.
 
 ## Shipped launcher configuration
 
-`LauncherConfiguration` owns workspace and optional native session composition.
-The command accepts `--workspace-root`, `--create-workspace`, and `--resinsight-log-directory`.
+`LauncherConfiguration` owns workspace, model, and optional native session composition.
+The command accepts `--workspace-root`, `--create-workspace`, `--enable-models`, and `--resinsight-log-directory`.
 The native option validates the log directory, imports the optional factory, and checks `lsof` before opening workspace storage.
 Configuration failures return exit status 2 with a standard error message.
 
@@ -60,7 +61,10 @@ These request values are not launcher configuration fields.
 
 The lead integration owner owns `launcher.py`, the command entry point, and catalog wiring under [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 P04 retains native session behavior and process ownership.
-This slice exposes existing session tools without adding view, job, import, or arbitrary execution tools.
+The model option checks required OPM imports in an isolated process before opening workspace storage.
+It supplies `OpmImportService` and `SyntheticModelService` with that workspace store.
+P07 owns parser validation, while P08 owns constrained model creation.
+The transport only binds their typed requests and outcomes.
 The [launcher evidence](launcher-evidence.md) records real native acceptance through the installed command.
 
 ## One operation catalog
@@ -73,6 +77,8 @@ The catalog uses the shared request classes for application lifecycle and projec
 The required workspace binding exposes session creation, listing, lookup, and saved observations.
 A session service adds selection, connection inspection, application lifecycle, project operations, and object resolution.
 A renderer adds `view_render` with an explicit session, view context, and requested image dimensions.
+The optional import and synthetic bindings add the seven [public model operations](../tutorials/models.md).
+`_model_operations.py` owns their catalog entries without duplicating input validation or publication rules.
 Operations appear only when their implementation was explicitly supplied.
 
 `view_render` resolves the stored result before constructing the shared `RenderRequest`.
@@ -148,4 +154,15 @@ They establish transport routing and lifecycle separation, not real application 
 The [P05 evidence record](mcp-evidence.md) records reviewed commands, versions, and image acceptance results.
 Launcher tests start the shipped module through real SDK clients and exercise configured discovery, dependency failures, and output isolation.
 Their native protocol fixture covers launch, project changes, stale references, disconnect, and explicit attachment after restart.
+Model launcher tests exercise real parser validation and public import, creation, inspection, cloning, preparation, and retrieval after reconnection.
+They also verify unavailable dependencies before workspace creation and clear failures for unsupported inputs or backends.
 The separate [launcher record](launcher-evidence.md) proves the corresponding real application path from a noneditable installation.
+
+## Model launcher evidence
+
+The model configuration passed five focused public MCP tests and 532 shared repository tests.
+The [model log](evidence/model-launcher/model-tools.log), [shared check log](evidence/model-launcher/shared-check.log), and [environment record](evidence/model-launcher/environment.json) preserve that evidence.
+The tests create and clone a model, disconnect, reopen its workspace, inspect inputs, and prepare the exact child revision.
+They also exercise imported inputs, invalid units, absent sessions, unavailable dependencies, disabled tools, and unsupported backends.
+The [browser record](evidence/model-launcher/review.json) and [model tutorial image](evidence/model-launcher/model-tutorial.png) support the guide review.
+This model slice leaves native wells, simulation, and result composition within issue #35.

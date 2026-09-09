@@ -8,6 +8,7 @@ The agent sends explicit requests and checks their outcomes before continuing.
 
 The supplied launcher exposes workspace tools and can enable ResInsight sessions through [documented configuration](../mcp.md#enable-resinsight-sessions).
 The session tutorial uses that configuration and a compatible ResInsight application.
+The model tutorial uses `--enable-models` and the pinned OPM parser.
 View and job tutorials require a host integrator to supply their services and trusted inputs.
 The [integration guide](../development/mcp.md) explains those additional bindings.
 The [local setup guide](../development/local-setup.md) describes the development environment.
@@ -27,6 +28,7 @@ A prompt cannot enable an absent service.
 | Task | Required setup | Tutorial |
 | --- | --- | --- |
 | Find a named session and open its project | Launcher ResInsight configuration and compatible ResInsight | [Sessions and projects](sessions.md) |
+| Import, create, inspect, clone, and prepare a model | Launcher model configuration and pinned OPM parser | [Model inputs](models.md) |
 | Compare report times and inspect returned images | Session and view services, native capabilities, and trusted result binding | [Views and image comparison](views.md) |
 | Follow or cancel an existing local job | Job controller and trusted command resolver | [Jobs and reconnect](jobs.md) |
 

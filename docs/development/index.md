@@ -13,7 +13,7 @@ Constrained model creation supplies validated layered inputs through the model i
 
 Model materialization supplies isolated stored inputs and validated child revisions for domain consumers.
 Well services create native paths, export fixed connections, and publish child schedules through separate operations.
-The supplied launcher exposes workspace tools and can configure native session services.
+The supplied launcher exposes workspace tools and can configure native session and model services.
 
 Start with these pages:
 
