@@ -3,7 +3,8 @@
 P06 implements native view controls and image responses through configured production MCP bindings.
 The native smoke checks and isolated model acceptance pass.
 The observer received six native images and described their visible changes.
-Native GUI legend inspection remains pending because Computer Use startup failed and macOS denied assistive access.
+The owner deferred native editor inspection on September 9, 2026, so it does not block P06 completion.
+The [follow-up](https://github.com/LukasMosser/resinsight-mcp/issues/34) tracks that unperformed inspection.
 The default workspace launcher does not compose the view service or establish result lineage.
 
 ## Native controls
@@ -59,6 +60,17 @@ Unlinking restores independent validation and camera updates.
 The [repair record](evidence/p06/native/repair/native-build.json) identifies source review as the evidence for hidden editor fields.
 Visual inspection did not run because Computer Use failed to start.
 No screenshot establishes the repaired legend editor, and the earlier 34 checks were not repeated at this commit.
+
+## Deferred editor inspection
+
+The owner approved P06 completion with the native editor visual inspection deferred.
+Computer Use startup failed, and macOS denied assistive access during the attempted inspection.
+Source review and scripting checks support the repair, but no visual pass is claimed for the native editors.
+
+The [follow-up](https://github.com/LukasMosser/resinsight-mcp/issues/34) will inspect the legend and view editors on a recorded build containing the repair.
+It will check that `ActualMinimum`, `ActualMaximum`, `ActualCameraFieldOfViewYDegrees`, and `ActualCameraParallelProjectionHeight` remain hidden.
+It will also exercise ordinary legend and view controls and record screenshots, versions, the tested commit, and results.
+The six accepted model images establish rendered scenes, but they do not establish native editor appearance or usability.
 
 ## Result provenance and MCP trial
 

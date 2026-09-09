@@ -1,0 +1,32 @@
+{
+  "reviewed_at": "2026-09-09T06:04:15.695Z",
+  "source_commit": "a897dceff21adc8048c4e4e8898eaf54ebd29bb5",
+  "working_tree": " M docs/development/implementation-plan.md\n M docs/development/p06-evidence.md\n",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440
+      },
+      "follow_up_links": 2,
+      "screenshot": "evidence-deferral.png"
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440
+      },
+      "follow_up_links": 1,
+      "screenshot": "plan-deferral.png"
+    }
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
