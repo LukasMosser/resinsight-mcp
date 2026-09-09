@@ -10,6 +10,7 @@ from importlib.metadata import distribution, version
 from pathlib import Path
 from typing import Any, cast
 
+import rips
 from pydantic import BaseModel
 
 from resinsight_mcp.contracts.errors import Failure, OperationResult, Success
@@ -26,6 +27,7 @@ from resinsight_mcp.contracts.sessions import (
     ProjectCloseRequest,
     ProjectOpenRequest,
     ProjectSaveRequest,
+    ProjectState,
 )
 from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind, ProjectCheckpoint
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
@@ -298,6 +300,22 @@ def checkpoint_trial(
     return restored
 
 
+def plot_inventory(sessions: ResInsightSessionService, state: ProjectState) -> dict[str, Any]:
+    with sessions.access_objects(tuple(item.ref for item in state.objects)) as access:
+        application = cast(RipsApplication, access.application)
+        project = cast(Any, application.project())
+        plots = []
+        for plot in project.descendants(rips.SummaryPlot):
+            parent = plot.ancestor(rips.MultiPlot)
+            plots.append(
+                {
+                    "address": str(plot.address()),
+                    "parent_window_id": None if parent is None else parent.id,
+                }
+            )
+        return {"context": state.context.model_dump(mode="json"), "plots": plots}
+
+
 def trial(arguments: argparse.Namespace) -> None:
     output = arguments.output.resolve()
     output.mkdir(exist_ok=False)
@@ -325,7 +343,7 @@ def trial(arguments: argparse.Namespace) -> None:
     source_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=arguments.native_source, text=True
     ).strip()
-    assert source_commit.startswith("551dc02e19a1eb75ae462a0313f7a9a3101c2f45"), (
+    assert source_commit.startswith("70399abb9eba31f713f72028ffe94ae0be4db2c4"), (
         "The trial requires the reviewed native build."
     )
     record(
@@ -372,16 +390,40 @@ def trial(arguments: argparse.Namespace) -> None:
             for item in (baseline, scenario)
         ]
         record(output / "well-comparison.json", value(results.compare_curves(*queries)))
-        edited_plot = value(
-            results.show_curve(
-                SummaryPlotRequest(context=context, query=queries[1], width=1200, height=800)
-            )
-        )
+        well_request = SummaryPlotRequest(context=context, query=queries[1], width=1200, height=800)
+        record(output / "well-plot-request.json", well_request)
+        edited_plot = value(results.show_curve(well_request))
         record(output / "well-plot-edit.json", edited_plot)
         plot = value(edited_plot.observation)
         record(output / "well-plot.json", plot)
         export_artifact(store, plot.image.artifact, output / "well-plot.png")
         state = value(sessions.inspect_project(arguments.session))
+        before = plot_inventory(sessions, state)
+        record(output / "plots-before-field.json", before)
+        prior_parents = {item["address"]: item["parent_window_id"] for item in before["plots"]}
+        assert isinstance(prior_parents[plot.plot_address], int)
+        assert prior_parents[plot.plot_address] >= 0
+        field_request = SummaryPlotRequest(
+            context=state.context,
+            query=CurveQuery(result=result_ref(scenario), scope="field", keyword="FOPR"),
+            width=1000,
+            height=700,
+        )
+        record(output / "field-plot-request.json", field_request)
+        field_edit = value(results.show_curve(field_request))
+        record(output / "field-plot-edit.json", field_edit)
+        field_plot = value(field_edit.observation)
+        record(output / "field-plot.json", field_plot)
+        export_artifact(store, field_plot.image.artifact, output / "field-plot.png")
+        state = value(sessions.inspect_project(arguments.session))
+        after = plot_inventory(sessions, state)
+        record(output / "plots-after-field.json", after)
+        parents = {item["address"]: item["parent_window_id"] for item in after["plots"]}
+        assert plot.plot_address != field_plot.plot_address
+        assert parents[plot.plot_address] == prior_parents[plot.plot_address]
+        assert isinstance(parents[field_plot.plot_address], int)
+        assert parents[field_plot.plot_address] >= 0
+        assert parents[plot.plot_address] != parents[field_plot.plot_address]
         rebound = value(results.rebind(state.context, (baseline.result_id, scenario.result_id)))
         restored = checkpoint_trial(store, sessions, results, rebound, output)
         for label, item in zip(("baseline", "scenario"), restored, strict=True):
@@ -393,7 +435,12 @@ def trial(arguments: argparse.Namespace) -> None:
             )
         record(
             output / "completed.json",
-            {"completed_at": datetime.now(UTC).isoformat(), "accepted": True},
+            {
+                "completed_at": datetime.now(UTC).isoformat(),
+                "automated_checks_passed": True,
+                "acceptance_complete": False,
+                "visual_review": "pending",
+            },
         )
     finally:
         closed = sessions.close(

@@ -145,7 +145,7 @@ Both results must pass the production accepted-result requirement before applica
 The probe does not create simulator jobs or change numerical acceptance records.
 
 The lead must authorize the native lane before running this command.
-Use the reviewed `551dc02e19a1eb75ae462a0313f7a9a3101c2f45` build and its installed matching RIPS wheel.
+Use the reviewed `70399abb9eba31f713f72028ffe94ae0be4db2c4` build and its installed matching RIPS wheel.
 Do not add Python, Qt, or library path overrides.
 
 ```sh
@@ -163,6 +163,9 @@ uv run --no-sync python -m tests.results.native_acceptance \
 The trial loads both exact bundles through the production result, session, and view services.
 It captures final-report pressure and water saturation for both results with common legends and a common camera.
 It exports a native well bottom-hole pressure plot with numerical provenance.
+It then exports scenario `FOPR` at `1000 × 700` pixels while the `1200 × 800` well plot remains present.
+Both requests, edit receipts, observations, and native plot inventories are retained.
+The second request uses the inspected current project context and must identify a different parent window.
 It records source and native arrays, verified source units, report mappings, complete corners, and numerical differences.
 The source and native comparison records preserve complete model, job, result, and grid identities.
 
@@ -171,7 +174,8 @@ It makes sure that old references fail and restored bindings retain both exact r
 It then records fresh native values and geometry from the restored project.
 The probe terminates only its service-owned application and records the close outcome.
 
-After the trial, inspect all five images for meaningful content, correct quantities, visible units, and matching legends.
+After the trial, inspect all six images for meaningful content, correct quantities, visible units, and matching legends.
+The completion record reports automated checks separately and leaves complete acceptance false until visual review.
 Record the tested repository commit, native source commit, executable, installed wheel, command, and application logs with the evidence.
 Review the raw geometry differences against the declared tolerance before accepting the trial.
 Preserve failed attempts with their errors and logs.
