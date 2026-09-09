@@ -1,0 +1,12 @@
+[
+  {"path": "/", "image": "home.png"},
+  {"path": "/wells/", "image": "well-operations.png"},
+  {"path": "/wells/", "heading": "Publish a child schedule", "image": "schedule-example.png"},
+  {"path": "/wells/", "heading": "Working case lifetime", "image": "well-lifetime.png"},
+  {"path": "/development/", "image": "development-navigation.png"},
+  {"path": "/development/agent-workflows/", "text": "Load a fixed model and edit native wells", "image": "well-operation-map.png"},
+  {"path": "/development/implementation-plan/", "heading": "P09: Connect wells to simulator inputs", "image": "well-ownership.png"},
+  {"path": "/development/well-schedules/", "image": "schedule-boundary.png"},
+  {"path": "/development/well-schedules/", "heading": "Parsing and preservation", "image": "schedule-preservation.png"},
+  {"path": "/development/evidence/p09/integrated/", "image": "integration-evidence.png"}
+]

@@ -28,3 +28,11 @@ Native operations use the existing session connection and mutation boundary.
 Input publication uses the existing import validation and revision boundary.
 The schedule review also checked parsed input preservation and native consistency tolerances.
 The combined guide review found no API or lifecycle mismatch and clarified support for multiple perforation intervals.
+
+## Browser review
+
+The [browser record](../browser/guides/review.json) covers ten visits across seven pages and 46 local links.
+Every page and local link returned HTTP 200, and the browser reported no page errors or document overflow.
+The lead inspected all ten screenshots listed in the [visual review](../browser/guides/visual-review.json).
+The schedule example, lifecycle rules, operation map, ownership, and developer references remain readable without clipping or overlap.
+The record includes the exact source commit, browser version, capture script, and local server log.

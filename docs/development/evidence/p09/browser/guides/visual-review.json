@@ -1,0 +1,22 @@
+{
+  "source_commit": "e7a03c397e4766097f1c51321b193bc9f037364f",
+  "pages_passed": 10,
+  "unique_pages": 7,
+  "local_links_passed": 46,
+  "page_errors": [],
+  "screenshots_inspected": [
+    "home.png",
+    "well-operations.png",
+    "schedule-example.png",
+    "well-lifetime.png",
+    "development-navigation.png",
+    "well-operation-map.png",
+    "well-ownership.png",
+    "schedule-boundary.png",
+    "schedule-preservation.png",
+    "integration-evidence.png"
+  ],
+  "finding": "The user operations, schedule example, lifecycle rules, operation map, ownership, and developer references are readable without clipping or overlap.",
+  "command": "NODE_PATH=/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules /Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/resinsight-p08-correction-review.cjs /private/tmp/resinsight-p09-wells /private/tmp/resinsight-p09-guides-review /private/tmp/resinsight-p09-guides-manifest.json",
+  "network_scope": "Only the local documentation origin was allowed."
+}
