@@ -1,0 +1,8 @@
+{
+  "example": "docs/tutorials/examples/p06-view-apply.json",
+  "schema": "ViewUpdateRequest.model_validate_json",
+  "schema_result": "passed",
+  "recorded_arguments_match": true,
+  "source": "docs/development/evidence/p06/observer/server-responses.jsonl",
+  "scope": "Parsed JSON request validity and correspondence with recorded MCP arguments."
+}
