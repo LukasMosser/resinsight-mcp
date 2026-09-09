@@ -1,7 +1,5 @@
 """Attributed SPE1 fluid and rock-compressibility template."""
 
-TEMPLATE_VERSION = "spe1-field-synthetic-v1"
-
 PROPERTIES = """-- This reservoir simulation deck is made available under the Open Database
 -- License: http://opendatacommons.org/licenses/odbl/1.0/. Any rights in
 -- individual contents of the database are licensed under the Database Contents

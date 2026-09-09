@@ -7,11 +7,18 @@ The grid contains at most 10,000 cells.
 Cell arrays vary I fastest, followed by J and K.
 Coordinates use feet and positive-down depth.
 
-The first independent implementation defines grid and equilibrium records.
-It writes explicit grid arrays and one equilibrium region.
-The official OPM parser checks the generated values in focused tests.
-Shared well controls and import publication will complete the model service in the next change.
-The lead owns these shared interfaces.
+`SyntheticModelService` renders complete inputs and delegates validation and publication to `OpmImportService`.
+The request separates session identity and datum from reusable engineering inputs.
+Shared FIELD control records define well control validation.
+P08 owns its single-cell well placement records and does not depend on the P09 implementation.
+The official OPM parser checks generated properties, cell order, connections, and controls in focused tests.
+
+The source preserves canonical specification JSON and one generated grid identifier in separate comments.
+The import service stores that source as the immutable revision entrypoint.
+Readers recover the specification and grid identifier from that artifact after reopening the workspace.
+The service adds no publication path or metadata artifact.
+Source limits and publication failures remain owned by the import service.
+Cleanup failures after successful import report the created revision with effect `UNKNOWN`.
 
 ## Physics template and data terms
 
