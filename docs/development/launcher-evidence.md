@@ -1,5 +1,8 @@
 # Shipped launcher acceptance
 
+The later [OPM launcher record](evidence/opm-launcher/README.md) covers the complete configured catalog and its clean wheel installation.
+It separates 658 maintained checks and 46-tool discovery from the pending full native workflow trial.
+
 The first session launcher slice passed native acceptance on September 9, 2026.
 The trial used a fresh noneditable installation and the shipped `python -m resinsight_mcp.mcp` command.
 All engineering setup used public MCP tools.

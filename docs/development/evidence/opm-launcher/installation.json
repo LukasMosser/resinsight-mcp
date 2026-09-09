@@ -1,0 +1,65 @@
+{
+  "application_source_commit": "38e5aa8d9eca0c81e72ffdbdddfcf561e8735cbe",
+  "application_source_clean": true,
+  "source_checkout": "/private/tmp/resinsight-opm-workflow",
+  "application_wheel": "/private/tmp/resinsight-p13-installed-runtime/dist/resinsight_mcp-0.1.0-py3-none-any.whl",
+  "interpreter": "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+  "native_source_commit": "551dc02e19a1eb75ae462a0313f7a9a3101c2f45",
+  "native_source_status": "M ThirdParty/openzgy\n M vcpkg.json",
+  "matching_generated_client": {
+    "native_commit": "e9baf8b9eaa86ba2d44b9c9f5c1e29faa8321a67",
+    "source": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/Python",
+    "wheel": "/private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+    "python": "/private/tmp/resinsight-well-rips-package/environment/bin/python",
+    "rips_file": "/private/tmp/resinsight-well-rips-package/environment/lib/python3.12/site-packages/rips/__init__.py",
+    "versions": {
+      "rips": "2026.9.0.1",
+      "grpcio": "1.83.1",
+      "protobuf": "7.36.1",
+      "typing_extensions": "4.16.0"
+    },
+    "direct_url": {
+      "url": "file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+      "archive_info": {}
+    },
+    "export_signature": "(self, path: 'str' = '', output_path: 'str' = '') -> 'None'",
+    "load_signature": "(self: rips.generated.generated_classes.Project, path: str, grid_only: bool = False) -> rips.generated.generated_classes.Reservoir",
+    "native_process_started": false
+  },
+  "dependency_command": [
+    "uv",
+    "sync",
+    "--offline",
+    "--locked",
+    "--no-dev",
+    "--extra",
+    "imports",
+    "--extra",
+    "resinsight",
+    "--no-install-project",
+    "--no-install-package",
+    "rips"
+  ],
+  "build_command": [
+    "uv",
+    "build",
+    "--offline",
+    "--wheel",
+    "--out-dir",
+    "/private/tmp/resinsight-p13-installed-runtime/dist"
+  ],
+  "native_or_simulator_trial_started": false,
+  "native_changes_since_client_generation": "ApplicationLibCode/ProjectDataModel/RimEclipseCase.cpp       | 4 +++-\n ApplicationLibCode/ProjectDataModel/RimEclipseResultCase.cpp | 4 +++-\n 2 files changed, 6 insertions(+), 2 deletions(-)",
+  "generated_client_interfaces_changed_since_build": false,
+  "wheel_install_command": [
+    "uv",
+    "pip",
+    "install",
+    "--offline",
+    "--no-deps",
+    "--python",
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "/private/tmp/resinsight-p13-installed-runtime/dist/resinsight_mcp-0.1.0-py3-none-any.whl",
+    "/private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl"
+  ]
+}

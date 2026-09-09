@@ -1,0 +1,9 @@
+{
+  "catalog_verified": true,
+  "tool_count": 46,
+  "native_application_started": false,
+  "simulator_started": false,
+  "domain_tool_calls": 0,
+  "dependency_checks": "Actual installed dependencies and local Docker image were checked.",
+  "scope": "Installed launcher initialization, discovery, and schema agreement only."
+}
