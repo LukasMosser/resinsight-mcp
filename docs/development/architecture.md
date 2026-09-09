@@ -7,8 +7,12 @@ The [operation map](agent-workflows.md) identifies which services currently have
 The [session guide](sessions.md) describes the implemented lifecycle service and native adapter.
 The [MCP transport](mcp.md) binds shared services through typed operations and preserves native image content.
 The [view service](views.md) applies complete native settings and returns fresh images with confirmed context.
+
 The [model import service](model-imports.md) preserves and prepares the supported OPM input profile through Python APIs.
 The [constrained model service](synthetic-models.md) generates layered FIELD inputs and uses that same validation and publication path.
+The [native well service](wells.md) edits modeled paths and exports fixed completion snapshots through the owned session connection.
+The separate [schedule service](well-schedules.md) publishes requested connections and controls as immutable child input revisions.
+
 The [job controller](jobs.md) supervises trusted commands through durable records and owned process groups.
 The supplied launcher exposes workspace tools and can configure native session services.
 View and job composition, trusted loading, and complete domain workflows remain integration work.

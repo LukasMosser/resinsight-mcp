@@ -1,0 +1,10 @@
+{
+  "source_commit": "2810a9d79490985828bcd797668a335199a20cff",
+  "working_tree": " M docs/development/architecture.md\n?? docs/development/evidence/p09/integrated/final-shared-check.log\n?? docs/development/evidence/p09/integrated/reference-depth-independent-review.json\n",
+  "native_fix_source_commit": "302f837e06a588ef9218cb284b85729010b3409d",
+  "command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py",
+  "tests_passed": 518,
+  "tool_versions": "environment.json",
+  "native_processes": 0,
+  "simulator_runs": 0
+}

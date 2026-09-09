@@ -6,6 +6,11 @@ The [shared check](shared-check.log) passed 514 tests, Ruff, formatting, ty, and
 These checks use controlled application processes and the OPM library.
 They do not launch ResInsight or a simulator.
 
+The [final shared check](final-shared-check.log) passed 518 tests after the native reference-depth fix added four backend regressions.
+Its [source record](final-validation.json) identifies the integrated fix and the remaining local architecture guide change.
+The [independent depth review](reference-depth-independent-review.json) records the exact native serialization sources and four passing focused cases.
+The fix maps the native empty sentinel to an unset depth while preserving explicit values and malformed-value failures.
+
 ## Test collection repair
 
 The [first combined check](initial-collection.log) found duplicate `wells.test_service` modules.
