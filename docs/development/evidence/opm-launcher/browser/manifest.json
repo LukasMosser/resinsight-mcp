@@ -1,0 +1,60 @@
+[
+  {
+    "path": "/mcp/",
+    "heading": "Connect an agent",
+    "image": "connection-guide.png"
+  },
+  {
+    "path": "/mcp/#enable-the-opm-workflow",
+    "heading": "Enable the OPM workflow",
+    "image": "opm-configuration.png"
+  },
+  {
+    "path": "/tutorials/opm/",
+    "heading": "Run a FIELD model through MCP",
+    "image": "workflow-start.png"
+  },
+  {
+    "path": "/tutorials/opm/#compare-a-changed-scenario",
+    "heading": "Compare a changed scenario",
+    "image": "scenario-comparison.png"
+  },
+  {
+    "path": "/tutorials/opm/#save-reconnect-and-cancel",
+    "heading": "Save, reconnect, and cancel",
+    "image": "workflow-recovery.png",
+    "bottom": true
+  },
+  {
+    "path": "/views/",
+    "heading": "ResInsight views",
+    "image": "view-guide.png"
+  },
+  {
+    "path": "/views/#failures-and-recovery",
+    "heading": "Failures and recovery",
+    "image": "view-recovery.png",
+    "bottom": true
+  },
+  {
+    "path": "/development/launcher-evidence/",
+    "heading": "Shipped launcher acceptance",
+    "image": "launcher-evidence.png"
+  },
+  {
+    "path": "/development/evidence/opm-launcher/",
+    "heading": "Installed OPM launcher checks",
+    "image": "opm-evidence.png"
+  },
+  {
+    "path": "/development/evidence/opm-launcher/#remaining-acceptance",
+    "heading": "Remaining acceptance",
+    "image": "pending-acceptance.png",
+    "bottom": true
+  },
+  {
+    "path": "/mcp/",
+    "text": "Query and compare values",
+    "image": "workflow-tool-table.png"
+  }
+]

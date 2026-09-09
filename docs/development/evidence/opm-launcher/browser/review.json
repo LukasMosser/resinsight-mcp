@@ -1,0 +1,516 @@
+{
+  "reviewed_at": "2026-09-09T18:22:01.966Z",
+  "source_commit": "8e21fe376e054ca881bc8c3523ffaf2db1c17b62",
+  "working_tree": "",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "pages": [
+    {
+      "path": "/mcp/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "connection-guide.png"
+    },
+    {
+      "path": "/mcp/#enable-the-opm-workflow",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "opm-configuration.png"
+    },
+    {
+      "path": "/tutorials/opm/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "workflow-start.png"
+    },
+    {
+      "path": "/tutorials/opm/#compare-a-changed-scenario",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "scenario-comparison.png"
+    },
+    {
+      "path": "/tutorials/opm/#save-reconnect-and-cancel",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "workflow-recovery.png"
+    },
+    {
+      "path": "/views/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "view-guide.png"
+    },
+    {
+      "path": "/views/#failures-and-recovery",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "view-recovery.png"
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [
+        {
+          "source": "http://127.0.0.1:64012/development/evidence/launcher/images/P04_first_3D_View_PRESSURE_00_01_Jan_2015.png",
+          "complete": true,
+          "width": 1200,
+          "height": 800
+        }
+      ],
+      "screenshot": "launcher-evidence.png"
+    },
+    {
+      "path": "/development/evidence/opm-launcher/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "opm-evidence.png"
+    },
+    {
+      "path": "/development/evidence/opm-launcher/#remaining-acceptance",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "pending-acceptance.png"
+    },
+    {
+      "path": "/mcp/",
+      "status": 200,
+      "layout": {
+        "viewport": 1440,
+        "document": 1440,
+        "scroll_regions": []
+      },
+      "images": [],
+      "screenshot": "workflow-tool-table.png"
+    }
+  ],
+  "links": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/models/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/opm/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/views/",
+      "status": 200
+    },
+    {
+      "path": "/tutorials/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/views/",
+      "status": 200
+    },
+    {
+      "path": "/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/wells/",
+      "status": 200
+    },
+    {
+      "path": "/opm/",
+      "status": 200
+    },
+    {
+      "path": "/results/",
+      "status": 200
+    },
+    {
+      "path": "/security/",
+      "status": 200
+    },
+    {
+      "path": "/license/",
+      "status": 200
+    },
+    {
+      "path": "/development/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-workflows/",
+      "status": 200
+    },
+    {
+      "path": "/development/agent-guide/",
+      "status": 200
+    },
+    {
+      "path": "/development/local-setup/",
+      "status": 200
+    },
+    {
+      "path": "/development/project-organization/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-proof/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-resinsight/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-opm/",
+      "status": 200
+    },
+    {
+      "path": "/development/platform-images/",
+      "status": 200
+    },
+    {
+      "path": "/development/testing-and-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/run-result-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-contracts/",
+      "status": 200
+    },
+    {
+      "path": "/development/workspaces/",
+      "status": 200
+    },
+    {
+      "path": "/development/sessions/",
+      "status": 200
+    },
+    {
+      "path": "/development/p04-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/session-mutations/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp/",
+      "status": 200
+    },
+    {
+      "path": "/development/mcp-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/launcher-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/",
+      "status": 200
+    },
+    {
+      "path": "/development/views/",
+      "status": 200
+    },
+    {
+      "path": "/development/p06-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-imports/",
+      "status": 200
+    },
+    {
+      "path": "/development/p07-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/model-materialization-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/synthetic-models/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p08-native/",
+      "status": 200
+    },
+    {
+      "path": "/development/wells/",
+      "status": 200
+    },
+    {
+      "path": "/development/well-schedules/",
+      "status": 200
+    },
+    {
+      "path": "/development/jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/docker-jobs/",
+      "status": 200
+    },
+    {
+      "path": "/development/opm/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p11/",
+      "status": 200
+    },
+    {
+      "path": "/development/results/",
+      "status": 200
+    },
+    {
+      "path": "/development/p10-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/architecture/",
+      "status": 200
+    },
+    {
+      "path": "/development/implementation-plan/",
+      "status": 200
+    },
+    {
+      "path": "/development/p13-delivery/",
+      "status": 200
+    },
+    {
+      "path": "/development/scope-review/",
+      "status": 200
+    },
+    {
+      "path": "/development/foundation-evidence/",
+      "status": 200
+    },
+    {
+      "path": "/development/releases/",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/install-command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/install.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/native-build.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/p04/P04%20first.rsp",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/project-input.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/result.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/events.jsonl",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/acceptance.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/saved-project.rsp",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/checks.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/checks.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/README.txt",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/browser/review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/browser/visual-review.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/browser/connection.png",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/browser/operation-map.png",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/launcher/browser/guide-commit.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/shared-check.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/environment.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/installation.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/dependency-install.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/wheel-build.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/wheel-install.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/catalog-check-script.txt",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/launcher-command.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/launcher-help.log",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/tools.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/catalog.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/acceptance.json",
+      "status": 200
+    },
+    {
+      "path": "/development/evidence/opm-launcher/installed-packages.json",
+      "status": 200
+    }
+  ],
+  "blocked_external_requests": [
+    "https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback",
+    "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+    "https://api.github.com/repos/LukasMosser/resinsight-mcp/releases/latest",
+    "https://api.github.com/repos/LukasMosser/resinsight-mcp"
+  ],
+  "page_errors": [],
+  "visual_review_required": true
+}
