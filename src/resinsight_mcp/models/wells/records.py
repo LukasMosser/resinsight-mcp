@@ -1,6 +1,7 @@
 """Typed boundaries between modeled paths and immutable FIELD schedules."""
 
 from itertools import pairwise
+from math import isclose
 from typing import Annotated, Literal, Protocol, Self
 
 from pydantic import (
@@ -74,6 +75,31 @@ class ModeledWellDefinition(Record):
             raise ValueError("Perforations must have increasing, nonoverlapping measured depths.")
         return self
 
+    def require_trajectory(self, trajectory: tuple[TrajectorySample, ...]) -> None:
+        """Reject native samples that contradict the intended FIELD trajectory."""
+        if len(trajectory) < 2:
+            raise ValueError("A native trajectory requires at least two samples.")
+        if any(
+            first.measured_depth_ft >= second.measured_depth_ft
+            for first, second in pairwise(trajectory)
+        ):
+            raise ValueError("Sampled measured depths must increase.")
+        if self.perforations[-1].end_md_ft > trajectory[-1].measured_depth_ft:
+            raise ValueError("Perforations must fit the observed trajectory length.")
+        for target, sample in (
+            (self.targets[0], trajectory[0]),
+            (self.targets[-1], trajectory[-1]),
+        ):
+            if not all(
+                isclose(expected, actual, rel_tol=1e-6, abs_tol=1e-6)
+                for expected, actual in zip(
+                    (target.x_ft, target.y_ft, target.depth_ft),
+                    (sample.x_ft, sample.y_ft, sample.depth_ft),
+                    strict=True,
+                )
+            ):
+                raise ValueError("Sampled endpoints must match the positive-down targets.")
+
 
 class PreparedCaseRequest(Record):
     context: ApplicationContext
@@ -141,13 +167,7 @@ class ModeledWell(Record):
     def check_identity_and_depth(self) -> Self:
         if self.well.kind != ObjectKind.WELL or self.well.context != self.binding.case.context:
             raise ValueError("The well and case must share their current application context.")
-        if any(
-            first.measured_depth_ft >= second.measured_depth_ft
-            for first, second in pairwise(self.trajectory)
-        ):
-            raise ValueError("Sampled measured depths must increase.")
-        if self.definition.perforations[-1].end_md_ft > self.trajectory[-1].measured_depth_ft:
-            raise ValueError("Perforations must fit the observed trajectory length.")
+        self.definition.require_trajectory(self.trajectory)
         return self
 
 

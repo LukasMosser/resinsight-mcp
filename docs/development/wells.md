@@ -182,4 +182,30 @@ The service publishes changed inputs through `derive_model()` and preserves grid
 Generation comments describe the inputs originally used to generate a model.
 `read_specification()` recovers those inputs and does not establish a later edited schedule.
 The stored parser-validated input graph defines the current simulator schedule.
-These records define agreed interfaces, while the native and schedule implementations remain pending.
+The native service implements these interfaces through the session's existing verified RIPS connection.
+The schedule implementation proceeds independently against the same records and `CompletionSource` protocol.
+
+## Native service ownership
+
+The native service retains each prepared case's materialization context until explicit `close()`.
+The case depends on these staged source files throughout that service lifetime.
+MCP disconnect does not end this lifetime while the application survives.
+Cleanup errors remain visible, and closed working cases lose their supported source lifetime.
+Close waits for active service calls and rejects new work before removing staged sources.
+Repeated close calls return the same cleanup result.
+Saved-project restoration of these in-memory corner-point grids is not established by P09.
+Launcher recovery must handle this lifetime before advertising integrated well tools.
+
+Each owned load captures the complete native corner geometry.
+Later operations compare those corners and the parser-derived active cells, dimensions, depths, volumes, porosity, and permeability.
+Numeric comparisons use relative and absolute tolerance `1e-6` for native floating-point storage.
+The service refuses untracked project states and native well edits.
+It also rejects unsupported filters, valves, fractures, and fishbones.
+Sampled trajectory endpoints must match their positive-down targets within the same tolerance.
+
+Public service tests use real workspace storage and session coordination with controlled native operations.
+They cover creation, update, immutable exports, fresh references, depth signs, changed geometry, invalid cells, uncertain updates, artifact identity, and source cleanup.
+Failed native result validation remains inside session ownership and retires the connection with an `UNKNOWN` outcome.
+Refreshed inventories replace old address mappings before the service accepts new references.
+Those controlled tests do not establish real application acceptance.
+The maintained service's native acceptance remains a separate required check.
