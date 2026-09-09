@@ -1,8 +1,9 @@
 # P06 view evidence
 
 P06 implements native view controls and image responses through configured production MCP bindings.
-The native smoke checks pass, and a local SDK client completes six image captures.
-Model-facing acceptance remains a separate gate until the isolated observer receives and describes those native images.
+The native smoke checks and isolated model acceptance pass.
+The observer received six native images and described their visible changes.
+Native GUI legend inspection remains pending because Computer Use startup failed and macOS denied assistive access.
 The default workspace launcher does not compose the view service or establish result lineage.
 
 ## Native controls
@@ -67,21 +68,21 @@ It explicitly backfills the historical job record without claiming a new simulat
 Report metadata comes from the actual loaded native case, ending at 3,650 days on December 29, 2024.
 The trusted setup binds that case to the stored result before the MCP server starts.
 
-The planned isolated Codex observer will use the existing authenticated OpenAI account for model inference.
-Its planned payload contains public SPE1-derived images, required view metadata, and issued test identifiers.
+The isolated Codex observer used the existing authenticated OpenAI account for model inference.
+Its payload contained six public SPE1-derived images, required view metadata, and issued test identifiers.
 The observer cannot read simulator decks, output files, unrelated workspace files, or secrets through its supplied tools.
 The owner approved the exact six public SPE1 images, view metadata, and test identifiers for this isolated provider transfer.
 The [data boundary](../views.md#data-boundary) describes the product's provider configuration.
 
-Trial 03 reached project inspection but captured no images.
+[Trial 03](evidence/p06/observer/trial-03/audit.json) reached project inspection but captured no images.
 The client reported `MCP tool call requires approval, but approval policy is never`.
 The isolated runner now uses [per-tool approval settings](https://learn.chatgpt.com/docs/extend/mcp) for `view_apply` and `view_render`, which the owner authorized.
 These settings apply only to this invocation and its owned trial views.
 The exact tool allowlist, read-only shell sandbox, and disabled unrelated tools remain unchanged.
-The repair does not establish image acceptance, which requires another observer run.
+Trial 04 completed after that repair at Python source `b0b41f65bb72599e6f12ba647cb4d47c2f53446c`.
 
-The observer must resolve the case, two views, and a well through `project_inspect`.
-It must apply five complete requests and render the unchanged control view once.
+The observer resolved the case, two views, and a well through `project_inspect`.
+It applied five complete requests and rendered the unchanged control view once.
 The six images compare initial pressure, final pressure, final gas saturation, and changed camera and filter settings.
 Pressure comparisons retain bounds of 1,000 to 5,000 psi.
 Saturation comparisons retain bounds of zero to one.
@@ -89,12 +90,38 @@ Saturation comparisons retain bounds of zero to one.
 The gate checks issued references, typed receipts, actual camera values, fixed legends, distinct observation identifiers, and decoded 1200 by 800 PNGs.
 It requires the model's final answer after all seven MCP calls and rejects unrelated tools.
 The model must describe visible spatial and color changes from all six images.
-Separate visual review must assess those descriptions before acceptance is complete.
-The maintained P05 visible, hidden, and empty controls remain part of the final image gate.
+The [original audit](evidence/p06/observer/audit.json) passed with exit code zero, seven completed MCP calls, and six native images.
+Its `visual_claims_verified: false` field reserves the visual decision for separate review.
+The audit remains unchanged.
+The separate [visual review](evidence/p06/observer/image-review.json) records acceptance by the lead and an independent Codex agent.
+Both reviewed all six images and accepted all four answer fields.
+These are Codex reviews, not human reviews.
+Saturation descriptions apply only to visible cells and do not establish numerical simulator accuracy.
+
+The [environment](evidence/p06/observer/environment.json) records the tested sources, command, Python 3.12.13, MCP 1.30.0, and Pillow 12.3.0.
+The [invocation](evidence/p06/observer/invocation.json) records `gpt-6-astra`, low reasoning, tool restrictions, and the exact prompt.
+The [binding](evidence/p06/observer/server-binding.json), [responses](evidence/p06/observer/server-responses.jsonl), and [events](evidence/p06/observer/events.jsonl) preserve the production MCP exchange.
+The [answer](evidence/p06/observer/answer.json) describes pressure, saturation, filtered geometry, and the unchanged control view.
+The [package notes](evidence/p06/observer/README.md) identify omitted local setup files and the retained failure record.
+
+| Image | Observed scene |
+| --- | --- |
+| [One](evidence/p06/observer/native-01.png) | Initial target pressure, with a red-orange full block. |
+| [Two](evidence/p06/observer/native-02.png) | Initial control pressure, with the same full block. |
+| [Three](evidence/p06/observer/native-03.png) | Final target pressure, with yellow and olive cells and greener cells near the right edge. |
+| [Four](evidence/p06/observer/native-04.png) | Final gas saturation, with a green upper layer and blue lower side layers. |
+| [Five](evidence/p06/observer/native-05.png) | A rotated, narrower half-block with exposed blue side layers. |
+| [Six](evidence/p06/observer/native-06.png) | The control scene remains visibly unchanged. |
+
+The retained [P05 controls](evidence/p05/image-review.json) come from September 8, 2026, at source `2842d9175ef01ebfab7fcbd67fb93edc39051f1d`.
+The visible, hidden, and empty controls passed their original model runs.
+This record does not claim a new P05 observer run.
 
 ## Maintained tests and review
 
-The shared check passed 339 tests after integration with the separate SQLite journal repair.
+The shared check passed 340 tests after the isolated approval repair.
+The 35 maintained P05 and P06 gate tests also passed.
+The evidence packaging [check record](evidence/p06/observer/repository-check.json) and [log](evidence/p06/observer/repository-check.log) preserve the final shared check.
 It runs Ruff, ty, pytest, and the strict documentation build.
 The maintained view tests cover scene changes, stale observations, result bindings, export failures, camera geometry, and native capability failures.
 Gate tests reject missing images, incorrect dimensions, hidden content, wrong references, changed cameras, and incomplete call sequences.

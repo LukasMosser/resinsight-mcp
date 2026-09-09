@@ -1,0 +1,301 @@
+{
+  "workspace": "/private/tmp/resinsight-p06-trial-04/workspace",
+  "application_logs": "/private/tmp/resinsight-p06-trial-04/observer-application-logs",
+  "endpoint": {
+    "host": "127.0.0.1",
+    "port": 65451
+  },
+  "session_id": "session_7d212713fad642988fe375c6213136e7",
+  "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+  "case_name": "SPE1CASE1",
+  "target_view_name": "View 0",
+  "control_view_name": "View 1",
+  "well_name": "P06 selection well",
+  "requests": [
+    {
+      "view_name": "View 0",
+      "context": {
+        "model": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+        },
+        "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+        "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+        "scene_version": 0,
+        "property": {
+          "name": "PRESSURE",
+          "unit": "psi"
+        },
+        "report_time": {
+          "index": 0,
+          "elapsed_days": 0.0,
+          "calendar_date": "2015-01-01"
+        },
+        "coordinates": {
+          "length_unit": "ft",
+          "depth_direction": "positive_down",
+          "datum": "SPE1 local origin"
+        },
+        "camera": {
+          "position": [
+            23003.56868899781,
+            -23003.56868899781,
+            23003.56868899781
+          ],
+          "target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "projection": "perspective",
+          "field_of_view_degrees": 40.0,
+          "parallel_scale": null
+        },
+        "vertical_exaggeration": 20,
+        "legend": {
+          "minimum": 1000,
+          "maximum": 5000
+        },
+        "filters": []
+      },
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "view_name": "View 1",
+      "context": {
+        "model": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+        },
+        "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+        "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+        "scene_version": 0,
+        "property": {
+          "name": "PRESSURE",
+          "unit": "psi"
+        },
+        "report_time": {
+          "index": 0,
+          "elapsed_days": 0.0,
+          "calendar_date": "2015-01-01"
+        },
+        "coordinates": {
+          "length_unit": "ft",
+          "depth_direction": "positive_down",
+          "datum": "SPE1 local origin"
+        },
+        "camera": {
+          "position": [
+            23003.56868899781,
+            -23003.56868899781,
+            23003.56868899781
+          ],
+          "target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "projection": "perspective",
+          "field_of_view_degrees": 40.0,
+          "parallel_scale": null
+        },
+        "vertical_exaggeration": 20,
+        "legend": {
+          "minimum": 1000,
+          "maximum": 5000
+        },
+        "filters": []
+      },
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "view_name": "View 0",
+      "context": {
+        "model": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+        },
+        "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+        "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+        "scene_version": 1,
+        "property": {
+          "name": "PRESSURE",
+          "unit": "psi"
+        },
+        "report_time": {
+          "index": 120,
+          "elapsed_days": 3650.0,
+          "calendar_date": "2024-12-29"
+        },
+        "coordinates": {
+          "length_unit": "ft",
+          "depth_direction": "positive_down",
+          "datum": "SPE1 local origin"
+        },
+        "camera": {
+          "position": [
+            23003.56868899781,
+            -23003.56868899781,
+            23003.56868899781
+          ],
+          "target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "projection": "perspective",
+          "field_of_view_degrees": 40.0,
+          "parallel_scale": null
+        },
+        "vertical_exaggeration": 20,
+        "legend": {
+          "minimum": 1000,
+          "maximum": 5000
+        },
+        "filters": []
+      },
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "view_name": "View 0",
+      "context": {
+        "model": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+        },
+        "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+        "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+        "scene_version": 2,
+        "property": {
+          "name": "SGAS",
+          "unit": "1"
+        },
+        "report_time": {
+          "index": 120,
+          "elapsed_days": 3650.0,
+          "calendar_date": "2024-12-29"
+        },
+        "coordinates": {
+          "length_unit": "ft",
+          "depth_direction": "positive_down",
+          "datum": "SPE1 local origin"
+        },
+        "camera": {
+          "position": [
+            23003.56868899781,
+            -23003.56868899781,
+            23003.56868899781
+          ],
+          "target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "projection": "perspective",
+          "field_of_view_degrees": 40.0,
+          "parallel_scale": null
+        },
+        "vertical_exaggeration": 20,
+        "legend": {
+          "minimum": 0,
+          "maximum": 1
+        },
+        "filters": []
+      },
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "view_name": "View 0",
+      "context": {
+        "model": {
+          "session_id": "session_7d212713fad642988fe375c6213136e7",
+          "revision_id": "revision_5daef01c0caa4bb49c1ef88503158fc9"
+        },
+        "result_id": "result_4a71dcaaf1154c44ad8bb0e594cb661f",
+        "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+        "scene_version": 3,
+        "property": {
+          "name": "SGAS",
+          "unit": "1"
+        },
+        "report_time": {
+          "index": 120,
+          "elapsed_days": 3650.0,
+          "calendar_date": "2024-12-29"
+        },
+        "coordinates": {
+          "length_unit": "ft",
+          "depth_direction": "positive_down",
+          "datum": "SPE1 local origin"
+        },
+        "camera": {
+          "position": [
+            23003.56868899781,
+            23003.56868899781,
+            23003.56868899781
+          ],
+          "target": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "projection": "perspective",
+          "field_of_view_degrees": 40.0,
+          "parallel_scale": null
+        },
+        "vertical_exaggeration": 20,
+        "legend": {
+          "minimum": 0,
+          "maximum": 1
+        },
+        "filters": [
+          {
+            "grid_id": "grid_cd9b8340e79d48dd9262fb0c88d37a25",
+            "minimum": {
+              "i": 0,
+              "j": 0,
+              "k": 0
+            },
+            "maximum": {
+              "i": 4,
+              "j": 9,
+              "k": 2
+            },
+            "include": true
+          }
+        ]
+      },
+      "width": 1200,
+      "height": 800
+    }
+  ]
+}

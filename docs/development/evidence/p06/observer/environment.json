@@ -1,0 +1,31 @@
+{
+  "started_at": "2026-09-09T05:34:33.256112+00:00",
+  "command": [
+    "tests/acceptance/views/run.py",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--case",
+    "/private/tmp/resinsight-mcp-p01-opm/experiments/platform/opm/output/SPE1CASE1.EGRID",
+    "--input",
+    "/private/tmp/resinsight-p06-final/experiments/platform/opm/input/SPE1CASE1.DATA",
+    "--p01-record",
+    "/private/tmp/resinsight-p06-final/experiments/platform/opm/evidence/run-record.json",
+    "--native-source",
+    "/private/tmp/resinsight-p01-build/source",
+    "--codex",
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--output",
+    "/private/tmp/resinsight-p06-trial-04"
+  ],
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "versions": {
+    "rips": "2026.9.0.1",
+    "psutil": "7.2.2",
+    "mcp": "1.30.0",
+    "grpcio": "1.83.1",
+    "Pillow": "12.3.0"
+  },
+  "source_commit": "b0b41f65bb72599e6f12ba647cb4d47c2f53446c",
+  "native_commit": "1859d96e9a40093abfc43c42df9e9ef5b3846c9d"
+}

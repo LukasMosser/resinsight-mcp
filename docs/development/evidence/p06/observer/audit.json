@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "visual_review_required": true,
+  "visual_claims_verified": false,
+  "answer": {
+    "status": "observed",
+    "pressure_change": "Image one shows nearly uniform dark red-orange across the top and side faces. Image three shows predominantly yellow/olive cells, becoming greener toward the right edge near the wells. The unchanged pressure legend indicates a decrease, with lower pressure concentrated on the right.",
+    "saturation_display": "Image four has a mostly green top, more yellow-green on the left and turquoise toward the front and right edges. The exposed lower side layers are predominantly dark blue, with cyan patches near the ends, showing lower saturation beneath the green upper layer.",
+    "filtered_geometry_change": "The full square block in image four becomes a narrower rectangular half-block in image five, retaining three visible layers and exposing a long blue side face. The camera rotates around the block: the selected well moves from the left edge to the rear upper corner, while other well traces appear in the empty foreground.",
+    "control_view_change": "No visible change: image two and the final control image show the same red-orange full block, white grid lines, left-side selected well, camera orientation, and pressure legend."
+  },
+  "observation_ids": [
+    "observation_1b23b8a59edd4f30af4b6b94cd2f08e7",
+    "observation_8425952dbb9e455cab0bdb6cb6dad813",
+    "observation_3fb89d32e4bb490eb01346b7304521d6",
+    "observation_848f80674bae442aaebc306e0dd33150",
+    "observation_1619c0a0edb94153888150f97270bc5b",
+    "observation_2f7fac929151450eb8e0756308a8eef9"
+  ],
+  "completed_mcp_calls": 7,
+  "native_images": 6
+}

@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "exit_code": 0,
+  "visual_review_required": true,
+  "visual_claims_verified": false,
+  "error": "The final answer did not follow all completed native calls."
+}
