@@ -117,6 +117,7 @@ Use an installed Python 3.12 environment with the application, OPM readers, and 
 The published RIPS wheel does not contain the required native commands.
 The [native client guide](development/wells.md#matching-generated-client) describes the supported wheel installation and source records.
 The selected ResInsight build must include the reviewed prepared-grid, well, and view commands.
+It also requires the [reviewed native build](development/evidence/p12/native/README.md#native-rendering-build) with the summary rendering and cell containment repairs.
 
 The runtime requires the local pinned Flow image on `linux/arm64` and an available Docker daemon.
 The [OPM guide](opm.md) records the exact digest, Flow version, limits, and dependency checks.

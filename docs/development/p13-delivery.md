@@ -7,7 +7,8 @@ P13 proves the full workflow through the shipped launcher and public MCP tools.
 This plan records scope, ownership, and remaining acceptance gates.
 
 The [P11 record](evidence/p11/README.md) now establishes bounded Flow execution and verified numerical output through the Python service.
-Native P12 and complete public MCP P13 acceptance remain separate gates.
+The [P12 native record](evidence/p12/native/README.md#trial-07) establishes result loading, comparison, images, and project reopening.
+Complete public MCP P13 acceptance remains a separate gate.
 
 ## Shared prerequisites
 

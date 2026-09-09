@@ -48,3 +48,8 @@ The owner approved the native trials and localhost guide review.
 The [rendered guide review](browser/README.md) passed eleven visits and 92 local links.
 The lead inspected every saved guide screenshot and found no layout defect.
 Complete native workflow acceptance remains part of P13.
+
+## Final prerequisite integration
+
+The [final integration record](final-integration/README.md) preserves 666 passing maintained tests and the final guide review.
+It also records that the final application source matches the installed source used for native acceptance.
