@@ -41,6 +41,7 @@ nav:
           - Native images: development/platform-images.md
       - Testing and review: development/testing-and-review.md
       - Shared contracts: development/contracts.md
+      - Run and result contracts: development/run-result-contracts.md
       - Well control contracts: development/well-contracts.md
       - Workspace storage: development/workspaces.md
       - Session implementation: development/sessions.md
@@ -63,6 +64,7 @@ nav:
       - Job evidence: development/p10-evidence.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
+      - OPM workflow delivery: development/p13-delivery.md
       - Scope review: development/scope-review.md
       - Foundation evidence: development/foundation-evidence.md
       - Releases: development/releases.md

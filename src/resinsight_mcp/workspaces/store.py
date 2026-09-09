@@ -78,7 +78,7 @@ def _check_names(artifacts: tuple[Artifact, ...]) -> None:
 def _check_execution_update(previous: Job, updated: Job) -> None:
     if previous.submission != updated.submission:
         raise fail(ErrorCode.INVALID_MODEL, "A stored submission cannot change.")
-    for field in ("supervisor", "process", "process_group_id", "logs"):
+    for field in ("supervisor", "process", "process_group_id", "container_id", "logs"):
         retained = getattr(previous, field)
         if retained and retained != getattr(updated, field):
             raise fail(ErrorCode.INVALID_MODEL, f"Recorded job {field} cannot change.")
@@ -116,7 +116,14 @@ def _check_job_update(previous: Job, updated: Job) -> None:
         {
             **candidate.model_dump(),
             **updated.model_dump(
-                include={"supervisor", "process", "process_group_id", "logs", "events"}
+                include={
+                    "supervisor",
+                    "process",
+                    "process_group_id",
+                    "container_id",
+                    "logs",
+                    "events",
+                }
             ),
         }
     )
@@ -286,6 +293,17 @@ class SqliteWorkspaceStore:
             )
             return self._save_revision(connection, clone)
 
+    def _job_artifacts(self, connection: sqlite3.Connection, job: Job) -> None:
+        if job.submission is not None and job.submission.run_metadata is not None:
+            if (
+                self._artifact(connection, job.submission.run_metadata).kind
+                != ArtifactKind.METADATA
+            ):
+                raise fail(ErrorCode.INVALID_MODEL, "Run metadata requires a metadata artifact.")
+        for ref in job.logs:
+            if self._artifact(connection, ref).kind != ArtifactKind.LOG:
+                raise fail(ErrorCode.INVALID_MODEL, "Job logs require log artifacts.")
+
     @_operation
     def save_job(self, job: Job, *, expected: Job | None = None) -> Job:
         job = Job.model_validate(job)
@@ -295,9 +313,7 @@ class SqliteWorkspaceStore:
                 raise fail(
                     ErrorCode.INVALID_TRANSITION, "The final event must match the job state."
                 )
-            for ref in job.logs:
-                if self._artifact(connection, ref).kind != ArtifactKind.LOG:
-                    raise fail(ErrorCode.INVALID_MODEL, "Job logs require log artifacts.")
+            self._job_artifacts(connection, job)
             previous = records.find(connection, Job, str(job.model.session_id), str(job.job_id))
             if previous is None:
                 if expected is not None:
@@ -307,6 +323,7 @@ class SqliteWorkspaceStore:
                     or job.cancel_requested
                     or job.supervisor is not None
                     or job.process is not None
+                    or job.container_id is not None
                     or job.logs
                 ):
                     raise fail(
@@ -346,6 +363,17 @@ class SqliteWorkspaceStore:
                     ErrorCode.INVALID_MODEL,
                     "A result requires its exact successfully completed job.",
                 )
+            if result.manifest is not None:
+                for output in result.manifest.outputs:
+                    if self._artifact(connection, output.artifact).kind != ArtifactKind.OUTPUT:
+                        raise fail(
+                            ErrorCode.INVALID_MODEL, "Result outputs require output artifacts."
+                        )
+                for ref in (result.manifest.numerical_data, result.manifest.assessment_evidence):
+                    if self._artifact(connection, ref).kind != ArtifactKind.METADATA:
+                        raise fail(
+                            ErrorCode.INVALID_MODEL, "Result evidence requires metadata artifacts."
+                        )
             return records.immutable(connection, result)
 
     @_operation
@@ -389,6 +417,10 @@ class SqliteWorkspaceStore:
             if artifact.kind != ArtifactKind.PROJECT:
                 raise fail(
                     ErrorCode.INVALID_MODEL, "A checkpoint requires a saved-project artifact."
+                )
+            for result_id in checkpoint.result_ids:
+                records.require(
+                    connection, Result, str(checkpoint.model.session_id), str(result_id)
                 )
             return records.immutable(connection, checkpoint)
 

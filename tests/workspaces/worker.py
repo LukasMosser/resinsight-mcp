@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from resinsight_mcp.contracts.errors import Success
-from resinsight_mcp.contracts.jobs import Job
+from resinsight_mcp.contracts.jobs import Job, JobRef, Result
 from resinsight_mcp.contracts.models import ArtifactRef, ModelRevision, Session
 from resinsight_mcp.contracts.workspace import Artifact, ProjectCheckpoint
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
@@ -52,6 +52,12 @@ def main() -> None:
                 }
             )
         )
+    elif action == "reopen-result":
+        result = Result.model_validate_json(json.dumps(payload))
+        print(store.get_result(result.model.session_id, result.result_id).model_dump_json())
+    elif action == "reopen-job":
+        job = JobRef.model_validate_json(json.dumps(payload))
+        print(store.get_job(job).model_dump_json())
     elif action == "interrupt":
         artifact_record = Artifact.model_validate_json(json.dumps(payload))
         store.write_artifact(artifact_record, InterruptedInput())

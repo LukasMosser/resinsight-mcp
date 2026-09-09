@@ -9,7 +9,7 @@ from pydantic import field_validator, model_validator
 from ._base import Record, Text
 from .engineering import ModelRef
 from .errors import Error
-from .identifiers import ArtifactId, CheckpointId, SessionId
+from .identifiers import ArtifactId, CheckpointId, ResultId, SessionId
 from .jobs import Job
 from .models import ArtifactRef
 
@@ -20,6 +20,7 @@ class ArtifactKind(StrEnum):
     IMAGE = "image"
     LOG = "log"
     PROJECT = "project"
+    METADATA = "metadata"
 
 
 class Artifact(Record):
@@ -55,9 +56,12 @@ class ProjectCheckpoint(Record):
     name: Text
     model: ModelRef
     project: ArtifactRef
+    result_ids: tuple[ResultId, ...] = ()
 
     @model_validator(mode="after")
     def check_session(self) -> Self:
+        if len(set(self.result_ids)) != len(self.result_ids):
+            raise ValueError("Checkpoint result identifiers must be unique.")
         if self.project.session_id != self.model.session_id:
             raise ValueError("The saved project and revision must belong to the same session.")
         return self
