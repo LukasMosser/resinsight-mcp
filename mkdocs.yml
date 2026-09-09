@@ -61,6 +61,7 @@ nav:
       - Native wells and evidence: development/wells.md
       - Immutable well schedules: development/well-schedules.md
       - Job implementation: development/jobs.md
+      - Docker job ownership: development/docker-jobs.md
       - Job evidence: development/p10-evidence.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
