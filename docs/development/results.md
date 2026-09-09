@@ -103,6 +103,9 @@ Image persistence or delivery failures replace only the observation outcome afte
 
 The plot title includes the result identifier, quantity, and unit.
 Curve normalization is disabled.
+Export targets the new plot's `MultiPlot` ancestor with a nonnegative native window identifier.
+The child summary plot has identifier `-1`, which would export every docked plot.
+A missing parent or negative window identifier fails before export.
 The service exports and decodes one new PNG with the requested dimensions.
 It never returns an earlier image after an export failure.
 

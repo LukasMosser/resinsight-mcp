@@ -85,6 +85,12 @@ class _Summary(Protocol):
     def summary_vector_values(self, address: str) -> _Values[float]: ...
 
 
+class _PlotWindow(Protocol):
+    id: int
+
+    def export_snapshot(self, *, export_folder: str, width: int, height: int) -> None: ...
+
+
 class _Plot(Protocol):
     is_using_auto_name: bool
     plot_description: str
@@ -92,7 +98,7 @@ class _Plot(Protocol):
 
     def address(self) -> int: ...
     def update(self) -> None: ...
-    def export_snapshot(self, *, export_folder: str, width: int, height: int) -> None: ...
+    def ancestor(self, cls: type[rips.MultiPlot]) -> _PlotWindow | None: ...
 
 
 class _Collection(Protocol):
@@ -321,7 +327,13 @@ class RipsResultBackend:
                 )
                 plot.update()
                 _verify_summary(summary, dataset)
-                plot.export_snapshot(export_folder=str(folder), width=width, height=height)
+                window = plot.ancestor(rips.MultiPlot)
+                if window is None or window.id < 0:
+                    fail(
+                        ErrorCode.RENDER_FAILED,
+                        "The summary plot has no specific native plot window for export.",
+                    )
+                window.export_snapshot(export_folder=str(folder), width=width, height=height)
             except ContractError as error:
                 raise ContractError(
                     Error(
