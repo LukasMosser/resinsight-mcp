@@ -35,7 +35,34 @@ It obtains units from the explicitly selected loaded case.
 It rejects missing cases, unsupported units, empty names, and duplicate names before creating an object.
 The native patch changes only `RimcWellPathCollection.h` and `RimcWellPathCollection.cpp`.
 Existing target APIs and the P06 repair remain unchanged.
-Native commit `9b469c2` contains that patch and awaits build validation.
+Native commit `9b469c2` contains that patch.
+The lead reviewed and integrated it as `6ad2833930b3c1f8cc2939b08584f89e79dfd082`.
+The native build and matching Python client generation passed.
+The existing P01 macOS overlays remain in place.
+Those overlays enable macOS gRPC and modify the pinned OpenZGY submodule.
+P09 changed neither overlay.
+
+## Corrected native result
+
+The case-aware probe passed 19 checks on September 9, 2026.
+Its Python source matches repository commit `66c1f39367afc0d1a740bdea01f9ce4a4ef87346`.
+The native process reported ResInsight `2026.9.0` at integrated commit `6ad2833930b3c1f8cc2939b08584f89e79dfd082`.
+Process 14005 used start marker `1788938522.800408` and local port 56026.
+It exited with status 0, and the probe confirmed its absence.
+The raw records remain under `/private/tmp/p09-modeled-case-aware-01/`.
+
+Both paths persist FIELD units and return the intended three active connections.
+The one-based exported cells are `(5, 5, 1)`, `(5, 5, 2)`, and `(5, 5, 3)`.
+The exported well names, OPEN status, and connection factors match the structured native response.
+The factor comparison uses relative tolerance `1e-6` for the export's rounded decimal values.
+Missing cases, empty names, and duplicate names fail without changing the observed well list.
+Trajectory creation and target updates retain the expected positive-down endpoints.
+
+The screenshot shows the grid and both well labels at their shared test column.
+It does not establish subsurface geometry by itself.
+The trajectory arrays and connection records establish that separate result.
+The shared repository command passed 340 tests, Ruff, ty, and the strict documentation build.
+Those 340 tests do not include the separately launched native probe.
 
 ## Bounded probe
 
