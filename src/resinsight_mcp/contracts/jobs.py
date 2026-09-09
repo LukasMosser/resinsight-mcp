@@ -1,9 +1,10 @@
 """Execution state and result lineage, separate from numerical acceptance."""
 
+import re
 from datetime import timedelta
 from enum import StrEnum
 from itertools import pairwise
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Self
 
 from pydantic import AwareDatetime, PositiveInt, field_validator, model_validator
@@ -13,6 +14,7 @@ from .engineering import ModelRef, ReportSeries
 from .errors import ContractError, Error, ErrorCode
 from .identifiers import GridId, JobId, ResultId, SessionId
 from .models import ArtifactRef, Backend, PreparedModel
+from .results import ResultManifest
 from .sessions import ApplicationContext, ObjectKind, ObjectRef, ProcessIdentity
 
 
@@ -27,15 +29,64 @@ class ResourcePolicy(StrEnum):
     WALL_TIME_ONLY = "wall_time_only"
 
 
+class DockerMount(Record):
+    source: Text
+    target: Text
+    read_only: bool
+
+    @model_validator(mode="after")
+    def check_paths(self) -> Self:
+        if not Path(self.source).is_absolute() or not PurePosixPath(self.target).is_absolute():
+            raise ValueError("Docker mount paths must be absolute.")
+        if any(character in self.source + self.target for character in ("\0", ",")):
+            raise ValueError("Docker mount paths cannot contain null characters or commas.")
+        return self
+
+
+class DockerExecution(Record):
+    """Record container ownership and expected program version before launch."""
+
+    image_digest: Text
+    platform: Text
+    container_name: Text
+    ownership_token: Text
+    program_version: Text
+    docker_client_version: Text
+    docker_server_version: Text
+    command: tuple[Text, ...]
+    mounts: tuple[DockerMount, ...]
+    working_directory: Text
+
+    @model_validator(mode="after")
+    def check_execution(self) -> Self:
+        if re.fullmatch(r".+@sha256:[0-9a-f]{64}", self.image_digest) is None:
+            raise ValueError("Docker execution requires an image pinned by its SHA256 digest.")
+        if not self.command or any("\0" in item for item in self.command):
+            raise ValueError("Docker execution requires a command without null characters.")
+        if (
+            not PurePosixPath(self.working_directory).is_absolute()
+            or "\0" in self.working_directory
+        ):
+            raise ValueError("The container working directory must be absolute.")
+        targets = [item.target for item in self.mounts]
+        if len(set(targets)) != len(targets):
+            raise ValueError("Docker mount targets must be unique.")
+        return self
+
+
 class JobSubmission(Record):
     limits: ResourceLimits
     resource_policy: ResourcePolicy
     argv: tuple[str, ...]
     working_directory: str
     submitted_at: AwareDatetime
+    execution: DockerExecution | None = None
+    run_metadata: ArtifactRef | None = None
 
     @model_validator(mode="after")
     def check_command(self) -> Self:
+        if self.execution is not None and len(self.argv) != 1:
+            raise ValueError("Docker submissions record only the Docker executable in argv.")
         if not self.argv or not Path(self.argv[0]).is_absolute():
             raise ValueError("A submission requires an absolute executable path.")
         if any("\0" in argument for argument in self.argv):
@@ -111,11 +162,22 @@ class Job(Record):
     supervisor: ProcessIdentity | None = None
     process: ProcessIdentity | None = None
     process_group_id: PositiveInt | None = None
+    container_id: Text | None = None
     logs: tuple[ArtifactRef, ...] = ()
     events: tuple[JobEvent, ...] = ()
 
     @model_validator(mode="after")
     def check_execution_metadata(self) -> Self:
+        if self.container_id is not None and (
+            self.submission is None or self.submission.execution is None
+        ):
+            raise ValueError("A container identity requires Docker execution metadata.")
+        if (
+            self.submission is not None
+            and self.submission.run_metadata is not None
+            and self.submission.run_metadata.session_id != self.model.session_id
+        ):
+            raise ValueError("Run metadata must belong to the job session.")
         if (self.process is None) != (self.process_group_id is None):
             raise ValueError("Process identity and process group must be recorded together.")
         if self.process is not None and self.process_group_id != self.process.pid:
@@ -192,6 +254,19 @@ class Result(Record):
     grid_id: GridId
     report_series: ReportSeries
     assessment: NumericalAssessment = NumericalAssessment.NOT_ASSESSED
+    manifest: ResultManifest | None = None
+
+    @model_validator(mode="after")
+    def check_manifest(self) -> Self:
+        if self.manifest is not None:
+            if (
+                self.manifest.active_cells.model != self.model
+                or self.manifest.active_cells.grid_id != self.grid_id
+            ):
+                raise ValueError("The output manifest must identify the result model and grid.")
+            if len(self.manifest.restart_report_steps) != len(self.report_series.reports):
+                raise ValueError("Restart steps must match the result report series.")
+        return self
 
 
 class ResultImportRequest(Record):

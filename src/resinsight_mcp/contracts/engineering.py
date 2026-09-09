@@ -28,6 +28,7 @@ class Dimension(StrEnum):
     PRESSURE = "pressure"
     TIME = "time"
     DIMENSIONLESS = "dimensionless"
+    VOLUME_RATE = "volume_rate"
 
 
 class Unit(StrEnum):
@@ -39,6 +40,7 @@ class Unit(StrEnum):
     SECOND = "s"
     DAY = "day"
     ONE = "1"
+    STOCK_TANK_BARREL_PER_DAY = "stb/day"
 
     @property
     def dimension(self) -> Dimension:
@@ -54,6 +56,7 @@ _UNIT_DIMENSIONS = {
     Unit.SECOND: Dimension.TIME,
     Unit.DAY: Dimension.TIME,
     Unit.ONE: Dimension.DIMENSIONLESS,
+    Unit.STOCK_TANK_BARREL_PER_DAY: Dimension.VOLUME_RATE,
 }
 
 
