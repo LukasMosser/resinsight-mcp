@@ -132,6 +132,7 @@ def readback(
                     for name, _ in materialized.inspection.properties.keyword_arrays()
                 },
                 "views": [view.id for view in case.views()],
+                "input_properties": sorted(case.available_properties("INPUT_PROPERTY")),
             }
 
         actual = application.call(inspect)
@@ -190,6 +191,7 @@ def run(executable: Path, source: Path, evidence: Evidence) -> None:
         binding = value(wells.load(load))
         before = readback(sessions, imports, store, binding, evidence, "before")
         evidence.check("working_view_created", len(before["views"]) == 1)
+        evidence.check("initial_property_inventory", len(before["input_properties"]) == 7)
         definition = ModeledWellDefinition(
             name="PROD",
             coordinates=imported.prepared.revision.coordinates,
@@ -207,19 +209,26 @@ def run(executable: Path, source: Path, evidence: Evidence) -> None:
         record(evidence, "created", created.model_dump(mode="json"))
         exported = value(wells.export(WellExportRequest(well=created.well, expected_version=0)))
         record(evidence, "export-before", exported.model_dump(mode="json"))
-        saved = value(
-            sessions.save_project(
-                ProjectSaveRequest(context=created.well.context, path=output / "saved-project.rsp")
-            )
-        )
         value(wells.close())
-        closed = value(sessions.close_project(ProjectCloseRequest(context=saved.context)))
-        reopened = value(
-            sessions.open_project(
-                ProjectOpenRequest(context=closed.context, path=output / "saved-project.rsp")
+        project_context = created.well.context
+        for cycle in (1, 2):
+            project_path = output / f"saved-project-{cycle}.rsp"
+            saved = value(
+                sessions.save_project(
+                    ProjectSaveRequest(context=project_context, path=project_path)
+                )
             )
-        )
-        record(evidence, "reopened-project", reopened.model_dump(mode="json"))
+            closed = value(sessions.close_project(ProjectCloseRequest(context=saved.context)))
+            reopened = value(
+                sessions.open_project(ProjectOpenRequest(context=closed.context, path=project_path))
+            )
+            project_context = reopened.context
+            record(evidence, f"reopened-project-{cycle}", reopened.model_dump(mode="json"))
+            inventory = sorted(instance.project.cases()[0].available_properties("INPUT_PROPERTY"))
+            record(evidence, f"input-properties-{cycle}", inventory)
+            evidence.check(
+                f"stable_property_inventory_{cycle}", inventory == before["input_properties"]
+            )
         value(
             sessions.close(
                 CloseRequest(
@@ -256,7 +265,14 @@ def run(executable: Path, source: Path, evidence: Evidence) -> None:
             "saved_model_readback_matches",
             all(
                 after[key] == before[key]
-                for key in ("path", "centers", "corners", "active", "properties")
+                for key in (
+                    "path",
+                    "centers",
+                    "corners",
+                    "active",
+                    "properties",
+                    "input_properties",
+                )
             ),
         )
         adopt = WellAdoptRequest(
