@@ -1,0 +1,103 @@
+{
+  "job_id": "job_f7e4ce0d080a428b8ed89faf08a5e391",
+  "model": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "revision_id": "revision_591679b682d0443eba27984a8ab98f7d"
+  },
+  "backend": "opm_flow",
+  "state": "succeeded",
+  "cancel_requested": false,
+  "termination_confirmed": false,
+  "exit_code": 0,
+  "error": null,
+  "submission": {
+    "limits": {
+      "cpu_count": 2,
+      "memory_mib": 2048,
+      "wall_time_seconds": 60
+    },
+    "resource_policy": "enforce",
+    "argv": [
+      "/Applications/Docker.app/Contents/Resources/bin/docker"
+    ],
+    "working_directory": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/e461ef0905f2409eb463e4b6ec9797fc",
+    "submitted_at": "2026-09-09T16:20:12.350977Z",
+    "execution": {
+      "image_digest": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+      "platform": "linux/arm64",
+      "container_name": "resinsight-opm-e461ef0905f2409eb463e4b6ec9797fc",
+      "ownership_token": "26fdac589cec49ea997d6e572e32ef93",
+      "program_version": "flow 2026.04",
+      "docker_client_version": "29.3.1",
+      "docker_server_version": "29.3.1",
+      "command": [
+        "flow",
+        "/input/SPE1.DATA",
+        "--output-dir=/output"
+      ],
+      "mounts": [
+        {
+          "source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/e461ef0905f2409eb463e4b6ec9797fc/inputs",
+          "target": "/input",
+          "read_only": true
+        },
+        {
+          "source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/e461ef0905f2409eb463e4b6ec9797fc/outputs",
+          "target": "/output",
+          "read_only": false
+        }
+      ],
+      "working_directory": "/output"
+    },
+    "run_metadata": {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "artifact_id": "artifact_e37ba406c6df4ae48e87998f5a1cb1c2"
+    }
+  },
+  "supervisor": {
+    "pid": 87470,
+    "start_marker": "1788970812.35375"
+  },
+  "process": {
+    "pid": 87566,
+    "start_marker": "1788970816.273729"
+  },
+  "process_group_id": 87566,
+  "container_id": "dbfe23e88304f9fbb7a7e65563ec94145f713d355bb9ad7d8da5dfdddcb20a04",
+  "logs": [
+    {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "artifact_id": "artifact_39946be23fc349e982ce57d133e401ee"
+    },
+    {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "artifact_id": "artifact_502548ed69a14fdb8f1508cebe8aff09"
+    },
+    {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "artifact_id": "artifact_bef1335f3d5a40d18ef87da6b3a1f080"
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-09-09T16:20:12.351689Z",
+      "state": "queued",
+      "message": "Submission recorded before supervisor launch."
+    },
+    {
+      "at": "2026-09-09T16:20:12.476357Z",
+      "state": "queued",
+      "message": "The independent supervisor claimed execution."
+    },
+    {
+      "at": "2026-09-09T16:20:16.295546Z",
+      "state": "running",
+      "message": "The owned command started."
+    },
+    {
+      "at": "2026-09-09T16:20:17.485381Z",
+      "state": "succeeded",
+      "message": "The command exited successfully with no live group members."
+    }
+  ]
+}

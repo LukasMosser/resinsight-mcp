@@ -1,0 +1,2 @@
+{"trial": "canceled-repaired", "state": "canceled", "job_id": "job_5b6e3afa0f754133af5f581bdb5ef8b6", "result_id": null, "container_id": "c0616cdd848b027384a027ce2872e77bc948e550e6dcaf6394e30a93adf84ba7"}
+{"trial": "deadline-repaired", "state": "failed", "job_id": "job_9c49e78f802c466b871cad186229eb51", "result_id": null, "container_id": "8d9ebf3c5203c6c0e9950929a48eaad40d32bb10cac07f5db9730e3757273e01"}

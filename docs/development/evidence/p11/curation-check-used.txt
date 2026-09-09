@@ -1,0 +1,45 @@
+import json
+from pathlib import Path
+from resinsight_mcp.contracts.jobs import Job, JobRequest, Result
+from resinsight_mcp.contracts.results import ResultDataset
+from resinsight_mcp.jobs._container import LABEL
+root=Path('docs/development/evidence/p11')
+index=json.loads((root/'acceptance.json').read_text())
+for path in root.glob('*.json'):
+    json.loads(path.read_text())
+for name, relative in index['trials'].items():
+    record=json.loads((root/relative).read_text())
+    job=Job.model_validate_json((root/f'{name}-job.json').read_text())
+    request=JobRequest.model_validate_json((root/f'{name}-request.json').read_text())
+    container=json.loads((root/f'{name}-container.json').read_text())
+    assert job.model_dump(mode='json')==record['job']
+    assert request.prepared.revision.model==job.model
+    assert job.submission is not None and job.submission.execution is not None
+    execution=job.submission.execution
+    assert container['Id']==job.container_id
+    assert container['Name']=='/'+execution.container_name
+    assert container['Config']['Image']==execution.image_digest
+    assert container['Config']['Labels'][LABEL]==execution.ownership_token
+    assert container['HostConfig']['Memory']==request.limits.memory_mib*1024**2
+    assert container['HostConfig']['NanoCpus']==request.limits.cpu_count*10**9
+    assert container['HostConfig']['NetworkMode']=='none'
+    assert not container['State']['Running']
+    if name in ('baseline','changed'):
+        result=Result.model_validate_json(json.dumps(record['result']))
+        dataset=ResultDataset.model_validate_json((root/f'{name}-dataset.json').read_text())
+        assert dataset.job_id==job.job_id==result.job_id
+        assert dataset.model==job.model==result.model
+        assert dataset.active_cells.grid_id==result.grid_id
+        assert dataset.report_series==result.report_series
+cleanup=json.loads((root/'cleanup.json').read_text())
+assert len(cleanup['records'])==7
+assert {r['before']['container_id'] for r in cleanup['records']}=={r['id'] for r in index['containers']}
+assert all(r['removed'] and r['absent_from_successful_daemon_inventory'] for r in cleanup['records'])
+assessment=json.loads((root/'reference-assessment.json').read_text())
+manual=json.loads(Path('/private/tmp/p11-manual-reference-check.json').read_text())
+assert assessment['accepted'] and len(assessment['checks'])==104
+assert manual['checks']==assessment['checks']
+assert all(check.get('maximum_absolute_difference',0)==0 for check in assessment['checks'])
+for suffix in ('.sqlite3','.EGRID','.INIT','.UNRST','.SMSPEC','.UNSMRY'):
+    assert not list(root.rglob('*'+suffix))
+print('Validated all curated JSON, seven trial identities and resource records, two numerical datasets, seven verified removals, and 104 matching reference checks.')

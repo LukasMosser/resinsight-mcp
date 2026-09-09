@@ -1,0 +1,10 @@
+{
+  "outcome": {
+    "status": "failure",
+    "error": {
+      "code": "invalid_model",
+      "message": "Output collection requires a confirmed successful job.",
+      "effect": "not_applied"
+    }
+  }
+}

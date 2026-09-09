@@ -1,0 +1,121 @@
+**********************************************************************
+*                                                                    *
+*                        This is flow 2026.04                        *
+*                                                                    *
+* Flow is a simulator for fully implicit three-phase black-oil flow, *
+*             including solvent and polymer capabilities.            *
+*          For more information, see https://opm-project.org         *
+*                                                                    *
+**********************************************************************
+
+Using 1 MPI processes with 2 OMP threads on each 
+
+Reading deck file '/input/SPE1.DATA'
+    0 Reading RUNSPEC  in /input/SPE1.DATA line 16
+    1 Reading TITLE    in /input/SPE1.DATA line 18
+    2 Reading DIMENS   in /input/SPE1.DATA line 21
+    3 Reading EQLDIMS  in /input/SPE1.DATA line 24
+    4 Reading TABDIMS  in /input/SPE1.DATA line 27
+    5 Reading OIL      in /input/SPE1.DATA line 30
+    6 Reading GAS      in /input/SPE1.DATA line 32
+    7 Reading WATER    in /input/SPE1.DATA line 34
+    8 Reading DISGAS   in /input/SPE1.DATA line 36
+    9 Reading FIELD    in /input/SPE1.DATA line 38
+   10 Reading START    in /input/SPE1.DATA line 40
+   11 Reading WELLDIMS in /input/SPE1.DATA line 43
+   12 Reading UNIFOUT  in /input/SPE1.DATA line 46
+   13 Reading GRID     in /input/includes/grid.inc line 16
+   14 Reading INIT     in /input/includes/grid.inc line 18
+   15 Reading DX       in /input/includes/grid.inc line 20
+   16 Reading DY       in /input/includes/grid.inc line 65
+   17 Reading DZ       in /input/includes/grid.inc line 110
+   18 Reading TOPS     in /input/includes/grid.inc line 155
+   19 Reading PORO     in /input/includes/grid.inc line 172
+   20 Reading PERMX    in /input/includes/grid.inc line 217
+   21 Reading PERMY    in /input/includes/grid.inc line 262
+   22 Reading PERMZ    in /input/includes/grid.inc line 307
+   23 Reading PROPS    in /input/includes/props.inc line 16
+   24 Reading PVTW     in /input/includes/props.inc line 18
+   25 Reading ROCK     in /input/includes/props.inc line 21
+   26 Reading SWOF     in /input/includes/props.inc line 24
+   27 Reading SGOF     in /input/includes/props.inc line 27
+   28 Reading DENSITY  in /input/includes/props.inc line 30
+   29 Reading PVDG     in /input/includes/props.inc line 33
+   30 Reading PVTO     in /input/includes/props.inc line 36
+   31 Reading REGIONS  in /input/includes/regions.inc line 16
+   32 Reading FIPNUM   in /input/includes/regions.inc line 18
+   33 Reading SOLUTION in /input/includes/regions.inc line 63
+   34 Reading EQUIL    in /input/includes/regions.inc line 65
+   35 Reading RSVD     in /input/includes/regions.inc line 68
+   36 Reading SUMMARY  in /input/SPE1.DATA line 54
+   37 Reading FOPR     in /input/SPE1.DATA line 55
+   38 Reading WBHP     in /input/SPE1.DATA line 56
+   39 Reading SCHEDULE in /input/SPE1.DATA line 58
+   40 Reading RPTRST   in /input/includes/schedule.inc line 16
+   41 Reading DRSDT    in /input/includes/schedule.inc line 18
+   42 Reading WELSPECS in /input/includes/schedule.inc line 20
+   43 Reading COMPDAT  in /input/includes/schedule.inc line 24
+   44 Reading WCONPROD in /input/includes/schedule.inc line 28
+   45 Reading WCONINJE in /input/includes/schedule.inc line 31
+   46 Reading TSTEP    in /input/includes/schedule.inc line 34
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SPE1.DATA line 58
+Initializing report step 0/2 at 2015-01-01 0 DAYS line 58
+Reading from: /input/includes/schedule.inc line 16
+Processing keyword RPTRST at line 16
+Processing keyword DRSDT at line 18
+Processing keyword WELSPECS at line 20
+Processing keyword COMPDAT at line 24
+Processing keyword WCONPROD at line 28
+Processing keyword WCONINJE at line 31
+Complete report step 1 (1 DAYS) at 2015-01-02 (0 DAYS)
+
+Initializing report step 2/2 at 2015-01-02 (0 DAYS) line 34
+Complete report step 2 (1 DAYS) at 2015-01-03 (1 DAYS)
+
+
+Processing grid
+Total number of active cells: 300 / total pore volume: 534322820 RB
+
+
+================ Starting main simulation loop ===============
+
+
+Report step  0/2 at day 0/2, date = 01-Jan-2015
+Using Newton nonlinear solver.
+
+Starting time step 0, stepsize 1 days, at day 0/1, date = 01-Jan-2015
+Restart file written for report step 0/2, date = 01-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  1/2 at day 1/2, date = 02-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 1/2, date = 02-Jan-2015
+Restart file written for report step 1/2, date = 02-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+Restart file written for report step 2/2, date = 03-Jan-2015 00:00:00
+
+
+================    End of simulation     ===============
+
+Number of MPI processes:         1
+Threads per MPI process:         2
+Setup time:                      0.12 s
+  Deck input:                    0.10 s
+Number of timesteps:             2
+Simulation time:                 0.10 s
+  Assembly time:                 0.01 s (Wasted: 0.0 s; 0.0%)
+    Well assembly:               0.00 s (Wasted: 0.0 s; 0.0%)
+  Linear solve time:             0.01 s (Wasted: 0.0 s; 0.0%)
+    Linear setup:                0.01 s (Wasted: 0.0 s; 0.0%)
+  Props/update time:             0.02 s (Wasted: 0.0 s; 0.0%)
+  Pre/post step:                 0.02 s (Wasted: 0.0 s; 0.0%)
+  Output write time:             0.02 s
+Overall Linearizations:          7      (Wasted:     0; 0.0%)
+Overall Newton Iterations:       5      (Wasted:     0; 0.0%)
+Overall Linear Iterations:       3      (Wasted:     0; 0.0%)
+

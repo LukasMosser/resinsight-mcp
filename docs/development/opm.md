@@ -90,3 +90,35 @@ The OPM header definitions establish FIELD unit identity, report step numbers, a
 The [INTEHEAD definitions](https://github.com/OPM/opm-common/blob/release/2025.10/final/opm/output/eclipse/VectorItems/intehead.hpp) define these fields.
 The [DOUBHEAD implementation](https://github.com/OPM/opm-common/blob/release/2025.10/final/opm/output/eclipse/DoubHEAD.cpp) defines elapsed simulation days.
 These source references support field interpretation, not runtime acceptance.
+
+
+## Recorded runtime acceptance
+
+The [P11 evidence record](evidence/p11/README.md) covers baseline and changed-control runs, fresh-service reopening, cancellation, deadlines, and memory failure.
+It preserves the initial cancellation-code defect and the corrected real reruns.
+The baseline agrees with the preserved P08 numerical reference under the declared precision rule.
+The record also confirms verified cleanup of all seven owned containers.
+
+The manual probe remains outside the default test suite.
+Run it from a clean repository with an unused output path outside the repository:
+
+```sh
+uv run --locked python tests/simulators/opm/manual_acceptance.py \
+  --output /private/tmp/resinsight-p11-manual-new
+```
+
+The probe uses the configured local pinned image without pulling or enabling networking.
+It removes verified owned containers in its cleanup step and preserves host outputs and the workspace.
+The 16 MiB trial deliberately exercises a memory-limit failure.
+The 255-report trials exercise cancellation and a one-second deadline.
+
+Compare existing baseline outputs without launching Docker or opening a workspace:
+
+```sh
+uv run --locked python tests/simulators/opm/manual_acceptance.py \
+  --assess-existing /absolute/path/to/baseline/outputs \
+  --output /private/tmp/p11-reference-check.json
+```
+
+The maintained probe was prepared from the recorded drivers after the runtime trials.
+Its command help and existing-output comparison were checked without relaunching successful trials.

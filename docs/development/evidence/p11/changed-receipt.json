@@ -1,0 +1,101 @@
+{
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "revision_id": "revision_404bb6b3380143a691effe661d6f7626"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_c436edcfeb6e47fb92e382df656b12a2",
+          "artifact_e8e941d03bcc46099d476bbd3cb1a1fb",
+          "artifact_2090767adf264c199b9131afba9954ff",
+          "artifact_807ee74a34bb4c2fb15f7d3efd2553df",
+          "artifact_1ab582b9086e496d9f7fc53c0b9e66e0"
+        ],
+        "entrypoint": "artifact_c436edcfeb6e47fb92e382df656b12a2"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local depth datum"
+      },
+      "parent": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "revision_id": "revision_591679b682d0443eba27984a8ab98f7d"
+      }
+    },
+    "backend": "opm_flow"
+  },
+  "record": {
+    "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+    "artifact_id": "artifact_0768308023814f7796605a34c6db9cf4"
+  },
+  "summary": {
+    "parser_version": "2025.10",
+    "support_profile": "spe1-field-v2",
+    "unit_system": "FIELD",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "wells": [
+      "PROD",
+      "INJ"
+    ],
+    "report_steps": 2,
+    "elapsed_days": 2.0,
+    "keywords": [
+      "COMPDAT",
+      "DENSITY",
+      "DIMENS",
+      "DISGAS",
+      "DRSDT",
+      "DX",
+      "DY",
+      "DZ",
+      "EQLDIMS",
+      "EQUIL",
+      "FIELD",
+      "FIPNUM",
+      "FOPR",
+      "GAS",
+      "GRID",
+      "INIT",
+      "OIL",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "PORO",
+      "PROPS",
+      "PVDG",
+      "PVTO",
+      "PVTW",
+      "REGIONS",
+      "ROCK",
+      "RPTRST",
+      "RSVD",
+      "RUNSPEC",
+      "SCHEDULE",
+      "SGOF",
+      "SOLUTION",
+      "START",
+      "SUMMARY",
+      "SWOF",
+      "TABDIMS",
+      "TITLE",
+      "TOPS",
+      "TSTEP",
+      "UNIFOUT",
+      "WATER",
+      "WBHP",
+      "WCONINJE",
+      "WCONPROD",
+      "WELLDIMS",
+      "WELSPECS"
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+{"trial": "baseline", "state": "succeeded", "job_id": "job_f7e4ce0d080a428b8ed89faf08a5e391", "result_id": "result_be862689498f41ca9abe0c91b4ed722c", "container_id": "dbfe23e88304f9fbb7a7e65563ec94145f713d355bb9ad7d8da5dfdddcb20a04"}
+{"trial": "changed", "state": "succeeded", "job_id": "job_adc86fe5c99d447d91c8a1d78dff0486", "result_id": "result_0a9a1d40327748f9b8bcef48153143c5", "container_id": "daedb8ba6f74650d341da0e16fb597dfc786e5bc51ef05b35679c415e1e79a3e"}

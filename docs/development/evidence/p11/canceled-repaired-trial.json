@@ -1,0 +1,177 @@
+{
+  "source_commit": "dccf25e80c538c7ef26baba7fc5b18b817e53965",
+  "job": {
+    "job_id": "job_5b6e3afa0f754133af5f581bdb5ef8b6",
+    "model": {
+      "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+      "revision_id": "revision_46f02c77b09f4d19a3c424935e6d9a0d"
+    },
+    "backend": "opm_flow",
+    "state": "canceled",
+    "cancel_requested": true,
+    "termination_confirmed": true,
+    "exit_code": 137,
+    "error": null,
+    "submission": {
+      "limits": {
+        "cpu_count": 1,
+        "memory_mib": 2048,
+        "wall_time_seconds": 60
+      },
+      "resource_policy": "enforce",
+      "argv": [
+        "/Applications/Docker.app/Contents/Resources/bin/docker"
+      ],
+      "working_directory": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae571cdf4b5a4f4f9fb26ed7a2189d13",
+      "submitted_at": "2026-09-09T16:32:49.886872Z",
+      "execution": {
+        "image_digest": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+        "platform": "linux/arm64",
+        "container_name": "resinsight-opm-ae571cdf4b5a4f4f9fb26ed7a2189d13",
+        "ownership_token": "34720a3cdfff41e5825725341e77bb4b",
+        "program_version": "flow 2026.04",
+        "docker_client_version": "29.3.1",
+        "docker_server_version": "29.3.1",
+        "command": [
+          "flow",
+          "/input/SPE1.DATA",
+          "--output-dir=/output"
+        ],
+        "mounts": [
+          {
+            "source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae571cdf4b5a4f4f9fb26ed7a2189d13/inputs",
+            "target": "/input",
+            "read_only": true
+          },
+          {
+            "source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae571cdf4b5a4f4f9fb26ed7a2189d13/outputs",
+            "target": "/output",
+            "read_only": false
+          }
+        ],
+        "working_directory": "/output"
+      },
+      "run_metadata": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "artifact_id": "artifact_bb90665c393e4774a7e3e4d185682ba2"
+      }
+    },
+    "supervisor": {
+      "pid": 98869,
+      "start_marker": "1788971569.889144"
+    },
+    "process": {
+      "pid": 98874,
+      "start_marker": "1788971570.238863"
+    },
+    "process_group_id": 98874,
+    "container_id": "c0616cdd848b027384a027ce2872e77bc948e550e6dcaf6394e30a93adf84ba7",
+    "logs": [
+      {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "artifact_id": "artifact_c2ced2a984ab4a83aa502feb40494356"
+      },
+      {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "artifact_id": "artifact_7e6b1c18ca534adcb900783f3ea9a5ae"
+      },
+      {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "artifact_id": "artifact_2459d7d28c5d44da8326c3637956b9d5"
+      }
+    ],
+    "events": [
+      {
+        "at": "2026-09-09T16:32:49.887315Z",
+        "state": "queued",
+        "message": "Submission recorded before supervisor launch."
+      },
+      {
+        "at": "2026-09-09T16:32:49.999707Z",
+        "state": "queued",
+        "message": "The independent supervisor claimed execution."
+      },
+      {
+        "at": "2026-09-09T16:32:50.242261Z",
+        "state": "running",
+        "message": "The owned command started."
+      },
+      {
+        "at": "2026-09-09T16:32:50.298395Z",
+        "state": "running",
+        "message": "Cancellation requested."
+      },
+      {
+        "at": "2026-09-09T16:32:51.534716Z",
+        "state": "canceled",
+        "message": "Cancellation completed with no live process in the owned group."
+      }
+    ]
+  },
+  "container": {
+    "Id": "c0616cdd848b027384a027ce2872e77bc948e550e6dcaf6394e30a93adf84ba7",
+    "Image": "sha256:0766b5b968c5fb8a4ced2cb712eb16bd9754f0b3a4db2fa48424e9c3ea568117",
+    "Name": "/resinsight-opm-ae571cdf4b5a4f4f9fb26ed7a2189d13",
+    "Config": {
+      "Image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+      "Labels": {
+        "org.opencontainers.image.version": "24.04",
+        "org.resinsight-mcp.owner": "34720a3cdfff41e5825725341e77bb4b"
+      },
+      "Cmd": [
+        "flow",
+        "/input/SPE1.DATA",
+        "--output-dir=/output"
+      ]
+    },
+    "State": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 137,
+      "Error": "",
+      "StartedAt": "2026-09-09T16:32:50.130388584Z",
+      "FinishedAt": "2026-09-09T16:32:51.386678293Z"
+    },
+    "Mounts": [
+      {
+        "Type": "bind",
+        "Source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae571cdf4b5a4f4f9fb26ed7a2189d13/inputs",
+        "Destination": "/input",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae571cdf4b5a4f4f9fb26ed7a2189d13/outputs",
+        "Destination": "/output",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "volume",
+        "Name": "9c48eca0b0cabb9496663714f1d3c0e554668c8b54598ded2bed17c385115fc4",
+        "Source": "/var/lib/docker/volumes/9c48eca0b0cabb9496663714f1d3c0e554668c8b54598ded2bed17c385115fc4/_data",
+        "Destination": "/shared_host",
+        "Driver": "local",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+      }
+    ],
+    "HostConfig": {
+      "Memory": 2147483648,
+      "NanoCpus": 1000000000,
+      "NetworkMode": "none"
+    }
+  },
+  "elapsed_wall_seconds": 1.6796447079395875,
+  "submission_client_exited": true,
+  "fresh_service_poll_equal": true
+}

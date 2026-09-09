@@ -1,0 +1,208 @@
+"""Run authorized bounded Flow acceptance through the public service."""
+import json
+import shutil
+import subprocess
+import sys
+import time
+from datetime import UTC, datetime
+from importlib.metadata import version
+from pathlib import Path
+
+from resinsight_mcp.contracts.errors import Failure, OperationResult
+from resinsight_mcp.contracts.identifiers import SessionId
+from resinsight_mcp.contracts.jobs import Job, JobRef, JobRequest, JobState, ResourceLimits
+from resinsight_mcp.contracts.models import Session
+from resinsight_mcp.jobs._common import require
+from resinsight_mcp.jobs._container import OwnedContainer
+from resinsight_mcp.models.imports import DerivedModelRequest, ImportRequest, OpmImportService
+from resinsight_mcp.simulators.opm import FlowRunRecord, OpmFlowService
+from resinsight_mcp.workspaces import SqliteWorkspaceStore
+
+REPO = Path('/private/tmp/resinsight-p11-opm')
+EVIDENCE = Path('/private/tmp/resinsight-p11-runtime-20260909')
+WORKSPACE = EVIDENCE / 'workspace'
+
+
+def write(name, record):
+    (EVIDENCE / name).write_text(json.dumps(record, indent=2, allow_nan=False) + '\n')
+
+
+def reference(job):
+    return JobRef(session_id=job.model.session_id, job_id=job.job_id)
+
+
+def inspect(job):
+    owned = OwnedContainer(job.submission, job.container_id)
+    verified = owned.inspect()
+    if verified.state.running:
+        owned.stop()
+        raise RuntimeError("A terminal job retained a running owned container; it was stopped.")
+    output = subprocess.run(
+        [job.submission.argv[0], 'container', 'inspect', job.container_id],
+        check=True, text=True, capture_output=True, timeout=10,
+    )
+    record = json.loads(output.stdout)[0]
+    return {
+        'Id': record['Id'], 'Image': record['Image'], 'Name': record['Name'],
+        'Config': {key: record['Config'][key] for key in ('Image', 'Labels', 'Cmd')},
+        'State': record['State'], 'Mounts': record['Mounts'],
+        'HostConfig': {key: record['HostConfig'][key] for key in ('Memory', 'NanoCpus', 'NetworkMode')},
+    }
+
+
+def run(name, prepared, limits, cancel=False):
+    source_commit = subprocess.run(['git','-C',str(REPO),'rev-parse','HEAD'],
+        check=True,capture_output=True,text=True).stdout.strip()
+    status = subprocess.run(['git','-C',str(REPO),'status','--porcelain'],
+        check=True,capture_output=True,text=True).stdout
+    if status.strip():
+        raise RuntimeError('Runtime acceptance requires a clean source worktree.')
+    request = JobRequest(prepared=prepared, limits=limits)
+    request_path = EVIDENCE / f'{name}-request.json'
+    request_path.write_text(request.model_dump_json(indent=2))
+    submitted = subprocess.run(
+        [sys.executable, '-I', __file__, 'submit', str(request_path)],
+        check=True, capture_output=True, text=True, timeout=30,
+    )
+    (EVIDENCE / f'{name}-submit.json').write_text(submitted.stdout)
+    job = require(OperationResult[Job].model_validate_json(submitted.stdout))
+    service = OpmFlowService(WORKSPACE)
+    started = time.monotonic()
+    cancellation = None
+    while True:
+        job = require(service.poll(reference(job)))
+        if cancel and cancellation is None and job.state == JobState.RUNNING and job.container_id:
+            cancellation = require(service.request_cancel(reference(job)))
+        if job.state in {JobState.SUCCEEDED, JobState.FAILED, JobState.CANCELED, JobState.UNKNOWN}:
+            break
+        if time.monotonic() - started > 90:
+            raise RuntimeError(f'Trial {name} did not reach a terminal state within 90 seconds.')
+        time.sleep(0.05)
+    write(f'{name}-job.json', job.model_dump(mode='json'))
+    for index, ref in enumerate(job.logs):
+        with service.store.open_artifact(ref) as source:
+            (EVIDENCE / f'{name}-log-{index}.log').write_text(source.read().decode())
+    container = inspect(job) if job.container_id else None
+    write(f'{name}-container.json', container)
+    reopened = OpmFlowService(WORKSPACE)
+    assert require(reopened.poll(reference(job))) == job
+    collected = reopened.collect(reference(job))
+    write(f'{name}-collection.json', collected.model_dump(mode='json'))
+    record = {'source_commit':source_commit, 'job': job.model_dump(mode='json'), 'container': container,
+              'elapsed_wall_seconds': time.monotonic()-started,
+              'submission_client_exited': True, 'fresh_service_poll_equal': True}
+    if job.state == JobState.SUCCEEDED:
+        result = require(collected)
+        assert require(OpmFlowService(WORKSPACE).collect(reference(job))) == result
+        with service.store.open_artifact(job.submission.run_metadata) as source:
+            metadata = FlowRunRecord.model_validate_json(source.read())
+        dataset = require(service.verify_outputs(result, metadata.directory / 'outputs'))
+        write(f'{name}-dataset.json', dataset.model_dump(mode='json'))
+        with service.store.open_artifact(result.manifest.assessment_evidence) as source:
+            (EVIDENCE / f'{name}-assessment.json').write_text(source.read().decode())
+        record.update(result=result.model_dump(mode='json'), source_outputs=str(metadata.directory/'outputs'))
+    else:
+        assert isinstance(collected.outcome, Failure)
+    write(f'{name}-trial.json', record)
+    print(json.dumps({'trial': name, 'state': job.state.value, 'job_id': str(job.job_id),
+                      'result_id': record.get('result', {}).get('result_id'),
+                      'container_id': job.container_id}), flush=True)
+    return record
+
+
+def baseline():
+    EVIDENCE.mkdir()
+    store = SqliteWorkspaceStore.create(WORKSPACE)
+    imports = OpmImportService(store)
+    session = require(store.create_session(Session(session_id=SessionId.new(), name='P11 real Flow acceptance')))
+    base = require(imports.import_model(ImportRequest(
+        session_id=session.session_id, source_root=REPO/'tests/models/imports/data/spe1',
+        entrypoint='SPE1.DATA', datum='SPE1 local depth datum',
+    )))
+    write('baseline-receipt.json', base.model_dump(mode='json'))
+    with imports.materialize(base.prepared.revision.model) as materialized:
+        shutil.copytree(materialized.directory, EVIDENCE/'changed-source')
+    schedule = EVIDENCE/'changed-source/includes/schedule.inc'
+    text = schedule.read_text()
+    assert text.count("'ORAT' 20000") == 1
+    schedule.write_text(text.replace("'ORAT' 20000", "'ORAT' 15000"))
+    changed = require(imports.derive_model(DerivedModelRequest(
+        parent=base.prepared.revision.model, source_root=EVIDENCE/'changed-source', entrypoint='SPE1.DATA',
+    )))
+    write('changed-receipt.json', changed.model_dump(mode='json'))
+    write('environment.json', {
+        'source_commit': subprocess.run(['git', '-C', str(REPO), 'rev-parse', 'HEAD'],
+            check=True, capture_output=True, text=True).stdout.strip(),
+        'at': datetime.now(UTC).isoformat(), 'python': sys.version,
+        'packages': {name: version(name) for name in ('opm','numpy','pydantic')},
+        'workspace': str(WORKSPACE), 'session_id': str(session.session_id),
+        'policy': 'opm-field-validity-v1', 'reference_agreement': 'pending',
+    })
+    limits = ResourceLimits(cpu_count=2, memory_mib=2048, wall_time_seconds=60)
+    first = run('baseline', base.prepared, limits)
+    assert first['job']['state'] == 'succeeded'
+    second = run('changed', changed.prepared, limits)
+    assert second['job']['state'] == 'succeeded'
+
+
+def adverse():
+    from resinsight_mcp.models.imports import ImportReceipt
+    base = ImportReceipt.model_validate_json((EVIDENCE/'baseline-receipt.json').read_text())
+    service = OpmFlowService(WORKSPACE)
+    imports = OpmImportService(service.store)
+    with imports.materialize(base.prepared.revision.model) as materialized:
+        shutil.copytree(materialized.directory, EVIDENCE/'long-source')
+    schedule = EVIDENCE/'long-source/includes/schedule.inc'
+    text = schedule.read_text()
+    assert text.count(' 1 1 /') == 1
+    schedule.write_text(text.replace(' 1 1 /', ' 255*1 /'))
+    long_run = require(imports.derive_model(DerivedModelRequest(
+        parent=base.prepared.revision.model, source_root=EVIDENCE/'long-source', entrypoint='SPE1.DATA',
+    )))
+    write('long-receipt.json', long_run.model_dump(mode='json'))
+    canceled = run('canceled', long_run.prepared,
+        ResourceLimits(cpu_count=1, memory_mib=2048, wall_time_seconds=60), cancel=True)
+    assert canceled['job']['state'] == 'canceled'
+    deadline = run('deadline', long_run.prepared,
+        ResourceLimits(cpu_count=1, memory_mib=2048, wall_time_seconds=1))
+    assert deadline['job']['state'] == 'failed'
+    assert 'deadline' in deadline['job']['error']['message']
+    failed = run('memory-failure', base.prepared,
+        ResourceLimits(cpu_count=1, memory_mib=16, wall_time_seconds=60))
+    assert failed['job']['state'] == 'failed'
+    assert failed['job']['exit_code'] != 0
+
+
+def repaired():
+    from resinsight_mcp.models.imports import ImportReceipt
+    from resinsight_mcp.simulators.opm import FlowConfiguration
+    configuration = FlowConfiguration()
+    configuration.check_dependencies()
+    write('runtime-preflight.json', {
+        'source_commit':subprocess.run(['git','-C',str(REPO),'rev-parse','HEAD'],
+            check=True,capture_output=True,text=True).stdout.strip(),
+        'versions':configuration.runtime_versions(), 'image':configuration.image,
+        'platform':configuration.platform, 'check_dependencies_passed':True,
+    })
+    long_run = ImportReceipt.model_validate_json((EVIDENCE/'long-receipt.json').read_text())
+    canceled = run('canceled-repaired', long_run.prepared,
+        ResourceLimits(cpu_count=1, memory_mib=2048, wall_time_seconds=60), cancel=True)
+    assert canceled['job']['state'] == 'canceled'
+    assert canceled['job']['exit_code'] == canceled['container']['State']['ExitCode'] == 137
+    deadline = run('deadline-repaired', long_run.prepared,
+        ResourceLimits(cpu_count=1, memory_mib=2048, wall_time_seconds=1))
+    assert deadline['job']['state'] == 'failed'
+    assert 'deadline' in deadline['job']['error']['message']
+    assert deadline['job']['exit_code'] == deadline['container']['State']['ExitCode'] == 137
+
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'submit':
+        request = JobRequest.model_validate_json(Path(sys.argv[2]).read_text())
+        print(OpmFlowService(WORKSPACE).submit(request).model_dump_json())
+    elif sys.argv[1] == 'baseline':
+        baseline()
+    elif sys.argv[1] == 'adverse':
+        adverse()
+    elif sys.argv[1] == 'repaired':
+        repaired()
