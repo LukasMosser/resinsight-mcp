@@ -53,6 +53,8 @@ Prepared well-editing grids use persistent EGRID and property files through the 
 The follow-up is recorded in [issue #48](https://github.com/LukasMosser/resinsight-mcp/issues/48).
 Its [lifetime acceptance](evidence/p09/lifetime/README.md) preserves all corners, properties, trajectories, and completions across two reopen cycles.
 Restoration rejects stale references and verifies restored cases before explicit well adoption.
+The public recovery request uses the current project context, exact model, and immutable receipt to locate a unique native case.
+This lookup avoids ambiguous display names and retains the complete restoration checks.
 The lead owns launcher composition of the reviewed follow-up interfaces.
 
 ## Acceptance gates

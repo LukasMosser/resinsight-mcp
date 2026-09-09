@@ -26,6 +26,7 @@ The [native setup record](development/wells.md#native-feasibility) identifies th
 It does not open another native connection or run a simulator.
 
 - `load(PreparedCaseRequest)` loads and validates one fixed model as a working case.
+- `restore(PreparedCaseLookupRequest)` locates and verifies one reopened case through its saved receipt and current project context.
 - `restore_case(PreparedCaseRestoreRequest)` verifies a reopened case against its saved model receipt.
 - `create(WellCreateRequest)` creates a modeled well and returns its observed trajectory.
 - `update(WellUpdateRequest)` replaces a well's targets and perforations at its expected version.
@@ -123,8 +124,11 @@ Service close preserves those files, which saved native projects need when reope
 Keep these files at their original canonical paths.
 
 The returned `PreparedCase.receipt` identifies an immutable record of the revision, source paths, and complete native grid corners.
-After reopening a project, inspect its objects to obtain a current case reference.
-Call `restore_case()` with that reference, its exact model, and the saved receipt.
+After reopening a project, inspect it to obtain its current context.
+Call `restore()` with that context, the exact model, and the saved receipt.
+The service locates exactly one case through the receipt's verified persistent grid path.
+Cases can share display names without creating an ambiguous lookup.
+If you already hold a current case reference, `restore_case()` verifies that explicitly selected case through the same checks.
 The service checks parsed inputs, file identity, active-cell order, all properties, and all corners before returning a binding.
 
 Call `adopt_well()` with the restored binding, a current well reference, its expected definition, and its expected sampled trajectory.

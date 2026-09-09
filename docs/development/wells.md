@@ -240,6 +240,12 @@ The receipt records its exact revision, persistent source directory, and complet
 It verifies the workspace revision, retained parsed inputs, actual native EGRID path, active-cell order, and every corner and property value.
 It does not accept an old object reference or a filename as proof of model identity.
 
+`restore()` accepts `PreparedCaseLookupRequest` with the current project context, exact model, and saved receipt.
+It validates the immutable receipt and retained inputs before finding one case at its canonical persistent EGRID path.
+Missing, redirected, absent, or ambiguous source paths fail without creating a binding.
+The lookup shares all existing restoration checks and does not infer identity from display names.
+This public recovery path supplies the case lookup required by P13 without exposing native addresses.
+
 `adopt_well()` requires a restored binding, a current modeled well reference, and the expected definition and sampled trajectory.
 It checks native type, name, geometry settings, perforations, and all sampled points.
 Successful adoption advances the project generation and issues version zero for the new binding.

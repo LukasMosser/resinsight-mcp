@@ -84,6 +84,11 @@ Persistent model sources remained available after service close.
 
 ## Scope and limits
 
+The [lead integration record](integration/environment.json) identifies the tested source and current tool versions.
+Its [shared check log](integration/shared-check.log) passes 579 maintained tests, including source-path lookup and ambiguous-case failures.
+Lead review inspected the complete accepted native checks and restored image before integration.
+The new lookup uses the same verified restoration boundary, while full public MCP acceptance remains part of P13.
+
 This trial establishes the bounded FIELD grid and well lifetime needed by the P13 launcher.
 It does not establish full P13 MCP acceptance or simulator execution.
 P11, P12, and the lead's clean launcher trial retain their separate evidence requirements.
