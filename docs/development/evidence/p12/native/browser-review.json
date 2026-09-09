@@ -19,5 +19,35 @@
     "Summary-first import order matches implementation"
   ],
   "result": "passed",
-  "cleanup": "The owned review tab and localhost server closed."
+  "cleanup": "The owned review tab and localhost server closed.",
+  "screenshot_capture": {
+    "date": "2026-09-09",
+    "source_commit": "2e149622e47b554a7ff270ef6d7a242505d725dd",
+    "browser": "Playwright Chromium",
+    "viewport": {
+      "width": 1440,
+      "height": 1100
+    },
+    "format": "Original PNG screenshots without image edits.",
+    "screenshots": [
+      {
+        "page": "/development/evidence/p12/native/#trial-07",
+        "path": "browser/native-trial07.png"
+      },
+      {
+        "page": "/development/results/#evidence-and-limits",
+        "path": "browser/developer-evidence.png"
+      },
+      {
+        "page": "/results/#requirements-and-identity",
+        "path": "browser/user-requirements.png"
+      },
+      {
+        "page": "/results/#summary-plots-and-receipts",
+        "path": "browser/user-summary.png"
+      }
+    ],
+    "review": "All four saved images were opened and checked for readable text and correct page content.",
+    "cleanup": "All screenshot tabs and the local server closed."
+  }
 }
