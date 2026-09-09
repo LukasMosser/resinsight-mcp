@@ -81,6 +81,11 @@ The [Flow checks](focused-checks.log) passed 27 focused tests.
 The [Docker repair checks](docker-repair-checks.log) passed 11 tests.
 Both final source commits passed the normal hook, which runs the shared repository command.
 
+The integrated feature passed 570 maintained tests, Ruff, ty, and strict MkDocs through the [shared command](integration/shared-check.log).
+The [integration environment](integration/environment.json) identifies the tested commit and tool versions.
+The [lead review](integration/lead-evidence-review.log) independently validated saved identities, limits, complete datasets, cleanup, and reference agreement.
+This integration check did not repeat the native runtime trials.
+
 ## Manual probe and evidence scope
 
 The maintained manual probe is `tests/simulators/opm/manual_acceptance.py`.
