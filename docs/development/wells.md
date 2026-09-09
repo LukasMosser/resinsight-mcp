@@ -103,3 +103,27 @@ The lead owns shared import inspection and revision publication interfaces.
 The new completion support profile will accept explicit connection factors, permeability-length values, skin factors, and directions.
 That profile will preserve the existing black-oil physics.
 Its parser and native checks remain pending.
+
+## Prepared input probe
+
+The manual probe `tests/resinsight/wells/input_probe.py` tests fixed inputs without a simulator run.
+It imports the preserved SPE1 files through the model service and materializes the stored revision.
+It compares native dimensions, active cells, depths, volumes, and imported properties with the validated inspection.
+It then checks a modeled trajectory and the three reference completion factors described above.
+Each run requires a new output directory and records process ownership and cleanup.
+
+The first run used repository service commit `711bdc8` and native commit `119850c`.
+Its [events](evidence/p09/prepared-input-initial/events.json) preserve an incorrect test assumption about coordinate direction.
+Four invalid decks failed without changing the native case list.
+The prepared grid had the expected dimensions and 300 active cells.
+Its first cell center had API z `8335`, which correctly uses positive-down depth.
+The test incorrectly expected `-8335`.
+The probe stopped before checking volumes, properties, and completions.
+
+The native grid builder converts positive-down depths to positive-up coordinates.
+The grid API converts those coordinates back to positive-down depths.
+The corrected probe compares the returned depth directly with the parser value.
+Proposed native commit `4a9f259` would duplicate the conversion and will not be integrated.
+The failed process 34091 exited with status `-15`, and the probe confirmed its absence.
+Its start marker was `1788940220.433936`.
+The preserved inspection and property file record the independent expected values.
