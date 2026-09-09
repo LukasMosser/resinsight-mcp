@@ -414,7 +414,7 @@ def checked_observations(calls: list[dict], trial: Trial) -> list[Observation]:
 
 
 def audit(evidence: Path, trial: Trial, exit_code: int) -> int:
-    """Gate transport evidence; spatial claims remain subject to human visual review."""
+    """Check transport evidence. Separate visual review must assess spatial claims."""
     report: dict[str, Any] = {
         "passed": False,
         "exit_code": exit_code,
