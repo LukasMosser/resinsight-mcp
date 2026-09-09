@@ -21,6 +21,7 @@ from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import (
     ApplicationAccess,
     NativeObject,
+    ProjectMutation,
     ProjectSnapshot,
 )
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
@@ -95,11 +96,12 @@ def test_changed_process_rejects_before_callback_and_retires_connection(setup: S
     assert value(service.get_connection(first.context.session_id)).state == ConnectionState.LOST
 
 
-def test_callback_and_refresh_exclude_same_session_without_blocking_another(setup: Setup) -> None:
+def test_all_mutation_phases_exclude_same_session_without_blocking_another(setup: Setup) -> None:
     service, factory, first, second = setup
     app = factory.apps[50051]
     callback_entered, callback_release = Event(), Event()
     refresh_entered, refresh_release = Event(), Event()
+    validation_entered, validation_release = Event(), Event()
 
     def change(access: ApplicationAccess) -> str:
         assert access.objects == app.project.objects
@@ -109,12 +111,20 @@ def test_callback_and_refresh_exclude_same_session_without_blocking_another(setu
         app.entered, app.release = refresh_entered, refresh_release
         return "changed"
 
+    def validate(mutation: ProjectMutation[str]) -> None:
+        assert mutation.value == "changed"
+        assert mutation.access.objects == app.project.objects
+        assert mutation.access.project.context.project_generation > first.context.project_generation
+        validation_entered.set()
+        assert validation_release.wait(5), "The test did not release final validation."
+
     with ThreadPoolExecutor(max_workers=1) as pool:
-        pending = pool.submit(service.mutate_project, first.context, change)
+        pending = pool.submit(service.mutate_project, first.context, change, validate=validate)
         try:
             for entered, release in (
                 (callback_entered, callback_release),
                 (refresh_entered, refresh_release),
+                (validation_entered, validation_release),
             ):
                 assert entered.wait(5)
                 assert (
@@ -129,6 +139,7 @@ def test_callback_and_refresh_exclude_same_session_without_blocking_another(setu
         finally:
             callback_release.set()
             refresh_release.set()
+            validation_release.set()
         result = pending.result(timeout=5)
     assert result.value == "changed"
     assert result.access.project.context.project_generation > first.context.project_generation
@@ -236,3 +247,42 @@ def test_failed_observation_after_completed_mutation_reports_unknown(
     )
     assert value(service.get_connection(first.context.session_id)).state == ConnectionState.LOST
     assert error(service.resolve_object(first.objects[0].ref)).code == ErrorCode.LOST_CONNECTION
+
+
+@pytest.mark.parametrize("known", [False, True])
+def test_failed_final_mapping_validation_retires_completed_mutation(
+    setup: Setup, known: bool
+) -> None:
+    service, factory, first, second = setup
+    app = factory.apps[50051]
+    completed = ProjectSnapshot("changed", (NativeObject(ObjectKind.CASE, "case-new", "Created"),))
+    observed = []
+
+    def change(access: ApplicationAccess) -> str:
+        app.project = completed
+        return "well-not-observed"
+
+    def validate(mutation: ProjectMutation[str]) -> None:
+        observed.append(mutation.access.project)
+        assert mutation.access.objects == completed.objects
+        assert mutation.value not in {item.address for item in mutation.access.objects}
+        if known:
+            raise ContractError(
+                Error(code=ErrorCode.INVALID_MODEL, message="The created well is not observable.")
+            )
+        raise RuntimeError("Final mapping validation failed.")
+
+    with pytest.raises(ContractError) as caught:
+        service.mutate_project(first.context, change, validate=validate)
+    assert app.project == completed
+    assert len(observed) == 1
+    assert observed[0].context.project_generation > first.context.project_generation
+    assert caught.value.error.code == (
+        ErrorCode.INVALID_MODEL if known else ErrorCode.EXECUTION_FAILED
+    )
+    assert caught.value.error.effect == MutationEffect.UNKNOWN
+    assert value(service.get_connection(first.context.session_id)).state == ConnectionState.LOST
+    assert (
+        error(service.resolve_object(observed[0].objects[0].ref)).code == ErrorCode.LOST_CONNECTION
+    )
+    assert value(service.inspect_project(second.context.session_id)) == second

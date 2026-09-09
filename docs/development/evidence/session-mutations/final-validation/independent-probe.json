@@ -1,0 +1,5 @@
+{
+  "before_edit": "STALE_OBJECT/NOT_APPLIED; validator skipped; READY; references retained",
+  "after_edit": "STALE_OBJECT/UNKNOWN; LOST",
+  "native_processes": 0
+}

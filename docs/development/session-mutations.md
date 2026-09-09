@@ -15,6 +15,10 @@ The method returns `ProjectMutation[T]` and raises `ContractError` on reported f
 These records belong to the internal application boundary in `sessions._backend`.
 This interface does not expose arbitrary callbacks through MCP.
 
+The optional keyword-only `validate` callback receives `ProjectMutation[T]` after reference refresh and before ownership ends.
+Domain services use it to check that returned native addresses exist in the new mapping.
+This P09 review addition keeps final result failures within session failure handling.
+
 The service verifies the connected process lifetime and current project context before invoking the callback.
 It holds the existing session and application locks through both the callback and the final observation.
 The callback receives the application, complete project state, and corresponding native objects in matching order.
@@ -45,22 +49,32 @@ A known observation error keeps its error code while receiving the uncertain eff
 An unexpected observation exception becomes `EXECUTION_FAILED` with effect `UNKNOWN`.
 The service does not claim rollback or reuse the previous project mapping as a fresh result.
 
+If final validation fails, the service reports `UNKNOWN` and retires the connection because the mutation already completed.
+Known validation errors keep their code, while unexpected errors become `EXECUTION_FAILED`.
+
 ## Tests and evidence
 
 The new tests exercise the public service boundary with controlled application doubles.
 They cover creation from an empty project, complete mapping, and renewed access through fresh references.
 They reject stale contexts and changed process lifetimes before callbacks run.
-They make sure that callback and refresh phases exclude same-session access while another session remains usable.
+They make sure that mutation, refresh, and validation exclude same-session access while another session remains usable.
 They also cover invisible edits, known unapplied failures, uncertain callback failures, and failed observation after completed changes.
 No test launches a native process.
 
 The [focused test log](evidence/session-mutations/focused-tests.log) records ten passing cases.
+The [final validation log](evidence/session-mutations/final-validation/focused-tests.log) records twelve passing cases after the P09 review addition.
+Its [environment record](evidence/session-mutations/final-validation/environment.json) identifies the changed source and failure coverage.
+
 The [shared check log](evidence/session-mutations/shared-check.log) records repository checks, including existing session and view tests.
 The [environment record](evidence/session-mutations/environment.json) contains commands, versions, source base, and working state.
 The [dependency log](evidence/session-mutations/dependency-sync.log) records the locked environment installation.
 The source base is `02edbd4`, with the mutation implementation and tests recorded as local changes before their commit.
 
-The review found no needed behavior change in the preliminary implementation.
+The initial review retained the preliminary mutation implementation.
+P09 review then added final result validation under ownership and two failure cases.
+An [independent public probe](evidence/session-mutations/final-validation/independent-probe.json) distinguishes stale failures before edits from failures after completed mutation.
+Its [test log](evidence/session-mutations/final-validation/independent-tests.log) records twelve passing focused cases.
+
 It assessed duplicate behavior, control flow, names, ownership, coupling, failure handling, and public tests.
 The change reuses the existing lock, observation, generation, and connection-retirement paths.
 These library tests do not establish native P09 acceptance or Linux and macOS CI results.

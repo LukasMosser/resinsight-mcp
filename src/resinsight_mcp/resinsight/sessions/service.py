@@ -327,7 +327,11 @@ class ResInsightSessionService:
         )
 
     def mutate_project[T](
-        self, context: ApplicationContext, change: Callable[[ApplicationAccess], T]
+        self,
+        context: ApplicationContext,
+        change: Callable[[ApplicationAccess], T],
+        *,
+        validate: Callable[[ProjectMutation[T]], None] | None = None,
     ) -> ProjectMutation[T]:
         """Hold session ownership through a trusted mutation and reference refresh."""
         with self._application(context.session_id) as (slot, application):
@@ -337,9 +341,21 @@ class ResInsightSessionService:
             try:
                 value = change(access)
                 refreshed = self._after_change(slot, application)
-                return ProjectMutation(
+                mutation = ProjectMutation(
                     value=value, access=self._project_access(slot, application, refreshed)
                 )
+                if validate is not None:
+                    try:
+                        validate(mutation)
+                    except ContractError as error:
+                        raise ContractError(
+                            Error(
+                                code=error.error.code,
+                                message="The mutation completed, but its result failed validation.",
+                                effect=MutationEffect.UNKNOWN,
+                            )
+                        ) from error
+                return mutation
             except ContractError:
                 raise
             except Exception as error:

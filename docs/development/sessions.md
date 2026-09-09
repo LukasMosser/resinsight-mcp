@@ -151,6 +151,7 @@ The [mutation guide](session-mutations.md) owns its callback contract and focuse
 The callback receives the complete native mapping, including an empty project, under the existing session and application locks.
 The service returns the callback value and refreshed references before releasing those locks.
 Callers must reacquire `access_objects` before later native work.
+An optional final validator checks the refreshed result before those locks are released.
 
 Every completed callback advances the project generation, even when its changes are invisible in the observed inventory.
 Known callback failures preserve their mutation effect.
