@@ -8,7 +8,8 @@ This plan records scope, ownership, and remaining acceptance gates.
 
 The [P11 record](evidence/p11/README.md) now establishes bounded Flow execution and verified numerical output through the Python service.
 The [P12 native record](evidence/p12/native/README.md#trial-07) establishes result loading, comparison, images, and project reopening.
-Complete public MCP P13 acceptance remains a separate gate.
+P13 trial 04 completed locally through public MCP tools with independent numerical, image, and cleanup review.
+Its prepared runtime evidence awaits owner approval for publication and final PR integration.
 
 ## Shared prerequisites
 
@@ -78,6 +79,9 @@ The workflow creates two named sessions, a layered model, and injection and prod
 It runs and loads a baseline, then clones a scenario, changes a control, runs again, and compares results.
 It repeats relevant operations across MCP disconnection and project save and reopen, and it cancels an owned run.
 Evidence must preserve requests, responses, native images, numerical checks, tested commits, tool versions, and the macOS environment.
+The [public acceptance driver](opm-acceptance.md) implements this sequence through the official SDK and supplied launcher.
+Its maintained tests cover evidence failures.
+The completed local native trial and visual review remain separate from evidence publication and final PR delivery.
 
 P11, P12, and P13 close only after their reviewed PRs complete the corresponding acceptance criteria.
 Required CI checks and documentation deployment must pass after integration.

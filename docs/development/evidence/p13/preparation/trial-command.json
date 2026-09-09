@@ -1,0 +1,16 @@
+[
+  "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+  "/private/tmp/resinsight-p13-integration/tests/acceptance/opm/run.py",
+  "--python",
+  "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+  "--executable",
+  "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "--docker",
+  "/Applications/Docker.app/Contents/Resources/bin/docker",
+  "--output",
+  "/private/tmp/resinsight-p13-public-trial-01",
+  "--source-commit",
+  "38e5aa8d9eca0c81e72ffdbdddfcf561e8735cbe",
+  "--native-source",
+  "/private/tmp/resinsight-p01-build/source"
+]

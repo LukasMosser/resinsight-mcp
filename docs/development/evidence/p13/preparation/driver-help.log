@@ -1,0 +1,20 @@
+usage: run.py [-h] --python PYTHON --executable EXECUTABLE --docker DOCKER
+              --output OUTPUT --source-commit SOURCE_COMMIT --native-source
+              NATIVE_SOURCE
+
+Run the reviewed public MCP acceptance after separate native runtime
+authorization.
+
+options:
+  -h, --help            show this help message and exit
+  --python PYTHON       Installed interpreter used by the shipped launcher.
+  --executable EXECUTABLE
+                        Exact approved ResInsight executable.
+  --docker DOCKER       Absolute approved Docker executable.
+  --output OUTPUT       Unused absolute evidence directory outside the
+                        repository.
+  --source-commit SOURCE_COMMIT
+                        Full application source commit used to build the
+                        installed wheel.
+  --native-source NATIVE_SOURCE
+                        Native source checkout for exact build provenance.

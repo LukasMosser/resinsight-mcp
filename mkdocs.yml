@@ -75,6 +75,7 @@ nav:
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
       - OPM workflow delivery: development/p13-delivery.md
+      - Public OPM acceptance: development/opm-acceptance.md
       - Scope review: development/scope-review.md
       - Foundation evidence: development/foundation-evidence.md
       - Releases: development/releases.md

@@ -25,6 +25,7 @@ Start with these pages:
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
 - [Run and result contracts](run-result-contracts.md) defines execution ownership, output roles, numerical data, and comparison checkpoints.
 - [OPM workflow delivery](p13-delivery.md) assigns the remaining P11, P12, and P13 integration work.
+- [Public OPM acceptance](opm-acceptance.md) describes the reviewed clean-installation driver and its remaining native trial.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
 - [Launcher evidence](launcher-evidence.md) records native session control from a clean installation.
