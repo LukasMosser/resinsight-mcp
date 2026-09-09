@@ -86,6 +86,10 @@ The [integration environment](integration/environment.json) identifies the teste
 The [lead review](integration/lead-evidence-review.log) independently validated saved identities, limits, complete datasets, cleanup, and reference agreement.
 This integration check did not repeat the native runtime trials.
 
+The approved [localhost browser review](browser/README.md) passed ten page visits and 85 local links.
+The lead inspected all nine guide screenshots and found no layout defect.
+The preview kept external requests blocked and closed its browser and server after inspection.
+
 ## Manual probe and evidence scope
 
 The maintained manual probe is `tests/simulators/opm/manual_acceptance.py`.
