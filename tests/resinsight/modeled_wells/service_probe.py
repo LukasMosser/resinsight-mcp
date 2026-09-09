@@ -11,6 +11,7 @@ from typing import Any, Protocol, cast
 
 import opm.io.deck  # noqa: F401
 import psutil
+import rips
 from google.protobuf.json_format import MessageToDict
 from opm.io.ecl_state import EclipseState
 from opm.io.parser import Parser
@@ -20,6 +21,7 @@ from PIL import Image
 from resinsight_mcp.contracts.errors import ErrorCode, Failure, MutationEffect
 from resinsight_mcp.contracts.identifiers import SessionId
 from resinsight_mcp.contracts.models import Session
+from resinsight_mcp.contracts.observations import Camera, Projection
 from resinsight_mcp.contracts.sessions import AttachRequest, CloseRequest, Endpoint
 from resinsight_mcp.contracts.wells import ProducerControl, WellStatus
 from resinsight_mcp.models.imports import (
@@ -45,6 +47,7 @@ from resinsight_mcp.models.wells.service import OpmWellScheduleService
 from resinsight_mcp.resinsight.sessions import ResInsightSessionService
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess
 from resinsight_mcp.resinsight.sessions.rips import RipsApplication, RipsApplicationFactory
+from resinsight_mcp.resinsight.views._camera import read_camera, view_matrix
 from resinsight_mcp.resinsight.wells import ResInsightWellService, RipsWellBackend
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
@@ -66,13 +69,123 @@ class DisplayProject(Protocol):
     def save(self, path: str) -> None: ...
 
 
-def snapshot(access: ApplicationAccess, case_address: str, output: Path) -> int:
+def configure_snapshot(case: Any, evidence: Evidence) -> Any:
+    case.name_setting = "CUSTOM_NAME"
+    case.name = "P09 PROD J5 slice PERMX (mD)"
+    case.update()
+    view = case.create_view()
+    view.apply_cell_result("INPUT_PROPERTY", "PERMX")
+    view.grid_z_scale = 20
+    view.disable_lighting = True
+    view.show_grid_box = True
+    view.update()
+    collection = view.range_filters()
+    collection.active = True
+    collection.combine_filter_mode = "AND"
+    collection.update()
+    section = collection.add_new_object(rips.CellRangeFilter, "CellFilters")
+    section.name = "PROD row J=5"
+    section.is_checked = True
+    section.grid_index = 0
+    section.filter_type = "INCLUDE"
+    section.start_index_i, section.start_index_j, section.start_index_k = 1, 5, 1
+    section.cell_count_i, section.cell_count_j, section.cell_count_k = 10, 1, 3
+    section.update()
+    view = case.view(view.id)
+    legends = [
+        item
+        for item in view.cell_result().result_var_legend_definition_list()
+        if item.result_variable_usage == "PERMX"
+    ]
+    if len(legends) != 1:
+        raise RuntimeError("The snapshot requires one PERMX legend.")
+    legend = legends[0]
+    legend.range_type = "USER_DEFINED_MAX_MIN"
+    legend.mapping_mode = "LinearContinuous"
+    legend.user_defined_min = 50
+    legend.user_defined_max = 500
+    legend.update()
+    camera = Camera(
+        position=(16000, -16000, 14000),
+        target=(0, -500, 0),
+        up=(0, 0, 1),
+        projection=Projection.ORTHOGRAPHIC,
+        parallel_scale=6000,
+    )
+    view.set_camera_projection(
+        perspective=False, field_of_view_y_degrees=40, parallel_projection_height=12000
+    )
+    view = case.view(view.id)
+    view.camera_point_of_interest = list(camera.target)
+    view.camera_matrix = view_matrix(camera)
+    view.update()
+    view = case.view(view.id)
+    observed = read_camera(
+        view.camera_matrix,
+        view.camera_point_of_interest,
+        view.perspective_projection,
+        view.actual_camera_field_of_view_y_degrees,
+        view.actual_camera_parallel_projection_height,
+    )
+    evidence.check(
+        "snapshot_camera",
+        math.dist(observed.position, camera.position) < 1e-6
+        and math.dist(observed.target, camera.target) < 1e-6
+        and observed.projection == camera.projection
+        and observed.parallel_scale is not None
+        and math.isclose(observed.parallel_scale, 6000, abs_tol=1e-6),
+        requested=camera.model_dump(mode="json"),
+        observed=observed.model_dump(mode="json"),
+    )
+    sections = view.range_filters().cell_filters()
+    evidence.check(
+        "snapshot_slice",
+        len(sections) == 1
+        and view.range_filters().active
+        and sections[0].is_checked
+        and sections[0].filter_type == "INCLUDE"
+        and sections[0].grid_index == 0
+        and (sections[0].start_index_i, sections[0].start_index_j, sections[0].start_index_k)
+        == (1, 5, 1)
+        and (sections[0].cell_count_i, sections[0].cell_count_j, sections[0].cell_count_k)
+        == (10, 1, 3),
+        one_based_start=[1, 5, 1],
+        counts=[10, 1, 3],
+    )
+    evidence.check(
+        "snapshot_property",
+        view.cell_result().result_type == "INPUT_PROPERTY"
+        and view.cell_result().result_variable == "PERMX"
+        and view.grid_z_scale == 20
+        and view.disable_lighting,
+        property="PERMX",
+        unit="mD",
+        legend=[50, 500],
+        vertical_exaggeration=20,
+    )
+    legend = next(
+        item
+        for item in view.cell_result().result_var_legend_definition_list()
+        if item.result_variable_usage == "PERMX"
+    )
+    evidence.check(
+        "snapshot_legend",
+        math.isclose(legend.actual_minimum, 50, abs_tol=1e-6)
+        and math.isclose(legend.actual_maximum, 500, abs_tol=1e-6),
+        minimum=legend.actual_minimum,
+        maximum=legend.actual_maximum,
+    )
+    return view
+
+
+def snapshot(access: ApplicationAccess, case_address: str, evidence: Evidence) -> int:
     application = cast(RipsApplication, access.application)
+    output = evidence.output
 
     def capture() -> int:
         project = cast(DisplayProject, application.project())
         case = next(item for item in project.cases() if str(item.address()) == case_address)
-        view = case.create_view()
+        view = configure_snapshot(case, evidence)
         view.export_snapshot(prefix="service", export_folder=str(output), width=1000, height=800)
         project.save(str(output / "service-project.rsp"))
         return view.address()
@@ -533,7 +646,7 @@ def check_service(executable: Path, source: Path, evidence: Evidence) -> None:
             with sessions.access_objects((invalid.binding.case,)) as access:
                 case_address = access.objects[0].address
             captured = sessions.mutate_project(
-                project.context, lambda access: snapshot(access, case_address, output)
+                project.context, lambda access: snapshot(access, case_address, evidence)
             )
             evidence.record(
                 "snapshot_project", data=captured.access.project.model_dump(mode="json")
