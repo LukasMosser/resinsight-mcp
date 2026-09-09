@@ -1,6 +1,25 @@
 """Bounded OPM imports with preserved source artifacts."""
 
-from .records import ImportReceipt, ImportRecord, ImportRequest, ModelSummary
+from .records import (
+    DerivedModelRequest,
+    FieldCellProperties,
+    ImportReceipt,
+    ImportRecord,
+    ImportRequest,
+    MaterializedModel,
+    ModelInspection,
+    ModelSummary,
+)
 from .service import OpmImportService
 
-__all__ = ["ImportReceipt", "ImportRecord", "ImportRequest", "ModelSummary", "OpmImportService"]
+__all__ = [
+    "DerivedModelRequest",
+    "FieldCellProperties",
+    "ImportReceipt",
+    "ImportRecord",
+    "ImportRequest",
+    "MaterializedModel",
+    "ModelInspection",
+    "ModelSummary",
+    "OpmImportService",
+]

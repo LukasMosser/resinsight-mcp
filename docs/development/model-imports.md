@@ -116,9 +116,76 @@ Temporary directory cleanup failures after writes can also return `UNKNOWN`.
 The store does not publish the entire import atomically, as one indivisible operation.
 The service does not promise rollback of completed writes.
 
+## Materialization and child revisions
+
+The lead transferred this follow-up to the P09 owner for a separate P07 interface change.
+[Issue #39](https://github.com/LukasMosser/resinsight-mcp/issues/39) records the agreed scope.
+Its scope contains import records, parser inspection, temporary materialization, child publication, focused tests, and this page.
+Native well algorithms and MCP tools remain outside this follow-up.
+
+`materialize(model)` returns a context manager and raises `ContractError` for its own failures.
+Consumer exceptions pass through unchanged.
+If cleanup also fails, the consumer exception includes a cleanup note.
+Cleanup failure after a successful consumer block reports `UNKNOWN`, because the consumer can change external state.
+
+It retrieves the stored revision, checks its units and include graph, and validates its staged inputs with the isolated pinned parser.
+It yields `MaterializedModel` only after those checks pass.
+Every context has its own temporary directory.
+The files disappear when the context exits.
+
+`MaterializedModel` contains these fields:
+
+| Field | Meaning |
+| --- | --- |
+| `revision` | The stored immutable revision |
+| `directory` | Absolute directory containing only the staged input graph |
+| `entrypoint` | Absolute path to the staged entrypoint |
+| `property_file` | Separate derived GRDECL file for native property import |
+| `inspection` | Values from the isolated OPM parser and static model |
+
+The inspection contains the current summary, active cell indices, cell depths, cell volumes, properties, and report times.
+Cell indices are zero-based and ordered with I changing fastest, then J, then K.
+Property, depth, and volume arrays use global cell order.
+Depth and length use feet, cell volume uses cubic feet, and permeability uses millidarcies.
+Report times use elapsed days and include the initial zero.
+The derived property file contains `DX`, `DY`, `DZ`, `PORO`, `PERMX`, `PERMY`, and `PERMZ` in FIELD units.
+
+OPM supplies the unit scale used to convert inspected geometry and static properties from SI values.
+SI is the international measurement system.
+Length arrays follow OPM's documented Cartesian layer inheritance.
+The materialization does not load a native case, alter a revision, or submit a simulation.
+Its derived property file is separate from the simulator input graph.
+
+```python
+from resinsight_mcp.models.imports import DerivedModelRequest
+
+with service.materialize(receipt.prepared.revision.model) as materialized:
+    print(materialized.entrypoint)
+    print(materialized.inspection.cell_depths_ft[0])
+    print(materialized.property_file)
+
+child_result = service.derive_model(
+    DerivedModelRequest(
+        parent=receipt.prepared.revision.model,
+        source_root=changed_input_directory,
+        entrypoint="SPE1.DATA",
+    )
+)
+```
+
+`derive_model` validates complete changed inputs through the same publication path as `import_model`.
+It inherits the stored parent's session and coordinates, then records that parent in the new revision.
+Callers cannot override those inherited fields.
+The original revision and its input artifacts remain unchanged.
+Failures after publication starts retain `UNKNOWN` and identify the affected revision for recovery.
+Existing input and import records are not rewritten.
+
 ## Supported model profile
 
-The profile identifier is `spe1-field-v1`.
+The current profile identifier is `spe1-field-v2`.
+Previously stored `spe1-field-v1` summaries still deserialize without changes.
+Validation does not rewrite those records.
+
 It supports black-oil physics, oil, water, gas, and dissolved gas.
 The grid is Cartesian, a rectangular arrangement of cells, with every cell active.
 The model has one equilibrium region and declares `FIELD` exactly once.
@@ -192,9 +259,19 @@ Well names and phases must be explicit.
 The phase must be `OIL`, `GAS`, or `WATER`.
 Repeated well declarations fail validation.
 
-`COMPDAT` permits explicit `WELL`, `I`, `J`, `K1`, `K2`, `STATE`, and `DIAMETER` items only.
+`COMPDAT` permits explicit `WELL`, `I`, `J`, `K1`, `K2`, `STATE`, and `DIAMETER` items.
+Version 2 also permits explicit `CONNECTION_TRANSMISSIBILITY_FACTOR`, `Kh`, `SKIN`, and `DIR` items.
+Connection factors and permeability-length values must be finite and positive.
+Skin factors must be finite and nonnegative.
+Directions must be `X`, `Y`, or `Z`.
+Each completion must identify active cells within the prepared grid.
+
+Defaulted cell indices and partial overlaps outside the grid fail validation.
+The official OPM schedule must retain positive connection factors and permeability-length values.
+The supported black-oil physics and parser version remain unchanged.
 Each completion must name an already declared well.
 Its explicit state must be `OPEN`, and its explicit diameter must be finite and positive.
+
 A `SHUT` completion fails before OPM can silently close an open well.
 Whole-well `SHUT` controls remain supported.
 
@@ -258,6 +335,7 @@ Oversized counts return a typed `INVALID_MODEL` failure instead of escaping thro
 ## Evidence and provenance
 
 The [P07 evidence record](p07-evidence.md) contains the native trial, tested versions, commands, and observed results.
+The [materialization evidence](model-materialization-evidence.md) covers temporary stored inputs, child publication, and cleanup failures.
 The [platform proof](platform-proof.md) records earlier experiments with separate acceptance boundaries.
 Neither parser acceptance nor one successful simulation establishes general model support or independent numerical accuracy.
 

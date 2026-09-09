@@ -9,6 +9,8 @@ The first release remains bounded to macOS and the supported OPM physics.
 The original audit covered `main` at `40b9b9f`, after P06, P07, and P10 merged.
 This map now includes configured session access through the shipped launcher.
 It also includes constrained model creation through the P08 Python service.
+P07 supplies temporary stored inputs and validated child revision publication for domain services.
+
 It follows [issue #29](https://github.com/LukasMosser/resinsight-mcp/issues/29) and tracks [issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35).
 The [implementation plan](implementation-plan.md) owns package scope and delivery status.
 This page maps that scope to current access paths and integration gaps.
@@ -49,7 +51,8 @@ The [MCP guide](mcp.md) explains that boundary.
 | Apply camera, property, report step, legend, and display filters | Configured: `view_apply` | `Bindings.views`, a connected session, trusted result binding, patched ResInsight, and its matching generated RIPS client. | [View guide](../views.md), [view boundary](views.md), [P06 evidence](p06-evidence.md) |
 | Render a fresh view image | Configured: `view_render` | `Bindings.views` or `Bindings.renderer`, plus an exact stored result context. The native view service needs the P06 setup. | [View guide](../views.md), [P06 evidence](p06-evidence.md) |
 | Read an observation against current native scene state | Configured: `observation_get` | With `Bindings.views`, retrieval checks current scene state. The default workspace binding only reads stored observations. | [Confirmed scenes](views.md#confirmed-scenes-and-capture), [P06 evidence](p06-evidence.md) |
-| Import and prepare supported model inputs | Python-only: `OpmImportService.import_model()` and `OpmImportService.prepare()` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v1` profile. No MCP import tools exist. | [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
+| Import and prepare supported model inputs | Python-only: `OpmImportService.import_model()` and `OpmImportService.prepare()` | Optional `imports` dependency, exactly `opm==2025.10`, explicit datum, and the bounded `spe1-field-v2` profile. No MCP import tools exist. | [Import guide](model-imports.md), [P07 evidence](p07-evidence.md) |
+| Stage stored inputs and publish child revisions | Python-only: `OpmImportService.materialize()` and `OpmImportService.derive_model()` | Valid stored parent, isolated pinned parser, and caller-owned changed inputs. Materialization owns temporary file cleanup. No MCP operation exists. | [Import interface](model-imports.md#materialization-and-child-revisions), [materialization evidence](model-materialization-evidence.md) |
 | Create a constrained layered model | Python-only: `SyntheticModelService.create_model()` | P07 parser dependencies, explicit FIELD specification and datum, one injector, one producer, and the fixed SPE1 fluid template. No MCP creation tool exists. | [Model guide](../synthetic-models.md), [P08 evidence](synthetic-models.md) |
 | Submit, inspect, and cancel prepared jobs | Configured: `job_submit`, `job_poll`, `job_cancel` | `Bindings.jobs`, `DurableJobController`, trusted `CommandResolver`, and prepared stored inputs. The implemented policy requires explicit `wall_time_only`. | [Job guide](../jobs.md), [job boundary](jobs.md), [P10 evidence](p10-evidence.md) |
 | Reconcile stopped job supervision | Python-only: `DurableJobController.reconcile()` | Original local workspace and applicable controller and supervisor leases. Active supervisors prevent reconciliation. No MCP reconciliation tool exists. | [Recovery boundary](jobs.md#reconciliation-boundary), [P10 evidence](p10-evidence.md) |

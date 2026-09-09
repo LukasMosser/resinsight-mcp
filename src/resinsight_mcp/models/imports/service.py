@@ -5,7 +5,8 @@ import json
 import shutil
 import subprocess
 import sys
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from functools import wraps
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -42,7 +43,14 @@ from resinsight_mcp.contracts.models import (
 from resinsight_mcp.contracts.workspace import Artifact, ArtifactKind
 
 from ._sources import collect, invalid
-from .records import ImportReceipt, ImportRecord, ImportRequest, ModelSummary
+from .records import (
+    DerivedModelRequest,
+    ImportReceipt,
+    ImportRecord,
+    ImportRequest,
+    MaterializedModel,
+    ModelInspection,
+)
 
 
 def _value[T](result: OperationResult[T]) -> T:
@@ -66,7 +74,7 @@ def _operation[**P, T](method: Callable[P, T]) -> Callable[P, OperationResult[T]
     return run
 
 
-def _validate(entrypoint: Path, output: Path) -> ModelSummary:
+def _validate(entrypoint: Path, output: Path) -> ModelInspection:
     try:
         process = subprocess.run(
             [
@@ -93,7 +101,7 @@ def _validate(entrypoint: Path, output: Path) -> ModelSummary:
     payload: dict[str, Any] = json.loads(output.read_text(encoding="utf-8"))
     if "error" in payload:
         raise invalid(f"OPM validation failed: {payload['error']}")
-    return ModelSummary.model_validate(payload["summary"])
+    return ModelInspection.model_validate(payload["inspection"])
 
 
 class OpmImportService:
@@ -120,6 +128,29 @@ class OpmImportService:
             depth_direction=DepthDirection.POSITIVE_DOWN,
             datum=request.datum,
         )
+        return self._publish(request, coordinates)
+
+    @_operation
+    def derive_model(self, request: DerivedModelRequest) -> ImportReceipt:
+        parent = self._stored_revision(request.parent)
+        return self._publish(
+            ImportRequest(
+                session_id=parent.model.session_id,
+                source_root=request.source_root,
+                entrypoint=request.entrypoint,
+                datum=parent.coordinates.datum,
+            ),
+            parent.coordinates,
+            parent=parent.model,
+        )
+
+    def _publish(
+        self,
+        request: ImportRequest,
+        coordinates: CoordinateFrame,
+        *,
+        parent: ModelRef | None = None,
+    ) -> ImportReceipt:
         model = ModelRef(session_id=request.session_id, revision_id=RevisionId.new())
         publication_started = False
         try:
@@ -127,7 +158,7 @@ class OpmImportService:
                 root = Path(directory).resolve()
                 snapshot = root / "inputs"
                 names, edges = collect(request.source_root, request.entrypoint, snapshot)
-                summary = _validate(snapshot / request.entrypoint, root / "validation.json")
+                summary = _validate(snapshot / request.entrypoint, root / "validation.json").summary
                 sources = {}
                 for name in names:
                     with (snapshot / name).open("rb") as stream:
@@ -143,6 +174,7 @@ class OpmImportService:
                     ),
                     unit_system=UnitSystem.FIELD,
                     coordinates=coordinates,
+                    parent=parent,
                 )
                 record = ImportRecord(
                     model=revision.model,
@@ -198,32 +230,85 @@ class OpmImportService:
                     message="The import service requires OPM Flow.",
                 )
             )
-        revision = _value(self._store.get_revision(request.revision.model))
+        revision = self._stored_revision(request.revision.model)
         if revision != request.revision:
             raise invalid("The supplied revision differs from the stored revision.")
+        with self.materialize(revision.model):
+            return PreparedModel(revision=revision, backend=Backend.OPM_FLOW)
+
+    def _stored_revision(self, model: ModelRef) -> ModelRevision:
+        revision = _value(self._store.get_revision(model))
         if (
             revision.unit_system != UnitSystem.FIELD
             or revision.coordinates.length_unit != Unit.FOOT
             or revision.coordinates.depth_direction != DepthDirection.POSITIVE_DOWN
         ):
             raise invalid("FIELD inputs require feet and positive-down depth coordinates.")
-        with TemporaryDirectory(prefix="opm-prepare-") as directory:
-            root = Path(directory).resolve()
-            materialized = root / "stored"
-            names = []
-            entrypoint = ""
-            for artifact_id in revision.inputs.artifacts:
-                ref = ArtifactRef(session_id=revision.model.session_id, artifact_id=artifact_id)
-                artifact = _value(self._store.get_artifact(ref))
-                path = materialized / artifact.relative_path
-                path.parent.mkdir(parents=True, exist_ok=True)
-                with self._store.open_artifact(ref) as source, path.open("wb") as target:
-                    shutil.copyfileobj(source, target)
-                names.append(artifact.relative_path)
-                if artifact_id == revision.inputs.entrypoint:
-                    entrypoint = artifact.relative_path
-            collected, _ = collect(materialized, entrypoint, root / "inputs")
-            if set(collected) != set(names):
-                raise invalid("Every revision input must belong to the entrypoint include graph.")
-            _validate(root / "inputs" / entrypoint, root / "validation.json")
-        return PreparedModel(revision=revision, backend=Backend.OPM_FLOW)
+        return revision
+
+    @contextmanager
+    def materialize(self, model: ModelRef) -> Iterator[MaterializedModel]:
+        """Validate fixed inputs and yield isolated files with parser-derived inspection."""
+        revision = self._stored_revision(model)
+        staging: TemporaryDirectory[str] | None = None
+        original: BaseException | None = None
+        try:
+            try:
+                staging = TemporaryDirectory(prefix="opm-materialize-")
+                materialized = self._materialized(revision, Path(staging.name).resolve())
+            except (OSError, UnicodeError, ValidationError) as error:
+                raise invalid(f"Model materialization failed: {error}") from error
+            yield materialized
+        except BaseException as error:
+            original = error
+            raise
+        finally:
+            if staging is not None:
+                try:
+                    staging.cleanup()
+                except OSError as error:
+                    message = f"Model materialization cleanup failed: {error}"
+                    if original is not None:
+                        original.add_note(message)
+                    else:
+                        raise ContractError(
+                            Error(
+                                code=ErrorCode.STORAGE_FAILED,
+                                message=message,
+                                effect=MutationEffect.UNKNOWN,
+                            )
+                        ) from error
+
+    def _materialized(self, revision: ModelRevision, root: Path) -> MaterializedModel:
+        stored = root / "stored"
+        names = []
+        entrypoint = ""
+        for artifact_id in revision.inputs.artifacts:
+            ref = ArtifactRef(session_id=revision.model.session_id, artifact_id=artifact_id)
+            artifact = _value(self._store.get_artifact(ref))
+            path = stored / artifact.relative_path
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with self._store.open_artifact(ref) as source, path.open("wb") as target:
+                shutil.copyfileobj(source, target)
+            names.append(artifact.relative_path)
+            if artifact_id == revision.inputs.entrypoint:
+                entrypoint = artifact.relative_path
+        inputs = root / "inputs"
+        collected, _ = collect(stored, entrypoint, inputs)
+        if set(collected) != set(names):
+            raise invalid("Every revision input must belong to the entrypoint include graph.")
+        inspection = _validate(inputs / entrypoint, root / "validation.json")
+        property_file = root / "properties.GRDECL"
+        with property_file.open("w", encoding="utf-8") as output:
+            output.write("-- Derived FIELD properties: lengths in feet and permeability in mD.\n")
+            for keyword, values in inspection.properties.keyword_arrays():
+                output.write(f"{keyword}\n")
+                output.write(" ".join(format(value, ".17g") for value in values))
+                output.write("\n/\n")
+        return MaterializedModel(
+            revision=revision,
+            directory=inputs,
+            entrypoint=inputs / entrypoint,
+            property_file=property_file,
+            inspection=inspection,
+        )

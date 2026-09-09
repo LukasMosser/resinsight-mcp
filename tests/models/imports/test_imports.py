@@ -6,13 +6,20 @@ from pathlib import Path
 
 import pytest
 
-from resinsight_mcp.contracts.errors import ErrorCode, Failure, OperationResult, Success
-from resinsight_mcp.contracts.identifiers import SessionId
+from resinsight_mcp.contracts.engineering import CellIndex, ModelRef
+from resinsight_mcp.contracts.errors import (
+    ContractError,
+    ErrorCode,
+    Failure,
+    OperationResult,
+    Success,
+)
+from resinsight_mcp.contracts.identifiers import RevisionId, SessionId
 from resinsight_mcp.contracts.interfaces import ModelPreparer
 from resinsight_mcp.contracts.models import Backend, PreparationRequest, Session
 from resinsight_mcp.contracts.workspace import ArtifactKind
-from resinsight_mcp.models.imports import ImportRequest, OpmImportService
-from resinsight_mcp.models.imports.records import ImportRecord
+from resinsight_mcp.models.imports import DerivedModelRequest, ImportRequest, OpmImportService
+from resinsight_mcp.models.imports.records import ImportRecord, ModelSummary
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 
@@ -229,3 +236,170 @@ def test_open_well_with_shut_completion_is_rejected_before_opm_can_close_it(
         "'PROD' 10 10 3 3 'SHUT'",
     )
     assert "OPEN completions" in rejected(store, request_model)
+
+
+def test_materialization_inspects_stored_field_geometry_and_cleans_staging(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    import opm.io.deck  # noqa: F401
+    from opm.io.parser import Parser
+
+    service = OpmImportService(store)
+    receipt = value(service.import_model(request_model))
+    shutil.rmtree(request_model.source_root)
+    with service.materialize(receipt.prepared.revision.model) as materialized:
+        inspection = materialized.inspection
+        assert materialized.revision == receipt.prepared.revision
+        assert inspection.summary.support_profile == "spe1-field-v2"
+        assert inspection.active_cells[0] == CellIndex(i=0, j=0, k=0)
+        assert inspection.active_cells[10] == CellIndex(i=0, j=1, k=0)
+        assert inspection.active_cells[100] == CellIndex(i=0, j=0, k=1)
+        assert inspection.active_cells[-1] == CellIndex(i=9, j=9, k=2)
+        assert inspection.cell_depths_ft[0] == pytest.approx(8335.0)
+        assert inspection.cell_volumes_ft3[0] == pytest.approx(20_000_000.0)
+        assert inspection.properties.dx_ft[0] == pytest.approx(1000.0)
+        assert inspection.properties.permx_millidarcy[0] == pytest.approx(500.0)
+        assert inspection.report_elapsed_days == (0.0, 1.0, 2.0)
+        property_deck = Parser().parse(str(materialized.property_file))
+        for keyword, values in inspection.properties.keyword_arrays():
+            assert list(property_deck[keyword].get_raw_array()) == pytest.approx(values)
+        with service.materialize(receipt.prepared.revision.model) as second:
+            assert materialized.directory != second.directory
+            materialized.entrypoint.write_text("Invalid staged input")
+            assert "RUNSPEC" in second.entrypoint.read_text()
+    assert not materialized.directory.exists()
+    assert not materialized.property_file.exists()
+    assert not second.directory.exists()
+    assert (
+        value(
+            service.prepare(
+                PreparationRequest(revision=receipt.prepared.revision, backend=Backend.OPM_FLOW)
+            )
+        )
+        == receipt.prepared
+    )
+
+
+def test_materialize_rejects_missing_revision_before_yield(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    missing = ModelRef(session_id=request_model.session_id, revision_id=RevisionId.new())
+    with pytest.raises(ContractError) as failure:
+        with OpmImportService(store).materialize(missing):
+            pytest.fail("A missing revision cannot yield staged inputs.")
+    assert failure.value.error.code == ErrorCode.NOT_FOUND
+
+
+def test_derived_revision_inherits_identity_and_preserves_parent_inputs(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, tmp_path: Path
+) -> None:
+    service = OpmImportService(store)
+    parent = value(service.import_model(request_model)).prepared.revision
+    with service.materialize(parent.model) as materialized:
+        candidate = Path(shutil.copytree(materialized.directory, tmp_path / "changed"))
+    replace(candidate, "includes/schedule.inc", "20000 4* 1000", "10000 4* 1000")
+    child = value(
+        service.derive_model(
+            DerivedModelRequest(parent=parent.model, source_root=candidate, entrypoint="SPE1.DATA")
+        )
+    ).prepared.revision
+    assert child.parent == parent.model
+    assert child.model.session_id == parent.model.session_id
+    assert child.model != parent.model
+    assert child.coordinates == parent.coordinates
+    assert child.unit_system == parent.unit_system
+    with service.materialize(parent.model) as original, service.materialize(child.model) as changed:
+        assert "20000 4* 1000" in (original.directory / "includes/schedule.inc").read_text()
+        assert "10000 4* 1000" in (changed.directory / "includes/schedule.inc").read_text()
+    assert value(store.get_revision(parent.model)) == parent
+
+
+def test_derived_invalid_input_does_not_publish_artifacts(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    service = OpmImportService(store)
+    parent = value(service.import_model(request_model)).prepared.revision
+    before = value(store.list_artifacts(parent.model.session_id))
+    replace(request_model.source_root, "SPE1.DATA", "FIELD", "METRIC")
+    result = service.derive_model(
+        DerivedModelRequest(
+            parent=parent.model,
+            source_root=request_model.source_root,
+            entrypoint=request_model.entrypoint,
+        )
+    )
+    assert isinstance(result.outcome, Failure)
+    assert result.outcome.error.code == ErrorCode.INVALID_MODEL
+    assert value(store.list_artifacts(parent.model.session_id)) == before
+    assert value(store.get_revision(parent.model)) == parent
+
+
+def test_explicit_connection_fields_use_current_profile_and_opm_units(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    import opm.io.deck  # noqa: F401
+    from opm.io.ecl_state import EclipseState
+    from opm.io.parser import Parser
+    from opm.io.schedule import Schedule
+
+    replace(
+        request_model.source_root,
+        "includes/schedule.inc",
+        "'OPEN' 1* 1* 0.5",
+        "'OPEN' 1* 10.07878 0.5 9500 0 1* 'Z'",
+    )
+    service = OpmImportService(store)
+    receipt = value(service.import_model(request_model))
+    assert receipt.summary.support_profile == "spe1-field-v2"
+    with service.materialize(receipt.prepared.revision.model) as materialized:
+        deck = Parser().parse(str(materialized.entrypoint))
+        schedule = Schedule(deck, EclipseState(deck))
+        connection = schedule.get_wells(0)[0].connections()[0]
+        items = {item.name(): item for item in deck["COMPDAT"][0]}
+        assert connection.cf == pytest.approx(items["CONNECTION_TRANSMISSIBILITY_FACTOR"].get_SI(0))
+        assert connection.kh == pytest.approx(items["Kh"].get_SI(0))
+        assert connection.pos == (9, 9, 2)
+    prior = ModelSummary.model_validate(
+        {**receipt.summary.model_dump(), "support_profile": "spe1-field-v1"}
+    )
+    assert prior.support_profile == "spe1-field-v1"
+
+
+@pytest.mark.parametrize(
+    "tail",
+    [
+        "-1 0.5 9500 0 1* 'Z'",
+        "0 0.5 9500 0 1* 'Z'",
+        "1e999 0.5 9500 0 1* 'Z'",
+        "10 0.5 -1 0 1* 'Z'",
+        "10 0.5 0 0 1* 'Z'",
+        "10 0.5 1e999 0 1* 'Z'",
+        "10 0.5 9500 -1 1* 'Z'",
+        "10 0.5 9500 1e999 1* 'Z'",
+        "10 0.5 9500 0 1* 'A'",
+    ],
+)
+def test_invalid_explicit_connection_fields_are_rejected(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, tail: str
+) -> None:
+    replace(
+        request_model.source_root, "includes/schedule.inc", "'OPEN' 1* 1* 0.5", "'OPEN' 1* " + tail
+    )
+    rejected(store, request_model)
+
+
+@pytest.mark.parametrize("cells", ["10 10 2 4", "0 10 3 3", "10 10 3 2"])
+def test_completion_cannot_partly_overlap_or_default_outside_the_grid(
+    store: SqliteWorkspaceStore, request_model: ImportRequest, cells: str
+) -> None:
+    replace(
+        request_model.source_root, "includes/schedule.inc", "'PROD' 10 10 3 3", "'PROD' " + cells
+    )
+    assert "active cells" in rejected(store, request_model)
+
+
+def test_inactive_cell_deck_remains_outside_the_supported_profile(
+    store: SqliteWorkspaceStore, request_model: ImportRequest
+) -> None:
+    replace(request_model.source_root, "includes/grid.inc", "GRID", "GRID\nACTNUM\n 299*1 0 /\n")
+    assert "Unsupported keywords: ACTNUM" in rejected(store, request_model)

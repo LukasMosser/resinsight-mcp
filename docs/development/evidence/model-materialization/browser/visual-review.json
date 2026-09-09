@@ -1,0 +1,12 @@
+{
+  "screenshots_inspected": [
+    "import-materialization.png",
+    "materialization-evidence.png"
+  ],
+  "finding": "Readable headings, paragraphs, and table. No clipping, overlap, or document overflow observed.",
+  "local_pages_passed": 2,
+  "local_links_passed": 8,
+  "page_errors": [],
+  "command": "NODE_PATH=/Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules /Users/lmoss/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /private/tmp/resinsight-launcher-doc-review.cjs /private/tmp/resinsight-materialization-evidence /private/tmp/resinsight-materialization-evidence/docs/development/evidence/model-materialization/browser /private/tmp/resinsight-materialization-evidence/docs/development/evidence/model-materialization/browser/manifest.json",
+  "network_scope": "Only the local documentation origin was allowed."
+}
