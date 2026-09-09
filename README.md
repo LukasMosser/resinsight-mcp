@@ -11,8 +11,8 @@ The [operation map](docs/development/agent-workflows.md) separates current tools
 ## Start with an agent
 
 Read the [connection guide](docs/mcp.md), then use capability discovery to find the tools your host supplies.
-The supplied launcher currently provides workspace tools.
-Application workflows require a separately configured host, and a complete simulation workflow is not yet available through the supplied launcher.
+The supplied launcher provides workspace tools and optional [ResInsight session configuration](docs/mcp.md#enable-resinsight-sessions).
+View and job workflows require additional host services, and the launcher does not yet provide a complete simulation workflow.
 
 The [tutorials](docs/tutorials/index.md) explain the available agent tasks:
 

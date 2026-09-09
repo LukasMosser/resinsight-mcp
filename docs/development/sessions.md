@@ -7,8 +7,9 @@ It does not provide an MCP transport or change simulator input revisions.
 
 ## Configure and use the service
 
-The shipped launcher configures workspace operations only.
-A host must supply `Bindings.sessions` with this service to expose application and project operations.
+The shipped launcher configures this service when `--resinsight-log-directory` names an existing, writable absolute directory.
+The [connection guide](../mcp.md#enable-resinsight-sessions) supplies the startup command.
+A custom host can also supply `Bindings.sessions` with this service to expose application and project operations.
 The [MCP guide](mcp.md) describes transport bindings.
 
 Install the optional ResInsight dependencies from the repository:
@@ -31,6 +32,7 @@ Application output goes to separate launch log files.
 
 ## Create, save, and detach
 
+The [session tutorial](../tutorials/sessions.md) uses the shipped launcher through public MCP tools.
 This example creates a workspace, launches an application, saves its project, and detaches the connection.
 Replace the absolute paths with locations on your host.
 The workspace path must not exist, and its parent directory must exist.

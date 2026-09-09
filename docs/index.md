@@ -10,8 +10,8 @@ The [first-release plan](development/implementation-plan.md#product-boundary) ta
 ## Start with your connection
 
 Use the [connection guide](mcp.md) to connect an MCP client and discover its available tools.
-The supplied launcher currently provides workspace tools.
-ResInsight sessions, views, and local jobs require a separately configured host with their required services.
+The supplied launcher provides workspace tools and optional [ResInsight session configuration](mcp.md#enable-resinsight-sessions).
+Views and local jobs require a separately configured host with their required services.
 A complete model-to-simulation workflow is not yet available through the supplied launcher.
 
 The [operation map](development/agent-workflows.md) records the current tools, required configuration, evidence, and remaining integration work.

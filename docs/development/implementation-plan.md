@@ -74,7 +74,9 @@ The lead agent owns combined acceptance tests and integration documentation.
 
 [Issue #35](https://github.com/LukasMosser/resinsight-mcp/issues/35) assigns one lead integration owner for the shipped launcher, service composition, and domain MCP wiring.
 Package owners retain model, well, simulator, and result algorithms behind agreed typed interfaces.
-The integration owner first connects implemented session services through documented configuration, then adds dependent workflows as their services become ready.
+The first slice connects implemented session services through [documented launcher configuration](../mcp.md#enable-resinsight-sessions).
+Its [acceptance record](launcher-evidence.md) proves public session and project operations from a clean installation.
+Issue #35 remains open for view, job, and domain integration as dependent services become ready.
 Users must not need to author a Python server for the completed product workflow.
 
 The [operation map](agent-workflows.md#gaps-and-proposed-ownership) records missing MCP paths and their package owners.

@@ -8,7 +8,8 @@ The Python 3.12 library validates shared records with Pydantic and defines typed
 Its SQLite workspace store preserves sessions, immutable model revisions, artifacts, jobs, results, observations, and project checkpoints.
 The MCP transport binds these services and preserves native image responses.
 Session and view adapters control verified application connections and capture fresh observations.
-Model import and job services provide additional domain components, while the supplied launcher still exposes workspace tools only.
+Model import and job services provide additional domain components.
+The supplied launcher exposes workspace tools and can configure native session services.
 
 Start with these pages:
 
@@ -17,6 +18,7 @@ Start with these pages:
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
+- [Launcher evidence](launcher-evidence.md) records native session control from a clean installation.
 - [Sessions](sessions.md) explains application ownership, project operations, and observed change limits.
 - [Jobs](jobs.md) explains durable supervision, resource policy, and recovery limits.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.

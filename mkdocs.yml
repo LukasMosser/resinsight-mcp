@@ -45,6 +45,7 @@ nav:
       - Session evidence: development/p04-evidence.md
       - MCP transport: development/mcp.md
       - MCP evidence: development/mcp-evidence.md
+      - Launcher evidence: development/launcher-evidence.md
       - View control: development/views.md
       - View evidence: development/p06-evidence.md
       - Model imports: development/model-imports.md
