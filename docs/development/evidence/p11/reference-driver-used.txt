@@ -1,0 +1,81 @@
+"""Compare parsed outputs with the preserved P08 reference using declared precision."""
+import json
+from collections import defaultdict
+from importlib.metadata import version
+from pathlib import Path
+
+import numpy as np
+from opm.io.ecl import EclFile, EGrid, eclArrType
+
+ROOT = Path('/private/tmp/resinsight-p11-runtime-20260909')
+REFERENCE = Path('/private/tmp/resinsight-p11-opm/tests/simulators/opm/data/reference')
+trial = json.loads((ROOT/'baseline-trial.json').read_text())
+ACTUAL = Path(trial['source_outputs'])
+checks = []
+runtime_times = []
+
+
+def compare(name, actual, expected, precision=None):
+    actual, expected = np.asarray(actual), np.asarray(expected)
+    if actual.shape != expected.shape:
+        checks.append({'name': name, 'accepted': False, 'reason': 'shape differs'})
+        return
+    if np.issubdtype(expected.dtype, np.floating):
+        dtype = np.dtype(precision or expected.dtype)
+        magnitude = np.asarray(np.max(np.abs(expected), initial=0), dtype=dtype)
+        tolerance = 2 * abs(float(np.spacing(magnitude)))
+        finite = bool(np.all(np.isfinite(actual)) and np.all(np.isfinite(expected)))
+        delta = float(np.max(np.abs(actual.astype(np.float64)-expected.astype(np.float64)), initial=0))
+        accepted = finite and bool(np.allclose(actual, expected, rtol=0, atol=tolerance))
+        checks.append({'name':name, 'accepted':accepted, 'count':int(expected.size),
+            'reference_dtype':str(dtype), 'maximum_absolute_difference':delta,
+            'absolute_tolerance':tolerance, 'relative_tolerance':0, 'finite':finite})
+    else:
+        checks.append({'name':name, 'accepted':bool(np.array_equal(actual, expected)),
+            'count':int(expected.size), 'comparison':'exact parsed identity'})
+
+
+for extension in ('EGRID','INIT','UNRST','SMSPEC','UNSMRY'):
+    actual = EclFile(str(ACTUAL/f'SPE1.{extension}'))
+    expected = EclFile(str(REFERENCE/f'SPE1.{extension}'))
+    same_layout = actual.arrays == expected.arrays
+    checks.append({'name':f'{extension}:array_layout','accepted':same_layout})
+    if not same_layout:
+        continue
+    occurrences = defaultdict(int)
+    for index,(name,kind,count) in enumerate(expected.arrays):
+        occurrence = occurrences[name]
+        occurrences[name] += 1
+        if kind == eclArrType.MESS:
+            continue
+        if extension == 'SMSPEC' and name == 'RUNTIMEI':
+            actual_values, expected_values = actual[index], expected[index]
+            runtime_times.append({
+                'name':'SMSPEC:RUNTIMEI compute start and write times',
+                'indices':list(range(3,15)),
+                'actual':actual_values[3:15].tolist(), 'reference':expected_values[3:15].tolist(),
+                'source':'https://github.com/OPM/opm-common/blob/release/2026.04/final/opm/io/eclipse/OutputStream.cpp#L647-L682',
+            })
+            compare('SMSPEC:RUNTIMEI simulation state', actual_values[:3], expected_values[:3])
+            compare('SMSPEC:RUNTIMEI remaining metadata', actual_values[15:], expected_values[15:])
+        else:
+            compare(f'{extension}:{name}:{occurrence}', actual[index], expected[index])
+
+actual_grid, reference_grid = (EGrid(str(path/'SPE1.EGRID')) for path in (ACTUAL,REFERENCE))
+compare('active-cell corners',
+    [actual_grid.xyz_from_active_index(i) for i in range(actual_grid.active_cells)],
+    [reference_grid.xyz_from_active_index(i) for i in range(reference_grid.active_cells)],
+    precision='float32')
+record = {
+    'trial_source_commit': json.loads((ROOT/'environment.json').read_text())['source_commit'],
+    'reference': str(REFERENCE), 'reference_run':'P08 p07-1',
+    'reference_source_commit':'f289e8eee5ea500f1a1f32535c6a262b35abaf16',
+    'reader_versions': {'opm':version('opm'),'numpy':version('numpy')},
+    'rule':'Two output-dtype increments at the largest absolute reference magnitude, with zero relative tolerance. Parsed integer and text identities must match exactly.',
+    'accepted':all(check['accepted'] for check in checks), 'checks':checks,
+    'per_run_wall_clock_metadata':runtime_times,
+    'raw_comparison_record':'reference-assessment-raw.json',
+}
+(ROOT/'reference-assessment.json').write_text(json.dumps(record,indent=2,allow_nan=False)+'\n')
+print(json.dumps({'accepted':record['accepted'],'checks':len(checks),
+    'failures':[check for check in checks if not check['accepted']]},indent=2))

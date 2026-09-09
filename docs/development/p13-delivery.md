@@ -4,7 +4,10 @@ The accepted goal completes [P11](https://github.com/LukasMosser/resinsight-mcp/
 P11 runs Open Porous Media (OPM) Flow against one immutable model revision.
 P12 validates, loads, queries, and compares the resulting data.
 P13 proves the full workflow through the shipped launcher and public MCP tools.
-This plan records remaining work and ownership, rather than claiming runtime acceptance.
+This plan records scope, ownership, and remaining acceptance gates.
+
+The [P11 record](evidence/p11/README.md) now establishes bounded Flow execution and verified numerical output through the Python service.
+Native P12 and complete public MCP P13 acceptance remain separate gates.
 
 ## Shared prerequisites
 
@@ -27,7 +30,7 @@ The P11 adapter retains Flow input preparation and output assessment.
 
 | Owner | Files and responsibilities |
 | --- | --- |
-| P11 | `src/resinsight_mcp/simulators/opm/`, matching tests, and the OPM developer guide. |
+| P11 | `src/resinsight_mcp/simulators/opm/`, matching tests, and the OPM user and developer guides. |
 | P11 prerequisite | Docker support in `src/resinsight_mcp/jobs/`, matching tests, and its developer guide. |
 | P12 | `src/resinsight_mcp/results/`, matching tests, and the results developer guide. |
 | P07 and P09 follow-up | Persistent prepared grids, restored case verification, and explicit adoption of existing native wells. |
@@ -58,6 +61,8 @@ The lead owns launcher composition of the reviewed follow-up interfaces.
 P11 evidence must distinguish process exit from accepted numerical output.
 It must record the actual Flow version, exact inputs, final simulation time, warnings, output roles, and justified numerical tolerances.
 P11 acceptance includes a successful run, invalid inputs, execution failure, cancellation, restart, and a deterministic reference case.
+The recorded runs passed the reference comparison and verified cleanup of all seven owned containers.
+The trials exposed a container exit-code defect, whose separate repair passed real cancellation and deadline reruns.
 
 P12 evidence must verify native pressure and saturation grids, summary curves, units, report times, and exact result lineage.
 Comparison requires aligned reports, compatible grids, equal units, signed changes, and fixed legends.

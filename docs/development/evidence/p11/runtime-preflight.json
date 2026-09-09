@@ -1,0 +1,10 @@
+{
+  "source_commit": "dccf25e80c538c7ef26baba7fc5b18b817e53965",
+  "versions": [
+    "29.3.1",
+    "29.3.1"
+  ],
+  "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+  "platform": "linux/arm64",
+  "check_dependencies_passed": true
+}

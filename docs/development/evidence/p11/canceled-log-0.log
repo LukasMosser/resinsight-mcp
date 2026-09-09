@@ -1,0 +1,237 @@
+**********************************************************************
+*                                                                    *
+*                        This is flow 2026.04                        *
+*                                                                    *
+* Flow is a simulator for fully implicit three-phase black-oil flow, *
+*             including solvent and polymer capabilities.            *
+*          For more information, see https://opm-project.org         *
+*                                                                    *
+**********************************************************************
+
+Using 1 MPI processes with 2 OMP threads on each 
+
+Reading deck file '/input/SPE1.DATA'
+    0 Reading RUNSPEC  in /input/SPE1.DATA line 16
+    1 Reading TITLE    in /input/SPE1.DATA line 18
+    2 Reading DIMENS   in /input/SPE1.DATA line 21
+    3 Reading EQLDIMS  in /input/SPE1.DATA line 24
+    4 Reading TABDIMS  in /input/SPE1.DATA line 27
+    5 Reading OIL      in /input/SPE1.DATA line 30
+    6 Reading GAS      in /input/SPE1.DATA line 32
+    7 Reading WATER    in /input/SPE1.DATA line 34
+    8 Reading DISGAS   in /input/SPE1.DATA line 36
+    9 Reading FIELD    in /input/SPE1.DATA line 38
+   10 Reading START    in /input/SPE1.DATA line 40
+   11 Reading WELLDIMS in /input/SPE1.DATA line 43
+   12 Reading UNIFOUT  in /input/SPE1.DATA line 46
+   13 Reading GRID     in /input/includes/grid.inc line 16
+   14 Reading INIT     in /input/includes/grid.inc line 18
+   15 Reading DX       in /input/includes/grid.inc line 20
+   16 Reading DY       in /input/includes/grid.inc line 65
+   17 Reading DZ       in /input/includes/grid.inc line 110
+   18 Reading TOPS     in /input/includes/grid.inc line 155
+   19 Reading PORO     in /input/includes/grid.inc line 172
+   20 Reading PERMX    in /input/includes/grid.inc line 217
+   21 Reading PERMY    in /input/includes/grid.inc line 262
+   22 Reading PERMZ    in /input/includes/grid.inc line 307
+   23 Reading PROPS    in /input/includes/props.inc line 16
+   24 Reading PVTW     in /input/includes/props.inc line 18
+   25 Reading ROCK     in /input/includes/props.inc line 21
+   26 Reading SWOF     in /input/includes/props.inc line 24
+   27 Reading SGOF     in /input/includes/props.inc line 27
+   28 Reading DENSITY  in /input/includes/props.inc line 30
+   29 Reading PVDG     in /input/includes/props.inc line 33
+   30 Reading PVTO     in /input/includes/props.inc line 36
+   31 Reading REGIONS  in /input/includes/regions.inc line 16
+   32 Reading FIPNUM   in /input/includes/regions.inc line 18
+   33 Reading SOLUTION in /input/includes/regions.inc line 63
+   34 Reading EQUIL    in /input/includes/regions.inc line 65
+   35 Reading RSVD     in /input/includes/regions.inc line 68
+   36 Reading SUMMARY  in /input/SPE1.DATA line 54
+   37 Reading FOPR     in /input/SPE1.DATA line 55
+   38 Reading WBHP     in /input/SPE1.DATA line 56
+   39 Reading SCHEDULE in /input/SPE1.DATA line 58
+   40 Reading RPTRST   in /input/includes/schedule.inc line 16
+   41 Reading DRSDT    in /input/includes/schedule.inc line 18
+   42 Reading WELSPECS in /input/includes/schedule.inc line 20
+   43 Reading COMPDAT  in /input/includes/schedule.inc line 24
+   44 Reading WCONPROD in /input/includes/schedule.inc line 28
+   45 Reading WCONINJE in /input/includes/schedule.inc line 31
+   46 Reading TSTEP    in /input/includes/schedule.inc line 34
+
+Creating grid from keywords DX, DY, DZ and TOPS
+3 fluid phases are active
+
+Processing dynamic information from
+/input/SPE1.DATA line 58
+Initializing report step 0/255 at 2015-01-01 0 DAYS line 58
+Reading from: /input/includes/schedule.inc line 16
+Processing keyword RPTRST at line 16
+Processing keyword DRSDT at line 18
+Processing keyword WELSPECS at line 20
+Processing keyword COMPDAT at line 24
+Processing keyword WCONPROD at line 28
+Processing keyword WCONINJE at line 31
+Complete report step 1 (1 DAYS) at 2015-01-02 (0 DAYS)
+
+Initializing report step 2/255 at 2015-01-02 (0 DAYS) line 34
+Complete report step 2 (1 DAYS) at 2015-01-03 (1 DAYS)
+
+Initializing report step 3/255 at 2015-01-03 (1 DAYS) line 34
+Complete report step 3 (1 DAYS) at 2015-01-04 (2 DAYS)
+
+Initializing report step 4/255 at 2015-01-04 (2 DAYS) line 34
+Complete report step 4 (1 DAYS) at 2015-01-05 (3 DAYS)
+
+Initializing report step 5/255 at 2015-01-05 (3 DAYS) line 34
+Complete report step 5 (1 DAYS) at 2015-01-06 (4 DAYS)
+
+Processing grid
+Total number of active cells: 300 / total pore volume: 534322820 RB
+
+
+================ Starting main simulation loop ===============
+
+
+Report step  0/255 at day 0/255, date = 01-Jan-2015
+Using Newton nonlinear solver.
+
+Starting time step 0, stepsize 1 days, at day 0/1, date = 01-Jan-2015
+Restart file written for report step   0/255, date = 01-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  1/255 at day 1/255, date = 02-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 1/2, date = 02-Jan-2015
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+Restart file written for report step   1/255, date = 02-Jan-2015 00:00:00
+
+Report step  2/255 at day 2/255, date = 03-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 2/3, date = 03-Jan-2015
+Restart file written for report step   2/255, date = 03-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  3/255 at day 3/255, date = 04-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 3/4, date = 04-Jan-2015
+Restart file written for report step   3/255, date = 04-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  4/255 at day 4/255, date = 05-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 4/5, date = 05-Jan-2015
+Restart file written for report step   4/255, date = 05-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  5/255 at day 5/255, date = 06-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 5/6, date = 06-Jan-2015
+Restart file written for report step   5/255, date = 06-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  6/255 at day 6/255, date = 07-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 6/7, date = 07-Jan-2015
+Restart file written for report step   6/255, date = 07-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  7/255 at day 7/255, date = 08-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 7/8, date = 08-Jan-2015
+Restart file written for report step   7/255, date = 08-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  8/255 at day 8/255, date = 09-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 8/9, date = 09-Jan-2015
+Restart file written for report step   8/255, date = 09-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step  9/255 at day 9/255, date = 10-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 9/10, date = 10-Jan-2015
+Restart file written for report step   9/255, date = 10-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+
+Report step 10/255 at day 10/255, date = 11-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 10/11, date = 11-Jan-2015
+Restart file written for report step  10/255, date = 11-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 11/255 at day 11/255, date = 12-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 11/12, date = 12-Jan-2015
+Restart file written for report step  11/255, date = 12-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 12/255 at day 12/255, date = 13-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 12/13, date = 13-Jan-2015
+Restart file written for report step  12/255, date = 13-Jan-2015 00:00:00
+ Newton its= 3, linearizations= 4 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 13/255 at day 13/255, date = 14-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 13/14, date = 14-Jan-2015
+Restart file written for report step  13/255, date = 14-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+
+Report step 14/255 at day 14/255, date = 15-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 14/15, date = 15-Jan-2015
+Restart file written for report step  14/255, date = 15-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 15/255 at day 15/255, date = 16-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 15/16, date = 16-Jan-2015
+Restart file written for report step  15/255, date = 16-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 16/255 at day 16/255, date = 17-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 16/17, date = 17-Jan-2015
+Restart file written for report step  16/255, date = 17-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 17/255 at day 17/255, date = 18-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 17/18, date = 18-Jan-2015
+Restart file written for report step  17/255, date = 18-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 18/255 at day 18/255, date = 19-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 18/19, date = 19-Jan-2015
+Restart file written for report step  18/255, date = 19-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  1 (0.0sec)
+
+Report step 19/255 at day 19/255, date = 20-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 19/20, date = 20-Jan-2015
+Restart file written for report step  19/255, date = 20-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 20/255 at day 20/255, date = 21-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 20/21, date = 21-Jan-2015
+Restart file written for report step  20/255, date = 21-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 21/255 at day 21/255, date = 22-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 21/22, date = 22-Jan-2015
+Restart file written for report step  21/255, date = 22-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 22/255 at day 22/255, date = 23-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 22/23, date = 23-Jan-2015
+Restart file written for report step  22/255, date = 23-Jan-2015 00:00:00
+ Newton its= 2, linearizations= 3 (0.0sec), linear its=  2 (0.0sec)
+
+Report step 23/255 at day 23/255, date = 24-Jan-2015
+
+Starting time step 0, stepsize 1 days, at day 23/24, date = 24-Jan-2015

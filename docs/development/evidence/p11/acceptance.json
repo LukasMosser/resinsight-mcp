@@ -1,0 +1,87 @@
+{
+  "initial_source_commit": "405dec28de4ea129eebc81c45fb7d36c4d69b3c1",
+  "flow_source_commit": "cd97f2f14ea1e5ed1daccd84889ac7614a7deac2",
+  "corrected_source_commit": "dccf25e80c538c7ef26baba7fc5b18b817e53965",
+  "workspace": "/private/tmp/resinsight-p11-runtime-20260909/workspace",
+  "successful_result_ids": {
+    "baseline": "result_be862689498f41ca9abe0c91b4ed722c",
+    "changed": "result_0a9a1d40327748f9b8bcef48153143c5"
+  },
+  "reference_assessment": "reference-assessment.json",
+  "reference_accepted": true,
+  "initial_exit_code_defect": {
+    "affected_trials": [
+      "canceled",
+      "deadline"
+    ],
+    "reported_job_code": 0,
+    "actual_container_code": 137,
+    "corrected_trials": [
+      "canceled-repaired",
+      "deadline-repaired"
+    ],
+    "corrected_job_code": 137
+  },
+  "containers": [
+    {
+      "trial": "baseline",
+      "id": "dbfe23e88304f9fbb7a7e65563ec94145f713d355bb9ad7d8da5dfdddcb20a04",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "changed",
+      "id": "daedb8ba6f74650d341da0e16fb597dfc786e5bc51ef05b35679c415e1e79a3e",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "canceled",
+      "id": "c934aed2ec21bcb6c4bec6984cc336947ce1e62a84e8a14f2f210d8bdbc45f4c",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "deadline",
+      "id": "c00ddf36eeb4e4f3c26fc09582a1efd0c3c05d37ba10b515d5f7f10c97b3aed5",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "memory-failure",
+      "id": "ef4d64c7a46c038397af93bc83bb250bf0f6ac6a82f967d68284a0f57139e861",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "canceled-repaired",
+      "id": "c0616cdd848b027384a027ce2872e77bc948e550e6dcaf6394e30a93adf84ba7",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    },
+    {
+      "trial": "deadline-repaired",
+      "id": "8d9ebf3c5203c6c0e9950929a48eaad40d32bb10cac07f5db9730e3757273e01",
+      "running": false,
+      "retained": false,
+      "removed_after_evidence_capture": true
+    }
+  ],
+  "trials": {
+    "baseline": "baseline-trial.json",
+    "changed": "changed-trial.json",
+    "canceled": "canceled-trial.json",
+    "deadline": "deadline-trial.json",
+    "memory-failure": "memory-failure-trial.json",
+    "canceled-repaired": "canceled-repaired-trial.json",
+    "deadline-repaired": "deadline-repaired-trial.json"
+  },
+  "cleanup": "cleanup.json",
+  "evidence_scope": "Curated structured records and logs. The database and duplicate staged outputs remain outside Git."
+}

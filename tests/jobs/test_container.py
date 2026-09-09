@@ -65,6 +65,7 @@ def test_cancel_stops_container_and_keeps_evidence(workspace: tuple[Path, JobReq
     require(service.request_cancel(reference(job)))
     completed = wait_job(service, job)
     assert completed.state == JobState.CANCELED
+    assert completed.exit_code == 137
     assert completed.termination_confirmed
     assert completed.submission is not None
     container = OwnedContainer(completed.submission, completed.container_id)
@@ -95,6 +96,7 @@ def test_deadline_stops_daemon_work(workspace: tuple[Path, JobRequest]) -> None:
     )
     completed = wait_job(service, require(service.submit(request)))
     assert completed.state == JobState.FAILED
+    assert completed.exit_code == 137
     assert completed.error is not None and "deadline" in completed.error.message
     assert not json.loads((root / "container.json").read_text())["State"]["Running"]
 

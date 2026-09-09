@@ -13,8 +13,10 @@ The existing independent supervisor keeps execution separate from the MCP client
 
 Cancellation and deadlines inspect the saved container identity, image, name, and ownership label.
 They stop the container before terminating its local log reader.
+After cancellation or a deadline, the job records the inspected container exit code.
 A terminal cancellation requires both container and local process termination evidence.
 An unavailable Docker response produces an unknown outcome rather than confirmed cancellation.
+
 Each Docker command has a bounded timeout.
 A Docker daemon failure can prevent confirmation or enforcement of a stop request.
 

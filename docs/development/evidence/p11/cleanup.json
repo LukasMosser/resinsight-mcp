@@ -1,0 +1,153 @@
+{
+  "at": "2026-09-09T16:42:53.947884+00:00",
+  "records": [
+    {
+      "trial": "baseline",
+      "before": {
+        "container_id": "dbfe23e88304f9fbb7a7e65563ec94145f713d355bb9ad7d8da5dfdddcb20a04",
+        "name": "/resinsight-opm-e461ef0905f2409eb463e4b6ec9797fc",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "26fdac589cec49ea997d6e572e32ef93"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 0
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "changed",
+      "before": {
+        "container_id": "daedb8ba6f74650d341da0e16fb597dfc786e5bc51ef05b35679c415e1e79a3e",
+        "name": "/resinsight-opm-db17e833ea3d43539a343ea5909b9035",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "d4fe5818020949fc9b596057f61f45f0"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 0
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "canceled",
+      "before": {
+        "container_id": "c934aed2ec21bcb6c4bec6984cc336947ce1e62a84e8a14f2f210d8bdbc45f4c",
+        "name": "/resinsight-opm-ae48d04011af480face7038a7431a68a",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "537539c31dd84baaa2982f3272691cf3"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 137
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "deadline",
+      "before": {
+        "container_id": "c00ddf36eeb4e4f3c26fc09582a1efd0c3c05d37ba10b515d5f7f10c97b3aed5",
+        "name": "/resinsight-opm-fd50329d6be542188181b7f09c00abcd",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "7b3042ba4eee4680ae51c51f9e785d5c"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 137
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "memory-failure",
+      "before": {
+        "container_id": "ef4d64c7a46c038397af93bc83bb250bf0f6ac6a82f967d68284a0f57139e861",
+        "name": "/resinsight-opm-b26c10f640bb4f2ba55570d0cc9a209e",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "94167f189a5d49b581175b1650be37c5"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 137
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "canceled-repaired",
+      "before": {
+        "container_id": "c0616cdd848b027384a027ce2872e77bc948e550e6dcaf6394e30a93adf84ba7",
+        "name": "/resinsight-opm-ae571cdf4b5a4f4f9fb26ed7a2189d13",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "34720a3cdfff41e5825725341e77bb4b"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 137
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    },
+    {
+      "trial": "deadline-repaired",
+      "before": {
+        "container_id": "8d9ebf3c5203c6c0e9950929a48eaad40d32bb10cac07f5db9730e3757273e01",
+        "name": "/resinsight-opm-f38b6dc29f3243508cc08252bd486617",
+        "configuration": {
+          "image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+          "labels": {
+            "org.opencontainers.image.version": "24.04",
+            "org.resinsight-mcp.owner": "505569202c584ef2a9024f689120ffc5"
+          }
+        },
+        "state": {
+          "running": false,
+          "status": "exited",
+          "exit_code": 137
+        }
+      },
+      "removed": true,
+      "absent_from_successful_daemon_inventory": true
+    }
+  ],
+  "host_output_directories_preserved": true
+}

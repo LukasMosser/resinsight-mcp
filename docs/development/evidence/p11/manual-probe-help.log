@@ -1,0 +1,16 @@
+usage: manual_acceptance.py [-h] --output OUTPUT [--docker DOCKER]
+                            [--reference REFERENCE]
+                            [--assess-existing ASSESS_EXISTING]
+
+Run the bounded Flow probe explicitly, or compare existing outputs without a
+launch.
+
+options:
+  -h, --help            show this help message and exit
+  --output OUTPUT       New output directory, or comparison JSON with
+                        --assess-existing.
+  --docker DOCKER
+  --reference REFERENCE
+  --assess-existing ASSESS_EXISTING
+                        Compare this output directory without Docker or a
+                        workspace.

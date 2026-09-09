@@ -9,6 +9,7 @@ Its SQLite workspace store preserves sessions, immutable model revisions, artifa
 The MCP transport binds these services and preserves native image responses.
 Session and view adapters control verified application connections and capture fresh observations.
 Model import and job services provide additional domain components.
+The OPM adapter runs the fixed FIELD profile in owned containers and publishes verified numerical results.
 Constrained model creation supplies validated layered inputs through the model import boundary.
 
 Model materialization supplies isolated stored inputs and validated child revisions for domain consumers.
@@ -30,6 +31,8 @@ Start with these pages:
 - [Jobs](jobs.md) explains durable supervision, resource policy, and recovery limits.
 - [Docker job ownership](docker-jobs.md) explains container identity, deadlines, cancellation, and explicit recovery.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
+- [OPM Flow service](opm.md) explains isolated runs, dependency checks, immutable output publication, and numerical acceptance.
+- [OPM runtime evidence](evidence/p11/README.md) records successful runs, changed controls, failures, fresh-service recovery, and a deterministic reference comparison.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.
 - [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.

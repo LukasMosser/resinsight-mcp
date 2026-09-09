@@ -1,0 +1,63 @@
+{
+  "Id": "c934aed2ec21bcb6c4bec6984cc336947ce1e62a84e8a14f2f210d8bdbc45f4c",
+  "Image": "sha256:0766b5b968c5fb8a4ced2cb712eb16bd9754f0b3a4db2fa48424e9c3ea568117",
+  "Name": "/resinsight-opm-ae48d04011af480face7038a7431a68a",
+  "Config": {
+    "Image": "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1",
+    "Labels": {
+      "org.opencontainers.image.version": "24.04",
+      "org.resinsight-mcp.owner": "537539c31dd84baaa2982f3272691cf3"
+    },
+    "Cmd": [
+      "flow",
+      "/input/SPE1.DATA",
+      "--output-dir=/output"
+    ]
+  },
+  "State": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 137,
+    "Error": "",
+    "StartedAt": "2026-09-09T16:21:47.650202835Z",
+    "FinishedAt": "2026-09-09T16:21:48.963697335Z"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae48d04011af480face7038a7431a68a/inputs",
+      "Destination": "/input",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/ae48d04011af480face7038a7431a68a/outputs",
+      "Destination": "/output",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "volume",
+      "Name": "4bb446e634db5b15bf985d9b5c87c3577de7041ef56b2fb644a693bb9a727f33",
+      "Source": "/var/lib/docker/volumes/4bb446e634db5b15bf985d9b5c87c3577de7041ef56b2fb644a693bb9a727f33/_data",
+      "Destination": "/shared_host",
+      "Driver": "local",
+      "Mode": "",
+      "RW": true,
+      "Propagation": ""
+    }
+  ],
+  "HostConfig": {
+    "Memory": 2147483648,
+    "NanoCpus": 1000000000,
+    "NetworkMode": "none"
+  }
+}

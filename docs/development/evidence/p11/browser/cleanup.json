@@ -1,0 +1,13 @@
+{
+  "preview_origin": "http://127.0.0.1:63008",
+  "browser_close": "The driver awaited browser.close() before stopping its server.",
+  "server_stop": "The driver sent SIGTERM to its own spawned server.",
+  "listener_check": {
+    "command": "lsof -nP -iTCP:63008 -sTCP:LISTEN",
+    "exit_code": 1,
+    "output": "",
+    "listener_remaining": false
+  },
+  "resinsight_launched": false,
+  "docker_commands_run": false
+}

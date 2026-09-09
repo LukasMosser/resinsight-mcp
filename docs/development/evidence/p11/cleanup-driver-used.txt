@@ -1,0 +1,24 @@
+import json
+from datetime import UTC, datetime
+from pathlib import Path
+from resinsight_mcp.contracts.jobs import Job
+from resinsight_mcp.jobs._container import OwnedContainer
+root = Path('/private/tmp/resinsight-p11-runtime-20260909')
+summary = json.loads((root/'acceptance.json').read_text())
+records = []
+for item in summary['containers']:
+    name = item['trial']
+    job = Job.model_validate_json((root/f'{name}-job.json').read_text())
+    owned = OwnedContainer(job.submission, job.container_id)
+    before = owned.inspect()
+    if before.state.running:
+        raise RuntimeError('Cleanup requires the recorded trial container to remain stopped.')
+    owned.remove()
+    absent = owned.find() is None
+    if not absent:
+        raise RuntimeError('The removed trial container remains in the daemon inventory.')
+    records.append({'trial':name, 'before':before.model_dump(mode='json'), 'removed':True,
+                    'absent_from_successful_daemon_inventory':absent})
+    (root/'cleanup.json').write_text(json.dumps({'at':datetime.now(UTC).isoformat(),
+        'records':records, 'host_output_directories_preserved':True},indent=2)+'\n')
+print(json.dumps({'removed':len(records),'all_absent':all(r['absent_from_successful_daemon_inventory'] for r in records)}))

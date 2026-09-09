@@ -1,0 +1,37 @@
+{
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "revision_id": "revision_404bb6b3380143a691effe661d6f7626"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_c436edcfeb6e47fb92e382df656b12a2",
+          "artifact_e8e941d03bcc46099d476bbd3cb1a1fb",
+          "artifact_2090767adf264c199b9131afba9954ff",
+          "artifact_807ee74a34bb4c2fb15f7d3efd2553df",
+          "artifact_1ab582b9086e496d9f7fc53c0b9e66e0"
+        ],
+        "entrypoint": "artifact_c436edcfeb6e47fb92e382df656b12a2"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local depth datum"
+      },
+      "parent": {
+        "session_id": "session_ba520672e0414f7297b4a1c7b3795cb9",
+        "revision_id": "revision_591679b682d0443eba27984a8ab98f7d"
+      }
+    },
+    "backend": "opm_flow"
+  },
+  "limits": {
+    "cpu_count": 2,
+    "memory_mib": 2048,
+    "wall_time_seconds": 60
+  },
+  "resource_policy": "enforce"
+}

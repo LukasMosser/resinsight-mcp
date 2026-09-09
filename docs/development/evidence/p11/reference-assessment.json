@@ -1,0 +1,877 @@
+{
+  "trial_source_commit": "405dec28de4ea129eebc81c45fb7d36c4d69b3c1",
+  "reference": "/private/tmp/resinsight-p11-opm/tests/simulators/opm/data/reference",
+  "reference_run": "P08 p07-1",
+  "reference_source_commit": "f289e8eee5ea500f1a1f32535c6a262b35abaf16",
+  "reader_versions": {
+    "opm": "2025.10",
+    "numpy": "2.5.3"
+  },
+  "rule": "Two output-dtype increments at the largest absolute reference magnitude, with zero relative tolerance. Parsed integer and text identities must match exactly.",
+  "accepted": true,
+  "checks": [
+    {
+      "name": "EGRID:array_layout",
+      "accepted": true
+    },
+    {
+      "name": "EGRID:FILEHEAD:0",
+      "accepted": true,
+      "count": 100,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "EGRID:GRIDUNIT:0",
+      "accepted": true,
+      "count": 2,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "EGRID:GRIDHEAD:0",
+      "accepted": true,
+      "count": 100,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "EGRID:COORD:0",
+      "accepted": true,
+      "count": 726,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.001953125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "EGRID:ZCORN:0",
+      "accepted": true,
+      "count": 2400,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.001953125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "EGRID:ACTNUM:0",
+      "accepted": true,
+      "count": 300,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "EGRID:ENDGRID:0",
+      "accepted": true,
+      "count": 0,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:array_layout",
+      "accepted": true
+    },
+    {
+      "name": "INIT:INTEHEAD:0",
+      "accepted": true,
+      "count": 411,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:LOGIHEAD:0",
+      "accepted": true,
+      "count": 121,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:DOUBHEAD:0",
+      "accepted": true,
+      "count": 229,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 65536.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:PORV:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.5,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:DEPTH:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.001953125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:DX:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.0001220703125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:DY:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.0001220703125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:DZ:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 7.62939453125e-06,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:PORO:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 5.960464477539063e-08,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:PERMX:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 6.103515625e-05,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:PERMY:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 6.103515625e-05,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:PERMZ:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 6.103515625e-05,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:NTG:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:TRANX:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.9073486328125e-06,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:TRANY:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.9073486328125e-06,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:TRANZ:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.00048828125,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:MULTX:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:MULTY:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:MULTZ:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "INIT:EQLNUM:0",
+      "accepted": true,
+      "count": 300,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:PVTNUM:0",
+      "accepted": true,
+      "count": 300,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:SATNUM:0",
+      "accepted": true,
+      "count": 300,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:FIPNUM:0",
+      "accepted": true,
+      "count": 300,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:TABDIMS:0",
+      "accepted": true,
+      "count": 100,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "INIT:TAB:0",
+      "accepted": true,
+      "count": 2528,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 65536.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:array_layout",
+      "accepted": true
+    },
+    {
+      "name": "UNRST:SEQNUM:0",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:INTEHEAD:0",
+      "accepted": true,
+      "count": 411,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:LOGIHEAD:0",
+      "accepted": true,
+      "count": 121,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:DOUBHEAD:0",
+      "accepted": true,
+      "count": 229,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 65536.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:PRESSURE:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.0009765625,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:RS:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SGAS:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.802596928649634e-45,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SWAT:0",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.4901161193847656e-08,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SEQNUM:1",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:INTEHEAD:1",
+      "accepted": true,
+      "count": 411,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:LOGIHEAD:1",
+      "accepted": true,
+      "count": 121,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:DOUBHEAD:1",
+      "accepted": true,
+      "count": 229,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 65536.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:IGRP:0",
+      "accepted": true,
+      "count": 202,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SGRP:0",
+      "accepted": true,
+      "count": 224,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 35184372088832.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XGRP:0",
+      "accepted": true,
+      "count": 362,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.9103830456733704e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:ZGRP:0",
+      "accepted": true,
+      "count": 10,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:IWEL:0",
+      "accepted": true,
+      "count": 310,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SWEL:0",
+      "accepted": true,
+      "count": 244,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 17592186044416.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XWEL:0",
+      "accepted": true,
+      "count": 262,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.9103830456733704e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:ZWEL:0",
+      "accepted": true,
+      "count": 6,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:ZWLS:0",
+      "accepted": true,
+      "count": 4,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:IWLS:0",
+      "accepted": true,
+      "count": 4,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:ICON:0",
+      "accepted": true,
+      "count": 52,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SCON:0",
+      "accepted": true,
+      "count": 84,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 17592186044416.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XCON:0",
+      "accepted": true,
+      "count": 116,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.9103830456733704e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:PRESSURE:1",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.0009765625,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:RS:1",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SGAS:1",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 7.450580596923828e-09,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SWAT:1",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.4901161193847656e-08,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SEQNUM:2",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:INTEHEAD:2",
+      "accepted": true,
+      "count": 411,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:LOGIHEAD:2",
+      "accepted": true,
+      "count": 121,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:DOUBHEAD:2",
+      "accepted": true,
+      "count": 229,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 65536.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:IGRP:1",
+      "accepted": true,
+      "count": 202,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SGRP:1",
+      "accepted": true,
+      "count": 224,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 35184372088832.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XGRP:1",
+      "accepted": true,
+      "count": 362,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 5.820766091346741e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:ZGRP:1",
+      "accepted": true,
+      "count": 10,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:IWEL:1",
+      "accepted": true,
+      "count": 310,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SWEL:1",
+      "accepted": true,
+      "count": 244,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 17592186044416.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XWEL:1",
+      "accepted": true,
+      "count": 262,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 5.820766091346741e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:ZWEL:1",
+      "accepted": true,
+      "count": 6,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:ZWLS:1",
+      "accepted": true,
+      "count": 4,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:IWLS:1",
+      "accepted": true,
+      "count": 4,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:ICON:1",
+      "accepted": true,
+      "count": 52,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNRST:SCON:1",
+      "accepted": true,
+      "count": 84,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 17592186044416.0,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:XCON:1",
+      "accepted": true,
+      "count": 116,
+      "reference_dtype": "float64",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 5.820766091346741e-11,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:PRESSURE:2",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.0009765625,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:RS:2",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 2.384185791015625e-07,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SGAS:2",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.4901161193847656e-08,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNRST:SWAT:2",
+      "accepted": true,
+      "count": 300,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 1.4901161193847656e-08,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "SMSPEC:array_layout",
+      "accepted": true
+    },
+    {
+      "name": "SMSPEC:INTEHEAD:0",
+      "accepted": true,
+      "count": 2,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:RESTART:0",
+      "accepted": true,
+      "count": 9,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:DIMENS:0",
+      "accepted": true,
+      "count": 6,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:KEYWORDS:0",
+      "accepted": true,
+      "count": 5,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:WGNAMES:0",
+      "accepted": true,
+      "count": 5,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:NUMS:0",
+      "accepted": true,
+      "count": 5,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:UNITS:0",
+      "accepted": true,
+      "count": 5,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:STARTDAT:0",
+      "accepted": true,
+      "count": 6,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:RUNTIMEI simulation state",
+      "accepted": true,
+      "count": 3,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "SMSPEC:RUNTIMEI remaining metadata",
+      "accepted": true,
+      "count": 35,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNSMRY:array_layout",
+      "accepted": true
+    },
+    {
+      "name": "UNSMRY:SEQHDR:0",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNSMRY:MINISTEP:0",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNSMRY:PARAMS:0",
+      "accepted": true,
+      "count": 5,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.00390625,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "UNSMRY:SEQHDR:1",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNSMRY:MINISTEP:1",
+      "accepted": true,
+      "count": 1,
+      "comparison": "exact parsed identity"
+    },
+    {
+      "name": "UNSMRY:PARAMS:1",
+      "accepted": true,
+      "count": 5,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.00390625,
+      "relative_tolerance": 0,
+      "finite": true
+    },
+    {
+      "name": "active-cell corners",
+      "accepted": true,
+      "count": 7200,
+      "reference_dtype": "float32",
+      "maximum_absolute_difference": 0.0,
+      "absolute_tolerance": 0.001953125,
+      "relative_tolerance": 0,
+      "finite": true
+    }
+  ],
+  "per_run_wall_clock_metadata": [
+    {
+      "name": "SMSPEC:RUNTIMEI compute start and write times",
+      "indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "actual": [
+        2026,
+        9,
+        9,
+        16,
+        20,
+        17,
+        2026,
+        9,
+        9,
+        16,
+        20,
+        17
+      ],
+      "reference": [
+        2026,
+        9,
+        9,
+        7,
+        43,
+        4,
+        2026,
+        9,
+        9,
+        7,
+        43,
+        4
+      ],
+      "source": "https://github.com/OPM/opm-common/blob/release/2026.04/final/opm/io/eclipse/OutputStream.cpp#L647-L682"
+    }
+  ],
+  "raw_comparison_record": "reference-assessment-raw.json"
+}

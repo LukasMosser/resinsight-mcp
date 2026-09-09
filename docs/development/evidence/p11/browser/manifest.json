@@ -1,0 +1,47 @@
+[
+  {
+    "path": "/"
+  },
+  {
+    "path": "/opm/",
+    "image": "user-guide.png"
+  },
+  {
+    "path": "/opm/",
+    "image": "python-workflow.png",
+    "heading": "Import, submit, and collect"
+  },
+  {
+    "path": "/opm/",
+    "image": "result-policy.png",
+    "heading": "Understand the result"
+  },
+  {
+    "path": "/development/opm/",
+    "image": "developer-guide.png"
+  },
+  {
+    "path": "/development/opm/",
+    "image": "output-verification.png",
+    "heading": "Exact output verification"
+  },
+  {
+    "path": "/development/opm/",
+    "image": "manual-runtime.png",
+    "heading": "Recorded runtime acceptance"
+  },
+  {
+    "path": "/development/evidence/p11/",
+    "image": "runtime-evidence.png"
+  },
+  {
+    "path": "/development/evidence/p11/",
+    "image": "reference-comparison.png",
+    "heading": "Independent reference comparison"
+  },
+  {
+    "path": "/development/evidence/p11/",
+    "image": "termination-evidence.png",
+    "heading": "Cancellation, deadlines, and failure"
+  }
+]

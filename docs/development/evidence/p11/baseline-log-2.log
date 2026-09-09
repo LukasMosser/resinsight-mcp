@@ -1,0 +1,6 @@
+Resource policy: enforce
+Requested CPU count: 2
+Requested memory MiB: 2048
+Wall deadline seconds: 60
+Docker create arguments: ["create", "--pull=never", "--network=none", "--platform", "linux/arm64", "--cpus", "2", "--memory", "2048m", "--name", "resinsight-opm-e461ef0905f2409eb463e4b6ec9797fc", "--label", "org.resinsight-mcp.owner=26fdac589cec49ea997d6e572e32ef93", "--workdir", "/output", "--mount", "type=bind,source=/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/e461ef0905f2409eb463e4b6ec9797fc/inputs,target=/input,readonly", "--mount", "type=bind,source=/private/tmp/resinsight-p11-runtime-20260909/workspace/opm-runs/e461ef0905f2409eb463e4b6ec9797fc/outputs,target=/output", "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1", "flow", "/input/SPE1.DATA", "--output-dir=/output"]
+Execution outcome: exit; exit status: 0
