@@ -1,0 +1,14 @@
+{
+  "source_commit": "f289e8eee5ea500f1a1f32535c6a262b35abaf16",
+  "command": "uv run --locked python scripts/check.py",
+  "outcome": "passed",
+  "tests_passed": 419,
+  "p08_tests_passed": 26,
+  "versions": {
+    "uv": "uv 0.9.18 (Homebrew 2025-12-16)",
+    "ruff": "ruff 0.16.6",
+    "ty": "ty 0.0.79 (b4cd79275 2026-09-07)",
+    "pytest": "pytest 9.1.1"
+  },
+  "note": "The acceptance source is committed. Only documentation and evidence changed after numerical execution."
+}

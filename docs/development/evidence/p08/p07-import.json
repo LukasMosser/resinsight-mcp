@@ -1,0 +1,98 @@
+{
+  "prepared": {
+    "revision": {
+      "model": {
+        "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+        "revision_id": "revision_37a5b76280294229b326170e3365ed3f"
+      },
+      "inputs": {
+        "artifacts": [
+          "artifact_72cfda9df3774d44bb4776a3ef3186d4",
+          "artifact_c99306786ce94c7f9cf575da7f7dd840",
+          "artifact_13e5bbc0688f496ba713b15e262f5e9a",
+          "artifact_dab94ae5c00546e1b6297789dcc2351e",
+          "artifact_047053c45b3347c58b851335c9ae7c51"
+        ],
+        "entrypoint": "artifact_72cfda9df3774d44bb4776a3ef3186d4"
+      },
+      "unit_system": "FIELD",
+      "coordinates": {
+        "length_unit": "ft",
+        "depth_direction": "positive_down",
+        "datum": "SPE1 local depth datum"
+      },
+      "parent": null
+    },
+    "backend": "opm_flow"
+  },
+  "record": {
+    "session_id": "session_9876572fd02446c9b3899acc2d23b46c",
+    "artifact_id": "artifact_5b0381233c59441082e496595f00cf4a"
+  },
+  "summary": {
+    "parser_version": "2025.10",
+    "support_profile": "spe1-field-v1",
+    "unit_system": "FIELD",
+    "dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "wells": [
+      "PROD",
+      "INJ"
+    ],
+    "report_steps": 2,
+    "elapsed_days": 2.0,
+    "keywords": [
+      "COMPDAT",
+      "DENSITY",
+      "DIMENS",
+      "DISGAS",
+      "DRSDT",
+      "DX",
+      "DY",
+      "DZ",
+      "EQLDIMS",
+      "EQUIL",
+      "FIELD",
+      "FIPNUM",
+      "FOPR",
+      "GAS",
+      "GRID",
+      "INIT",
+      "OIL",
+      "PERMX",
+      "PERMY",
+      "PERMZ",
+      "PORO",
+      "PROPS",
+      "PVDG",
+      "PVTO",
+      "PVTW",
+      "REGIONS",
+      "ROCK",
+      "RPTRST",
+      "RSVD",
+      "RUNSPEC",
+      "SCHEDULE",
+      "SGOF",
+      "SOLUTION",
+      "START",
+      "SUMMARY",
+      "SWOF",
+      "TABDIMS",
+      "TITLE",
+      "TOPS",
+      "TSTEP",
+      "UNIFOUT",
+      "WATER",
+      "WBHP",
+      "WCONINJE",
+      "WCONPROD",
+      "WELLDIMS",
+      "WELSPECS"
+    ]
+  }
+}

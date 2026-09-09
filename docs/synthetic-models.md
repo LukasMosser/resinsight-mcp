@@ -100,4 +100,5 @@ These data terms remain separate from the repository software license.
 Retain attribution and applicable data notices with public results.
 
 Focused tests check generated properties, active-cell order, stored specification recovery, and OPM completion cells.
-The [development record](development/synthetic-models.md) separates these checks from pending simulator acceptance.
+The [development record](development/synthetic-models.md) records four successful reference runs and their numerical tolerances.
+That numerical evidence covers the supplied two-day gas-injection reference on the pinned Flow runtime.

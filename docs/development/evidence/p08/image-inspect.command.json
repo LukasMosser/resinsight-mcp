@@ -1,0 +1,11 @@
+{
+  "arguments": [
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "image",
+    "inspect",
+    "openporousmedia/opmreleases@sha256:810b1a2b72ee24a194df033781e82d57ad3a262167054953c0c3e37d9c0cbbc1"
+  ],
+  "wall_limit_seconds": 60,
+  "exit_status": 0,
+  "wall_seconds": 2.8955293329199776
+}

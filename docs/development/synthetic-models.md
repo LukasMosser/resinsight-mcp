@@ -33,14 +33,21 @@ Copyright 2015 Statoil applies to the source data.
 The Open Database License 1.0 and Database Contents License 1.0 apply separately from the software license.
 This reuse does not change the repository software license.
 
-## Numerical acceptance plan
+## Numerical acceptance
 
-The existing [P07 record](evidence/p07/acceptance.json) reports a 10 by 10 by 3 grid with 300 active cells.
-The report at two days has pressure extrema of 4438.43212890625 and 5421.6787109375 psi.
-The record identifies its Flow image, parser, ResInsight version, source revision, and prepared inputs.
-It does not contain a solver repeatability study or a justified numerical tolerance.
+Four isolated Flow trials passed at commit `f289e8eee5ea500f1a1f32535c6a262b35abaf16` on September 9, 2026.
+Two trials used the preserved P07 fixture, and two used the generated reference specification.
+Every trial reached two days with 300 active cells and the intended injector and producer connections.
+All compared cell pressures, field oil rates, and well pressures had zero differences across both repeats and model sources.
+The [P08 evidence](evidence/p08/README.md) records the source, commands, versions, tolerances, and complete numerical arrays.
 
-P08 will reproduce that model through typed generation and compare semantic inputs before running Flow.
-The coordinated acceptance will establish repeatability with the same pinned simulator image and recorded solver settings.
-The numerical tolerance must reflect that evidence and the precision of the exported pressure values.
-No numerical simulator acceptance is claimed by the grid tests.
+The tolerance rule uses two representable output increments at each reference magnitude, with zero relative tolerance.
+Cell pressure tolerance is 0.0009765625 psia, and field oil-rate tolerance is 0.00390625 stb/day.
+The rule was fixed before execution and does not expand with measured repeat differences.
+This evidence covers the pinned Flow runtime and the supplied gas-injection reference on the tested host.
+Other generated specifications still require separate convergence checks.
+Native geometry review and production MCP simulation acceptance remain separate work.
+
+The service cleanup tests also cover failed cleanup after successful publication and after delegated import failures.
+They preserve the created revision identity and retain `UNKNOWN` whenever publication may have happened.
+No application source change was needed for these cases.
