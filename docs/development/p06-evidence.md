@@ -90,12 +90,13 @@ Saturation comparisons retain bounds of zero to one.
 The gate checks issued references, typed receipts, actual camera values, fixed legends, distinct observation identifiers, and decoded 1200 by 800 PNGs.
 It requires the model's final answer after all seven MCP calls and rejects unrelated tools.
 The model must describe visible spatial and color changes from all six images.
+
 The [original audit](evidence/p06/observer/audit.json) passed with exit code zero, seven completed MCP calls, and six native images.
 Its `visual_claims_verified: false` field reserves the visual decision for separate review.
 The audit remains unchanged.
+
 The separate [visual review](evidence/p06/observer/image-review.json) records acceptance by the lead and an independent Codex agent.
 Both reviewed all six images and accepted all four answer fields.
-These are Codex reviews, not human reviews.
 Saturation descriptions apply only to visible cells and do not establish numerical simulator accuracy.
 
 The [environment](evidence/p06/observer/environment.json) records the tested sources, command, Python 3.12.13, MCP 1.30.0, and Pillow 12.3.0.

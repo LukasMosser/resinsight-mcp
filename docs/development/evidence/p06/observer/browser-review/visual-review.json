@@ -1,0 +1,18 @@
+{
+  "reviewer": "Lead Codex agent",
+  "result": "accepted",
+  "inspected_images": [
+    "intro.png",
+    "model-review.png",
+    "image-index.png"
+  ],
+  "findings": [
+    "The page title, current status, source references, and tables render clearly.",
+    "The automated audit and separate image review are distinct paragraphs.",
+    "The six-image index is legible and stays within the content column."
+  ],
+  "automated_record": "review.json",
+  "limits": [
+    "This review does not inspect the native ResInsight editor."
+  ]
+}

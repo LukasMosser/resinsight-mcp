@@ -1,0 +1,87 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { spawn, execFileSync } = require('node:child_process');
+const { chromium } = require('playwright');
+
+const repository = '/private/tmp/resinsight-p06-final';
+const output = '/private/tmp/resinsight-p06-docs-review';
+fs.mkdirSync(output);
+const server = spawn(path.join(repository, '.venv/bin/python'), [
+  '-u', '-m', 'http.server', '0', '--bind', '127.0.0.1', '--directory', path.join(repository, 'site'),
+], { stdio: ['ignore', 'pipe', 'pipe'] });
+let browser;
+let serverLog = '';
+server.stderr.on('data', chunk => { serverLog += chunk.toString(); });
+
+(async () => {
+  try {
+    const port = await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('Local documentation server did not start.')), 10000);
+      server.once('error', reject);
+      server.stdout.on('data', chunk => {
+        const text = chunk.toString();
+        serverLog += text;
+        const match = /port (\d+)/.exec(text);
+        if (match) { clearTimeout(timer); resolve(Number(match[1])); }
+      });
+    });
+    const origin = `http://127.0.0.1:${port}`;
+    browser = await chromium.launch({
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      chromiumSandbox: true,
+      headless: true,
+    });
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, reducedMotion: 'reduce' });
+    await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(String(error)));
+    const response = await page.goto(`${origin}/development/p06-evidence/`, { waitUntil: 'networkidle' });
+    if (response.status() !== 200) throw new Error(`Unexpected page status: ${response.status()}`);
+    await page.getByRole('heading', { name: 'P06 view evidence', exact: true }).waitFor();
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({ path: path.join(output, 'intro.png') });
+    await page.getByText('The original audit passed with exit code zero', { exact: false }).scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(output, 'model-review.png') });
+    const table = page.locator('table').nth(1);
+    await table.scrollIntoViewIfNeeded();
+    await page.screenshot({ path: path.join(output, 'image-index.png') });
+    const dimensions = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth }));
+    const links = await table.getByRole('link').evaluateAll(items => items.map(item => ({ label: item.textContent, href: item.href })));
+    const assets = [];
+    for (const link of links) {
+      const asset = await page.request.get(link.href);
+      assets.push({ label: link.label, status: asset.status(), content_type: asset.headers()['content-type'] });
+      if (asset.status() !== 200) throw new Error(`Image link failed: ${link.label}`);
+    }
+    await table.getByRole('link', { name: 'Five', exact: true }).click();
+    await page.locator('img').waitFor();
+    const image = await page.locator('img').evaluate(item => ({ width: item.naturalWidth, height: item.naturalHeight, complete: item.complete }));
+    await page.screenshot({ path: path.join(output, 'linked-image.png') });
+    if (!image.complete || image.width !== 1200 || image.height !== 800) throw new Error('The linked native image did not load.');
+    if (dimensions.document > dimensions.viewport) throw new Error('The documentation page overflows horizontally.');
+    if (errors.length) throw new Error(`Browser page errors: ${errors.join('; ')}`);
+    const record = {
+      reviewed_at: new Date().toISOString(),
+      source_commit: execFileSync('git', ['-C', repository, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+      working_tree: execFileSync('git', ['-C', repository, 'status', '--short'], { encoding: 'utf8' }),
+      browser: browser.version(),
+      playwright: require('playwright/package.json').version,
+      node: process.version,
+      url: `${origin}/development/p06-evidence/`,
+      page_status: response.status(),
+      dimensions,
+      linked_images: assets,
+      opened_image: image,
+      page_errors: errors,
+      screenshots: ['intro.png', 'model-review.png', 'image-index.png', 'linked-image.png'],
+      visual_review_required: true,
+    };
+    fs.writeFileSync(path.join(output, 'review.json'), JSON.stringify(record, null, 2) + '\n');
+    console.log(JSON.stringify(record, null, 2));
+  } finally {
+    if (browser) await browser.close();
+    server.kill('SIGTERM');
+    fs.writeFileSync(path.join(output, 'server.log'), serverLog);
+  }
+})().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,0 +1,59 @@
+{
+  "reviewed_at": "2026-09-09T05:49:00.404Z",
+  "source_commit": "5c73a11e13aac31fa5d34483910e97eb6fc877e3",
+  "working_tree": " M docs/development/p06-evidence.md\n",
+  "browser": "152.0.7977.84",
+  "playwright": "1.62.1",
+  "node": "v24.19.0",
+  "url": "http://127.0.0.1:49930/development/p06-evidence/",
+  "page_status": 200,
+  "dimensions": {
+    "viewport": 1440,
+    "document": 1440
+  },
+  "linked_images": [
+    {
+      "label": "One",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "label": "Two",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "label": "Three",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "label": "Four",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "label": "Five",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "label": "Six",
+      "status": 200,
+      "content_type": "image/png"
+    }
+  ],
+  "opened_image": {
+    "width": 1200,
+    "height": 800,
+    "complete": true
+  },
+  "page_errors": [],
+  "screenshots": [
+    "intro.png",
+    "model-review.png",
+    "image-index.png",
+    "linked-image.png"
+  ],
+  "visual_review_required": true
+}

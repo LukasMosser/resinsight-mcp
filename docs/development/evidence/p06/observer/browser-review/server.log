@@ -1,0 +1,16 @@
+Serving HTTP on 127.0.0.1 port 49930 (http://127.0.0.1:49930/) ...
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /development/p06-evidence/ HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /assets/stylesheets/main.ec1eaa64.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /javascripts/mathjax.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /assets/javascripts/bundle.d7400e89.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /assets/javascripts/workers/search.2c215733.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /sitemap.xml HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /search/search_index.json HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:48:59] "GET /assets/images/favicon.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-01.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-02.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-03.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-04.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-05.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-06.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2026 07:49:00] "GET /development/evidence/p06/observer/native-05.png HTTP/1.1" 200 -
