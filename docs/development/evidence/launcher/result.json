@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "completed_tool_calls": 18,
+  "applications": 1,
+  "mcp_images": 0,
+  "independent_snapshots": 1,
+  "native_editor_inspection": "Deferred under issue 34",
+  "scope": "Shipped launcher session and project operations only"
+}

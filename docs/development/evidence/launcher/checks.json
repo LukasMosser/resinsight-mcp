@@ -1,0 +1,25 @@
+{
+  "base_commit": "8470225cf74edb8a592a47d4777c7c4f03c98c58",
+  "working_tree": "New launcher acceptance runner, evidence page, and evidence files. No application changes.",
+  "command": "UV_CACHE_DIR=/private/tmp/resinsight-mcp-uv-cache uv run --locked python scripts/check.py",
+  "exit_code": 0,
+  "pytest_passed": 350,
+  "checks": [
+    "Ruff lint",
+    "Ruff format",
+    "ty",
+    "pytest",
+    "Strict MkDocs"
+  ],
+  "versions": {
+    "ruff": "ruff 0.16.6",
+    "ty": "ty 0.0.79 (b4cd79275 2026-09-07)",
+    "pytest": "pytest 9.1.1",
+    "pre-commit": "pre-commit 4.6.2",
+    "mkdocs": "mkdocs, version 1.6.1 from /private/tmp/resinsight-launcher-tests/.venv/lib/python3.12/site-packages/mkdocs (Python 3.12)"
+  },
+  "limits": [
+    "Browser presentation review remains with the lead integration owner.",
+    "The default test suite does not run the native acceptance runner."
+  ]
+}

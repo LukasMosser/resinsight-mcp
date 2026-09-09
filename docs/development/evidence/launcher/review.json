@@ -1,0 +1,21 @@
+{
+  "review_date": "2026-09-09",
+  "reviewer": "Launcher acceptance Codex agent",
+  "snapshot": "images/P04_first_3D_View_PRESSURE_00_01_Jan_2015.png",
+  "visual_observations": [
+    "The image shows a green rectangular grid with visible cell edges.",
+    "The native overlay identifies P04 first, 300 total and active cells, PRESSURE, and report zero on January 1, 2015.",
+    "The pressure legend and coordinate axes are visible."
+  ],
+  "result": "The opened project produced a usable independent native snapshot.",
+  "runner_review": {
+    "reviewer": "Lead Codex agent",
+    "result": "No blocking findings. Public setup, independent snapshot, and verified owned cleanup remain separate."
+  },
+  "limits": [
+    "The snapshot was captured directly through the native client as evidence. No MCP image delivery is claimed.",
+    "No model-provider or simulator trial ran.",
+    "No native editor inspection ran. Issue 34 remains deferred.",
+    "This is the first session launcher slice. Issue 35 still includes domain service wiring and complete workflow acceptance."
+  ]
+}
