@@ -226,7 +226,7 @@ def _run_command(
                 raise RuntimeError("The container has no confirmed completed execution.")
             container_code = snapshot.state.exit_code
         code = _reap(process)
-        if reason == "exit" and code == 0 and container_code is not None:
+        if container_code is not None and (reason in {"cancel", "deadline"} or code == 0):
             code = container_code
         return reason, code
     except Exception:
