@@ -13,6 +13,8 @@ One contract owner defines Docker execution identity, output roles, numerical da
 P11 produces those records, while P12 validates and consumes them.
 Workspace storage checks record relationships and immutable artifact ownership.
 Domain services remain responsible for parsing and numerical acceptance.
+Review found that separate runs receive different grid identifiers, even when their physical geometry matches.
+The shared dataset therefore records active-cell geometry for explicit comparison, with one common contract owner.
 
 [Issue #47](https://github.com/LukasMosser/resinsight-mcp/issues/47) extends the generic job controller for Docker execution.
 The P11 owner implements container identity, cancellation, deadlines, lost-controller recovery, and their tests in a separate change.

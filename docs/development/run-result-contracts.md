@@ -49,6 +49,13 @@ It records the job, exact model revision, active-cell map, and report series.
 These fields form an identity envelope that consumers compare with the stored result.
 They do not create a second independently editable result record.
 
+`GridGeometry` records the coordinate frame and eight finite XYZ corners for each active cell.
+Rows follow the active-cell map, while corners follow OPM EGRID order.
+The dataset requires one geometry row for every active cell.
+Scenario comparisons must check the complete geometry, coordinate frame, dimensions, and active-cell order.
+Separate runs can use different grid identifiers while retaining the same verified geometry.
+The producing service also verifies the complete grid file against the fixed input model.
+
 `CellPropertySeries` contains a name, unit, and report-major arrays.
 Each array must match the active-cell count.
 `SummaryCurve` contains a field or well scope, keyword, unit, and report-aligned values.

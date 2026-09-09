@@ -5,7 +5,14 @@ from datetime import UTC, datetime
 import pytest
 from pydantic import ValidationError
 
-from resinsight_mcp.contracts.engineering import ActiveCellMap, CellIndex, Dimension, Unit
+from resinsight_mcp.contracts.engineering import (
+    ActiveCellMap,
+    CellIndex,
+    CoordinateFrame,
+    DepthDirection,
+    Dimension,
+    Unit,
+)
 from resinsight_mcp.contracts.identifiers import ArtifactId, GridId, SessionId
 from resinsight_mcp.contracts.jobs import (
     DockerExecution,
@@ -19,6 +26,7 @@ from resinsight_mcp.contracts.jobs import (
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.results import (
     CellPropertySeries,
+    GridGeometry,
     ResultDataset,
     ResultManifest,
     ResultOutput,
@@ -79,10 +87,30 @@ def test_dataset_preserves_units_active_order_and_rejects_shape_errors(result: R
         unit=Unit.STOCK_TANK_BARREL_PER_DAY,
         values=(2.0,) * count,
     )
+    geometry = GridGeometry(
+        coordinates=CoordinateFrame(
+            length_unit=Unit.FOOT,
+            depth_direction=DepthDirection.POSITIVE_DOWN,
+            datum="local",
+        ),
+        cell_corners=(
+            (
+                (1, 0, 0),
+                (2, 0, 0),
+                (1, 1, 0),
+                (2, 1, 0),
+                (1, 0, 1),
+                (2, 0, 1),
+                (1, 1, 1),
+                (2, 1, 1),
+            ),
+        ),
+    )
     dataset = ResultDataset(
         job_id=result.job_id,
         model=result.model,
         active_cells=manifest.active_cells,
+        geometry=geometry,
         report_series=result.report_series,
         cell_properties=(pressure,),
         curves=(curve,),
@@ -95,6 +123,14 @@ def test_dataset_preserves_units_active_order_and_rejects_shape_errors(result: R
         {"curves": (curve, curve)},
         {"cell_properties": (pressure.model_copy(update={"values": ((1.0, 2.0),) * count}),)},
         {"curves": (curve.model_copy(update={"values": ()}),)},
+        {"geometry": {**geometry.model_dump(), "cell_corners": ()}},
+        {"geometry": {**geometry.model_dump(), "cell_corners": (geometry.cell_corners[0][:-1],)}},
+        {
+            "geometry": {
+                **geometry.model_dump(),
+                "cell_corners": (((float("nan"), 0, 0), *geometry.cell_corners[0][1:]),),
+            }
+        },
     ):
         with pytest.raises(ValidationError):
             ResultDataset.model_validate({**dataset.model_dump(), **changes})

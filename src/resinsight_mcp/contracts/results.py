@@ -7,7 +7,7 @@ from typing import Literal, Self
 from pydantic import FiniteFloat, NonNegativeInt, model_validator
 
 from ._base import Record, Text
-from .engineering import ActiveCellMap, ModelRef, ReportSeries, Unit
+from .engineering import ActiveCellMap, CoordinateFrame, ModelRef, ReportSeries, Unit
 from .identifiers import JobId
 from .models import ArtifactRef
 
@@ -74,12 +74,24 @@ class SummaryCurve(Record):
         return self
 
 
+type Point3D = tuple[FiniteFloat, FiniteFloat, FiniteFloat]
+type CellCorners = tuple[Point3D, Point3D, Point3D, Point3D, Point3D, Point3D, Point3D, Point3D]
+
+
+class GridGeometry(Record):
+    """Rows follow active-cell order, with eight corners in OPM EGRID order."""
+
+    coordinates: CoordinateFrame
+    cell_corners: tuple[CellCorners, ...]
+
+
 class ResultDataset(Record):
     """A metadata artifact contains this record as JSON."""
 
     job_id: JobId
     model: ModelRef
     active_cells: ActiveCellMap
+    geometry: GridGeometry
     report_series: ReportSeries
     cell_properties: tuple[CellPropertySeries, ...]
     curves: tuple[SummaryCurve, ...]
@@ -96,6 +108,8 @@ class ResultDataset(Record):
             raise ValueError("Summary curve identities must be unique.")
         reports = len(self.report_series.reports)
         cells = len(self.active_cells.cells)
+        if len(self.geometry.cell_corners) != cells:
+            raise ValueError("Grid geometry must contain one corner row for each active cell.")
         for item in self.cell_properties:
             if len(item.values) != reports or any(len(row) != cells for row in item.values):
                 raise ValueError("Cell property arrays must match reports and active cells.")
