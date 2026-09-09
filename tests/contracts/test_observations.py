@@ -23,7 +23,7 @@ from resinsight_mcp.contracts.identifiers import (
     RevisionId,
     SessionId,
 )
-from resinsight_mcp.contracts.jobs import Result
+from resinsight_mcp.contracts.jobs import LoadedResult, Result
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.observations import (
     Camera,
@@ -36,6 +36,7 @@ from resinsight_mcp.contracts.observations import (
     Projection,
     Property,
     RenderRequest,
+    ResultViewState,
     ViewContext,
 )
 from resinsight_mcp.contracts.sessions import ApplicationContext, ObjectKind, ObjectRef
@@ -106,6 +107,30 @@ def test_observation_preserves_simulator_date_separately_from_capture_instant(
     assert restored.context.report_time.elapsed_days == 3650.0
     assert restored.context.property.name == "SGAS"
     assert (restored.image.width, restored.image.height) == (1280, 900)
+
+
+def test_result_view_state_retains_trusted_identity_and_observed_camera(
+    view: ViewContext, result: Result
+) -> None:
+    state = ResultViewState(
+        loaded=LoadedResult(case=view.case, result=result),
+        view=view.view,
+        camera=view.camera,
+        vertical_exaggeration=view.vertical_exaggeration,
+        scene_version=0,
+    )
+    restored = ResultViewState.model_validate_json(state.model_dump_json())
+    assert restored.loaded.result == result
+    assert restored.camera == view.camera
+    assert restored.view.context == restored.loaded.case.context
+    for wrong in (
+        view.case,
+        view.view.model_copy(
+            update={"context": view.view.context.model_copy(update={"project_generation": 99})}
+        ),
+    ):
+        with pytest.raises(ValidationError, match="current application context"):
+            ResultViewState.model_validate({**state.model_dump(), "view": wrong})
 
 
 @pytest.mark.parametrize(

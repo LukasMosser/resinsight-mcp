@@ -26,7 +26,7 @@ from .engineering import (
 )
 from .errors import OperationResult, Success
 from .identifiers import EditId, GridId, ObservationId, ResultId
-from .jobs import Result
+from .jobs import LoadedResult, Result
 from .models import ArtifactRef
 from .sessions import ObjectKind, ObjectRef
 
@@ -66,6 +66,22 @@ class Camera(Record):
             raise ValueError(
                 "Orthographic projection requires a parallel scale and no field of view."
             )
+        return self
+
+
+class ResultViewState(Record):
+    """Observed camera settings identify a view of one trusted loaded result."""
+
+    loaded: LoadedResult
+    view: ObjectRef
+    camera: Camera
+    vertical_exaggeration: PositiveFloat
+    scene_version: NonNegativeInt
+
+    @model_validator(mode="after")
+    def check_view(self) -> Self:
+        if self.view.kind != ObjectKind.VIEW or self.view.context != self.loaded.case.context:
+            raise ValueError("The view and loaded case must share the current application context.")
         return self
 
 
