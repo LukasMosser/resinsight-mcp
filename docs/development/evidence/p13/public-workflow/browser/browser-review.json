@@ -1,0 +1,43 @@
+{
+  "reviewer": "lead",
+  "method": "Opened the rendered pages in the approved CUA in-app browser and viewed all three original screenshots.",
+  "source_worktree": "/private/tmp/resinsight-p13-public-evidence",
+  "source_base_commit": "b2724755ab223990a7bb19f425ad3fa064c64ff8",
+  "source_state": "Uncommitted acceptance guide, evidence README, and new public workflow evidence.",
+  "source_paths": [
+    "docs/development/opm-acceptance.md",
+    "docs/development/evidence/p13/public-workflow/"
+  ],
+  "browser": "Codex in-app browser",
+  "preview_origin": "http://127.0.0.1:8940",
+  "screenshots": [
+    {
+      "file": "acceptance-guide.png",
+      "original_path": "/private/tmp/resinsight-p13-final-browser/acceptance-guide.png"
+    },
+    {
+      "file": "evidence-overview.png",
+      "original_path": "/private/tmp/resinsight-p13-final-browser/evidence-overview.png"
+    },
+    {
+      "file": "evidence-numerics.png",
+      "original_path": "/private/tmp/resinsight-p13-final-browser/evidence-numerics.png"
+    }
+  ],
+  "result": "passed",
+  "observations": [
+    "The acceptance guide, evidence overview, and numerical section were visually reviewed.",
+    "Tables use normal horizontal overflow at the recorded narrow screenshot size."
+  ],
+  "scope": "Rendered documentation only. These screenshots are separate from the 29 native acceptance images.",
+  "cleanup": {
+    "browser_tab": "closed",
+    "lead_preview_server": "closed",
+    "reported_by": "lead"
+  },
+  "publication": "No commit or publication was performed.",
+  "screenshot_pixels": {
+    "width": 396,
+    "height": 858
+  }
+}

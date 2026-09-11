@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-11",
+  "result": "passed",
+  "source_base": "4745721",
+  "source_state": "Uncommitted integrated evidence and archive packaging from a158e61, e984c80, and 624c1fc, with final documentation and review records.",
+  "url": "http://127.0.0.1:8942/development/evidence/p13/public-workflow/#raw-evidence-archive",
+  "screenshot": "browser/archive-instructions.png",
+  "screenshot_size": [
+    1280,
+    720
+  ],
+  "image_handling": "Original screenshot saved without modification.",
+  "review": "Archive download, index link, member path root, extraction commands, and retained record explanation are readable without clipping.",
+  "runtime_images_changed": false,
+  "browser_tab_closed": true,
+  "preview_server_stopped": true
+}

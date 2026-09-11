@@ -1,0 +1,17 @@
+{
+  "lead_review": "Read all nine driver and guide files, including the final camera, curve, and cleanup repairs.",
+  "independent_review": "The simulator service owner reviewed public domain calls, numerical evidence, image claims, recovery, and cleanup.",
+  "resolved_findings": [
+    "Compare every observed camera with the fixed requested camera.",
+    "Verify exact curve identity, units, reports, finite values, and positive well pressure.",
+    "Verify both comparison source records as well as the signed differences.",
+    "Continue public cleanup after individual job failures and retain every unresolved identity.",
+    "Require object_resolve during initial discovery."
+  ],
+  "boundary": "Every domain operation uses public MCP. The shared Camera record and pure comparator validate returned values only.",
+  "source_approved": true,
+  "native_trial_approved": false,
+  "normal_cleanup": "Public job polling and cancellation, then verified public closure of the owned native application.",
+  "emergency_fallback": false,
+  "retained_containers": "Public tools confirm terminal jobs but do not expose container removal."
+}

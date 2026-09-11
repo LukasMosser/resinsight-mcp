@@ -1,0 +1,108 @@
+{
+  "accepted_runs": [
+    {
+      "side": "baseline",
+      "job_id": "job_bbeaa4856ee94a14b4cb7f5b42479e85",
+      "result_id": "result_2665bfa87e3b42b9a3edffedc02c6741",
+      "model": {
+        "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+        "revision_id": "revision_cea6b88b9c4842d0a113e3044afd9651"
+      },
+      "grid_id": "grid_95cf725ea9214a318948239a95603b30",
+      "original_run_directory": "/private/tmp/resinsight-p13-public-trial-04/workspace/opm-runs/e9d0bdcee1974f7789a75c4172583fab",
+      "curated_directory": "trial-04/run-bundles/baseline",
+      "output_artifacts": [
+        {
+          "role": "EGRID",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_164c9724a4ec4b59a24e2f6cb0f8090e"
+          }
+        },
+        {
+          "role": "INIT",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_9b382864efc34a4893588ad2ea616649"
+          }
+        },
+        {
+          "role": "UNRST",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_b06298c1331e41f9b1f9ef48881977b0"
+          }
+        },
+        {
+          "role": "SMSPEC",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_700da78d2f7644a680a6892fdd35675e"
+          }
+        },
+        {
+          "role": "UNSMRY",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_378a23fa5c2145259184d7ca9394af46"
+          }
+        }
+      ]
+    },
+    {
+      "side": "scenario",
+      "job_id": "job_8bb2c32d975544f3b7516ec72f197cbb",
+      "result_id": "result_18fcbf86be024511a5426dd21306934a",
+      "model": {
+        "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+        "revision_id": "revision_011741346d1247d8bd620c6ae2d27e88"
+      },
+      "grid_id": "grid_10485eb0c11b4feb80265b60d84f5c99",
+      "original_run_directory": "/private/tmp/resinsight-p13-public-trial-04/workspace/opm-runs/c76941f426a6493aa30ac91e14daf014",
+      "curated_directory": "trial-04/run-bundles/scenario",
+      "output_artifacts": [
+        {
+          "role": "EGRID",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_9545f1900bc24fb4976260db2a935a76"
+          }
+        },
+        {
+          "role": "INIT",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_fd2c81b511484d968245200fb12f78d2"
+          }
+        },
+        {
+          "role": "UNRST",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_8c9c7ca9bbe442d7bcc93fbe5c28665e"
+          }
+        },
+        {
+          "role": "SMSPEC",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_754fdeb2da884d819c0b486cc0402540"
+          }
+        },
+        {
+          "role": "UNSMRY",
+          "artifact": {
+            "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+            "artifact_id": "artifact_371c2b996b6e417f84d68b543023306f"
+          }
+        }
+      ]
+    }
+  ],
+  "canceled_run": {
+    "job_id": "job_d047570d76174e2b9b8f9abc9a5668be",
+    "original_run_directory": "/private/tmp/resinsight-p13-public-trial-04/workspace/opm-runs/f21369b54b52426d8487a5ad5154dd33",
+    "curated_directory": "trial-04/run-bundles/canceled",
+    "scope": "Input deck only. Incomplete canceled outputs are not accepted result bundles."
+  }
+}

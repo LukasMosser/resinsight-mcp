@@ -1,0 +1,90 @@
+{
+  "arguments": {
+    "python": "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "docker": "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "output": "/private/tmp/resinsight-p13-public-trial-04",
+    "source_commit": "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+    "native_source": "/private/tmp/resinsight-p01-build/source"
+  },
+  "driver_commit": "b2724755ab223990a7bb19f425ad3fa064c64ff8",
+  "driver_python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+  "driver_platform": "macOS-14.2.1-arm64-arm-64bit",
+  "installed_application_source_commit": "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+  "native_source_status": "M ThirdParty/openzgy\n M vcpkg.json",
+  "native_source_commit": "9c920334e338dab4908aa4dabdfae22803e70411",
+  "installed_runtime": {
+    "python": "3.12.13 (main, May 10 2026, 19:20:41) [Clang 22.1.3 ]",
+    "executable": "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "platform": "macOS-14.2.1-arm64-arm-64bit",
+    "packages": {
+      "resinsight-mcp": {
+        "version": "0.1.0",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": {
+          "url": "file:///private/tmp/resinsight-p13-installed-runtime/repair-03/dist/resinsight_mcp-0.1.0-py3-none-any.whl",
+          "archive_info": {}
+        }
+      },
+      "rips": {
+        "version": "2026.9.0.1",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": {
+          "url": "file:///private/tmp/resinsight-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+          "archive_info": {}
+        }
+      },
+      "opm": {
+        "version": "2025.10",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "numpy": {
+        "version": "2.5.3",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "mcp": {
+        "version": "1.30.0",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "grpcio": {
+        "version": "1.83.1",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "protobuf": {
+        "version": "7.36.1",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "pillow": {
+        "version": "12.3.0",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      },
+      "pydantic": {
+        "version": "2.13.5",
+        "location": "/private/tmp/resinsight-p13-installed-runtime/environment/lib/python3.12/site-packages",
+        "direct_url": null
+      }
+    }
+  },
+  "command": [
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "/private/tmp/resinsight-p13-integration/tests/acceptance/opm/run.py",
+    "--python",
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--docker",
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "--output",
+    "/private/tmp/resinsight-p13-public-trial-04",
+    "--source-commit",
+    "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+    "--native-source",
+    "/private/tmp/resinsight-p01-build/source"
+  ]
+}

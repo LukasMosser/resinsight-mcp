@@ -40,14 +40,14 @@ No domain tool was called during this check.
 No native application or simulator was started.
 The empty local workspace remains outside the repository and is omitted from this evidence bundle.
 
-## Remaining acceptance
+## Separate runtime acceptance
 
 These checks establish installed launcher configuration, discovery, and schema agreement.
 They do not establish completed P12 native loading or P13 simulation, comparison, cancellation, and project recovery.
 The owner approved the native trials and localhost guide review.
 The [rendered guide review](browser/README.md) passed eleven visits and 92 local links.
 The lead inspected every saved guide screenshot and found no layout defect.
-Complete native workflow acceptance remains part of P13.
+The later [P12 native record](../p12/native/README.md#trial-07) and [P13 public record](../p13/public-workflow/README.md) preserve that separate acceptance.
 
 ## Final prerequisite integration
 

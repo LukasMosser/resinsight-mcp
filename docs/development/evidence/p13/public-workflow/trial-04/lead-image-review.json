@@ -1,0 +1,57 @@
+{
+  "reviewer": "lead",
+  "method": "Opened every original PNG through view_image without image edits.",
+  "images": [
+    "calls/0053-view_apply-0.png",
+    "calls/0057-view_apply-0.png",
+    "calls/0104-view_apply-0.png",
+    "calls/0108-view_apply-0.png",
+    "calls/0113-view_apply-0.png",
+    "calls/0117-view_apply-0.png",
+    "calls/0122-view_apply-0.png",
+    "calls/0126-view_apply-0.png",
+    "calls/0131-view_apply-0.png",
+    "calls/0135-view_apply-0.png",
+    "calls/0139-result_show_curve-0.png",
+    "calls/0197-view_apply-0.png",
+    "calls/0201-view_apply-0.png",
+    "calls/0206-view_apply-0.png",
+    "calls/0210-view_apply-0.png",
+    "calls/0215-view_apply-0.png",
+    "calls/0219-view_apply-0.png",
+    "calls/0224-view_apply-0.png",
+    "calls/0228-view_apply-0.png",
+    "calls/0232-result_show_curve-0.png",
+    "calls/0306-view_apply-0.png",
+    "calls/0310-view_apply-0.png",
+    "calls/0315-view_apply-0.png",
+    "calls/0319-view_apply-0.png",
+    "calls/0324-view_apply-0.png",
+    "calls/0328-view_apply-0.png",
+    "calls/0333-view_apply-0.png",
+    "calls/0337-view_apply-0.png",
+    "calls/0341-result_show_curve-0.png"
+  ],
+  "image_count": 29,
+  "result": "passed",
+  "families": {
+    "initial_baseline": 2,
+    "baseline_scenario_comparison": 9,
+    "project_reopened": 9,
+    "mcp_restarted": 9
+  },
+  "observations": [
+    "All 26 grid images show result and model identities, PRESSURE or SWAT, the requested report, grid cells, well labels, and native legends.",
+    "All 12 comparison pairs use the same top-down camera placement and shared legend endpoints for their quantity and report.",
+    "All three summary images show the exact scenario result, WBHP:PROD, psi units, report dates, and a readable curve filling the plot page.",
+    "Reopened and restarted images retain the same result identities and visible field patterns.",
+    "Final pressure statistics and producer pressure curves show the scenario change, while small saturation changes need numerical comparison."
+  ],
+  "limits": [
+    "The top-down grid view shows the surface cells. Complete three-layer geometry and property values are verified separately in numerical records.",
+    "Grid pressure units are verified in accompanying observation metadata and are not printed in native legends.",
+    "The captured camera leaves broad margins around the grid. Cell layout, result identity, reports, and legends remain readable."
+  ],
+  "acceptance_complete": false,
+  "pending": "Independent numerical and lifecycle review, followed by a separate lead acceptance decision."
+}

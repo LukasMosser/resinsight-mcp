@@ -1,0 +1,52 @@
+
+[31m │  ⚠  Warning from the Material for MkDocs team[0m
+[31m │[0m
+[31m │[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,
+[31m │[0m  will introduce backward-incompatible changes, including:
+[31m │[0m
+[31m │  × [0mAll plugins will stop working – the plugin system has been removed
+[31m │  × [0mAll theme overrides will break – the theming system has been rewritten
+[31m │  × [0mNo migration path exists – existing projects cannot be upgraded
+[31m │  × [0mClosed contribution model – community members can't report bugs
+[31m │  × [0mCurrently unlicensed – unsuitable for production use
+[31m │[0m
+[31m │[0m  Our full analysis:
+[31m │[0m
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /private/tmp/resinsight-p13-final/site
+INFO    -  The following pages exist in the docs directory, but are not included in the "nav" configuration:
+  - development/evidence/opm-launcher/browser/README.md
+  - development/evidence/opm-launcher/final-integration/README.md
+  - development/evidence/p06/observer/README.md
+  - development/evidence/p09/integrated/README.md
+  - development/evidence/p09/lifetime/browser/README.md
+  - development/evidence/p09/service/README.md
+  - development/evidence/p09/service/trial-02/connections.md
+  - development/evidence/p09/service/trial-03/connections.md
+  - development/evidence/p09/service/trial-04/connections.md
+  - development/evidence/p11/browser/README.md
+  - development/evidence/p12/native/README.md
+  - development/evidence/p13/final-integration/README.md
+  - development/evidence/p13/preparation/README.md
+  - development/evidence/p13/public-workflow/failed-trial-02/baseline-INJ-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-02/baseline-PROD-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-02/scenario-INJ-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-02/scenario-PROD-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/baseline-INJ-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/baseline-PROD-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/project-reopened-INJ-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/project-reopened-PROD-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/scenario-INJ-connections.md
+  - development/evidence/p13/public-workflow/failed-trial-03/scenario-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/baseline-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/baseline-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/mcp-restarted-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/mcp-restarted-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/project-reopened-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/project-reopened-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/scenario-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/scenario-PROD-connections.md
+  - development/evidence/workspace-journal/README.md
+INFO    -  Documentation built in 3.16 seconds

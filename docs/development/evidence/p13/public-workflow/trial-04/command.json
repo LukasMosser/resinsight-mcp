@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "/private/tmp/resinsight-p13-integration/tests/acceptance/opm/run.py",
+    "--python",
+    "/private/tmp/resinsight-p13-installed-runtime/environment/bin/python",
+    "--executable",
+    "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+    "--docker",
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "--output",
+    "/private/tmp/resinsight-p13-public-trial-04",
+    "--source-commit",
+    "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+    "--native-source",
+    "/private/tmp/resinsight-p01-build/source"
+  ],
+  "working_directory": "/private/tmp/resinsight-p13-integration",
+  "driver_source_commit": "b2724755ab223990a7bb19f425ad3fa064c64ff8",
+  "installed_application_source_commit": "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+  "native_source_commit": "9c920334e338dab4908aa4dabdfae22803e70411",
+  "scope": "Repeat the approved generated public workflow after separating exact immutable exports from fresh MD endpoint rounding checks. Native and installed application builds remain unchanged. Complete acceptance requires independent image and numerical review."
+}

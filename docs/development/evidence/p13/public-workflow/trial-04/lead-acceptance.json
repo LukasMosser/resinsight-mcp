@@ -1,0 +1,115 @@
+{
+  "trial": "04",
+  "reviewer": "lead",
+  "acceptance_complete": true,
+  "scope": "Complete generated FIELD workflow through a clean noneditable installation and the shipped public MCP launcher on this recorded macOS runtime.",
+  "automated": {
+    "public_tool_calls": 354,
+    "checks_passed": 854,
+    "expected_negative_tool_outcomes": 13,
+    "unexpected_failures": 0
+  },
+  "independent_reviews": {
+    "numerical_and_lifecycle": "The well lifecycle agent independently reviewed all call pairs, six complete numerical records, eighteen signed comparisons, four immutable export replies, and lifecycle records.",
+    "images": "The P12 agent and lead each opened all twenty-nine original PNGs.",
+    "native_processes": "The lead independently verified both exact owned process identifiers were absent after public termination.",
+    "containers": "The lead inspected all three exact containers and checked ownership labels, stopped state, exit codes, and enforced limits against public submission records."
+  },
+  "numerical": {
+    "complete_records": 6,
+    "cell_values": 10800,
+    "summary_values": 36,
+    "grid_dimensions": [
+      10,
+      10,
+      3
+    ],
+    "active_cells": 300,
+    "corner_coordinates_per_grid": 7200,
+    "maximum_driver_layer_reference_corner_difference_ft": 1.8189894035458565e-12,
+    "driver_corner_tolerance_ft": 0.001,
+    "independent_exact_specification_corner_difference_ft": 0,
+    "recovered_records_equal_original_records": true,
+    "immutable_exports_equal_original_records": true,
+    "fresh_completion_fields": "Only start_md_ft and end_md_ft change by native project rounding. All other fields and order remain exact.",
+    "maximum_fresh_endpoint_difference_ft": 1.8189894035458565e-12,
+    "fresh_endpoint_relative_tolerance": 1e-12,
+    "fresh_endpoint_absolute_tolerance": 0,
+    "pressure_delta_ranges_psi": [
+      [
+        0,
+        53.89501953125
+      ],
+      [
+        0,
+        87.21044921875
+      ]
+    ],
+    "minimum_water_saturation_deltas": [
+      -4.027038812637329e-05,
+      -6.521493196487427e-05
+    ],
+    "producer_pressure_deltas_psi": [
+      487.4345703125,
+      515.36474609375
+    ],
+    "injector_pressure_deltas_psi": [
+      0,
+      0
+    ],
+    "field_oil_rate_stb_day": {
+      "baseline": [
+        20000,
+        20000
+      ],
+      "scenario": [
+        15000,
+        15000
+      ]
+    }
+  },
+  "lifecycle": {
+    "named_sessions": 2,
+    "sdk_initializations": 2,
+    "owned_native_lifetimes": 2,
+    "successful_jobs": 2,
+    "running_job_preserved_across_restart": true,
+    "canceled_jobs": 1,
+    "canceled_job_exit_code": 137,
+    "cancellation_termination_confirmed": true,
+    "canceled_result_collection_rejected": true,
+    "foreign_session_unchanged": true,
+    "public_cleanup_errors": [],
+    "unresolved_jobs": [],
+    "emergency_actions": false,
+    "stopped_containers_retained": true
+  },
+  "images": {
+    "total": 29,
+    "initial_grids": 2,
+    "comparison_families": 3,
+    "images_per_comparison_family": 9,
+    "grid_comparison_pairs": 12,
+    "summary_images": 3,
+    "all_dimensions": [
+      1200,
+      800
+    ],
+    "lead_record": "lead-image-review.json"
+  },
+  "provenance": {
+    "driver_commit": "b2724755ab223990a7bb19f425ad3fa064c64ff8",
+    "installed_application_source_commit": "b4c414beee91a0fa419f04e7c7874d2b2108a5a7",
+    "native_source_commit": "9c920334e338dab4908aa4dabdfae22803e70411",
+    "versions": "versions.json",
+    "exact_command": "command.json"
+  },
+  "limits": [
+    "The native application is the recorded reviewed custom build. This trial does not provide a released native distribution.",
+    "The synthetic FIELD template and declared well controls bound the supported physics.",
+    "Numerical transport fidelity and scenario response do not replace a separate simulator reference comparison.",
+    "Grid pressure units remain in metadata, and the top-down grid images do not show all three layers separately.",
+    "The public API confirms container termination and retains stopped containers."
+  ],
+  "delivery_status": "Runtime acceptance is complete. Evidence integration, required GitHub checks, and the P13 pull request merge remain separate delivery steps."
+}
