@@ -16,19 +16,21 @@ Before calling tools, read the connected server's tool list and catalog resource
 Only supplied services contribute their optional tools.
 No tool accepts an arbitrary shell command, Python callback, or native address for trusted result binding.
 
-The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) always supplies workspace storage.
+The [shipped launcher](https://github.com/LukasMosser/resinsight-mcp/blob/main/src/resinsight_mcp/mcp/__main__.py) supplies fixed or managed workspace storage.
 Its [configuration](../mcp.md) enables these additional service groups:
 
 | Configuration | Supplied services |
 | --- | --- |
 | Default workspace | Durable sessions and saved observations. |
+| Managed workspaces | `workspace_create`, `workspace_list`, `workspace_select`, and `workspace_current`, plus the selected workspace services. |
 | `--resinsight-log-directory` | Native sessions, application lifecycle, projects, and object references. |
 | `--enable-models` | FIELD input import, constrained creation, inspection, preparation, and cloning. |
 | `--enable-opm-workflow` with native logs | All preceding services, native wells, schedules, Flow jobs, accepted results, comparisons, and views. |
 
 The full workflow requires the pinned OPM parser, reviewed native build, matching generated RIPS wheel, local pinned Flow image, and Docker.
 An optional `--docker-executable` selects one absolute executable path within the full workflow configuration.
-Startup checks required dependencies before opening workspace storage.
+Fixed-mode startup checks required dependencies before opening workspace storage.
+Managed mode checks optional dependencies when it first opens a selected workspace.
 Startup does not launch ResInsight, start a container, or pull an image.
 A custom host can also supply reviewed service bindings through `create_server()` or `serve_stdio()`.
 
@@ -41,7 +43,8 @@ A custom host can also supply reviewed service bindings through `create_server()
 
 | Agent operation | Current access and exact tool names | Required boundary | Guide |
 | --- | --- | --- | --- |
-| Create and inspect durable sessions | Default: `session_create`, `session_list`, `session_get` | Local workspace records. These tools do not connect to ResInsight. | [Workspace guide](workspaces.md) |
+| Select and manage workspaces | Managed: `workspace_create`, `workspace_list`, `workspace_select`, `workspace_current` | One connection-local selection routes later operations to one compatible child workspace. | [MCP guide](../mcp.md) |
+| Create and inspect durable sessions | Default or selected managed workspace: `session_create`, `session_list`, `session_get` | Local workspace records. These tools do not connect to ResInsight. | [Workspace guide](workspaces.md) |
 | Read a saved image | Default: `observation_get` | Existing observation and stored image. A configured view service also checks current scene state. | [View guide](../views.md) |
 | Select sessions and inspect connections | Sessions: `session_select`, `connection_list`, `connection_get` | Explicit session identity. Selection never supplies another request's target. | [Session guide](../sessions.md) |
 | Launch, attach, detach, and close applications | Sessions: `application_launch`, `application_attach`, `application_close` | Verified endpoint and process identity. Termination requires service ownership. | [Session implementation](sessions.md) |

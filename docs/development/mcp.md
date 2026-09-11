@@ -29,6 +29,7 @@ The OPM workflow binds the reviewed well, schedule, Flow, result, and view servi
 These implementations retain ownership of engineering state.
 `create_server(bindings)` creates an SDK `Server` with no application lifecycle changes.
 `serve_stdio(bindings)` serves one dedicated process using the SDK stdio transport.
+`WorkspaceManager` can wrap these bindings for one connection that selects among several local workspaces.
 
 ```python
 import asyncio
@@ -50,9 +51,19 @@ This injection point does not establish external application behavior.
 ## Shipped launcher configuration
 
 `LauncherConfiguration` owns workspace, model, native session, and OPM workflow composition.
-The command accepts `--workspace-root`, `--create-workspace`, `--enable-models`, `--resinsight-log-directory`, `--enable-opm-workflow`, and `--docker-executable`.
-The native option validates the log directory, imports the optional factory, and checks `lsof` before opening workspace storage.
+The command accepts either `--workspace-root` or `--workspaces-root`.
+The fixed mode also accepts `--create-workspace`.
+Both modes accept `--enable-models`, `--resinsight-log-directory`, `--enable-opm-workflow`, and `--docker-executable`.
+In fixed mode, the native option validates the log directory, imports the optional factory, and checks `lsof` before opening workspace storage.
 Configuration failures return exit status 2 with a standard error message.
+
+Managed mode creates a parent directory and exposes `workspace_create`, `workspace_list`, `workspace_select`, and `workspace_current`.
+It starts without a selected workspace and routes all other advertised tools through the selected workspace.
+It caches one runtime per selected workspace within the process.
+The selection is connection-local and is not persisted.
+Managed mode rejects symbolic-link workspace roots and symbolic-link child workspaces.
+Each child directory must be a compatible workspace before it appears in `workspace_list`.
+Optional dependency checks run when the runtime for a selected workspace is created.
 
 The native configuration constructs `ResInsightSessionService` and `RipsApplicationFactory` with the same workspace store.
 It reuses the factory's timeouts and validation without opening an application during startup.
@@ -133,8 +144,10 @@ Unexpected failures use effect `unknown` for mutations and `not_applied` for rea
 
 ## Protocol and engineering lifetimes
 
-Each server owns protocol handlers and its immutable operation bindings.
+Each fixed-mode server owns protocol handlers and its immutable operation bindings.
 It has no selected session, workspace cache, application ownership table, or recovery loop.
+Each managed-mode server also owns one workspace selection and a cache of concrete bindings by workspace.
+The server serializes a managed operation while it resolves and calls the selected services.
 Synchronous service calls run in AnyIO worker threads.
 Service implementations must serialize application mutations as their shared contracts require.
 

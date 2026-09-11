@@ -78,7 +78,15 @@ def create_server(bindings: Bindings) -> Server:
                 Error(code=ErrorCode.UNSUPPORTED_OPERATION, message="This tool is not available."),
                 bindings,
             )
-        return await anyio.to_thread.run_sync(_call, operation, arguments, bindings)
+
+        def invoke() -> types.CallToolResult:
+            manager = bindings.workspace_manager
+            if manager is None:
+                return _call(operation, arguments, bindings)
+            with manager.operation():
+                return _call(operation, arguments, bindings)
+
+        return await anyio.to_thread.run_sync(invoke)
 
     @server.list_resources()
     async def list_resources() -> list[types.Resource]:

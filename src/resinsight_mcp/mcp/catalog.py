@@ -49,6 +49,7 @@ from resinsight_mcp.contracts.sessions import (
     ProjectSaveRequest,
     ProjectState,
 )
+from resinsight_mcp.contracts.workspace import Workspace, WorkspaceRequest
 from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.synthetic import SyntheticModelService
 
@@ -57,6 +58,8 @@ if TYPE_CHECKING:
     from resinsight_mcp.resinsight.wells.service import ResInsightWellService
     from resinsight_mcp.results import ResultsService
     from resinsight_mcp.simulators.opm import OpmFlowService
+
+    from .workspace_manager import WorkspaceManager
 
 CATALOG_RESOURCE = types.Resource(
     uri="resinsight://catalog",
@@ -105,6 +108,7 @@ class Bindings:
     schedules: OpmWellScheduleService | None = None
     flow: OpmFlowService | None = None
     results: ResultsService | None = None
+    workspace_manager: WorkspaceManager | None = None
 
 
 @dataclass(frozen=True)
@@ -219,6 +223,41 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
             read_only=True,
         ),
     ]
+    if bindings.workspace_manager is not None:
+        manager = bindings.workspace_manager
+        operations = [
+            Operation(
+                "workspace_create",
+                "Create a managed workspace without changing the current selection.",
+                WorkspaceRequest,
+                OperationResult[Workspace],
+                manager.create_workspace,
+            ),
+            Operation(
+                "workspace_list",
+                "List managed workspaces below the configured workspace directory.",
+                EmptyRequest,
+                OperationResult[tuple[Workspace, ...]],
+                lambda _: manager.list_workspaces(),
+                read_only=True,
+            ),
+            Operation(
+                "workspace_select",
+                "Select one managed workspace for later workspace-scoped operations.",
+                WorkspaceRequest,
+                OperationResult[Workspace],
+                manager.select_workspace,
+            ),
+            Operation(
+                "workspace_current",
+                "Read the managed workspace selected for this MCP connection.",
+                EmptyRequest,
+                OperationResult[Workspace | None],
+                lambda _: manager.current_workspace(),
+                read_only=True,
+            ),
+            *operations,
+        ]
     if bindings.renderer is not None or bindings.views is not None:
         operations.append(
             Operation(

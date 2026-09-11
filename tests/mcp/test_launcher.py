@@ -21,6 +21,12 @@ from mcp.types import CallToolResult, TextResourceContents
 from resinsight_mcp.contracts.identifiers import SessionId
 
 WORKSPACE_TOOLS = {"session_create", "session_list", "session_get", "observation_get"}
+MANAGED_WORKSPACE_TOOLS = {
+    "workspace_create",
+    "workspace_list",
+    "workspace_select",
+    "workspace_current",
+}
 SESSION_TOOLS = {
     "session_select",
     "connection_list",
@@ -61,7 +67,25 @@ async def launcher(
                 yield client
 
 
-def value(response: CallToolResult) -> dict[str, Any]:
+@asynccontextmanager
+async def managed_launcher(
+    root: Path, *options: str, env: dict[str, str] | None = None
+) -> AsyncIterator[ClientSession]:
+    parameters = StdioServerParameters(
+        command=sys.executable,
+        args=["-m", "resinsight_mcp.mcp", "--workspaces-root", str(root), *options],
+        env=env if env is not None else dict(os.environ),
+    )
+    with (root.parent / "managed-launcher-stderr.log").open("a") as errors:
+        async with stdio_client(parameters, errlog=errors) as (read, write):
+            async with ClientSession(
+                read, write, read_timeout_seconds=timedelta(seconds=20)
+            ) as client:
+                await client.initialize()
+                yield client
+
+
+def value(response: CallToolResult) -> Any:
     assert not response.isError, response
     assert response.structuredContent is not None
     assert response.structuredContent["outcome"]["status"] == "success"
@@ -112,6 +136,98 @@ def test_workspace_launcher_creates_and_reopens_without_native_import(tmp_path: 
     )
     assert refused.returncode == 2
     assert "Configuration failed" in refused.stderr
+
+
+def test_managed_launcher_selects_isolated_workspaces_and_reopens(tmp_path: Path) -> None:
+    root = tmp_path / "workspaces"
+    first_id = str(SessionId.new())
+    second_id = str(SessionId.new())
+
+    async def exercise() -> None:
+        async with managed_launcher(root) as client:
+            await discovery(client, WORKSPACE_TOOLS | MANAGED_WORKSPACE_TOOLS)
+            current = await client.call_tool("workspace_current", {})
+            assert current.structuredContent is not None
+            assert current.structuredContent["outcome"] == {
+                "status": "success",
+                "value": None,
+            }
+            assert value(await client.call_tool("workspace_list", {})) == []
+
+            unselected = await client.call_tool("session_list", {})
+            assert unselected.isError
+            assert unselected.structuredContent is not None
+            assert unselected.structuredContent["outcome"]["error"]["code"] == (
+                "invalid_transition"
+            )
+
+            first = value(await client.call_tool("workspace_create", {"name": "first"}))
+            second = value(await client.call_tool("workspace_create", {"name": "second"}))
+            listed = value(await client.call_tool("workspace_list", {}))
+            assert [item["name"] for item in listed] == ["first", "second"]
+            assert Path(first["root"]).name == "first"
+            assert Path(second["root"]).name == "second"
+
+            duplicate = await client.call_tool("workspace_create", {"name": "first"})
+            assert duplicate.isError
+            assert duplicate.structuredContent is not None
+            assert duplicate.structuredContent["outcome"]["error"]["code"] == "conflict"
+            missing = await client.call_tool("workspace_select", {"name": "missing"})
+            assert missing.isError
+            assert missing.structuredContent is not None
+            assert missing.structuredContent["outcome"]["error"]["code"] == "not_found"
+
+            value(await client.call_tool("workspace_select", {"name": "first"}))
+            value(
+                await client.call_tool(
+                    "session_create", {"session_id": first_id, "name": "First workspace"}
+                )
+            )
+            value(await client.call_tool("workspace_select", {"name": "second"}))
+            assert value(await client.call_tool("session_list", {})) == []
+            value(
+                await client.call_tool(
+                    "session_create", {"session_id": second_id, "name": "Second workspace"}
+                )
+            )
+            value(await client.call_tool("workspace_select", {"name": "first"}))
+            sessions = value(await client.call_tool("session_list", {}))
+            assert [item["session_id"] for item in sessions] == [first_id]
+
+        async with managed_launcher(root) as client:
+            current = await client.call_tool("workspace_current", {})
+            assert current.structuredContent is not None
+            assert current.structuredContent["outcome"]["value"] is None
+            listed = value(await client.call_tool("workspace_list", {}))
+            assert [item["name"] for item in listed] == ["first", "second"]
+            value(await client.call_tool("workspace_select", {"name": "first"}))
+            first_session = value(await client.call_tool("session_get", {"session_id": first_id}))
+            assert first_session["name"] == "First workspace"
+            value(await client.call_tool("workspace_select", {"name": "second"}))
+            second_session = value(await client.call_tool("session_get", {"session_id": second_id}))
+            assert second_session["name"] == "Second workspace"
+
+    asyncio.run(exercise())
+
+
+def test_managed_launcher_rejects_fixed_mode_creation_flag(tmp_path: Path) -> None:
+    root = tmp_path / "workspaces"
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "resinsight_mcp.mcp",
+            "--workspaces-root",
+            str(root),
+            "--create-workspace",
+        ],
+        capture_output=True,
+        text=True,
+        timeout=20,
+    )
+    assert result.returncode == 2
+    assert "--create-workspace requires --workspace-root" in result.stderr
+    assert not root.exists()
 
 
 @pytest.mark.parametrize("path_kind", ["relative", "missing", "file", "unwritable"])
