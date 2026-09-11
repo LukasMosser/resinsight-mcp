@@ -1,7 +1,8 @@
-"""Artifact metadata, saved-project checkpoints, and explicit recovery outcomes."""
+"""Workspace records, artifact metadata, checkpoints, and recovery outcomes."""
 
 import unicodedata
 from enum import StrEnum
+from pathlib import Path
 from typing import Self
 
 from pydantic import field_validator, model_validator
@@ -12,6 +13,51 @@ from .errors import Error
 from .identifiers import ArtifactId, CheckpointId, ResultId, SessionId
 from .jobs import Job
 from .models import ArtifactRef
+
+
+def validate_workspace_name(value: str) -> str:
+    """Keep workspace names as one safe directory entry."""
+    normalized = unicodedata.normalize("NFC", value)
+    if (
+        normalized != normalized.strip()
+        or normalized in {".", ".."}
+        or "/" in normalized
+        or "\\" in normalized
+        or ":" in normalized
+        or any(ord(character) < 32 or ord(character) == 127 for character in normalized)
+    ):
+        raise ValueError("Use a workspace name without path separators or control characters.")
+    return normalized
+
+
+class Workspace(Record):
+    """Identify one managed workspace directory."""
+
+    name: Text
+    root: Path
+
+    @field_validator("name")
+    @classmethod
+    def check_name(cls, value: str) -> str:
+        return validate_workspace_name(value)
+
+    @field_validator("root")
+    @classmethod
+    def check_root(cls, value: Path) -> Path:
+        if not value.is_absolute():
+            raise ValueError("A workspace root must be absolute.")
+        return value
+
+
+class WorkspaceRequest(Record):
+    """Select or create one workspace by its managed directory name."""
+
+    name: Text
+
+    @field_validator("name")
+    @classmethod
+    def check_name(cls, value: str) -> str:
+        return validate_workspace_name(value)
 
 
 class ArtifactKind(StrEnum):

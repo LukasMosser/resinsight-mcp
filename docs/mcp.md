@@ -31,7 +31,8 @@ No tool accepts arbitrary shell commands or Python code.
 ## Start a workspace server
 
 Use Python 3.12 and the locked environment from the [setup guide](development/local-setup.md).
-Choose an absolute workspace path whose parent directory already exists.
+For fixed mode, choose an absolute workspace path whose parent directory already exists.
+For managed mode, choose an absolute parent path that the launcher can create.
 
 For a new workspace, run:
 
@@ -55,6 +56,25 @@ The server waits for an MCP client after startup.
 Configure your local MCP client with the second command after creating the workspace once.
 Use absolute executable and checkout paths when your client starts outside the repository.
 The [SDK documentation](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x) describes client transport support.
+
+To keep one MCP connection while working with several workspaces, start the managed launcher:
+
+```console
+uv run --locked python -m resinsight_mcp.mcp \
+  --workspaces-root /absolute/path/workspaces
+```
+
+The launcher creates the managed root when it does not exist.
+It does not select a workspace during startup.
+Use `workspace_list` to inspect available workspaces.
+Use `workspace_create` with `{"name": "case-a"}` to create one.
+Use `workspace_select` with `{"name": "case-a"}` before calling workspace-scoped tools.
+The selected workspace remains active until the client selects another one or disconnects.
+The selection is not persisted, so reconnecting requires another `workspace_select` call.
+The server keeps each selected workspace runtime separate within one connection.
+The managed launcher does not accept `--create-workspace`.
+Pass the optional model, native session, or OPM workflow flags with `--workspaces-root` when needed.
+Their dependency checks run when a workspace is first selected.
 
 ## Enable ResInsight sessions
 
