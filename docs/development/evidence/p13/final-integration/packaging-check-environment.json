@@ -1,0 +1,17 @@
+{
+  "command": "uv run --locked python scripts/check.py",
+  "worktree": "/private/tmp/resinsight-p13-evidence-packaging",
+  "base_commit": "e984c80169a195c7474048d4158895acb0ec13d8",
+  "state": "Uncommitted archive packaging, with final README corrections before documentation build. The normal commit hook checks the complete staged change separately.",
+  "exit_code": 0,
+  "log": "/private/tmp/p13-packaging-check.log",
+  "versions": {
+    "uv": "0.11.16",
+    "python": "3.12.13",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "ty": "0.0.79",
+    "mkdocs": "1.6.1",
+    "pre-commit": "4.6.2"
+  }
+}

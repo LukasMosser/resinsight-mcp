@@ -1,0 +1,36 @@
+{
+  "native_processes": [
+    {
+      "record": "native-connection_397a450fae164cf6bec13c176e023404.json",
+      "context": {
+        "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+        "connection_id": "connection_397a450fae164cf6bec13c176e023404",
+        "project_generation": 0
+      },
+      "process": {
+        "pid": 47576,
+        "start_marker": "1788983755.611535"
+      },
+      "pid_exists": false
+    },
+    {
+      "record": "native-connection_5ad998b13c7948a793972158022c16e4.json",
+      "context": {
+        "session_id": "session_59a5715621a4450a96046965d1b2de9a",
+        "connection_id": "connection_5ad998b13c7948a793972158022c16e4",
+        "project_generation": 0
+      },
+      "process": {
+        "pid": 44281,
+        "start_marker": "1788983593.350523"
+      },
+      "pid_exists": false
+    }
+  ],
+  "public_cleanup": {
+    "errors": [],
+    "emergency_actions": false
+  },
+  "method": "psutil.pid_exists after public owned termination",
+  "containers": "Separate read-only inspection required."
+}

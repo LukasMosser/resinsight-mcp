@@ -1,0 +1,108 @@
+{
+  "command": [
+    "/Applications/Docker.app/Contents/Resources/bin/docker",
+    "inspect",
+    "--type",
+    "container",
+    "09f86b825dfbb6dbb05ff576f755bfbf21a5f669902f5a07f7c59d6a696a364e",
+    "3f3ebcad0e22871ec53d1141490a77708c260793a122929e44b3e15d96f5ab75",
+    "a941440258e7ced279a882b8948867d42d680597df9d2abff1b66de8d8568c01"
+  ],
+  "result": "All three exact owned containers are stopped with matching public exit codes.",
+  "containers_retained": true,
+  "records": [
+    {
+      "job_id": "job_bbeaa4856ee94a14b4cb7f5b42479e85",
+      "state": "succeeded",
+      "container_id": "09f86b825dfbb6dbb05ff576f755bfbf21a5f669902f5a07f7c59d6a696a364e",
+      "container_name": "/resinsight-opm-e9d0bdcee1974f7789a75c4172583fab",
+      "labels": {
+        "org.opencontainers.image.version": "24.04",
+        "org.resinsight-mcp.owner": "78cccc7f96214de083225e81825be77e"
+      },
+      "native_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-09T19:53:19.872562421Z",
+        "FinishedAt": "2026-09-09T19:53:20.601814546Z"
+      },
+      "host_limits": {
+        "NanoCpus": 2000000000,
+        "Memory": 2147483648,
+        "NetworkMode": "none"
+      },
+      "public_termination_confirmed": false,
+      "ownership_label_matches_public_submission": true,
+      "enforced_limits_match_public_submission": true
+    },
+    {
+      "job_id": "job_8bb2c32d975544f3b7516ec72f197cbb",
+      "state": "succeeded",
+      "container_id": "3f3ebcad0e22871ec53d1141490a77708c260793a122929e44b3e15d96f5ab75",
+      "container_name": "/resinsight-opm-c76941f426a6493aa30ac91e14daf014",
+      "labels": {
+        "org.opencontainers.image.version": "24.04",
+        "org.resinsight-mcp.owner": "d51b576b052d4f74acd43eb5d92ee159"
+      },
+      "native_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-09-09T19:53:31.985213301Z",
+        "FinishedAt": "2026-09-09T19:53:32.40317501Z"
+      },
+      "host_limits": {
+        "NanoCpus": 2000000000,
+        "Memory": 2147483648,
+        "NetworkMode": "none"
+      },
+      "public_termination_confirmed": false,
+      "ownership_label_matches_public_submission": true,
+      "enforced_limits_match_public_submission": true
+    },
+    {
+      "job_id": "job_d047570d76174e2b9b8f9abc9a5668be",
+      "state": "canceled",
+      "container_id": "a941440258e7ced279a882b8948867d42d680597df9d2abff1b66de8d8568c01",
+      "container_name": "/resinsight-opm-f21369b54b52426d8487a5ad5154dd33",
+      "labels": {
+        "org.opencontainers.image.version": "24.04",
+        "org.resinsight-mcp.owner": "df7952af86df438495b17183559104e1"
+      },
+      "native_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 137,
+        "Error": "",
+        "StartedAt": "2026-09-09T19:55:52.113659088Z",
+        "FinishedAt": "2026-09-09T19:55:54.80818834Z"
+      },
+      "host_limits": {
+        "NanoCpus": 1000000000,
+        "Memory": 2147483648,
+        "NetworkMode": "none"
+      },
+      "public_termination_confirmed": true,
+      "ownership_label_matches_public_submission": true,
+      "enforced_limits_match_public_submission": true
+    }
+  ]
+}

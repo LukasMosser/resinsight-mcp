@@ -76,6 +76,7 @@ nav:
       - Implementation plan: development/implementation-plan.md
       - OPM workflow delivery: development/p13-delivery.md
       - Public OPM acceptance: development/opm-acceptance.md
+      - Public OPM evidence: development/evidence/p13/public-workflow/README.md
       - Scope review: development/scope-review.md
       - Foundation evidence: development/foundation-evidence.md
       - Releases: development/releases.md

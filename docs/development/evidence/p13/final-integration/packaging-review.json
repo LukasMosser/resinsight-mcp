@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-11",
+  "reason": "The owner identified the three-million-line review diff caused by expanded generated records.",
+  "expanded_source_commit": "e984c80169a195c7474048d4158895acb0ec13d8",
+  "archive": "../public-workflow/raw-evidence.tar.gz",
+  "archive_index": "../public-workflow/archive-index.json",
+  "archive_size_bytes": 7223668,
+  "original_payload_files": 1650,
+  "archive_members": 1596,
+  "retained_original_paths": 54,
+  "source_membership": "All original paths are accounted for once, with no overlap or omission.",
+  "archive_paths": "Every member is an ordinary file with a safe relative path.",
+  "independent_review": {
+    "reviewer": "result services reviewer",
+    "result": "passed",
+    "json_files": 1513,
+    "event_streams": 3,
+    "driver_syntax_trees": 21,
+    "text_records": 47,
+    "accepted_opm_files": 10,
+    "opm_arrays": 192,
+    "decoded_images": 54,
+    "native_project_database": "Parsed contents match the original record.",
+    "method": "Compare parsed records, supported OPM arrays, decoded images, and project data with the expanded source payload.",
+    "all_compared_content_equal": true,
+    "blocking_findings": []
+  },
+  "visible_native_images": 29,
+  "failed_trial_images_in_archive": 22,
+  "original_manifest_member": "manifest.json",
+  "runtime_source_changed": false,
+  "new_native_trial": false,
+  "layout": "Acceptance decisions, commands, completion tables, and accepted native images remain ordinary review files. Bulk generated data stays in the archive.",
+  "documentation_review": {
+    "result": "passed",
+    "reviewer": "lifecycle reviewer",
+    "blocking_findings": [],
+    "scope": "Archive access, extraction, review scope, duplication, and preservation of the accepted limits."
+  },
+  "source_comparison_commands": [
+    "git diff b2724755ab223990a7bb19f425ad3fa064c64ff8 -- src tests pyproject.toml uv.lock scripts",
+    "git diff b4c414beee91a0fa419f04e7c7874d2b2108a5a7 -- src"
+  ],
+  "source_comparison_results": [
+    "empty",
+    "empty"
+  ]
+}

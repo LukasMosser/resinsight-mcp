@@ -64,6 +64,11 @@ Separate source inspection from runtime evidence.
 A documented API does not prove that an integration works.
 For external applications, record the tested versions, environment, inputs, commands, and observed outputs.
 
+Keep bulk generated records in a compressed evidence archive.
+Keep review summaries, commands, selected logs, and useful images as ordinary files.
+Document the archive member paths and extraction command.
+Preserve original records and verify their parsed contents before publication.
+
 The [P01 platform record](platform-proof.md) contains the completed experiments on one macOS host.
 Those runtime records do not replace maintained library tests or prove future adapters.
 Report observed test results and their scope, rather than inferring success from test files or interface declarations.

@@ -89,7 +89,7 @@ The model slice binds P07 import and P08 creation through seven [public model to
 It validates the pinned parser before opening workspace storage and preserves exact revision identities across reconnection.
 The OPM slice composes wells, schedules, bounded Flow jobs, verified results, comparisons, and native views through the supplied launcher.
 It verifies required dependencies before opening workspace storage and retains domain ownership behind typed service interfaces.
-Issue #35 remains open until reviewed integration and complete public acceptance establish those paths together.
+The [P13 public acceptance](evidence/p13/public-workflow/README.md) establishes those paths together through the reviewed launcher.
 Users must not need to author a Python server for the completed product workflow.
 
 The [operation map](agent-workflows.md#gaps-and-proposed-ownership) records missing MCP paths and their package owners.
@@ -97,7 +97,7 @@ The result service supplies trusted view bindings, while the Flow adapter suppli
 P08, P09, P11, and P12 retain their accepted domain scope.
 P13 and P17 require the integrated launcher and public domain tools before their acceptance can pass.
 
-The [OPM workflow delivery plan](p13-delivery.md) assigns the remaining P11, P12, and P13 work.
+The [OPM workflow delivery record](p13-delivery.md) connects P11, P12, and P13 ownership and acceptance evidence.
 The [run and result contracts](run-result-contracts.md) define their shared execution, result, and checkpoint records under [issue #46](https://github.com/LukasMosser/resinsight-mcp/issues/46).
 The P11 owner implements generic Docker ownership separately under [issue #47](https://github.com/LukasMosser/resinsight-mcp/issues/47).
 
@@ -351,23 +351,26 @@ The recorded custom macOS native build passes P12 acceptance with verified owned
 
 ## P13: Prove the OPM workflow
 
-Start from a clean installation with the shipped launcher and documented configuration.
-Discover capabilities and perform every domain setup step through public MCP tools.
-Do not compose a custom server or seed model, job, result, or native case records through hidden Python setup.
-The [launcher integration](https://github.com/LukasMosser/resinsight-mcp/issues/35) is an acceptance prerequisite.
+The [public acceptance driver](opm-acceptance.md) uses a clean installation, the shipped launcher, and discovered public MCP tools.
+Every domain operation stays within that public boundary, including model creation, native well setup, simulation, result loading, and recovery.
+The [trial 04 record](evidence/p13/public-workflow/README.md) preserves 354 public calls, 854 passing checks, and 29 reviewed native images.
+It records the exact installed application, driver, custom native build, generated client, Flow image, and macOS environment.
 
-Create two named sessions and import or generate a small layered model.
-Create an injector and producer, show their completions, run OPM, and load the results.
-Clone the scenario, change a control, run it, and compare the results.
+The trial creates two named sessions and a generated three-layer FIELD model with an injector and producer.
+It exports native completions, runs a baseline, clones a scenario, and reduces the producer oil target by 25 percent.
+Six complete numerical records and 18 signed comparisons establish the resulting pressure, saturation, and well response.
+Paired native images preserve the same camera and legends.
+The record documents the small grid view and places subtle saturation differences in their numerical context.
 
-Repeat the workflow across an MCP disconnect and project save and reopen.
-Cancel a run and demonstrate the resulting state.
-Make sure that session identities, model revisions, units, times, and well controls remain consistent.
+Result records remain exact after project reopening and MCP restart.
+Fresh native definition and completion values use documented narrow rounding tolerances, while stored export records remain exact.
+A third job retains its identity while running across MCP reconnection, then confirms public cancellation and rejects result collection.
+Both owned native processes end, and all three exact containers stop with verified ownership and limits.
+The retained failed trials document the numerical assertion repairs without claiming acceptance.
 
-Acceptance combines command logs, screenshots, native image results, and numerical comparisons.
-Preserve the agent's requests and responses across setup, simulation, result loading, comparison, and recovery.
-Record exact tool versions and the tested commit.
-The macOS demonstration is required even when isolated tests pass on another platform.
+This evidence completes the bounded macOS OPM workflow criteria.
+P16 retains wider recovery and boundary acceptance, while P17 retains distribution and release acceptance.
+The tested custom ResInsight build is required and does not establish acceptance of a released native binary.
 
 ## P14: Prove Julia result transfer
 

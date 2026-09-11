@@ -2,10 +2,21 @@
 
 This document describes the P13 driver for [issue 14](https://github.com/LukasMosser/resinsight-mcp/issues/14).
 The lead reviewed the driver and its public protocol, numerical checks, failure handling, and cleanup boundaries.
-Trial 04 completed locally with 354 public calls, 854 passing checks, and 29 independently reviewed native images.
-Numerical, recovery, cancellation, and cleanup reviews passed.
-The prepared runtime records await owner approval for evidence publication and final P13 delivery.
+The [trial 04 record](evidence/p13/public-workflow/README.md) establishes complete public workflow acceptance on the recorded custom native build.
 The lead must approve the source and native trial before execution.
+
+## Recorded acceptance
+
+Trial 04 completed 354 public calls and 854 passing checks, including 13 expected negative outcomes.
+Independent reviews covered six complete numerical records, 18 signed comparisons, four retained exports, and all 29 original images.
+The workflow preserved result values across project reopening and MCP restart, then canceled the same running job after reconnecting.
+Both owned native processes ended, and all three exact containers stopped with verified ownership and limits.
+The [final lead decision](evidence/p13/public-workflow/trial-04/lead-acceptance.json) separates runtime acceptance from evidence integration and pull request delivery.
+
+The grid images use a small top-down view with broad margins.
+Pressure units remain in metadata, and numerical comparisons establish subtle saturation changes.
+The supported scope remains the generated FIELD template, declared controls, and recorded custom native build.
+The [failed trial records](evidence/p13/public-workflow/README.md#earlier-failed-trials) preserve the earlier rounding failures without claiming their acceptance.
 
 ## Public boundary
 
@@ -159,14 +170,13 @@ Run the command from the reviewed driver checkout.
   --python "$P13_PYTHON" \
   --executable /private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight \
   --docker /Applications/Docker.app/Contents/Resources/bin/docker \
-  --output /private/tmp/resinsight-p13-public-trial-01 \
+  --output /private/tmp/resinsight-p13-public-trial-new \
   --source-commit "$P13_SOURCE_COMMIT" \
   --native-source /private/tmp/resinsight-p01-build/source
 ```
 
 The source review must precede this command.
 Trial 04 ran under the owner's recorded native runtime authorization.
-Evidence publication approval remains pending.
 The driver has no bypass flag or test startup hook.
 
 ## Maintained checks

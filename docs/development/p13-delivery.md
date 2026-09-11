@@ -4,12 +4,12 @@ The accepted goal completes [P11](https://github.com/LukasMosser/resinsight-mcp/
 P11 runs Open Porous Media (OPM) Flow against one immutable model revision.
 P12 validates, loads, queries, and compares the resulting data.
 P13 proves the full workflow through the shipped launcher and public MCP tools.
-This plan records scope, ownership, and remaining acceptance gates.
+This record connects scope, ownership, and completed runtime acceptance.
 
 The [P11 record](evidence/p11/README.md) now establishes bounded Flow execution and verified numerical output through the Python service.
 The [P12 native record](evidence/p12/native/README.md#trial-07) establishes result loading, comparison, images, and project reopening.
-P13 trial 04 completed locally through public MCP tools with independent numerical, image, and cleanup review.
-Its prepared runtime evidence awaits owner approval for publication and final PR integration.
+The [P13 trial 04 record](evidence/p13/public-workflow/README.md) establishes the complete public workflow on the recorded custom native build.
+It preserves 354 public calls, 854 passing checks, and 29 independently reviewed native images.
 
 ## Shared prerequisites
 
@@ -60,7 +60,7 @@ The view lookup accepts a current loaded result and returns its actual view refe
 Both lookups verify ownership without exposing native addresses or inferring identity from display names.
 The lead owns launcher composition of the reviewed follow-up interfaces.
 
-## Acceptance gates
+## Acceptance evidence
 
 P11 evidence must distinguish process exit from accepted numerical output.
 It must record the actual Flow version, exact inputs, final simulation time, warnings, output roles, and justified numerical tolerances.
@@ -81,7 +81,8 @@ It repeats relevant operations across MCP disconnection and project save and reo
 Evidence must preserve requests, responses, native images, numerical checks, tested commits, tool versions, and the macOS environment.
 The [public acceptance driver](opm-acceptance.md) implements this sequence through the official SDK and supplied launcher.
 Its maintained tests cover evidence failures.
-The completed local native trial and visual review remain separate from evidence publication and final PR delivery.
+The trial records preserve complete numerical comparisons, two project recovery stages, same-job cancellation, and verified owned-process cleanup.
+The [final integration record](evidence/p13/final-integration/README.md) connects the accepted installation and driver to the final source.
 
 P11, P12, and P13 close only after their reviewed PRs complete the corresponding acceptance criteria.
 Required CI checks and documentation deployment must pass after integration.

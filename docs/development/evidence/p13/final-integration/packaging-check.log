@@ -1,0 +1,98 @@
+Using CPython 3.12.13
+Creating virtual environment at: .venv
+   Building resinsight-mcp @ file:///private/tmp/resinsight-p13-evidence-packaging
+Downloading virtualenv (5.1MiB)
+Downloading mkdocs-material (8.9MiB)
+Downloading ty (12.4MiB)
+Downloading grpcio-tools (5.7MiB)
+Downloading mkdocs (3.7MiB)
+Downloading numpy (5.2MiB)
+Downloading babel (9.7MiB)
+Downloading pydantic-core (1.8MiB)
+Downloading cryptography (3.8MiB)
+Downloading pygments (1.2MiB)
+Downloading ruff (9.4MiB)
+Downloading grpcio (11.6MiB)
+Downloading opm (4.1MiB)
+      Built resinsight-mcp @ file:///private/tmp/resinsight-p13-evidence-packaging
+ Downloaded pygments
+ Downloaded pydantic-core
+ Downloaded mkdocs
+ Downloaded cryptography
+ Downloaded opm
+ Downloaded virtualenv
+ Downloaded numpy
+ Downloaded grpcio-tools
+ Downloaded mkdocs-material
+ Downloaded ruff
+ Downloaded babel
+ Downloaded grpcio
+ Downloaded ty
+Installed 83 packages in 374ms
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+297 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /private/tmp/resinsight-p13-evidence-packaging/.venv/bin/python -m pytest -q
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 37%]
+........................................................................ [ 46%]
+........................................................................ [ 55%]
+........................................................................ [ 65%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+........................................................................ [ 93%]
+......................................................                   [100%]
+774 passed in 154.53s (0:02:34)
+
+Run: mkdocs build --strict
+
+[31m │  ⚠  Warning from the Material for MkDocs team[0m
+[31m │[0m
+[31m │[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,
+[31m │[0m  will introduce backward-incompatible changes, including:
+[31m │[0m
+[31m │  × [0mAll plugins will stop working – the plugin system has been removed
+[31m │  × [0mAll theme overrides will break – the theming system has been rewritten
+[31m │  × [0mNo migration path exists – existing projects cannot be upgraded
+[31m │  × [0mClosed contribution model – community members can't report bugs
+[31m │  × [0mCurrently unlicensed – unsuitable for production use
+[31m │[0m
+[31m │[0m  Our full analysis:
+[31m │[0m
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /private/tmp/resinsight-p13-evidence-packaging/site
+INFO    -  The following pages exist in the docs directory, but are not included in the "nav" configuration:
+  - development/evidence/opm-launcher/browser/README.md
+  - development/evidence/opm-launcher/final-integration/README.md
+  - development/evidence/p06/observer/README.md
+  - development/evidence/p09/integrated/README.md
+  - development/evidence/p09/lifetime/browser/README.md
+  - development/evidence/p09/service/README.md
+  - development/evidence/p09/service/trial-02/connections.md
+  - development/evidence/p09/service/trial-03/connections.md
+  - development/evidence/p09/service/trial-04/connections.md
+  - development/evidence/p11/browser/README.md
+  - development/evidence/p12/native/README.md
+  - development/evidence/p13/final-integration/README.md
+  - development/evidence/p13/preparation/README.md
+  - development/evidence/p13/public-workflow/trial-04/baseline-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/baseline-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/mcp-restarted-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/mcp-restarted-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/project-reopened-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/project-reopened-PROD-connections.md
+  - development/evidence/p13/public-workflow/trial-04/scenario-INJ-connections.md
+  - development/evidence/p13/public-workflow/trial-04/scenario-PROD-connections.md
+  - development/evidence/workspace-journal/README.md
+INFO    -  Documentation built in 2.03 seconds

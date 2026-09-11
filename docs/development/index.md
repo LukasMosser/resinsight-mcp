@@ -24,8 +24,9 @@ Start with these pages:
 - [Agent workflows](agent-workflows.md) maps current tools and assigns the remaining integration work.
 - [Shared contracts](contracts.md) documents the implemented data conventions and typed boundaries.
 - [Run and result contracts](run-result-contracts.md) defines execution ownership, output roles, numerical data, and comparison checkpoints.
-- [OPM workflow delivery](p13-delivery.md) assigns the remaining P11, P12, and P13 integration work.
-- [Public OPM acceptance](opm-acceptance.md) describes the reviewed clean-installation driver and its remaining native trial.
+- [OPM workflow delivery](p13-delivery.md) connects P11, P12, and P13 scope, ownership, and acceptance evidence.
+- [Public OPM acceptance](opm-acceptance.md) describes the reviewed clean-installation driver and completed native trial.
+- [Public OPM evidence](evidence/p13/public-workflow/README.md) preserves complete calls, numerical comparisons, native images, recovery, and cancellation.
 - [Workspaces](workspaces.md) explains durable storage, immutable cloning, and explicit recovery.
 - [MCP transport](mcp.md) explains typed operations, protocol isolation, and native content.
 - [Launcher evidence](launcher-evidence.md) records native session control from a clean installation.
@@ -37,9 +38,6 @@ Start with these pages:
 - [OPM runtime evidence](evidence/p11/README.md) records actual runs, failures, cancellation, deadlines, and reference agreement.
 - [Result services](results.md) explains verified native loading, aligned queries, comparisons, and summary plot receipts.
 - [Job evidence](p10-evidence.md) records real child processes and MCP disconnect acceptance.
-- [OPM Flow service](opm.md) explains isolated runs, dependency checks, immutable output publication, and numerical acceptance.
-- [OPM runtime evidence](evidence/p11/README.md) records successful runs, changed controls, failures, fresh-service recovery, and a deterministic reference comparison.
-- [Result services](results.md) explains accepted output verification, native bindings, aligned queries, comparisons, and summary plot receipts.
 - [View control](views.md) explains native settings, trusted result bindings, and fresh observations.
 - [View evidence](p06-evidence.md) separates native checks, local protocol delivery, and model-facing acceptance.
 - [Constrained models](synthetic-models.md) explains generated inputs, stored specifications, and numerical acceptance.
