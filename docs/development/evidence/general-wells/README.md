@@ -4,6 +4,12 @@ This record covers the well delivery under [issue #57](https://github.com/LukasM
 It extends the [geological acceptance](../general-models/README.md) with native wells and immutable connection exports.
 It does not establish simulator schedule or Flow support for general models.
 
+The tested MCP implementation is `7f8c10f1e03c5f580310429b390865ab653e645b`.
+The final million-cell run used that committed source and native commit `7c3635788a8b4f4fad5fcd92220ba88252d161b3`.
+The [shared command log](shared-check.log) records 805 passing tests, Ruff, typing, and strict documentation checks.
+The [native test log](native-tests.log) records two passing unit and intersection tests.
+The [version record](versions.json) identifies the native build and installed packages.
+
 ## Observed behavior
 
 A public MCP client created an all-active 100 by 200 by 50 model.
@@ -22,13 +28,52 @@ Small runs prove vertical, horizontal, slanted, and separated-interval wells in 
 A faulted fixture offsets half the grid by 50 meters and removes the third layer from the active cells.
 Its three vertical wells each return nine connections, with the inactive layer absent.
 Its horizontal path returns five cells before the fault offset places the remaining path above the reservoir.
-A separate dense fixture exercises multipart target and interval arrays.
+A separate dense fixture exercises 121 targets and 120 perforation intervals through multipart arrays.
+It returns ten aggregated cell connections and retains the separated source intervals.
 
 Each completed run saves and reopens the ResInsight project.
 It then exits MCP and the owned application and starts both again.
 The client restores grid and well receipts against current native references.
 It re-exports all connections and compares every stored column before and after each recovery.
 Native screenshots come from MCP image responses.
+
+![Million-cell model with three full-height well paths](million-02.png)
+
+The section displays one J row of the million-cell model.
+Numerical exports establish each well's complete 50-cell connection set.
+The full native grid appears in the [oblique view](million-01.png).
+
+![Faulted model with an inactive layer and varied well trajectories](faulted-inactive-02.png)
+
+The inactive layer appears as an empty band on both sides of the fault.
+The horizontal path remains visible above the deeper fault block, where it has no reservoir connections.
+The [FIELD section](feet-02.png) and [dense-path section](dense-02.png) show the other acceptance fixtures.
+
+## Measurements
+
+The four successful general runs contain 1,088 recorded public MCP calls and eight native images.
+All cases passed project reopen and complete MCP/application restart checks.
+The largest structured response contains 3,802 characters.
+These figures exclude image payloads and describe this acceptance, rather than permanent product limits.
+
+| Fixture | Global cells | Native wells | Connections | Peak MCP MiB | Peak ResInsight MiB |
+| --- | ---: | ---: | --- | ---: | ---: |
+| Million-cell target | 1,000,000 | 3 | 50 per well | 374.6 | 1,405.4 |
+| FIELD geometry | 1,000 | 6 | 10 per continuous path, 4 for separated intervals | 105.7 | 330.8 |
+| Fault and inactive layer | 1,000 | 6 | 9 per vertical/slanted path, 5 horizontal, 4 separated | 99.9 | 304.6 |
+| Dense multipart path | 1,000 | 7 | 10 for the 121-target path | 111.9 | 329.4 |
+
+Memory values are sampled resident process memory, rather than guaranteed upper bounds.
+The [metrics record](metrics.json) includes all operation times, response sizes, and workspace storage.
+The final million-cell workspace occupies about 168.3 MiB.
+
+## Existing workflow regression
+
+The existing bounded OPM workflow passed 854 automated checks across 353 public tool calls.
+It produced two accepted simulation results and verified project and MCP recovery.
+The archived `legacy/acceptance.json` preserves its original `acceptance_complete: false` because its separate full image review remains pending.
+This record treats that run as an automated regression check, without declaring a new complete P13 acceptance.
+Its owned ResInsight processes stopped, and its stopped job containers remain available for inspection.
 
 ## Numerical reference
 
@@ -82,6 +127,34 @@ Run these commands with `docs/development/evidence/general-wells` as the working
 The script requires a new output directory for each run.
 The recorded executable path identifies the reviewed local ResInsight build.
 The shared recorder in `../general-models/acceptance.py` logs original MCP calls and samples process memory every 50 milliseconds.
+
+Apply `native-grid-units.patch` after the recorded native base.
+Build ResInsight with the existing reviewed configuration before generating its RIPS package.
+The build creates `GrpcInterface/Python/rips/generated/generated_classes.py` with the new unit query.
+
+```console
+uv build --wheel /absolute/native-source/GrpcInterface/Python --out-dir /absolute/rips-wheel
+uv pip install --python /absolute/environment/bin/python --no-deps --reinstall /absolute/rips-wheel/rips-2026.9.0.1-py3-none-any.whl
+```
+
+The [native build log](native-build.log) records successful compilation and client generation.
+
+## Original records
+
+`protocol-records.tar.gz` contains 1,960 files under `million/`, `feet/`, `faulted-inactive/`, `dense/`, `failed-feet/`, and `legacy/`.
+The general groups preserve every original `call-*-<tool>.json`, native image, saved project, summary, and driver log.
+The failed FIELD group preserves the incorrect native factor result and its rejecting assertion.
+The legacy group preserves its original calls, checks, result records, native images, and cleanup records.
+The archive membership and every JSON document were checked after packaging.
+
+```console
+mkdir extracted-evidence
+tar -xzf protocol-records.tar.gz -C extracted-evidence
+```
+
+Complete workspace databases and array directories remain at the original paths in the records.
+They are omitted from the archive because the public calls and fixture script reproduce their inputs.
+The [rendered documentation](documentation.png) was inspected after a strict MkDocs build.
 
 ## Limits and review
 

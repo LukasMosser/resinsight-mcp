@@ -1,0 +1,30 @@
+{
+  "implementation_commit": "7f8c10f1e03c5f580310429b390865ab653e645b",
+  "native_commit": "7c3635788a8b4f4fad5fcd92220ba88252d161b3",
+  "native_base": "9c920334e338dab4908aa4dabdfae22803e70411",
+  "native_executable": "/private/tmp/resinsight-p01-build/application-build/ResInsight.app/Contents/MacOS/ResInsight",
+  "generated_rips_wheel": "/private/tmp/general-well-rips-package/dist/rips-2026.9.0.1-py3-none-any.whl",
+  "installed_python": "/private/tmp/general-well-installed/bin/python",
+  "native_unit_query": "Case.grid_unit_system",
+  "python": "3.12.13",
+  "packages": {
+    "resinsight-mcp": "0.1.0",
+    "mcp": "1.30.0",
+    "rips": "2026.9.0.1",
+    "numpy": "2.5.3",
+    "pydantic": "2.13.5",
+    "grpcio": "1.83.1",
+    "protobuf": "7.36.1"
+  },
+  "legacy_opm_reader": "2025.10",
+  "host": "macOS 14.2.1 arm64, 16 GiB, 8 logical CPUs",
+  "field_faulted_dense_source_note": "These runs used the same library sources subsequently committed as the implementation commit.",
+  "native_build_command": [
+    "/private/tmp/resinsight-p01-build/build-tools/bin/cmake",
+    "--build",
+    "/private/tmp/resinsight-p01-build/application-build",
+    "--parallel",
+    "2"
+  ],
+  "native_build_exit_code": 0
+}

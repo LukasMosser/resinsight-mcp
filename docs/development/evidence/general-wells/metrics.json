@@ -1,0 +1,575 @@
+{
+  "million": {
+    "shape": {
+      "nx": 100,
+      "ny": 200,
+      "nz": 50
+    },
+    "length_unit": "m",
+    "wells": {
+      "PROD_A": 50,
+      "PROD_B": 50,
+      "INJ_C": 50
+    },
+    "calls": 158,
+    "images": 2,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 392773632,
+      "resinsight": 1473642496
+    },
+    "workspace_bytes": 176497947,
+    "maximum_structured_response_characters": 3802,
+    "tool_seconds": {
+      "application_close": {
+        "calls": 2,
+        "minimum": 0.3276516670593992,
+        "maximum": 0.3282684580190107,
+        "total": 0.6559201250784099
+      },
+      "application_launch": {
+        "calls": 2,
+        "minimum": 1.4701285000192001,
+        "maximum": 2.1984752090647817,
+        "total": 3.668603709083982
+      },
+      "array_range": {
+        "calls": 111,
+        "minimum": 0.05374650005251169,
+        "maximum": 0.05856074998155236,
+        "total": 6.145034660352394
+      },
+      "array_upload": {
+        "calls": 9,
+        "minimum": 0.05411220795940608,
+        "maximum": 0.05578041705302894,
+        "total": 0.4977535840589553
+      },
+      "general_capabilities": {
+        "calls": 1,
+        "minimum": 0.05436383397318423,
+        "maximum": 0.05436383397318423,
+        "total": 0.05436383397318423
+      },
+      "general_well_define": {
+        "calls": 3,
+        "minimum": 0.0548247080296278,
+        "maximum": 0.055384916020557284,
+        "total": 0.16542670701164752
+      },
+      "general_well_export": {
+        "calls": 9,
+        "minimum": 0.6010854159248993,
+        "maximum": 0.658608749974519,
+        "total": 5.657599291647784
+      },
+      "general_well_load": {
+        "calls": 3,
+        "minimum": 1.2534947079839185,
+        "maximum": 1.3137467909837142,
+        "total": 3.822334540076554
+      },
+      "general_well_restore": {
+        "calls": 6,
+        "minimum": 0.5447963749757037,
+        "maximum": 0.6887272919993848,
+        "total": 3.4222911272663623
+      },
+      "geological_generate": {
+        "calls": 1,
+        "minimum": 0.49153374996967614,
+        "maximum": 0.49153374996967614,
+        "total": 0.49153374996967614
+      },
+      "geological_load": {
+        "calls": 1,
+        "minimum": 6.880070624989457,
+        "maximum": 6.880070624989457,
+        "total": 6.880070624989457
+      },
+      "geological_render": {
+        "calls": 2,
+        "minimum": 1.683973666979,
+        "maximum": 1.7987283329712227,
+        "total": 3.4827019999502227
+      },
+      "geological_restore": {
+        "calls": 2,
+        "minimum": 0.4891300000017509,
+        "maximum": 0.4927706670714542,
+        "total": 0.9819006670732051
+      },
+      "project_close": {
+        "calls": 1,
+        "minimum": 0.48779083299450576,
+        "maximum": 0.48779083299450576,
+        "total": 0.48779083299450576
+      },
+      "project_inspect": {
+        "calls": 1,
+        "minimum": 0.16247083293274045,
+        "maximum": 0.16247083293274045,
+        "total": 0.16247083293274045
+      },
+      "project_open": {
+        "calls": 2,
+        "minimum": 2.5548841250129044,
+        "maximum": 2.9156112920027226,
+        "total": 5.470495417015627
+      },
+      "project_save": {
+        "calls": 1,
+        "minimum": 0.32690908294171095,
+        "maximum": 0.32690908294171095,
+        "total": 0.32690908294171095
+      },
+      "session_create": {
+        "calls": 1,
+        "minimum": 0.162594041088596,
+        "maximum": 0.162594041088596,
+        "total": 0.162594041088596
+      }
+    }
+  },
+  "feet": {
+    "shape": {
+      "nx": 10,
+      "ny": 10,
+      "nz": 10
+    },
+    "length_unit": "ft",
+    "wells": {
+      "PROD_A": 10,
+      "PROD_B": 10,
+      "INJ_C": 10,
+      "HORIZONTAL": 10,
+      "SLANTED": 10,
+      "SEPARATED": 4
+    },
+    "calls": 290,
+    "images": 2,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 110804992,
+      "resinsight": 346898432
+    },
+    "workspace_bytes": 668215,
+    "maximum_structured_response_characters": 3770,
+    "tool_seconds": {
+      "application_close": {
+        "calls": 2,
+        "minimum": 0.160552459070459,
+        "maximum": 0.16207166702952236,
+        "total": 0.32262412609998137
+      },
+      "application_launch": {
+        "calls": 2,
+        "minimum": 1.640120125026442,
+        "maximum": 2.271926833083853,
+        "total": 3.9120469581102952
+      },
+      "array_range": {
+        "calls": 213,
+        "minimum": 0.05346487497445196,
+        "maximum": 0.05800745799206197,
+        "total": 11.636271589086391
+      },
+      "array_upload": {
+        "calls": 18,
+        "minimum": 0.05383183399681002,
+        "maximum": 0.05729324999265373,
+        "total": 0.9839325002394617
+      },
+      "general_capabilities": {
+        "calls": 1,
+        "minimum": 0.055142374942079186,
+        "maximum": 0.055142374942079186,
+        "total": 0.055142374942079186
+      },
+      "general_well_define": {
+        "calls": 6,
+        "minimum": 0.053820124943740666,
+        "maximum": 0.06742566695902497,
+        "total": 0.3399147908203304
+      },
+      "general_well_export": {
+        "calls": 18,
+        "minimum": 0.21542879205662757,
+        "maximum": 0.5506410830421373,
+        "total": 4.765317791257985
+      },
+      "general_well_load": {
+        "calls": 6,
+        "minimum": 0.43506237491965294,
+        "maximum": 0.5517303750384599,
+        "total": 2.8407069159438834
+      },
+      "general_well_restore": {
+        "calls": 12,
+        "minimum": 0.21647395798936486,
+        "maximum": 0.2936930831056088,
+        "total": 2.709500622819178
+      },
+      "geological_generate": {
+        "calls": 1,
+        "minimum": 0.054332208004780114,
+        "maximum": 0.054332208004780114,
+        "total": 0.054332208004780114
+      },
+      "geological_load": {
+        "calls": 1,
+        "minimum": 0.9153349169064313,
+        "maximum": 0.9153349169064313,
+        "total": 0.9153349169064313
+      },
+      "geological_render": {
+        "calls": 2,
+        "minimum": 0.49021083291154355,
+        "maximum": 0.5451049170223996,
+        "total": 1.0353157499339432
+      },
+      "geological_restore": {
+        "calls": 2,
+        "minimum": 0.16202729102224112,
+        "maximum": 0.16706304193940014,
+        "total": 0.32909033296164125
+      },
+      "project_close": {
+        "calls": 1,
+        "minimum": 0.3264562920667231,
+        "maximum": 0.3264562920667231,
+        "total": 0.3264562920667231
+      },
+      "project_inspect": {
+        "calls": 1,
+        "minimum": 0.1643768330104649,
+        "maximum": 0.1643768330104649,
+        "total": 0.1643768330104649
+      },
+      "project_open": {
+        "calls": 2,
+        "minimum": 0.9873224160401151,
+        "maximum": 1.0882066660560668,
+        "total": 2.075529082096182
+      },
+      "project_save": {
+        "calls": 1,
+        "minimum": 0.32554287498351187,
+        "maximum": 0.32554287498351187,
+        "total": 0.32554287498351187
+      },
+      "session_create": {
+        "calls": 1,
+        "minimum": 0.21562483394518495,
+        "maximum": 0.21562483394518495,
+        "total": 0.21562483394518495
+      }
+    }
+  },
+  "faulted-inactive": {
+    "shape": {
+      "nx": 10,
+      "ny": 10,
+      "nz": 10
+    },
+    "length_unit": "m",
+    "wells": {
+      "PROD_A": 9,
+      "PROD_B": 9,
+      "INJ_C": 9,
+      "HORIZONTAL": 5,
+      "SLANTED": 9,
+      "SEPARATED": 4
+    },
+    "calls": 300,
+    "images": 2,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 104742912,
+      "resinsight": 319406080
+    },
+    "workspace_bytes": 701773,
+    "maximum_structured_response_characters": 3780,
+    "tool_seconds": {
+      "application_close": {
+        "calls": 2,
+        "minimum": 0.16197895910590887,
+        "maximum": 0.2165720839984715,
+        "total": 0.37855104310438037
+      },
+      "application_launch": {
+        "calls": 2,
+        "minimum": 1.349738416960463,
+        "maximum": 2.059234375017695,
+        "total": 3.408972791978158
+      },
+      "array_join": {
+        "calls": 1,
+        "minimum": 0.054337791982106864,
+        "maximum": 0.054337791982106864,
+        "total": 0.054337791982106864
+      },
+      "array_range": {
+        "calls": 213,
+        "minimum": 0.05322970903944224,
+        "maximum": 0.05775270808953792,
+        "total": 11.65353767958004
+      },
+      "array_upload": {
+        "calls": 26,
+        "minimum": 0.05350437492597848,
+        "maximum": 0.05732779193203896,
+        "total": 1.4201899586478248
+      },
+      "general_capabilities": {
+        "calls": 1,
+        "minimum": 0.05398470791988075,
+        "maximum": 0.05398470791988075,
+        "total": 0.05398470791988075
+      },
+      "general_well_define": {
+        "calls": 6,
+        "minimum": 0.054024333017878234,
+        "maximum": 0.05531333398539573,
+        "total": 0.3281305420678109
+      },
+      "general_well_export": {
+        "calls": 18,
+        "minimum": 0.2139668749878183,
+        "maximum": 0.28627925005275756,
+        "total": 4.3593679568730295
+      },
+      "general_well_load": {
+        "calls": 6,
+        "minimum": 0.32345120795071125,
+        "maximum": 0.6480118340114132,
+        "total": 2.45176733401604
+      },
+      "general_well_restore": {
+        "calls": 12,
+        "minimum": 0.21478404197841883,
+        "maximum": 0.5648057920625433,
+        "total": 2.9569842509226874
+      },
+      "geological_create": {
+        "calls": 1,
+        "minimum": 0.0543523330707103,
+        "maximum": 0.0543523330707103,
+        "total": 0.0543523330707103
+      },
+      "geological_generate": {
+        "calls": 1,
+        "minimum": 0.05398933403193951,
+        "maximum": 0.05398933403193951,
+        "total": 0.05398933403193951
+      },
+      "geological_load": {
+        "calls": 1,
+        "minimum": 0.5203046250389889,
+        "maximum": 0.5203046250389889,
+        "total": 0.5203046250389889
+      },
+      "geological_render": {
+        "calls": 2,
+        "minimum": 0.3778191249584779,
+        "maximum": 0.38200266705825925,
+        "total": 0.7598217920167372
+      },
+      "geological_restore": {
+        "calls": 2,
+        "minimum": 0.16027558292262256,
+        "maximum": 0.16638220893219113,
+        "total": 0.3266577918548137
+      },
+      "project_close": {
+        "calls": 1,
+        "minimum": 0.32169233297463506,
+        "maximum": 0.32169233297463506,
+        "total": 0.32169233297463506
+      },
+      "project_inspect": {
+        "calls": 1,
+        "minimum": 0.15958670899271965,
+        "maximum": 0.15958670899271965,
+        "total": 0.15958670899271965
+      },
+      "project_open": {
+        "calls": 2,
+        "minimum": 0.8124380420194939,
+        "maximum": 0.9793501669773832,
+        "total": 1.791788208996877
+      },
+      "project_save": {
+        "calls": 1,
+        "minimum": 0.2688279169378802,
+        "maximum": 0.2688279169378802,
+        "total": 0.2688279169378802
+      },
+      "session_create": {
+        "calls": 1,
+        "minimum": 0.22020820807665586,
+        "maximum": 0.22020820807665586,
+        "total": 0.22020820807665586
+      }
+    }
+  },
+  "dense": {
+    "shape": {
+      "nx": 10,
+      "ny": 10,
+      "nz": 10
+    },
+    "length_unit": "m",
+    "wells": {
+      "PROD_A": 10,
+      "PROD_B": 10,
+      "INJ_C": 10,
+      "HORIZONTAL": 10,
+      "SLANTED": 10,
+      "SEPARATED": 4,
+      "DENSE": 10
+    },
+    "calls": 340,
+    "images": 2,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 117325824,
+      "resinsight": 345391104
+    },
+    "workspace_bytes": 743127,
+    "maximum_structured_response_characters": 3764,
+    "tool_seconds": {
+      "application_close": {
+        "calls": 2,
+        "minimum": 0.16228570800740272,
+        "maximum": 0.21737133304122835,
+        "total": 0.37965704104863107
+      },
+      "application_launch": {
+        "calls": 2,
+        "minimum": 1.5271833330625668,
+        "maximum": 2.085435040993616,
+        "total": 3.612618374056183
+      },
+      "array_join": {
+        "calls": 2,
+        "minimum": 0.05512558307964355,
+        "maximum": 0.05560383398551494,
+        "total": 0.11072941706515849
+      },
+      "array_range": {
+        "calls": 247,
+        "minimum": 0.0534319169819355,
+        "maximum": 0.056672749924473464,
+        "total": 13.568062049685977
+      },
+      "array_upload": {
+        "calls": 25,
+        "minimum": 0.053940917016007006,
+        "maximum": 0.24953554198145866,
+        "total": 1.5667097951518372
+      },
+      "general_capabilities": {
+        "calls": 1,
+        "minimum": 0.05443595803808421,
+        "maximum": 0.05443595803808421,
+        "total": 0.05443595803808421
+      },
+      "general_well_define": {
+        "calls": 7,
+        "minimum": 0.0543222080450505,
+        "maximum": 0.06037562491837889,
+        "total": 0.38923862494993955
+      },
+      "general_well_export": {
+        "calls": 21,
+        "minimum": 0.21484725002665073,
+        "maximum": 0.3829550420632586,
+        "total": 5.165814540116116
+      },
+      "general_well_load": {
+        "calls": 7,
+        "minimum": 0.32448004104662687,
+        "maximum": 4.92770279198885,
+        "total": 7.049522084067576
+      },
+      "general_well_restore": {
+        "calls": 14,
+        "minimum": 0.21479566697962582,
+        "maximum": 0.5597908750642091,
+        "total": 3.591707167797722
+      },
+      "geological_generate": {
+        "calls": 1,
+        "minimum": 0.05450991599354893,
+        "maximum": 0.05450991599354893,
+        "total": 0.05450991599354893
+      },
+      "geological_load": {
+        "calls": 1,
+        "minimum": 0.44111408409662545,
+        "maximum": 0.44111408409662545,
+        "total": 0.44111408409662545
+      },
+      "geological_render": {
+        "calls": 2,
+        "minimum": 0.4332087920047343,
+        "maximum": 0.43422075000125915,
+        "total": 0.8674295420059934
+      },
+      "geological_restore": {
+        "calls": 2,
+        "minimum": 0.16195337509270757,
+        "maximum": 0.21930058405268937,
+        "total": 0.38125395914539695
+      },
+      "project_close": {
+        "calls": 1,
+        "minimum": 0.32467920903582126,
+        "maximum": 0.32467920903582126,
+        "total": 0.32467920903582126
+      },
+      "project_inspect": {
+        "calls": 1,
+        "minimum": 0.16100395808462054,
+        "maximum": 0.16100395808462054,
+        "total": 0.16100395808462054
+      },
+      "project_open": {
+        "calls": 2,
+        "minimum": 0.9263607920147479,
+        "maximum": 1.1701498749898747,
+        "total": 2.0965106670046225
+      },
+      "project_save": {
+        "calls": 1,
+        "minimum": 0.32302154193166643,
+        "maximum": 0.32302154193166643,
+        "total": 0.32302154193166643
+      },
+      "session_create": {
+        "calls": 1,
+        "minimum": 0.2180777919711545,
+        "maximum": 0.2180777919711545,
+        "total": 0.2180777919711545
+      }
+    }
+  },
+  "archive": {
+    "members": 1960,
+    "compressed_bytes": 5500468,
+    "groups": [
+      "million",
+      "feet",
+      "faulted-inactive",
+      "dense",
+      "failed-feet",
+      "legacy"
+    ]
+  },
+  "legacy": {
+    "automated_checks_passed": true,
+    "acceptance_complete": false,
+    "check_count": 854,
+    "public_tool_calls": 353,
+    "image_review": "Pending separate visual inspection of the saved PNGs.",
+    "native_cleanup": "public application_close with verified lifetime end",
+    "job_cleanup": "public terminal job records; stopped containers retained"
+  }
+}

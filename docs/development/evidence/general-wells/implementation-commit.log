@@ -1,0 +1,14 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+Run repository checks....................................................Passed
+[codex/general-wells 7f8c10f] Add general wells and native connection exports
+ 21 files changed, 1960 insertions(+), 50 deletions(-)
+ create mode 100644 docs/development/evidence/general-wells/README.md
+ create mode 100644 docs/development/evidence/general-wells/native-grid-units.patch
+ create mode 100644 docs/development/evidence/general-wells/well_acceptance.py
+ create mode 100644 docs/development/general-wells.md
+ create mode 100644 src/resinsight_mcp/models/general/wells.py
+ create mode 100644 src/resinsight_mcp/resinsight/general/well_records.py
+ create mode 100644 src/resinsight_mcp/resinsight/general/wells.py
+ create mode 100644 tests/models/general/test_well_plans.py
+ create mode 100644 tests/resinsight/general_wells/__init__.py
+ create mode 100644 tests/resinsight/general_wells/test_service.py
