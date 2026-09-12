@@ -1,23 +1,25 @@
 # General model authoring plan
 
-Status: proposed for owner review on September 12, 2026.
+Status: implementation authorized by the owner on September 12, 2026.
 This plan addresses [issue #57](https://github.com/LukasMosser/resinsight-mcp/issues/57).
-It proposes a new supported profile, with the existing SPE1 helper retained.
-It does not establish large-case acceptance or authorize expensive runs, new physics, or publication.
+The target is general geological model authoring through public MCP tools, with the existing SPE1 helper retained.
+The owner approved implementation and requested native evidence using geologically complex models inspired by the MRST gallery.
+This approval does not imply support for every MRST solver or permission to acquire external compute resources.
 
 ## Recommendation
 
-Deliver a complete Cartesian workflow in small reviewed changes, then establish million-cell acceptance.
+Deliver general geological geometry and model authoring in small reviewed changes, then establish complete simulation acceptance.
 Start with shared array storage, explicit limits, and an early native feasibility check.
 Do not begin by raising the cell limit.
 Keep input authoring, native well editing, simulator execution, and MCP transport under separate owners.
 MCP is the Model Context Protocol for tool access.
 
-The first profile should support nonuniform Cartesian spacing, inactive cells, multiple wells, single-path trajectories, and independent well controls.
-Corner-point geometry, faults, local refinement, branches, multilateral wells, groups, and additional physics need separate scope decisions.
+The target includes Cartesian and corner-point geometry, faults, inactive regions, heterogeneous properties, multiple wells, and independent schedules.
+Implementation order must not become an arbitrary permanent feature or cell-count restriction.
+Other mesh types, refinement, branches, and simulator features require explicit capability verification and adapter work.
 A Cartesian grid uses ordered cells along three axes.
 A corner-point grid specifies each cell through corner coordinates.
-These recommendations resolve open choices provisionally and require owner agreement before implementation.
+The owner approved this broader direction after rejecting permanent MCP-imposed modeling limits.
 
 ## Latest merge and current constraints
 
@@ -44,27 +46,31 @@ All source paths in this table start under `src/resinsight_mcp/`.
 The implementation must also remove large arrays from manifests, prepared receipts, run records, and comparison responses.
 Changing only `result_cell_property` would leave several unbounded responses and repeated allocations.
 
-## Proposed first profile
+## Approved generality and MRST target
 
-Use a versioned `general-cartesian-field-v1` profile.
-Keep the existing FIELD black-oil equations and supported fluid-table families.
-Black-oil models describe oil, gas, and water flow.
-Accept explicit rock, fluid, equilibrium, coordinate, and schedule inputs within that declared profile.
-Provide a named, versioned SPE1 fluid preset as an optional fixture input.
-Never apply that preset or other engineering defaults silently.
+The [MRST gallery](https://www.sintef.no/projectweb/mrst/gallery/) defines the geological complexity target.
+Its [flexible gridding example](https://www.sintef.no/projectweb/mrst/gallery/flexible-gridding/) motivates faulted layers and general geometry.
+Its [fault example](https://www.sintef.no/projectweb/mrst/gallery/faults/) separates geometric displacement from flow barriers.
+Gallery physics examples are references, not a claim that this MCP implements every MRST solver.
 
-Represent geometry with axis widths, a documented origin and depth datum, and explicit cell ordering.
-Use separate directional permeability values and a porosity field.
-Allow constant fields, layer bands, bounded block assignments, and references to stored arrays.
-An active-cell map identifies cells included in the simulation.
-Support that map in the first profile, with all cells active in the target acceptance case.
-Keep more general geometry explicitly unsupported until separately accepted.
+The first executable demonstration will generate an original folded, faulted corner-point model with heterogeneous properties and inactive cells.
+It will use public MCP tools to author, inspect, load, and render that model in ResInsight.
+Numerical evidence must establish geometry, fault offsets, property distributions, and active-cell ordering.
+Native images must show those features from useful oblique and sectional views.
+No gallery image or downloaded field dataset will substitute for generated-model evidence.
 
-Use feet and positive-down depth for the first native trajectory boundary.
-Accept permeability in Darcy or millidarcies through explicit typed units and one conversion owner.
-One Darcy equals 1,000 millidarcies.
-Preserve input units and converted values in the authored specification.
-Other unit systems require separately tested conversions before capability discovery advertises them.
+Remove arbitrary total-count ceilings from new general contracts.
+Replace implementation constants with explicit resource configuration where limits are needed to protect memory, storage, and execution.
+Bound each request and response while allowing larger models through artifact references and batched operations.
+Keep valid geometry, units, engineering inputs, references, and native ownership as required invariants.
+Report every limitation as an adapter gap, installed software capability, configured resource policy, or observed hardware failure.
+
+Use versioned geometry and model manifests without tying their representation to SPE1 or a fixed number of wells.
+Support Cartesian geometry through generated corner-point arrays and permit explicit corner-point arrays from public artifact operations.
+Keep uniform, layered, folded, faulted, and channel-property generators as reusable operations with visible parameters.
+The general representation must also accept data that those convenience generators cannot create.
+Use the existing FIELD physics as one explicit simulator configuration, while extending supported physics through verified backend capabilities.
+Never apply engineering defaults silently.
 
 ## Target fixture decisions
 
@@ -85,7 +91,7 @@ The following values are fixed by the issue or proposed for review.
 
 An even-sized grid has no unique center cell.
 The geometric center lies between four columns and can make a boundary-aligned well ambiguous.
-Confirm the proposed central-cell convention or choose explicit physical coordinates before producing the fixture.
+Record the central-cell convention and explicit engineering inputs in each acceptance specification.
 Keep all three target wells vertical to establish exactly 150 connections.
 Prove slanted and horizontal paths separately on small fixtures with known intersections.
 
@@ -162,10 +168,10 @@ Domain contributors receive named files after those interfaces are agreed.
 
 | Step | Change and main files | Required evidence before the next step |
 | --- | --- | --- |
-| 1. Scope and feasibility | Development decision record, small experimental drivers, reviewed native API inspection. | Owner agrees on topology and fixture inputs. Measure 10,000, 100,000, and 1,000,000 cells within an approved resource budget. Verify geometry-only loading and available native array interfaces. |
+| 1. Scope and feasibility | Development decision record, small experimental drivers, reviewed native API inspection. | Record the approved geology target and explicit fixture inputs. Measure 10,000, 100,000, and 1,000,000 cells within an approved resource budget. Verify geometry-only loading and available native array interfaces. |
 | 2. Shared storage and limits | `contracts/engineering.py`, `contracts/models.py`, `contracts/results.py`, `workspaces/`, new shared array and policy modules. | Range reads, active-map alignment, immutable publication, interrupted writes, workspace isolation, and explicit version handling. |
 | 3. Managed operation lifecycle | `jobs/`, `mcp/workspace_manager.py`, `server.py`, `launcher.py`, `_workflow.py`, catalog bindings. | Poll and cancel during long work. Switch workspaces without redirecting work or results. Recover operations after client and server restart. |
-| 4. General Cartesian authoring | New `models/general/`, shared import compilation in `models/imports/`, `_model_operations.py`. | Public tools create and inspect layered and inactive fixtures. Compiled geometry, properties, units, and active maps match authored inputs. |
+| 4. General geological authoring | New `models/general/`, shared import compilation in `models/imports/`, `_model_operations.py`. | Public tools create and inspect folded, faulted, layered, and inactive fixtures. Compiled geometry, properties, units, and active maps match authored inputs. |
 | 5. Wells and completions | `models/wells/records.py`, `resinsight/wells/`, general authoring well records. | Geometry-only preparation works. Three named wells load. Known vertical, slanted, horizontal, separated, and inactive-cell intersections pass. |
 | 6. Schedule authoring | `models/wells/service.py`, shared schedule records, general compiler. | New reports and declarations work. Per-well control histories, shut-in, reopening, immutable exports, and untouched inputs remain correct. |
 | 7. Flow and scalable results | `simulators/opm/`, `results/`, native result bindings and MCP operations. | Explicit run limits, bounded output collection, array queries, comparisons, native loading, and cancellation pass on increasing case sizes. |
@@ -176,7 +182,7 @@ Its internal experimental drivers cannot substitute for step 8 public-tool evide
 Steps 2 and 3 precede expensive public mutations.
 After step 4, result-storage work can proceed alongside wells and schedules under agreed interfaces.
 Wire and test public operations with each service change rather than postponing transport integration until the final step.
-Do not advertise the million-cell profile until its complete acceptance passes.
+Report verified sizes separately from configurable resource limits, without presenting benchmark sizes as product ceilings.
 
 ### Schedule semantics for step 6
 
@@ -259,8 +265,8 @@ Use visual inspection and numerical comparisons instead of byte-level tests.
 ## Tracking and execution
 
 Keep issue #57 open as the parent work issue until its agreed criteria have evidence.
-Propose a separate delivery milestone for general Cartesian model authoring.
-Create child issues for the delivery steps after the owner accepts the scope.
+Use a separate delivery milestone for general geological model authoring.
+Create child issues for the approved delivery steps as their interfaces and concrete scope become ready.
 Use native GitHub dependency relationships, relevant area labels, and one major feature per PR against `main`.
 Keep P16 and P17 work distinct and link overlapping recovery or installation evidence explicitly.
 Do not close broad issue criteria through a narrow first slice without an owner-approved scope change.
@@ -271,19 +277,17 @@ Owner-requested additional tasks use `gpt-6-astra` with extra high reasoning (`x
 Each writing agent commits one complete logical change for review and cherry-pick.
 No additional task is required to review this plan.
 
-## Owner decisions before implementation
+## Execution decisions
 
-1. Approve Cartesian geometry, inactive cells, and single-path wells as the first general profile.
-2. Approve deferring corner-point grids, faults, refinement, branches, groups, and additional physics.
-3. Select the missing fixture inputs and confirm the central-cell convention.
-4. Approve the target host and separate memory, storage, CPU, and time budgets before scale experiments.
-5. Confirm that successful million-cell simulation is required for closure, or define an acceptable documented rejection outcome.
-
-These decisions follow the repository rule for scope, supported physics, and costly runtime requirements.
-Planning and source review can continue while those decisions remain open.
-Implementation should begin with the agreed contract and feasibility step, not a blanket increase of existing limits.
+The owner approved general authoring and MRST-style geological complexity on September 12, 2026.
+The implementation will record explicit synthetic fixture inputs rather than infer unknown field data.
+Existing local hardware and the reviewed ResInsight build can support the first native checks.
+New paid services, acquired datasets, or materially larger external runtime requirements still require an owner decision.
+A failed large run remains failure evidence and cannot establish successful simulator acceptance.
+Issue #57 stays open until its complete agreed acceptance is met.
 
 ## Plan review
 
 The [planning review record](evidence/issue-57-plan/README.md) preserves source references, documentation checks, and the rendered delivery sequence.
-No general-model implementation or large-case runtime experiment was performed for this plan.
+The earlier review record predates implementation and remains a historical planning record.
+New implementation and runtime evidence will identify their exact source versions separately.
