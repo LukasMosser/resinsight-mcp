@@ -74,6 +74,7 @@ nav:
       - Result services: development/results.md
       - Architecture: development/architecture.md
       - Implementation plan: development/implementation-plan.md
+      - General model plan: development/issue-57-plan.md
       - OPM workflow delivery: development/p13-delivery.md
       - Public OPM acceptance: development/opm-acceptance.md
       - Public OPM evidence: development/evidence/p13/public-workflow/README.md
