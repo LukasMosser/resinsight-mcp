@@ -1,6 +1,7 @@
 """Use the session's existing RIPS client for modeled FIELD wells."""
 
 from collections.abc import Callable, Sequence
+from dataclasses import dataclass
 from math import isclose
 from pathlib import Path
 from typing import cast
@@ -11,6 +12,12 @@ from pydantic import ValidationError
 from resinsight_mcp.contracts.engineering import CellIndex, CoordinateFrame
 from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, MutationEffect
 from resinsight_mcp.contracts.wells import WellStatus
+from resinsight_mcp.models.general.wells import (
+    GeneralConnection,
+    GeneralWellhead,
+    Sample,
+    WellGeometry,
+)
 from resinsight_mcp.models.imports import MaterializedModel, ModelInspection
 from resinsight_mcp.models.wells.records import (
     CompletionConnection,
@@ -129,7 +136,20 @@ def _geometry(well: Well) -> Geometry:
     return geometry
 
 
-def _inspect(well: Well, coordinates: CoordinateFrame) -> NativeWell:
+@dataclass(frozen=True)
+class NativeGeometry:
+    address: str
+    definition: WellGeometry
+    trajectory: tuple[Sample, ...]
+
+
+@dataclass(frozen=True)
+class GeneralCompletions:
+    wellhead: GeneralWellhead
+    connections: tuple[GeneralConnection, ...]
+
+
+def _inspect(well: Well, sampling_distance: float) -> NativeGeometry:
     if not isinstance(well, rips.ModeledWellPath):
         raise _fail("The native path is not a modeled well.", ErrorCode.STALE_OBJECT)
     geometry = _geometry(well)
@@ -154,29 +174,20 @@ def _inspect(well: Well, coordinates: CoordinateFrame) -> NativeWell:
         raise _fail(
             "The native simulator well name differs from the modeled well.", ErrorCode.STALE_OBJECT
         )
-    definition = ModeledWellDefinition(
+    definition = WellGeometry(
         name=well.name,
-        coordinates=coordinates,
         targets=tuple(
-            TrajectoryPoint(
-                x_ft=item.target_point[0], y_ft=item.target_point[1], depth_ft=item.target_point[2]
-            )
-            for item in targets
+            (item.target_point[0], item.target_point[1], item.target_point[2]) for item in targets
         ),
-        perforations=tuple(
-            PerforationInterval(
-                start_md_ft=item.start_measured_depth,
-                end_md_ft=item.end_measured_depth,
-                diameter_ft=item.diameter,
-                skin=item.skin_factor,
-            )
+        intervals=tuple(
+            (item.start_measured_depth, item.end_measured_depth, item.diameter, item.skin_factor)
             for item in perforations
         ),
+        sampling_distance=sampling_distance,
     )
-    arrays = well.trajectory_properties(resampling_interval=50.0)
+    arrays = well.trajectory_properties(resampling_interval=sampling_distance)
     samples = tuple(
-        TrajectorySample(x_ft=x, y_ft=y, depth_ft=z, measured_depth_ft=md)
-        for x, y, z, md in zip(
+        zip(
             arrays["coordinate_x"],
             arrays["coordinate_y"],
             arrays["coordinate_z"],
@@ -185,10 +196,10 @@ def _inspect(well: Well, coordinates: CoordinateFrame) -> NativeWell:
         )
     )
     definition.require_trajectory(samples)
-    return NativeWell(str(well.address()), definition, samples)
+    return NativeGeometry(str(well.address()), definition, samples)
 
 
-def _set_definition(well: Well, definition: ModeledWellDefinition) -> NativeWell:
+def _set_definition(well: Well, definition: WellGeometry) -> NativeGeometry:
     geometry = well.well_path_geometry()
     geometry.use_auto_generated_target_at_sea_level = False
     geometry.reference_point = [0.0, 0.0, 0.0]
@@ -199,17 +210,15 @@ def _set_definition(well: Well, definition: ModeledWellDefinition) -> NativeWell
     for interval in _perforations(well):
         interval.delete()
     for target in definition.targets:
-        geometry.append_well_target(
-            coordinate=[target.x_ft, target.y_ft, target.depth_ft], absolute=True
-        )
-    for interval in definition.perforations:
+        geometry.append_well_target(coordinate=list(target), absolute=True)
+    for start, end, diameter, skin in definition.intervals:
         well.append_perforation_interval(
-            start_md=interval.start_md_ft,
-            end_md=interval.end_md_ft,
-            diameter=interval.diameter_ft,
-            skin_factor=interval.skin,
+            start_md=start,
+            end_md=end,
+            diameter=diameter,
+            skin_factor=skin,
         )
-    return _inspect(well, definition.coordinates)
+    return _inspect(well, definition.sampling_distance)
 
 
 def _mutate[T](application: RipsApplication, action: Callable[[], T]) -> T:
@@ -239,7 +248,7 @@ def _read[T](application: RipsApplication, action: Callable[[], T]) -> T:
         ) from error
 
 
-class RipsWellBackend:
+class RipsGeometryBackend:
     def load(self, access: ApplicationAccess, materialized: MaterializedModel) -> str:
         application = _application(access)
         project = _project(application)
@@ -295,8 +304,8 @@ class RipsWellBackend:
         return _read(application, inspect)
 
     def create(
-        self, access: ApplicationAccess, case_address: str, definition: ModeledWellDefinition
-    ) -> NativeWell:
+        self, access: ApplicationAccess, case_address: str, definition: WellGeometry
+    ) -> NativeGeometry:
         application = _application(access)
         project = _project(application)
         case = _read(application, lambda: _one(project.cases(), case_address))
@@ -319,8 +328,8 @@ class RipsWellBackend:
         access: ApplicationAccess,
         case_address: str,
         well_address: str,
-        definition: ModeledWellDefinition,
-    ) -> NativeWell:
+        definition: WellGeometry,
+    ) -> NativeGeometry:
         application = _application(access)
         project = _project(application)
         _read(application, lambda: _one(project.cases(), case_address))
@@ -330,20 +339,22 @@ class RipsWellBackend:
         return _mutate(application, lambda: _set_definition(well, definition))
 
     def inspect(
-        self, access: ApplicationAccess, well_address: str, coordinates: CoordinateFrame
-    ) -> NativeWell:
+        self, access: ApplicationAccess, well_address: str, sampling_distance: float
+    ) -> NativeGeometry:
         application = _application(access)
         return _read(
             application,
-            lambda: _inspect(_one(_project(application).well_paths(), well_address), coordinates),
+            lambda: _inspect(
+                _one(_project(application).well_paths(), well_address), sampling_distance
+            ),
         )
 
     def completions(
         self, access: ApplicationAccess, case_address: str, well_address: str
-    ) -> NativeCompletions:
+    ) -> GeneralCompletions:
         application = _application(access)
 
-        def read() -> NativeCompletions:
+        def read() -> GeneralCompletions:
             project = _project(application)
             case = _one(project.cases(), case_address)
             well = _one(project.well_paths(), well_address)
@@ -363,32 +374,133 @@ class RipsWellBackend:
                         "Each native connection must identify one cell in this well's main grid."
                     )
                 connections.append(
-                    CompletionConnection.model_validate(
+                    GeneralConnection.model_validate(
                         {
                             "cell": CellIndex(
                                 i=row.grid_i - 1, j=row.grid_j - 1, k=row.upper_k - 1
                             ),
                             "status": WellStatus(row.open_shut_flag),
-                            "compdat_factor_field": row.transmissibility,
-                            "permeability_length_md_ft": row.kh,
-                            "diameter_ft": row.diameter,
+                            "factor": row.transmissibility,
+                            "kh": row.kh,
+                            "diameter": row.diameter,
                             "skin": row.skin_factor,
                             "direction": row.direction,
-                            "start_md_ft": row.start_md,
-                            "end_md_ft": row.end_md,
+                            "start_md": row.start_md,
+                            "end_md": row.end_md,
                         }
                     )
                 )
             if not connections:
                 raise _fail("The native well has no active reservoir connections.")
             reference_depth = settings.reference_depth_for_export
-            return NativeCompletions(
-                Wellhead(
+            return GeneralCompletions(
+                GeneralWellhead(
                     i=head.grid_i - 1,
                     j=head.grid_j - 1,
-                    reference_depth_ft=None if reference_depth == "" else reference_depth,
+                    reference_depth=None if reference_depth == "" else reference_depth,
                 ),
                 tuple(connections),
             )
 
         return _read(application, read)
+
+
+def _general_definition(definition: ModeledWellDefinition) -> WellGeometry:
+    return WellGeometry(
+        name=definition.name,
+        targets=tuple((p.x_ft, p.y_ft, p.depth_ft) for p in definition.targets),
+        intervals=tuple(
+            (p.start_md_ft, p.end_md_ft, p.diameter_ft, p.skin) for p in definition.perforations
+        ),
+        sampling_distance=50.0,
+    )
+
+
+def _field_well(native: NativeGeometry, coordinates: CoordinateFrame) -> NativeWell:
+    return NativeWell(
+        native.address,
+        ModeledWellDefinition(
+            name=native.definition.name,
+            coordinates=coordinates,
+            targets=tuple(
+                TrajectoryPoint(x_ft=x, y_ft=y, depth_ft=z) for x, y, z in native.definition.targets
+            ),
+            perforations=tuple(
+                PerforationInterval(
+                    start_md_ft=start, end_md_ft=end, diameter_ft=diameter, skin=skin
+                )
+                for start, end, diameter, skin in native.definition.intervals
+            ),
+        ),
+        tuple(
+            TrajectorySample(x_ft=x, y_ft=y, depth_ft=z, measured_depth_ft=md)
+            for x, y, z, md in native.trajectory
+        ),
+    )
+
+
+class RipsWellBackend:
+    """Preserve the existing FIELD contract through the shared native adapter."""
+
+    def __init__(self) -> None:
+        self.geometry = RipsGeometryBackend()
+
+    load = RipsGeometryBackend.load
+    verify_case = RipsGeometryBackend.verify_case
+    case_geometry = RipsGeometryBackend.case_geometry
+
+    def create(
+        self, access: ApplicationAccess, case_address: str, definition: ModeledWellDefinition
+    ) -> NativeWell:
+        return _field_well(
+            self.geometry.create(access, case_address, _general_definition(definition)),
+            definition.coordinates,
+        )
+
+    def update(
+        self,
+        access: ApplicationAccess,
+        case_address: str,
+        well_address: str,
+        definition: ModeledWellDefinition,
+    ) -> NativeWell:
+        return _field_well(
+            self.geometry.update(
+                access, case_address, well_address, _general_definition(definition)
+            ),
+            definition.coordinates,
+        )
+
+    def inspect(
+        self, access: ApplicationAccess, well_address: str, coordinates: CoordinateFrame
+    ) -> NativeWell:
+        return _field_well(self.geometry.inspect(access, well_address, 50.0), coordinates)
+
+    def completions(
+        self, access: ApplicationAccess, case_address: str, well_address: str
+    ) -> NativeCompletions:
+        def convert() -> NativeCompletions:
+            native = self.geometry.completions(access, case_address, well_address)
+            return NativeCompletions(
+                Wellhead(
+                    i=native.wellhead.i,
+                    j=native.wellhead.j,
+                    reference_depth_ft=native.wellhead.reference_depth,
+                ),
+                tuple(
+                    CompletionConnection(
+                        cell=c.cell,
+                        status=c.status,
+                        compdat_factor_field=c.factor,
+                        permeability_length_md_ft=c.kh,
+                        diameter_ft=c.diameter,
+                        skin=c.skin,
+                        direction=c.direction,
+                        start_md_ft=c.start_md,
+                        end_md_ft=c.end_md,
+                    )
+                    for c in native.connections
+                ),
+            )
+
+        return _read(_application(access), convert)

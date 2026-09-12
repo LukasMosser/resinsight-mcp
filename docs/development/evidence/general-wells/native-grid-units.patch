@@ -1,0 +1,143 @@
+diff --git a/ApplicationLibCode/FileInterface/RifEclipseInputFileTools.cpp b/ApplicationLibCode/FileInterface/RifEclipseInputFileTools.cpp
+index 6100bb1..43122c1 100644
+--- a/ApplicationLibCode/FileInterface/RifEclipseInputFileTools.cpp
++++ b/ApplicationLibCode/FileInterface/RifEclipseInputFileTools.cpp
+@@ -90,6 +90,24 @@ RifEclipseInputFileTools::~RifEclipseInputFileTools()
+ //--------------------------------------------------------------------------------------------------
+ bool RifEclipseInputFileTools::openGridFile( const QString& fileName, RigEclipseCaseData* eclipseCase, bool readFaultData, QString* errorMessages )
+ {
++    QFile unitFile( fileName );
++    if ( !unitFile.open( QFile::ReadOnly ) )
++    {
++        if ( errorMessages ) *errorMessages = "Cannot open the grid input file.";
++        return false;
++    }
++    auto unitSystem = RiaDefines::EclipseUnitSystem::UNITS_METRIC;
++    auto unitPosition = findKeyword( "GRIDUNIT", unitFile, 0 );
++    if ( unitPosition != -1 )
++    {
++        unitSystem = readUnitSystem( unitFile, unitPosition );
++        if ( unitSystem == RiaDefines::EclipseUnitSystem::UNITS_UNKNOWN )
++        {
++            if ( errorMessages ) *errorMessages = "GRIDUNIT must declare METRES, FEET, or CM.";
++            return false;
++        }
++    }
++
+     std::string filename = fileName.toStdString();
+ 
+     auto objects = RifEclipseTextFileReader::readKeywordAndValues( filename );
+@@ -169,6 +187,7 @@ bool RifEclipseInputFileTools::openGridFile( const QString& fileName, RigEclipse
+         ecl_grid_type* inputGrid = ecl_grid_alloc_GRDECL_kw( nx, ny, nz, zCornKw, coordKw, actNumKw, mapAxesKw );
+ 
+         RifReaderEclipseOutput::transferGeometry( inputGrid, eclipseCase, false );
++        eclipseCase->setUnitsType( unitSystem );
+ 
+         if ( readFaultData )
+         {
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.cpp b/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.cpp
+index ba5df8c..aef9596 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.cpp
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.cpp
+@@ -58,6 +58,38 @@
+ #include <vector>
+ 
+ CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimEclipseCase, RimcEclipseCase_importProperties, "import_properties" );
++CAF_PDM_OBJECT_METHOD_SOURCE_INIT( RimEclipseCase, RimcEclipseCase_gridUnitSystem, "grid_unit_system" );
++
++RimcEclipseCase_gridUnitSystem::RimcEclipseCase_gridUnitSystem( caf::PdmObjectHandle* self )
++    : caf::PdmObjectMethod( self, PdmObjectMethod::NullPointerType::NULL_IS_INVALID, PdmObjectMethod::ResultType::PERSISTENT_FALSE )
++{
++    CAF_PDM_InitObject( "Grid Unit System" );
++}
++
++std::expected<caf::PdmObjectHandle*, QString> RimcEclipseCase_gridUnitSystem::execute()
++{
++    auto gridCase = self<RimEclipseCase>();
++    if ( !gridCase || !gridCase->eclipseCaseData() )
++    {
++        return std::unexpected( QString( "The case has no loaded grid data." ) );
++    }
++    QString units;
++    switch ( gridCase->eclipseCaseData()->unitsType() )
++    {
++        case RiaDefines::EclipseUnitSystem::UNITS_METRIC: units = "METRIC"; break;
++        case RiaDefines::EclipseUnitSystem::UNITS_FIELD: units = "FIELD"; break;
++        case RiaDefines::EclipseUnitSystem::UNITS_LAB: units = "LAB"; break;
++        default: return std::unexpected( QString( "The loaded grid has an unknown unit system." ) );
++    }
++    auto result = new RimcDataContainerString();
++    result->m_stringValues = { units };
++    return result;
++}
++
++QString RimcEclipseCase_gridUnitSystem::classKeywordReturnedType() const
++{
++    return RimcDataContainerString::classKeywordStatic();
++}
+ 
+ //--------------------------------------------------------------------------------------------------
+ ///
+diff --git a/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.h b/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.h
+index 4b24f51..bd5c712 100644
+--- a/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.h
++++ b/ApplicationLibCode/ProjectDataModelCommands/RimcEclipseCase.h
+@@ -31,6 +31,16 @@
+ 
+ class RimCellFilter;
+ 
++class RimcEclipseCase_gridUnitSystem : public caf::PdmObjectMethod
++{
++    CAF_PDM_HEADER_INIT;
++
++public:
++    RimcEclipseCase_gridUnitSystem( caf::PdmObjectHandle* self );
++    std::expected<caf::PdmObjectHandle*, QString> execute() override;
++    QString classKeywordReturnedType() const override;
++};
++
+ //==================================================================================================
+ ///
+ //==================================================================================================
+diff --git a/ApplicationLibCode/UnitTests/RifEclipseInputFileTools-Test.cpp b/ApplicationLibCode/UnitTests/RifEclipseInputFileTools-Test.cpp
+index 43e6384..df8cfca 100644
+--- a/ApplicationLibCode/UnitTests/RifEclipseInputFileTools-Test.cpp
++++ b/ApplicationLibCode/UnitTests/RifEclipseInputFileTools-Test.cpp
+@@ -868,3 +868,37 @@ TEST( RifEclipseInputFileToolsTest, ExportKeywordsInvalidParams )
+ 
+     EXPECT_FALSE( exportSuccess2 ) << "Should fail when passing empty file name";
+ }
++
++TEST( RifEclipseInputFileToolsTest, GridUnitControlsLoadedCaseUnits )
++{
++    QTemporaryDir directory;
++    ASSERT_TRUE( directory.isValid() );
++    for ( const auto& unit : { QString( "METRES" ), QString( "FEET" ), QString( "CM" ), QString( "INVALID" ) } )
++    {
++        const auto path = directory.filePath( unit + ".GRDECL" );
++        QFile file( path );
++        ASSERT_TRUE( file.open( QFile::WriteOnly ) );
++        QTextStream stream( &file );
++        stream << "SPECGRID\n1 1 1 1 F /\nGRIDUNIT\n'" << unit << "' /\n"
++               << "COORD\n0 0 1000 0 0 1010\n100 0 1000 100 0 1010\n"
++               << "0 100 1000 0 100 1010\n100 100 1000 100 100 1010 /\n"
++               << "ZCORN\n4*1000 4*1010 /\nACTNUM\n1 /\n";
++        stream.flush();
++        file.close();
++        auto data = std::make_unique<RigEclipseCaseData>( nullptr );
++        QString error;
++        const auto loaded = RifEclipseInputFileTools::openGridFile( path, data.get(), false, &error );
++        if ( unit == "INVALID" )
++        {
++            EXPECT_FALSE( loaded );
++            EXPECT_FALSE( error.isEmpty() );
++            continue;
++        }
++        ASSERT_TRUE( loaded ) << error.toStdString();
++        const auto expected = unit == "FEET" ? RiaDefines::EclipseUnitSystem::UNITS_FIELD
++                              : unit == "CM" ? RiaDefines::EclipseUnitSystem::UNITS_LAB
++                                             : RiaDefines::EclipseUnitSystem::UNITS_METRIC;
++        EXPECT_EQ( expected, data->unitsType() );
++        EXPECT_EQ( 1u, data->mainGrid()->cellCount() );
++    }
++}

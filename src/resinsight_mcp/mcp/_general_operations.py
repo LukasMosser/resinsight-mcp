@@ -18,6 +18,7 @@ from resinsight_mcp.models.general.records import (
     GeologicalModel,
     GeologicalRequest,
 )
+from resinsight_mcp.models.general.wells import WellPlan, WellPlanRequest
 from resinsight_mcp.resinsight.general.records import (
     EditedGrid,
     GridLoadRequest,
@@ -26,6 +27,12 @@ from resinsight_mcp.resinsight.general.records import (
     GridVerification,
     GridVerifyRequest,
     LoadedGrid,
+)
+from resinsight_mcp.resinsight.general.well_records import (
+    GeneralWellBinding,
+    GeneralWellConnections,
+    GeneralWellLoad,
+    GeneralWellState,
 )
 
 from .catalog import Bindings, EmptyRequest, Operation
@@ -131,6 +138,63 @@ def general_operations(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
                     GridRenderRequest,
                     OperationResult[EditedGrid],
                     native.render,
+                ),
+            )
+        )
+    if bindings.general_well_models is not None:
+        plans = bindings.general_well_models
+        operations.extend(
+            (
+                Operation(
+                    "general_well_define",
+                    "Publish a well plan from target and interval arrays in model units.",
+                    WellPlanRequest,
+                    OperationResult[WellPlan],
+                    plans.define,
+                ),
+                Operation(
+                    "general_well_inspect",
+                    "Read a stored well plan and its array references.",
+                    ArtifactRef,
+                    OperationResult[WellPlan],
+                    plans.inspect,
+                    read_only=True,
+                ),
+            )
+        )
+    if bindings.general_native_wells is not None:
+        wells = bindings.general_native_wells
+        operations.extend(
+            (
+                Operation(
+                    "general_well_load",
+                    "Create a native well on an authored grid and record its sampled trajectory.",
+                    GeneralWellLoad,
+                    OperationResult[GeneralWellState],
+                    wells.load,
+                ),
+                Operation(
+                    "general_well_restore",
+                    "Verify a native well against its saved plan and trajectory.",
+                    GeneralWellBinding,
+                    OperationResult[GeneralWellState],
+                    wells.restore,
+                    read_only=True,
+                ),
+                Operation(
+                    "general_well_export",
+                    "Verify and store native active-cell connections as bounded-query arrays.",
+                    GeneralWellBinding,
+                    OperationResult[GeneralWellConnections],
+                    wells.export,
+                ),
+                Operation(
+                    "general_well_connections",
+                    "Read a stored connection export and its array references.",
+                    ArtifactRef,
+                    OperationResult[GeneralWellConnections],
+                    wells.connections,
+                    read_only=True,
                 ),
             )
         )

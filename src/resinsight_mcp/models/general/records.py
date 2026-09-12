@@ -126,9 +126,12 @@ class GeneralCapabilities(Record):
     geometry: tuple[str, ...] = ("eclipse_corner_point",)
     generators: tuple[str, ...] = ("folded_faulted_layers", "channel_properties")
     model_cell_ceiling: None = None
+    well_count_ceiling: None = None
+    well_coordinate_units: tuple[str, ...] = ("m", "ft")
+    well_geometry: str = "Native curves through target points. Independent paths without branches."
     array_order: str = "I fastest, then J, then K. ZCORN uses Eclipse corner ordering."
     policy: AuthoringPolicy
     simulation_ready: bool = False
     limitation: str = (
-        "Geometry and rock authoring do not supply fluid physics, wells, or simulator schedules."
+        "Geometry, rock, and well authoring do not supply fluid physics or simulator schedules."
     )

@@ -105,3 +105,52 @@ def test_authoring_policy_reaches_native_client_configuration(tmp_path: Path, mo
         AuthoringPolicy(native_rpc_timeout_seconds=180.0, native_launch_timeout_seconds=300.0),
     )
     assert configured == {"directory": tmp_path, "rpc_timeout": 180.0, "launch_timeout": 300.0}
+
+
+def test_general_well_plans_survive_restart_and_workspace_selection(tmp_path: Path) -> None:
+    async def exercise() -> None:
+        root = tmp_path / "workspaces"
+        async with managed_launcher(root, "--enable-general-models") as client:
+            for name in ("geological", "foreign"):
+                value(await client.call_tool("workspace_create", {"name": name}))
+            value(await client.call_tool("workspace_select", {"name": "geological"}))
+            session = str(SessionId.new())
+            model = await create_model(client, session)
+            targets = [number for depth in range(1500, 1631) for number in (10, 10, depth)]
+            refs = []
+            for numbers, unit in ((targets, "m"), ([0, 130, 0.2], "m"), ([0], "1")):
+                array = value(
+                    await client.call_tool(
+                        "array_upload",
+                        {
+                            "session_id": session,
+                            "dtype": "float64",
+                            "unit": unit,
+                            "values": numbers,
+                        },
+                    )
+                )
+                refs.append(array["artifact"])
+            plan = value(
+                await client.call_tool(
+                    "general_well_define",
+                    {
+                        "model": model["model"],
+                        "name": "GENERAL_INJECTOR",
+                        "role": "injector",
+                        "injection_phase": "WATER",
+                        "targets": refs[0],
+                        "intervals": refs[1],
+                        "skins": refs[2],
+                        "sampling_distance": 1,
+                    },
+                )
+            )
+            assert plan["length_unit"] == "m" and plan["model"] == model["model"]
+            value(await client.call_tool("workspace_select", {"name": "foreign"}))
+            assert (await client.call_tool("general_well_inspect", plan["artifact"])).isError
+        async with managed_launcher(root, "--enable-general-models") as client:
+            value(await client.call_tool("workspace_select", {"name": "geological"}))
+            assert value(await client.call_tool("general_well_inspect", plan["artifact"])) == plan
+
+    asyncio.run(exercise())

@@ -138,12 +138,25 @@ class LauncherConfiguration:
             return bindings
         from resinsight_mcp.models.general.arrays import ArrayService
         from resinsight_mcp.models.general.service import GeneralModelService
+        from resinsight_mcp.models.general.wells import GeneralWellModels
 
         arrays = ArrayService(bindings.workspaces, policy)
         models = GeneralModelService(arrays)
+        plans = GeneralWellModels(models)
         native = None
+        wells = None
         if sessions is not None:
             from resinsight_mcp.resinsight.general.service import GeneralGridService
+            from resinsight_mcp.resinsight.general.wells import GeneralNativeWells
+            from resinsight_mcp.resinsight.wells.rips import RipsGeometryBackend
 
             native = GeneralGridService(models, sessions, self.workspace_root.resolve())
-        return replace(bindings, arrays=arrays, general_models=models, general_grids=native)
+            wells = GeneralNativeWells(plans, native, RipsGeometryBackend())
+        return replace(
+            bindings,
+            arrays=arrays,
+            general_models=models,
+            general_grids=native,
+            general_well_models=plans,
+            general_native_wells=wells,
+        )

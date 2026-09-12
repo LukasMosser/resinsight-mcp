@@ -264,6 +264,12 @@ class WorkspaceManager:
             workspace_manager=self,
             arrays=cast(Any, _ServiceProxy(self, "arrays")) if general else None,
             general_models=cast(Any, _ServiceProxy(self, "general_models")) if general else None,
+            general_well_models=cast(Any, _ServiceProxy(self, "general_well_models"))
+            if general
+            else None,
+            general_native_wells=cast(Any, _ServiceProxy(self, "general_native_wells"))
+            if general and sessions
+            else None,
             general_grids=cast(Any, _ServiceProxy(self, "general_grids"))
             if general and sessions
             else None,
