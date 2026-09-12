@@ -13,6 +13,7 @@ from resinsight_mcp.contracts.errors import ContractError, Error, ErrorCode, Mut
 from resinsight_mcp.contracts.identifiers import ArtifactId
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.observations import Camera
+from resinsight_mcp.contracts.sessions import ObjectRef
 from resinsight_mcp.contracts.workspace import ArtifactKind
 from resinsight_mcp.models.general.arrays import fail, operation, value
 from resinsight_mcp.models.general.service import GeneralModelService
@@ -22,6 +23,7 @@ from resinsight_mcp.resinsight.sessions.rips import RipsApplication
 from resinsight_mcp.resinsight.views._camera import camera_matches, read_camera, view_matrix
 from resinsight_mcp.resinsight.views._capture import capture_image
 from resinsight_mcp.resinsight.views.rips import _Case, _Grid, _View
+from resinsight_mcp.resinsight.wells._rips_types import StringValues
 
 from .records import (
     EditedGrid,
@@ -77,6 +79,7 @@ class _GridCase(_Case, Protocol):
     def grid(self, index: int) -> _NativeGrid: ...
 
     def cell_count(self) -> _Count: ...
+    def grid_unit_system(self) -> StringValues: ...
     def create_view(self) -> _View: ...
     def active_cell_property_async(
         self, property_type: str, property_name: str, time_step: int
@@ -103,6 +106,33 @@ class GeneralGridService:
         self.sessions = sessions
         self.root = root
         self._loaded: dict[str, LoadedGrid] = {}
+
+    def require_loaded(self, loaded: LoadedGrid) -> None:
+        if self._loaded.get(loaded.case.object_id) != loaded:
+            fail("Load or restore the exact geological binding first.", ErrorCode.STALE_OBJECT)
+
+    def refresh(self, loaded: LoadedGrid, case: ObjectRef, view: ObjectRef) -> LoadedGrid:
+        refreshed = LoadedGrid(**loaded.model_dump(exclude={"case", "view"}), case=case, view=view)
+        self._loaded[case.object_id] = refreshed
+        return refreshed
+
+    def verify_access(
+        self, access: ApplicationAccess, loaded: LoadedGrid, case_address: str
+    ) -> None:
+        self.require_loaded(loaded)
+        app = application(access)
+        case = next(
+            c for c in cast(_Project, app.project()).cases() if str(c.address()) == case_address
+        )
+        if not hasattr(case, "grid_unit_system"):
+            fail(
+                "General wells require the native grid-unit query and matching RIPS client.",
+                ErrorCode.UNSUPPORTED_OPERATION,
+            )
+        expected = "METRIC" if self.models.manifest(loaded.model).length_unit == "m" else "FIELD"
+        if app.call(case.grid_unit_system).values != [expected]:
+            fail("The native case unit system differs from the authored model.")
+        app.call(lambda: self.verify(case, loaded))
 
     def verify(self, case: _GridCase, loaded: LoadedGrid) -> float:
         model = value(self.models.inspect(loaded.model))
