@@ -13,6 +13,7 @@ It also accepts named cell fields, coordinate units, a local datum, and an optio
 `ZCORN` contains eight depths for each cell in Eclipse order.
 `ACTNUM` identifies active cells with one and inactive cells with zero.
 Cell fields use global cell order, with I changing fastest, then J, then K.
+
 The stored model revision references immutable input artifacts.
 The public model response contains compact array descriptions and its revision identifier.
 
@@ -29,6 +30,7 @@ Faults displace cells across specified lines in the horizontal plane.
 Fold terms change the layer surfaces, and thickness variation changes the local layer thickness.
 Rock bands specify porosity and permeability over fractions of the thickness.
 The optional channel changes properties along a sinusoidal horizontal path.
+
 The optional elliptical boundary creates inactive cells outside the model footprint.
 These helpers do not define the complete set of geometry accepted by `geological_create`.
 
@@ -52,6 +54,7 @@ A failed image must preserve the confirmed view edit.
 ResInsight can move an orthographic camera along its viewing axis while preserving the projected image and scale.
 The receipt records the observed camera position.
 A successful observation includes a newly exported PNG as MCP image content.
+
 `geological_restore` verifies a durable load receipt against current native case and view references after project reopening.
 
 ## Resource configuration
@@ -80,6 +83,7 @@ They do not prescribe grid dimensions, total array length, or well counts.
 Generation uses NumPy arrays and currently requires a working estimate within the configured budget.
 The budget is an admission estimate, not an operating-system memory limit.
 Native application memory remains separate from the Python estimate.
+
 A disk write failure remains an explicit storage failure.
 Unreferenced artifacts can remain after interrupted publication, while unpublished model revisions remain unavailable.
 
@@ -91,6 +95,7 @@ It does not remove the existing limits in the earlier SPE1 and OPM workflow.
 General polyhedral grids, local refinement, branching wells, broader physics, and asynchronous authoring remain adapter work under issue #57.
 The current native verification streams the available native API and can inspect more cells than the requested response contains.
 Some model validation and property verification still allocate complete numeric arrays within the configured estimate.
+
 Native launch and RPC deadlines are configurable through the same visible operator policy.
 The synchronous workspace operation lock still applies.
 These are explicit implementation gaps in the approved plan, not permanent model ceilings.
@@ -101,4 +106,4 @@ The maintained tests cover array joining, bounded reads, ownership, fault offset
 The shared command also checks the existing suite and strict documentation build.
 The [acceptance script](evidence/general-models/acceptance.py) uses the installed MCP launcher for every engineering operation.
 Its model uses original folds, displaced faults, heterogeneous layers, channel properties, and inactive cells.
-The evidence record will distinguish tested geological behavior from remaining simulation scope.
+The [native evidence record](evidence/general-models/README.md) separates tested geological behavior from remaining simulation scope.

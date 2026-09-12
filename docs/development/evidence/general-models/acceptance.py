@@ -203,6 +203,17 @@ class Acceptance:
             )
             assert result["observation"]["outcome"]["status"] == "success", result
 
+    async def restore(self, client, loaded, project):
+        return await self.call(
+            client,
+            "geological_restore",
+            {
+                "receipt": loaded["receipt"],
+                "case": next(o["ref"] for o in project["objects"] if o["ref"]["kind"] == "case"),
+                "view": next(o["ref"] for o in project["objects"] if o["ref"]["kind"] == "view"),
+            },
+        )
+
     async def run(self):
         connection = None
         async with self.client(True) as client:
@@ -247,19 +258,7 @@ class Acceptance:
                     {"context": closed["context"], "path": str(self.output / "geology.rsp")},
                 )
                 assert len([o for o in reopened["objects"] if o["ref"]["kind"] == "case"]) == 1
-                restored = await self.call(
-                    client,
-                    "geological_restore",
-                    {
-                        "receipt": loaded["receipt"],
-                        "case": next(
-                            o["ref"] for o in reopened["objects"] if o["ref"]["kind"] == "case"
-                        ),
-                        "view": next(
-                            o["ref"] for o in reopened["objects"] if o["ref"]["kind"] == "view"
-                        ),
-                    },
-                )
+                restored = await self.restore(client, loaded, reopened)
                 await self.verify_faults(client, restored)
             finally:
                 await self.call(
@@ -274,6 +273,29 @@ class Acceptance:
         async with self.client(False) as client:
             restored = await self.call(client, "geological_inspect", generated["model"])
             assert restored == generated
+            restarted = await self.call(
+                client,
+                "application_launch",
+                {"session_id": self.session_id, "executable": str(self.executable)},
+            )
+            try:
+                reopened = await self.call(
+                    client,
+                    "project_open",
+                    {"context": restarted["context"], "path": str(self.output / "geology.rsp")},
+                )
+                restored_grid = await self.restore(client, loaded, reopened)
+                await self.verify_faults(client, restored_grid)
+            finally:
+                await self.call(
+                    client,
+                    "application_close",
+                    {
+                        "session_id": self.session_id,
+                        "connection_id": restarted["context"]["connection_id"],
+                        "action": "terminate",
+                    },
+                )
         (self.output / "summary.json").write_text(
             json.dumps(
                 {

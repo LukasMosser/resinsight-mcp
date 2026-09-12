@@ -1,0 +1,8 @@
+Using Python 3.12.13 environment at: /private/tmp/general-model-installed
+Resolved 1 package in 16ms
+   Building resinsight-mcp @ file:///private/tmp/resinsight-general-models
+      Built resinsight-mcp @ file:///private/tmp/resinsight-general-models
+Prepared 1 package in 603ms
+Uninstalled 1 package in 16ms
+Installed 1 package in 2ms
+ ~ resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-general-models)
