@@ -50,6 +50,7 @@ Start with these pages:
 - [Testing and review](testing-and-review.md) explains the evidence for a change.
 - [Architecture](architecture.md) separates implemented contracts and storage from proposed runtime responsibilities.
 - [Implementation plan](implementation-plan.md) records the work sequence and acceptance criteria.
+- [General model plan](issue-57-plan.md) proposes the large-grid, well, schedule, and resource work for issue #57.
 - [Scope review](scope-review.md) records source findings and unresolved questions.
 - [Releases](releases.md) explains release evidence and approval.
 

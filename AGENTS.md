@@ -4,7 +4,10 @@ Read this guide before you change this repository. Use Simple English in code co
 
 ## Work and ownership
 
-Use `gpt-6-astra` with low reasoning for all subagents. Give each agent one bounded task with named files. Use a separate Git worktree and a `codex/` branch for each agent that writes files.
+Use `gpt-5.6-luna` with max reasoning for all subagents.
+If the owner requests an additional task, use `gpt-6-astra` with extra high reasoning (`xhigh`).
+Give each agent one bounded task with named files.
+Use a separate Git worktree and a `codex/` branch for each agent that writes files.
 
 Commit each complete change on the agent branch. Do not switch branches in another agent's worktree. The lead agent resolves conflicts and brings reviewed commits into the feature branch.
 
