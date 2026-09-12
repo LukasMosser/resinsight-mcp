@@ -1,0 +1,19 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+Run repository checks....................................................Passed
+[codex/general-model-authoring bdbeacc] Add general geological authoring through MCP
+ Date: Sat Sep 12 18:31:10 2026 +0200
+ 28 files changed, 2417 insertions(+), 24 deletions(-)
+ create mode 100644 docs/development/evidence/general-models/acceptance.py
+ create mode 100644 docs/development/evidence/general-models/explicit_acceptance.py
+ create mode 100644 docs/development/general-model-authoring.md
+ create mode 100644 src/resinsight_mcp/mcp/_general_operations.py
+ create mode 100644 src/resinsight_mcp/models/general/__init__.py
+ create mode 100644 src/resinsight_mcp/models/general/arrays.py
+ create mode 100644 src/resinsight_mcp/models/general/generator.py
+ create mode 100644 src/resinsight_mcp/models/general/records.py
+ create mode 100644 src/resinsight_mcp/models/general/service.py
+ create mode 100644 src/resinsight_mcp/resinsight/general/__init__.py
+ create mode 100644 src/resinsight_mcp/resinsight/general/records.py
+ create mode 100644 src/resinsight_mcp/resinsight/general/service.py
+ create mode 100644 tests/mcp/test_general_launcher.py
+ create mode 100644 tests/models/general/test_authoring.py

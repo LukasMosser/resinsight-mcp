@@ -1,0 +1,64 @@
+{
+  "million": {
+    "global_cells": 1000000,
+    "active_cells": 785400,
+    "calls": 22,
+    "images": 3,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 371720192,
+      "resinsight": 1552269312
+    },
+    "host": {
+      "platform": "macOS-14.2.1-arm64-arm-64bit",
+      "physical_memory_bytes": 17179869184,
+      "logical_cpus": 8
+    },
+    "versions": {
+      "resinsight-mcp": "0.1.0",
+      "mcp": "1.30.0",
+      "rips": "2026.9.0.1",
+      "numpy": "2.5.3",
+      "pydantic": "2.13.5",
+      "grpcio": "1.83.1",
+      "protobuf": "7.36.1"
+    },
+    "tool_seconds": {
+      "geological_generate": 0.728444708045572,
+      "geological_load": 10.57921624998562
+    },
+    "maximum_sample_coordinate_error_m": 0.00011481270666990895,
+    "maximum_raw_property_difference": 0.0002432400651741773,
+    "workspace_bytes": 324150740
+  },
+  "explicit": {
+    "global_cells": 36000,
+    "active_cells": 28380,
+    "calls": 36,
+    "images": 3,
+    "sampled_peak_rss_bytes": {
+      "mcp_server": 131301376,
+      "resinsight": 386351104
+    },
+    "host": {
+      "platform": "macOS-14.2.1-arm64-arm-64bit",
+      "physical_memory_bytes": 17179869184,
+      "logical_cpus": 8
+    },
+    "versions": {
+      "resinsight-mcp": "0.1.0",
+      "mcp": "1.30.0",
+      "rips": "2026.9.0.1",
+      "numpy": "2.5.3",
+      "pydantic": "2.13.5",
+      "grpcio": "1.83.1",
+      "protobuf": "7.36.1"
+    },
+    "tool_seconds": {
+      "geological_create": 0.05638920806813985,
+      "geological_load": 0.6698291669599712
+    },
+    "maximum_sample_coordinate_error_m": 0.00016455013883387437,
+    "maximum_raw_property_difference": 0.00022499638271256117,
+    "workspace_bytes": 10056262
+  }
+}
