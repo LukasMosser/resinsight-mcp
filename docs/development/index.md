@@ -50,7 +50,7 @@ Start with these pages:
 - [Testing and review](testing-and-review.md) explains the evidence for a change.
 - [Architecture](architecture.md) separates implemented contracts and storage from proposed runtime responsibilities.
 - [Implementation plan](implementation-plan.md) records the work sequence and acceptance criteria.
-- [General model plan](issue-57-plan.md) proposes the large-grid, well, schedule, and resource work for issue #57.
+- [General model plan](issue-57-plan.md) records the approved geometry, well, schedule, and resource work for issue #57.
 - [Scope review](scope-review.md) records source findings and unresolved questions.
 - [Releases](releases.md) explains release evidence and approval.
 
@@ -58,3 +58,5 @@ Repository policies remain in their source files.
 Read [CONTRIBUTING.md](https://github.com/LukasMosser/resinsight-mcp/blob/main/CONTRIBUTING.md) before a contribution.
 Read [AGENTS.md](https://github.com/LukasMosser/resinsight-mcp/blob/main/AGENTS.md) before agent work.
 Use [SECURITY.md](https://github.com/LukasMosser/resinsight-mcp/blob/main/SECURITY.md) for security reports.
+
+The [general geological authoring record](general-model-authoring.md) describes the first implementation and its remaining scope.

@@ -5,7 +5,7 @@ description = "Typed services, durable workspaces, and local MCP transport for R
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 requires-python = ">=3.12,<3.13"
-dependencies = ["pydantic>=2.13.5,<3", "mcp>=1.28,<2", "pillow>=12,<13", "psutil>=7.2,<8"]
+dependencies = ["pydantic>=2.13.5,<3", "mcp>=1.28,<2", "pillow>=12,<13", "psutil>=7.2,<8", "numpy>=2.5.3,<3"]
 
 [project.optional-dependencies]
 resinsight = ["rips==2026.9.0.1"]

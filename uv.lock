@@ -936,6 +936,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "mcp" },
+    { name = "numpy" },
     { name = "pillow" },
     { name = "psutil" },
     { name = "pydantic" },
@@ -966,6 +967,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "mcp", specifier = ">=1.28,<2" },
+    { name = "numpy", specifier = ">=2.5.3,<3" },
     { name = "opm", marker = "extra == 'imports'", specifier = "==2025.10" },
     { name = "pillow", specifier = ">=12,<13" },
     { name = "psutil", specifier = ">=7.2,<8" },

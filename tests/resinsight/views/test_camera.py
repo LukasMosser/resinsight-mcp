@@ -75,3 +75,19 @@ def test_camera_rejects_orientation_that_disagrees_with_target() -> None:
     turned = camera.model_copy(update={"target": (0, 0, 20)})
     with pytest.raises(ValueError, match="direction disagrees"):
         read_camera(view_matrix(turned), camera.target, True, 40, 20)
+
+
+@pytest.mark.parametrize("projection", list(Projection))
+def test_only_orthographic_depth_translation_preserves_projection(projection: Projection) -> None:
+    camera = Camera(
+        position=(0, 0, 10),
+        target=(0, 0, 0),
+        up=(0, 1, 0),
+        projection=projection,
+        parallel_scale=10 if projection == Projection.ORTHOGRAPHIC else None,
+        field_of_view_degrees=40 if projection == Projection.PERSPECTIVE else None,
+    )
+    farther = camera.model_copy(update={"position": (0, 0, 20)})
+    assert camera_matches(camera, farther) == (projection == Projection.ORTHOGRAPHIC)
+    shifted = camera.model_copy(update={"position": (2, 0, 10), "target": (2, 0, 0)})
+    assert not camera_matches(camera, shifted)

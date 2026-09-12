@@ -225,7 +225,12 @@ class WorkspaceManager:
             return target
 
     def managed_bindings(
-        self, *, sessions: bool = False, models: bool = False, workflow: bool = False
+        self,
+        *,
+        sessions: bool = False,
+        models: bool = False,
+        workflow: bool = False,
+        general: bool = False,
     ) -> Bindings:
         """Build typed catalog bindings backed by the current workspace runtime."""
         from .catalog import Bindings
@@ -257,4 +262,9 @@ class WorkspaceManager:
             flow=flow_proxy,
             results=results_proxy,
             workspace_manager=self,
+            arrays=cast(Any, _ServiceProxy(self, "arrays")) if general else None,
+            general_models=cast(Any, _ServiceProxy(self, "general_models")) if general else None,
+            general_grids=cast(Any, _ServiceProxy(self, "general_grids"))
+            if general and sessions
+            else None,
         )

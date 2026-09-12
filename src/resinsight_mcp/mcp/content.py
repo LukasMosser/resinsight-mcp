@@ -16,6 +16,7 @@ from resinsight_mcp.contracts.errors import (
 )
 from resinsight_mcp.contracts.interfaces import WorkspaceStore
 from resinsight_mcp.contracts.observations import EditedView, ImageArtifact, Observation
+from resinsight_mcp.resinsight.general.records import EditedGrid, GridObservation
 from resinsight_mcp.results.records import EditedSummaryPlot, SummaryObservation
 
 
@@ -53,9 +54,9 @@ def encode_result[T](result: OperationResult[T], store: WorkspaceStore) -> CallT
     if isinstance(result.outcome, Success):
         value = result.outcome.value
         observation = None
-        if isinstance(value, (Observation, SummaryObservation)):
+        if isinstance(value, (Observation, SummaryObservation, GridObservation)):
             observation = value
-        elif isinstance(value, (EditedView, EditedSummaryPlot)) and isinstance(
+        elif isinstance(value, (EditedView, EditedSummaryPlot, EditedGrid)) and isinstance(
             value.observation.outcome, Success
         ):
             observation = value.observation.outcome.value
@@ -69,6 +70,12 @@ def encode_result[T](result: OperationResult[T], store: WorkspaceStore) -> CallT
                     observation=OperationResult[Observation](outcome=image_result),
                 )
                 encoded = OperationResult[object](outcome=Success(value=edited))
+            elif isinstance(value, EditedGrid):
+                grid = EditedGrid(
+                    edit=value.edit,
+                    observation=OperationResult[GridObservation](outcome=image_result),
+                )
+                encoded = OperationResult[object](outcome=Success(value=grid))
             elif isinstance(value, EditedSummaryPlot):
                 summary = EditedSummaryPlot(
                     edit=value.edit,

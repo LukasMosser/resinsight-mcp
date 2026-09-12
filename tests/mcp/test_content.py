@@ -241,3 +241,52 @@ def test_unexpected_image_read_failure_has_safe_error(
     assert isinstance(outcome, Failure)
     assert outcome.error.code == ErrorCode.RENDER_FAILED
     assert "Private workspace" not in text.text
+
+
+@pytest.mark.parametrize("available", [True, False])
+def test_geological_image_keeps_applied_edit_on_missing_image(store, observation, available):
+    from resinsight_mcp.resinsight.general.records import (
+        EditedGrid,
+        GridEdit,
+        GridObservation,
+        GridRenderRequest,
+        LoadedGrid,
+    )
+
+    context = observation.context
+    loaded = LoadedGrid(
+        receipt=ArtifactRef(session_id=context.model.session_id, artifact_id=ArtifactId.new()),
+        model=context.model,
+        case=context.case,
+        view=context.view,
+        source=Path("/native/model.GRDECL"),
+        global_cells=10,
+        active_cells=8,
+        verified_properties=("PERMX",),
+    )
+    request = GridRenderRequest(loaded=loaded, property="PERMX", camera=context.camera)
+    edit = GridEdit(
+        request=request, native_camera=context.camera, applied_at=observation.captured_at
+    )
+    frame = GridObservation(
+        artifact=ArtifactRef(session_id=context.model.session_id, artifact_id=ArtifactId.new()),
+        request=request,
+        image=observation.image,
+        native_camera=context.camera,
+        captured_at=observation.captured_at,
+        maximum_property_error=0.0,
+    )
+    if available:
+        save_image(store, observation, image_source())
+    result = OperationResult(
+        outcome=Success(
+            value=EditedGrid(edit=edit, observation=OperationResult(outcome=Success(value=frame)))
+        )
+    )
+    response = encode_result(result, store)
+    assert not response.isError
+    assert response.structuredContent is not None
+    encoded = response.structuredContent["outcome"]["value"]
+    assert encoded["edit"] == edit.model_dump(mode="json")
+    assert encoded["observation"]["outcome"]["status"] == ("success" if available else "failure")
+    assert any(isinstance(content, ImageContent) for content in response.content) == available
