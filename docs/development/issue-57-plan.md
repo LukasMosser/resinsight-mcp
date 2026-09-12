@@ -6,6 +6,15 @@ The target is general geological model authoring through public MCP tools, with 
 The owner approved implementation and requested native evidence using geologically complex models inspired by the MRST gallery.
 This approval does not imply support for every MRST solver or permission to acquire external compute resources.
 
+## First implementation
+
+The [geological authoring record](general-model-authoring.md) describes the first implemented delivery.
+Public MCP tools now create general corner-point arrays, generate geological models, and verify native ResInsight display.
+The first native runs include one million global cells, displaced faults, folded layers, heterogeneous properties, and inactive regions.
+Explicit multipart arrays also define a separate grid with nonuniform spacing and inclined pillars.
+General wells, schedules, simulation preparation, asynchronous work, and scalable results remain approved work under this issue.
+The geological delivery does not complete the issue's three-well simulation acceptance.
+
 ## Recommendation
 
 Deliver general geological geometry and model authoring in small reviewed changes, then establish complete simulation acceptance.

@@ -67,8 +67,13 @@ def camera_matches(expected: Camera, actual: Camera) -> bool:
     """Compare equivalent orientations after native normalization and text rounding."""
     if expected.projection != actual.projection:
         return False
-    values = zip(view_matrix(expected), view_matrix(actual), strict=True)
-    if not all(isclose(a, b, rel_tol=1e-8, abs_tol=1e-7) for a, b in values):
+    values = enumerate(zip(view_matrix(expected), view_matrix(actual), strict=True))
+    # Orthographic depth translation preserves the projected image and its scale.
+    if not all(
+        isclose(a, b, rel_tol=1e-8, abs_tol=1e-7)
+        for index, (a, b) in values
+        if expected.projection != Projection.ORTHOGRAPHIC or index != 11
+    ):
         return False
     if not all(
         isclose(a, b, rel_tol=1e-8, abs_tol=1e-7)

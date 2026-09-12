@@ -1,9 +1,12 @@
 """Compose the shipped services from explicit local configuration."""
 
+from __future__ import annotations
+
 import os
 import shutil
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.synthetic import SyntheticModelService
@@ -13,12 +16,17 @@ from resinsight_mcp.workspaces import SqliteWorkspaceStore
 
 from .catalog import Bindings
 
+if TYPE_CHECKING:
+    from resinsight_mcp.models.general.arrays import AuthoringPolicy
+
 
 class ConfigurationError(ValueError):
     """The launcher cannot provide the requested service configuration."""
 
 
-def _native_factory(log_directory: Path) -> ApplicationFactory:
+def _native_factory(
+    log_directory: Path, policy: AuthoringPolicy | None = None
+) -> ApplicationFactory:
     try:
         from resinsight_mcp.resinsight.sessions.rips import RipsApplicationFactory
     except (ImportError, OSError) as error:
@@ -28,7 +36,13 @@ def _native_factory(log_directory: Path) -> ApplicationFactory:
         ) from error
     if shutil.which("lsof") is None:
         raise ConfigurationError("ResInsight session configuration requires lsof on PATH.")
-    return RipsApplicationFactory(log_directory)
+    if policy is None:
+        return RipsApplicationFactory(log_directory)
+    return RipsApplicationFactory(
+        log_directory,
+        launch_timeout=policy.native_launch_timeout_seconds,
+        rpc_timeout=policy.native_rpc_timeout_seconds,
+    )
 
 
 @dataclass(frozen=True)
@@ -36,11 +50,15 @@ class LauncherConfiguration:
     workspace_root: Path
     create_workspace: bool = False
     resinsight_log_directory: Path | None = None
+    enable_general_models: bool = False
+    authoring_policy: Path | None = None
     enable_models: bool = False
     enable_opm_workflow: bool = False
     docker_executable: Path | None = None
 
     def __post_init__(self) -> None:
+        if self.authoring_policy is not None and not self.enable_general_models:
+            raise ConfigurationError("An authoring policy requires general model support.")
         if not self.workspace_root.is_absolute():
             raise ConfigurationError("The workspace root must be an absolute path.")
         if self.enable_opm_workflow and self.resinsight_log_directory is None:
@@ -59,11 +77,12 @@ class LauncherConfiguration:
 
     def bindings(self) -> Bindings:
         """Check native dependencies before opening or creating the workspace."""
+        policy = self._policy()
         models_enabled = self.enable_models or self.enable_opm_workflow
         if models_enabled:
             OpmImportService.check_dependencies()
         factory = (
-            _native_factory(self.resinsight_log_directory)
+            _native_factory(self.resinsight_log_directory, policy)
             if self.resinsight_log_directory is not None
             else None
         )
@@ -81,12 +100,50 @@ class LauncherConfiguration:
             from ._workflow import workflow_bindings
 
             assert sessions is not None
-            return workflow_bindings(
+            bindings = workflow_bindings(
                 self.workspace_root.resolve(), workspaces, sessions, flow_configuration
             )
-        return Bindings(
-            workspaces=workspaces,
-            sessions=sessions,
-            imports=OpmImportService(workspaces) if models_enabled else None,
-            synthetic_models=SyntheticModelService(workspaces) if models_enabled else None,
+            return self._general(bindings, sessions, policy)
+        return self._general(
+            Bindings(
+                workspaces=workspaces,
+                sessions=sessions,
+                imports=OpmImportService(workspaces) if models_enabled else None,
+                synthetic_models=SyntheticModelService(workspaces) if models_enabled else None,
+            ),
+            sessions,
+            policy,
         )
+
+    def _policy(self) -> AuthoringPolicy | None:
+        if not self.enable_general_models:
+            return None
+        from resinsight_mcp.models.general.arrays import AuthoringPolicy
+
+        if self.authoring_policy is not None and not self.authoring_policy.is_absolute():
+            raise ConfigurationError("The authoring policy path must be absolute.")
+        return (
+            AuthoringPolicy.model_validate_json(self.authoring_policy.read_text())
+            if self.authoring_policy is not None
+            else AuthoringPolicy()
+        )
+
+    def _general(
+        self,
+        bindings: Bindings,
+        sessions: ResInsightSessionService | None,
+        policy: AuthoringPolicy | None,
+    ) -> Bindings:
+        if policy is None:
+            return bindings
+        from resinsight_mcp.models.general.arrays import ArrayService
+        from resinsight_mcp.models.general.service import GeneralModelService
+
+        arrays = ArrayService(bindings.workspaces, policy)
+        models = GeneralModelService(arrays)
+        native = None
+        if sessions is not None:
+            from resinsight_mcp.resinsight.general.service import GeneralGridService
+
+            native = GeneralGridService(models, sessions, self.workspace_root.resolve())
+        return replace(bindings, arrays=arrays, general_models=models, general_grids=native)

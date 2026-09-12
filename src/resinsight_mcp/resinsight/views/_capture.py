@@ -14,7 +14,7 @@ from resinsight_mcp.contracts.errors import (
     Failure,
     OperationResult,
 )
-from resinsight_mcp.contracts.identifiers import ArtifactId, ObservationId
+from resinsight_mcp.contracts.identifiers import ArtifactId, ObservationId, SessionId
 from resinsight_mcp.contracts.interfaces import WorkspaceStore
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.observations import ImageArtifact, Observation, ViewContext
@@ -31,13 +31,13 @@ def _failure(message: str) -> ContractError:
     return ContractError(Error(code=ErrorCode.RENDER_FAILED, message=message))
 
 
-def capture(
+def capture_image(
     store: WorkspaceStore,
-    context: ViewContext,
+    session_id: SessionId,
     width: int,
     height: int,
     export: Callable[[Path, int, int], None],
-) -> Observation:
+) -> ImageArtifact:
     """Publish exactly one decoded PNG from a new export directory."""
     observation_id = ObservationId.new()
     try:
@@ -53,7 +53,7 @@ def capture(
                 if image.format != "PNG" or image.size != (width, height):
                     raise _failure("The exported PNG dimensions differ from the request.")
             artifact = Artifact(
-                ref=ArtifactRef(session_id=context.model.session_id, artifact_id=ArtifactId.new()),
+                ref=ArtifactRef(session_id=session_id, artifact_id=ArtifactId.new()),
                 relative_path=f"observations/{observation_id}.png",
                 kind=ArtifactKind.IMAGE,
             )
@@ -61,10 +61,21 @@ def capture(
                 _value(store.write_artifact(artifact, source))
     except (OSError, ValueError, Image.DecompressionBombError) as error:
         raise _failure("The new export could not be read and decoded.") from error
+    return ImageArtifact(artifact=artifact.ref, width=width, height=height)
+
+
+def capture(
+    store: WorkspaceStore,
+    context: ViewContext,
+    width: int,
+    height: int,
+    export: Callable[[Path, int, int], None],
+) -> Observation:
+    image = capture_image(store, context.model.session_id, width, height, export)
     observation = Observation(
-        observation_id=observation_id,
+        observation_id=ObservationId.new(),
         context=context,
-        image=ImageArtifact(artifact=artifact.ref, width=width, height=height),
+        image=image,
         captured_at=datetime.now(UTC),
     )
     return _value(store.save_observation(observation))

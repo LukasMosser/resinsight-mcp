@@ -19,6 +19,8 @@ def main() -> None:
     workspace_paths.add_argument("--workspace-root", type=Path)
     workspace_paths.add_argument("--workspaces-root", type=Path)
     parser.add_argument("--create-workspace", action="store_true")
+    parser.add_argument("--enable-general-models", action="store_true")
+    parser.add_argument("--authoring-policy", type=Path)
     parser.add_argument(
         "--enable-models",
         action="store_true",
@@ -49,6 +51,8 @@ def main() -> None:
                 workspace_root=arguments.workspace_root,
                 create_workspace=arguments.create_workspace,
                 resinsight_log_directory=arguments.resinsight_log_directory,
+                enable_general_models=arguments.enable_general_models,
+                authoring_policy=arguments.authoring_policy,
                 enable_models=arguments.enable_models,
                 enable_opm_workflow=arguments.enable_opm_workflow,
                 docker_executable=arguments.docker_executable,
@@ -60,6 +64,8 @@ def main() -> None:
         configuration = LauncherConfiguration(
             workspace_root=arguments.workspaces_root,
             resinsight_log_directory=arguments.resinsight_log_directory,
+            enable_general_models=arguments.enable_general_models,
+            authoring_policy=arguments.authoring_policy,
             enable_models=arguments.enable_models,
             enable_opm_workflow=arguments.enable_opm_workflow,
             docker_executable=arguments.docker_executable,
@@ -74,6 +80,7 @@ def main() -> None:
                     sessions=arguments.resinsight_log_directory is not None,
                     models=arguments.enable_models or arguments.enable_opm_workflow,
                     workflow=arguments.enable_opm_workflow,
+                    general=arguments.enable_general_models,
                 )
             )
         )

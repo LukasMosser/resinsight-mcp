@@ -54,7 +54,10 @@ from resinsight_mcp.models.imports import OpmImportService
 from resinsight_mcp.models.synthetic import SyntheticModelService
 
 if TYPE_CHECKING:
+    from resinsight_mcp.models.general.arrays import ArrayService
+    from resinsight_mcp.models.general.service import GeneralModelService
     from resinsight_mcp.models.wells.service import OpmWellScheduleService
+    from resinsight_mcp.resinsight.general.service import GeneralGridService
     from resinsight_mcp.resinsight.wells.service import ResInsightWellService
     from resinsight_mcp.results import ResultsService
     from resinsight_mcp.simulators.opm import OpmFlowService
@@ -109,6 +112,9 @@ class Bindings:
     flow: OpmFlowService | None = None
     results: ResultsService | None = None
     workspace_manager: WorkspaceManager | None = None
+    arrays: ArrayService | None = None
+    general_models: GeneralModelService | None = None
+    general_grids: GeneralGridService | None = None
 
 
 @dataclass(frozen=True)
@@ -303,6 +309,10 @@ def build_catalog(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
         from ._workflow_operations import workflow_operations
 
         operations.extend(workflow_operations(bindings))
+    if bindings.general_models is not None or bindings.general_grids is not None:
+        from ._general_operations import general_operations
+
+        operations.extend(general_operations(bindings))
     return tuple(operations)
 
 
