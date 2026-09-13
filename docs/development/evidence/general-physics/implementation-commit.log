@@ -1,0 +1,14 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+Run repository checks....................................................Passed
+[codex/general-simulator-inputs 1882a97] Add explicit regional fluid and initialization inputs
+ 17 files changed, 1498 insertions(+), 3 deletions(-)
+ create mode 100644 docs/development/evidence/general-physics/acceptance.py
+ create mode 100644 docs/development/general-simulator-inputs.md
+ create mode 100644 src/resinsight_mcp/mcp/_physics_operations.py
+ create mode 100644 src/resinsight_mcp/models/general/physics/__init__.py
+ create mode 100644 src/resinsight_mcp/models/general/physics/records.py
+ create mode 100644 src/resinsight_mcp/models/general/physics/schema.py
+ create mode 100644 src/resinsight_mcp/models/general/physics/service.py
+ create mode 100644 src/resinsight_mcp/models/general/physics/validation.py
+ create mode 100644 tests/mcp/test_general_physics.py
+ create mode 100644 tests/models/general/test_physics.py

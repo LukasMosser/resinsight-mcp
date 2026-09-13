@@ -1,0 +1,214 @@
+{
+  "source_commit": "1882a971bd2294e6e67c784b8f5fce38903a0077",
+  "python": "3.12.13",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "packages": {
+    "resinsight-mcp": "0.1.0",
+    "mcp": "1.30.0",
+    "numpy": "2.5.3",
+    "pydantic": "2.13.5"
+  },
+  "model": {
+    "model": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "revision_id": "revision_a7de04ae53a94a58b7c25911fcc6484b"
+    },
+    "name": "Original physics acceptance m",
+    "shape": {
+      "nx": 100,
+      "ny": 200,
+      "nz": 50
+    },
+    "active_cells": 1000000,
+    "arrays": [
+      {
+        "name": "COORD",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_f7331e7c8cbf4b0b9291d727999c62de"
+          },
+          "count": 121806,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 10000.0
+        }
+      },
+      {
+        "name": "ZCORN",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_3ba8d3b9727d4414aa4f66e46bf951e9"
+          },
+          "count": 8000000,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 1960.0,
+          "maximum": 2589.9802624146296
+        }
+      },
+      {
+        "name": "ACTNUM",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_73d1c2bbc6fd492cb1021a36615333f2"
+          },
+          "count": 1000000,
+          "dtype": "int64",
+          "unit": "1",
+          "minimum": 1.0,
+          "maximum": 1.0
+        }
+      },
+      {
+        "name": "PORO",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_993ec6abb9424b838b5391fc652c1f75"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "1",
+          "minimum": 0.15,
+          "maximum": 0.25
+        }
+      },
+      {
+        "name": "PERMX",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_34e86ab2bff142d79ffa714e7d8d995d"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      },
+      {
+        "name": "PERMY",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_23a806919f1345beb550d9412ccf30c8"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      },
+      {
+        "name": "PERMZ",
+        "array": {
+          "artifact": {
+            "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+            "artifact_id": "artifact_5cf352051cc24006b7ce3c8308dfd192"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      }
+    ],
+    "source": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "artifact_id": "artifact_cd44f2d41b01486c87355189ba22c2a0"
+    }
+  },
+  "metric": {
+    "artifact": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "artifact_id": "artifact_7566d5304cf24bd09673a3a645058fe6"
+    },
+    "version": "general-physics-v1",
+    "parent": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "artifact_id": "artifact_cf85355f4341420c8062e1ff4f67dc4f"
+    },
+    "model": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "revision_id": "revision_a7de04ae53a94a58b7c25911fcc6484b"
+    },
+    "profile": "black_oil_disgas_rsvd",
+    "unit_system": "METRIC",
+    "table_count": 27,
+    "row_count": 70052,
+    "coverage": [
+      {
+        "keyword": "PVTNUM",
+        "required_regions": 3,
+        "complete_regions": 3
+      },
+      {
+        "keyword": "SATNUM",
+        "required_regions": 3,
+        "complete_regions": 3
+      },
+      {
+        "keyword": "EQLNUM",
+        "required_regions": 3,
+        "complete_regions": 3
+      }
+    ],
+    "complete": true,
+    "simulation_ready": false
+  },
+  "field": {
+    "artifact": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "artifact_id": "artifact_060a3de631c94630bbba833bd80c29b2"
+    },
+    "version": "general-physics-v1",
+    "parent": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "artifact_id": "artifact_4c1a24e4263c4ff586f72191ff4524c3"
+    },
+    "model": {
+      "session_id": "session_c60ab2ea1224482cb13c7564a7fd681b",
+      "revision_id": "revision_65e1619efa0e41ccbb7fc62c368c0007"
+    },
+    "profile": "black_oil_disgas_rsvd",
+    "unit_system": "FIELD",
+    "table_count": 9,
+    "row_count": 18,
+    "coverage": [
+      {
+        "keyword": "PVTNUM",
+        "required_regions": 1,
+        "complete_regions": 1
+      },
+      {
+        "keyword": "SATNUM",
+        "required_regions": 1,
+        "complete_regions": 1
+      },
+      {
+        "keyword": "EQLNUM",
+        "required_regions": 1,
+        "complete_regions": 1
+      }
+    ],
+    "complete": true,
+    "simulation_ready": false
+  },
+  "calls": 163,
+  "expected_rejections": 4,
+  "seconds": 13.798238040995784,
+  "peak_mcp_rss_mib": 359.75,
+  "largest_structured_response_characters": 4880,
+  "workspace_mib": 109.8867998123169,
+  "restart_verified": true,
+  "native_application_tested": false,
+  "parser_validation_tested": false,
+  "simulation_tested": false
+}

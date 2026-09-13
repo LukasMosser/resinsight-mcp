@@ -17,6 +17,7 @@ Compilation, OPM validation, general execution, and large result queries remain 
 An authored physics snapshot always reports `simulation_ready: false`.
 Its `complete` field only describes regional table coverage after authoring validation.
 Neither value claims a successful simulation or complete engineering review.
+The [public MCP evidence](evidence/general-physics/README.md) records three regions and a 70,001-row table on a million-cell model.
 
 ## Explicit physics contract
 

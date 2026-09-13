@@ -1,0 +1,8 @@
+{
+  "archive_files": 166,
+  "call_records": 163,
+  "expected_rejections": 4,
+  "input_provenance": "Original synthetic inputs created by acceptance.py in fresh managed workspaces.",
+  "published_content": "Public tool schemas, synthetic requests and responses, test runtime paths, and server tool-name logs.",
+  "excluded": "Workspace databases and numeric artifact files. No acquired field data, user datasets, credentials, or environment values."
+}
