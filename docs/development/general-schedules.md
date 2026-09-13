@@ -109,3 +109,5 @@ State queries stream preceding events and retain one current control.
 Differences stream event blocks and compare report arrays in bounded numeric ranges.
 Edits materialize the affected well histories within the working-memory estimate.
 Internal manifests contain all well references and remain subject to that estimate.
+
+The [public acceptance record](evidence/general-schedules/README.md) preserves the installed-client results and original MCP calls.

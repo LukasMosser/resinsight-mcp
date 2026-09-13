@@ -1,0 +1,85 @@
+{
+  "implementation_commit": "d7c644acef15c06b2a1f903c9c3980993690e68f",
+  "public_calls": 274,
+  "expected_failures": 4,
+  "peak_mcp_rss_bytes": 378781696,
+  "largest_structured_response_characters": 3749,
+  "workspace_bytes": 106525529,
+  "operations": {
+    "array_join": {
+      "count": 3,
+      "minimum_seconds": 0.054832333931699395,
+      "maximum_seconds": 0.05529524991288781
+    },
+    "array_upload": {
+      "count": 52,
+      "minimum_seconds": 0.05406604101881385,
+      "maximum_seconds": 0.0568398330360651
+    },
+    "general_capabilities": {
+      "count": 1,
+      "minimum_seconds": 0.05568904196843505,
+      "maximum_seconds": 0.05568904196843505
+    },
+    "general_schedule_create": {
+      "count": 1,
+      "minimum_seconds": 0.05567308305762708,
+      "maximum_seconds": 0.05567308305762708
+    },
+    "general_schedule_diff": {
+      "count": 3,
+      "minimum_seconds": 0.054033666965551674,
+      "maximum_seconds": 0.05467858398333192
+    },
+    "general_schedule_edit": {
+      "count": 49,
+      "minimum_seconds": 0.05384658300317824,
+      "maximum_seconds": 0.33951750001870096
+    },
+    "general_schedule_history": {
+      "count": 77,
+      "minimum_seconds": 0.05370524991303682,
+      "maximum_seconds": 0.055486041004769504
+    },
+    "general_schedule_inspect": {
+      "count": 3,
+      "minimum_seconds": 0.05432891601230949,
+      "maximum_seconds": 0.05510654195677489
+    },
+    "general_schedule_state": {
+      "count": 39,
+      "minimum_seconds": 0.053540916997008026,
+      "maximum_seconds": 0.06710495799779892
+    },
+    "general_schedule_wells": {
+      "count": 3,
+      "minimum_seconds": 0.05454708402976394,
+      "maximum_seconds": 0.05486925004515797
+    },
+    "general_well_define": {
+      "count": 36,
+      "minimum_seconds": 0.05425887496676296,
+      "maximum_seconds": 0.06003304198384285
+    },
+    "geological_generate": {
+      "count": 1,
+      "minimum_seconds": 0.4923412080388516,
+      "maximum_seconds": 0.4923412080388516
+    },
+    "session_create": {
+      "count": 1,
+      "minimum_seconds": 0.05525204096920788,
+      "maximum_seconds": 0.05525204096920788
+    },
+    "workspace_create": {
+      "count": 2,
+      "minimum_seconds": 0.05440345802344382,
+      "maximum_seconds": 0.055098624899983406
+    },
+    "workspace_select": {
+      "count": 3,
+      "minimum_seconds": 0.054899957962334156,
+      "maximum_seconds": 0.11969491699710488
+    }
+  }
+}
