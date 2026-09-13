@@ -18,6 +18,8 @@ from resinsight_mcp.contracts.errors import (
     Success,
 )
 from resinsight_mcp.contracts.wells import InjectorControl, ProducerControl, WellControl, WellStatus
+from resinsight_mcp.models.deck import control_keyword
+from resinsight_mcp.models.deck import deck_text as _text
 from resinsight_mcp.models.imports import DerivedModelRequest, ImportReceipt, OpmImportService
 from resinsight_mcp.models.imports.records import MaterializedModel
 
@@ -36,14 +38,6 @@ def _value[T](result: OperationResult[T]) -> T:
     if isinstance(result.outcome, Failure):
         raise ContractError(result.outcome.error)
     return result.outcome.value
-
-
-def _text(value: str | int | float) -> str:
-    if isinstance(value, str):
-        if "'" in value or "\n" in value or "\r" in value:
-            raise _invalid("Schedule serialization cannot preserve quoted or multiline strings.")
-        return f"'{value}'"
-    return format(value, ".17g") if isinstance(value, float) else str(value)
 
 
 type _Scalar = str | int | float | None
@@ -203,17 +197,12 @@ def _declaration(record: Any, edit: _Edit) -> str:
 
 def _control(name: str, control: WellControl) -> str:
     if isinstance(control, ProducerControl):
-        rate = "1*" if control.oil_rate is None else _text(control.oil_rate.value)
-        row = (
-            f" '{name}' '{control.status}' '{control.mode}' {rate} 4* {_text(control.bhp_psia)} /\n"
-        )
-        return _render("WCONPROD", [row])
-    rate = "1*" if control.surface_rate is None else _text(control.surface_rate.value)
-    row = (
-        f" '{name}' '{control.phase}' '{control.status}' '{control.mode}' "
-        f"{rate} 1* {_text(control.bhp_psia)} /\n"
-    )
-    return _render("WCONINJE", [row])
+        rate = None if control.oil_rate is None else control.oil_rate.value
+        phase = None
+    else:
+        rate = None if control.surface_rate is None else control.surface_rate.value
+        phase = control.phase
+    return control_keyword(name, control.status, control.mode, rate, control.bhp_psia, phase)
 
 
 def _overlays(edits: dict[str, _Edit], report: int) -> str:

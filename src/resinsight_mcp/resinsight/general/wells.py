@@ -10,6 +10,7 @@ from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.sessions import ObjectRef
 from resinsight_mcp.contracts.workspace import ArtifactKind
 from resinsight_mcp.models.general.arrays import fail, operation, value
+from resinsight_mcp.models.general.connections import ConnectionStorage
 from resinsight_mcp.models.general.records import NamedArray
 from resinsight_mcp.models.general.wells import GeneralWellModels, WellGeometry, WellPlan
 from resinsight_mcp.resinsight.sessions._backend import ApplicationAccess, ProjectMutation
@@ -252,8 +253,4 @@ class GeneralNativeWells:
 
     @operation
     def connections(self, ref: ArtifactRef) -> GeneralWellConnections:
-        with self.plans.models.store.open_artifact(ref) as stream:
-            result = GeneralWellConnections.model_validate_json(stream.read())
-        if result.artifact != ref or result.model.session_id != ref.session_id:
-            fail("The saved connections belong to another artifact or session.")
-        return result
+        return ConnectionStorage(self.plans).read(ref)

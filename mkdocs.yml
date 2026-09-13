@@ -79,6 +79,7 @@ nav:
       - General wells and completions: development/general-wells.md
       - General schedules: development/general-schedules.md
       - General simulator inputs: development/general-simulator-inputs.md
+      - General input compilation: development/general-input-compilation.md
       - Geological MCP evidence: development/evidence/general-models/README.md
       - OPM workflow delivery: development/p13-delivery.md
       - Public OPM acceptance: development/opm-acceptance.md
