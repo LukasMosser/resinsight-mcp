@@ -18,6 +18,19 @@ from resinsight_mcp.models.general.records import (
     GeologicalModel,
     GeologicalRequest,
 )
+from resinsight_mcp.models.general.schedules.records import (
+    DiffRequest,
+    EventPage,
+    HistoryRequest,
+    PageRequest,
+    ScheduleCreate,
+    ScheduleDifference,
+    ScheduleEdit,
+    ScheduleInfo,
+    StateRequest,
+    WellPage,
+    WellState,
+)
 from resinsight_mcp.models.general.wells import WellPlan, WellPlanRequest
 from resinsight_mcp.resinsight.general.records import (
     EditedGrid,
@@ -194,6 +207,68 @@ def general_operations(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
                     ArtifactRef,
                     OperationResult[GeneralWellConnections],
                     wells.connections,
+                    read_only=True,
+                ),
+            )
+        )
+    if bindings.general_schedules is not None:
+        schedules = bindings.general_schedules
+        operations.extend(
+            (
+                Operation(
+                    "general_schedule_create",
+                    "Create an empty immutable schedule with explicit start date and report days.",
+                    ScheduleCreate,
+                    OperationResult[ScheduleInfo],
+                    schedules.create,
+                    read_only=False,
+                ),
+                Operation(
+                    "general_schedule_edit",
+                    "Publish a child schedule with bounded well edits or new report times.",
+                    ScheduleEdit,
+                    OperationResult[ScheduleInfo],
+                    schedules.edit,
+                    read_only=False,
+                ),
+                Operation(
+                    "general_schedule_inspect",
+                    "Read compact schedule metadata and its report array reference.",
+                    ArtifactRef,
+                    OperationResult[ScheduleInfo],
+                    schedules.inspect,
+                    read_only=True,
+                ),
+                Operation(
+                    "general_schedule_wells",
+                    "List a bounded page of wells in name order.",
+                    PageRequest,
+                    OperationResult[WellPage],
+                    schedules.wells,
+                    read_only=True,
+                ),
+                Operation(
+                    "general_schedule_history",
+                    "Read a bounded page of authored events for one well.",
+                    HistoryRequest,
+                    OperationResult[EventPage],
+                    schedules.history,
+                    read_only=True,
+                ),
+                Operation(
+                    "general_schedule_state",
+                    "Resolve one well control at a report, carrying earlier controls forward.",
+                    StateRequest,
+                    OperationResult[WellState],
+                    schedules.state,
+                    read_only=True,
+                ),
+                Operation(
+                    "general_schedule_diff",
+                    "Compare report times, well plans, and typed events in bounded well pages.",
+                    DiffRequest,
+                    OperationResult[ScheduleDifference],
+                    schedules.difference,
                     read_only=True,
                 ),
             )
