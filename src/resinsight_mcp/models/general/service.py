@@ -186,12 +186,16 @@ class GeneralModelService:
         manifest = self.manifest(model)
         return self.describe(revision, manifest, manifest.active_cells)
 
-    def export_grdecl(self, model: ModelRef, stream: TextIO) -> None:
+    def export_grdecl(
+        self, model: ModelRef, stream: TextIO, *, fields: frozenset[str] | None = None
+    ) -> None:
         manifest = self.manifest(model)
         shape = manifest.shape
         stream.write(f"SPECGRID\n {shape.nx} {shape.ny} {shape.nz} 1 F /\n")
         stream.write(f"GRIDUNIT\n '{'METRES' if manifest.length_unit == 'm' else 'FEET'}' /\n")
         for name, ref in self.references(manifest):
+            if fields is not None and name not in fields | {"COORD", "ZCORN", "ACTNUM"}:
+                continue
             stream.write(f"{name}\n")
             for part in self.arrays.chunks(ref):
                 for offset in range(0, len(part), 6):

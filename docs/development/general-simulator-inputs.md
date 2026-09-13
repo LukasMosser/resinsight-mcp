@@ -13,7 +13,8 @@ PR #61 is closed without merging, and this branch retains its commits.
 5. Connect prepared general models to simulator execution and bounded result queries.
 
 The first step adds public authoring tools under `--enable-general-models`.
-Compilation, OPM validation, general execution, and large result queries remain separate work until their evidence is recorded.
+The [compiler delivery](general-input-compilation.md) implements assembly, isolated OPM validation, and prepared receipts.
+General execution and large result queries remain separate work.
 An authored physics snapshot always reports `simulation_ready: false`.
 Its `complete` field only describes regional table coverage after authoring validation.
 Neither value claims a successful simulation or complete engineering review.
@@ -83,7 +84,7 @@ An omitted table retains its original array references.
 An invalid edit does not publish a child snapshot or alter the parent.
 Foreign model, parent, map, and column references fail through workspace and session ownership checks.
 
-## Compilation contract for the next step
+## Compilation contract
 
 Compilation must require complete physics, explicit report times, and matching native connection exports for every scheduled well.
 Exports must identify the exact geological model and immutable well plan.

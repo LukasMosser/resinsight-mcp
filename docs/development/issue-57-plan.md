@@ -14,7 +14,8 @@ The first native runs include one million global cells, displaced faults, folded
 Explicit multipart arrays also define a separate grid with nonuniform spacing and inclined pillars.
 The [general well delivery](general-wells.md) adds native paths, immutable plans, and bounded connection arrays on authored grids.
 The [general schedule delivery](general-schedules.md) adds independent control histories, report insertion, shut-in, reopening, and semantic differences.
-Simulation preparation, asynchronous work, and scalable results remain approved work under this issue.
+The [input compiler](general-input-compilation.md) adds general assemblies, isolated OPM validation, and prepared receipts.
+General execution, asynchronous work, and scalable results remain approved work under this issue.
 The [simulator input delivery](general-simulator-inputs.md) starts explicit regional fluid and initialization authoring.
 The geological delivery does not complete the issue's three-well simulation acceptance.
 

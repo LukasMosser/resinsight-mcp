@@ -2,15 +2,16 @@
 
 from typing import Literal, Self
 
-from pydantic import PositiveInt, model_validator
+from pydantic import model_validator
 
 from resinsight_mcp.contracts._base import Record
-from resinsight_mcp.contracts.engineering import ModelRef
 from resinsight_mcp.contracts.models import ArtifactRef
 from resinsight_mcp.contracts.sessions import ObjectKind, ObjectRef
 from resinsight_mcp.models.general.arrays import ArrayInfo
-from resinsight_mcp.models.general.records import NamedArray
-from resinsight_mcp.models.general.wells import GeneralWellhead, WellPlan
+from resinsight_mcp.models.general.connections import (
+    GeneralWellConnections as GeneralWellConnections,
+)
+from resinsight_mcp.models.general.wells import WellPlan
 
 from .records import LoadedGrid
 
@@ -46,18 +47,3 @@ class GeneralWellState(Record):
     binding: GeneralWellBinding
     plan: WellPlan
     trajectory: ArrayInfo
-
-
-class GeneralWellConnections(Record):
-    artifact: ArtifactRef
-    version: Literal["general-connections-v1"] = "general-connections-v1"
-    well_receipt: ArtifactRef
-    plan: ArtifactRef
-    model: ModelRef
-    wellhead: GeneralWellhead
-    length_unit: Literal["m", "ft"]
-    count: PositiveInt
-    measured_depth_semantics: str = (
-        "Native aggregate bounds can span gaps between intervals in one cell."
-    )
-    columns: tuple[NamedArray, ...]

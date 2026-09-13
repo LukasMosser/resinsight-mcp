@@ -131,12 +131,17 @@ class GeneralCapabilities(Record):
     schedule_event_ceiling: None = None
     schedule_controls: tuple[str, ...] = ("producer:ORAT/BHP", "injector:RATE/BHP", "OPEN/SHUT")
     physics_profiles: tuple[str, ...] = ("black_oil_disgas_rsvd",)
+    input_validation: tuple[str, ...] = ("black_oil_disgas_rsvd:opm-2025.10",)
+    input_validation_requires: tuple[str, ...] = (
+        "opm==2025.10",
+        "compatible native exports for scheduled wells",
+    )
     well_coordinate_units: tuple[str, ...] = ("m", "ft")
     well_geometry: str = "Native curves through target points. Independent paths without branches."
     array_order: str = "I fastest, then J, then K. ZCORN uses Eclipse corner ordering."
     policy: AuthoringPolicy
     simulation_ready: bool = False
     limitation: str = (
-        "Authored grids, wells, schedules, and regional physics require "
-        "complete inputs and validated simulator compilation before execution."
+        "Complete general inputs support isolated OPM validation. "
+        "General simulator execution and scalable result queries remain separate work."
     )

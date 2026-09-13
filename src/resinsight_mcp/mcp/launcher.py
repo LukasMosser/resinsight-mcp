@@ -137,6 +137,7 @@ class LauncherConfiguration:
         if policy is None:
             return bindings
         from resinsight_mcp.models.general.arrays import ArrayService
+        from resinsight_mcp.models.general.compilation.service import GeneralCompilation
         from resinsight_mcp.models.general.physics.service import GeneralPhysics
         from resinsight_mcp.models.general.schedules.service import GeneralSchedules
         from resinsight_mcp.models.general.service import GeneralModelService
@@ -145,6 +146,8 @@ class LauncherConfiguration:
         arrays = ArrayService(bindings.workspaces, policy)
         models = GeneralModelService(arrays)
         plans = GeneralWellModels(models)
+        schedules = GeneralSchedules(plans)
+        physics = GeneralPhysics(models)
         native = None
         wells = None
         if sessions is not None:
@@ -160,7 +163,10 @@ class LauncherConfiguration:
             general_models=models,
             general_grids=native,
             general_well_models=plans,
-            general_schedules=GeneralSchedules(plans),
-            general_physics=GeneralPhysics(models),
+            general_schedules=schedules,
+            general_physics=physics,
+            general_compilation=GeneralCompilation(
+                schedules, physics, self.workspace_root.resolve()
+            ),
             general_native_wells=wells,
         )

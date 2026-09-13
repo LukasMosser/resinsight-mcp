@@ -61,6 +61,9 @@ class AuthoringPolicy(Record):
     response_records: PositiveInt = 128
     native_rpc_timeout_seconds: PositiveFloat = 30
     native_launch_timeout_seconds: PositiveFloat = 120
+    parser_memory_mib: PositiveInt = 1024
+    parser_timeout_seconds: PositiveFloat = 120
+    compilation_disk_mib: PositiveInt = 1024
 
     def require_memory(self, estimated_mib: float) -> None:
         if estimated_mib > self.working_memory_mib:

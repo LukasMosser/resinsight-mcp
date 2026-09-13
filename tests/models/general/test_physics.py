@@ -24,24 +24,7 @@ from resinsight_mcp.models.general.physics.records import (
 from resinsight_mcp.models.general.physics.service import GeneralPhysics
 from resinsight_mcp.models.general.service import GeneralModelService
 from resinsight_mcp.workspaces import SqliteWorkspaceStore
-
-ROWS = {
-    "PVTW": [[200, 1.01, 0.00004, 0.5, 0]],
-    "ROCK": [[200, 0.00004]],
-    "DENSITY": [[800, 1000, 1.2]],
-    "PVDG": [[1, 1, 0.01], [100, 0.01, 0.02], [300, 0.0035, 0.03]],
-    "PVTO": [
-        [0, 1, 1, 2],
-        [0, 300, 0.99, 2.2],
-        [100, 200, 1.2, 1.2],
-        [100, 400, 1.18, 1.3],
-        [150, 300, 1.3, 1],
-    ],
-    "SWOF": [[0, 0, 1, 0], [1, 1, 0, 0]],
-    "SGOF": [[0, 0, 1, 0], [1, 1, 0, 0]],
-    "EQUIL": [[1500, 200, 2000, 0, 1000, 0, 1, 0, 0]],
-    "RSVD": [[1000, 100], [2000, 100]],
-}
+from tests.general_physics_data import ROWS
 
 
 def prepare(tmp_path):
