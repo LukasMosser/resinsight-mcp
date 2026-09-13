@@ -137,6 +137,7 @@ class LauncherConfiguration:
         if policy is None:
             return bindings
         from resinsight_mcp.models.general.arrays import ArrayService
+        from resinsight_mcp.models.general.physics.service import GeneralPhysics
         from resinsight_mcp.models.general.schedules.service import GeneralSchedules
         from resinsight_mcp.models.general.service import GeneralModelService
         from resinsight_mcp.models.general.wells import GeneralWellModels
@@ -160,5 +161,6 @@ class LauncherConfiguration:
             general_grids=native,
             general_well_models=plans,
             general_schedules=GeneralSchedules(plans),
+            general_physics=GeneralPhysics(models),
             general_native_wells=wells,
         )

@@ -264,6 +264,7 @@ class WorkspaceManager:
             workspace_manager=self,
             arrays=cast(Any, _ServiceProxy(self, "arrays")) if general else None,
             general_models=cast(Any, _ServiceProxy(self, "general_models")) if general else None,
+            general_physics=cast(Any, _ServiceProxy(self, "general_physics")) if general else None,
             general_schedules=cast(Any, _ServiceProxy(self, "general_schedules"))
             if general
             else None,
