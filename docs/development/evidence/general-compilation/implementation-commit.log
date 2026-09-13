@@ -1,0 +1,24 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+[WARNING] Unstaged files detected.
+[INFO] Stashing unstaged files to /Users/lmoss/.cache/pre-commit/patch1789298339-70244.
+Run repository checks....................................................Passed
+[INFO] Restored changes from /Users/lmoss/.cache/pre-commit/patch1789298339-70244.
+[codex/general-input-compilation 377e9d3] Compile and validate general simulator inputs
+ Date: Sun Sep 13 13:08:00 2026 +0200
+ 30 files changed, 2183 insertions(+), 70 deletions(-)
+ create mode 100644 docs/development/evidence/general-compilation/acceptance.py
+ create mode 100644 docs/development/general-input-compilation.md
+ create mode 100644 src/resinsight_mcp/mcp/_compilation_operations.py
+ create mode 100644 src/resinsight_mcp/models/deck.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/__init__.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/records.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/render.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/runner.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/service.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/verify.py
+ create mode 100644 src/resinsight_mcp/models/general/compilation/worker.py
+ create mode 100644 src/resinsight_mcp/models/general/connections.py
+ create mode 100644 tests/general_physics_data.py
+ create mode 100644 tests/mcp/test_general_compilation.py
+ create mode 100644 tests/models/general/test_compilation.py
+ create mode 100644 tests/models/general/test_compilation_failures.py

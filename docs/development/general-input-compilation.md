@@ -116,6 +116,7 @@ Maintained tests exercise zero wells, multiple wells, METRIC and FIELD units, th
 Failure tests cover stale well exports, missing exports, unsupported field decisions, invalid native cells, and resource limits.
 A production MCP test creates all inputs through public tools and checks workspace ownership and receipt recovery.
 Native acceptance uses the [recorded driver](evidence/general-compilation/acceptance.py) with the reviewed ResInsight build.
+The [native evidence](evidence/general-compilation/README.md) records successful million-cell validation and a separate exact-center well discrepancy.
 
 Next, connect these bundles to explicit simulator execution with resource policy, durable jobs, and bounded result queries.
 Record convergence, rates, field results, and native result visualization separately from input validation.

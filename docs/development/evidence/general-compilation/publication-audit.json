@@ -1,0 +1,17 @@
+{
+  "source_commit": "377e9d3d138bf6fb6f00c33759bd62c353e6eb4f",
+  "input_provenance": "Original synthetic geology, explicit tables, schedules, and paths created through public MCP tools.",
+  "protocol_record_counts": {
+    "million": 115,
+    "centerline-million": 14,
+    "centerline-coarse": 22
+  },
+  "centerline_runs": "Both stopped at explicit expected-connection assertions. They did not reach compiler validation.",
+  "million_connections": 150,
+  "million_active_cells": 785400,
+  "native_images": 3,
+  "parser_version": "2025.10",
+  "receipt_restart_verified": true,
+  "simulation_executed": false,
+  "excluded": "Workspace databases, full generated grid files, environment variables, and unrelated host files."
+}
