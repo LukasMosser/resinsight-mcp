@@ -61,3 +61,4 @@ Use [SECURITY.md](https://github.com/LukasMosser/resinsight-mcp/blob/main/SECURI
 
 The [general geological authoring record](general-model-authoring.md) describes the first implementation and its remaining scope.
 The [general well record](general-wells.md) describes native paths and immutable connection exports on authored grids.
+The [general schedule record](general-schedules.md) describes independent histories and immutable report timelines.

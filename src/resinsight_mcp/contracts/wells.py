@@ -17,6 +17,19 @@ class WellStatus(StrEnum):
     SHUT = "SHUT"
 
 
+def require_control_rate(
+    status: WellStatus, mode: str, rate: tuple[float, str] | None, unit: str
+) -> None:
+    """Apply the same rate and pressure rules to all authored controls."""
+    if mode == "BHP":
+        if rate is not None:
+            raise ValueError("BHP control forbids a rate target.")
+    elif rate is None or rate[1] != unit:
+        raise ValueError(f"{mode} control requires a rate in {unit}.")
+    elif status == WellStatus.OPEN and rate[0] <= 0:
+        raise ValueError("OPEN control requires a positive rate.")
+
+
 class FieldSurfaceRate(Record):
     """A volume rate at surface conditions in FIELD units."""
 
@@ -33,14 +46,12 @@ class ProducerControl(Record):
 
     @model_validator(mode="after")
     def check_rate(self) -> Self:
-        if self.mode == "BHP":
-            if self.oil_rate is not None:
-                raise ValueError("BHP control forbids an oil rate.")
-        else:
-            if self.oil_rate is None or self.oil_rate.unit != "stb/day":
-                raise ValueError("ORAT control requires an oil rate in stb/day.")
-            if self.status == WellStatus.OPEN and self.oil_rate.value <= 0:
-                raise ValueError("OPEN control requires a positive oil rate.")
+        require_control_rate(
+            self.status,
+            self.mode,
+            None if self.oil_rate is None else (self.oil_rate.value, self.oil_rate.unit),
+            "stb/day",
+        )
         return self
 
 
@@ -54,15 +65,14 @@ class InjectorControl(Record):
 
     @model_validator(mode="after")
     def check_rate(self) -> Self:
-        if self.mode == "BHP":
-            if self.surface_rate is not None:
-                raise ValueError("BHP control forbids a surface rate.")
-        else:
-            unit = "stb/day" if self.phase == "WATER" else "Mscf/day"
-            if self.surface_rate is None or self.surface_rate.unit != unit:
-                raise ValueError(f"RATE control for {self.phase} requires a rate in {unit}.")
-            if self.status == WellStatus.OPEN and self.surface_rate.value <= 0:
-                raise ValueError("OPEN control requires a positive surface rate.")
+        require_control_rate(
+            self.status,
+            self.mode,
+            None
+            if self.surface_rate is None
+            else (self.surface_rate.value, self.surface_rate.unit),
+            "stb/day" if self.phase == "WATER" else "Mscf/day",
+        )
         return self
 
 

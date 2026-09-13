@@ -13,7 +13,8 @@ Public MCP tools now create general corner-point arrays, generate geological mod
 The first native runs include one million global cells, displaced faults, folded layers, heterogeneous properties, and inactive regions.
 Explicit multipart arrays also define a separate grid with nonuniform spacing and inclined pillars.
 The [general well delivery](general-wells.md) adds native paths, immutable plans, and bounded connection arrays on authored grids.
-Schedules, simulation preparation, asynchronous work, and scalable results remain approved work under this issue.
+The [general schedule delivery](general-schedules.md) adds independent control histories, report insertion, shut-in, reopening, and semantic differences.
+Simulation preparation, asynchronous work, and scalable results remain approved work under this issue.
 The geological delivery does not complete the issue's three-well simulation acceptance.
 
 ## Recommendation

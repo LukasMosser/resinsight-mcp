@@ -77,6 +77,7 @@ nav:
       - General model plan: development/issue-57-plan.md
       - General geological authoring: development/general-model-authoring.md
       - General wells and completions: development/general-wells.md
+      - General schedules: development/general-schedules.md
       - Geological MCP evidence: development/evidence/general-models/README.md
       - OPM workflow delivery: development/p13-delivery.md
       - Public OPM acceptance: development/opm-acceptance.md

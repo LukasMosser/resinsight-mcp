@@ -57,6 +57,8 @@ class AuthoringPolicy(Record):
     working_memory_mib: PositiveInt = 512
     request_values: PositiveInt = 65_536
     response_values: PositiveInt = 4_096
+    request_records: PositiveInt = 256
+    response_records: PositiveInt = 128
     native_rpc_timeout_seconds: PositiveFloat = 30
     native_launch_timeout_seconds: PositiveFloat = 120
 

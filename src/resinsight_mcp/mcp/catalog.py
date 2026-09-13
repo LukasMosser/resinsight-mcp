@@ -55,6 +55,7 @@ from resinsight_mcp.models.synthetic import SyntheticModelService
 
 if TYPE_CHECKING:
     from resinsight_mcp.models.general.arrays import ArrayService
+    from resinsight_mcp.models.general.schedules.service import GeneralSchedules
     from resinsight_mcp.models.general.service import GeneralModelService
     from resinsight_mcp.models.general.wells import GeneralWellModels
     from resinsight_mcp.models.wells.service import OpmWellScheduleService
@@ -118,6 +119,7 @@ class Bindings:
     general_models: GeneralModelService | None = None
     general_grids: GeneralGridService | None = None
     general_well_models: GeneralWellModels | None = None
+    general_schedules: GeneralSchedules | None = None
     general_native_wells: GeneralNativeWells | None = None
 
 
