@@ -1,0 +1,77 @@
+001 session_create: 0.28s error=False
+002 general_capabilities: 0.06s error=False
+003 geological_generate: 0.06s error=False
+004 application_launch: 1.92s error=False
+005 geological_load: 0.51s error=False
+006 geological_verify: 0.23s error=False
+007 array_upload: 0.06s error=False
+008 array_upload: 0.06s error=False
+009 array_upload: 0.06s error=False
+010 general_well_define: 0.06s error=False
+011 general_well_load: 0.52s error=False
+012 general_well_export: 0.23s error=False
+013 array_range: 0.06s error=False
+014 array_range: 0.06s error=False
+015 array_upload: 0.06s error=False
+016 array_upload: 0.06s error=False
+017 array_upload: 0.06s error=False
+018 general_well_define: 0.06s error=False
+019 general_well_load: 0.56s error=False
+020 general_well_export: 0.23s error=False
+021 array_range: 0.06s error=False
+022 application_close: 0.22s error=False
+  + Exception Group Traceback (most recent call last):
+  |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-compilation/acceptance.py", line 257, in <module>
+  |     main()
+  |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-compilation/acceptance.py", line 251, in main
+  |     asyncio.run(
+  |   File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 195, in run
+  |     return runner.run(main)
+  |            ^^^^^^^^^^^^^^^^
+  |   File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 118, in run
+  |     return self._loop.run_until_complete(task)
+  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+  |     return future.result()
+  |            ^^^^^^^^^^^^^^^
+  |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-compilation/acceptance.py", line 103, in run
+  |     async with self.client(True) as client:
+  |                ^^^^^^^^^^^^^^^^^
+  |   File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/contextlib.py", line 231, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-models/acceptance.py", line 103, in client
+  |     async with stdio_client(parameters, errlog=errors) as (read, write):
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/lmoss/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/contextlib.py", line 231, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/private/tmp/general-compilation-installed/lib/python3.12/site-packages/mcp/client/stdio/__init__.py", line 183, in stdio_client
+  |     anyio.create_task_group() as tg,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/private/tmp/general-compilation-installed/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/private/tmp/general-compilation-installed/lib/python3.12/site-packages/mcp/client/stdio/__init__.py", line 189, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-models/acceptance.py", line 104, in client
+    |     async with ClientSession(
+    |                ^^^^^^^^^^^^^^
+    |   File "/private/tmp/general-compilation-installed/lib/python3.12/site-packages/mcp/shared/session.py", line 238, in __aexit__
+    |     return await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/private/tmp/general-compilation-installed/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+    |     raise BaseExceptionGroup(
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-models/acceptance.py", line 108, in client
+      |     yield client
+      |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-compilation/acceptance.py", line 130, in run
+      |     loaded = await self.make_well(
+      |              ^^^^^^^^^^^^^^^^^^^^^
+      |   File "/private/tmp/resinsight-general-input-compilation/docs/development/evidence/general-wells/well_acceptance.py", line 122, in make_well
+      |     assert actual == set(expected_cells), (name, actual, set(expected_cells))
+      |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      | AssertionError: ('EAST', {(8, 10, 9), (8, 10, 2), (8, 10, 8), (8, 10, 5), (8, 10, 1), (8, 10, 4), (8, 10, 7), (8, 10, 3), (8, 10, 0)}, {(8, 10, 9), (8, 10, 2), (8, 10, 8), (8, 10, 5), (8, 10, 1), (8, 10, 4), (8, 10, 7), (8, 10, 3), (8, 10, 0), (8, 10, 6)})
+      +------------------------------------

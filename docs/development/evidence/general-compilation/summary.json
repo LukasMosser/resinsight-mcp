@@ -1,0 +1,1956 @@
+{
+  "source_commit": "377e9d3d138bf6fb6f00c33759bd62c353e6eb4f",
+  "native_source_commit": "7c3635788a8b4f4fad5fcd92220ba88252d161b3",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "versions": {
+    "resinsight-mcp": "0.1.0",
+    "mcp": "1.30.0",
+    "rips": "2026.9.0.1",
+    "opm": "2025.10",
+    "numpy": "2.5.3"
+  },
+  "model": {
+    "model": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+    },
+    "name": "Folded and faulted channel reservoir",
+    "shape": {
+      "nx": 100,
+      "ny": 200,
+      "nz": 50
+    },
+    "active_cells": 785400,
+    "arrays": [
+      {
+        "name": "COORD",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_c789900b238943f4801418c61e8b0e80"
+          },
+          "count": 121806,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 10000.0
+        }
+      },
+      {
+        "name": "ZCORN",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_30ec1854b6f446399815cea7eab59a77"
+          },
+          "count": 8000000,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 1820.5000613890381,
+          "maximum": 2842.0560598956213
+        }
+      },
+      {
+        "name": "ACTNUM",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_ed9e2c207f394f9b8399ff828805d903"
+          },
+          "count": 1000000,
+          "dtype": "int64",
+          "unit": "1",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      },
+      {
+        "name": "PORO",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_de21c1fb91304b1cac8e7a61c7a4027c"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "1",
+          "minimum": 0.1,
+          "maximum": 0.2599999977356817
+        }
+      },
+      {
+        "name": "PERMX",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_2dfc5eba7417436ea6bf55cd85c2f539"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 4999.99977356817
+        }
+      },
+      {
+        "name": "PERMY",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_2c9c9c701e7f4b5189dc9a78296141ab"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 4999.99977356817
+        }
+      },
+      {
+        "name": "PERMZ",
+        "array": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_1c3dcf504d8640279dd6bd6e35c5e5e9"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 4999.99977356817
+        }
+      }
+    ],
+    "source": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_4eb6b6e46d9543899a8e57701fb0edb1"
+    }
+  },
+  "wells": [
+    {
+      "state": {
+        "binding": {
+          "loaded": {
+            "receipt": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "artifact_id": "artifact_5c6477233c1d4848b6dabcc294c4dc31"
+            },
+            "model": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+            },
+            "case": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 2
+              },
+              "kind": "case",
+              "object_id": "e6d9af2089c240f5939708b82823d3c6"
+            },
+            "view": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 2
+              },
+              "kind": "view",
+              "object_id": "7189f620b49e4b6891084e41209fd8a2"
+            },
+            "source": "/private/tmp/general-compilation-native-final/workspace/geological-sources/revision_6f1fea70df8a4d64999c25c2f2037f91/3fc97919-f762-4c92-af2e-91bb60524a95/model.GRDECL",
+            "global_cells": 1000000,
+            "active_cells": 785400,
+            "verified_properties": [
+              "PORO",
+              "PERMX",
+              "PERMY",
+              "PERMZ"
+            ]
+          },
+          "well": {
+            "context": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+              "project_generation": 2
+            },
+            "kind": "well",
+            "object_id": "16892af9cb6145d0a0fa864e16b4bef2"
+          },
+          "receipt": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_28f23ad98db84661965c7c02ef779102"
+          }
+        },
+        "plan": {
+          "model": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+          },
+          "name": "WEST",
+          "role": "producer",
+          "injection_phase": null,
+          "targets": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_3c7d5ad6cdf0432ead96e43e403ad8ac"
+          },
+          "intervals": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_59bad1aa298d454ca269152cb9bc1f75"
+          },
+          "skins": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_77cc7cee46384ba19e56bb81426aea7d"
+          },
+          "sampling_distance": 5.0,
+          "parent": null,
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_825599d7e97343789b763e0b7390bf04"
+          },
+          "version": "general-well-v1",
+          "length_unit": "m",
+          "datum": "Original local model, depth positive down"
+        },
+        "trajectory": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_41e94b8a71034278b96ae0f7daedde3c"
+          },
+          "count": 2004,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 5021.5
+        }
+      },
+      "export": {
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_036d2d6a6de74671bb77f26ac86b7093"
+        },
+        "version": "general-connections-v1",
+        "well_receipt": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_28f23ad98db84661965c7c02ef779102"
+        },
+        "plan": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_825599d7e97343789b763e0b7390bf04"
+        },
+        "model": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+        },
+        "wellhead": {
+          "i": 20,
+          "j": 100,
+          "reference_depth": null
+        },
+        "length_unit": "m",
+        "count": 50,
+        "measured_depth_semantics": "Native aggregate bounds can span gaps between intervals in one cell.",
+        "columns": [
+          {
+            "name": "cells",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_940c3de7d7934a8c8fb3ada903db1e27"
+              },
+              "count": 150,
+              "dtype": "int64",
+              "unit": "zero_based_ijk",
+              "minimum": 0.0,
+              "maximum": 100.0
+            }
+          },
+          {
+            "name": "factor",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_bd81958747484e15a2547e36917e11fa"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "ECLIPSE_METRIC_COMPDAT",
+              "minimum": 0.9924379204129389,
+              "maximum": 99.35490916261374
+            }
+          },
+          {
+            "name": "kh",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_01f68aefc0834d5f97f6966c989b74a0"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "mD*m",
+              "minimum": 86.85682298614434,
+              "maximum": 8685.833666015229
+            }
+          },
+          {
+            "name": "diameter",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_52a5414355cc4d7c81491e85155573f1"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 0.19999999999999998,
+              "maximum": 0.20000000000000004
+            }
+          },
+          {
+            "name": "skin",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_a015cf4b1e0d42449e8609420a51759f"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "1",
+              "minimum": 0.0,
+              "maximum": 0.0
+            }
+          },
+          {
+            "name": "direction",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_8619ba5bf19740de96a5035214ab4429"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "X=1,Y=2,Z=3",
+              "minimum": 3.0,
+              "maximum": 3.0
+            }
+          },
+          {
+            "name": "status",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_550a100ea8894b51a40fdeaf47787ae8"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "SHUT=0,OPEN=1",
+              "minimum": 1.0,
+              "maximum": 1.0
+            }
+          },
+          {
+            "name": "measured_depth",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_8a5e10bdd98641f3b842d1fa39891f9e"
+              },
+              "count": 100,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 898.5428717041018,
+              "maximum": 1320.1659045410156
+            }
+          }
+        ]
+      },
+      "expected_cells": [
+        [
+          20,
+          100,
+          0
+        ],
+        [
+          20,
+          100,
+          1
+        ],
+        [
+          20,
+          100,
+          2
+        ],
+        [
+          20,
+          100,
+          3
+        ],
+        [
+          20,
+          100,
+          4
+        ],
+        [
+          20,
+          100,
+          5
+        ],
+        [
+          20,
+          100,
+          6
+        ],
+        [
+          20,
+          100,
+          7
+        ],
+        [
+          20,
+          100,
+          8
+        ],
+        [
+          20,
+          100,
+          9
+        ],
+        [
+          20,
+          100,
+          10
+        ],
+        [
+          20,
+          100,
+          11
+        ],
+        [
+          20,
+          100,
+          12
+        ],
+        [
+          20,
+          100,
+          13
+        ],
+        [
+          20,
+          100,
+          14
+        ],
+        [
+          20,
+          100,
+          15
+        ],
+        [
+          20,
+          100,
+          16
+        ],
+        [
+          20,
+          100,
+          17
+        ],
+        [
+          20,
+          100,
+          18
+        ],
+        [
+          20,
+          100,
+          19
+        ],
+        [
+          20,
+          100,
+          20
+        ],
+        [
+          20,
+          100,
+          21
+        ],
+        [
+          20,
+          100,
+          22
+        ],
+        [
+          20,
+          100,
+          23
+        ],
+        [
+          20,
+          100,
+          24
+        ],
+        [
+          20,
+          100,
+          25
+        ],
+        [
+          20,
+          100,
+          26
+        ],
+        [
+          20,
+          100,
+          27
+        ],
+        [
+          20,
+          100,
+          28
+        ],
+        [
+          20,
+          100,
+          29
+        ],
+        [
+          20,
+          100,
+          30
+        ],
+        [
+          20,
+          100,
+          31
+        ],
+        [
+          20,
+          100,
+          32
+        ],
+        [
+          20,
+          100,
+          33
+        ],
+        [
+          20,
+          100,
+          34
+        ],
+        [
+          20,
+          100,
+          35
+        ],
+        [
+          20,
+          100,
+          36
+        ],
+        [
+          20,
+          100,
+          37
+        ],
+        [
+          20,
+          100,
+          38
+        ],
+        [
+          20,
+          100,
+          39
+        ],
+        [
+          20,
+          100,
+          40
+        ],
+        [
+          20,
+          100,
+          41
+        ],
+        [
+          20,
+          100,
+          42
+        ],
+        [
+          20,
+          100,
+          43
+        ],
+        [
+          20,
+          100,
+          44
+        ],
+        [
+          20,
+          100,
+          45
+        ],
+        [
+          20,
+          100,
+          46
+        ],
+        [
+          20,
+          100,
+          47
+        ],
+        [
+          20,
+          100,
+          48
+        ],
+        [
+          20,
+          100,
+          49
+        ]
+      ]
+    },
+    {
+      "state": {
+        "binding": {
+          "loaded": {
+            "receipt": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "artifact_id": "artifact_5c6477233c1d4848b6dabcc294c4dc31"
+            },
+            "model": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+            },
+            "case": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 3
+              },
+              "kind": "case",
+              "object_id": "e8d4e2fa9f3e456c8c8f5328c7707c95"
+            },
+            "view": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 3
+              },
+              "kind": "view",
+              "object_id": "13c2b2ea67294f3fbcba83d3d9d496cf"
+            },
+            "source": "/private/tmp/general-compilation-native-final/workspace/geological-sources/revision_6f1fea70df8a4d64999c25c2f2037f91/3fc97919-f762-4c92-af2e-91bb60524a95/model.GRDECL",
+            "global_cells": 1000000,
+            "active_cells": 785400,
+            "verified_properties": [
+              "PORO",
+              "PERMX",
+              "PERMY",
+              "PERMZ"
+            ]
+          },
+          "well": {
+            "context": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+              "project_generation": 3
+            },
+            "kind": "well",
+            "object_id": "c750915d70754b37a56ef6519cd22463"
+          },
+          "receipt": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_7a24f8a2c0ed423baf620bbdf7af100c"
+          }
+        },
+        "plan": {
+          "model": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+          },
+          "name": "EAST",
+          "role": "producer",
+          "injection_phase": null,
+          "targets": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_3ca09ea4c90748aaaed88ee5bab42992"
+          },
+          "intervals": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_9e054160d8804440a65eae2f397db674"
+          },
+          "skins": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_3e263aa41ee94b7f8d18695ef242f9b7"
+          },
+          "sampling_distance": 5.0,
+          "parent": null,
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_153aba51b6544396ae83d887c9393cef"
+          },
+          "version": "general-well-v1",
+          "length_unit": "m",
+          "datum": "Original local model, depth positive down"
+        },
+        "trajectory": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_2c740246ed594d459cb2b72a08149465"
+          },
+          "count": 2004,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 5021.5
+        }
+      },
+      "export": {
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_1f7ec3717d5d4718b6b5cf0183f1034d"
+        },
+        "version": "general-connections-v1",
+        "well_receipt": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_7a24f8a2c0ed423baf620bbdf7af100c"
+        },
+        "plan": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_153aba51b6544396ae83d887c9393cef"
+        },
+        "model": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+        },
+        "wellhead": {
+          "i": 80,
+          "j": 100,
+          "reference_depth": null
+        },
+        "length_unit": "m",
+        "count": 50,
+        "measured_depth_semantics": "Native aggregate bounds can span gaps between intervals in one cell.",
+        "columns": [
+          {
+            "name": "cells",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_9c72ede632da47889c4089d77b3b6356"
+              },
+              "count": 150,
+              "dtype": "int64",
+              "unit": "zero_based_ijk",
+              "minimum": 0.0,
+              "maximum": 100.0
+            }
+          },
+          {
+            "name": "factor",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_e9c16fee8d2249f4971f14bc533aaaad"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "ECLIPSE_METRIC_COMPDAT",
+              "minimum": 0.953876111549307,
+              "maximum": 95.46256962340271
+            }
+          },
+          {
+            "name": "kh",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_c4b6751d42ed45d685b6308459acadac"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "mD*m",
+              "minimum": 83.53873247928186,
+              "maximum": 8354.072818969777
+            }
+          },
+          {
+            "name": "diameter",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_f447fe617fe14202982d5a7159761a31"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 0.19999999999999998,
+              "maximum": 0.20000000000000004
+            }
+          },
+          {
+            "name": "skin",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_7ab2602c16754a7c8f1a27f7b6d97e40"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "1",
+              "minimum": 0.0,
+              "maximum": 0.0
+            }
+          },
+          {
+            "name": "direction",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_69db24c9f00a44519ea48fc08c7862d4"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "X=1,Y=2,Z=3",
+              "minimum": 3.0,
+              "maximum": 3.0
+            }
+          },
+          {
+            "name": "status",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_1c344ae12e374587bd2a9239bafcb740"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "SHUT=0,OPEN=1",
+              "minimum": 1.0,
+              "maximum": 1.0
+            }
+          },
+          {
+            "name": "measured_depth",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_f4914bf1bf714d88aafa8dfbdb7de42b"
+              },
+              "count": 100,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 1302.870983886719,
+              "maximum": 1720.1202770996097
+            }
+          }
+        ]
+      },
+      "expected_cells": [
+        [
+          80,
+          100,
+          0
+        ],
+        [
+          80,
+          100,
+          1
+        ],
+        [
+          80,
+          100,
+          2
+        ],
+        [
+          80,
+          100,
+          3
+        ],
+        [
+          80,
+          100,
+          4
+        ],
+        [
+          80,
+          100,
+          5
+        ],
+        [
+          80,
+          100,
+          6
+        ],
+        [
+          80,
+          100,
+          7
+        ],
+        [
+          80,
+          100,
+          8
+        ],
+        [
+          80,
+          100,
+          9
+        ],
+        [
+          80,
+          100,
+          10
+        ],
+        [
+          80,
+          100,
+          11
+        ],
+        [
+          80,
+          100,
+          12
+        ],
+        [
+          80,
+          100,
+          13
+        ],
+        [
+          80,
+          100,
+          14
+        ],
+        [
+          80,
+          100,
+          15
+        ],
+        [
+          80,
+          100,
+          16
+        ],
+        [
+          80,
+          100,
+          17
+        ],
+        [
+          80,
+          100,
+          18
+        ],
+        [
+          80,
+          100,
+          19
+        ],
+        [
+          80,
+          100,
+          20
+        ],
+        [
+          80,
+          100,
+          21
+        ],
+        [
+          80,
+          100,
+          22
+        ],
+        [
+          80,
+          100,
+          23
+        ],
+        [
+          80,
+          100,
+          24
+        ],
+        [
+          80,
+          100,
+          25
+        ],
+        [
+          80,
+          100,
+          26
+        ],
+        [
+          80,
+          100,
+          27
+        ],
+        [
+          80,
+          100,
+          28
+        ],
+        [
+          80,
+          100,
+          29
+        ],
+        [
+          80,
+          100,
+          30
+        ],
+        [
+          80,
+          100,
+          31
+        ],
+        [
+          80,
+          100,
+          32
+        ],
+        [
+          80,
+          100,
+          33
+        ],
+        [
+          80,
+          100,
+          34
+        ],
+        [
+          80,
+          100,
+          35
+        ],
+        [
+          80,
+          100,
+          36
+        ],
+        [
+          80,
+          100,
+          37
+        ],
+        [
+          80,
+          100,
+          38
+        ],
+        [
+          80,
+          100,
+          39
+        ],
+        [
+          80,
+          100,
+          40
+        ],
+        [
+          80,
+          100,
+          41
+        ],
+        [
+          80,
+          100,
+          42
+        ],
+        [
+          80,
+          100,
+          43
+        ],
+        [
+          80,
+          100,
+          44
+        ],
+        [
+          80,
+          100,
+          45
+        ],
+        [
+          80,
+          100,
+          46
+        ],
+        [
+          80,
+          100,
+          47
+        ],
+        [
+          80,
+          100,
+          48
+        ],
+        [
+          80,
+          100,
+          49
+        ]
+      ]
+    },
+    {
+      "state": {
+        "binding": {
+          "loaded": {
+            "receipt": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "artifact_id": "artifact_5c6477233c1d4848b6dabcc294c4dc31"
+            },
+            "model": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+            },
+            "case": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 4
+              },
+              "kind": "case",
+              "object_id": "b385154384c44e4aa62043515d4f54b8"
+            },
+            "view": {
+              "context": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+                "project_generation": 4
+              },
+              "kind": "view",
+              "object_id": "3a408eee01244762a0fce2b1309923a2"
+            },
+            "source": "/private/tmp/general-compilation-native-final/workspace/geological-sources/revision_6f1fea70df8a4d64999c25c2f2037f91/3fc97919-f762-4c92-af2e-91bb60524a95/model.GRDECL",
+            "global_cells": 1000000,
+            "active_cells": 785400,
+            "verified_properties": [
+              "PORO",
+              "PERMX",
+              "PERMY",
+              "PERMZ"
+            ]
+          },
+          "well": {
+            "context": {
+              "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+              "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+              "project_generation": 4
+            },
+            "kind": "well",
+            "object_id": "e6fb988af3e24ba3ab87eca52e38a5ed"
+          },
+          "receipt": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_bb9c948759714fe59d13f62cb4fd4cb5"
+          }
+        },
+        "plan": {
+          "model": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+          },
+          "name": "INJECT",
+          "role": "injector",
+          "injection_phase": "WATER",
+          "targets": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_f9459e72987f427596b359a41d5a08ab"
+          },
+          "intervals": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_f329f5d7462b462f91cad20f29557fba"
+          },
+          "skins": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_d9828b3a40d24089acd8c762e33f9455"
+          },
+          "sampling_distance": 5.0,
+          "parent": null,
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_2a6c8d8d3875485faea1cf2123662645"
+          },
+          "version": "general-well-v1",
+          "length_unit": "m",
+          "datum": "Original local model, depth positive down"
+        },
+        "trajectory": {
+          "artifact": {
+            "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+            "artifact_id": "artifact_5d0eb0ba02d948db9cc4c4968cb458c0"
+          },
+          "count": 2004,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 5021.5
+        }
+      },
+      "export": {
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_3c165c91690f45b98569db57e4c70f0d"
+        },
+        "version": "general-connections-v1",
+        "well_receipt": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_bb9c948759714fe59d13f62cb4fd4cb5"
+        },
+        "plan": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_2a6c8d8d3875485faea1cf2123662645"
+        },
+        "model": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+        },
+        "wellhead": {
+          "i": 50,
+          "j": 100,
+          "reference_depth": null
+        },
+        "length_unit": "m",
+        "count": 50,
+        "measured_depth_semantics": "Native aggregate bounds can span gaps between intervals in one cell.",
+        "columns": [
+          {
+            "name": "cells",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_8017d5a611b74d14a36231d6e2eba926"
+              },
+              "count": 150,
+              "dtype": "int64",
+              "unit": "zero_based_ijk",
+              "minimum": 0.0,
+              "maximum": 100.0
+            }
+          },
+          {
+            "name": "factor",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_69ccf36c69494ba086bc3d1ad170036e"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "ECLIPSE_METRIC_COMPDAT",
+              "minimum": 5.401716085057248,
+              "maximum": 540.1919661230438
+            }
+          },
+          {
+            "name": "kh",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_448116f4902241dfb6d61299d36b9174"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "mD*m",
+              "minimum": 472.42141077938794,
+              "maximum": 47242.594348190854
+            }
+          },
+          {
+            "name": "diameter",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_76f9eca619a14d46b47a680a15d8f9bf"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 0.19999999999999998,
+              "maximum": 0.20000000000000004
+            }
+          },
+          {
+            "name": "skin",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_8fe7f15584644350b6d9264599dee1f6"
+              },
+              "count": 50,
+              "dtype": "float64",
+              "unit": "1",
+              "minimum": 0.0,
+              "maximum": 0.0
+            }
+          },
+          {
+            "name": "direction",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_607d2264a768473db289342ce6947b64"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "X=1,Y=2,Z=3",
+              "minimum": 3.0,
+              "maximum": 3.0
+            }
+          },
+          {
+            "name": "status",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_57def780860d4e1e8271fa9e68997a94"
+              },
+              "count": 50,
+              "dtype": "int64",
+              "unit": "SHUT=0,OPEN=1",
+              "minimum": 1.0,
+              "maximum": 1.0
+            }
+          },
+          {
+            "name": "measured_depth",
+            "array": {
+              "artifact": {
+                "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+                "artifact_id": "artifact_149a7fe152874d219b128e3e0f34f2de"
+              },
+              "count": 100,
+              "dtype": "float64",
+              "unit": "m",
+              "minimum": 1223.4371911621092,
+              "maximum": 1772.3438842773437
+            }
+          }
+        ]
+      },
+      "expected_cells": [
+        [
+          50,
+          100,
+          0
+        ],
+        [
+          50,
+          100,
+          1
+        ],
+        [
+          50,
+          100,
+          2
+        ],
+        [
+          50,
+          100,
+          3
+        ],
+        [
+          50,
+          100,
+          4
+        ],
+        [
+          50,
+          100,
+          5
+        ],
+        [
+          50,
+          100,
+          6
+        ],
+        [
+          50,
+          100,
+          7
+        ],
+        [
+          50,
+          100,
+          8
+        ],
+        [
+          50,
+          100,
+          9
+        ],
+        [
+          50,
+          100,
+          10
+        ],
+        [
+          50,
+          100,
+          11
+        ],
+        [
+          50,
+          100,
+          12
+        ],
+        [
+          50,
+          100,
+          13
+        ],
+        [
+          50,
+          100,
+          14
+        ],
+        [
+          50,
+          100,
+          15
+        ],
+        [
+          50,
+          100,
+          16
+        ],
+        [
+          50,
+          100,
+          17
+        ],
+        [
+          50,
+          100,
+          18
+        ],
+        [
+          50,
+          100,
+          19
+        ],
+        [
+          50,
+          100,
+          20
+        ],
+        [
+          50,
+          100,
+          21
+        ],
+        [
+          50,
+          100,
+          22
+        ],
+        [
+          50,
+          100,
+          23
+        ],
+        [
+          50,
+          100,
+          24
+        ],
+        [
+          50,
+          100,
+          25
+        ],
+        [
+          50,
+          100,
+          26
+        ],
+        [
+          50,
+          100,
+          27
+        ],
+        [
+          50,
+          100,
+          28
+        ],
+        [
+          50,
+          100,
+          29
+        ],
+        [
+          50,
+          100,
+          30
+        ],
+        [
+          50,
+          100,
+          31
+        ],
+        [
+          50,
+          100,
+          32
+        ],
+        [
+          50,
+          100,
+          33
+        ],
+        [
+          50,
+          100,
+          34
+        ],
+        [
+          50,
+          100,
+          35
+        ],
+        [
+          50,
+          100,
+          36
+        ],
+        [
+          50,
+          100,
+          37
+        ],
+        [
+          50,
+          100,
+          38
+        ],
+        [
+          50,
+          100,
+          39
+        ],
+        [
+          50,
+          100,
+          40
+        ],
+        [
+          50,
+          100,
+          41
+        ],
+        [
+          50,
+          100,
+          42
+        ],
+        [
+          50,
+          100,
+          43
+        ],
+        [
+          50,
+          100,
+          44
+        ],
+        [
+          50,
+          100,
+          45
+        ],
+        [
+          50,
+          100,
+          46
+        ],
+        [
+          50,
+          100,
+          47
+        ],
+        [
+          50,
+          100,
+          48
+        ],
+        [
+          50,
+          100,
+          49
+        ]
+      ]
+    }
+  ],
+  "fault_verification": {
+    "loaded": {
+      "receipt": {
+        "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+        "artifact_id": "artifact_5c6477233c1d4848b6dabcc294c4dc31"
+      },
+      "model": {
+        "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+        "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+      },
+      "case": {
+        "context": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+          "project_generation": 1
+        },
+        "kind": "case",
+        "object_id": "07feab3b26ce41b08bd8ebc34c17ba54"
+      },
+      "view": {
+        "context": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "connection_id": "connection_c5c24821dbb3429cb55a870504ea751d",
+          "project_generation": 1
+        },
+        "kind": "view",
+        "object_id": "d85b37c2df6745efbf1ae966881496b1"
+      },
+      "source": "/private/tmp/general-compilation-native-final/workspace/geological-sources/revision_6f1fea70df8a4d64999c25c2f2037f91/3fc97919-f762-4c92-af2e-91bb60524a95/model.GRDECL",
+      "global_cells": 1000000,
+      "active_cells": 785400,
+      "verified_properties": [
+        "PORO",
+        "PERMX",
+        "PERMY",
+        "PERMZ"
+      ]
+    },
+    "cells": [
+      {
+        "global_index": 10037,
+        "corners": [
+          [
+            2220.0,
+            5000.0,
+            1869.809814453125
+          ],
+          [
+            2280.0,
+            5000.0,
+            1882.486083984375
+          ],
+          [
+            2280.0,
+            5050.0,
+            1881.048095703125
+          ],
+          [
+            2220.0,
+            5050.0,
+            1868.347900390625
+          ],
+          [
+            2220.0,
+            5000.0,
+            1880.165283203125
+          ],
+          [
+            2280.0,
+            5000.0,
+            1892.929443359375
+          ],
+          [
+            2280.0,
+            5050.0,
+            1891.49072265625
+          ],
+          [
+            2220.0,
+            5050.0,
+            1878.70263671875
+          ]
+        ],
+        "maximum_coordinate_error": 5.677962599293096e-05
+      },
+      {
+        "global_index": 10038,
+        "corners": [
+          [
+            2280.0,
+            5000.0,
+            2032.486083984375
+          ],
+          [
+            2340.0,
+            5000.0,
+            2046.2877197265625
+          ],
+          [
+            2340.0,
+            5050.0,
+            2044.876953125
+          ],
+          [
+            2280.0,
+            5050.0,
+            2031.048095703125
+          ],
+          [
+            2280.0,
+            5000.0,
+            2042.929443359375
+          ],
+          [
+            2340.0,
+            5000.0,
+            2056.813232421875
+          ],
+          [
+            2340.0,
+            5050.0,
+            2055.40185546875
+          ],
+          [
+            2280.0,
+            5050.0,
+            2041.49072265625
+          ]
+        ],
+        "maximum_coordinate_error": 6.060337614144373e-05
+      },
+      {
+        "global_index": 990038,
+        "corners": [
+          [
+            2280.0,
+            5000.0,
+            2544.210693359375
+          ],
+          [
+            2340.0,
+            5000.0,
+            2562.04296875
+          ],
+          [
+            2340.0,
+            5050.0,
+            2560.59521484375
+          ],
+          [
+            2280.0,
+            5050.0,
+            2542.73779296875
+          ],
+          [
+            2280.0,
+            5000.0,
+            2554.654052734375
+          ],
+          [
+            2340.0,
+            5000.0,
+            2572.568359375
+          ],
+          [
+            2340.0,
+            5050.0,
+            2571.1201171875
+          ],
+          [
+            2280.0,
+            5050.0,
+            2553.180419921875
+          ]
+        ],
+        "maximum_coordinate_error": 0.00011481270666990895
+      }
+    ],
+    "maximum_property_error": 0.0002432400651741773,
+    "coordinate_unit": "m",
+    "depth_direction": "positive_down"
+  },
+  "prepared": {
+    "artifact": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_9410b1c4cb85437bbe00633489d6eb52"
+    },
+    "version": "general-prepared-simulation-v1",
+    "assembly": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_3146a65d378c4fdf82f761e883e7e4e1"
+    },
+    "model": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+    },
+    "schedule": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_ffc7c33dfcdd42b7b1ec406ab34103e1"
+    },
+    "physics": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_7d36ecfebd6c4967b4efd9c423b0770e"
+    },
+    "validation": {
+      "parser_version": "2025.10",
+      "clock": "UTC",
+      "unit_system": "METRIC",
+      "global_cells": 1000000,
+      "active_cells": 785400,
+      "wells": 3,
+      "connections": 150,
+      "reports": 4,
+      "control_events": 12,
+      "verified_array_values": 13121806,
+      "verified_table_rows": 57
+    },
+    "metrics": {
+      "elapsed_seconds": 15.030802749912255,
+      "peak_worker_memory_mib": 637.828125,
+      "staged_disk_mib": 214.09240818023682,
+      "memory_limit_mib": 1024,
+      "timeout_seconds": 120.0,
+      "disk_limit_mib": 1024
+    },
+    "files": [
+      {
+        "name": "MODEL.DATA",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_d8804b21864a4c5f947dd1bb0d3583bb"
+        }
+      },
+      {
+        "name": "GRID.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_015ff3878d3b4b07ad2c97eff54c9aa1"
+        }
+      },
+      {
+        "name": "PHYSICS.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_d80cf9aa9021495db57fdb2282381226"
+        }
+      },
+      {
+        "name": "SCHEDULE.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_4bf20a04c36c484d8624b2b85e18433a"
+        }
+      },
+      {
+        "name": "validation.log",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_385bf42a0dcd483da138f29cc1a280a5"
+        }
+      }
+    ],
+    "simulation_executed": false
+  },
+  "revised": {
+    "artifact": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_46afaa786dbb4c9fb8827f6c7cf2fbf7"
+    },
+    "version": "general-prepared-simulation-v1",
+    "assembly": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_cd52256208474fbc85943c180cc29ab3"
+    },
+    "model": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "revision_id": "revision_6f1fea70df8a4d64999c25c2f2037f91"
+    },
+    "schedule": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_064cfd6fae42439fa7eede8ff79cf961"
+    },
+    "physics": {
+      "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+      "artifact_id": "artifact_7d36ecfebd6c4967b4efd9c423b0770e"
+    },
+    "validation": {
+      "parser_version": "2025.10",
+      "clock": "UTC",
+      "unit_system": "METRIC",
+      "global_cells": 1000000,
+      "active_cells": 785400,
+      "wells": 3,
+      "connections": 150,
+      "reports": 4,
+      "control_events": 12,
+      "verified_array_values": 13121806,
+      "verified_table_rows": 57
+    },
+    "metrics": {
+      "elapsed_seconds": 12.103528624982573,
+      "peak_worker_memory_mib": 616.1875,
+      "staged_disk_mib": 214.09295177459717,
+      "memory_limit_mib": 1024,
+      "timeout_seconds": 120.0,
+      "disk_limit_mib": 1024
+    },
+    "files": [
+      {
+        "name": "MODEL.DATA",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_3c05d32211df4eafb91479bc199bfdbd"
+        }
+      },
+      {
+        "name": "GRID.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_f4b64f111edc424f85ac76887c6defdd"
+        }
+      },
+      {
+        "name": "PHYSICS.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_028e0f08f7bb4274a7b4d5a22ef0f9fc"
+        }
+      },
+      {
+        "name": "SCHEDULE.INC",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_c7a5c56faf684e5c84b0bf11bac344e5"
+        }
+      },
+      {
+        "name": "validation.log",
+        "artifact": {
+          "session_id": "session_3b5040ce49f24886afa76e89075e80a5",
+          "artifact_id": "artifact_83d81c5aa89b4b81b48f08d29360179b"
+        }
+      }
+    ],
+    "simulation_executed": false
+  },
+  "calls": 115,
+  "images": 3,
+  "peak_rss_bytes": {
+    "mcp_server": 378273792,
+    "resinsight": 1063649280
+  },
+  "seconds": 68.20255304197781,
+  "restart_verified": true,
+  "simulation_executed": false
+}

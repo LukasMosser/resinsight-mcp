@@ -1,0 +1,50 @@
+
+Run: ruff check .
+All checks passed!
+
+Run: ruff format --check .
+361 files already formatted
+
+Run: ty check
+All checks passed!
+
+Run: /private/tmp/resinsight-general-input-compilation/.venv/bin/python3 -m pytest -q
+........................................................................ [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 25%]
+........................................................................ [ 33%]
+........................................................................ [ 42%]
+......................................F................................. [ 50%]
+........................................................................ [ 59%]
+........................................................................ [ 67%]
+........................................................................ [ 76%]
+........................................................................ [ 84%]
+........................................................................ [ 93%]
+.........................................................                [100%]
+=================================== FAILURES ===================================
+____ test_preparation_preserves_model_tables_reports_and_native_values[3-m] ____
+
+tmp_path = PosixPath('/private/var/folders/jr/13fp1xcn0jq_988kgk0jzj0m0000gp/T/pytest-of-lmoss/pytest-622/test_preparation_preserves_mod1')
+wells = 3, unit = 'm'
+
+    @pytest.mark.parametrize(("wells", "unit"), [(0, "m"), (3, "m"), (3, "ft")])
+    def test_preparation_preserves_model_tables_reports_and_native_values(tmp_path, wells, unit):
+        service, request = fixture(tmp_path, wells=wells, length_unit=unit)
+        assembly = value(service.define(request))
+>       prepared = value(service.prepare(assembly.artifact))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/models/general/test_compilation.py:186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = OperationResult(outcome=Failure(status='failure', error=Error(code=<ErrorCode.INVALID_MODEL: 'invalid_model'>, message='The parser worker identity is unavailable.', effect=<MutationEffect.NOT_APPLIED: 'not_applied'>)))
+
+    def value[T](result: OperationResult[T]) -> T:
+        if isinstance(result.outcome, Failure):
+>           raise ContractError(result.outcome.error)
+E           resinsight_mcp.contracts.errors.ContractError: The parser worker identity is unavailable.
+
+src/resinsight_mcp/models/general/arrays.py:35: ContractError
+=========================== short test summary info ============================
+FAILED tests/models/general/test_compilation.py::test_preparation_preserves_model_tables_reports_and_native_values[3-m]
+1 failed, 848 passed in 172.05s (0:02:52)

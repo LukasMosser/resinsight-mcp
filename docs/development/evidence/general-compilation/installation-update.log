@@ -1,0 +1,8 @@
+Using Python 3.12.13 environment at: /private/tmp/general-compilation-installed
+Resolved 37 packages in 204ms
+   Building resinsight-mcp @ file:///private/tmp/resinsight-general-input-compilation
+      Built resinsight-mcp @ file:///private/tmp/resinsight-general-input-compilation
+Prepared 1 package in 637ms
+Uninstalled 1 package in 19ms
+Installed 1 package in 3ms
+ ~ resinsight-mcp==0.1.0 (from file:///private/tmp/resinsight-general-input-compilation)

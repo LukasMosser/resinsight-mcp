@@ -28,6 +28,24 @@ If a required tool is absent, stop that task and inspect the host configuration.
 The [operation map](development/agent-workflows.md) explains which capabilities exist and which paths remain integration work.
 No tool accepts arbitrary shell commands or Python code.
 
+## Author general models
+
+Add `--enable-general-models` to expose geological arrays, native wells, schedules, regional physics, and input compilation.
+Read `general_capabilities` for supported formats, physics, and local resource budgets.
+These tools have no total cell, well, or report-count ceiling.
+ResInsight, OPM, supported formats, and available resources still constrain an operation.
+
+Use `general_simulation_define` to assemble compatible geometry, physics, schedules, and native connection exports.
+Use `general_simulation_prepare` to compile inputs and validate them with OPM 2025.10.
+The `imports` package extra supplies the supported parser.
+The result contains file references, source identities, validated counts, and measured resource usage.
+Use `general_simulation_prepared` to recover that receipt after reconnecting.
+
+Preparation does not execute a simulation.
+General prepared receipts cannot enter the legacy SPE1 execution path.
+The [compiler guide](development/general-input-compilation.md) describes explicit choices, unit handling, validation, and resource configuration.
+The [native evidence](development/evidence/general-compilation/README.md) records tested geometry and connection limitations.
+
 ## Start a workspace server
 
 Use Python 3.12 and the locked environment from the [setup guide](development/local-setup.md).
