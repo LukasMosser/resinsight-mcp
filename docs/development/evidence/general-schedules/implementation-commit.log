@@ -1,0 +1,13 @@
+bash: warning: setlocale: LC_ALL: cannot change locale (C.UTF-8): No such file or directory
+Run repository checks....................................................Passed
+[codex/general-schedules d7c644a] Add immutable general well schedules
+ 19 files changed, 1832 insertions(+), 19 deletions(-)
+ create mode 100644 docs/development/evidence/general-schedules/acceptance.py
+ create mode 100644 docs/development/general-schedules.md
+ create mode 100644 src/resinsight_mcp/models/general/schedules/__init__.py
+ create mode 100644 src/resinsight_mcp/models/general/schedules/differences.py
+ create mode 100644 src/resinsight_mcp/models/general/schedules/records.py
+ create mode 100644 src/resinsight_mcp/models/general/schedules/service.py
+ create mode 100644 src/resinsight_mcp/models/general/schedules/storage.py
+ create mode 100644 tests/mcp/test_general_schedules.py
+ create mode 100644 tests/models/general/test_schedules.py

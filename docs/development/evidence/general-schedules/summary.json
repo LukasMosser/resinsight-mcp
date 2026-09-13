@@ -1,0 +1,718 @@
+{
+  "implementation_commit": "d7c644acef15c06b2a1f903c9c3980993690e68f",
+  "python": "/private/tmp/general-schedule-installed/bin/python",
+  "python_version": "3.12.13",
+  "platform": "macOS-14.2.1-arm64-arm-64bit",
+  "packages": {
+    "resinsight-mcp": "0.1.0",
+    "mcp": "1.30.0",
+    "numpy": "2.5.3",
+    "pydantic": "2.13.5"
+  },
+  "model": {
+    "model": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "revision_id": "revision_a221d74c658e4310a649b1cd062d6bfd"
+    },
+    "name": "Million-cell schedule target",
+    "shape": {
+      "nx": 100,
+      "ny": 200,
+      "nz": 50
+    },
+    "active_cells": 1000000,
+    "arrays": [
+      {
+        "name": "COORD",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_2d4ae544fa2a4464ac8a99cb0ae2a711"
+          },
+          "count": 121806,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 0.0,
+          "maximum": 10000.0
+        }
+      },
+      {
+        "name": "ZCORN",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_be1c35d2daf54f1c9a6caf5187255138"
+          },
+          "count": 8000000,
+          "dtype": "float64",
+          "unit": "m",
+          "minimum": 2000.0,
+          "maximum": 2500.0
+        }
+      },
+      {
+        "name": "ACTNUM",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_fe96b046e2b74231b2104c5d1abfded0"
+          },
+          "count": 1000000,
+          "dtype": "int64",
+          "unit": "1",
+          "minimum": 1.0,
+          "maximum": 1.0
+        }
+      },
+      {
+        "name": "PORO",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_a800915979474a44a6606ea4a58aa61c"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "1",
+          "minimum": 0.15,
+          "maximum": 0.25
+        }
+      },
+      {
+        "name": "PERMX",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_ba6d4764cf6242dca46f6974a5cc95d1"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      },
+      {
+        "name": "PERMY",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_c946e9c173164da4bbd975d2f7af263c"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      },
+      {
+        "name": "PERMZ",
+        "array": {
+          "artifact": {
+            "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+            "artifact_id": "artifact_f08eb4604e0d4ad1b03e7a640c94eb44"
+          },
+          "count": 1000000,
+          "dtype": "float64",
+          "unit": "mD",
+          "minimum": 10.0,
+          "maximum": 1000.0
+        }
+      }
+    ],
+    "source": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "artifact_id": "artifact_3a42d9402cfb466fbf1aab6f8668276e"
+    }
+  },
+  "parent": {
+    "model": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "revision_id": "revision_a221d74c658e4310a649b1cd062d6bfd"
+    },
+    "start_date": "2026-09-13",
+    "artifact": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+    },
+    "version": "general-schedule-v1",
+    "parent": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "artifact_id": "artifact_3e205dbed8f54fdfabee6fe13f5e2ca1"
+    },
+    "reports": {
+      "artifact": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_3fa18eb82ea34b609f5ef97488f85a7b"
+      },
+      "count": 4001,
+      "dtype": "float64",
+      "unit": "day",
+      "minimum": 0.0,
+      "maximum": 4000.0
+    },
+    "well_count": 36,
+    "event_count": 644
+  },
+  "child": {
+    "model": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "revision_id": "revision_a221d74c658e4310a649b1cd062d6bfd"
+    },
+    "start_date": "2026-09-13",
+    "artifact": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "artifact_id": "artifact_cc781007cde1475dbde4c77f95131cbb"
+    },
+    "version": "general-schedule-v1",
+    "parent": {
+      "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+      "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+    },
+    "reports": {
+      "artifact": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_39116b04fad0461493c628acf27c5daa"
+      },
+      "count": 4002,
+      "dtype": "float64",
+      "unit": "day",
+      "minimum": 0.0,
+      "maximum": 4000.0
+    },
+    "well_count": 36,
+    "event_count": 644
+  },
+  "states": [
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 0,
+      "elapsed_days": 0.0,
+      "last_event_days": 0.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 1,
+      "elapsed_days": 1.0,
+      "last_event_days": 1.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "SHUT",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 2,
+      "elapsed_days": 2.0,
+      "last_event_days": 2.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 3,
+      "elapsed_days": 3.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 4,
+      "elapsed_days": 4.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9c907629971a445fa9f0c5d10d7482cf"
+      },
+      "well": "PROD_A",
+      "report_index": 4000,
+      "elapsed_days": 4000.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 0,
+      "elapsed_days": 0.0,
+      "last_event_days": 0.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 1,
+      "elapsed_days": 1.0,
+      "last_event_days": 1.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "SHUT",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 2,
+      "elapsed_days": 2.0,
+      "last_event_days": 2.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 3,
+      "elapsed_days": 3.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 4,
+      "elapsed_days": 4.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_53c4dd64fbca43708f371e066e58cbaa"
+      },
+      "well": "PROD_B",
+      "report_index": 4000,
+      "elapsed_days": 4000.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "producer",
+        "injection_phase": null,
+        "status": "OPEN",
+        "mode": "ORAT",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 0,
+      "elapsed_days": 0.0,
+      "last_event_days": 0.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "OPEN",
+        "mode": "RATE",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 1,
+      "elapsed_days": 1.0,
+      "last_event_days": 1.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "SHUT",
+        "mode": "RATE",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 2,
+      "elapsed_days": 2.0,
+      "last_event_days": 2.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "OPEN",
+        "mode": "RATE",
+        "rate": {
+          "value": 100.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 3,
+      "elapsed_days": 3.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "OPEN",
+        "mode": "RATE",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 4,
+      "elapsed_days": 4.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "OPEN",
+        "mode": "RATE",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    },
+    {
+      "schedule": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_9020228d22c545f4bd15928f121d7746"
+      },
+      "plan": {
+        "session_id": "session_297054a957e649f1b4ec30059d8f0bb0",
+        "artifact_id": "artifact_da39056c3a394a6ca98af2a4d3335e53"
+      },
+      "well": "INJ_C",
+      "report_index": 4000,
+      "elapsed_days": 4000.0,
+      "last_event_days": 3.0,
+      "control": {
+        "kind": "control",
+        "role": "injector",
+        "injection_phase": "WATER",
+        "status": "OPEN",
+        "mode": "RATE",
+        "rate": {
+          "value": 200.0,
+          "unit": "sm3/day"
+        },
+        "bhp": {
+          "value": 200.0,
+          "unit": "bar"
+        }
+      }
+    }
+  ],
+  "public_calls": 274,
+  "expected_failures": 4,
+  "peak_mcp_rss_bytes": 378781696,
+  "largest_structured_response_characters": 3749,
+  "complete_mcp_restart_verified": true,
+  "native_application_launched": false,
+  "simulation_executed": false
+}
