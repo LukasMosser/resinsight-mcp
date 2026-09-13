@@ -48,6 +48,7 @@ from resinsight_mcp.resinsight.general.well_records import (
     GeneralWellState,
 )
 
+from ._physics_operations import physics_operations
 from .catalog import Bindings, EmptyRequest, Operation
 
 
@@ -273,4 +274,4 @@ def general_operations(bindings: Bindings) -> tuple[Operation[Any, Any], ...]:
                 ),
             )
         )
-    return tuple(operations)
+    return (*operations, *physics_operations(bindings))

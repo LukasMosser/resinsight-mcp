@@ -130,12 +130,13 @@ class GeneralCapabilities(Record):
     schedule_report_ceiling: None = None
     schedule_event_ceiling: None = None
     schedule_controls: tuple[str, ...] = ("producer:ORAT/BHP", "injector:RATE/BHP", "OPEN/SHUT")
+    physics_profiles: tuple[str, ...] = ("black_oil_disgas_rsvd",)
     well_coordinate_units: tuple[str, ...] = ("m", "ft")
     well_geometry: str = "Native curves through target points. Independent paths without branches."
     array_order: str = "I fastest, then J, then K. ZCORN uses Eclipse corner ordering."
     policy: AuthoringPolicy
     simulation_ready: bool = False
     limitation: str = (
-        "Authored grids, wells, and schedules require fluid inputs "
-        "and simulator compilation before execution."
+        "Authored grids, wells, schedules, and regional physics require "
+        "complete inputs and validated simulator compilation before execution."
     )

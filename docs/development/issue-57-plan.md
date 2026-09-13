@@ -15,6 +15,7 @@ Explicit multipart arrays also define a separate grid with nonuniform spacing an
 The [general well delivery](general-wells.md) adds native paths, immutable plans, and bounded connection arrays on authored grids.
 The [general schedule delivery](general-schedules.md) adds independent control histories, report insertion, shut-in, reopening, and semantic differences.
 Simulation preparation, asynchronous work, and scalable results remain approved work under this issue.
+The [simulator input delivery](general-simulator-inputs.md) starts explicit regional fluid and initialization authoring.
 The geological delivery does not complete the issue's three-well simulation acceptance.
 
 ## Recommendation
